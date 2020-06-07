@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<assets base_path="assets/" load="startup">
+
+    <group name="guis/textures/pd2/" path="assets/guis/textures/pd2/">
+        <file :name="hud_health.texture"          :path="hud_health.texture"/>
+        <file :name="hud_progress_active.texture" :path="hud_progress_active.texture"/>
+        <file :name="hud_progress_bg.texture"     :path="hud_progress_bg.texture"/>
+		<file :name="hud_progress_invalid.texture" :path="hud_progress_invalid.texture"/>
+        <file :name="hud_stealthmeter.texture"     :path="hud_stealthmeter.texture"/>
+        <file :name="hud_stealthmeter_bg.texture"  :path="hud_stealthmeter_bg.texture"/>
+		<file :name="hud_tabs.texture"             :path="hud_tabs.texture"/>
+		
+		<group :name="blackmarket/" :path="blackmarket/">
+		    <file :name="inv_detection_meter.texture" :path="inv_detection_meter.texture"/>
+		</group>
+		
+		<group :name="endscreen/" :path="endscreen/">>
+		    <file :name="announcement.texture"  :path="announcement.texture"/>
+		    <file :name="exp_ring.texture"      :path="exp_ring.texture"/>
+		    <file :name="stealth_bonus.texture" :path="stealth_bonus.texture"/>					
+	    </group>
+		
+	    <group :name="menu_backdrop/" :path="menu_backdrop/">
+		    <file :name="bd_baselayer.texture"  :path="bd_baselayer.texture"/>
+		    <file :name="bd_light.texture"      :path="bd_light.texture"/>				
+	    </group>
+		
+		<group :name="mission_briefing/" :path="mission_briefing/">
+		    <file :name="calendar_stamp.texture"          :path="calendar_stamp.texture"/>
+		    <file :name="calendar_xo.texture"             :path="calendar_xo.texture"/>
+		    <file :name="gui_tickbox.texture"             :path="gui_tickbox.texture"/>	
+		    <file :name="gui_tickbox_ready.texture"       :path="gui_tickbox_ready.texture"/>
+		    <file :name="inv_detection_meter.texture"     :path="inv_detection_meter.texture"/>
+		    <file :name="bain/bd_pattern.texture"         :path="bain/bd_pattern.texture"/>		
+		    <file :name="dallas/bd_pattern.texture"       :path="dallas/bd_pattern.texture"/>
+		    <file :name="hector/bd_pattern.texture"       :path="hector/bd_pattern.texture"/>
+		    <file :name="interupt/bd_pattern.texture"     :path="interupt/bd_pattern.texture"/>		
+		    <file :name="the_elephant/bd_pattern.texture" :path="the_elephant/bd_pattern.texture"/>
+		    <file :name="vlad/bd_pattern.texture"         :path="vlad/bd_pattern.texture"/>
+	    </group>
+		
+		<group :name="specialization/" :path="specialization/">
+		    <file :name="perk_icon_card.texture" :path="perk_icon_card.texture"/>
+		    <file :name="progress_ring.texture"  :path="progress_ring.texture"/>				
+	    </group>
+    </group>
+	
+	
+    <group name="guis/textures/" path="assets/guis/textures/">
+	    <file :name="crimenet_map.texture"               :path="crimenet_map.texture"/>
+        <file :name="crimenet_map_rasteroverlay.texture" :path="crimenet_map_rasteroverlay.texture"/>
+        <file :name="crimenet_map_vignette.texture"      :path="crimenet_map_vignette.texture"/>
+		<file :name="game_small_logo.texture"            :path="game_small_logo.texture"/>
+        <file :name="icon_loading.texture"               :path="icon_loading.texture"/>
+        <file :name="icon_saving.texture"                :path="icon_saving.texture"/>
+		<file :name="menu_title_screen.texture"          :path="menu_title_screen.texture"/>
+		<file :name="mouse_pointer.texture"              :path="mouse_pointer.texture"/>
+    </group>
+	
+	<group name="guis/dlcs/" path="assets/guis/dlcs/">
+		<file :name="berry/textures/pd2/mission_briefing/bd_pattern.texture"    :path="berry/textures/pd2/mission_briefing/bd_pattern.texture"/>
+		<file :name="big_bank/textures/pd2/mission_briefing/bd_pattern.texture" :path="big_bank/textures/pd2/mission_briefing/bd_pattern.texture"/>
+		<file :name="the_bomb/textures/pd2/mission_briefing/bd_pattern.texture" :path="the_bomb/textures/pd2/mission_briefing/bd_pattern.texture"/>		
+    </group>
+	
+	<group name="units/gui/" path="assets/units/gui/">
+        <file :name="c4_indicator_df.texture"             :path="c4_indicator_df.texture"/>
+        <file :name="camera_indicator_df.texture"         :path="camera_indicator_df.texture"/>
+        <file :name="crowbar_indicator_df.texture"        :path="crowbar_indicator_df.texture"/>
+		<file :name="cutter_indicator_df.texture"         :path="cutter_indicator_df.texture"/>
+        <file :name="drill_indicator_df.texture"          :path="drill_indicator_df.texture"/>
+        <file :name="ecm_indicator_df.texture"            :path="ecm_indicator_df.texture"/>
+		<file :name="file_indicator_df.texture"           :path="file_indicator_df.texture"/>		
+		<file :name="glasscutter_indicator_df.texture"    :path="glasscutter_indicator_df.texture"/>
+        <file :name="gps_indicator_df.texture"            :path="gps_indicator_df.texture"/>
+        <file :name="gui_brackets_df.texture"             :path="gui_brackets_df.texture"/>
+		<file :name="gui_color_use_df.texture"            :path="gui_color_use_df.texture"/>
+        <file :name="gui_drive_driver_df.texture"         :path="gui_drive_driver_df.texture"/>
+        <file :name="gui_drive_passenger_df.texture"      :path="gui_drive_passenger_df.texture"/>
+		<file :name="gui_drive_repair_df.texture"         :path="gui_drive_repair_df.texture"/>	
+		<file :name="gui_generic_search_df.texture"       :path="gui_generic_search_df.texture"/>
+        <file :name="lockpick_ghost_indicator_df.texture" :path="lockpick_ghost_indicator_df.texture"/>
+        <file :name="lockpick_indicator_df.texture"       :path="lockpick_indicator_df.texture"/>
+		<file :name="plank_indicator_df.texture"          :path="plank_indicator_df.texture"/>
+        <file :name="sawblade_indicator_df.texture"       :path="sawblade_indicator_df.texture"/>
+        <file :name="thermite_indicator_df.texture"       :path="thermite_indicator_df.texture"/>		
+	</group>
+	
+	<group name="units/menu/menu_scene/" path="assets/units/menu/menu_scene/">
+        <file :name="glow_il.texture"                  :path="glow_il.texture"/>
+        <file :name="menu_background_pattern.texture"  :path="menu_background_pattern.texture"/>
+        <file :name="menu_cylinder_logo.texture"       :path="menu_cylinder_logo.texture"/>
+		<file :name="menu_cylinder_smoke.texture"      :path="menu_cylinder_smoke.texture"/>
+        <file :name="menu_cylinder_smoke_tile.texture" :path="menu_cylinder_smoke_tile.texture"/>
+	</group>
+</assets>
