@@ -2,7 +2,8 @@
 	"menu_id": "hmh_menu",
 	"parent_menu_id": "blt_options",
 	"title": "hmh_title",
-	"description": "hmh_desc",
+    "description": "hmh_desc",
+    "back_callback" : "HMHSave",
 	"items": [
 		{
 		    "type": "slider",
