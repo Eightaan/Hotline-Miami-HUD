@@ -1,9 +1,11 @@
 <?xml version="1.0"?>
 <mod>
     <hooks script_path="lua/">
-	    <post hook_id="lib/managers/menumanager" script_path="HMH.lua" />
+	    <!-- Main code -->
+        <pre hook_id="core/lib/utils/coreapp" script_path="HMH.lua"/>
 		
 	    <group hook_id="lib/managers/">
+            <post :hook_id="menumanager"   :script_path="menu.lua" />
             <post :hook_id="hudmanager"    :script_path="waypoint.lua"/>
 	        <post :hook_id="hudmanagerpd2" :script_path="scale.lua"/>
            	<post :hook_id="hudmanagerpd2" :script_path="downcounter.lua"/>
