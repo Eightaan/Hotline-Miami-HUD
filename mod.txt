@@ -11,8 +11,7 @@
             "identifier" : "hotline_miami_hud_updates",
             "host": {
                 "meta": "https://example.com/my_meta.json",
-                "download": "https://github.com/Eightaan/Hotline-Miami-HUD/archive/master.zip",
-                "patchnotes": "https://example.com/patchnotes.html"
+                "download": "https://github.com/Eightaan/Hotline-Miami-HUD/archive/master.zip"
             }
         }
     ],
