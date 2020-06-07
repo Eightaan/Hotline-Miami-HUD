@@ -1,6 +1,6 @@
 _G.HMH = _G.HMH or {}
 HMH._path = ModPath
-HMH._data_path = SavePath .. "HMH.json"
+HMH._data_path = SavePath .. "HMHv2.json"
 HMH._data = {}
 
 function MenuCallbackHandler:get_latest_dlc_locked(...) return false end

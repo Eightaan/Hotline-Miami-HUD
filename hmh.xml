@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<mod>
+    <hooks script_path="lua/">
+	    <post hook_id="lib/managers/menumanager" script_path="HMH.lua" />
+		
+	    <group hook_id="lib/managers/">
+            <post :hook_id="hudmanager"    :script_path="waypoint.lua"/>
+	        <post :hook_id="hudmanagerpd2" :script_path="scale.lua"/>
+           	<post :hook_id="hudmanagerpd2" :script_path="downcounter.lua"/>
+	        <post :hook_id="hudmanagerpd2" :script_path="realammo.lua"/>
+		    <post :hook_id="hudmanagerpd2" :script_path="bulletstorm.lua"/>
+		    <post :hook_id="hudmanagerpd2" :script_path="ecm.lua"/>
+			<post :hook_id="playermanager" :script_path="bulletstorm.lua"/>
+			
+			<post :hook_id="group_ai_states/groupaistatebase" :script_path="downcounter.lua"/>
+			<post :hook_id="group_ai_states/groupaistatebase" :script_path="greenciv.lua"/>
+			
+			<group :hook_id="hud/">
+			    <post :hook_id="hudheisttimer"    :script_path="timer.lua"/>
+	            <post :hook_id="hudteammate"      :script_path="teammate.lua"/>
+           	    <post :hook_id="hudtemp"          :script_path="carry.lua"/>
+	            <post :hook_id="hudpresenter"     :script_path="presenter.lua"/>
+		        <post :hook_id="hudobjectives"    :script_path="objectives.lua"/>
+		        <post :hook_id="hudhint"          :script_path="hint.lua"/>
+				<post :hook_id="hudplayerdowned"  :script_path="downed.lua"/>
+	            <post :hook_id="hudassaultcorner" :script_path="assault.lua"/>
+		        <post :hook_id="hudinteraction"   :script_path="interact.lua"/>
+		        <post :hook_id="hudplayercustody" :script_path="custody.lua"/>
+				<post :hook_id="hudteammate"      :script_path="bulletstorm.lua"/>
+	            <post :hook_id="hudteammate"      :script_path="downcounter.lua"/>
+			</group>
+        </group>
+		
+		<post hook_id="lib/units/equipment/ecm_jammer/ecmjammerbase"     :script_path="ecm.lua"/>
+		<post hook_id="core/lib/managers/subtitle/coresubtitlepresenter" :script_path="subs.lua"/>
+		<post hook_id="lib/tweak_data/tweakdata"                         :script_path="peercolor.lua"/>
+		<post hook_id="lib/units/beings/player/states/playerstandard"    :script_path="inspirecooldown.lua"/>
+		<post hook_id="lib/network/handlers/unitnetworkhandler"          :script_path="downcounter.lua"/>	
+    </hooks>
+	
+	<!-- Menu Textures -->
+    <:include src="assets/assets.xml"/>
+</mod>
