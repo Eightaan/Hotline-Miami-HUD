@@ -165,7 +165,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
     end
 
     function HUDTeammate:set_hud_mode(mode)
-        self:set_revive_visibility(not (mode == "stealth"))
+        self:set_revive_visibility(mode ~= "stealth")
     end
 
     function HUDTeammate:set_player_in_custody(incustody)
