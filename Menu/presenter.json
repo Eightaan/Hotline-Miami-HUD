@@ -1,0 +1,17 @@
+{ 
+	"menu_id": "hmh_menu_presenter",
+	"parent_menu_id": "hmh_menu",
+	"title": "hmh_presenter_title",
+	"description": "hmh_presenter_desc",
+	"items": [
+		{
+			"type": "toggle",
+			"id": "presenter_toggle",
+			"title": "presenter_title",
+			"description": "presenter_desc",
+			"callback": "callback_presenter",
+			"value": "presenter",
+			"default_value": true
+		}
+	]
+}	

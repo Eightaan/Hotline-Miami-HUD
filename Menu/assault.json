@@ -1,0 +1,30 @@
+{ 
+	"menu_id": "hmh_menu_assault",
+	"parent_menu_id": "hmh_menu",
+	"title": "hmh_assault_title",
+	"description": "hmh_assault_desc",
+	"items": [
+		{
+			"type": "toggle",
+			"id": "assault_toggle",
+			"title": "assault_title",
+			"description": "assault_desc",
+			"callback": "callback_assault",
+			"value": "assault",
+			"default_value": true
+		},
+		{
+			"type": "divider",
+			"size": 16
+		},
+		{
+			"type": "toggle",
+			"id": "infoboxes_toggle",
+			"title": "infoboxes_title",
+			"description": "infoboxes_desc",
+			"callback": "callback_infoboxes",
+			"value": "infoboxes",
+			"default_value": true
+		}
+	]
+}	

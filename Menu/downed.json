@@ -1,0 +1,30 @@
+{ 
+	"menu_id": "hmh_menu_downed",
+	"parent_menu_id": "hmh_menu",
+	"title": "hmh_downed_title",
+	"description": "hmh_downed_desc",
+	"items": [
+		{
+			"type": "toggle",
+			"id": "downed_toggle",
+			"title": "downed_title",
+			"description": "downed_desc",
+			"callback": "callback_downed",
+			"value": "downed",
+			"default_value": true
+		},
+		{
+			"type": "divider",
+			"size": 16
+		},
+		{
+			"type": "toggle",
+			"id": "custody_toggle",
+			"title": "custody_title",
+			"description": "custody_desc",
+			"callback": "callback_custody",
+			"value": "custody",
+			"default_value": true
+		}
+	]
+}	

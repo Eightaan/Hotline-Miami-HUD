@@ -1,0 +1,24 @@
+{
+	"menu_id": "hmh_menu",
+	"parent_menu_id": "blt_options",
+	"title": "hmh_title",
+	"description": "hmh_desc",
+	"items": [
+		{
+		    "type": "slider",
+			"id": "hud_scale_slider",
+			"title": "hud_scale_title",
+			"description": "hud_scale_desc",
+			"callback": "callback_hud_scale",
+			"value": "hud_scale",
+			"max": 1,
+            "min": 0.5,
+            "step": 0.05,
+            "default_value": 1
+		},
+		{
+			"type": "divider",
+			"size": 16
+		}
+	]
+}

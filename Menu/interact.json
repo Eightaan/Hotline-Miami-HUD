@@ -1,0 +1,17 @@
+{ 
+	"menu_id": "hmh_menu_interact",
+	"parent_menu_id": "hmh_menu",
+	"title": "hmh_interact_title",
+	"description": "hmh_interact_desc",
+	"items": [
+		{
+			"type": "toggle",
+			"id": "interact_toggle",
+			"title": "interact_title",
+			"description": "interact_desc",
+			"callback": "callback_interact",
+			"value": "interact",
+			"default_value": true
+		}
+	]
+}	
