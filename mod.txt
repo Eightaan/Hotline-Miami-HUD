@@ -10,7 +10,7 @@
         {
             "identifier" : "hotline_miami_hud_updates",
             "host": {
-                "meta": "https://raw.githubusercontent.com/Eightaan/Hotline-Miami-HUD/master/meta/meta_info.json"
+                "meta": "https://raw.githubusercontent.com/Eightaan/mod_updates/master/HotlineMiamiHud/meta_info.json"
             }
         }
     ],
