@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<assets base_path="assets/" load="startup">
+    <group name="guis/textures/pd2/" path="assets/guis/textures/pd2/">
+        <file :name="hud_health.texture" :path="hud_health.texture"/>
+        <file :name="hud_progress_active.texture" :path="hud_progress_active.texture"/>
+        <file :name="hud_progress_bg.texture" :path="hud_progress_bg.texture"/>
+		<file :name="hud_progress_invalid.texture" :path="hud_progress_invalid.texture"/>
+    </group>
+</assets>
