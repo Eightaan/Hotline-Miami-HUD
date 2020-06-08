@@ -2,12 +2,17 @@ if not HMH:GetOption("assault") then return end
 
 Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(self, hud, ...)
     -- HOSTAGES
-    local hostage_visible = VHUDPlus and VHUDPlus:getSetting({"HUDList", "ENABLED"}, true) and not VHUDPlus:getSetting({"HUDList", "ORIGNIAL_HOSTAGE_BOX"}, false)
+    local hostages_visible
+    if VHUDPlus and VHUDPlus:getSetting({"HUDList", "ENABLED"}, true) and not VHUDPlus:getSetting({"HUDList", "ORIGNIAL_HOSTAGE_BOX"}, false) then
+	    hostages_visible = false
+	else
+	    hostages_visible = true
+	end
 
 	local hostages_panel = self._hud_panel:child("hostages_panel")
 	local hostage_text = self._hostages_bg_box:child("num_hostages")
 	local hostages_icon = hostages_panel:child("hostages_icon")
-	hostages_panel:set_visible(hostage_visible)
+	hostages_panel:set_visible(hostages_visible)
 	hostage_text:set_color(Color("66ffff"))
 	hostages_icon:set_color(Color("ff80df"))
 
@@ -255,10 +260,13 @@ function HUDAssaultCorner:flash_point_of_no_return_timer( beep )
 	point_of_no_return_timer:animate( flash_timer )
 end
 
+local orig = HUDBGBox_create
 function HUDBGBox_create(panel, params, config)
+    if not HMH:GetOption("assault") then return orig(panel, params, config) end
+
 	config = config or {}
 	config.color = Color.white:with_alpha(0)
-	config.bg_color = Color.white:with_alpha(0)
+	config.bg_color = Color.white:with_alpha(0)	
 	local box_panel = orig(panel, params, config)
 	box_panel:child("left_top"):hide()
 	box_panel:child("left_bottom"):hide()
