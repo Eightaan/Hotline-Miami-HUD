@@ -12,7 +12,8 @@
             "identifier" : "hotline_miami_hud_updates",
             "host": {
                 "meta": "https://raw.githubusercontent.com/Eightaan/mod_updates/master/HotlineMiamiHud/meta_info.json"
-            },
+            }
+        },
 		{
 			"identifier" : "hotline_miami_assets_updates",
 			"host" : {
@@ -22,6 +23,5 @@
 			"install_folder" : "Hotline Miami Menu",
 			"display_name" : "Hotline Miami Menu"
 		}
-        }
     ]
 }
