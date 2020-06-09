@@ -23,5 +23,6 @@
 	"trueammo" : false,
 	"assault" : true,
 	"objective" : true,
-	"bulletstorm" : true
+	"bulletstorm" : true,
+	"health_texture" : true
 }

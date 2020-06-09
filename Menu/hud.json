@@ -6,6 +6,19 @@
 	"items": [
 		{
 			"type": "toggle",
+			"id": "health_texture_toggle",
+			"title": "health_texture_title",
+			"description": "health_texture_desc",
+			"callback": "callback_health_texture",
+			"value": "health_texture",
+			"default_value": true
+		},
+		{
+			"type": "divider",
+			"size": 16
+		},
+		{
+			"type": "toggle",
 			"id": "PLAYER_down_toggle",
 			"title": "PLAYER_down_title",
 			"description": "PLAYER_down_desc",
