@@ -20,6 +20,19 @@
 		{
 			"type": "divider",
 			"size": 16
-		}
+        },
+        {
+			"type": "toggle",
+			"id": "mod_overrides_toggle",
+			"title": "mod_overrides_title",
+			"description": "mod_overrides_desc",
+			"callback": "callback_mod_overrides",
+			"value": "mod_overrides",
+			"default_value": false
+        },
+        {
+			"type": "divider",
+			"size": 16
+        }
 	]
 }
