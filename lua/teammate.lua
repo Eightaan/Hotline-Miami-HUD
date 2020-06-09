@@ -503,7 +503,12 @@ end
 
 Hooks:PostHook(HUDTeammate, "_create_radial_health", "HMH_HUDTeammateCreateRadialHealth", function(self, radial_health_panel)
 	local radial_ability_panel = radial_health_panel:child("radial_ability")
-	local ability_icon = radial_ability_panel:child("ability_icon")
+    local ability_icon = radial_ability_panel:child("ability_icon")
+    
+    if HMH:GetOption("health_texture") then
+        self._radial_health_panel:child("radial_health"):set_image("guis/textures/pd2_mod_hmh/hud_health", 128, 0, -128, 128)
+    end
+    
 	if HMH:GetOption("color_name") then
 	    ability_icon:set_visible(false)
 	end
