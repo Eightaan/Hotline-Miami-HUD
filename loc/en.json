@@ -31,6 +31,8 @@
 	"trueammo_desc" : "Shows ammo left, not taking the rounds in your current magazine into account.",
 	"bulletstorm_title" : "Bulletstorm Indicator",
 	"bulletstorm_desc" : "",
+	"health_texture_title" : "Custom Health Texture",
+	"health_texture_desc" : "",
 	
 	"hmh_waypoints_title" : "Waypoints",
 	"hmh_waypoints_desc" : "Customize Wayponts.",
