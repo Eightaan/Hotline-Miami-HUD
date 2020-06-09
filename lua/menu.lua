@@ -1,11 +1,37 @@
 function MenuCallbackHandler:get_latest_dlc_locked(...) return false end
 
+local function DirectoryExists(path)
+    if SystemFS and SystemFS.exists then
+        return SystemFS:exists(path)
+    elseif file and file.DirectoryExists then
+        log("")	-- For some weird reason the function below always returns true if we don't log anything previously...
+        return file.DirectoryExists(path)
+    end
+end
+
+local function CreateDirectory(path)
+    local current = ""
+    path = Application:nice_path(path, true):gsub("\\", "/")
+
+    for folder in string.gmatch(path, "([^/]*)/") do
+        current = Application:nice_path(current .. folder, true)
+
+        if not DirectoryExists(current) then
+            if SystemFS and SystemFS.make_dir then
+                SystemFS:make_dir(current)
+            elseif file and file.CreateDirectory then
+                file.CreateDirectory(current)
+            end
+        end
+    end
+end
+
 Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInit_HMH", function( loc )
-	loc:load_localization_file( HMH._path .. "loc/en.txt")
+	loc:load_localization_file( HMH._path .. "loc/en.json")
 	local localized_strings = {}
     if LobbySettings then
         localized_strings["menu_cn_premium_buy_fee_short"] = ""
-    end			
+    end
     loc:add_localized_strings(localized_strings)
 end)
 
@@ -83,6 +109,9 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
 	MenuCallbackHandler.callback_bulletstorm = function(self, item)
         HMH._data.bulletstorm = item:value() == "on"
     end
+    MenuCallbackHandler.callback_mod_overrides = function(self, item)
+        HMH._data.mod_overrides = item:value() == "on"
+    end
 
     MenuCallbackHandler.HMHSave = function(this, item)
         HMH:Save()
@@ -98,8 +127,28 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
 	MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/downed.json", HMH, HMH._data )
 	MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/carry.json", HMH, HMH._data )
 	MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/assault.json", HMH, HMH._data )
-	MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/objective.json", HMH, HMH._data )
-end )
+    MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/objective.json", HMH, HMH._data )
+
+    do	-- Romove Disabled Updates, so they don't show up in the download manager.
+        if not DirectoryExists("./assets/mod_overrides/") then
+            CreateDirectory("./assets/mod_overrides/")
+        end
+
+        local id = "Hotline Miami Hud"
+		local mod = BLT and BLT.Mods:GetMod(id)
+		for i, update in pairs(mod:GetUpdates()) do
+			if update:GetInstallFolder() ~= id then
+				local directory = Application:nice_path(update:GetInstallDirectory() .. "/" .. update:GetInstallFolder(), true)
+                if HMH:GetOption("mod_overrides") then
+                    CreateDirectory(directory)
+				else
+					table.remove(mod:GetUpdates(), i)
+					io.remove_directory_and_files(directory)
+				end
+			end
+		end
+	end
+end)
 
 --LDDG Animations
 function set_alpha( o, a, ct )
@@ -108,7 +157,7 @@ function set_alpha( o, a, ct )
 	local ca = o:alpha()
 	while t < target do
 		t = t + coroutine.yield()
-		local n = math.sin( t * 200 ) 
+		local n = math.sin( t * 200 )
 		o:set_alpha(math.lerp(ca, a, n))
 	end
 	o:set_alpha(a)

@@ -21,7 +21,7 @@
 			},
 			"install_dir" : "assets/mod_overrides/",
 			"install_folder" : "Hotline Miami Menu",
-			"display_name" : "Hotline Miami Menu"
+			"display_name" : "Hotline Miami Hud Mod Overrides"
 		}
     ]
 }
