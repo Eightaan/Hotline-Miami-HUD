@@ -1,6 +1,6 @@
 {
     "hud_scale": 1,
-    "mod_overrides" : false,
+    "mod_overrides" : true,
     "infoboxes" : true,
     "inspire": true,
     "greenciv": true,
