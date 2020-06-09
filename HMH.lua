@@ -2,7 +2,7 @@ if not HMH then
     _G.HMH =
     {
         _path = ModPath,
-        _data_path = SavePath .. "HMHv2.json",
+        _data_path = SavePath .. "HMHv3.json",
         data = {}
     }
 
