@@ -270,8 +270,6 @@ end
 
 local orig = HUDBGBox_create
 function HUDBGBox_create(panel, params, config)
-    if not HMH:GetOption("assault") then return orig(panel, params, config) end
-
 	config = config or {}
 	config.color = Color.white:with_alpha(0)
 	config.bg_color = Color.white:with_alpha(0)	
