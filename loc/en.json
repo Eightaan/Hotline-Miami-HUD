@@ -33,6 +33,8 @@
 	"bulletstorm_desc" : "",
 	"health_texture_title" : "Custom Health Texture",
 	"health_texture_desc" : "",
+	"interact_texture_title" : "Custom Interaction Texture",
+	"interact_texture_desc" : "",
 	
 	"hmh_waypoints_title" : "Waypoints",
 	"hmh_waypoints_desc" : "Customize Wayponts.",

@@ -13,9 +13,11 @@
 		    <post :hook_id="hudmanagerpd2" :script_path="bulletstorm.lua"/>
 		    <post :hook_id="hudmanagerpd2" :script_path="ecm.lua"/>
 			<post :hook_id="playermanager" :script_path="bulletstorm.lua"/>
+		    <post :hook_id="hudmanagerpd2" :script_path="custom_interaction.lua"/>			
 			
 			<post :hook_id="group_ai_states/groupaistatebase" :script_path="downcounter.lua"/>
 			<post :hook_id="group_ai_states/groupaistatebase" :script_path="greenciv.lua"/>
+			<post :hook_id="menu/circleguiobject" :script_path="custom_interaction.lua"/>
 			
 			<group :hook_id="hud/">
 			    <post :hook_id="hudheisttimer"    :script_path="timer.lua"/>
@@ -30,6 +32,8 @@
 		        <post :hook_id="hudplayercustody" :script_path="custody.lua"/>
 				<post :hook_id="hudteammate"      :script_path="bulletstorm.lua"/>
 	            <post :hook_id="hudteammate"      :script_path="downcounter.lua"/>
+	            <post :hook_id="hudteammate"      :script_path="custom_interaction.lua"/>
+		        <post :hook_id="hudinteraction"   :script_path="custom_interaction.lua"/>				
 			</group>
         </group>
 		

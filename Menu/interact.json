@@ -6,6 +6,15 @@
 	"items": [
 		{
 			"type": "toggle",
+			"id": "interact_texture_toggle",
+			"title": "interact_texture_title",
+			"description": "interact_texture_desc",
+			"callback": "callback_interact_texture",
+			"value": "interact_texture",
+			"default_value": true
+		},
+		{
+			"type": "toggle",
 			"id": "interact_toggle",
 			"title": "interact_title",
 			"description": "interact_desc",

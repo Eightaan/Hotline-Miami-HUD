@@ -24,5 +24,6 @@
 	"assault" : true,
 	"objective" : true,
 	"bulletstorm" : true,
-	"health_texture" : true
+	"health_texture" : true,
+	"interact_texture" : true
 }

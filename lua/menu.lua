@@ -115,6 +115,9 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
     MenuCallbackHandler.callback_health_texture = function(self, item)
         HMH._data.health_texture = item:value() == "on"
     end
+    MenuCallbackHandler.callback_interact_texture = function(self, item)
+        HMH._data.interact_texture = item:value() == "on"
+    end 
 
     MenuCallbackHandler.HMHSave = function(this, item)
         HMH:Save()
