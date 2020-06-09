@@ -134,20 +134,28 @@ function HUDAssaultCorner:_end_assault()
 	self._assault = false
 	self._remove_hostage_offset = true
 	self._start_assault_after_hostage_offset = nil
+	self:_close_assault_box()
+end
 
-	local icon_assaultbox = self._hud_panel:child("assault_panel"):child("icon_assaultbox")
+function HUDAssaultCorner:_hide_icon_assaultbox(icon_assaultbox)
+	local TOTAL_T = 1
+	local t = TOTAL_T
 
-	icon_assaultbox:stop()
-
-	local function close_done()
-		self._bg_box:set_visible(false)
-		icon_assaultbox:stop()
-		icon_assaultbox:animate(callback(self, self, "_hide_icon_assaultbox"))
-		self:sync_set_assault_mode("normal")
+	while t > 0 do
+		local dt = coroutine.yield()
+		t = t - dt
+		if self._remove_hostage_offset and t < 0.03 then
+			self:_set_hostage_offseted(false)
+		end
 	end
 
-	self._bg_box:stop()
-	self._bg_box:animate(callback(nil, _G, "HUDBGBox_animate_close_left"), close_done)
+	if self._remove_hostage_offset then
+		self:_set_hostage_offseted(false)
+	end
+
+	if not self._casing then
+		self:_show_hostages()
+	end
 end
 
 function HUDAssaultCorner:set_control_info(data)

@@ -83,5 +83,5 @@
 	"hmh_objective_title" : "Objective Panel"
 	"hmh_objective_desc" : "Customize the objective panel."
 	"objective_title" : "Custom Objective Panel"
-	"objective_desc" : "Enable the custom objective panel.\n(Changing this mid heist will cause a crash)"
+	"objective_desc" : "Enable the custom objective panel."
 }

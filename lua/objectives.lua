@@ -1,7 +1,7 @@
 --Using LDDG Animations
+if not HMH:GetOption("objective") then return end
 
 Hooks:PostHook(HUDObjectives, "init", "HMH_hudobjectives_init", function(self, hud, ...)
-	if not HMH:GetOption("objective") then return end
 
 	self._hud_panel = hud.panel
 	if self._hud_panel:child("objectives_panel") then
@@ -70,10 +70,7 @@ Hooks:PostHook(HUDObjectives, "init", "HMH_hudobjectives_init", function(self, h
 	
 end)
 
-local HUDObjectives_activate_objective = HUDObjectives.activate_objective
 function HUDObjectives:activate_objective( data )
-    if not HMH:GetOption("objective") then return HUDObjectives_activate_objective(self, data) end
-
 	self._active_objective_id = data.id
 	local objectives_panel = self._hud_panel:child( "objectives_panel" )
 	local objective_text = objectives_panel:child( "objective_text" )
@@ -99,9 +96,7 @@ function HUDObjectives:activate_objective( data )
     --<LDDG
 end
 
-local HUDObjectives_complete_objective = HUDObjectives.complete_objective
 function HUDObjectives:complete_objective(data)
-    if not HMH:GetOption("objective") then return HUDObjectives_complete_objective(self, data) end
 
 	if data.id ~= self._active_objective_id then
 		return
@@ -111,9 +106,7 @@ function HUDObjectives:complete_objective(data)
 	objectives_panel:animate(callback(nil, _G, "set_alpha"), 0) --LDDG Animation
 end
 
-local HUDObjectives_remind_objective = HUDObjectives.remind_objective
 function HUDObjectives:remind_objective(id)
-    if not HMH:GetOption("objective") then return HUDObjectives_remind_objective(self, id) end
 
 	if id ~= self._active_objective_id then
 		return

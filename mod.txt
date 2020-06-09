@@ -2,7 +2,7 @@
 	"name" : "Hotline Miami Hud",
 	"description" : "",
 	"author" : "Eightan",
-	"version" : "4.0",
+	"version" : "4.1",
 	"blt_version" : 2,
 	"supermod_definition" : "hmh.xml",
 	"image" : "icon.png",
@@ -13,6 +13,15 @@
             "host": {
                 "meta": "https://raw.githubusercontent.com/Eightaan/mod_updates/master/HotlineMiamiHud/meta_info.json"
             }
-        }
+        },
+		{
+			"identifier" : "hotline_miami_assets_updates",
+			"host" : {
+				"meta" : "https://raw.githubusercontent.com/Eightaan/mod_updates/master/HotlineMiamiHud/meta_info_assets.json"
+			},
+			"install_dir" : "assets/mod_overrides/",
+			"install_folder" : "Hotline Miami Menu",
+			"display_name" : "Hotline Miami Menu"
+		}
     ]
 }
