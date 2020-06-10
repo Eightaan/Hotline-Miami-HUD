@@ -2,13 +2,15 @@ if not HMH then
     _G.HMH =
     {
         _path = ModPath,
-        _data_path = SavePath .. "HMHv3.json",
+        _data_path = SavePath .. "HMH.json",
+        SaveDataVer = 1,
         data = {}
     }
 
     function HMH:Save()
         local file = io.open( self._data_path, "w+" )
         if file then
+            self._data.SaveDataVer = self.SaveDataVer
             file:write( json.encode( self._data ) )
             file:close()
         end
@@ -18,8 +20,15 @@ if not HMH then
         self:LoadDefaults()
         local file = io.open( self._data_path, "r" )
         if file then
-            self._data = json.decode( file:read("*all") )
+            local data = json.decode( file:read("*all") )
             file:close()
+            if data.SaveDataVer and data.SaveDataVer == self.SaveDataVer then
+                for k, v in pairs(data) do
+                    if self._data[k] ~= nil then
+                        self._data[k] = v
+                    end
+                end
+            end
         end
     end
 
