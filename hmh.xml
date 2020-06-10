@@ -32,7 +32,6 @@
 		        <post :hook_id="hudplayercustody" :script_path="custody.lua"/>
 				<post :hook_id="hudteammate"      :script_path="bulletstorm.lua"/>
 	            <post :hook_id="hudteammate"      :script_path="downcounter.lua"/>
-	            <post :hook_id="hudteammate"      :script_path="custom_interaction.lua"/>
 		        <post :hook_id="hudinteraction"   :script_path="custom_interaction.lua"/>				
 			</group>
         </group>

@@ -81,54 +81,96 @@ Hooks:PostHook(HUDTeammate, "set_state", "uHUDPostHUDTeammateSetState", function
     end
 end)
 
-Hooks:PreHook(HUDTeammate, "teammate_progress", "HMH_HUDTeammateTeammateProgress", function(self, enabled, tweak_data_id, timer, success)
-    if not self._player_panel:child("interact_panel"):child("interact_info") then return end
+if HMH:GetOption("interact_texture") then
+    function HUDTeammate:teammate_progress(enabled, tweak_data_id, timer, success)
+        self._player_panel:child("radial_health_panel"):set_alpha(enabled and 0.2 or 1)
+        self._player_panel:child("interact_panel"):stop()
+        self._player_panel:child("interact_panel"):set_visible(enabled)
 
-    self._panel:child("name_panel"):child("interact_text"):stop()
-    self._panel:child("name_panel"):child("interact_text"):set_left(0)
+        if enabled then
+            self._player_panel:child("interact_panel"):animate(callback(HUDManager, HUDManager, "_animate_label_interact"), self._interact, timer)
+        elseif success then
+            local panel = self._player_panel
+            local bitmap = panel:bitmap({
+                blend_mode = "add",
+                texture = "guis/textures/pd2_mod_hmh/hud_progress_active",
+                layer = 2,
+                align = "center",
+                rotation = 360,
+                valign = "center"
+            })
 
-	if enabled and not self._main_player and self:peer_id() and 2 <= timer and HMH:GetOption("interact_info") then
-		self._new_name:set_alpha(0.1)
-        self._panel:child("name_panel"):child("interact_text"):set_visible(true)
-	    self._panel:child("name_panel"):child("interact_text"):set_text(" " .. managers.hud:_name_label_by_peer_id(self:peer_id()).panel:child("action"):text())
+            bitmap:set_size(self._interact:size())
+            bitmap:set_position(self._player_panel:child("interact_panel"):x() + 4, self._player_panel:child("interact_panel"):y() + 4)
 
-	    local x , y , w , h = self._panel:child("name_panel"):child("interact_text"):text_rect()
-	    self._panel:child("name_panel"):child("interact_text"):set_size(w, h)
+            local radius = self._interact:radius()
+            local circle = CircleBitmapGuiObject:new(panel, {
+                blend_mode = "normal",
+                rotation = 360,
+                layer = 3,
+                radius = radius,
+                color = Color.white:with_alpha(1)
+            })
 
-	    if self._panel:child("name_panel"):child("interact_text"):w() + 4 > self._panel:child("name_bg"):w() then
-			self._panel:child("name_bg"):set_w(self._panel:child("name_panel"):child("interact_text"):w() + 4)
-		end
-
-		if self._panel:child("name_panel"):w() < self._panel:child("name_panel"):child("interact_text"):w() + 4 then
-			self._panel:child("name_panel"):child("interact_text"):animate(callback(self,self, "_animate_name" ), self._panel:child("name_bg"):w() - self._panel:child("name_panel"):w() + 2)
-		end
-
-	elseif not success and not self._main_player then
-		local x, y, w, h = self._new_name:text_rect()
-		self._new_name:set_size(w, h)
-		self._panel:child("name_panel"):child("interact_text"):stop()
-		self._panel:child("name_panel"):child("interact_text"):set_left(0)
-
-		self._new_name:set_alpha(1)
-		self._panel:child("name_panel"):child("interact_text"):set_visible(false)
-	    self._panel:child("name_bg"):set_w( w + 4)
-	end
-
-	if success then
-		self._new_name:set_alpha(1)
-		self._panel:child( "name_panel" ):child( "interact_text" ):set_visible(false)
-		self._panel:child( "name_bg" ):set_w( self._new_name:w() + 4)
-	end
-
-	self._panel:child("name_panel"):child("interact_text"):set_color(tweak_data.chat_colors[self._peer_id] or Color.white )
-
-    if not self._main_player and self:peer_id() then
-		local peer = managers.network:session() and managers.network:session():peer(self:peer_id())
-		if peer and peer:is_cheater() then
-            self._panel:child("name_panel"):child("interact_text"):set_color(tweak_data.screen_colors.pro_color)
+            circle:set_position(bitmap:position())
+            bitmap:animate(callback(HUDInteraction, HUDInteraction, "_animate_interaction_complete"), circle)
         end
     end
-end)
+end
+
+if HMH:GetOption("interact_info") then
+    local t = 2
+    local HUDTeammate_teammate_progress = HUDTeammate.teammate_progress
+    function HUDTeammate:teammate_progress(enabled, tweak_data_id, timer, success)
+        if not self._player_panel:child("interact_panel"):child("interact_info") then return end
+
+        self._panel:child("name_panel"):child("interact_text"):stop()
+        self._panel:child("name_panel"):child("interact_text"):set_left(0)
+
+        if enabled and not self._main_player and self:peer_id() and timer >= t then
+            self._new_name:set_alpha(0.1)
+            self._panel:child("name_panel"):child("interact_text"):set_visible(true)
+            self._panel:child("name_panel"):child("interact_text"):set_text(" " .. managers.hud:_name_label_by_peer_id(self:peer_id()).panel:child("action"):text())
+
+            local x , y , w , h = self._panel:child("name_panel"):child("interact_text"):text_rect()
+            self._panel:child("name_panel"):child("interact_text"):set_size(w, h)
+
+            if self._panel:child("name_panel"):child("interact_text"):w() + 4 > self._panel:child("name_bg"):w() then
+                self._panel:child("name_bg"):set_w(self._panel:child("name_panel"):child("interact_text"):w() + 4)
+            end
+
+            if self._panel:child("name_panel"):w() < self._panel:child("name_panel"):child("interact_text"):w() + 4 then
+                self._panel:child("name_panel"):child("interact_text"):animate(callback(self,self, "_animate_name" ), self._panel:child("name_bg"):w() - self._panel:child("name_panel"):w() + 2)
+            end
+
+        elseif not success and not self._main_player then
+            local x, y, w, h = self._new_name:text_rect()
+            self._new_name:set_size(w, h)
+            self._panel:child("name_panel"):child("interact_text"):stop()
+            self._panel:child("name_panel"):child("interact_text"):set_left(0)
+
+            self._new_name:set_alpha(1)
+            self._panel:child("name_panel"):child("interact_text"):set_visible(false)
+            self._panel:child("name_bg"):set_w( w + 4)
+        end
+
+        if success then
+            self._new_name:set_alpha(1)
+            self._panel:child( "name_panel" ):child( "interact_text" ):set_visible(false)
+            self._panel:child( "name_bg" ):set_w( self._new_name:w() + 4)
+        end
+
+        self._panel:child("name_panel"):child("interact_text"):set_color(tweak_data.chat_colors[self._peer_id] or Color.white )
+
+        if not self._main_player and self:peer_id() then
+            local peer = managers.network:session() and managers.network:session():peer(self:peer_id())
+            if peer and peer:is_cheater() then
+                self._panel:child("name_panel"):child("interact_text"):set_color(tweak_data.screen_colors.pro_color)
+            end
+        end
+        HUDTeammate_teammate_progress(self, enabled, tweak_data_id, timer, success)
+    end
+end
 
 function HUDTeammate:_animate_name(name, width)
 	local t = 0
@@ -504,11 +546,11 @@ end
 Hooks:PostHook(HUDTeammate, "_create_radial_health", "HMH_HUDTeammateCreateRadialHealth", function(self, radial_health_panel)
 	local radial_ability_panel = radial_health_panel:child("radial_ability")
     local ability_icon = radial_ability_panel:child("ability_icon")
-    
+
     if HMH:GetOption("health_texture") then
         self._radial_health_panel:child("radial_health"):set_image("guis/textures/pd2_mod_hmh/hud_health", 128, 0, -128, 128)
     end
-    
+
 	if HMH:GetOption("color_name") then
 	    ability_icon:set_visible(false)
 	end
