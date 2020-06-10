@@ -17,7 +17,7 @@
 			
 			<post :hook_id="group_ai_states/groupaistatebase" :script_path="downcounter.lua"/>
 			<post :hook_id="group_ai_states/groupaistatebase" :script_path="greenciv.lua"/>
-			<post :hook_id="menu/circleguiobject" :script_path="custom_interaction.lua"/>
+			<post :hook_id="menu/circleguiobject"             :script_path="custom_interaction.lua"/>
 			
 			<group :hook_id="hud/">
 			    <post :hook_id="hudheisttimer"    :script_path="timer.lua"/>
