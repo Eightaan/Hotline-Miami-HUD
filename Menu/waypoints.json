@@ -2,7 +2,7 @@
 	"menu_id": "hmh_menu_waypoints",
 	"parent_menu_id": "hmh_menu",
 	"title": "hmh_waypoints_title",
-	"description": "hmh_hud_waypoints_desc",
+	"description": "hmh_waypoints_desc",
 	"items": [
 		{
 			"type": "toggle",
