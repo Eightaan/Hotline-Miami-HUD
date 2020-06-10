@@ -109,7 +109,6 @@ elseif string.lower(RequiredScript) == "lib/managers/hud/hudinteraction" then
 			bitmap:set_center(c_x, c_y)
 			bitmap:set_alpha(math.max(t / TOTAL_T, 0))
 		end
-	
 		bitmap:parent():remove(bitmap)
 	end
 	
@@ -156,14 +155,8 @@ elseif string.lower(RequiredScript) == "lib/managers/hud/hudinteraction" then
 	end
 
 elseif string.lower(RequiredScript) == "lib/managers/hud/hudteammate" then
-	function HUDTeammate:teammate_progress(enabled, tweak_data_id, timer, success)
-		self._player_panel:child("radial_health_panel"):set_alpha(enabled and 0.2 or 1)
-		self._player_panel:child("interact_panel"):stop()
-		self._player_panel:child("interact_panel"):set_visible(enabled)
-	
-		if enabled then
-			self._player_panel:child("interact_panel"):animate(callback(HUDManager, HUDManager, "_animate_label_interact"), self._interact, timer)
-		elseif success then
+	Hooks:PreHook(HUDTeammate, "teammate_progress", "HMH_HUDTeammate_teammate_progress", function(self, enabled, tweak_data_id, timer, success)
+	    if success then
 			local panel = self._player_panel
 			local bitmap = panel:bitmap({
 				blend_mode = "add",
@@ -189,5 +182,5 @@ elseif string.lower(RequiredScript) == "lib/managers/hud/hudteammate" then
 			circle:set_position(bitmap:position())
 			bitmap:animate(callback(HUDInteraction, HUDInteraction, "_animate_interaction_complete"), circle)
 		end
-	end
+	end)
 end
