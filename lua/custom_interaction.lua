@@ -146,13 +146,10 @@ elseif string.lower(RequiredScript) == "lib/managers/hud/hudinteraction" then
 		end
 	end
 	
-    local HUDInteraction_set_bar_valid = HUDInteraction.set_bar_valid
-
-	function HUDInteraction:set_bar_valid(valid, ...)
-	    HUDInteraction_set_bar_valid(self, valid, ...)
+	Hooks:PreHook(HUDInteraction, "set_bar_valid", "HMH_HUDInteraction_set_bar_valid", function(self, valid, ...)
 		local texture = valid and "guis/textures/pd2_mod_hmh/hud_progress_active" or "guis/textures/pd2_mod_hmh/hud_progress_invalid"
 		self._interact_circle:set_image(texture)
-	end
+	end)
 
 elseif string.lower(RequiredScript) == "lib/managers/hud/hudteammate" then
 	Hooks:PreHook(HUDTeammate, "teammate_progress", "HMH_HUDTeammate_teammate_progress", function(self, enabled, tweak_data_id, timer, success)
