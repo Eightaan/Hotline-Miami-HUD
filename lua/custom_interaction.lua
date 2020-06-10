@@ -146,7 +146,7 @@ elseif string.lower(RequiredScript) == "lib/managers/hud/hudinteraction" then
 		end
 	end
 	
-	Hooks:PreHook(HUDInteraction, "set_bar_valid", "HMH_HUDInteraction_set_bar_valid", function(self, valid, ...)
+	Hooks:PostHook(HUDInteraction, "set_bar_valid", "HMH_HUDInteraction_set_bar_valid", function(self, valid, ...)
 		local texture = valid and "guis/textures/pd2_mod_hmh/hud_progress_active" or "guis/textures/pd2_mod_hmh/hud_progress_invalid"
 		self._interact_circle:set_image(texture)
 	end)
