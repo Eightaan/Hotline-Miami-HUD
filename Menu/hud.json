@@ -92,7 +92,7 @@
 			"type": "toggle",
 			"id": "pickups_toggle",
 			"title": "pickups_title",
-			"description": "color_pickups_desc",
+			"description": "pickups_desc",
 			"callback": "callback_pickups",
 			"value": "pickups",
 			"default_value": true
