@@ -1,3 +1,5 @@
+if VHUDPlus then return end
+
 local set_teammate_ammo_amount_orig = HUDManager.set_teammate_ammo_amount
 
 function HUDManager:set_teammate_ammo_amount(id, selection_index, max_clip, current_clip, current_left, max, ...)
