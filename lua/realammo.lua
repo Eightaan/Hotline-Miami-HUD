@@ -1,4 +1,4 @@
-if VHUDPlus then return end
+if VHUDPlus and VHUDPlus:getSetting({"CustomHUD", "USE_REAL_AMMO"}, true) then return end
 
 local set_teammate_ammo_amount_orig = HUDManager.set_teammate_ammo_amount
 
