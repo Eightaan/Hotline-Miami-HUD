@@ -81,7 +81,7 @@ Hooks:PostHook(HUDTeammate, "set_state", "uHUDPostHUDTeammateSetState", function
     end
 end)
 
-if HMH:GetOption("interact_texture") then
+if HMH:GetOption("interact_texture") and not VHUDPlus then
     function HUDTeammate:teammate_progress(enabled, tweak_data_id, timer, success)
         self._player_panel:child("radial_health_panel"):set_alpha(enabled and 0.2 or 1)
         self._player_panel:child("interact_panel"):stop()
