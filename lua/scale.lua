@@ -22,9 +22,17 @@ end
 
 core:module("CoreGuiDataManager")
 function GuiDataManager:layout_scaled_fullscreen_workspace(ws)
+	
+	local scale
+	if _G.VHUDPlus then
+		scale = _G.VHUDPlus:getSetting({"CustomHUD", "HUD_SCALE"}, 1)
+	else
+		scale = _G.HMH:GetOption("hud_scale")
+	end
+	
 	local base_res = {x = 1280, y = 720}
 	local res = RenderSettings.resolution
-	local sc = (2 - _G.HMH:GetOption("hud_scale"))
+	local sc = (2 - scale)
 	local aspect_width = base_res.x / self:_aspect_ratio()
 	local h = math.round(sc * math.max(base_res.y, aspect_width))
 	local w = math.round(sc * math.max(base_res.x, aspect_width / h))
