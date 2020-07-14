@@ -25,5 +25,6 @@
 	"objective" : true,
 	"bulletstorm" : true,
 	"health_texture" : true,
-	"interact_texture" : true
+	"interact_texture" : true,
+	"custom_subs" : true
 }

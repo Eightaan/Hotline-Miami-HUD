@@ -8,15 +8,15 @@ if string.lower(RequiredScript) == "core/lib/managers/subtitle/coresubtitleprese
 			text_shadow = _G.VHUDPlus:getSetting({"MISCHUD", "SUB"}, true)
 		else
 		    self._text_scale = _G.HMH:GetOption("hud_scale")
-			text_shadow = true
+			text_shadow = _G.HMH:GetOption("custom_subs")
 		end
-
+		
 		self.__font_name = "fonts/font_medium_mf"
 		local label = self.__subtitle_panel:child("label") or self.__subtitle_panel:text({
 			name = "label",
 			font = self.__font_name,
 			font_size = self.__font_size * self._text_scale,
-			color = Color("66ff99"),
+			color = _G.HMH:GetOption("custom_subs") and Color("66ff99") or Color.white,
 			align = "center",
 			vertical = "bottom",
 			layer = 1,

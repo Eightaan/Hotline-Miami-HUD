@@ -6,7 +6,7 @@
 	"hud_scale_title" : "Hud Scale",
     "hud_scale_desc" : "Change the hud size.",
     
-    "mod_overrides_title" : "Enable Mod Overrides",
+    "mod_overrides_title" : "Enable Mod Overrides Updates",
     "mod_overrides_desc" : "Mod Overrides are custom textures that change certain in-game icons to Hotline Miami one's.\nWhen changed, a game restart is required to take effect.",
 	
 	"hmh_hud_title" : "Player/Team panels",
@@ -87,5 +87,10 @@
 	"hmh_objective_title" : "Objective Panel",
 	"hmh_objective_desc" : "Customize the objective panel.",
 	"objective_title" : "Custom Objective Panel",
-	"objective_desc" : "Enable the custom objective panel."
+	"objective_desc" : "Enable the custom objective panel.",
+	
+	"hmh_subs_title" : "Subtitle Text",
+	"hmh_subs_desc" : "Customize the subtitles.",
+	"subs_title" : "Custom Subtitle Text",
+	"subs_desc" : "Enable the custom subtitles."
 }
