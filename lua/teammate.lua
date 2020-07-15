@@ -541,6 +541,16 @@ if HMH:GetOption("ammo") then
         self._last_ammo[type] = current_left
         self._last_clip[type] = current_clip
     end)
+
+    Hooks:PostHook(HUDTeammate, "_create_weapon_panels", "HMH_HUDTeammate_create_weapon_panels", function(self, weapons_panel)
+        local primary_weapon_panel = weapons_panel:child("primary_weapon_panel")
+        local secondary_weapon_panel = weapons_panel:child("secondary_weapon_panel")
+        local sec_weapon_selection_panel = secondary_weapon_panel:child("weapon_selection")
+        local prim_weapon_selection_panel = primary_weapon_panel:child("weapon_selection")
+    
+        prim_weapon_selection_panel:child("weapon_selection"):set_color(Color("66ff99"))
+        sec_weapon_selection_panel:child("weapon_selection"):set_color(Color("66ffff"))
+    end)	
 end
 
 Hooks:PostHook(HUDTeammate, "_create_radial_health", "HMH_HUDTeammateCreateRadialHealth", function(self, radial_health_panel)
