@@ -92,5 +92,12 @@
 	"hmh_subs_title" : "Subtitle Text",
 	"hmh_subs_desc" : "Customize the subtitles.",
 	"subs_title" : "Custom Subtitle Text",
-	"subs_desc" : "Enable the custom subtitles."
+	"subs_desc" : "Enable the custom subtitles.",
+	
+	"hmh_color_title" : "Custom Color Options",
+	"hmh_color_desc" : "Customize the colors.",
+	"color_title" : "Custom Name and Chat Colors",
+	"color_desc" : "Enable the custom chat colors."
+	"menu_color_title" : "Custom Menu Colors",
+	"menu_color_desc" : "Enable the custom menu colors."
 }

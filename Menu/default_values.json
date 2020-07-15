@@ -26,5 +26,7 @@
 	"bulletstorm" : true,
 	"health_texture" : true,
 	"interact_texture" : true,
-	"custom_subs" : true
+	"custom_subs" : true,
+	"custom_color" : true,
+	"custom_menu_color" : true
 }

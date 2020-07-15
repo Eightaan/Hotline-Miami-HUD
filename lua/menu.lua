@@ -120,7 +120,13 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
     end
     MenuCallbackHandler.callback_custom_subs = function(self, item)
         HMH._data.custom_subs = item:value() == "on"
+    end
+    MenuCallbackHandler.callback_custom_color = function(self, item)
+        HMH._data.custom_color = item:value() == "on"
     end 
+    MenuCallbackHandler.callback_custom_menu_color = function(self, item)
+        HMH._data.custom_menu_color = item:value() == "on"
+    end    
 
     MenuCallbackHandler.HMHSave = function(this, item)
         HMH:Save()
@@ -138,6 +144,7 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
 	MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/assault.json", HMH, HMH._data )
     MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/objective.json", HMH, HMH._data )
     MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/subs.json", HMH, HMH._data )
+    MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/color.json", HMH, HMH._data )
 
     do	-- Romove Disabled Updates, so they don't show up in the download manager.
         if not DirectoryExists("./assets/mod_overrides/") then
