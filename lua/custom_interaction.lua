@@ -1,4 +1,4 @@
-if not HMH:GetOption("interact_texture") or VHUDPlus then return end
+if not HMH:GetOption("interact_texture") then return end
 
 if string.lower(RequiredScript) == "lib/managers/hudmanagerpd2" then
 	function HUDManager:teammate_progress(peer_id, type_index, enabled, tweak_data_id, timer, success)
