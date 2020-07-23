@@ -44,6 +44,7 @@ elseif string.lower(RequiredScript) == "lib/managers/hud/hudinteraction" then
 		local mul = 1
 		local c_x, c_y = bitmap:center()
 		local size = bitmap:w()
+		bitmap:set_image("guis/textures/pd2_mod_hmh/hud_progress_active")
 
 		while t > 0 do
 			local dt = coroutine.yield()
