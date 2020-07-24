@@ -5,12 +5,15 @@ if string.lower(RequiredScript) == "lib/managers/hudmanagerpd2" then
     local teammate_progress_ori = HUDManager.teammate_progress
     function HUDManager:teammate_progress(...)
         teammate_progress_ori(self, ...)
-        local name_label = self:_name_label_by_peer_id(peer_id)
-	local panel = name_label.panel
-        local bitmap = panel:child("action")
-        bitmap:configure({
-            texture = "guis/textures/pd2_mod_hmh/hud_progress_active"
-        })
+	local name_label
+        if name_label then
+            name_label = self:_name_label_by_peer_id(peer_id)
+            local panel = name_label.panel
+            local bitmap = panel:child("action")
+            bitmap:configure({
+                texture = "guis/textures/pd2_mod_hmh/hud_progress_active"
+            })
+        end
     end
 elseif string.lower(RequiredScript) == "lib/managers/menu/circleguiobject" then
 	function CircleBitmapGuiObject:init(panel, config)
