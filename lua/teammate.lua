@@ -75,7 +75,7 @@ Hooks:PostHook(HUDTeammate, "set_callsign", "HMH_HUDTeammateSetCallsign", functi
 	end
 end)
 
-Hooks:PostHook(HUDTeammate, "set_state", "uHUDPostHUDTeammateSetState", function(self, state)
+Hooks:PostHook(HUDTeammate, "set_state", "HMH_HUDTeammateSetState", function(self, state)
 	if not self._main_player then
 		self._panel:child("name_panel"):set_y(self._panel:child("name"):y())
     end
