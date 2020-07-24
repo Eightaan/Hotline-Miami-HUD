@@ -7,7 +7,7 @@ if string.lower(RequiredScript) == "lib/managers/hudmanagerpd2" then
         teammate_progress_ori(self, ...)
         local name_label = self:_name_label_by_peer_id(peer_id)
 	local panel = name_label.panel
-        local bitmap = panel:child("bitmap")
+        local bitmap = panel:child("action")
         bitmap:configure({
             texture = "guis/textures/pd2_mod_hmh/hud_progress_active"
         })
