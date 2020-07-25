@@ -349,7 +349,7 @@ if HMH:GetOption("equipment") then
         local amount = deployable_equipment_panel:child("amount")
         local amounts = ""
         local zero_ranges = {}
-        local color = Color(0.5, 1, 1, 1)
+        local color = Color("ff80df")
         local alpha = 0.2
         local icon_color = color
 
