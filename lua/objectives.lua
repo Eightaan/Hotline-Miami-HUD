@@ -74,8 +74,10 @@ function HUDObjectives:activate_objective( data )
 	self._active_objective_id = data.id
 	local objectives_panel = self._hud_panel:child( "objectives_panel" )
 	local objective_text = objectives_panel:child( "objective_text" )
-	local _, _, w, _ = objective_text:text_rect()		
+		
 	objective_text:set_text( utf8.to_upper( data.text ) )
+		
+	local _, _, w, _ = objective_text:text_rect()
 		
 	if data.amount then
 		self:update_amount_objective( data )
