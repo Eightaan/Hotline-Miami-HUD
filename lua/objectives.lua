@@ -96,6 +96,16 @@ function HUDObjectives:activate_objective( data )
     --<LDDG
 end
 
+function HUDObjectives:update_amount_objective(data)
+	if data.id ~= self._active_objective_id then
+		return
+	end
+	local current = data.current_amount or 0
+	local amount = data.amount
+	local objectives_panel = self._hud_panel:child("objectives_panel")
+	objectives_panel:child("amount_text"):set_text(current .. "/" .. amount)
+end
+
 function HUDObjectives:complete_objective(data)
 	if data.id ~= self._active_objective_id then
 		return
