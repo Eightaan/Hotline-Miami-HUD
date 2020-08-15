@@ -1,4 +1,4 @@
-if WolfHUD and WolfHUD:getSetting({"CustomHUD", "ENABLED"}, true) or BL2Options then return end 
+if WolfHUD and WolfHUD:getSetting({"CustomHUD", "ENABLED"}, true) then return end 
 
 if RequiredScript == "lib/managers/hudmanagerpd2" then
 
