@@ -1,3 +1,5 @@
+if WolfHUD and WolfHUD:getSetting({"CustomHUD", "ENABLED"}, true) or BL2Options then return end 
+
 if RequiredScript == "lib/managers/hudmanagerpd2" then
 
     local set_mugshot_downed_original = HUDManager.set_mugshot_downed
