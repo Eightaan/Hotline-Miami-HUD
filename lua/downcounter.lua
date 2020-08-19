@@ -153,14 +153,16 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
             self:set_player_in_custody(data.revives - 1 < 0)
         end
 		
-		if Global.game_settings.one_down and self._revives_count == 1 and not self._main_player then
-		    self._revives_counter:set_color(Color("ffcc66"))
-		elseif Global.game_settings.one_down and self._revives_count > 1 and not self._main_player then
-		    self._revives_counter:set_color(Color("ff6666"))
-		elseif self._revives_count == 2 and not self._main_player then
-		    self._revives_counter:set_color(Color("ffcc66"))
-		elseif self._revives_count > 2 and not self._main_player then 
-		    self._revives_counter:set_color(Color("ff6666"))
+		if not self._main_player then
+		    if Global.game_settings.one_down and self._revives_count == 1 then
+		        self._revives_counter:set_color(Color("ffcc66"))
+		    elseif Global.game_settings.one_down and self._revives_count > 1 then
+		        self._revives_counter:set_color(Color("ff6666"))
+		    elseif self._revives_count == 2 then
+		        self._revives_counter:set_color(Color("ffcc66"))
+		    elseif self._revives_count > 2 then 
+		        self._revives_counter:set_color(Color("ff6666"))
+		    end
 		end
 		
         return set_health_original(self, data)
