@@ -7,8 +7,8 @@ function TweakData:HMM()
     self.chat_colors[4] = Color("ffcc66")
     self.chat_colors[5] = Color(0.2, 0.8, 1)
     self.system_chat_color = Color("ff80df")
- 
-    
+
+
 	self.peer_vector_colors[1] = Vector3(self.chat_colors[1]:unpack())
     self.peer_vector_colors[2] = Vector3(self.chat_colors[2]:unpack())
     self.peer_vector_colors[3] = Vector3(self.chat_colors[3]:unpack())
@@ -24,7 +24,7 @@ function TweakData:HMM()
         Color("ffcc66")  --Peer4.
     }
     end
-    
+
     if HMH:GetOption("custom_menu_color") then
     self.screen_colors.resource = Color("66ffff")
     self.screen_colors.button_stage_2 = Color("66ffff")
