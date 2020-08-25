@@ -7,7 +7,7 @@
 	"supermod_definition" : "hmh.xml",
 	"image" : "icon.png",
 	"color" : "0.15 0.15 0.15",
-	"contact": "\n https://steamcommunity.com/id/Eightan/",	
+	"contact": "\n https://steamcommunity.com/id/Eightan/",
 	"updates" : [
         {
             "identifier" : "hotline_miami_hud_updates",
