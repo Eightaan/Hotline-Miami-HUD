@@ -1,13 +1,13 @@
 local _upd_criminal_suspicion_progress_original = GroupAIStateBase._upd_criminal_suspicion_progress
- 
+
 function GroupAIStateBase:_upd_criminal_suspicion_progress(...)
 	if self._ai_enabled and HMH:GetOption("greenciv") then
 		for obs_key, obs_susp_data in pairs(self._suspicion_hud_data or {}) do
 			local unit = obs_susp_data.u_observer
-			
+
 			if managers.enemy:is_civilian(unit) then
 				local waypoint = managers.hud._hud.waypoints["susp1" .. tostring(obs_key)]
-				
+
 				if waypoint then
 					if unit:anim_data().drop then
 						if not obs_susp_data._subdued_civ then
@@ -28,6 +28,6 @@ function GroupAIStateBase:_upd_criminal_suspicion_progress(...)
 			end
 		end
 	end
-	
+
 	return _upd_criminal_suspicion_progress_original(self, ...)
 end
