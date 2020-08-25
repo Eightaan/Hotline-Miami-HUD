@@ -9,7 +9,6 @@
             <post :hook_id="hudmanager"    :script_path="waypoint.lua"/>
 	        <post :hook_id="hudmanagerpd2" :script_path="scale.lua"/>
            	<post :hook_id="hudmanagerpd2" :script_path="downcounter.lua"/>
-	        <post :hook_id="hudmanagerpd2" :script_path="realammo.lua"/>
 		    <post :hook_id="hudmanagerpd2" :script_path="bulletstorm.lua"/>
 		    <post :hook_id="hudmanagerpd2" :script_path="ecm.lua"/>
 			<post :hook_id="playermanager" :script_path="bulletstorm.lua"/>
