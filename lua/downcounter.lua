@@ -1,4 +1,4 @@
-if WolfHUD and WolfHUD:getSetting({"CustomHUD", "ENABLED"}, true) then return end 
+if WolfHUD and WolfHUD:getSetting({"CustomHUD", "ENABLED"}, true) then return end
 
 if RequiredScript == "lib/managers/hudmanagerpd2" then
 
@@ -6,7 +6,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
     local set_mugshot_custody_original = HUDManager.set_mugshot_custody
     local set_mugshot_normal_original = HUDManager.set_mugshot_normal
     local set_player_condition_original = HUDManager.set_player_condition
-	
+
 	function HUDManager:set_mugshot_voice(id, active) -- player voice icon
 	    local panel_id = self:_mugshot_id_to_panel_id(id)
 	    if panel_id and panel_id ~= HUDManager.PLAYER_PANEL then
@@ -21,7 +21,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
             end
         end
     end
-   
+
     function HUDManager:set_mugshot_downed(id)
         local panel_id = self:_mugshot_id_to_panel_id(id)
         local unit = self:_mugshot_id_to_unit(id)
@@ -30,7 +30,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
         end
         return set_mugshot_downed_original(self, id)
     end
-   
+
     function HUDManager:set_mugshot_custody(id)
         local panel_id = self:_mugshot_id_to_panel_id(id)
         if panel_id then
@@ -39,7 +39,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
         end
         return set_mugshot_custody_original(self, id)
     end
- 
+
     function HUDManager:set_mugshot_normal(id)
         local panel_id = self:_mugshot_id_to_panel_id(id)
         if panel_id then
@@ -47,19 +47,19 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
         end
         return set_mugshot_normal_original(self, id)
     end
- 
+
     function HUDManager:reset_teammate_revives(panel_id)
         if self._teammate_panels[panel_id] then
             self._teammate_panels[panel_id]:reset_revives()
         end
     end
-   
+
     function HUDManager:set_hud_mode(mode)
         for _, panel in pairs(self._teammate_panels or {}) do
             panel:set_hud_mode(mode)
         end
     end
-    
+
     function HUDManager:_mugshot_id_to_panel_id(id)
         for _, data in pairs(managers.criminals:characters()) do
             if data.data.mugshot_id == id then
@@ -67,7 +67,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
             end
         end
     end
- 
+
     function HUDManager:_mugshot_id_to_unit(id)
         for _, data in pairs(managers.criminals:characters()) do
             if data.data.mugshot_id == id then
@@ -75,7 +75,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
             end
         end
     end
-   
+
     function HUDManager:set_player_condition(icon_data, text)
         set_player_condition_original(self, icon_data, text)
         if icon_data == "mugshot_in_custody" then
@@ -95,7 +95,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
         init_original(self, ...)
         self:_init_revivecount()
     end
-	
+
     function HUDTeammate:_init_revivecount()
 	self._setting_pref = self._main_player and "PLAYER_" or "TEAM_"
 			
@@ -117,14 +117,14 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
         self._revives_count = 0
 
     end
-   
+
     function HUDTeammate:increment_revives()
         if self._revives_counter then
             self._revives_count = self._revives_count + 1
             self._revives_counter:set_text(tostring(self._revives_count))
         end
     end
-   
+
     function HUDTeammate:reset_revives()
         if self._revives_counter then
             self._revives_count = 0
@@ -136,13 +136,13 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
             end
         end
     end
-  
+
     function HUDTeammate:set_revive_visibility(visible)
         if self._revives_counter then
             self._revives_counter:set_visible( HMH:GetOption(self._setting_pref .. "down") and not managers.groupai:state():whisper_mode() and visible and not self._is_in_custody)
         end
     end
-   
+
     function HUDTeammate:set_health(data)
         if data.revives then
             local revive_colors = { Color("ffcc66"), Color("66ff99"), Color("66ff99"), Color("66ff99"), Color("66ff99")}
@@ -152,7 +152,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
            
             self:set_player_in_custody(data.revives - 1 < 0)
         end
-		
+
 		if not self._main_player then
 		    if Global.game_settings.one_down and self._revives_count == 1 then
 		        self._revives_counter:set_color(Color("ffcc66"))
@@ -164,7 +164,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 		        self._revives_counter:set_color(Color("ff6666"))
 		    end
 		end
-		
+
         return set_health_original(self, data)
     end
 
@@ -187,18 +187,18 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
         name_panel:set_text(teammate_name)
         set_name_original(self, name_panel:text(), ...)
     end
-	
+
 	function HUDTeammate:set_voice_com(status) -- player voice icon
 	    local texture = status and "guis/textures/pd2/jukebox_playing" or "guis/textures/pd2/hud_tabs"
 	    local texture_rect = status and { 0, 0, 16, 16 } or { 84, 34, 19, 19 }
 	    local callsign = self._panel:child("callsign")
 	    callsign:set_image(texture, unpack(texture_rect))
     end
-   
+
 elseif RequiredScript == "lib/network/handlers/unitnetworkhandler" then
 
     local sync_teammate_progress_original = UnitNetworkHandler.sync_teammate_progress
-   
+
     function UnitNetworkHandler:sync_teammate_progress(type_index, enabled, tweak_data_id, timer, success, sender, ...)
         local sender_peer = self._verify_sender(sender)
         if not self._verify_gamestate(self._gamestate_filter.any_ingame) or not sender_peer then
@@ -209,11 +209,11 @@ elseif RequiredScript == "lib/network/handlers/unitnetworkhandler" then
         end
         return sync_teammate_progress_original(self, type_index, enabled, tweak_data_id, timer, success, sender, ...)
     end
-   
+
 elseif RequiredScript == "lib/managers/group_ai_states/groupaistatebase" then
 
     local set_whisper_mode_original = GroupAIStateBase.set_whisper_mode
- 
+
     function GroupAIStateBase:set_whisper_mode(enabled, ...)
     set_whisper_mode_original(self, enabled, ...)      
         if (enabled) then
