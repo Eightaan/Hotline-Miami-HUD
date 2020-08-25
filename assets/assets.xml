@@ -7,7 +7,7 @@
         <file :name="hud_progress_bg.texture"      :path="hud_progress_bg.texture"/>
         <file :name="hud_progress_invalid.texture" :path="hud_progress_invalid.texture"/>
     </group>
-	
+
 	<!-- Overrides game's textures -->
     <group name="units/gui/" path="assets/guis/textures/pd2_mod_hmh/">
         <file :name="c4_indicator_df.texture"             :path="c4_indicator_df.texture"/>
@@ -30,6 +30,6 @@
         <file :name="lockpick_indicator_df.texture"       :path="lockpick_indicator_df.texture"/>
 	    <file :name="plank_indicator_df.texture"          :path="plank_indicator_df.texture"/>
         <file :name="sawblade_indicator_df.texture"       :path="sawblade_indicator_df.texture"/>
-        <file :name="thermite_indicator_df.texture"       :path="thermite_indicator_df.texture"/> 	       
+        <file :name="thermite_indicator_df.texture"       :path="thermite_indicator_df.texture"/>
     </group>
 </assets>
