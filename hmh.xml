@@ -3,9 +3,16 @@
 
 	<!-- Main code -->
     <hooks script_path="lua/">
-        <pre hook_id="core/lib/utils/coreapp" script_path="HMH.lua"/>
 
-		<post hook_id="core/lib/managers/subtitle/coresubtitlepresenter" :script_path="subs.lua"/>
+		<group hook_id="core/lib/">
+		    <group :hook_id="utils/">	
+                <pre :hook_id="coreapp" script_path="HMH.lua"/>
+			</group>
+
+			<group :hook_id="managers/subtitle/">
+		        <post :hook_id="coresubtitlepresenter" :script_path="subs.lua"/>
+			</group>
+        </group>
 
 	    <group hook_id="lib/">
 			<group :hook_id="managers/">
