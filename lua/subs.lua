@@ -1,4 +1,4 @@
-if string.lower(RequiredScript) == "core/lib/managers/subtitle/coresubtitlepresenter" then	
+if string.lower(RequiredScript) == "core/lib/managers/subtitle/coresubtitlepresenter" then
 	core:module("CoreSubtitlePresenter")
 	function OverlayPresenter:show_text(text, duration)
         -- Using the same code as vanilla hud plus so they work together
@@ -10,7 +10,7 @@ if string.lower(RequiredScript) == "core/lib/managers/subtitle/coresubtitleprese
 		    self._text_scale = _G.HMH:GetOption("hud_scale")
 			text_shadow = _G.HMH:GetOption("custom_subs")
 		end
-		
+
 		self.__font_name = "fonts/font_medium_mf"
 		local label = self.__subtitle_panel:child("label") or self.__subtitle_panel:text({
 			name = "label",
@@ -37,7 +37,7 @@ if string.lower(RequiredScript) == "core/lib/managers/subtitle/coresubtitleprese
 			word_wrap = true
 		})
 		label:set_text(text)
-		shadow:set_text(text)	
+		shadow:set_text(text)
 		label:set_font_size(self.__font_size * self._text_scale)
 		shadow:set_font_size(self.__font_size * self._text_scale)
 		shadow:set_visible(text_shadow)
