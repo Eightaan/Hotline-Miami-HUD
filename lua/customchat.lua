@@ -15,12 +15,12 @@ end
 
 if RequiredScript == "lib/managers/hud/hudchat" then
 
-	HUDChat.LINE_HEIGHT = 20			--Size of each line in chat (and hence the text size)
-	HUDChat.WIDTH = 380					--Width of the chat window
+	HUDChat.LINE_HEIGHT = 20		--Size of each line in chat (and hence the text size)
+	HUDChat.WIDTH = 380				--Width of the chat window
 	HUDChat.MAX_OUTPUT_LINES = 8	--Number of chat lines to show
 	HUDChat.MAX_INPUT_LINES = 5		--Number of lines of text you can type
-	HUDChat.MOUSE_SUPPORT = true														--For scolling and stuff. Experimental, you have been warned
-	HUDChat.COLORED_BG = false			--Colorize the line bg based on the message source
+	HUDChat.MOUSE_SUPPORT = true	--For scolling and stuff. Experimental, you have been warned
+	HUDChat.COLORED_BG = false		--Colorize the line bg based on the message source
 	HUDChat.SCROLLBAR_ALIGN = 1		--Alignment of the scroll bar (1 = left, 2 = right)
 
 	local enter_key_callback_original = HUDChat.enter_key_callback
@@ -474,12 +474,12 @@ if RequiredScript == "lib/managers/hud/hudchat" then
 			    local lbs = text:line_breaks()
 			    if #lbs <= HUDChat.MAX_INPUT_LINES then
 			        self:_set_input_lines(#lbs)
-			    else					
+			    else
 			        local s = lbs[HUDChat.MAX_INPUT_LINES + 1]
 			        local e = utf8.len(text:text())
 			        text:set_selection(s, e)
 			        text:replace_text("")
-			    end					
+			    end
 			elseif self._key_pressed == Idstring("left") then
 				if s < e then
 					text:set_selection(s, s)
@@ -660,5 +660,4 @@ if RequiredScript == "lib/managers/hud/hudchat" then
 		local new_line_offset = math.round((1 - ((y - scroll_bar_up:h() - 2) / positon_height_area)) * self._total_message_lines)
 		self:_change_line_offset(new_line_offset - self._current_line_offset)
 	end
-
 end
