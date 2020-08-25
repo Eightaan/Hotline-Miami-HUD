@@ -1,4 +1,4 @@
-{ 
+{
 	"menu_id": "hmh_menu_waypoints",
 	"parent_menu_id": "hmh_menu",
 	"title": "hmh_waypoints_title",
@@ -27,4 +27,4 @@
 			"default_value": true
 		}
 	]
-}	
+}

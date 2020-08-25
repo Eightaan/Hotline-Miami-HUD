@@ -1,4 +1,4 @@
-{ 
+{
 	"menu_id": "hmh_menu_hud",
 	"parent_menu_id": "hmh_menu",
 	"title": "hmh_hud_title",
@@ -104,7 +104,7 @@
 			"description": "equipment_desc",
 			"callback": "callback_equipment",
 			"value": "equipment",
-			"default_value": true			
+			"default_value": true
 		},
 		{
 			"type": "toggle",
@@ -116,4 +116,4 @@
 			"default_value": true
 		}
 	]
-}		
+}

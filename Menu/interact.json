@@ -1,4 +1,4 @@
-{ 
+{
 	"menu_id": "hmh_menu_interact",
 	"parent_menu_id": "hmh_menu",
 	"title": "hmh_interact_title",
@@ -23,4 +23,4 @@
 			"default_value": true
 		}
 	]
-}	
+}
