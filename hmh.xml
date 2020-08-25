@@ -1,9 +1,7 @@
 <?xml version="1.0"?>
 <mod>
-
 	<!-- Main code -->
     <hooks script_path="lua/">
-
 		<group hook_id="core/lib/">
 		    <group :hook_id="utils/">	
                 <pre :hook_id="coreapp" script_path="HMH.lua"/>
@@ -59,7 +57,6 @@
 				        <post :script_path="custom_interaction.lua"/>
 		                <post :script_path="interact.lua"/>
                     </group>
-
 			    </group>
             </group>
 
@@ -78,7 +75,6 @@
 			<group :hook_id="network/handlers/">
 			    <post :hook_id="unitnetworkhandler" :script_path="downcounter.lua"/>
 			</group>
-
         </group>
     </hooks>
 
