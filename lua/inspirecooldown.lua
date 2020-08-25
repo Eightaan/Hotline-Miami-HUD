@@ -7,10 +7,10 @@ function PlayerStandard:_get_intimidation_action(prime_target, primary_only, det
 	if voice_type == "revive" or secondary or detect_only then
 		return voice_type, plural, prime_target
 	end
-	
+
 	local unit_type_enemy = 0
 	local unit_type_teammate = 2
-	
+
 	if prime_target then
 		if prime_target.unit_type == unit_type_teammate then
 			local record = managers.groupai:state():all_criminals()[prime_target.unit:key()]
@@ -30,17 +30,17 @@ function PlayerStandard:_get_intimidation_action(prime_target, primary_only, det
 						local remaining_cooldown = managers.player:get_disabled_cooldown_time("cooldown", "long_dis_revive") + 1 -- Adding 1 because the cooldown seem to count 0 as an extra second?
 						if remaining_cooldown > 0 and HMH:GetOption("inspire") then
 							remaining_cooldown = remaining_cooldown - Application:time()
-							managers.hud:show_hint({ text = string.format("Inspire still has a cooldown of %i seconds", remaining_cooldown) })						
-						end				
-					end			
-				end			
+							managers.hud:show_hint({ text = string.format("Inspire still has a cooldown of %i seconds", remaining_cooldown) })		
+						end
+					end
+				end
 			end
 		else
 			if prime_target.unit_type == unit_type_enemy then
 				plural = false
-			end			
+			end
 		end
 	end
-	
+
 	return voice_type, plural, prime_target
 end
