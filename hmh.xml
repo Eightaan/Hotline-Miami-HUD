@@ -14,7 +14,8 @@
 		    <post :hook_id="hudmanagerpd2" :script_path="ecm.lua"/>
 			<post :hook_id="playermanager" :script_path="bulletstorm.lua"/>
 		    <post :hook_id="hudmanagerpd2" :script_path="custom_interaction.lua"/>
-		    <post :hook_id="hudmanagerpd2" :script_path="customchat.lua"/>			
+		    <post :hook_id="hudmanagerpd2" :script_path="customchat.lua"/>
+		    <post :hook_id="hudmanagerpd2" :script_path="scripts.lua"/>			
 			
 			<post :hook_id="group_ai_states/groupaistatebase" :script_path="downcounter.lua"/>
 			<post :hook_id="group_ai_states/groupaistatebase" :script_path="greenciv.lua"/>
