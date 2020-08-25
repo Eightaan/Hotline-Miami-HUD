@@ -342,7 +342,6 @@ if HMH:GetOption("equipment") then
     end)
 
     Hooks:PostHook(HUDTeammate, "set_deployable_equipment_amount_from_string", "HMH_HUDTeammateSetDeployableEquipmentAmountFromString", function(self, index, data)
-        -- fixes the shaped charges, not gonna bother with animating this
         local teammate_panel = self._panel:child("player")
         local deployable_equipment_panel = self._player_panel:child("deployable_equipment_panel")
         local icon = deployable_equipment_panel:child("equipment")

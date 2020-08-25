@@ -126,7 +126,10 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
     end 
     MenuCallbackHandler.callback_custom_menu_color = function(self, item)
         HMH._data.custom_menu_color = item:value() == "on"
-    end    
+    end
+    MenuCallbackHandler.callback_custom_chat = function(self, item)
+        HMH._data.custom_chat = item:value() == "on"
+    end       
 
     MenuCallbackHandler.HMHSave = function(this, item)
         HMH:Save()
@@ -134,6 +137,7 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
 
 	MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/menu.json", HMH, HMH._data )
 	MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/hud.json", HMH, HMH._data )
+	MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/custom_chat.json", HMH, HMH._data )
 	MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/waypoints.json", HMH, HMH._data )
 	MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/timer.json", HMH, HMH._data )
 	MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/presenter.json", HMH, HMH._data )

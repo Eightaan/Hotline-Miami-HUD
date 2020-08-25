@@ -13,7 +13,8 @@
 		    <post :hook_id="hudmanagerpd2" :script_path="bulletstorm.lua"/>
 		    <post :hook_id="hudmanagerpd2" :script_path="ecm.lua"/>
 			<post :hook_id="playermanager" :script_path="bulletstorm.lua"/>
-		    <post :hook_id="hudmanagerpd2" :script_path="custom_interaction.lua"/>			
+		    <post :hook_id="hudmanagerpd2" :script_path="custom_interaction.lua"/>
+		    <post :hook_id="hudmanagerpd2" :script_path="customchat.lua"/>			
 			
 			<post :hook_id="group_ai_states/groupaistatebase" :script_path="downcounter.lua"/>
 			<post :hook_id="group_ai_states/groupaistatebase" :script_path="greenciv.lua"/>
@@ -32,7 +33,8 @@
 		        <post :hook_id="hudplayercustody" :script_path="custody.lua"/>
 				<post :hook_id="hudteammate"      :script_path="bulletstorm.lua"/>
 	            <post :hook_id="hudteammate"      :script_path="downcounter.lua"/>
-		        <post :hook_id="hudinteraction"   :script_path="custom_interaction.lua"/>				
+		        <post :hook_id="hudinteraction"   :script_path="custom_interaction.lua"/>
+		        <post :hook_id="hudchat"          :script_path="customchat.lua"/>					
 			</group>
         </group>
 		
@@ -40,7 +42,7 @@
 		<post hook_id="core/lib/managers/subtitle/coresubtitlepresenter" :script_path="subs.lua"/>
 		<post hook_id="lib/tweak_data/tweakdata"                         :script_path="peercolor.lua"/>
 		<post hook_id="lib/units/beings/player/states/playerstandard"    :script_path="inspirecooldown.lua"/>
-		<post hook_id="lib/network/handlers/unitnetworkhandler"          :script_path="downcounter.lua"/>  
+		<post hook_id="lib/network/handlers/unitnetworkhandler"          :script_path="downcounter.lua"/>
     </hooks>
 	
 	<!-- Menu Textures -->

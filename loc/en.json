@@ -99,5 +99,10 @@
 	"color_title" : "Custom Name and Chat Colors",
 	"color_desc" : "Enable the custom chat colors."
 	"menu_color_title" : "Custom Menu Colors",
-	"menu_color_desc" : "Enable the custom menu colors."
+	"menu_color_desc" : "Enable the custom menu colors.",
+	
+	"hmh_custom_chat_title" : "Chat Panel",
+	"hmh_custom_chat_desc" : "Customize the chat.",
+	"custom_chat_title" : "Custom Chat",
+	"custom_chat_desc" : "Enable the custom hud chat."
 }
