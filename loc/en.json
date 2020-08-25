@@ -2,13 +2,13 @@
 	"hud_instruct_mask_on" : "",
 	"hmh_title" : "Hotline Miami Hud",
 	"hmh_desc" : "Some options requires a restart to take effect",
-	
+
 	"hud_scale_title" : "Hud Scale",
     "hud_scale_desc" : "Change the hud size.",
-    
+   
     "mod_overrides_title" : "Enable Mod Overrides Updates",
     "mod_overrides_desc" : "Mod Overrides are custom textures that change certain in-game icons to Hotline Miami one's.\nWhen changed, a game restart is required to take effect.",
-	
+
 	"hmh_hud_title" : "Player/Team panels",
 	"hmh_hud_desc" : "Customize the player and team panels",
 	"PLAYER_down_title" : "Show player down counter",
@@ -35,72 +35,72 @@
 	"health_texture_desc" : "",
 	"interact_texture_title" : "Custom Interaction Texture",
 	"interact_texture_desc" : "",
-	
+
 	"hmh_waypoints_title" : "Waypoints",
 	"hmh_waypoints_desc" : "Customize Wayponts.",
 	"waypoints_title" : "Custom waypoints",
 	"waypoints_desc" : "Enable custom colored waypoints.",
 	"greenciv_title" : "Green Civilian Pacified Marker",
 	"greenciv_desc" : "",
-	
+
 	"hmh_timer_title" : "Heist Timer",
 	"hmh_timer_desc" : "Customize the heist timer.",
 	"timer_title" : "Custom Heist Timer",
 	"timer_desc" : "Enable the custom colored heist timer.",
-	
+
 	"hmh_presenter_title" : "Presenter Panel",
 	"hmh_presenter_desc" : "Customize the presenter panel.",
 	"presenter_title" : "Custom Presenter Panel",
 	"presenter_desc" : "Enable the custom colored presenter panel.",
-	
+
 	"hmh_interact_title" : "Interaction",
 	"hmh_interact_desc" : "Customize the interaction text.",
 	"interact_title" : "Custom Interaction Text",
 	"interact_desc" : "Enable the custom colored interaction text.",
-	
+
 	"hmh_hint_title" : "Hint Text",
 	"hmh_hint_desc" : "Customize the hint text.",
 	"hint_title" : "Custom Hint Text",
 	"hint_desc" : "Enable the custom colored hint text.",
 	"inspire_title" : "Inspire Cooldown Hint",
 	"inspire_desc" : "Displays a hint message with the remaining cooldown time.",
-	
+
 	"hmh_downed_title" : "Custody And Downed Text",
 	"hmh_downed_desc" : "Customize the downed and custody text.",
 	"downed_title" : "Custom Downed Text",
 	"downed_desc" : "Enable the custom colored downed text.",
 	"custody_title" : "Custom Custody Text",
 	"custody_desc" : "Enable the custom colored custody text.",
-	
+
 	"hmh_carry_title" : "Carry Panel",
 	"hmh_carry_desc" : "Customize the carry panel.",
 	"carry_title" : "Custom Carry Panel",
 	"carry_desc" : "Enable the custom carry panel.",
-	
+
 	"hmh_assault_title" : "Assault Panel",
 	"hmh_assault_desc" : "Customize the assault panel.",
 	"assault_title" : "Custom Assault Panel",
 	"assault_desc" : "Enable the custom assault panel.",
 	"infoboxes_title" : "Ecm Timer",
 	"infoboxes_desc" : "",
-	
+
 	"hmh_objective_title" : "Objective Panel",
 	"hmh_objective_desc" : "Customize the objective panel.",
 	"objective_title" : "Custom Objective Panel",
 	"objective_desc" : "Enable the custom objective panel.",
-	
+
 	"hmh_subs_title" : "Subtitle Text",
 	"hmh_subs_desc" : "Customize the subtitles.",
 	"subs_title" : "Custom Subtitle Text",
 	"subs_desc" : "Enable the custom subtitles.",
-	
+
 	"hmh_color_title" : "Custom Color Options",
 	"hmh_color_desc" : "Customize the colors.",
 	"color_title" : "Custom Name and Chat Colors",
 	"color_desc" : "Enable the custom chat colors."
 	"menu_color_title" : "Custom Menu Colors",
 	"menu_color_desc" : "Enable the custom menu colors.",
-	
+
 	"hmh_custom_chat_title" : "Chat Panel",
 	"hmh_custom_chat_desc" : "Customize the chat.",
 	"custom_chat_title" : "Custom Chat",
