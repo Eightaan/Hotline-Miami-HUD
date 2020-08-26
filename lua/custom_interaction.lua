@@ -1,6 +1,6 @@
 if not HMH:GetOption("interact_texture") then return end
 
-if string.lower(RequiredScript) == "lib/managers/hudmanagerpd2" then
+if RequiredScript == "lib/managers/hudmanagerpd2" then
 	
     local teammate_progress_ori = HUDManager.teammate_progress
     function HUDManager:teammate_progress(...)
@@ -15,7 +15,7 @@ if string.lower(RequiredScript) == "lib/managers/hudmanagerpd2" then
             })
         end
     end
-elseif string.lower(RequiredScript) == "lib/managers/menu/circleguiobject" then
+elseif RequiredScript == "lib/managers/menu/circleguiobject" then
 	function CircleBitmapGuiObject:init(panel, config)
 		self._panel = panel
 		self._radius = config.radius or 20
@@ -42,7 +42,7 @@ elseif string.lower(RequiredScript) == "lib/managers/menu/circleguiobject" then
 			self._bg_circle = self._panel:bitmap(bg_config)
 		end
 	end
-elseif string.lower(RequiredScript) == "lib/managers/hud/hudinteraction" then
+elseif RequiredScript == "lib/managers/hud/hudinteraction" then
 	function HUDInteraction:_animate_interaction_complete(bitmap, circle)
 		local TOTAL_T = 0.6
 		local t = TOTAL_T
