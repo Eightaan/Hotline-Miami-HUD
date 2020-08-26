@@ -36,7 +36,7 @@
 	"health_texture_title" : "Custom Health Texture",
 	"health_texture_desc" : "",
 	"color_title" : "Custom Name and Chat Colors",
-	"color_desc" : "Enable the custom chat colors."
+	"color_desc" : "Enable the custom chat colors.",
 
 	"hmh_waypoints_title" : "Waypoints",
 	"hmh_waypoints_desc" : "Customize Wayponts.",
