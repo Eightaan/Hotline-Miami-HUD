@@ -1,13 +1,13 @@
 -- UHUD Vanilla + used for interaction text and animated team panels
 
-Hooks:PostHook(HUDTeammate, "init" , "HMH_HUDTeammateInit", function(self, ... )
+Hooks:PostHook(HUDTeammate, "init" , "HMH_HUDTeammateInit", function(self, ...)
 	local radial_health_panel = self._player_panel:child("radial_health_panel")
 	local name_panel = self._panel:panel({
 		name 	= "name_panel",
-		w 		= self._panel:w() - self._panel:child( "callsign_bg" ):w() - ( not self._main_player and radial_health_panel:w() or 0 ),
-		h 		= self._panel:child( "name_bg" ):h(),
-		x 		= self._panel:child( "name_bg" ):x(),
-		y 		= self._panel:child( "name_bg" ):y()
+		w 		= self._panel:w() - self._panel:child( "callsign_bg" ):w() - (not self._main_player and radial_health_panel:w() or 0),
+		h 		= self._panel:child("name_bg"):h(),
+		x 		= self._panel:child("name_bg"):x(),
+		y 		= self._panel:child("name_bg"):y()
 	})
 
 	if not self._main_player then
@@ -41,7 +41,7 @@ Hooks:PostHook(HUDTeammate, "init" , "HMH_HUDTeammateInit", function(self, ... )
 	self._panel:child("name"):set_visible(false)
 end)
 
-Hooks:PostHook(HUDTeammate, "set_name", "HMH_HUDTeammateSetName", function(self, ... )
+Hooks:PostHook(HUDTeammate, "set_name", "HMH_HUDTeammateSetName", function(self, ...)
 
 	local teammate_panel = self._panel
 	local name = teammate_panel:child("name")
@@ -57,7 +57,7 @@ Hooks:PostHook(HUDTeammate, "set_name", "HMH_HUDTeammateSetName", function(self,
 	name_bg:set_w(self._new_name:w() + 4)
 
 	if HMH:GetOption("color_name") and self._panel:child("name_panel"):w() < name_bg:w() then
-		self._new_name:animate( callback(self, self, "_animate_name"), name_bg:w() - self._panel:child("name_panel"):w() + 2)
+		self._new_name:animate(callback(self, self, "_animate_name"), name_bg:w() - self._panel:child("name_panel"):w() + 2)
 	end
 end)
 
@@ -140,7 +140,7 @@ if HMH:GetOption("interact_info") then
             end
 
             if self._panel:child("name_panel"):w() < self._panel:child("name_panel"):child("interact_text"):w() + 4 then
-                self._panel:child("name_panel"):child("interact_text"):animate(callback(self,self, "_animate_name" ), self._panel:child("name_bg"):w() - self._panel:child("name_panel"):w() + 2)
+                self._panel:child("name_panel"):child("interact_text"):animate(callback(self,self, "_animate_name"), self._panel:child("name_bg"):w() - self._panel:child("name_panel"):w() + 2)
             end
 
         elseif not success and not self._main_player then
@@ -156,11 +156,11 @@ if HMH:GetOption("interact_info") then
 
         if success then
             self._new_name:set_alpha(1)
-            self._panel:child( "name_panel" ):child( "interact_text" ):set_visible(false)
-            self._panel:child( "name_bg" ):set_w( self._new_name:w() + 4)
+            self._panel:child("name_panel"):child("interact_text"):set_visible(false)
+            self._panel:child("name_bg"):set_w(self._new_name:w() + 4)
         end
 
-        self._panel:child("name_panel"):child("interact_text"):set_color(tweak_data.chat_colors[self._peer_id] or Color.white )
+        self._panel:child("name_panel"):child("interact_text"):set_color(tweak_data.chat_colors[self._peer_id] or Color.white)
 
         if not self._main_player and self:peer_id() then
             local peer = managers.network:session() and managers.network:session():peer(self:peer_id())
@@ -190,7 +190,7 @@ Hooks:PreHook(HUDTeammate, "set_carry_info", "HMH_HUDTeammateSetCarryInfo", func
     end
 end)
 
-Hooks:PostHook(HUDTeammate, "add_special_equipment", "HMH_HUDTeammateAddSpecialEquipment", function(self, data, ... )
+Hooks:PostHook(HUDTeammate, "add_special_equipment", "HMH_HUDTeammateAddSpecialEquipment", function(self, data, ...)
     local team_color
 	if self._peer_id then
         team_color = tweak_data.chat_colors[self._peer_id]
@@ -226,18 +226,18 @@ if HMH:GetOption("equipment") then
         end
 
         if data.amount > 0 then
-            equipment:animate( function(o)
+            equipment:animate(function(o)
                 equipment:set_alpha(1)
                 equipment:set_visible(true)
                 amount:set_alpha(1)
                 amount:set_visible(true)
                 over(1, function(p)
-                    local n = 1 - math.sin(( p / 2 ) * 180)
-                    equipment:set_alpha( math.lerp(1, 0.2, n))
+                    local n = 1 - math.sin((p / 2) * 180)
+                    equipment:set_alpha(math.lerp(1, 0.2, n))
                 end)
             end)
         elseif data.amount == 0 then
-            equipment:animate( function(o)
+            equipment:animate(function(o)
                 equipment:set_visible(true)
                 equipment:set_color(Color("ff80df"))
                 amount:set_visible(true)
@@ -317,18 +317,18 @@ if HMH:GetOption("equipment") then
         end
 
         if self._cable_amount ~= amount and amount > 0 then
-            cable_ties:animate( function(o)
+            cable_ties:animate(function(o)
                 cable_ties:set_alpha(1)
                 cable_ties:set_visible(true)
                 cable_ties_amount:set_alpha(1)
                 cable_ties_amount:set_visible(true)
                 over(1, function(p)
                     local n = 1 - math.sin((p / 2 ) * 180)
-                    cable_ties:set_alpha( math.lerp(1, 0.2, n ))
+                    cable_ties:set_alpha(math.lerp(1, 0.2, n))
                 end)
             end)
         elseif amount == 0 then
-            cable_ties:animate( function(o)
+            cable_ties:animate(function(o)
                 cable_ties:set_visible(true)
                 cable_ties:set_color(Color("ff80df"))
                 cable_ties_amount:set_visible(true)
@@ -348,9 +348,9 @@ if HMH:GetOption("equipment") then
         local amount = deployable_equipment_panel:child("amount")
         local amounts = ""
         local zero_ranges = {}
-        local color = Color("ff80df")
+        local color = Color(0.5, 1, 1, 1)
         local alpha = 0.2
-        local icon_color = color
+        local icon_color = Color("ff80df")
 
         for i, amount in ipairs(data.amount) do
             local amount_str = string.format("%01d", amount)
@@ -371,8 +371,7 @@ if HMH:GetOption("equipment") then
             amounts = amounts .. amount_str
 
             if amount > 0 then
-                color = Color("66ffff")
-                icon_color = Color("ff80df")
+			    color = Color("66ffff")
                 alpha = 1
             end
         end
@@ -403,25 +402,25 @@ if HMH:GetOption("ammo") then
         if is_secondary then
             primary_weapon_panel:animate(function(o)
                 over(0.5, function(p)
-                    primary_weapon_panel:set_alpha( math.lerp(1, 0.5, p ))
+                    primary_weapon_panel:set_alpha(math.lerp(1, 0.5, p))
                 end)
             end)
 
             secondary_weapon_panel:animate(function(o)
                 over(0.5, function(p)
-                    secondary_weapon_panel:set_alpha( math.lerp(0.5, 1, p ))
+                    secondary_weapon_panel:set_alpha(math.lerp(0.5, 1, p))
                 end)
             end)
         else
             secondary_weapon_panel:animate(function(o)
                 over(0.5, function(p)
-                    secondary_weapon_panel:set_alpha( math.lerp(1, 0.5, p ))
+                    secondary_weapon_panel:set_alpha(math.lerp(1, 0.5, p))
                 end)
             end)
 
             primary_weapon_panel:animate(function(o)
                 over(0.5, function(p)
-                    primary_weapon_panel:set_alpha( math.lerp(0.5, 1, p ))
+                    primary_weapon_panel:set_alpha(math.lerp(0.5, 1, p))
                 end)
             end)
         end
@@ -435,12 +434,12 @@ if HMH:GetOption("ammo") then
         local zero = current_left < 10 and "00" or current_left < 100 and "0" or ""
         local zero_clip = current_clip < 10 and "00" or current_clip < 100 and "0" or ""
 
-        local low_ammo = current_left <= math.round( max / 3 )
+        local low_ammo = current_left <= math.round(max / 3)
         local out_of_ammo = current_left <= 0
         local max_ammo = (current_left == max or ((current_left + current_clip == max)))
         local cheated_ammo = current_left > max
 
-        local low_clip = current_clip <= math.round( max_clip / 4 )
+        local low_clip = current_clip <= math.round(max_clip / 4)
         local out_of_clip = current_clip <= 0
         local cheated_clip = current_clip > max_clip
 
@@ -456,9 +455,9 @@ if HMH:GetOption("ammo") then
         color_clip = color_clip or (Color("66ffff"))
 
         ammo_total:stop()
-        ammo_total:set_text( zero .. current_left )
+        ammo_total:set_text(zero .. current_left)
         ammo_total:set_font(Idstring("fonts/font_medium"))
-        ammo_total:set_font_size( 21 )
+        ammo_total:set_font_size(21)
         ammo_total:set_color(color_total)
         ammo_total:set_range_color(0, string.len(zero), color_total:with_alpha(0.5))
 
@@ -470,7 +469,7 @@ if HMH:GetOption("ammo") then
 
         if not self._last_ammo then
             self._last_ammo = {}
-            self._last_ammo[ type ] = current_left
+            self._last_ammo[type] = current_left
         end
 
         if not self._last_clip then
@@ -480,18 +479,18 @@ if HMH:GetOption("ammo") then
 
         if self._last_ammo and self._last_ammo[type] and self._last_ammo[type] < current_left then
 
-            ammo_total:animate( function(o)
+            ammo_total:animate(function(o)
                 local s = self._last_ammo[type]
                 local e = current_left
                 local font_size = 21
                 over(0.5, function(p)
                     local value = math.lerp(s, e, p)
-                    local text = string.format( "%.0f" , value )
-                    local zero = math.round( value ) < 10 and "00" or math.round( value ) < 100 and "0" or ""
+                    local text = string.format("%.0f", value)
+                    local zero = math.round(value) < 10 and "00" or math.round(value) < 100 and "0" or ""
 
                     local low_ammo = value <= math.round(max / 3)
                     local out_of_ammo = value <= 0
-                    local max_ammo = ( value == max or ((value + current_clip == max)))
+                    local max_ammo = (value == max or ((value + current_clip == max)))
                     local cheated_ammo = value > max
 
                     local color_total = out_of_ammo and Color(1, 0.9, 0.3, 0.3)
@@ -500,29 +499,29 @@ if HMH:GetOption("ammo") then
                     color_total = color_total or cheated_ammo and Color.red
                     color_total = color_total or (Color("66ff99"))
 
-                    ammo_total:set_text( zero .. text )
-                    ammo_total:set_color( color_total )
+                    ammo_total:set_text(zero .. text)
+                    ammo_total:set_color(color_total)
                     ammo_total:set_range_color(0, string.len(zero), color_total:with_alpha(0.5))
                 end)
-                over( 1 , function( p )
+                over(1 , function(p)
                     local n = 1 - math.sin((p / 2 ) * 180)
 
-                    ammo_total:set_font_size( math.lerp(font_size, font_size + 4, n ))
+                    ammo_total:set_font_size(math.lerp(font_size, font_size + 4, n))
                 end)
             end)
         end
 
         if self._last_clip and self._last_clip[type] and self._last_clip[type] < current_clip and not self._bullet_storm then
 
-            ammo_clip:animate( function(o)
+            ammo_clip:animate(function(o)
                 local s = self._last_clip[type]
                 local e = current_clip
                 over(0.25, function(p)
                     local value = math.lerp(s, e, p)
-                    local text = string.format( "%.0f" , value )
-                    local zero = math.round( value ) < 10 and "00" or math.round( value ) < 100 and "0" or ""
+                    local text = string.format( "%.0f", value)
+                    local zero = math.round(value) < 10 and "00" or math.round(value) < 100 and "0" or ""
 
-                    local low_clip = value <= math.round( max_clip / 4 )
+                    local low_clip = value <= math.round(max_clip / 4)
                     local out_of_clip = value <= 0
 
                     local color_clip = out_of_clip and Color(1, 0.9, 0.3, 0.3)
@@ -540,13 +539,13 @@ if HMH:GetOption("ammo") then
         self._last_ammo[type] = current_left
         self._last_clip[type] = current_clip
     end)
-
+    
     Hooks:PostHook(HUDTeammate, "_create_weapon_panels", "HMH_HUDTeammate_create_weapon_panels", function(self, weapons_panel)
         local primary_weapon_panel = weapons_panel:child("primary_weapon_panel")
         local secondary_weapon_panel = weapons_panel:child("secondary_weapon_panel")
         local sec_weapon_selection_panel = secondary_weapon_panel:child("weapon_selection")
         local prim_weapon_selection_panel = primary_weapon_panel:child("weapon_selection")
-
+    
         prim_weapon_selection_panel:child("weapon_selection"):set_color(Color("66ff99"))
         sec_weapon_selection_panel:child("weapon_selection"):set_color(Color("66ffff"))
     end)
