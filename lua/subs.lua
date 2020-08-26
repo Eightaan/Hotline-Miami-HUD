@@ -1,4 +1,4 @@
-if string.lower(RequiredScript) == "core/lib/managers/subtitle/coresubtitlepresenter" then
+if RequiredScript == "core/lib/managers/subtitle/coresubtitlepresenter" then
 	core:module("CoreSubtitlePresenter")
 	function OverlayPresenter:show_text(text, duration)
         -- Using the same code as vanilla hud plus so they work together
