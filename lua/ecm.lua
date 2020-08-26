@@ -1,4 +1,4 @@
-if string.lower(RequiredScript) == "lib/managers/hudmanagerpd2" then
+if RequiredScript == "lib/managers/hudmanagerpd2" then
 	HUDECMCounter = HUDECMCounter or class()
 
     function HUDECMCounter:init(hud)
@@ -63,7 +63,7 @@ if string.lower(RequiredScript) == "lib/managers/hudmanagerpd2" then
 	    self._hud_ecm_counter:update(t)
     end
 
-elseif string.lower(RequiredScript) == "lib/units/equipment/ecm_jammer/ecmjammerbase" then
+elseif RequiredScript == "lib/units/equipment/ecm_jammer/ecmjammerbase" then
 
     local setup_original = ECMJammerBase.setup
     local sync_setup_original = ECMJammerBase.sync_setup

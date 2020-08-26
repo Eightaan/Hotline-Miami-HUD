@@ -129,7 +129,28 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
     end
     MenuCallbackHandler.callback_custom_chat = function(self, item)
         HMH._data.custom_chat = item:value() == "on"
-    end       
+    end
+	MenuCallbackHandler.callback_screen_effect = function(self, item)
+        HMH._data.screen_effect = item:value() == "on"
+    end
+	MenuCallbackHandler.callback_toggle_interact = function(self, item)
+        HMH._data.toggle_interact = item:value()
+    end
+	MenuCallbackHandler.callback_interupt_interact = function(self, item)
+        HMH._data.interupt_interact = item:value() == "on"
+    end
+	MenuCallbackHandler.callback_skip_blackscreen = function(self, item)
+        HMH._data.skip_blackscreen = item:value() == "on"
+    end
+	MenuCallbackHandler.callback_skip_xp = function(self, item)
+        HMH._data.skip_xp = item:value()
+    end
+	MenuCallbackHandler.callback_pick_card = function(self, item)
+        HMH._data.pick_card = item:value() == "on"
+    end
+	MenuCallbackHandler.callback_skip_card = function(self, item)
+        HMH._data.skip_card = item:value()
+    end		
 
     MenuCallbackHandler.HMHSave = function(this, item)
         HMH:Save()
@@ -148,7 +169,7 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
 	MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/assault.json", HMH, HMH._data )
     MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/objective.json", HMH, HMH._data )
     MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/subs.json", HMH, HMH._data )
-    MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/color.json", HMH, HMH._data )
+    MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/menu_options.json", HMH, HMH._data )
 
     do	-- Romove Disabled Updates, so they don't show up in the download manager.
         if not DirectoryExists("./assets/mod_overrides/") then

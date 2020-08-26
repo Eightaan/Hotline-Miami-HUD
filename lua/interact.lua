@@ -1,6 +1,22 @@
-Hooks:PostHook( HUDInteraction , "init" , "HMM_HUDInteractionInit" , function( self, ... )
-    local interact_text = self._hud_panel:child(self._child_name_text)
-	if HMH:GetOption("interact") then
-	    interact_text:set_color(Color("ffcc66"))
-	end
-end)
+if RequiredScript == "lib/managers/hud/hudinteraction" then
+
+    Hooks:PostHook( HUDInteraction , "init" , "HMM_HUDInteractionInit" , function( self, ... )
+        local interact_text = self._hud_panel:child(self._child_name_text)
+	    if HMH:GetOption("interact") then
+	        interact_text:set_color(Color("ffcc66"))
+	    end
+    end)
+
+elseif RequiredScript == "lib/units/interactions/interactionext" then
+    LocalizationManager:add_localized_strings({["hud_int_hold_grab_the_bag"] = "Hold $INTERACT to grab the $BAG"})
+
+    local _add_string_macros_original = BaseInteractionExt._add_string_macros
+    function BaseInteractionExt:_add_string_macros(macros, ...)
+	    _add_string_macros_original(self, macros, ...)
+	    macros.INTERACT = self:_btn_interact() or managers.localization:get_default_macro("BTN_INTERACT") --Ascii ID for RB
+	    if self._unit:carry_data() then
+		    local carry_id = self._unit:carry_data():carry_id()
+		    macros.BAG = managers.localization:text(tweak_data.carry[carry_id].name_id)
+	    end
+    end
+end

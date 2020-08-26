@@ -14,6 +14,15 @@
 			"default_value": true
 		},
 		{
+			"type": "toggle",
+			"id": "color_toggle",
+			"title": "color_title",
+			"description": "color_desc",
+			"callback": "callback_custom_color",
+			"value": "custom_color",
+			"default_value": true
+		},
+		{
 			"type": "divider",
 			"size": 16
 		},
@@ -56,6 +65,15 @@
 			"callback": "callback_bulletstorm",
 			"value": "bulletstorm",
 			"default_value": true
+		},
+		{
+			"type": "toggle",
+			"id": "screen_effect_toggle",
+			"title": "screen_effect_title",
+			"description": "screen_effect_desc",
+			"callback": "callback_screen_effect",
+			"value": "screen_effect",
+			"default_value": false			
 		},
 		{
 			"type": "divider",

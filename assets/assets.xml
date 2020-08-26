@@ -6,6 +6,7 @@
         <file :name="hud_progress_active.texture"  :path="hud_progress_active.texture"/>
         <file :name="hud_progress_bg.texture"      :path="hud_progress_bg.texture"/>
         <file :name="hud_progress_invalid.texture" :path="hud_progress_invalid.texture"/>
+		<file :name="screeneffect.texture"         :path="screeneffect.texture"/>
     </group>
 
 	<!-- Overrides game's textures -->
