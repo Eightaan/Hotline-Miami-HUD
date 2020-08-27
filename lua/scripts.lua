@@ -90,8 +90,20 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 			if local_peer and local_peer:id() == peer_id then
 				force_ready_clicked = force_ready_clicked + 1
 				if game_state_machine and force_ready_clicked >= 3 then
-					game_state_machine:current_state():start_game_intro()
-				end
+					local menu_options = {
+						[1] = {
+							text = managers.localization:text("dialog_yes"),
+							callback = function(self, item)
+							    --managers.chat:send_message(ChatManager.GAME, local_peer, "The Game was forced to start.")
+							    game_state_machine:current_state():start_game_intro()
+						    end,
+						},
+						[2] = {
+							text = managers.localization:text("dialog_no"),
+							is_cancel_button = true,
+						}
+					}
+					QuickMenu:new( "Force start game?", "Are you sure you want to force the game to start?", menu_options, true )
 			end
 		end
 	end
