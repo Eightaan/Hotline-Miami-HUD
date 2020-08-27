@@ -32,6 +32,10 @@ Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInit_HMH", func
     if LobbySettings then
         localized_strings["menu_cn_premium_buy_fee_short"] = ""
     end
+
+	if HMH:GetOption("skip_blackscreen") then
+	    localized_strings["hud_skip_blackscreen"] = ""
+	end
     loc:add_localized_strings(localized_strings)
 end)
 
