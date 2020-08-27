@@ -199,8 +199,11 @@ function HUDAssaultCorner:_get_assault_strings()
 	end
 
 	local space = string.rep(" ", 2)
+	local cash = "$"
 	if managers.crime_spree:is_active() then
 	assault_text = managers.localization:to_upper_text(self._assault_mode == "normal" and "cn_crime_spree" or "hud_assault_vip") .. space ..  managers.localization:to_upper_text("menu_cs_level", {level = managers.experience:cash_string(managers.crime_spree:server_spree_level(), "")})
+	elseif managers.skirmish:is_skirmish() then
+	assault_text = managers.localization:to_upper_text("hud_skirmish_ransom") .. space .. cash .. managers.skirmish:current_ransom_amount()
 	else
 	assault_text = managers.localization:to_upper_text(self._assault_mode == "normal" and "hud_assault_assault" or "hud_assault_vip") .. " " .. difficulty
 	end
