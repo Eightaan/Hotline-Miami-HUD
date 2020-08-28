@@ -2,17 +2,9 @@ if not HMH:GetOption("assault") then return end
 
 Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(self, hud, ...)
     -- HOSTAGES
-    local hostages_visible
-    if VHUDPlus and VHUDPlus:getSetting({"HUDList", "ENABLED"}, true) and not VHUDPlus:getSetting({"HUDList", "ORIGNIAL_HOSTAGE_BOX"}, false) then
-	    hostages_visible = false
-	else
-	    hostages_visible = true
-	end
-
 	local hostages_panel = self._hud_panel:child("hostages_panel")
 	local hostage_text = self._hostages_bg_box:child("num_hostages")
 	local hostages_icon = hostages_panel:child("hostages_icon")
-	hostages_panel:set_visible(hostages_visible)
 	hostage_text:set_color(Color("66ffff"))
 	hostages_icon:set_color(Color("ff80df"))
 
@@ -241,16 +233,6 @@ end
 
 function HUDAssaultCorner:_animate_show_casing( casing_panel, delay_time )
 	set_alpha(casing_panel, 1)--LDDG Animation
-end
-
-function HUDAssaultCorner:_hide_hostages()
-	self._hud_panel:child( "hostages_panel" ):animate(callback(nil, _G, "set_alpha"), 0)--LDDG Animation
-end
-
-function HUDAssaultCorner:_show_hostages()
-	if not self._point_of_no_return then
-		self._hud_panel:child( "hostages_panel" ):animate(callback(nil, _G, "set_alpha"), 1)--LDDG Animation
-	end
 end
 
 function HUDAssaultCorner:_animate_show_noreturn(point_of_no_return_panel, delay_time)
