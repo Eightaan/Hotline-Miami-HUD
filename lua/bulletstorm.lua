@@ -1,9 +1,11 @@
-if string.lower(RequiredScript) == "lib/managers/hudmanagerpd2" then
+if WolfHUD and WolfHUD:getSetting({"CustomHUD", "ENABLED"}, true) then return end
+
+if RequiredScript == "lib/managers/hudmanagerpd2" then
     function HUDManager:set_bulletstorm( state )
 	    self._teammate_panels[ HUDManager.PLAYER_PANEL ]:_set_bulletstorm( state )
     end
 
-elseif string.lower(RequiredScript) == "lib/managers/hud/hudteammate" then
+elseif RequiredScript == "lib/managers/hud/hudteammate" then
 
     local init_original = HUDTeammate.init
     local set_ammo_amount_by_type_original = HUDTeammate.set_ammo_amount_by_type
@@ -98,7 +100,7 @@ elseif string.lower(RequiredScript) == "lib/managers/hud/hudteammate" then
 	    end
     end
 
-elseif string.lower(RequiredScript) == "lib/managers/playermanager" then
+elseif RequiredScript == "lib/managers/playermanager" then
     local add_to_temporary_property_original = PlayerManager.add_to_temporary_property
 
     function PlayerManager:_clbk_bulletstorm_expire()
