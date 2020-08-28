@@ -30,6 +30,13 @@ if not HMH then
                 end
             end
         end
+
+		if self:GetOption("suspicion") then
+            DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_stealthmeter"), self._path .. "assets/guis/textures/pd2_mod_hmh/hud_stealthmeter.texture")
+			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_stealthmeter_bg"), self._path .. "assets/guis/textures/pd2_mod_hmh/hud_stealthmeter_bg.texture")
+			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/blackmarket/inv_detection_meter"), self._path .. "assets/guis/textures/pd2_mod_hmh/inv_detection_meter.texture")
+			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/mission_briefing/inv_detection_meter"), self._path .. "assets/guis/textures/pd2_mod_hmh/inv_detection_meter.texture")
+        end
     end
 
     function HMH:LoadDefaults()

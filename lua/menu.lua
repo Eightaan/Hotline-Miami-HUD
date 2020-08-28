@@ -154,7 +154,10 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
     end
 	MenuCallbackHandler.callback_skip_card = function(self, item)
         HMH._data.skip_card = item:value()
-    end		
+    end
+	MenuCallbackHandler.callback_suspicion = function(self, item)
+        HMH._data.suspicion = item:value() == "on"
+    end
 
     MenuCallbackHandler.HMHSave = function(this, item)
         HMH:Save()
@@ -168,6 +171,7 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
 	MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/presenter.json", HMH, HMH._data )
 	MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/interact.json", HMH, HMH._data )
 	MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/hint.json", HMH, HMH._data )
+	MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/suspicion.json", HMH, HMH._data )	
 	MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/downed.json", HMH, HMH._data )
 	MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/carry.json", HMH, HMH._data )
 	MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/assault.json", HMH, HMH._data )

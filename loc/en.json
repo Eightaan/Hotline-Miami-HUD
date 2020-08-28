@@ -72,6 +72,11 @@
 	"hint_desc" : "Enable the custom colored hint text.",
 	"inspire_title" : "Inspire Cooldown Hint",
 	"inspire_desc" : "Displays a hint message with the remaining cooldown time.",
+	
+	"hmh_suspicion_title" : "Suspicion Meter",
+	"hmh_suspicion_desc" : "Customize the suspicion meter.",
+	"suspicion_title" : "Custom Suspicion Meter",
+	"suspicion_desc" : "Adds a custom colored suspicion meter.\n(Restart required)",
 
 	"hmh_downed_title" : "Custody And Downed Text",
 	"hmh_downed_desc" : "Customize the downed and custody text.",
