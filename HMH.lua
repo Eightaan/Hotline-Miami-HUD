@@ -30,6 +30,7 @@ if not HMH then
                 end
             end
         end
+            DB:create_entry(Idstring("font"), Idstring("fonts/font_digital"), self._path .. "assets/pd2_mod_hmh/font_digital.font")
     end
 
     function HMH:LoadDefaults()

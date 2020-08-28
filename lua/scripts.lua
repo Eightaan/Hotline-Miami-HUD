@@ -103,6 +103,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 						}
 					}
 					QuickMenu:new( "Force start game?", "Are you sure you want to force the game to start?", menu_options, true )
+				end
 			end
 		end
 	end
