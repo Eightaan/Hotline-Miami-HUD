@@ -7,7 +7,9 @@
     "hud_scale_desc" : "Change the hud size.",
    
     "mod_overrides_title" : "Enable Mod Overrides Updates",
-    "mod_overrides_desc" : "Mod Overrides are custom textures that change certain in-game icons to Hotline Miami one's.\nWhen changed, a game restart is required to take effect.",
+    "mod_overrides_desc" : "Mod Overrides are custom textures and font that change the menu to Hotline Miami.\nWhen changed, a game restart is required to take effect.",
+	"mod_font_title" : "Custom Text Font",
+	"mod_font_desc" : "Enables the custom pixel font.\n(Restart required)",
 
 	"hmh_hud_title" : "Player/Team panels",
 	"hmh_hud_desc" : "Customize the player and team panels",

@@ -38,5 +38,6 @@
 	"skip_card" : 0,
 	"pick_card" : false,
 	"suspicion" : true,
-	"combo" : false
+	"combo" : false,
+	"font" : true
 }

@@ -161,7 +161,9 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
 	MenuCallbackHandler.callback_combo = function(self, item)
         HMH._data.combo = item:value() == "on"
     end
-
+	MenuCallbackHandler.callback_font = function(self, item)
+        HMH._data.font = item:value() == "on"
+    end
     MenuCallbackHandler.HMHSave = function(this, item)
         HMH:Save()
     end

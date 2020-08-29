@@ -29,6 +29,19 @@
 			"callback": "callback_mod_overrides",
 			"value": "mod_overrides",
 			"default_value": true
+		},
+		{
+			"type": "divider",
+			"size": 4
+        },
+        {
+			"type": "toggle",
+			"id": "mod_font_toggle",
+			"title": "mod_font_title",
+			"description": "mod_font_desc",
+			"callback": "callback_font",
+			"value": "font",
+			"default_value": true
         },
         {
 			"type": "divider",
