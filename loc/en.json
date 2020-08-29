@@ -101,6 +101,8 @@
 	"hmh_objective_desc" : "Customize the objective panel.",
 	"objective_title" : "Custom Objective Panel",
 	"objective_desc" : "Enable the custom objective panel.",
+	"combo_title" : "Combo Counter",
+	"combo_desc" : "Enable a hotline miami styled combo counter.",
 
 	"hmh_subs_title" : "Subtitle Text",
 	"hmh_subs_desc" : "Customize the subtitles.",

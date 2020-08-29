@@ -12,6 +12,19 @@
 			"callback": "callback_objective",
 			"value": "objective",
 			"default_value": true
+		},
+		{
+			"type": "divider",
+			"size": 16
+		},
+		{
+			"type": "toggle",
+			"id": "combo_toggle",
+			"title": "combo_title",
+			"description": "combo_desc",
+			"callback": "callback_combo",
+			"value": "combo",
+			"default_value": false
 		}
 	]
 }

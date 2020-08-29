@@ -37,5 +37,6 @@
 	"skip_xp" : 0,
 	"skip_card" : 0,
 	"pick_card" : false,
-	"suspicion" : true
+	"suspicion" : true,
+	"combo" : false
 }

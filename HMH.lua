@@ -6,6 +6,10 @@ if not HMH then
         SaveDataVer = 1,
         data = {}
     }
+	
+	HMH.Kills = 0
+	HMH.LastKillTime = 0
+	HMH.KillTime = 0
 
     function HMH:Save()
         local file = io.open( self._data_path, "w+" )

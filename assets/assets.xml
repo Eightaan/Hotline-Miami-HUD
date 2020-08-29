@@ -7,6 +7,9 @@
         <file :name="hud_progress_bg.texture"      :path="hud_progress_bg.texture"/>
         <file :name="hud_progress_invalid.texture" :path="hud_progress_invalid.texture"/>
 		<file :name="screeneffect.texture"         :path="screeneffect.texture"/>
+		<file :name="hmcc_font.font"               :path="hmcc_font.font"/>
+        <file :name="hmcc_font.texture"            :path="hmcc_font.texture"/>
+		<file :name="hmcc_bg.texture"              :path="hmcc_bg.texture"/>
     </group>
 
 	<!-- Overrides game's textures -->
