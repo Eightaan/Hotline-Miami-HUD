@@ -65,10 +65,9 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 
     -- VIP ICON
     local icon_offset = 140 + (10 * managers.job:current_difficulty_stars())
-    if managers.crime_spree:is_active() then
-        icon_offset = 230
+	if managers.crime_spree:is_active() then
+        icon_offset = 140
     end
-
 	local vip_icon = self._vip_bg_box:child("vip_icon")
 	local buffs_panel = self._hud_panel:child("buffs_panel")
 	buffs_panel:set_x(assault_panel:left() + self._bg_box:left() - icon_offset)
@@ -191,13 +190,19 @@ function HUDAssaultCorner:_get_assault_strings()
 	end
 
 	local space = string.rep(" ", 2)
-	local cash = "$"
+	local crime_spree_rank
+	if managers.crime_spree:is_active() and self._assault_mode == "normal" then
+	    crime_spree_rank = space ..  managers.localization:to_upper_text("menu_cs_level", {level = managers.experience:cash_string(managers.crime_spree:server_spree_level(), "")})
+	else 
+	    crime_spree_rank = ""
+	end
+
 	if managers.crime_spree:is_active() then
-	    assault_text = managers.localization:to_upper_text(self._assault_mode == "normal" and "cn_crime_spree" or "hud_assault_vip") .. space ..  managers.localization:to_upper_text("menu_cs_level", {level = managers.experience:cash_string(managers.crime_spree:server_spree_level(), "")})
+	    assault_text = managers.localization:to_upper_text(self._assault_mode == "normal" and "cn_crime_spree" or "hud_assault_vip") .. crime_spree_rank
 	elseif managers.skirmish:is_skirmish() then
-	    assault_text = managers.localization:to_upper_text("hud_skirmish_ransom") .. space .. cash .. managers.skirmish:current_ransom_amount()
+	    assault_text = managers.localization:to_upper_text("hud_assault_assault")
 	else
-	    assault_text = managers.localization:to_upper_text(self._assault_mode == "normal" and "hud_assault_assault" or "hud_assault_vip") .. " " .. difficulty
+	    assault_text = managers.localization:to_upper_text(self._assault_mode == "normal" and "hud_assault_vip" or "hud_assault_vip") .. " " .. difficulty
 	end
 
 	return (assault_text)
