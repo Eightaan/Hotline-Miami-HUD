@@ -202,7 +202,7 @@ function HUDAssaultCorner:_get_assault_strings()
 	elseif managers.skirmish:is_skirmish() then
 	    assault_text = managers.localization:to_upper_text("hud_assault_assault")
 	else
-	    assault_text = managers.localization:to_upper_text(self._assault_mode == "normal" and "hud_assault_vip" or "hud_assault_vip") .. " " .. difficulty
+	    assault_text = managers.localization:to_upper_text(self._assault_mode == "normal" and "hud_assault_assault" or "hud_assault_vip") .. " " .. difficulty
 	end
 
 	return (assault_text)
