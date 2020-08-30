@@ -164,6 +164,12 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
 	MenuCallbackHandler.callback_font = function(self, item)
         HMH._data.font = item:value() == "on"
     end
+	MenuCallbackHandler.callback_pager_jam = function(self, item)
+        HMH._data.pager_jam = item:value() == "on"
+    end
+	MenuCallbackHandler.callback_interact_icons = function(self, item)
+        HMH._data.interact_icons = item:value() == "on"
+    end	
     MenuCallbackHandler.HMHSave = function(this, item)
         HMH:Save()
     end

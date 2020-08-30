@@ -46,6 +46,19 @@
 			"callback": "callback_interupt_interact",
 			"value": "interupt_interact",
 			"default_value": false
+		},
+		{
+			"type": "divider",
+			"size": 16
+		},
+		{
+			"type": "toggle",
+			"id": "interact_icons_toggle",
+			"title": "interact_icons_title",
+			"description": "interact_icons_desc",
+			"callback": "callback_interact_icons",
+			"value": "interact_icons",
+			"default_value": true
 		}
 	]
 }

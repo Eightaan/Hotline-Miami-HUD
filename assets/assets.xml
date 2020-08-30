@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
 <assets base_path="assets/" load="startup">
-
     <group name="guis/textures/pd2_mod_hmh/" path="assets/guis/textures/pd2_mod_hmh/">
         <file :name="hud_health.texture"           :path="hud_health.texture"/>
         <file :name="hud_progress_active.texture"  :path="hud_progress_active.texture"/>
@@ -10,30 +9,5 @@
 		<file :name="hmcc_font.font"               :path="hmcc_font.font"/>
         <file :name="hmcc_font.texture"            :path="hmcc_font.texture"/>
 		<file :name="hmcc_bg.texture"              :path="hmcc_bg.texture"/>
-    </group>
-
-	<!-- Overrides game's textures -->
-    <group name="units/gui/" path="assets/guis/textures/pd2_mod_hmh/">
-        <file :name="c4_indicator_df.texture"             :path="c4_indicator_df.texture"/>
-        <file :name="camera_indicator_df.texture"         :path="camera_indicator_df.texture"/>
-        <file :name="crowbar_indicator_df.texture"        :path="crowbar_indicator_df.texture"/>
-	    <file :name="cutter_indicator_df.texture"         :path="cutter_indicator_df.texture"/>
-        <file :name="drill_indicator_df.texture"          :path="drill_indicator_df.texture"/>
-        <file :name="ecm_indicator_df.texture"            :path="ecm_indicator_df.texture"/>
-		<file :name="file_indicator_df.texture"           :path="file_indicator_df.texture"/>
-        <file :name="glasscutter_indicator_df.texture"    :path="glasscutter_indicator_df.texture"/>
-        <file :name="gps_indicator_df.texture"            :path="gps_indicator_df.texture"/>
-		<file :name="gui_brackets_df.texture"             :path="gui_brackets_df.texture"/>
-        <file :name="gui_color_use_df.texture"            :path="gui_color_use_df.texture"/>
-        <file :name="gui_drive_driver_df.texture"         :path="gui_drive_driver_df.texture"/>
-		<file :name="gui_drive_passenger_df.texture"      :path="gui_drive_passenger_df.texture"/>
-        <file :name="gui_drive_repair_df.texture"         :path="gui_drive_repair_df.texture"/>
-        <file :name="gui_drive_trunk_df.texture"          :path="gui_drive_trunk_df.texture"/>
-		<file :name="gui_generic_search_df.texture"       :path="gui_generic_search_df.texture"/>
-        <file :name="lockpick_ghost_indicator_df.texture" :path="lockpick_ghost_indicator_df.texture"/>
-        <file :name="lockpick_indicator_df.texture"       :path="lockpick_indicator_df.texture"/>
-	    <file :name="plank_indicator_df.texture"          :path="plank_indicator_df.texture"/>
-        <file :name="sawblade_indicator_df.texture"       :path="sawblade_indicator_df.texture"/>
-        <file :name="thermite_indicator_df.texture"       :path="thermite_indicator_df.texture"/>
     </group>
 </assets>

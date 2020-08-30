@@ -25,6 +25,15 @@
 			"callback": "callback_infoboxes",
 			"value": "infoboxes",
 			"default_value": true
+		},
+		{
+			"type": "toggle",
+			"id": "pager_jam_toggle",
+			"title": "pager_jam_title",
+			"description": "pager_jam_desc",
+			"callback": "callback_pager_jam",
+			"value": "pager_jam",
+			"default_value": true			
 		}
 	]
 }

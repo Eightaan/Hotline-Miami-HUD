@@ -45,6 +45,30 @@ if not HMH then
 			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/blackmarket/inv_detection_meter"), self._path .. "assets/guis/textures/pd2_mod_hmh/inv_detection_meter.texture")
 			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/mission_briefing/inv_detection_meter"), self._path .. "assets/guis/textures/pd2_mod_hmh/inv_detection_meter.texture")
         end
+
+		if self:GetOption("interact_icons") then
+		    DB:create_entry(Idstring("texture"), Idstring("units/gui/c4_indicator_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/c4_indicator_df.texture")
+			DB:create_entry(Idstring("texture"), Idstring("units/gui/camera_indicator_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/camera_indicator_df.texture")
+			DB:create_entry(Idstring("texture"), Idstring("units/gui/crowbar_indicator_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/crowbar_indicator_df.texture")
+			DB:create_entry(Idstring("texture"), Idstring("units/gui/cutter_indicator_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/cutter_indicator_df.texture")
+			DB:create_entry(Idstring("texture"), Idstring("units/gui/drill_indicator_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/drill_indicator_df.texture")
+			DB:create_entry(Idstring("texture"), Idstring("units/gui/ecm_indicator_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/ecm_indicator_df.texture")
+			DB:create_entry(Idstring("texture"), Idstring("units/gui/file_indicator_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/file_indicator_df.texture")
+			DB:create_entry(Idstring("texture"), Idstring("units/gui/glasscutter_indicator_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/glasscutter_indicator_df.texture")
+			DB:create_entry(Idstring("texture"), Idstring("units/gui/gps_indicator_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/gps_indicator_df.texture")
+			DB:create_entry(Idstring("texture"), Idstring("units/gui/gui_brackets_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/gui_brackets_df.texture")
+			DB:create_entry(Idstring("texture"), Idstring("units/gui/gui_color_use_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/gui_color_use_df.texture")
+			DB:create_entry(Idstring("texture"), Idstring("units/gui/gui_drive_driver_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/gui_drive_driver_df.texture")
+			DB:create_entry(Idstring("texture"), Idstring("units/gui/gui_drive_passenger_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/gui_drive_passenger_df.texture")
+			DB:create_entry(Idstring("texture"), Idstring("units/gui/gui_drive_repair_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/gui_drive_repair_df.texture")
+			DB:create_entry(Idstring("texture"), Idstring("units/gui/gui_drive_trunk_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/gui_drive_trunk_df.texture")
+			DB:create_entry(Idstring("texture"), Idstring("units/gui/gui_generic_search_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/gui_generic_search_df.texture")
+			DB:create_entry(Idstring("texture"), Idstring("units/gui/lockpick_ghost_indicator_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/lockpick_ghost_indicator_df.texture")
+			DB:create_entry(Idstring("texture"), Idstring("units/gui/lockpick_indicator_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/lockpick_indicator_df.texture")
+			DB:create_entry(Idstring("texture"), Idstring("units/gui/plank_indicator_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/plank_indicator_df.texture")
+			DB:create_entry(Idstring("texture"), Idstring("units/gui/sawblade_indicator_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/sawblade_indicator_df.texture")
+			DB:create_entry(Idstring("texture"), Idstring("units/gui/thermite_indicator_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/thermite_indicator_df.texture")
+		end
     end
 
     function HMH:LoadDefaults()

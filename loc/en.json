@@ -9,7 +9,7 @@
     "mod_overrides_title" : "Enable Mod Overrides Updates",
     "mod_overrides_desc" : "Mod Overrides are custom textures and font that change the menu to Hotline Miami.\nWhen changed, a game restart is required to take effect.",
 	"mod_font_title" : "Custom Text Font",
-	"mod_font_desc" : "Enables the custom pixel font.\n(Restart required)",
+	"mod_font_desc" : "Enables the custom pixel font.\nWhen changed, a game restart is required to take effect.",
 
 	"hmh_hud_title" : "Player/Team panels",
 	"hmh_hud_desc" : "Customize the player and team panels",
@@ -36,7 +36,7 @@
 	"screen_effect_title" : "Ability Screen Effects",
 	"screen_effect_desc" : "Will make the screen flash when swan song or the kingpin injector is active.",	
 	"health_texture_title" : "Custom Health Texture",
-	"health_texture_desc" : "",
+	"health_texture_desc" : "Enable a custom health texture.",
 	"color_title" : "Custom Name and Chat Colors",
 	"color_desc" : "Enable the custom chat colors.",
 
@@ -45,7 +45,7 @@
 	"waypoints_title" : "Custom waypoints",
 	"waypoints_desc" : "Enable custom colored waypoints.",
 	"greenciv_title" : "Green Civilian Pacified Marker",
-	"greenciv_desc" : "",
+	"greenciv_desc" : "Civilians that are pacified will have a green ! marker above them.",
 
 	"hmh_timer_title" : "Heist Timer",
 	"hmh_timer_desc" : "Customize the heist timer.",
@@ -62,11 +62,13 @@
 	"interact_title" : "Custom Interaction Text",
 	"interact_desc" : "Enable the custom colored interaction text.",
 	"interact_texture_title" : "Custom Interaction Texture",
-	"interact_texture_desc" : "",
+	"interact_texture_desc" : "Enable a custom interaction texture.",
 	"toggle_interact_title" : "Toggle Interaction",
 	"toggle_interact_desc" : "Pick the duration of an interaction for the toggle interact to lock (0 = disabled)",
 	"interupt_interact_title" : "Equipment Interupt key",
-	"interupt_interact_desc" : "Will interupt the interaction by clickin the interaction button.",	
+	"interupt_interact_desc" : "Will interupt the interaction by clickin the interaction button.",
+	"interact_icons_title" : "Hud interaction icons",
+	"interact_icons_desc" : "Enable the custom colored interaction icons (saw, picklock, c4 and etc).\nWhen changed, a game restart is required to take effect.",	
 
 	"hmh_hint_title" : "Hint Text",
 	"hmh_hint_desc" : "Customize the hint text.",
@@ -78,7 +80,7 @@
 	"hmh_suspicion_title" : "Suspicion Meter",
 	"hmh_suspicion_desc" : "Customize the suspicion meter.",
 	"suspicion_title" : "Custom Suspicion Meter",
-	"suspicion_desc" : "Adds a custom colored suspicion meter.\n(Restart required)",
+	"suspicion_desc" : "Adds a custom colored suspicion meter.\nWhen changed, a game restart is required to take effect.",
 
 	"hmh_downed_title" : "Custody And Downed Text",
 	"hmh_downed_desc" : "Customize the downed and custody text.",
@@ -97,7 +99,9 @@
 	"assault_title" : "Custom Assault Panel",
 	"assault_desc" : "Enable the custom assault panel.",
 	"infoboxes_title" : "Ecm Timer",
-	"infoboxes_desc" : "",
+	"infoboxes_desc" : "Enable an ECM timer in stealth",
+	"pager_jam_title" : "Upgraded ECM Icon",
+	"pager_jam_desc" : "Displays an icon on the ecm timer when it blocks pagers.",
 
 	"hmh_objective_title" : "Objective Panel",
 	"hmh_objective_desc" : "Customize the objective panel.",

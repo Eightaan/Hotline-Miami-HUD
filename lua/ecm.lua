@@ -21,8 +21,8 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		    valign = "center",
 		    align = "center",
 		    vertical = "center",
-		    w = 38,
-		    h = 38,
+		    w = ecm_box:w(),
+		    h = ecm_box:h(),
 		    layer = 1,
 		    color = HMH:GetOption("assault") and Color("66ffff") or Color.white,
 		    font = tweak_data.hud_corner.assault_font,
@@ -36,13 +36,29 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		    valign = "top",
 			color = HMH:GetOption("assault") and Color("ff80df") or Color.white,
 		    layer = 1,
-		    w = 38,
-		    h = 38		
+		    w = ecm_box:w(),
+		    h = ecm_box:h()	
 	    })
-
 	    ecm_icon:set_right(ecm_box:parent():w())
 	    ecm_icon:set_center_y(ecm_box:h() / 2)
-	    ecm_box:set_right(ecm_icon:left())
+		ecm_box:set_right(ecm_icon:left())
+        
+		local pagers_texture, pagers_rect = tweak_data.hud_icons:get_icon_data("pagers_used")
+		local pager_icon = self._ecm_panel:bitmap({
+		    name = "pager_icon",
+		    texture = pagers_texture,
+		    texture_rect = pagers_rect,
+		    valign = "top",
+			visible = false,
+			color = HMH:GetOption("assault") and Color("66ff99") or Color.white,
+		    layer = 2,
+		    w = ecm_box:w() / 2,
+		    h = ecm_box:h() / 2
+			--y = 25,
+			--x = 157
+	    })
+		pager_icon:set_right(self._ecm_panel:w() - 20 )
+		pager_icon:set_center_y(ecm_box:h())
     end
 
     function HUDECMCounter:update(t)
@@ -51,6 +67,11 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		    self._text:set_text(string.format("%.fs", t))
 		    self._text:set_color(HMH:GetOption("assault") and Color("66ffff") or Color.white)
         end	
+    end
+
+	function HUDECMCounter:update_icons(jam_pagers)
+        local pager_icon = self._ecm_panel:child("pager_icon")
+        pager_icon:set_visible(jam_pagers and HMH:GetOption("pager_jam"))
     end
 
     local _setup_player_info_hud_pd2_original = HUDManager._setup_player_info_hud_pd2
@@ -63,6 +84,10 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 	    self._hud_ecm_counter:update(t)
     end
 
+	function HUDManager:update_ecm_icons(jam_pagers)
+        self._hud_ecm_counter:update_icons(jam_pagers)
+    end
+
 elseif RequiredScript == "lib/units/equipment/ecm_jammer/ecmjammerbase" then
 
     local setup_original = ECMJammerBase.setup
@@ -73,18 +98,20 @@ elseif RequiredScript == "lib/units/equipment/ecm_jammer/ecmjammerbase" then
 
     function ECMJammerBase:_check_new_ecm()
 	    if not ECMJammerBase._max_ecm or ECMJammerBase._max_ecm:battery_life() < self:battery_life() then
-		    ECMJammerBase._max_ecm = self
+			ECMJammerBase._max_ecm = self
 	    end
     end
 
     function ECMJammerBase:sync_setup(upgrade_lvl, ...)
 	    sync_setup_original(self, upgrade_lvl, ...)
 	    self:_check_new_ecm()
+		managers.hud:update_ecm_icons(upgrade_lvl == 3)
     end
 
     function ECMJammerBase:setup(battery_life_upgrade_lvl, ...)
 	    setup_original(self, battery_life_upgrade_lvl, ...)
 	    self:_check_new_ecm()
+		managers.hud:update_ecm_icons(battery_life_upgrade_lvl == 3)
     end
 
     function ECMJammerBase:destroy(...)

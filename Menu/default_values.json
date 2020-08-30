@@ -39,5 +39,7 @@
 	"pick_card" : false,
 	"suspicion" : true,
 	"combo" : false,
-	"font" : true
+	"font" : true,
+	"pager_jam" : true,
+	"interact_icons" : true
 }
