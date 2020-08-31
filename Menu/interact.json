@@ -58,7 +58,7 @@
 			"description": "pager_outline_desc",
 			"callback": "callback_pager_outline",
 			"value": "pager_outline",
-			"default_value": true
+			"default_value": false
 		},
 		{
 			"type": "toggle",
