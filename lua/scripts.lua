@@ -245,7 +245,7 @@ elseif RequiredScript == "lib/states/ingamewaitingforplayers" then
 elseif RequiredScript == "lib/managers/menu/blackmarketgui" then
 	local function getEquipmentAmount(name_id)
 		local data = tweak_data.equipments[name_id]
-		if data and data.quantity then
+		if not (VHUDPlus or WolfHUD) and data and data.quantity then
 			if type(data.quantity) == "table" then
 				local amounts = data.quantity
 				local amount_str = ""
@@ -267,18 +267,22 @@ elseif RequiredScript == "lib/managers/menu/blackmarketgui" then
 	local populate_deployables_original = BlackMarketGui.populate_deployables
 	function BlackMarketGui:populate_deployables(data, ...)
 		populate_deployables_original(self, data, ...)
-		for i, equipment in ipairs(data) do
-			equipment.name_localized = equipment.name_localized .. (equipment.unlocked and getEquipmentAmount(equipment.name) or "")
-		end
+		if not (VHUDPlus or WolfHUD) then
+		    for i, equipment in ipairs(data) do
+			    equipment.name_localized = equipment.name_localized .. (equipment.unlocked and getEquipmentAmount(equipment.name) or "")
+		    end
+		end	
 	end
 
 	local populate_grenades_original = BlackMarketGui.populate_grenades
 	function BlackMarketGui:populate_grenades(data, ...)
 		populate_grenades_original(self, data, ...)
-		local t_data = tweak_data.blackmarket.projectiles
-		for i, throwable in ipairs(data) do
-			local has_amount = throwable.unlocked and t_data[throwable.name] or false
-			throwable.name_localized = throwable.name_localized .. (has_amount and " (x" .. t_data[throwable.name].max_amount .. ")" or "")
-		end
-	end
+		if not (VHUDPlus or WolfHUD) then
+		    local t_data = tweak_data.blackmarket.projectiles
+		    for i, throwable in ipairs(data) do
+			    local has_amount = throwable.unlocked and t_data[throwable.name] or false
+			    throwable.name_localized = throwable.name_localized .. (has_amount and " (x" .. t_data[throwable.name].max_amount .. ")" or "")
+		    end
+	    end
+    end
 end

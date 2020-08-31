@@ -1,5 +1,5 @@
 -- A pre gameinfomanager code for pager outlines
-if not HMH:GetOption("pager_outline") then return end
+if not HMH:GetOption("pager_outline") or VHUDPlus and VHUDPlus:getSetting({"HUDSuspicion", "REMOVE_ANSWERED_PAGER_CONTOUR"}, true) then return end
 
 if RequiredScript == "lib/managers/objectinteractionmanager" then
     local init_original = ObjectInteractionManager.init
