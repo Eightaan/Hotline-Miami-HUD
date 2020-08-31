@@ -206,32 +206,106 @@ if HMH:GetOption("equipment") then
         local deployable_equipment_panel = self._player_panel:child("deployable_equipment_panel")
         local equipment = deployable_equipment_panel:child("equipment")
         local amount = deployable_equipment_panel:child("amount")
-		local color = Color("66ffff")
-		local equipment_color = Color("ff80df")
-		equipment:set_color(equipment_color)
-		amount:set_color(color)
+
+        equipment:stop()
+
+        if data.amount > 0 then
+            equipment:set_alpha(1)
+            equipment:set_color(Color("ff80df"))
+            amount:set_alpha(1)
+            amount:set_color(Color("66ffff"))
+        end
+
+        if data.amount > 0 then
+            equipment:animate(function(o)
+                over(1, function(p)
+                    local n = 1 - math.sin((p / 2) * 180)
+                    equipment:set_alpha(math.lerp(1, 0.2, n))
+                end)
+            end)
+        elseif data.amount == 0 then
+            equipment:animate(function(o)
+                equipment:set_color(Color("ff80df"))
+                over(1, function(p)
+                    equipment:set_alpha(0.2)
+                    amount:set_alpha(0.2)
+                end)
+            end)
+        end
     end)
 
-    Hooks:PostHook(HUDTeammate, "set_grenades_amount", "HMH_HUDTeammateSetGrenadesAmount", function(self, data)	
-	    if not PlayerBase.USE_GRENADES then
-		    return
-	    end
+    Hooks:PostHook(HUDTeammate, "set_grenades_amount", "HMH_HUDTeammateSetGrenadesAmount", function(self, data)
+        if not PlayerBase.USE_GRENADES then
+            return
+        end
 
-	    local grenades_panel = self._player_panel:child("grenades_panel")
-	    local amount = grenades_panel:child("amount")
-	    local icon = grenades_panel:child("grenades_icon")
-	    local color = Color("66ffff")
-	    icon:set_color(Color("ff80df"))
-        amount:set_color(color)	
+        if not self._grenade_amount then self._grenade_amount = data.amount end
+
+        local grenades_panel = self._player_panel:child("grenades_panel")
+        local grenades = grenades_panel:child("grenades_icon")
+        local amount = grenades_panel:child("amount")
+
+        grenades:stop()
+
+        if data.amount > 0 then
+            grenades:set_alpha(1)
+            grenades:set_color(Color("ff80df"))
+            amount:set_color(Color("66ffff"))
+            amount:set_alpha(1)
+        end
+
+        if self._grenade_amount ~= data.amount and data.amount > 0 then
+            grenades:animate( function(o)
+                over(1, function(p)
+                    local n = 1 - math.sin((p / 2 ) * 180)
+                    grenades:set_alpha( math.lerp(1, 0.2, n))
+                end)
+            end)
+        elseif data.amount == 0 then
+            grenades:animate( function(o)
+                grenades:set_color(Color("ff80df"))
+                over(1, function(p)
+                    grenades:set_alpha(0.2)
+                    amount:set_alpha(0.2)
+                end)
+            end)
+        end
+
+        self._grenade_amount = data.amount
     end)
 
     Hooks:PostHook(HUDTeammate, "set_cable_ties_amount", "HMH_HUDTeammateSetCableTiesAmount", function(self, amount)
-	    local color = Color("66ffff")
-	    local cable_ties_panel = self._player_panel:child("cable_ties_panel")
-	    local cable_ties_amount = cable_ties_panel:child("amount")
-	    local cable_ties = cable_ties_panel:child("cable_ties")
-        cable_ties:set_color(Color("ff80df"))
-	    cable_ties_amount:set_color(color)
+        if not self._cable_amount then self._cable_amount = amount end
+
+        local cable_ties_panel = self._player_panel:child("cable_ties_panel")
+        local cable_ties = cable_ties_panel:child("cable_ties")
+        local cable_ties_amount = cable_ties_panel:child("amount")
+
+        cable_ties:stop()
+
+        if amount > 0 then
+            cable_ties:set_alpha(1)
+            cable_ties:set_color(Color("ff80df"))
+            cable_ties_amount:set_color(Color("66ffff"))
+            cable_ties_amount:set_alpha(1)
+        end
+
+        if self._cable_amount ~= amount and amount > 0 then
+            cable_ties:animate(function(o)
+                over(1, function(p)
+                    local n = 1 - math.sin((p / 2 ) * 180)
+                    cable_ties:set_alpha(math.lerp(1, 0.2, n))
+                end)
+            end)
+        elseif amount == 0 then
+            cable_ties:animate(function(o)
+                cable_ties:set_color(Color("ff80df"))
+                over(1, function(p)
+                    cable_ties:set_alpha(0.2)
+                    cable_ties_amount:set_alpha(0.2)
+                end)
+            end)
+        end
     end)
 
     Hooks:PostHook(HUDTeammate, "set_deployable_equipment_amount_from_string", "HMH_HUDTeammateSetDeployableEquipmentAmountFromString", function(self, index, data)
@@ -242,6 +316,9 @@ if HMH:GetOption("equipment") then
         local amounts = ""
         local zero_ranges = {}
         local color = Color(0.5, 1, 1, 1)
+        local alpha = 0.2
+
+        icon:stop()
 
         for i, amount in ipairs(data.amount) do
             local amount_str = string.format("%01d", amount)
@@ -263,16 +340,14 @@ if HMH:GetOption("equipment") then
 
             if amount > 0 then
 			    color = Color("66ffff")
- 
+                alpha = 1
             end
         end
 
         icon:set_color(Color("ff80df"))
+        icon:set_alpha(alpha)
+        amount:set_alpha(alpha)
         amount:set_color(color)
-
-        for _, range in ipairs(zero_ranges) do
-            amount:set_range_color(range[1], range[2], Color(0.5, 1, 1, 1))
-        end
     end)
 end
 
