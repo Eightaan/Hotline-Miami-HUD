@@ -19,4 +19,16 @@ elseif RequiredScript == "lib/units/interactions/interactionext" then
 		    macros.BAG = managers.localization:text(tweak_data.carry[carry_id].name_id)
 	    end
     end
+
+    local BaseInteraction_interact_start_original = BaseInteractionExt.interact_start
+	function BaseInteractionExt:interact_start(player, data, ...)
+		local t = Application:time()
+		if HMH:GetOption("stealth_c4") and managers.groupai:state():whisper_mode()
+				and self._tweak_data.required_deployable and self._tweak_data.required_deployable == "trip_mine"
+				and (t - (self._last_shaped_charge_t or 0) >= 0.25) then
+			self._last_shaped_charge_t = t
+			return false
+		end
+		return BaseInteraction_interact_start_original(self, player, data, ...)
+	end	
 end

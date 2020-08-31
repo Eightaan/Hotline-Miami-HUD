@@ -41,5 +41,7 @@
 	"combo" : false,
 	"font" : true,
 	"pager_jam" : true,
-	"interact_icons" : true
+	"interact_icons" : true,
+	"stealth_c4" : false,
+	"pager_outline" : true
 }

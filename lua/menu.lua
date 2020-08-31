@@ -169,7 +169,13 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
     end
 	MenuCallbackHandler.callback_interact_icons = function(self, item)
         HMH._data.interact_icons = item:value() == "on"
-    end	
+    end
+	MenuCallbackHandler.callback_stealth_c4 = function(self, item)
+        HMH._data.stealth_c4 = item:value() == "on"
+    end
+	MenuCallbackHandler.callback_pager_outline = function(self, item)
+        HMH._data.pager_outline = item:value() == "on"
+    end
     MenuCallbackHandler.HMHSave = function(this, item)
         HMH:Save()
     end

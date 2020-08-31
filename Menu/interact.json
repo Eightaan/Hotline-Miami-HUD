@@ -53,6 +53,28 @@
 		},
 		{
 			"type": "toggle",
+			"id": "pager_outline_toggle",
+			"title": "pager_outline_title",
+			"description": "pager_outline_desc",
+			"callback": "callback_pager_outline",
+			"value": "pager_outline",
+			"default_value": true
+		},
+		{
+			"type": "toggle",
+			"id": "stealth_c4_toggle",
+			"title": "stealth_c4_title",
+			"description": "stealth_c4_desc",
+			"callback": "callback_stealth_c4",
+			"value": "stealth_c4",
+			"default_value": false
+		},
+		{
+			"type": "divider",
+			"size": 16
+		},
+		{
+			"type": "toggle",
 			"id": "interact_icons_toggle",
 			"title": "interact_icons_title",
 			"description": "interact_icons_desc",

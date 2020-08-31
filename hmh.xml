@@ -14,8 +14,9 @@
 
 	    <group hook_id="lib/">
 			<group :hook_id="managers/">
-                <post :hook_id="menumanager"   :script_path="menu.lua" />
-                <post :hook_id="hudmanager"    :script_path="waypoint.lua"/>
+                <post :hook_id="menumanager"              :script_path="menu.lua" />
+                <post :hook_id="hudmanager"               :script_path="waypoint.lua"/>
+				<post :hook_id="objectinteractionmanager" :script_path="pager_outline.lua"/>
 
 				<group :hook_id="playermanager">
 				    <post :script_path="bulletstorm.lua"/>
@@ -38,9 +39,10 @@
 				</group>
 
                 <group :hook_id="menu/">
-				    <post :hook_id="circleguiobject" :script_path="custom_interaction.lua"/>
+				    <post :hook_id="circleguiobject"   :script_path="custom_interaction.lua"/>
 					<post :hook_id="stageendscreengui" :script_path="scripts.lua"/>
 					<post :hook_id="lootdropscreengui" :script_path="scripts.lua"/>
+					<post :hook_id="blackmarketgui"    :script_path="scripts.lua"/>
                 </group>
 
 			    <group :hook_id="hud/">
@@ -97,6 +99,7 @@
 			<group :hook_id="network/handlers/unitnetworkhandler">
 			    <post :script_path="downcounter.lua"/>
 				<post :script_path="scripts.lua"/>
+				<post :script_path="pager_outline.lua"/>
 			</group>
         </group>
     </hooks>

@@ -158,7 +158,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
     end
 
 elseif RequiredScript == "lib/network/handlers/unitnetworkhandler" then
-
+    -- No Red Lasers
     function UnitNetworkHandler:set_weapon_gadget_color(unit, red, green, blue, sender)
 	    if not self._verify_character_and_sender(unit, sender) then
 		    return
@@ -177,7 +177,7 @@ elseif RequiredScript == "lib/network/handlers/unitnetworkhandler" then
 
 elseif RequiredScript == "lib/units/beings/player/states/playerstandard" then
     local PlayerStandard__check_action_interact_original = PlayerStandard._check_action_interact
-
+    -- Toggle Interaction
 	function PlayerStandard:_check_action_interact(t, input)
 		local interrupt_key_press = input.btn_interact_press
 		if HMH:GetOption("interupt_interact") and not VHUDPlus then
@@ -196,7 +196,7 @@ elseif RequiredScript == "lib/units/beings/player/states/playerstandard" then
 	end
 
 elseif RequiredScript == "lib/managers/menu/stageendscreengui" then
-
+    -- Skip and Autoselect
 	local update_original = StageEndScreenGui.update
 
 	function StageEndScreenGui:update(t, ...)
@@ -239,6 +239,46 @@ elseif RequiredScript == "lib/states/ingamewaitingforplayers" then
 		
 		if self._skip_promt_shown and HMH:GetOption("skip_blackscreen") and not VHUDPlus then
 			self:_skip()
+		end
+	end
+
+elseif RequiredScript == "lib/managers/menu/blackmarketgui" then
+	local function getEquipmentAmount(name_id)
+		local data = tweak_data.equipments[name_id]
+		if data and data.quantity then
+			if type(data.quantity) == "table" then
+				local amounts = data.quantity
+				local amount_str = ""
+				for i = 1, #amounts do
+					local equipment_name = name_id
+					if data.upgrade_name then
+						equipment_name = data.upgrade_name[i]
+					end
+					amount_str = amount_str .. (i > 1 and "/x" or "x") .. tostring((amounts[i] or 0) + managers.player:equiptment_upgrade_value(equipment_name, "quantity"))
+				end
+				return " (" .. amount_str .. ")"
+			else
+				return " (x" .. tostring(data.quantity) .. ")"
+			end
+		end
+		return ""
+	end
+
+	local populate_deployables_original = BlackMarketGui.populate_deployables
+	function BlackMarketGui:populate_deployables(data, ...)
+		populate_deployables_original(self, data, ...)
+		for i, equipment in ipairs(data) do
+			equipment.name_localized = equipment.name_localized .. (equipment.unlocked and getEquipmentAmount(equipment.name) or "")
+		end
+	end
+
+	local populate_grenades_original = BlackMarketGui.populate_grenades
+	function BlackMarketGui:populate_grenades(data, ...)
+		populate_grenades_original(self, data, ...)
+		local t_data = tweak_data.blackmarket.projectiles
+		for i, throwable in ipairs(data) do
+			local has_amount = throwable.unlocked and t_data[throwable.name] or false
+			throwable.name_localized = throwable.name_localized .. (has_amount and " (x" .. t_data[throwable.name].max_amount .. ")" or "")
 		end
 	end
 end

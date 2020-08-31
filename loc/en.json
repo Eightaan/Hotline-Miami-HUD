@@ -67,6 +67,10 @@
 	"toggle_interact_desc" : "Pick the duration of an interaction for the toggle interact to lock (0 = disabled)",
 	"interupt_interact_title" : "Equipment Interupt key",
 	"interupt_interact_desc" : "Will interupt the interaction by clickin the interaction button.",
+	"stealth_c4_title" : "Shaped Charge Suppression",
+	"stealth_c4_desc" : "When checked, you need to doubletap to deploy shaped charges in stealth. \nOnly to prevent accidents.",
+	"pager_outline_title" : "Remove Pager Contour",
+	"pager_outline_desc" : "Remove the pager contour, if it is already getting answered.",	
 	"interact_icons_title" : "Hud interaction icons",
 	"interact_icons_desc" : "Enable the custom colored interaction icons (saw, picklock, c4 and etc).\nWhen changed, a game restart is required to take effect.",	
 
