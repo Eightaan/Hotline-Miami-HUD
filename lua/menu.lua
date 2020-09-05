@@ -36,6 +36,10 @@ Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInit_HMH", func
 	if HMH:GetOption("skip_blackscreen") then
 	    localized_strings["hud_skip_blackscreen"] = ""
 	end
+
+	if HMH:GetOption("assault") then
+	    localized_strings["hud_assault_assault"] = "Assault in progress"
+	end	
     loc:add_localized_strings(localized_strings)
 end)
 
