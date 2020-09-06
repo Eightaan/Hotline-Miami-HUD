@@ -1,4 +1,4 @@
-if WolfHUD and WolfHUD:getSetting({"CustomHUD", "ENABLED"}, true) then return end
+if VHUDPlus and VHUDPlus:getSetting({"CustomHUD", "TEAMMATE", "DOWNCOUNTER"}, true) or WolfHUD and WolfHUD:getSetting({"CustomHUD", "ENABLED"}, true) then return end
 
 if RequiredScript == "lib/managers/hudmanagerpd2" then
 

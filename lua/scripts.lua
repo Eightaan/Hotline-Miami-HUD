@@ -184,7 +184,7 @@ elseif RequiredScript == "lib/units/beings/player/states/playerstandard" then
 			interrupt_key_press = input.btn_use_item_press
 		end
 
-		if interrupt_key_press and self:_interacting() then
+		if not VHUDPlus and interrupt_key_press and self:_interacting() then
 			self:_interupt_action_interact()
 			return false
 		elseif input.btn_interact_release and self._interact_params and HMH:GetOption("toggle_interact") > 0 and not VHUDPlus then
