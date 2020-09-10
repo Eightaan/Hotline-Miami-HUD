@@ -54,8 +54,6 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		    layer = 2,
 		    w = ecm_box:w() / 2,
 		    h = ecm_box:h() / 2
-			--y = 25,
-			--x = 157
 	    })
 		pager_icon:set_right(self._ecm_panel:w() - 20 )
 		pager_icon:set_center_y(ecm_box:h())
