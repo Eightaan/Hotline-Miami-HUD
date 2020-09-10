@@ -80,7 +80,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 	    return set_teammate_ammo_amount_orig(self, id, selection_index, max_clip, current_clip, current_left, max, ...)
     end
 
-	-- Force Start
+    -- Force Start
 	function HUDManager:set_slot_ready(peer, peer_id, ...)
 		set_slot_ready_orig(self, peer, peer_id, ...)
 
