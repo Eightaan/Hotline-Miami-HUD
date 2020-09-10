@@ -30,5 +30,5 @@ elseif RequiredScript == "lib/units/interactions/interactionext" then
 			return false
 		end
 		return BaseInteraction_interact_start_original(self, player, data, ...)
-	end	
+	end
 end
