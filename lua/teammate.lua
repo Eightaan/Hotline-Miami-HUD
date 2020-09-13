@@ -186,20 +186,76 @@ Hooks:PreHook(HUDTeammate, "set_carry_info", "HMH_HUDTeammateSetCarryInfo", func
     end
 end)
 
-Hooks:PostHook(HUDTeammate, "add_special_equipment", "HMH_HUDTeammateAddSpecialEquipment", function(self, data, ...)
-    local team_color
-	if self._peer_id then
-        team_color = tweak_data.chat_colors[self._peer_id]
-    elseif not self._ai then
-        team_color = tweak_data.chat_colors[managers.network:session():local_peer():id()]
-    end
+if HMH:GetOption("pickups") then
+    function HUDTeammate:add_special_equipment(data)
+        local team_color
+    	if self._peer_id then
+            team_color = tweak_data.chat_colors[self._peer_id]
+        elseif not self._ai then
+            team_color = tweak_data.chat_colors[managers.network:session():local_peer():id()]
+        end
 
-	local id = data.id
-	local teammate_panel = self._panel
-	local equipment_panel = teammate_panel:child(id)
-	local bitmap = equipment_panel:child("bitmap")
-    bitmap:set_color(HMH:GetOption("pickups") and team_color or Color.white)
-end)
+    	local teammate_panel = self._panel
+	    local special_equipment = self._special_equipment
+	    local id = data.id
+    	local equipment_panel = teammate_panel:panel({
+    		y = 0,
+    		layer = 0,
+    		name = id
+    	})
+    	local icon, texture_rect = tweak_data.hud_icons:get_icon_data(data.icon)
+
+    	equipment_panel:set_size(25, 25)
+
+    	local bitmap = equipment_panel:bitmap({
+    		name = "bitmap",
+    		layer = 0,
+    		rotation = 360,
+    		texture = icon,
+    		color = team_color,
+    		texture_rect = texture_rect,
+			w = equipment_panel:w(),
+			h = equipment_panel:h()
+		})
+
+		local w = teammate_panel:w()
+
+		equipment_panel:set_x(w - (equipment_panel:w() + 0) * #special_equipment)
+		table.insert(special_equipment, equipment_panel)
+
+		local amount, amount_bg = nil
+
+		if data.amount then
+			amount_bg = equipment_panel:child("amount_bg") or equipment_panel:bitmap({
+				texture = "guis/textures/pd2/equip_count",
+				name = "amount_bg",
+				rotation = 360,
+				layer = 2,
+				color = Color.white
+			})
+			amount = equipment_panel:child("amount") or equipment_panel:text({
+				name = "amount",
+				vertical = "center",
+				font_size = 12,
+				align = "center",
+				font = "fonts/font_small_noshadow_mf",
+				rotation = 360,
+				layer = 3,
+				text = tostring(data.amount),
+				color = Color.black,
+				w = equipment_panel:w(),
+				h = equipment_panel:h()
+			})
+
+			amount_bg:set_center(bitmap:center())
+			amount_bg:move(7, 7)
+			amount_bg:set_visible(data.amount > 1)
+			amount:set_center(amount_bg:center())
+			amount:set_visible(data.amount > 1)
+		end
+		self:layout_special_equipments()
+	end
+end
 
 if HMH:GetOption("equipment") then
     Hooks:PostHook(HUDTeammate, "set_deployable_equipment_amount", "HMH_HUDTeammateSetDeployableEquipmentAmount", function(self, index, data)

@@ -19,6 +19,19 @@
 		},
 		{
 			"type": "toggle",
+			"id": "tab_toggle",
+			"title": "tab_title",
+			"description": "tab_desc",
+			"callback": "callback_tab",
+			"value": "tab",
+			"default_value": true
+		},
+		{
+			"type": "divider",
+			"size": 16
+		},
+		{
+			"type": "toggle",
 			"id": "skip_blackscreen_toggle",
 			"title": "skip_blackscreen_title",
 			"description": "skip_blackscreen_desc",

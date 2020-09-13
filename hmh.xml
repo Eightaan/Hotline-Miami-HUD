@@ -46,14 +46,16 @@
                 </group>
 
 			    <group :hook_id="hud/">
-			        <post :hook_id="hudheisttimer"    :script_path="timer.lua"/>
-           	        <post :hook_id="hudtemp"          :script_path="carry.lua"/>
-	                <post :hook_id="hudpresenter"     :script_path="presenter.lua"/>
-		            <post :hook_id="hudhint"          :script_path="hint.lua"/>
-				    <post :hook_id="hudplayerdowned"  :script_path="downed.lua"/>
-	                <post :hook_id="hudassaultcorner" :script_path="assault.lua"/>
-		            <post :hook_id="hudplayercustody" :script_path="custody.lua"/>
-		            <post :hook_id="hudchat"          :script_path="customchat.lua"/>
+			        <post :hook_id="hudheisttimer"          :script_path="timer.lua"/>
+           	        <post :hook_id="hudtemp"                :script_path="carry.lua"/>
+	                <post :hook_id="hudpresenter"           :script_path="presenter.lua"/>
+		            <post :hook_id="hudhint"                :script_path="hint.lua"/>
+				    <post :hook_id="hudplayerdowned"        :script_path="downed.lua"/>
+	                <post :hook_id="hudassaultcorner"       :script_path="assault.lua"/>
+		            <post :hook_id="hudplayercustody"       :script_path="custody.lua"/>
+		            <post :hook_id="hudchat"                :script_path="customchat.lua"/>
+					<post :hook_id="newhudstatsscreen"      :script_path="stats.lua"/>
+					<post :hook_id="hudstatsscreenskirmish" :script_path="stats.lua"/>
 
 					<group :hook_id="hudobjectives">
 					    <post :script_path="objectives.lua"/>

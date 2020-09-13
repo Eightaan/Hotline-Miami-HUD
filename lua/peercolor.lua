@@ -15,8 +15,6 @@ function TweakData:HMM()
     self.peer_vector_colors[4] = Vector3(self.chat_colors[4]:unpack())
     self.peer_vector_colors[5] = Vector3(self.chat_colors[5]:unpack())
 
-    self.hud.prime_color = Color("ff80df")
-
     self.preplanning_peer_colors = {
         Color("66ff99"), --Host.
         Color("66ffff"), --Peer2.
