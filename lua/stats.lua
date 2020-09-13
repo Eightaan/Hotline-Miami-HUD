@@ -142,7 +142,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 					font = medium_font,
 					font_size = tweak_data.hud_stats.loot_size,
 					text = managers.localization:to_upper_text("menu_lobby_difficulty_title"),
-					color = tweak_data.screen_colors.text
+					color = tweak_data.screen_colors.community_color
 				}), 16)
 
 				local str = managers.localization:text("menu_cs_level", {
