@@ -1,7 +1,6 @@
 if RequiredScript == "lib/managers/hudmanagerpd2" then
 
 	HUDECMCounter = HUDECMCounter or class()
-
     function HUDECMCounter:init(hud)
 	    self._hud_panel = hud.panel
 	    self._ecm_panel = self._hud_panel:panel({
