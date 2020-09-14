@@ -1,5 +1,3 @@
-if not HMH:GetOption("combo") then return end
-
 if RequiredScript == "lib/managers/hudmanagerpd2" then
 
     Hooks:PostHook(HUDManager, "feed_heist_time", "Combofeed_heist_time", function(self, time, ...)
@@ -33,6 +31,7 @@ elseif RequiredScript == "lib/managers/playermanager" then
     Hooks:PostHook(PlayerManager, "on_killshot", "combo_update", function(self, killed_unit)
 	    if not CopDamage.is_civilian(killed_unit:base()._tweak_table) then
 	        HMH.Kills = HMH.Kills + 1
+			HMH.TotalKills = HMH.TotalKills + 1
 	        HMH.LastKillTime = HMH.KillTime
 	        HMH.KillTime = managers.hud._current_time
         end
@@ -103,7 +102,7 @@ elseif RequiredScript == "lib/managers/hud/hudobjectives" then
     	local Combo_text = self.Combo_panel:child("Combo_text")
 	    local Combo_text_bg = self.Combo_panel:child("Combo_text_bg")
 	    local Combo_bg = self.Combo_panel:child("Combo_bg")
-	    if combo > 1 then 
+	    if HMH:GetOption("combo") and combo > 1 then 
 	    	self.Combo_panel:set_visible(true)  
     	else
     		self.Combo_panel:set_visible(false)

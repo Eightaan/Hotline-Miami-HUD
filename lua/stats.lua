@@ -262,6 +262,24 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 					color = tweak_data.screen_colors.skirmish_color,
 					text = delay
 				}), 6)
+
+				local kill_count = HMH.TotalKills
+				placer:add_bottom(self._left:fine_text({
+					keep_w = true,
+					font = tweak_data.hud_stats.objectives_font,
+					font_size = tweak_data.hud_stats.loot_size,
+					color = tweak_data.screen_colors.risk,
+					text = "Kill Count: " .. kill_count
+				}), 16)
+                
+				local total_accuracy = managers.statistics:session_hit_accuracy()
+				placer:add_bottom(self._left:fine_text({
+					keep_w = true,
+					font = tweak_data.hud_stats.objectives_font,
+					font_size = tweak_data.hud_stats.loot_size,
+					color = tweak_data.screen_colors.risk,
+					text = "Accuracy: " .. total_accuracy .. "%"
+				}), 0)
 			end
 
 			placer:new_row()
