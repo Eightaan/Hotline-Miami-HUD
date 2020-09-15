@@ -102,7 +102,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 							is_cancel_button = true,
 						}
 					}
-					QuickMenu:new( "Force start game?", "Are you sure you want to force the game to start?", menu_options, true )
+					QuickMenu:new( managers.localization:text("hmh_dialog_force_start_title"), managers.localization:text("hmh_dialog_force_start_desc"), menu_options, true )
 				end
 			end
 		end

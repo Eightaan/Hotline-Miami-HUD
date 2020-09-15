@@ -1,5 +1,9 @@
 {
 	"hud_instruct_mask_on" : "",
+	"hud_int_hold_grab_the_bag" : "Hold $INTERACT to grab the $BAG",
+	"hmh_dialog_force_start_title" : "Force start game?",
+	"hmh_dialog_force_start_desc" : "Are you sure you want to force the game to start?",
+
 	"hmh_title" : "Hotline Miami Hud",
 	"hmh_desc" : "Some options requires a restart to take effect",
 

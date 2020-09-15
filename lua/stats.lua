@@ -192,13 +192,14 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
                 local remaining = managers.gage_assignment:count_active_units()
 				local package_text = utf8.to_upper(managers.localization:text("menu_asset_gage_assignment")) .. ":" .. " " .. tostring(max_units - remaining) .."/".. tostring(max_units)
 				if remaining < max_units then
-				placer:add_bottom(self._left:fine_text({
-					keep_w = true,
-					font = tweak_data.hud_stats.objectives_font,
-					font_size = tweak_data.hud_stats.loot_size,
-					color = tweak_data.screen_colors.text,
-					text = package_text
-				}), 16)			
+				    placer:add_bottom(self._left:fine_text({
+					    keep_w = true,
+					    font = tweak_data.hud_stats.objectives_font,
+					    font_size = tweak_data.hud_stats.loot_size,
+					    color = tweak_data.screen_colors.text,
+					    text = package_text
+				    }), 16)
+                end				
 			else
 				local job_chain = managers.job:current_job_chain_data()
 				local day = managers.job:current_stage()
@@ -213,7 +214,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
  	               heist_title = ""
  	               space = ""
  	           end				
-
+			
 				local day_title = placer:add_bottom(self._left:fine_text({
 					font = tweak_data.hud_stats.objectives_font,
 					font_size = 30,
@@ -319,13 +320,13 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
                 local remaining = managers.gage_assignment:count_active_units()
 				local package_text = managers.job:current_level_id() ~= "chill_combat" and utf8.to_upper(managers.localization:text("menu_asset_gage_assignment")) .. ":" .. " " .. tostring(max_units - remaining) .."/".. tostring(max_units) or ""
 				if remaining < max_units then
-				placer:add_bottom(self._left:fine_text({
-					keep_w = true,
-					font = tweak_data.hud_stats.objectives_font,
-					font_size = tweak_data.hud_stats.loot_size,
-					color = tweak_data.screen_colors.text,
-					text = package_text
-				}), 16)
+				    placer:add_bottom(self._left:fine_text({
+				     	keep_w = true,
+				    	font = tweak_data.hud_stats.objectives_font,
+				    	font_size = tweak_data.hud_stats.loot_size,
+				    	color = tweak_data.screen_colors.text,
+				    	text = package_text
+				    }), 16)
 				end
 			end
 
