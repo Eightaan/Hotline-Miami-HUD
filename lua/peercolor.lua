@@ -37,6 +37,7 @@ function TweakData:HMM()
 	self.screen_colors.dlc_color = Color("ffcc66")
 	self.screen_colors.community_color = Color("66ffff")
     self.screen_colors.crimenet_lines = Color("ff80df")
+	self.screen_colors.important_1 = Color("ff6666")
     end
 end
 tweak_data:HMM()

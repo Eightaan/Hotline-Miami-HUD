@@ -158,8 +158,8 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 
 				placer:new_row(8, 0)
 
-				local trade_delay = alive(managers.player:player_unit()) and managers.groupai:state():all_criminals()[managers.player:player_unit():key()] and managers.groupai:state():all_criminals()[managers.player:player_unit():key()].respawn_penalty			
-				local delay = trade_delay and managers.localization:text("hud_trade_delay", {TIME = tostring(self:_trade_delay_time(trade_delay))}) or ""
+		    	local trade_delay = alive(managers.player:player_unit()) and managers.groupai:state():all_criminals()[managers.player:player_unit():key()] and managers.groupai:state():all_criminals()[managers.player:player_unit():key()].respawn_penalty			
+				local delay = trade_delay and utf8.to_upper(managers.localization:text("hud_trade_delay", {TIME = tostring(self:_trade_delay_time(trade_delay))})) or ""
 				placer:add_bottom(self._left:fine_text({
 					keep_w = true,
 					font = tweak_data.hud_stats.objectives_font,
@@ -167,24 +167,38 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 					color = tweak_data.screen_colors.skirmish_color,
 					text = delay
 				}), 6)
-				
-				local kill_count = HMH.TotalKills
+
+				local total_kills = HMH.TotalKills
+				local kill_count = total_kills and utf8.to_upper(managers.localization:text("victory_total_kills")) .." ".. total_kills .. managers.localization:get_default_macro("BTN_SKULL") or ""
 				placer:add_bottom(self._left:fine_text({
 					keep_w = true,
 					font = tweak_data.hud_stats.objectives_font,
 					font_size = tweak_data.hud_stats.loot_size,
 					color = tweak_data.screen_colors.risk,
-					text = "Kill Count: " .. kill_count
+					text = kill_count
 				}), 16)
-                
+
 				local total_accuracy = managers.statistics:session_hit_accuracy()
+				local accuracy = total_accuracy and utf8.to_upper(managers.localization:text("menu_stats_hit_accuracy")) .." ".. total_accuracy.."%" or ""
 				placer:add_bottom(self._left:fine_text({
 					keep_w = true,
 					font = tweak_data.hud_stats.objectives_font,
 					font_size = tweak_data.hud_stats.loot_size,
 					color = tweak_data.screen_colors.risk,
-					text = "Accuracy: " .. total_accuracy .. "%"
-				}), 0)				
+					text = accuracy 
+				}), 0)
+
+				local max_units = managers.gage_assignment:count_all_units()
+                local remaining = managers.gage_assignment:count_active_units()
+				local package_text = utf8.to_upper(managers.localization:text("menu_asset_gage_assignment")) .. ":" .. " " .. tostring(max_units - remaining) .."/".. tostring(max_units)
+				if remaining < max_units then
+				placer:add_bottom(self._left:fine_text({
+					keep_w = true,
+					font = tweak_data.hud_stats.objectives_font,
+					font_size = tweak_data.hud_stats.loot_size,
+					color = tweak_data.screen_colors.text,
+					text = package_text
+				}), 16)			
 			else
 				local job_chain = managers.job:current_job_chain_data()
 				local day = managers.job:current_stage()
@@ -199,7 +213,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
  	               heist_title = ""
  	               space = ""
  	           end				
-			
+
 				local day_title = placer:add_bottom(self._left:fine_text({
 					font = tweak_data.hud_stats.objectives_font,
 					font_size = 30,
@@ -272,7 +286,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 				}), 0)
 
 		    	local trade_delay = alive(managers.player:player_unit()) and managers.groupai:state():all_criminals()[managers.player:player_unit():key()] and managers.groupai:state():all_criminals()[managers.player:player_unit():key()].respawn_penalty			
-				local delay = trade_delay and managers.localization:text("hud_trade_delay", {TIME = tostring(self:_trade_delay_time(trade_delay))}) or ""
+				local delay = trade_delay and utf8.to_upper(managers.localization:text("hud_trade_delay", {TIME = tostring(self:_trade_delay_time(trade_delay))})) or ""
 				placer:add_bottom(self._left:fine_text({
 					keep_w = true,
 					font = tweak_data.hud_stats.objectives_font,
@@ -281,23 +295,38 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 					text = delay
 				}), 6)
 
-				local kill_count = HMH.TotalKills
+				local total_kills = HMH.TotalKills
+				local kill_count = total_kills and utf8.to_upper(managers.localization:text("victory_total_kills")) .." ".. total_kills .. managers.localization:get_default_macro("BTN_SKULL") or ""
 				placer:add_bottom(self._left:fine_text({
 					keep_w = true,
 					font = tweak_data.hud_stats.objectives_font,
 					font_size = tweak_data.hud_stats.loot_size,
 					color = tweak_data.screen_colors.risk,
-					text = "Kill Count: " .. kill_count
+					text = kill_count
 				}), 16)
-                
+
 				local total_accuracy = managers.statistics:session_hit_accuracy()
+				local accuracy = total_accuracy and utf8.to_upper(managers.localization:text("menu_stats_hit_accuracy")) .." ".. total_accuracy.."%" or ""
 				placer:add_bottom(self._left:fine_text({
 					keep_w = true,
 					font = tweak_data.hud_stats.objectives_font,
 					font_size = tweak_data.hud_stats.loot_size,
 					color = tweak_data.screen_colors.risk,
-					text = "Accuracy: " .. total_accuracy .. "%"
+					text = accuracy 
 				}), 0)
+
+				local max_units = managers.gage_assignment:count_all_units()
+                local remaining = managers.gage_assignment:count_active_units()
+				local package_text = managers.job:current_level_id() ~= "chill_combat" and utf8.to_upper(managers.localization:text("menu_asset_gage_assignment")) .. ":" .. " " .. tostring(max_units - remaining) .."/".. tostring(max_units) or ""
+				if remaining < max_units then
+				placer:add_bottom(self._left:fine_text({
+					keep_w = true,
+					font = tweak_data.hud_stats.objectives_font,
+					font_size = tweak_data.hud_stats.loot_size,
+					color = tweak_data.screen_colors.text,
+					text = package_text
+				}), 16)
+				end
 			end
 
 			placer:new_row()
@@ -491,6 +520,40 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 		loot_panel:set_size(placer:most_rightbottom())
 		loot_panel:set_leftbottom(0, self._left:h() - 16)
 	end
+	function HUDStatsScreen:recreate_right()
+	self._right:clear()
+	self._right:bitmap({
+		texture = "guis/textures/test_blur_df",
+		layer = -1,
+		render_template = "VertexColorTexturedBlur3D",
+		valign = "grow",
+		w = self._right:w(),
+		h = self._right:h()
+	})
+
+	local rb = HUDBGBox_create(self._right, {}, {
+		blend_mode = "normal",
+		color = Color.white
+	})
+
+	rb:child("bg"):set_color(Color(0, 0, 0):with_alpha(0.75))
+	rb:child("bg"):set_alpha(1)
+
+	if managers.mutators:are_mutators_active() then
+		self:_create_mutators_list(self._right)
+	else
+		self:_create_tracked_list(self._right)
+	end
+
+	local track_text = self._right:fine_text({
+		text = managers.localization:to_upper_text("menu_es_playing_track") .. " " .. managers.music:current_track_string(),
+		font_size = tweak_data.menu.pd2_small_font_size,
+		font = medium_font,
+		color = tweak_data.screen_colors.text
+	})
+
+	track_text:set_leftbottom(10, self._right:h() - 10)
+end
 
 	function HUDStatsScreen:_create_tracked_list(panel)
 		local placer = UiPlacer:new(10, 10, 0, 8)
@@ -593,22 +656,24 @@ elseif RequiredScript == "lib/managers/hud/hudstatsscreenskirmish" then
 
 		placer:new_row(8)
 
-		local kill_count = HMH.TotalKills
+		local total_kills = HMH.TotalKills
+		local kill_count = total_kills and utf8.to_upper(managers.localization:text("victory_total_kills")) .." ".. total_kills .. managers.localization:get_default_macro("BTN_SKULL") or ""
 		placer:add_bottom(self._left:fine_text({
 			keep_w = true,
 			font = tweak_data.hud_stats.objectives_font,
 			font_size = tweak_data.hud_stats.loot_size,
 			color = tweak_data.screen_colors.risk,
-			text = "Kill Count: " .. kill_count
+			text = kill_count
 		}), 16)
-                
+
 		local total_accuracy = managers.statistics:session_hit_accuracy()
+		local accuracy = total_accuracy and utf8.to_upper(managers.localization:text("menu_stats_hit_accuracy")) .." ".. total_accuracy.."%" or ""
 		placer:add_bottom(self._left:fine_text({
 			keep_w = true,
 			font = tweak_data.hud_stats.objectives_font,
 			font_size = tweak_data.hud_stats.loot_size,
 			color = tweak_data.screen_colors.risk,
-			text = "Accuracy: " .. total_accuracy .. "%"
+			text = accuracy 
 		}), 0)
 
 		placer:new_row(8, 0)
