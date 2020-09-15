@@ -214,7 +214,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
  	               heist_title = ""
  	               space = ""
  	           end				
-			
+
 				local day_title = placer:add_bottom(self._left:fine_text({
 					font = tweak_data.hud_stats.objectives_font,
 					font_size = 30,
