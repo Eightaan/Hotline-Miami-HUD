@@ -159,7 +159,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 				placer:new_row(8, 0)
 
 		    	local trade_delay = alive(managers.player:player_unit()) and managers.groupai:state():all_criminals()[managers.player:player_unit():key()] and managers.groupai:state():all_criminals()[managers.player:player_unit():key()].respawn_penalty			
-				local delay = trade_delay and utf8.to_upper(managers.localization:text("hud_trade_delay", {TIME = tostring(self:_trade_delay_time(trade_delay))})) or ""
+				local delay = trade_delay and managers.localization:to_upper_text("hud_trade_delay", {TIME = tostring(self:_trade_delay_time(trade_delay))}) or ""
 				placer:add_bottom(self._left:fine_text({
 					keep_w = true,
 					font = tweak_data.hud_stats.objectives_font,
@@ -169,7 +169,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 				}), 6)
 
 				local total_kills = HMH.TotalKills
-				local kill_count = total_kills and utf8.to_upper(managers.localization:text("victory_total_kills")) .." ".. total_kills .. managers.localization:get_default_macro("BTN_SKULL") or ""
+				local kill_count = total_kills and managers.localization:to_upper_text("victory_total_kills") .." ".. total_kills .. managers.localization:get_default_macro("BTN_SKULL") or ""
 				placer:add_bottom(self._left:fine_text({
 					keep_w = true,
 					font = tweak_data.hud_stats.objectives_font,
@@ -179,7 +179,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 				}), 16)
 
 				local total_accuracy = managers.statistics:session_hit_accuracy()
-				local accuracy = total_accuracy and utf8.to_upper(managers.localization:text("menu_stats_hit_accuracy")) .." ".. total_accuracy.."%" or ""
+				local accuracy = total_accuracy and managers.localization:to_upper_text("menu_stats_hit_accuracy") .." ".. total_accuracy.."%" or ""
 				placer:add_bottom(self._left:fine_text({
 					keep_w = true,
 					font = tweak_data.hud_stats.objectives_font,
@@ -190,7 +190,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 
 				local max_units = managers.gage_assignment:count_all_units()
                 local remaining = managers.gage_assignment:count_active_units()
-				local package_text = utf8.to_upper(managers.localization:text("menu_asset_gage_assignment")) .. ":" .. " " .. tostring(max_units - remaining) .."/".. tostring(max_units)
+				local package_text = managers.localization:to_upper_text("menu_asset_gage_assignment") .. ":" .. " " .. tostring(max_units - remaining) .."/".. tostring(max_units)
 				if remaining < max_units then
 				    placer:add_bottom(self._left:fine_text({
 					    keep_w = true,
@@ -286,18 +286,44 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 					text = payout
 				}), 0)
 
+				local civ_kills = managers.statistics:session_total_civilian_kills() ~= 0 and managers.localization:to_upper_text("victory_civilians_killed_penalty") .. " " .. managers.statistics:session_total_civilian_kills() .. managers.localization:get_default_macro("BTN_SKULL") or ""
+				placer:add_bottom(self._left:fine_text({
+					keep_w = true,
+					font = tweak_data.hud_stats.objectives_font,
+					font_size = tweak_data.hud_stats.loot_size,
+					color = tweak_data.screen_colors.skirmish_color,
+					text = civ_kills
+				}), 6)
+
 		    	local trade_delay = alive(managers.player:player_unit()) and managers.groupai:state():all_criminals()[managers.player:player_unit():key()] and managers.groupai:state():all_criminals()[managers.player:player_unit():key()].respawn_penalty			
-				local delay = trade_delay and utf8.to_upper(managers.localization:text("hud_trade_delay", {TIME = tostring(self:_trade_delay_time(trade_delay))})) or ""
+				local delay = trade_delay and managers.localization:to_upper_text("hud_trade_delay", {TIME = tostring(self:_trade_delay_time(trade_delay))}) or ""
 				placer:add_bottom(self._left:fine_text({
 					keep_w = true,
 					font = tweak_data.hud_stats.objectives_font,
 					font_size = tweak_data.hud_stats.loot_size,
 					color = tweak_data.screen_colors.skirmish_color,
 					text = delay
-				}), 6)
+				}), 0)
+
+                --[[ Enemy counter, but whats the point of knowing this??
+
+                local enemies = managers.enemy:all_enemies()
+                local enemie_count = 0
+                for k, v in pairs(enemies) do
+                    enemie_count = enemie_count + 1
+                end
+				if enemie_count > 0 then
+				    placer:add_bottom(self._left:fine_text({
+					    keep_w = true,
+					    font = tweak_data.hud_stats.objectives_font,
+					    font_size = tweak_data.hud_stats.loot_size,
+					    color = tweak_data.screen_colors.skirmish_color,
+					    text = managers.localization:to_upper_text("menu_mutators_category_enemies") .. ": " .. enemie_count
+				    }), 6)
+                end]]
 
 				local total_kills = HMH.TotalKills
-				local kill_count = total_kills and utf8.to_upper(managers.localization:text("victory_total_kills")) .." ".. total_kills .. managers.localization:get_default_macro("BTN_SKULL") or ""
+				local kill_count = total_kills and managers.localization:to_upper_text("menu_aru_job_3_obj") ..": ".. total_kills .. managers.localization:get_default_macro("BTN_SKULL") or ""
 				placer:add_bottom(self._left:fine_text({
 					keep_w = true,
 					font = tweak_data.hud_stats.objectives_font,
@@ -307,7 +333,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 				}), 16)
 
 				local total_accuracy = managers.statistics:session_hit_accuracy()
-				local accuracy = total_accuracy and utf8.to_upper(managers.localization:text("menu_stats_hit_accuracy")) .." ".. total_accuracy.."%" or ""
+				local accuracy = total_accuracy and managers.localization:to_upper_text("menu_stats_hit_accuracy") .." ".. total_accuracy.."%" or ""
 				placer:add_bottom(self._left:fine_text({
 					keep_w = true,
 					font = tweak_data.hud_stats.objectives_font,
@@ -318,7 +344,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 
 				local max_units = managers.gage_assignment:count_all_units()
                 local remaining = managers.gage_assignment:count_active_units()
-				local package_text = managers.job:current_level_id() ~= "chill_combat" and utf8.to_upper(managers.localization:text("menu_asset_gage_assignment")) .. ":" .. " " .. tostring(max_units - remaining) .."/".. tostring(max_units) or ""
+				local package_text = managers.job:current_level_id() ~= "chill_combat" and managers.job:current_level_id() ~= "chill" and managers.localization:to_upper_text("menu_asset_gage_assignment") .. ":" .. " " .. tostring(max_units - remaining) .."/".. tostring(max_units) or ""
 				if remaining < max_units then
 				    placer:add_bottom(self._left:fine_text({
 				     	keep_w = true,
@@ -658,7 +684,7 @@ elseif RequiredScript == "lib/managers/hud/hudstatsscreenskirmish" then
 		placer:new_row(8)
 
 		local total_kills = HMH.TotalKills
-		local kill_count = total_kills and utf8.to_upper(managers.localization:text("victory_total_kills")) .." ".. total_kills .. managers.localization:get_default_macro("BTN_SKULL") or ""
+		local kill_count = total_kills and managers.localization:to_upper_text("victory_total_kills") .." ".. total_kills .. managers.localization:get_default_macro("BTN_SKULL") or ""
 		placer:add_bottom(self._left:fine_text({
 			keep_w = true,
 			font = tweak_data.hud_stats.objectives_font,
@@ -668,7 +694,7 @@ elseif RequiredScript == "lib/managers/hud/hudstatsscreenskirmish" then
 		}), 16)
 
 		local total_accuracy = managers.statistics:session_hit_accuracy()
-		local accuracy = total_accuracy and utf8.to_upper(managers.localization:text("menu_stats_hit_accuracy")) .." ".. total_accuracy.."%" or ""
+		local accuracy = total_accuracy and managers.localization:to_upper_text("menu_stats_hit_accuracy") .." ".. total_accuracy.."%" or ""
 		placer:add_bottom(self._left:fine_text({
 			keep_w = true,
 			font = tweak_data.hud_stats.objectives_font,
