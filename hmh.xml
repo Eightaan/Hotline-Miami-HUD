@@ -17,6 +17,7 @@
                 <post :hook_id="menumanager"              :script_path="menu.lua" />
                 <post :hook_id="hudmanager"               :script_path="waypoint.lua"/>
 				<post :hook_id="objectinteractionmanager" :script_path="pager_outline.lua"/>
+				<post :hook_id="statisticsmanager"        :script_path="killcount.lua"/>
 
 				<group :hook_id="playermanager">
 				    <post :script_path="bulletstorm.lua"/>

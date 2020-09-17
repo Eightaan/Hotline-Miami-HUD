@@ -31,7 +31,6 @@ elseif RequiredScript == "lib/managers/playermanager" then
     Hooks:PostHook(PlayerManager, "on_killshot", "combo_update", function(self, killed_unit)
 	    if not CopDamage.is_civilian(killed_unit:base()._tweak_table) then
 	        HMH.Kills = HMH.Kills + 1
-			HMH.TotalKills = HMH.TotalKills + 1
 	        HMH.LastKillTime = HMH.KillTime
 	        HMH.KillTime = managers.hud._current_time
         end
