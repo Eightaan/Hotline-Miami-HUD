@@ -41,7 +41,7 @@
 			"description": "mod_font_desc",
 			"callback": "callback_font",
 			"value": "font",
-			"default_value": true
+			"default_value": false
         },
         {
 			"type": "divider",
