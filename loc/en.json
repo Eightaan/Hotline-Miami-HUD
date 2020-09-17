@@ -5,7 +5,7 @@
 	"hmh_dialog_force_start_desc" : "Are you sure you want to force the game to start?",
 
 	"hmh_title" : "Hotline Miami Hud",
-	"hmh_desc" : "Some options requires a restart to take effect",
+	"hmh_desc" : "Hotline Miami Hud options",
 
 	"hud_scale_title" : "Hud Scale",
     "hud_scale_desc" : "Change the hud size.",

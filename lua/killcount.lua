@@ -14,3 +14,7 @@ Hooks:PostHook( StatisticsManager, "killed", "hmh_StatisticsManager_killed", fun
 		HMH.TotalKills = HMH.TotalKills + 1	
 	end
 end)
+
+function StatisticsManager:session_total_civilian_kills()
+	return self._global.session.killed.civilian.count + self._global.session.killed.civilian_female.count + self._global.session.killed.civilian_mariachi.count
+end
