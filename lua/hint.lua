@@ -1,6 +1,5 @@
 Hooks:PostHook(HUDHint, "init", "hudhint_HMH", function(self, ...)
 	local clip_panel = self._hint_panel:child("clip_panel")
-    local medium_font = tweak_data.menu.pd2_medium_font
 
 	if HMH:GetOption("hint") then
 	    clip_panel:child("bg"):hide()

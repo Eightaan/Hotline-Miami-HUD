@@ -587,7 +587,6 @@ if HMH:GetOption("ammo") then
             ammo_total:animate(function(o)
                 local s = self._last_ammo[type]
                 local e = current_left
-                local font_size = 21
                 over(0.5, function(p)
                     local value = math.lerp(s, e, p)
                     local text = string.format("%.0f", value)
