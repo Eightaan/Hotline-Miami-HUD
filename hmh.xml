@@ -64,7 +64,6 @@
 					</group>
 
 					<group :hook_id="hudteammate">
-				        <post :script_path="bulletstorm.lua"/>
 	                    <post :script_path="downcounter.lua"/>
                         <post :script_path="teammate.lua"/>
                     </group>

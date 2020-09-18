@@ -3,6 +3,8 @@
 	"hud_int_hold_grab_the_bag" : "Hold $INTERACT to grab the $BAG",
 	"hmh_dialog_force_start_title" : "Force start game?",
 	"hmh_dialog_force_start_desc" : "Are you sure you want to force the game to start?",
+	
+	"hmh_inspire_cooldown_text" : "Inspire still has a cooldown of",
 
 	"hmh_title" : "Hotline Miami Hud",
 	"hmh_desc" : "Hotline Miami Hud options",

@@ -370,7 +370,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 
 				local max_units = managers.gage_assignment:count_all_units()
                 local remaining = managers.gage_assignment:count_active_units()
-				local package_text = managers.job:current_level_id() ~= "chill_combat" and managers.job:current_level_id() ~= "chill" and managers.localization:to_upper_text("menu_asset_gage_assignment") .. ":" .. " " .. tostring(max_units - remaining) .."/".. tostring(max_units) or ""
+				local package_text = managers.job:current_level_id() ~= "chill_combat" and managers.job:current_level_id() ~= "chill" and managers.job:current_level_id() ~= "haunted" and managers.job:current_level_id() ~= "hvh" and managers.localization:to_upper_text("menu_asset_gage_assignment") .. ":" .. " " .. tostring(max_units - remaining) .."/".. tostring(max_units) or ""
 				if remaining < max_units then
 				    placer:add_bottom(self._left:fine_text({
 				     	keep_w = true,
