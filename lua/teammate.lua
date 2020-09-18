@@ -1,5 +1,3 @@
--- UHUD Vanilla + used for interaction text and animated team panels
-
 Hooks:PostHook(HUDTeammate, "init" , "HMH_HUDTeammateInit", function(self, ...)
 	local radial_health_panel = self._player_panel:child("radial_health_panel")
 	local name_panel = self._panel:panel({

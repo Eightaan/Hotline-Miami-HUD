@@ -15,9 +15,9 @@ Hooks:PostHook( HUDPlayerCustody , "init", "HMH_HUDTeammate_init", function(self
 end)
 
 Hooks:PostHook( HUDPlayerCustody , "set_negotiating_visible", "HMH_HUDTeammate_set_negotiating_visible", function(self, ...)
-	self._hud.trade_text2:set_visible(false) -- because scaling messes with it
+	self._hud.trade_text2:set_visible(false)
 end)
 
 Hooks:PostHook( HUDPlayerCustody , "set_can_be_trade_visible", "HMH_HUDTeammate_set_can_be_trade_visible", function(self, ...)
-	self._hud.trade_text1:set_visible(false) -- because scaling messes with it
+	self._hud.trade_text1:set_visible(false)
 end)

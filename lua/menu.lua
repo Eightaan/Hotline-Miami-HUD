@@ -232,7 +232,6 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
 	end
 end)
 
---LDDG Animations
 function set_alpha( o, a, ct )
 	local t = 0
 	local target = ct or 0.5

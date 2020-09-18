@@ -13,7 +13,6 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 	local icon_assaultbox = assault_panel:child("icon_assaultbox")
 	icon_assaultbox:set_blend_mode("normal")
 
-	-- LDDG Assault text
 	assault_panel:show()
 	assault_panel:set_alpha(0)
 	assault_panel:text({
@@ -32,7 +31,6 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 	icon_casingbox:set_color(Color("ff80df"))
 	icon_casingbox:set_blend_mode("normal")
 
-	--LDDG Casing text
 	casing_panel:show()
 	casing_panel:set_alpha(0)
 	casing_panel:text({
@@ -65,9 +63,6 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 
     -- VIP ICON
     local icon_offset = 140 + (10 * managers.job:current_difficulty_stars())
-	if managers.crime_spree:is_active() then
-        icon_offset = 140
-    end
 	local vip_icon = self._vip_bg_box:child("vip_icon")
 	local buffs_panel = self._hud_panel:child("buffs_panel")
 	buffs_panel:set_x(assault_panel:left() + self._bg_box:left() - icon_offset)
@@ -102,13 +97,11 @@ function HUDAssaultCorner:_start_assault(text_list)
 	self._assault = true
 	self:hide_casing()
 
-	--LDDG Animation and text
 	self:set_text("assault", text_list)
 	assault_panel:animate(callback(self, self, "animate_assault_in_progress"))
 end
 
 function HUDAssaultCorner:animate_assault_in_progress(o)
-    --LDDG Assault animation
 	while self._assault do
 		set_alpha(o, 0.6)
 		set_alpha(o, 1)
@@ -154,7 +147,6 @@ function HUDAssaultCorner:set_control_info(data)
 end
 
 function HUDAssaultCorner:set_text(typ, text_list, add)
-    --LDDG Set text
 	local panel = self._hud_panel:child(typ .. "_panel")
 	local text = panel:child("text")
 	text:set_text(text_list)
@@ -183,7 +175,6 @@ function HUDAssaultCorner:sync_set_assault_mode(mode)
 end
 
 function HUDAssaultCorner:_get_assault_strings()
-    --LDDG Assault strings
 	local difficulty = ""
 	for i = 1, managers.job:current_difficulty_stars() do
 		difficulty = difficulty .. managers.localization:get_default_macro("BTN_SKULL")
@@ -216,19 +207,15 @@ function HUDAssaultCorner:show_casing(mode)
 	casing_panel:animate(callback(self, self, "_animate_show_casing"), delay_time)
 	self._casing = true
 
-	--LDDG Casing text
 	local msg = mode == "civilian" and "hud_casing_mode_ticker_clean" or "hud_casing_mode_ticker"
 	self:set_text("casing", managers.localization:to_upper_text(msg))
-
 end
 
 function HUDAssaultCorner:hide_casing()
 	local icon_casingbox = self._hud_panel:child("casing_panel"):child("icon_casingbox")
 	icon_casingbox:stop()
 	local function close_done()
-		self._hud_panel:child("casing_panel"):animate(callback(nil, _G, "set_alpha"), 0) --LDDG Animation
-		local icon_casingbox = self._hud_panel:child("casing_panel"):child("icon_casingbox")
-		icon_casingbox:stop()
+		self._hud_panel:child("casing_panel"):animate(callback(nil, _G, "set_alpha"), 0)
 		icon_casingbox:animate(callback(self, self, "_hide_icon_assaultbox"))
 	end
 	self._casing_bg_box:stop()
@@ -237,11 +224,11 @@ function HUDAssaultCorner:hide_casing()
 end
 
 function HUDAssaultCorner:_animate_show_casing( casing_panel, delay_time )
-	set_alpha(casing_panel, 1)--LDDG Animation
+	set_alpha(casing_panel, 1)
 end
 
 function HUDAssaultCorner:_animate_show_noreturn(point_of_no_return_panel, delay_time)
-	set_alpha(point_of_no_return_panel, 1)--LDDG Animation
+	set_alpha(point_of_no_return_panel, 1)
 end
 
 function HUDAssaultCorner:flash_point_of_no_return_timer( beep )

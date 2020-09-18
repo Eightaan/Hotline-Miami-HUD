@@ -1,4 +1,3 @@
---Using LDDG Animations
 if not HMH:GetOption("presenter") then return end
 
 Hooks:PostHook(HUDPresenter, "init", "HMH_hudpresenter_init", function(self, ...)
@@ -19,7 +18,6 @@ function HUDPresenter:_animate_present_information(present_panel, params)
 	title:set_visible(params.has_title)
 	text:set_visible(true)
 
-	--LDDG Animations
 	set_alpha(present_panel, 1)
 	wait(3)
 	set_alpha(present_panel, 0)

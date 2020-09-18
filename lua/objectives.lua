@@ -1,4 +1,3 @@
---Using LDDG Animations
 if not HMH:GetOption("objective") then return end
 
 Hooks:PostHook(HUDObjectives, "init", "HMH_hudobjectives_init", function(self, hud, ...)
@@ -72,28 +71,25 @@ end)
 
 function HUDObjectives:activate_objective( data )
 	self._active_objective_id = data.id
-	local objectives_panel = self._hud_panel:child( "objectives_panel" )
-	local objective_text = objectives_panel:child( "objective_text" )
+	local objectives_panel = self._hud_panel:child("objectives_panel")
+	local objective_text = objectives_panel:child("objective_text")
 		
-	objective_text:set_text( utf8.to_upper( data.text ) )
+	objective_text:set_text(utf8.to_upper(data.text))
 		
 	local _, _, w, _ = objective_text:text_rect()
 		
 	if data.amount then
 		self:update_amount_objective( data )
 	end
-    -->LDDG
-	--Animation
+
 	objectives_panel:stop()
 	objectives_panel:set_alpha(0)
 	objectives_panel:set_visible( true )
 	objectives_panel:animate(callback(nil, _G, "set_alpha"), 1)
-	
-	--Put the amount text after the objective text
-	local amount_text = objectives_panel:child( "amount_text" )
+	local amount_text = objectives_panel:child("amount_text")
+
     amount_text:set_visible(data.amount)
-	amount_text:set_x( objective_text:x() + 5 + w )	
-    --<LDDG
+	amount_text:set_x( objective_text:x() + 5 + w )
 end
 
 function HUDObjectives:update_amount_objective(data)
@@ -112,7 +108,7 @@ function HUDObjectives:complete_objective(data)
 	end
 	local objectives_panel = self._hud_panel:child("objectives_panel")
 	objectives_panel:stop()
-	objectives_panel:animate(callback(nil, _G, "set_alpha"), 0) --LDDG Animation
+	objectives_panel:animate(callback(nil, _G, "set_alpha"), 0)
 end
 
 function HUDObjectives:remind_objective(id)

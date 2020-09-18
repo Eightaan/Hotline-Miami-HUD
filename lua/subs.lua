@@ -1,7 +1,6 @@
 if RequiredScript == "core/lib/managers/subtitle/coresubtitlepresenter" then
 	core:module("CoreSubtitlePresenter")
 	function OverlayPresenter:show_text(text, duration)
-        -- Using the same code as vanilla hud plus so they work together
         local text_shadow
 		if _G.VHUDPlus then
 		    self._text_scale = _G.VHUDPlus:getSetting({"MISCHUD", "SCALE"}, 1)

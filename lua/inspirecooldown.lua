@@ -27,7 +27,7 @@ function PlayerStandard:_get_intimidation_action(prime_target, primary_only, det
 
 					if needs_revive and managers.player:has_disabled_cooldown_upgrade("cooldown", "long_dis_revive") then
 
-						local remaining_cooldown = managers.player:get_disabled_cooldown_time("cooldown", "long_dis_revive") + 1 -- Adding 1 because the cooldown seem to count 0 as an extra second?
+						local remaining_cooldown = managers.player:get_disabled_cooldown_time("cooldown", "long_dis_revive") + 1
 						if remaining_cooldown > 0 and HMH:GetOption("inspire") then
 							remaining_cooldown = remaining_cooldown - Application:time()
                             managers.hud:show_hint({ text = string.format(managers.localization:text("hmh_inspire_cooldown_text") .. " " .. "%i" .. " " .. managers.localization:text("prop_timer_gui_seconds"), remaining_cooldown)})							
