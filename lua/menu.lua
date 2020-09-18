@@ -27,8 +27,19 @@ local function CreateDirectory(path)
 end
 
 Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInit_HMH", function( loc )
-	loc:load_localization_file( HMH._path .. "loc/en.json")
-	local localized_strings = {}
+	local localization = HMH._path .. "loc/"
+	local GetFiles = _G.file.GetFiles
+	local Idstring = _G.Idstring
+	local activelanguagekey = SystemInfo:language():key()
+	for __, filename in ipairs(GetFiles(localization)) do
+		if Idstring(filename:match("^(.*).json$") or ""):key() == activelanguagekey then
+			loc:load_localization_file(localization .. filename)
+		    break
+		end
+	end
+	loc:load_localization_file(localization .. "english.json", false)
+
+    local localized_strings = {}
     if LobbySettings then
         localized_strings["menu_cn_premium_buy_fee_short"] = ""
     end
@@ -37,9 +48,6 @@ Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInit_HMH", func
 	    localized_strings["hud_skip_blackscreen"] = ""
 	end
 
-	if HMH:GetOption("assault") then
-	    localized_strings["hud_assault_assault"] = "Assault in progress"
-	end	
     loc:add_localized_strings(localized_strings)
 end)
 
