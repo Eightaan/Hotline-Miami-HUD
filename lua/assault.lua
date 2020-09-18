@@ -183,7 +183,7 @@ function HUDAssaultCorner:_get_assault_strings()
 	local space = string.rep(" ", 2)
 	local crime_spree_rank
 	if managers.crime_spree:is_active() and self._assault_mode == "normal" then
-	    crime_spree_rank = space ..  managers.localization:to_upper_text("menu_cs_level", {level = managers.experience:cash_string(managers.crime_spree:server_spree_level(), "")})
+	    crime_spree_rank = ":" .. space ..  managers.localization:to_upper_text("menu_cs_level", {level = managers.experience:cash_string(managers.crime_spree:server_spree_level(), "")})
 	else 
 	    crime_spree_rank = ""
 	end

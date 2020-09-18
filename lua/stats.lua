@@ -195,7 +195,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
                 end]]
 
 				local total_kills = HMH.TotalKills
-				local kill_count = total_kills and managers.localization:to_upper_text("victory_total_kills") .." ".. total_kills .. managers.localization:get_default_macro("BTN_SKULL") or ""
+				local kill_count = total_kills and managers.localization:to_upper_text("menu_aru_job_3_obj") ..": ".. total_kills .. managers.localization:get_default_macro("BTN_SKULL") or ""
 				placer:add_bottom(self._left:fine_text({
 					keep_w = true,
 					font = tweak_data.hud_stats.objectives_font,
@@ -216,16 +216,16 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 
 				local max_units = managers.gage_assignment:count_all_units()
                 local remaining = managers.gage_assignment:count_active_units()
-				local package_text = managers.localization:to_upper_text("menu_asset_gage_assignment") .. ":" .. " " .. tostring(max_units - remaining) .."/".. tostring(max_units)
+				local package_text = managers.job:current_level_id() ~= "chill_combat" and managers.job:current_level_id() ~= "chill" and managers.job:current_level_id() ~= "haunted" and managers.job:current_level_id() ~= "hvh" and managers.localization:to_upper_text("menu_asset_gage_assignment") .. ":" .. " " .. tostring(max_units - remaining) .."/".. tostring(max_units) or ""
 				if remaining < max_units then
 				    placer:add_bottom(self._left:fine_text({
-					    keep_w = true,
-					    font = tweak_data.hud_stats.objectives_font,
-					    font_size = tweak_data.hud_stats.loot_size,
-					    color = tweak_data.screen_colors.text,
-					    text = package_text
+				     	keep_w = true,
+				    	font = tweak_data.hud_stats.objectives_font,
+				    	font_size = tweak_data.hud_stats.loot_size,
+				    	color = tweak_data.screen_colors.text,
+				    	text = package_text
 				    }), 16)
-                end				
+				end			
 			else
 				local job_chain = managers.job:current_job_chain_data()
 				local day = managers.job:current_stage()
@@ -726,7 +726,7 @@ elseif RequiredScript == "lib/managers/hud/hudstatsscreenskirmish" then
         end]]
 
 		local total_kills = HMH.TotalKills
-		local kill_count = total_kills and managers.localization:to_upper_text("victory_total_kills") .." ".. total_kills .. managers.localization:get_default_macro("BTN_SKULL") or ""
+		local kill_count = total_kills and managers.localization:to_upper_text("menu_aru_job_3_obj") ..": ".. total_kills ..managers.localization:get_default_macro("BTN_SKULL") or ""
 		placer:add_bottom(self._left:fine_text({
 			keep_w = true,
 			font = tweak_data.hud_stats.objectives_font,
