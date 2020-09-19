@@ -1,3 +1,5 @@
+if not HMH:GetOption("combo") then return end
+
 if RequiredScript == "lib/managers/hudmanagerpd2" then
 
     Hooks:PostHook(HUDManager, "feed_heist_time", "Combofeed_heist_time", function(self, time, ...)
@@ -101,7 +103,7 @@ elseif RequiredScript == "lib/managers/hud/hudobjectives" then
     	local Combo_text = self.Combo_panel:child("Combo_text")
 	    local Combo_text_bg = self.Combo_panel:child("Combo_text_bg")
 	    local Combo_bg = self.Combo_panel:child("Combo_bg")
-	    if HMH:GetOption("combo") and combo > 1 then 
+	    if combo > 1 then 
 	    	self.Combo_panel:set_visible(true)  
     	else
     		self.Combo_panel:set_visible(false)

@@ -1,70 +1,72 @@
 Hooks:PostHook(HUDTeammate, "init" , "HMH_HUDTeammateInit", function(self, ...)
-	local radial_health_panel = self._player_panel:child("radial_health_panel")
-	local name_panel = self._panel:panel({
-		name 	= "name_panel",
-		w 		= self._panel:w() - self._panel:child( "callsign_bg" ):w() - (not self._main_player and radial_health_panel:w() or 0),
-		h 		= self._panel:child("name_bg"):h(),
-		x 		= self._panel:child("name_bg"):x(),
-		y 		= self._panel:child("name_bg"):y()
-	})
-	
+    if HMH:GetOption("interact_info") or HMH:GetOption("color_name") then
+	    local radial_health_panel = self._player_panel:child("radial_health_panel")
+	    local name_panel = self._panel:panel({
+		    name 	= "name_panel",
+		    w 		= self._panel:w() - self._panel:child( "callsign_bg" ):w() - (not self._main_player and radial_health_panel:w() or 0),
+		    h 		= self._panel:child("name_bg"):h(),
+		    x 		= self._panel:child("name_bg"):x(),
+		    y 		= self._panel:child("name_bg"):y()
+	    })
+
+	    if not self._main_player then
+
+		    local interact_panel = self._player_panel:child("interact_panel")
+		    local interact_info = interact_panel:text({name = "interact_info"})
+		    local interact_text = name_panel:text({
+		    	name = "interact_text",
+		    	text = "",
+			    layer = 1,
+		    	visible = false,
+		    	color = Color.white,
+		    	w = self._panel:child("name"):w(),
+		    	h = self._panel:child("name"):h(),
+		    	vertical = "bottom",
+		    	font_size = tweak_data.hud_players.name_size,
+		    	font = tweak_data.hud_players.name_font
+		    })
+	    end
+
+	    self._new_name = name_panel:text({
+		    name = "name",
+		    text = " Dallas",
+		    layer = 1,
+		    color = Color.white,
+		    y = 0,
+		    vertical = "bottom",
+		    font_size = tweak_data.hud_players.name_size,
+		    font = tweak_data.hud_players.name_font
+	    })
+	    self._panel:child("name"):set_visible(false)
+    end
+
 	if self._main_player then
 	    self:inject_ammo_glow()
-     end
-
-	if not self._main_player then
-
-		local interact_panel = self._player_panel:child("interact_panel")
-		local interact_info = interact_panel:text({name = "interact_info"})
-		local interact_text = name_panel:text({
-			name 		= "interact_text",
-			text 		= "",
-			layer 		= 1,
-			visible 	= false,
-			color 		= Color.white,
-			w 			= self._panel:child("name"):w(),
-			h 			= self._panel:child("name"):h(),
-			vertical 	= "bottom",
-			font_size 	= tweak_data.hud_players.name_size,
-			font 		= tweak_data.hud_players.name_font
-		})
-	end
-
-	self._new_name = name_panel:text({
-		name 		= "name",
-		text 		= " Dallas",
-		layer 		= 1,
-		color 		= Color.white,
-		y 			= 0,
-		vertical 	= "bottom",
-		font_size 	= tweak_data.hud_players.name_size,
-		font 		= tweak_data.hud_players.name_font
-	})
-	self._panel:child("name"):set_visible(false)
+    end
 end)
 
 function HUDTeammate:inject_ammo_glow()
 	    self._primary_ammo = self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):bitmap({
-		align           = "center",
-		w 				= 50,
-		h 				= 45,
-		name 			= "primary_ammo",
-	    visible 		= false,
-    	texture 		= "guis/textures/pd2/crimenet_marker_glow",
-	    color 			= Color("00AAFF"),
-    	layer 			= 2,
-	    blend_mode 		= "add"
+		align = "center",
+		w = 50,
+		h = 45,
+		name = "primary_ammo",
+	    visible = false,
+    	texture = "guis/textures/pd2/crimenet_marker_glow",
+	    color = Color("00AAFF"),
+    	layer = 2,
+	    blend_mode = "add"
     })
 	self._secondary_ammo = self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):bitmap({
-    	align           = "center",
-    	w 				= 50,
-	    h 				= 45,
-    	name 			= "secondary_ammo",
-    	visible 		= false,
-    	texture 		= "guis/textures/pd2/crimenet_marker_glow",
-    	color 			= Color("00AAFF"),
-    	layer 			= 2,
-	    blend_mode 		= "add"
+    	align = "center",
+    	w = 50,
+	    h = 45,
+    	name = "secondary_ammo",
+    	visible = false,
+    	texture = "guis/textures/pd2/crimenet_marker_glow",
+    	color = Color("00AAFF"),
+    	layer = 2,
+	    blend_mode = "add"
     })
 	self._primary_ammo:set_center_y(self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("ammo_clip"):y() + self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("ammo_clip"):h() / 2 - 2)
 	self._secondary_ammo:set_center_y(self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):child("ammo_clip"):y() + self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):child("ammo_clip"):h() / 2 - 2)
@@ -110,42 +112,43 @@ function HUDTeammate:_animate_glow(glow)
 	end
 end
 
-Hooks:PostHook(HUDTeammate, "set_name", "HMH_HUDTeammateSetName", function(self, ...)
+if HMH:GetOption("interact_info") or HMH:GetOption("color_name") then
+    Hooks:PostHook(HUDTeammate, "set_name", "HMH_HUDTeammateSetName", function(self, ...)
+	    local teammate_panel = self._panel
+	    local name = teammate_panel:child("name")
+	    local name_bg = teammate_panel:child("name_bg")
+        self._new_name:stop()
+	    self._new_name:set_text(name:text())
 
-	local teammate_panel = self._panel
-	local name = teammate_panel:child("name")
-	local name_bg = teammate_panel:child("name_bg")
+    	local x , y , w , h = self._new_name:text_rect()
+	    self._new_name:set_left(0)
+	    self._new_name:set_size(w, h)
+	    name_bg:set_w(self._new_name:w() + 4)
 
-    self._new_name:stop()
+	    if HMH:GetOption("color_name") and self._panel:child("name_panel"):w() < name_bg:w() then
+		    self._new_name:animate(callback(self, self, "_animate_name"), name_bg:w() - self._panel:child("name_panel"):w() + 2)
+	    end
+    end)
+end
 
-	self._new_name:set_text(name:text())
+if HMH:GetOption("interact_info") or HMH:GetOption("color_name") then
+    Hooks:PostHook(HUDTeammate, "set_callsign", "HMH_HUDTeammateSetCallsign", function(self, id)
+    	self._condition_icon = self._panel:child("condition_icon")
+    	self._condition_icon:set_color(HMH:GetOption("color_name") and tweak_data.chat_colors[id] or Color.white)
 
-	local x , y , w , h = self._new_name:text_rect()
-	self._new_name:set_left(0)
-	self._new_name:set_size(w, h)
-	name_bg:set_w(self._new_name:w() + 4)
+    	self._panel:child("name"):set_color(HMH:GetOption("color_name") and tweak_data.chat_colors[id] or Color.white)
+	    self._new_name:set_color(HMH:GetOption("color_name") and tweak_data.chat_colors[id] or Color.white)
 
-	if HMH:GetOption("color_name") and self._panel:child("name_panel"):w() < name_bg:w() then
-		self._new_name:animate(callback(self, self, "_animate_name"), name_bg:w() - self._panel:child("name_panel"):w() + 2)
-	end
-end)
-
-Hooks:PostHook(HUDTeammate, "set_callsign", "HMH_HUDTeammateSetCallsign", function(self, id)
-	self._condition_icon = self._panel:child("condition_icon")
-	self._condition_icon:set_color(HMH:GetOption("color_name") and tweak_data.chat_colors[id] or Color.white)
-
-	self._panel:child("name"):set_color(HMH:GetOption("color_name") and tweak_data.chat_colors[id] or Color.white)
-	self._new_name:set_color(HMH:GetOption("color_name") and tweak_data.chat_colors[id] or Color.white)
-
-    if not self._main_player and self:peer_id() and managers.network:session() and managers.network:session():peer(self:peer_id()):is_cheater() then
-		self._panel:child("name"):set_color(tweak_data.screen_colors.pro_color)
-		self._new_name:set_color(tweak_data.screen_colors.pro_color)
-		self._panel:child("callsign"):set_color(tweak_data.screen_colors.pro_color)
-	end
-end)
+        if not self._main_player and self:peer_id() and managers.network:session() and managers.network:session():peer(self:peer_id()):is_cheater() then
+	    	self._panel:child("name"):set_color(tweak_data.screen_colors.pro_color)
+	    	self._new_name:set_color(tweak_data.screen_colors.pro_color)
+	    	self._panel:child("callsign"):set_color(tweak_data.screen_colors.pro_color)
+	    end
+    end)
+end
 
 Hooks:PostHook(HUDTeammate, "set_state", "HMH_HUDTeammateSetState", function(self, state)
-	if not self._main_player then
+	if not self._main_player and (HMH:GetOption("interact_info") or HMH:GetOption("color_name")) then
 		self._panel:child("name_panel"):set_y(self._panel:child("name"):y())
     end
 end)
@@ -229,12 +232,12 @@ if HMH:GetOption("interact_info") then
             self._panel:child("name_bg"):set_w(self._new_name:w() + 4)
         end
 
-        self._panel:child("name_panel"):child("interact_text"):set_color(tweak_data.chat_colors[self._peer_id] or Color.white)
+        self._panel:child("name_panel"):child("interact_text"):set_color(HMH:GetOption("color_name") and tweak_data.chat_colors[self._peer_id] or Color.white)
 
         if not self._main_player and self:peer_id() then
             local peer = managers.network:session() and managers.network:session():peer(self:peer_id())
             if peer and peer:is_cheater() then
-                self._panel:child("name_panel"):child("interact_text"):set_color(tweak_data.screen_colors.pro_color)
+                self._panel:child("name_panel"):child("interact_text"):set_color(HMH:GetOption("color_name") and tweak_data.screen_colors.pro_color or Color.white)
             end
         end
         HUDTeammate_teammate_progress(self, enabled, tweak_data_id, timer, success)
