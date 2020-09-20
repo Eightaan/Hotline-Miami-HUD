@@ -45,6 +45,13 @@
 	"health_texture_desc" : "Enable a custom health texture.",
 	"color_title" : "Custom Name and Chat Colors",
 	"color_desc" : "Enable the custom chat colors.",
+	
+	"hmh_tab_title" : "Tabstats",
+	"hmh_tab_desc" : "Customize the tabstats panel.",
+	"tab_title" : "Custom Tabstats",
+	"tab_desc" : "Enable tabstats changes.",
+	"enemy_count_title" : "Enemy counter",
+	"enemy_count_desc" : "Shows the amount of enemies on the map",
 
 	"hmh_waypoints_title" : "Waypoints",
 	"hmh_waypoints_desc" : "Customize Wayponts.",
@@ -136,9 +143,7 @@
 	"pick_card_title" : "Auto pick card",
 	"pick_card_desc" : "Automatically pick a card, when the loot screen is displayed",
 	"skip_card_title" : "Card Screen Delay",
-	"skip_card_desc" : "Automatically skip loot screen.\n(0 = disabled)",
-	"tab_title" : "Custom Tabstats",
-	"tab_desc" : "Enable tabstats changes.",	
+	"skip_card_desc" : "Automatically skip loot screen.\n(0 = disabled)",	
 
 	"hmh_custom_chat_title" : "Chat Panel",
 	"hmh_custom_chat_desc" : "Customize the chat.",

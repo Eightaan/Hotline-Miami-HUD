@@ -136,7 +136,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
         core:module("CoreGuiDataManager")
         function GuiDataManager:layout_scaled_fullscreen_workspace(ws)
 	        local scale
-	        if _G.VHUDPlus then
+	        if _G.VHUDPlus and _G.VHUDPlus:getSetting({"CustomHUD", "ENABLED"}, true) then
 	    	    scale = _G.VHUDPlus:getSetting({"CustomHUD", "HUD_SCALE"}, 1)
 	        else
 		        scale = _G.HMH:GetOption("hud_scale")

@@ -128,6 +128,7 @@ if HMH:GetOption("interact_info") or HMH:GetOption("color_name") then
 	    if HMH:GetOption("color_name") and self._panel:child("name_panel"):w() < name_bg:w() then
 		    self._new_name:animate(callback(self, self, "_animate_name"), name_bg:w() - self._panel:child("name_panel"):w() + 2)
 	    end
+		name_bg:set_visible(true)
     end)
 end
 
@@ -204,6 +205,11 @@ if HMH:GetOption("interact_info") then
             self._panel:child("name_panel"):child("interact_text"):set_visible(true)
             self._panel:child("name_panel"):child("interact_text"):set_text(" " .. managers.hud:_name_label_by_peer_id(self:peer_id()).panel:child("action"):text())
 
+			local x , y , w , h = self._panel:child("name_panel"):child("interact_text"):text_rect()
+			self._panel:child("name_bg"):set_w( w + 4)
+			self._panel:child("name_bg"):set_visible(false)
+			
+
             local x , y , w , h = self._panel:child("name_panel"):child("interact_text"):text_rect()
             self._panel:child("name_panel"):child("interact_text"):set_size(w, h)
 
@@ -224,12 +230,14 @@ if HMH:GetOption("interact_info") then
             self._new_name:set_alpha(1)
             self._panel:child("name_panel"):child("interact_text"):set_visible(false)
             self._panel:child("name_bg"):set_w( w + 4)
+			self._panel:child("name_bg"):set_visible(true)
         end
 
         if success then
             self._new_name:set_alpha(1)
             self._panel:child("name_panel"):child("interact_text"):set_visible(false)
             self._panel:child("name_bg"):set_w(self._new_name:w() + 4)
+			self._panel:child("name_bg"):set_visible(true)
         end
 
         self._panel:child("name_panel"):child("interact_text"):set_color(HMH:GetOption("color_name") and tweak_data.chat_colors[self._peer_id] or Color.white)

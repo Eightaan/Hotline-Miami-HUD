@@ -191,6 +191,9 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
 	MenuCallbackHandler.callback_tab = function(self, item)
         HMH._data.tab = item:value() == "on"
     end
+	MenuCallbackHandler.callback_enemy_count = function(self, item)
+        HMH._data.enemy_count = item:value() == "on"
+    end
     MenuCallbackHandler.HMHSave = function(this, item)
         HMH:Save()
     end
@@ -198,6 +201,7 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
 	MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/menu.json", HMH, HMH._data )
 	MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/hud.json", HMH, HMH._data )
 	MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/custom_chat.json", HMH, HMH._data )
+	MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/tab.json", HMH, HMH._data )
 	MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/waypoints.json", HMH, HMH._data )
 	MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/timer.json", HMH, HMH._data )
 	MenuHelper:LoadFromJsonFile( HMH._path .. "Menu/presenter.json", HMH, HMH._data )
