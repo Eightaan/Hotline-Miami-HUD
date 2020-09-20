@@ -208,9 +208,6 @@ if HMH:GetOption("interact_info") then
 			local x , y , w , h = self._panel:child("name_panel"):child("interact_text"):text_rect()
 			self._panel:child("name_bg"):set_w( w + 4)
 			self._panel:child("name_bg"):set_visible(false)
-			
-
-            local x , y , w , h = self._panel:child("name_panel"):child("interact_text"):text_rect()
             self._panel:child("name_panel"):child("interact_text"):set_size(w, h)
 
             if self._panel:child("name_panel"):child("interact_text"):w() + 4 > self._panel:child("name_bg"):w() then

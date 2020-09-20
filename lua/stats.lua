@@ -177,21 +177,6 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 					text = delay
 				}), 0)
 
-                local enemies = managers.enemy:all_enemies()
-                local enemie_count = 0
-                for k, v in pairs(enemies) do
-                    enemie_count = enemie_count + 1
-                end
-				if HMH:GetOption("enemy_count") and enemie_count > 0 then
-				    placer:add_bottom(self._left:fine_text({
-					    keep_w = true,
-					    font = tweak_data.hud_stats.objectives_font,
-					    font_size = tweak_data.hud_stats.loot_size,
-					    color = tweak_data.screen_colors.skirmish_color,
-					    text = managers.localization:to_upper_text("menu_mutators_category_enemies") .. ": " .. enemie_count
-				    }), 6)
-                end
-
 				local total_kills = HMH.TotalKills
 				local kill_count = total_kills and managers.localization:to_upper_text("menu_aru_job_3_obj") ..": ".. total_kills .. managers.localization:get_default_macro("BTN_SKULL") or ""
 				placer:add_bottom(self._left:fine_text({
@@ -223,7 +208,23 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 				    	color = tweak_data.screen_colors.text,
 				    	text = package_text
 				    }), 16)
-				end			
+				end
+
+				local enemies = managers.enemy:all_enemies()
+                local enemy_count = 0
+                for k, v in pairs(enemies) do
+                    enemy_count = enemy_count + 1
+                end
+				local enemies = enemy_count - managers.groupai:state():police_hostage_count()
+				if HMH:GetOption("enemy_count") and enemies > 0 then
+				    placer:add_bottom(self._left:fine_text({
+					    keep_w = true,
+					    font = tweak_data.hud_stats.objectives_font,
+					    font_size = tweak_data.hud_stats.loot_size,
+					    color = tweak_data.screen_colors.skirmish_color,
+					    text = managers.localization:to_upper_text("menu_mutators_category_enemies") .. ": " .. enemies
+				    }), 16)
+                end
 			else
 				local job_chain = managers.job:current_job_chain_data()
 				local day = managers.job:current_stage()
@@ -714,21 +715,6 @@ elseif RequiredScript == "lib/managers/hud/hudstatsscreenskirmish" then
 
 		placer:new_row(8)
 
-        local enemies = managers.enemy:all_enemies()
-        local enemie_count = 0
-        for k, v in pairs(enemies) do
-            enemie_count = enemie_count + 1
-        end
-		if HMH:GetOption("enemy_count") and enemie_count > 0 then
-			placer:add_bottom(self._left:fine_text({
-				keep_w = true,
-				font = tweak_data.hud_stats.objectives_font,
-				font_size = tweak_data.hud_stats.loot_size,
-				color = tweak_data.screen_colors.skirmish_color,
-				text = managers.localization:to_upper_text("menu_mutators_category_enemies") .. ": " .. enemie_count
-			}), 6)
-        end
-
 		local total_kills = HMH.TotalKills
 		local kill_count = total_kills and managers.localization:to_upper_text("menu_aru_job_3_obj") ..": ".. total_kills ..managers.localization:get_default_macro("BTN_SKULL") or ""
 		placer:add_bottom(self._left:fine_text({
@@ -748,6 +734,22 @@ elseif RequiredScript == "lib/managers/hud/hudstatsscreenskirmish" then
 			color = tweak_data.screen_colors.risk,
 			text = accuracy 
 		}), 0)
+
+		local enemies = managers.enemy:all_enemies()
+        local enemy_count = 0
+        for k, v in pairs(enemies) do
+            enemy_count = enemy_count + 1
+        end
+		local enemies = enemy_count - managers.groupai:state():police_hostage_count()
+		if HMH:GetOption("enemy_count") and enemies > 0 then
+		    placer:add_bottom(self._left:fine_text({
+				keep_w = true,
+				font = tweak_data.hud_stats.objectives_font,
+				font_size = tweak_data.hud_stats.loot_size,
+				color = tweak_data.screen_colors.skirmish_color,
+				text = managers.localization:to_upper_text("menu_mutators_category_enemies") .. ": " .. enemies
+			}), 16)
+        end
 
 		placer:new_row(8, 0)
 
