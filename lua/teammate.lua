@@ -2,15 +2,14 @@ Hooks:PostHook(HUDTeammate, "init" , "HMH_HUDTeammateInit", function(self, ...)
     if HMH:GetOption("interact_info") or HMH:GetOption("color_name") then
 	    local radial_health_panel = self._player_panel:child("radial_health_panel")
 	    local name_panel = self._panel:panel({
-		    name 	= "name_panel",
-		    w 		= self._panel:w() - self._panel:child( "callsign_bg" ):w() - (not self._main_player and radial_health_panel:w() or 0),
-		    h 		= self._panel:child("name_bg"):h(),
-		    x 		= self._panel:child("name_bg"):x(),
-		    y 		= self._panel:child("name_bg"):y()
+		    name = "name_panel",
+		    w = self._panel:w() - self._panel:child( "callsign_bg" ):w() - (not self._main_player and radial_health_panel:w() or 0),
+		    h = self._panel:child("name_bg"):h(),
+		    x = self._panel:child("name_bg"):x(),
+		    y = self._panel:child("name_bg"):y()
 	    })
 
 	    if not self._main_player then
-
 		    local interact_panel = self._player_panel:child("interact_panel")
 		    local interact_info = interact_panel:text({name = "interact_info"})
 		    local interact_text = name_panel:text({
@@ -46,7 +45,7 @@ Hooks:PostHook(HUDTeammate, "init" , "HMH_HUDTeammateInit", function(self, ...)
 end)
 
 function HUDTeammate:inject_ammo_glow()
-	    self._primary_ammo = self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):bitmap({
+	self._primary_ammo = self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):bitmap({
 		align = "center",
 		w = 50,
 		h = 45,
