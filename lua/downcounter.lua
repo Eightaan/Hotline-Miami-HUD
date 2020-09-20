@@ -8,13 +8,6 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
     local set_mugshot_normal_original = HUDManager.set_mugshot_normal
     local set_player_condition_original = HUDManager.set_player_condition
 
-	function HUDManager:set_mugshot_voice(id, active) -- player voice icon
-	    local panel_id = self:_mugshot_id_to_panel_id(id)
-	    if panel_id and panel_id ~= HUDManager.PLAYER_PANEL then
-		    self._teammate_panels[panel_id]:set_voice_com(active)
-  	    end
-    end
-
     function HUDManager:teammate_panel_from_peer_id(id)
         for panel_id, panel in pairs(self._teammate_panels or {}) do
             if panel._peer_id == id then
@@ -187,13 +180,6 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
         local name_panel = self._panel:child("name")
         name_panel:set_text(teammate_name)
         set_name_original(self, name_panel:text(), ...)
-    end
-
-	function HUDTeammate:set_voice_com(status) -- player voice icon
-	    local texture = status and "guis/textures/pd2/jukebox_playing" or "guis/textures/pd2/hud_tabs"
-	    local texture_rect = status and { 0, 0, 16, 16 } or { 84, 34, 19, 19 }
-	    local callsign = self._panel:child("callsign")
-	    callsign:set_image(texture, unpack(texture_rect))
     end
 
 elseif RequiredScript == "lib/network/handlers/unitnetworkhandler" then
