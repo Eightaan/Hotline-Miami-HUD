@@ -1,4 +1,4 @@
-Hooks:PostHook(HUDTeammate, "init" , "HMH_HUDTeammateInit", function(self, ...)
+Hooks:PostHook(HUDTeammate, "init", "HMH_HUDTeammateInit", function(self, ...)
     if HMH:GetOption("interact_info") or HMH:GetOption("color_name") then
 	    local radial_health_panel = self._player_panel:child("radial_health_panel")
 	    local name_panel = self._panel:panel({

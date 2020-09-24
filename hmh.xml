@@ -44,6 +44,7 @@
 					<post :hook_id="stageendscreengui" :script_path="scripts.lua"/>
 					<post :hook_id="lootdropscreengui" :script_path="scripts.lua"/>
 					<post :hook_id="blackmarketgui"    :script_path="scripts.lua"/>
+					<post :hook_id="menuscenemanager"  :script_path="scripts.lua"/>
                 </group>
 
 			    <group :hook_id="hud/">

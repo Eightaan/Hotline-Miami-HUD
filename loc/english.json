@@ -5,6 +5,7 @@
 	"hmh_dialog_force_start_desc" : "Are you sure you want to force the game to start?",
 	"hmh_hud_assault_assault" : "Assault in progress",
 	"hmh_inspire_cooldown_text" : "Inspire still has a cooldown of",
+	"hmh_hud_stats_enemies_dominated" : "ENEMIES CUFFED",
 
 	"hmh_title" : "Hotline Miami Hud",
 	"hmh_desc" : "Hotline Miami Hud options",
@@ -148,5 +149,7 @@
 	"hmh_custom_chat_title" : "Chat Panel",
 	"hmh_custom_chat_desc" : "Customize the chat.",
 	"custom_chat_title" : "Custom Chat",
-	"custom_chat_desc" : "Enable the custom hud chat."
+	"custom_chat_desc" : "Enable the custom hud chat.",
+	"custom_filter_title" : "Custom Menu Color Grading",
+	"custom_filter_desc" : "This will disable the default blue menu color filter. The menu color grading can be changed in the games video options under advanced settings."
 }

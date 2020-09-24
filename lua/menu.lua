@@ -194,6 +194,9 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
 	MenuCallbackHandler.callback_enemy_count = function(self, item)
         HMH._data.enemy_count = item:value() == "on"
     end
+	MenuCallbackHandler.callback_custom_filter = function(self, item)
+        HMH._data.custom_filter = item:value() == "on"
+    end
     MenuCallbackHandler.HMHSave = function(this, item)
         HMH:Save()
     end

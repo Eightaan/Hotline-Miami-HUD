@@ -45,5 +45,6 @@
 	"stealth_c4" : false,
 	"pager_outline" : false,
 	"tab" : true,
-	"enemy_count" : false
+	"enemy_count" : false,
+	"custom_filter" : true
 }
