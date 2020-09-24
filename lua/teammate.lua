@@ -160,43 +160,6 @@ Hooks:PostHook(HUDTeammate, "set_state", "HMH_HUDTeammateSetState", function(sel
     end
 end)
 
-if HMH:GetOption("interact_texture") then
-    function HUDTeammate:teammate_progress(enabled, tweak_data_id, timer, success)
-        self._player_panel:child("radial_health_panel"):set_alpha(enabled and 0.2 or 1)
-        self._player_panel:child("interact_panel"):stop()
-        self._player_panel:child("interact_panel"):set_visible(enabled)
-
-        if enabled then
-            self._player_panel:child("interact_panel"):animate(callback(HUDManager, HUDManager, "_animate_label_interact"), self._interact, timer)
-        elseif success then
-            local panel = self._player_panel
-            local bitmap = panel:bitmap({
-                blend_mode = "add",
-                texture = "guis/textures/pd2_mod_hmh/hud_progress_active",
-                layer = 2,
-                align = "center",
-                rotation = 360,
-                valign = "center"
-            })
-
-            bitmap:set_size(self._interact:size())
-            bitmap:set_position(self._player_panel:child("interact_panel"):x() + 4, self._player_panel:child("interact_panel"):y() + 4)
-
-            local radius = self._interact:radius()
-            local circle = CircleBitmapGuiObject:new(panel, {
-                blend_mode = "normal",
-                rotation = 360,
-                layer = 3,
-                radius = radius,
-                color = Color.white:with_alpha(1)
-            })
-
-            circle:set_position(bitmap:position())
-            bitmap:animate(callback(HUDInteraction, HUDInteraction, "_animate_interaction_complete"), circle)
-        end
-    end
-end
-
 if HMH:GetOption("interact_info") then
     local t = 2
     local HUDTeammate_teammate_progress = HUDTeammate.teammate_progress
@@ -670,10 +633,6 @@ end
 Hooks:PostHook(HUDTeammate, "_create_radial_health", "HMH_HUDTeammateCreateRadialHealth", function(self, radial_health_panel)
 	local radial_ability_panel = radial_health_panel:child("radial_ability")
     local ability_icon = radial_ability_panel:child("ability_icon")
-
-    if HMH:GetOption("health_texture") then
-        self._radial_health_panel:child("radial_health"):set_image("guis/textures/pd2_mod_hmh/hud_health", 128, 0, -128, 128)
-    end
 
 	if HMH:GetOption("color_name") then
 	    ability_icon:set_visible(false)

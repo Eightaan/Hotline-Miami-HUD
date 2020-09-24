@@ -43,7 +43,7 @@
 	"screen_effect_title" : "Ability Screen Effects",
 	"screen_effect_desc" : "Will make the screen flash when swan song or the kingpin injector is active.",	
 	"health_texture_title" : "Custom Health Texture",
-	"health_texture_desc" : "Enable a custom health texture.",
+	"health_texture_desc" : "Enable a custom health texture.\nWhen changed, a game restart is required to take effect.",
 	"color_title" : "Custom Name and Chat Colors",
 	"color_desc" : "Enable the custom chat colors.",
 	
@@ -76,7 +76,7 @@
 	"interact_title" : "Custom Interaction Text",
 	"interact_desc" : "Enable the custom colored interaction text.",
 	"interact_texture_title" : "Custom Interaction Texture",
-	"interact_texture_desc" : "Enable a custom interaction texture.",
+	"interact_texture_desc" : "Enable a custom interaction texture.\nWhen changed, a game restart is required to take effect.",
 	"toggle_interact_title" : "Toggle Interaction",
 	"toggle_interact_desc" : "Pick the duration of an interaction for the toggle interact to lock (0 = disabled)",
 	"interupt_interact_title" : "Equipment Interupt key",

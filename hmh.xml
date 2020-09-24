@@ -70,7 +70,6 @@
                     </group>
 
 					<group :hook_id="hudinteraction">
-				        <post :script_path="custom_interaction.lua"/>
 		                <post :script_path="interact.lua"/>
                     </group>
 			    </group>
