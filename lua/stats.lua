@@ -211,17 +211,13 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 				end
 
 		        local dominated = 0
+				local enemy_count = 0
 		        for _, unit in pairs(managers.enemy:all_enemies()) do
+				    enemy_count = enemy_count + 1
 			        if (unit and unit.unit and alive(unit.unit)) and (unit.unit:anim_data() and unit.unit:anim_data().hands_up or unit.unit:anim_data() and unit.unit:anim_data().surrender or unit.unit:base() and unit.unit:base().mic_is_being_moved)then
 				        dominated = dominated + 1
 			        end
 		        end
-
-				local enemies = managers.enemy:all_enemies()
-                local enemy_count = 0
-                for k, v in pairs(enemies) do
-                    enemy_count = enemy_count + 1
-                end
 
 				local enemies = enemy_count - dominated
 				if HMH:GetOption("enemy_count") and enemies > 0 then
@@ -372,17 +368,13 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 				end
 
 		        local dominated = 0
+				local enemy_count = 0
 		        for _, unit in pairs(managers.enemy:all_enemies()) do
+				    enemy_count = enemy_count + 1
 			        if (unit and unit.unit and alive(unit.unit)) and (unit.unit:anim_data() and unit.unit:anim_data().hands_up or unit.unit:anim_data() and unit.unit:anim_data().surrender or unit.unit:base() and unit.unit:base().mic_is_being_moved)then
 				        dominated = dominated + 1
 			        end
 		        end
-
-				local enemies = managers.enemy:all_enemies()
-                local enemy_count = 0
-                for k, v in pairs(enemies) do
-                    enemy_count = enemy_count + 1
-                end
 
 				local enemies = enemy_count - dominated
 				if HMH:GetOption("enemy_count") and enemies > 0 then
@@ -789,17 +781,13 @@ elseif RequiredScript == "lib/managers/hud/hudstatsscreenskirmish" then
 		}), 0)
 
 		local dominated = 0
+		local enemy_count = 0
 		for _, unit in pairs(managers.enemy:all_enemies()) do
-			if (unit and unit.unit and alive(unit.unit)) and (unit.unit:anim_data() and unit.unit:anim_data().hands_up or unit.unit:anim_data() and unit.unit:anim_data().surrender or unit.unit:base() and unit.unit:base().mic_is_being_moved)then
+		    enemy_count = enemy_count + 1
+		    if (unit and unit.unit and alive(unit.unit)) and (unit.unit:anim_data() and unit.unit:anim_data().hands_up or unit.unit:anim_data() and unit.unit:anim_data().surrender or unit.unit:base() and unit.unit:base().mic_is_being_moved)then
 				dominated = dominated + 1
 			end
 		end
-
-		local enemies = managers.enemy:all_enemies()
-        local enemy_count = 0
-        for k, v in pairs(enemies) do
-            enemy_count = enemy_count + 1
-        end
 
 		local enemies = enemy_count - dominated
 		if HMH:GetOption("enemy_count") and enemies > 0 then

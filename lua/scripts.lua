@@ -307,7 +307,7 @@ elseif RequiredScript == "lib/managers/menu/menuscenemanager" then
 
 -- 360 Driving Veiw
 elseif RequiredScript == "lib/units/beings/player/states/playerdriving" then
-    Hooks:PostHook(PlayerDriving, "_set_camera_limits", "hmh_set_camera_limits", function(self, mode, ... )
+    Hooks:PostHook(PlayerDriving, "_set_camera_limits", "hmh_set_camera_limits", function(self, mode, ...)
 		if mode == "driving" then
 			self._camera_unit:base():set_limits(180, 20)
 		end
