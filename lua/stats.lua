@@ -210,12 +210,20 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 				    }), 16)
 				end
 
+		        local dominated = 0
+		        for _, unit in pairs(managers.enemy:all_enemies()) do
+			        if (unit and unit.unit and alive(unit.unit)) and (unit.unit:anim_data() and unit.unit:anim_data().hands_up or unit.unit:anim_data() and unit.unit:anim_data().surrender or unit.unit:base() and unit.unit:base().mic_is_being_moved)then
+				        dominated = dominated + 1
+			        end
+		        end
+
 				local enemies = managers.enemy:all_enemies()
                 local enemy_count = 0
                 for k, v in pairs(enemies) do
                     enemy_count = enemy_count + 1
                 end
-				local enemies = enemy_count - managers.groupai:state():police_hostage_count()
+
+				local enemies = enemy_count - dominated
 				if HMH:GetOption("enemy_count") and enemies > 0 then
 				    placer:add_bottom(self._left:fine_text({
 					    keep_w = true,
@@ -363,12 +371,20 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 				    }), 16)
 				end
 
+		        local dominated = 0
+		        for _, unit in pairs(managers.enemy:all_enemies()) do
+			        if (unit and unit.unit and alive(unit.unit)) and (unit.unit:anim_data() and unit.unit:anim_data().hands_up or unit.unit:anim_data() and unit.unit:anim_data().surrender or unit.unit:base() and unit.unit:base().mic_is_being_moved)then
+				        dominated = dominated + 1
+			        end
+		        end
+
 				local enemies = managers.enemy:all_enemies()
                 local enemy_count = 0
                 for k, v in pairs(enemies) do
                     enemy_count = enemy_count + 1
                 end
-				local enemies = enemy_count - managers.groupai:state():police_hostage_count()
+
+				local enemies = enemy_count - dominated
 				if HMH:GetOption("enemy_count") and enemies > 0 then
 				    placer:add_bottom(self._left:fine_text({
 					    keep_w = true,
@@ -387,36 +403,42 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 			w = self._left:w() - 16 - 8
 		})
 		placer = UiPlacer:new(16, 0, 8, 4)
-
-		if managers.groupai:state():police_hostage_count() ~= 0 then
-			local dominated_text = placer:add_bottom(loot_panel:fine_text({
-				keep_w = true,
-				text = managers.localization:text("hmh_hud_stats_enemies_dominated"),
-				color = tweak_data.screen_colors.risk,
-				font = medium_font,
-				font_size = medium_font_size
-			}))
-
-			placer:add_right(nil, 0)
-			local dominated_texture = "guis/textures/pd2/skilltree/icons_atlas"
-			local dominated_rect = {128,512,64,64}
-			local dominated_icon = placer:add_left(loot_panel:fit_bitmap({
-				w = 17,
-				h = 17,
-				color = tweak_data.screen_colors.risk,
-				texture = dominated_texture,
-				texture_rect = dominated_rect
-			}))
-
-			dominated_icon:set_center_y(dominated_text:center_y())
-			placer:add_left(loot_panel:fine_text({
-				text = tostring(managers.groupai:state():police_hostage_count()),
-				color = tweak_data.screen_colors.risk,
-				font = medium_font,
-				font_size = medium_font_size
-			}), 7)
-			placer:new_row()
+		
+		local dominated = 0
+		for _, unit in pairs(managers.enemy:all_enemies()) do
+			if (unit and unit.unit and alive(unit.unit)) and (unit.unit:anim_data() and unit.unit:anim_data().hands_up or unit.unit:anim_data() and unit.unit:anim_data().surrender or unit.unit:base() and unit.unit:base().mic_is_being_moved)then
+				dominated = dominated + 1
+			end
 		end
+
+		local dominated_text = placer:add_bottom(loot_panel:fine_text({
+			keep_w = true,
+			text = managers.localization:text("hmh_hud_stats_enemies_dominated"),
+			color = tweak_data.screen_colors.risk,
+			font = medium_font,
+			font_size = medium_font_size
+		}))
+
+		placer:add_right(nil, 0)
+		local dominated_texture = "guis/textures/pd2/skilltree/icons_atlas"
+		local dominated_rect = {128,512,64,64}
+		local dominated_icon = placer:add_left(loot_panel:fit_bitmap({
+			w = 17,
+			h = 17,
+			color = tweak_data.screen_colors.risk,
+			texture = dominated_texture,
+			texture_rect = dominated_rect
+		}))
+
+		dominated_icon:set_center_y(dominated_text:center_y())
+		placer:add_left(loot_panel:fine_text({
+			text = tostring(dominated),
+			color = tweak_data.screen_colors.risk,
+			font = medium_font,
+			font_size = medium_font_size
+		}), 7)
+		placer:new_row()
+
 		if not is_whisper_mode and managers.player:has_category_upgrade("player", "convert_enemies") then
 			local minion_text = placer:add_bottom(loot_panel:fine_text({
 				keep_w = true,
@@ -766,20 +788,28 @@ elseif RequiredScript == "lib/managers/hud/hudstatsscreenskirmish" then
 			text = accuracy 
 		}), 0)
 
+		local dominated = 0
+		for _, unit in pairs(managers.enemy:all_enemies()) do
+			if (unit and unit.unit and alive(unit.unit)) and (unit.unit:anim_data() and unit.unit:anim_data().hands_up or unit.unit:anim_data() and unit.unit:anim_data().surrender or unit.unit:base() and unit.unit:base().mic_is_being_moved)then
+				dominated = dominated + 1
+			end
+		end
+
 		local enemies = managers.enemy:all_enemies()
         local enemy_count = 0
         for k, v in pairs(enemies) do
             enemy_count = enemy_count + 1
         end
-		local enemies = enemy_count - managers.groupai:state():police_hostage_count()
+
+		local enemies = enemy_count - dominated
 		if HMH:GetOption("enemy_count") and enemies > 0 then
-		    placer:add_bottom(self._left:fine_text({
+			placer:add_bottom(self._left:fine_text({
 				keep_w = true,
 				font = tweak_data.hud_stats.objectives_font,
 				font_size = tweak_data.hud_stats.loot_size,
-				color = tweak_data.screen_colors.skirmish_color,
+			    color = tweak_data.screen_colors.skirmish_color,
 				text = managers.localization:to_upper_text("menu_mutators_category_enemies") .. ": " .. enemies
-			}), 16)
+	        }), 16)
         end
 
 		placer:new_row(8, 0)
