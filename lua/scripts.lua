@@ -167,8 +167,8 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
         end
 	end
 
+-- No Red Lasers
 elseif RequiredScript == "lib/network/handlers/unitnetworkhandler" then
-    -- No Red Lasers
     function UnitNetworkHandler:set_weapon_gadget_color(unit, red, green, blue, sender)
 	    if not self._verify_character_and_sender(unit, sender) then
 		    return
@@ -185,9 +185,9 @@ elseif RequiredScript == "lib/network/handlers/unitnetworkhandler" then
 	    unit:inventory():sync_weapon_gadget_color(Color(red / 255, green / 255, blue / 255))
     end
 
+-- Toggle Interaction
 elseif RequiredScript == "lib/units/beings/player/states/playerstandard" then
     local PlayerStandard__check_action_interact_original = PlayerStandard._check_action_interact
-    -- Toggle Interaction
 	function PlayerStandard:_check_action_interact(t, input)
 		local interrupt_key_press = input.btn_interact_press
 		if HMH:GetOption("interupt_interact") and not VHUDPlus then
@@ -205,8 +205,8 @@ elseif RequiredScript == "lib/units/beings/player/states/playerstandard" then
 		return PlayerStandard__check_action_interact_original(self, t, input)
 	end
 
+-- Skip and Autoselect
 elseif RequiredScript == "lib/managers/menu/stageendscreengui" then
-    -- Skip and Autoselect
 	local update_original = StageEndScreenGui.update
 
 	function StageEndScreenGui:update(t, ...)
@@ -252,6 +252,7 @@ elseif RequiredScript == "lib/states/ingamewaitingforplayers" then
 		end
 	end
 
+-- Equipment Amount
 elseif RequiredScript == "lib/managers/menu/blackmarketgui" then
 	local function getEquipmentAmount(name_id)
 		local data = tweak_data.equipments[name_id]
@@ -295,10 +296,20 @@ elseif RequiredScript == "lib/managers/menu/blackmarketgui" then
 		    end
 	    end
     end
+
+-- Custom Filter
 elseif RequiredScript == "lib/managers/menu/menuscenemanager" then
     Hooks:PostHook(MenuSceneManager, "_set_up_environments", "hmh_set_up_environments", function(self)
 	    if HMH:GetOption("custom_filter") and self._environments and self._environments.standard and self._environments.standard.color_grading then
 		    self._environments.standard.color_grading = "color_off"
 	    end
+    end)
+
+-- 360 Driving Veiw
+elseif RequiredScript == "lib/units/beings/player/states/playerdriving" then
+    Hooks:PostHook(PlayerDriving, "_set_camera_limits", "hmh_set_camera_limits", function(self, mode, ... )
+		if mode == "driving" then
+			self._camera_unit:base():set_limits(180, 20)
+		end
     end)
 end
