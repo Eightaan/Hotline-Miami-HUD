@@ -91,7 +91,6 @@
 
 					<group :hook_id="beings/player/states/">
 						<group :hook_id="playerstandard">
-					        <post :script_path="interact.lua"/>
 							<post :script_path="inspirecooldown.lua"/>
 						    <post :script_path="scripts.lua"/>
                         </group>
