@@ -197,6 +197,9 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
 	MenuCallbackHandler.callback_custom_filter = function(self, item)
         HMH._data.custom_filter = item:value() == "on"
     end
+	MenuCallbackHandler.callback_voice = function(self, item)
+        HMH._data.voice = item:value() == "on"
+    end
     MenuCallbackHandler.HMHSave = function(this, item)
         HMH:Save()
     end

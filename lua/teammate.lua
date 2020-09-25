@@ -39,75 +39,77 @@ Hooks:PostHook(HUDTeammate, "init", "HMH_HUDTeammateInit", function(self, ...)
 	    self._panel:child("name"):set_visible(false)
     end
 
-	if self._main_player then
+	if self._main_player and HMH:GetOption("bulletstorm") then
 	    self:inject_ammo_glow()
     end
 end)
 
-function HUDTeammate:inject_ammo_glow()
-	self._primary_ammo = self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):bitmap({
-		align = "center",
-		w = 50,
-		h = 45,
-		name = "primary_ammo",
-	    visible = false,
-    	texture = "guis/textures/pd2/crimenet_marker_glow",
-	    color = Color("00AAFF"),
-    	layer = 2,
-	    blend_mode = "add"
-    })
-	self._secondary_ammo = self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):bitmap({
-    	align = "center",
-    	w = 50,
-	    h = 45,
-    	name = "secondary_ammo",
-    	visible = false,
-    	texture = "guis/textures/pd2/crimenet_marker_glow",
-    	color = Color("00AAFF"),
-    	layer = 2,
-	    blend_mode = "add"
-    })
-	self._primary_ammo:set_center_y(self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("ammo_clip"):y() + self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("ammo_clip"):h() / 2 - 2)
-	self._secondary_ammo:set_center_y(self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):child("ammo_clip"):y() + self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):child("ammo_clip"):h() / 2 - 2)
-    self._primary_ammo:set_center_x(self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("ammo_clip"):x() + self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("ammo_clip"):w() / 2)
-	self._secondary_ammo:set_center_x(self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):child("ammo_clip"):x() + self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):child("ammo_clip"):w() / 2)
-end
-
-function HUDTeammate:_set_bulletstorm(state)
-	if not HMH:GetOption("bulletstorm") then return end
-	self._bullet_storm = state
-
-    if state then   
-		local pweapon_panel = self._player_panel:child("weapons_panel"):child("primary_weapon_panel")
-		local pammo_clip = pweapon_panel:child("ammo_clip")
-	    local sweapon_panel = self._player_panel:child("weapons_panel"):child("secondary_weapon_panel")
-	    local sammo_clip = sweapon_panel:child("ammo_clip")
-
-	    self._primary_ammo:set_visible(true)
-    	self._secondary_ammo:set_visible(true)
-	    self._secondary_ammo:animate(callback(self, self, "_animate_glow"))
-    	self._primary_ammo:animate(callback(self, self, "_animate_glow"))
-
-    	pammo_clip:set_color(Color.white)
-    	pammo_clip:set_text("8")
-    	pammo_clip:set_rotation(90)
-    	pammo_clip:set_font_size(30)
-
-	    sammo_clip:set_font_size(30)
-	    sammo_clip:set_color(Color.white)
-	    sammo_clip:set_text("8")
-	    sammo_clip:set_rotation(90)
-    else
-        self._primary_ammo:set_visible(false)
-	    self._secondary_ammo:set_visible(false)
+if HMH:GetOption("bulletstorm") then
+	function HUDTeammate:inject_ammo_glow()
+		self._primary_ammo = self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):bitmap({
+			align = "center",
+			w = 50,
+			h = 45,
+			name = "primary_ammo",
+		    visible = false,
+  		  	texture = "guis/textures/pd2/crimenet_marker_glow",
+		    color = Color("00AAFF"),
+  		  	layer = 2,
+	 	   	blend_mode = "add"
+    	})
+		self._secondary_ammo = self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):bitmap({
+    		align = "center",
+    		w = 50,
+	  	  	h = 45,
+    		name = "secondary_ammo",
+    		visible = false,
+    		texture = "guis/textures/pd2/crimenet_marker_glow",
+    		color = Color("00AAFF"),
+    		layer = 2,
+	   	 	blend_mode = "add"
+   	 	})
+		self._primary_ammo:set_center_y(self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("ammo_clip"):y() + self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("ammo_clip"):h() / 2 - 2)
+		self._secondary_ammo:set_center_y(self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):child("ammo_clip"):y() + self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):child("ammo_clip"):h() / 2 - 2)
+    	self._primary_ammo:set_center_x(self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("ammo_clip"):x() + self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("ammo_clip"):w() / 2)
+		self._secondary_ammo:set_center_x(self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):child("ammo_clip"):x() + self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):child("ammo_clip"):w() / 2)
 	end
-end
 
-function HUDTeammate:_animate_glow(glow)
-	local t = 0
-	while true do
-	    t = t + coroutine.yield()
-	    glow:set_alpha((math.abs(math.sin((4 + t) * 360 * 4 / 4))))
+	function HUDTeammate:_set_bulletstorm(state)
+		if not HMH:GetOption("bulletstorm") then return end
+		self._bullet_storm = state
+
+    	if state then   
+			local pweapon_panel = self._player_panel:child("weapons_panel"):child("primary_weapon_panel")
+			local pammo_clip = pweapon_panel:child("ammo_clip")
+	   	 	local sweapon_panel = self._player_panel:child("weapons_panel"):child("secondary_weapon_panel")
+	   	 	local sammo_clip = sweapon_panel:child("ammo_clip")
+
+		    self._primary_ammo:set_visible(true)
+    		self._secondary_ammo:set_visible(true)
+		    self._secondary_ammo:animate(callback(self, self, "_animate_glow"))
+    		self._primary_ammo:animate(callback(self, self, "_animate_glow"))
+
+    		pammo_clip:set_color(Color.white)
+    		pammo_clip:set_text("8")
+    		pammo_clip:set_rotation(90)
+    		pammo_clip:set_font_size(30)
+
+		    sammo_clip:set_font_size(30)
+		    sammo_clip:set_color(Color.white)
+		    sammo_clip:set_text("8")
+	 	    sammo_clip:set_rotation(90)
+    	else
+        	self._primary_ammo:set_visible(false)
+	    	self._secondary_ammo:set_visible(false)
+		end
+	end
+
+	function HUDTeammate:_animate_glow(glow)
+		local t = 0
+		while true do
+	  		t = t + coroutine.yield()
+	    	glow:set_alpha((math.abs(math.sin((4 + t) * 360 * 4 / 4))))
+		end
 	end
 end
 
@@ -115,7 +117,7 @@ function HUDTeammate:set_voice_com(status)
 	local texture = status and "guis/textures/pd2/jukebox_playing" or "guis/textures/pd2/hud_tabs"
 	local texture_rect = status and { 0, 0, 16, 16 } or { 84, 34, 19, 19 }
 	local callsign = self._panel:child("callsign")
-	callsign:set_image(texture, unpack(texture_rect))
+	if HMH:GetOption("voice") then callsign:set_image(texture, unpack(texture_rect)) end
 end
 
 if HMH:GetOption("interact_info") or HMH:GetOption("color_name") then
@@ -136,9 +138,7 @@ if HMH:GetOption("interact_info") or HMH:GetOption("color_name") then
 	    end
 		name_bg:set_visible(true)
     end)
-end
 
-if HMH:GetOption("interact_info") or HMH:GetOption("color_name") then
     Hooks:PostHook(HUDTeammate, "set_callsign", "HMH_HUDTeammateSetCallsign", function(self, id)
     	self._condition_icon = self._panel:child("condition_icon")
     	self._condition_icon:set_color(HMH:GetOption("color_name") and tweak_data.chat_colors[id] or Color.white)
@@ -152,13 +152,30 @@ if HMH:GetOption("interact_info") or HMH:GetOption("color_name") then
 	    	self._panel:child("callsign"):set_color(tweak_data.screen_colors.pro_color)
 	    end
     end)
-end
 
-Hooks:PostHook(HUDTeammate, "set_state", "HMH_HUDTeammateSetState", function(self, state)
-	if not self._main_player and (HMH:GetOption("interact_info") or HMH:GetOption("color_name")) then
-		self._panel:child("name_panel"):set_y(self._panel:child("name"):y())
+    Hooks:PostHook(HUDTeammate, "set_state", "HMH_HUDTeammateSetState", function(self, state)
+	    if not self._main_player then
+		    self._panel:child("name_panel"):set_y(self._panel:child("name"):y())
+        end
+    end)
+
+	Hooks:PostHook(HUDTeammate, "_create_radial_health", "HMH_HUDTeammateCreateRadialHealth", function(self, radial_health_panel)
+	    local radial_ability_panel = radial_health_panel:child("radial_ability")
+        local ability_icon = radial_ability_panel:child("ability_icon")
+
+	    if HMH:GetOption("color_name") then
+	        ability_icon:set_visible(false)
+	    end
+    end)
+
+	function HUDTeammate:_animate_name(name, width)
+	    local t = 0
+	    while true do
+		    t = t + coroutine.yield()
+		    name:set_left(width * ( math.sin(90 + t * 50) * 0.5 - 0.5))
+	    end
     end
-end)
+end
 
 if HMH:GetOption("interact_info") then
     local t = 2
@@ -216,14 +233,6 @@ if HMH:GetOption("interact_info") then
         end
         HUDTeammate_teammate_progress(self, enabled, tweak_data_id, timer, success)
     end
-end
-
-function HUDTeammate:_animate_name(name, width)
-	local t = 0
-	while true do
-		t = t + coroutine.yield()
-		name:set_left(width * ( math.sin(90 + t * 50) * 0.5 - 0.5))
-	end
 end
 
 Hooks:PreHook(HUDTeammate, "set_carry_info", "HMH_HUDTeammateSetCarryInfo", function(self, ...)
@@ -629,12 +638,3 @@ if HMH:GetOption("ammo") then
         sec_weapon_selection_panel:child("weapon_selection"):set_color(Color("66ffff"))
     end)
 end
-
-Hooks:PostHook(HUDTeammate, "_create_radial_health", "HMH_HUDTeammateCreateRadialHealth", function(self, radial_health_panel)
-	local radial_ability_panel = radial_health_panel:child("radial_ability")
-    local ability_icon = radial_ability_panel:child("ability_icon")
-
-	if HMH:GetOption("color_name") then
-	    ability_icon:set_visible(false)
-	end
-end)

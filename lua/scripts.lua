@@ -1,15 +1,17 @@
 if RequiredScript == "lib/managers/hudmanagerpd2" then
 	local set_teammate_ammo_amount_orig = HUDManager.set_teammate_ammo_amount
 	local set_slot_ready_orig = HUDManager.set_slot_ready
+	local set_mugshot_voice_orig = HUDManager.set_mugshot_voice
 	local force_ready_clicked = 0
 
 	--Voice Icon
 	function HUDManager:set_mugshot_voice(id, active)
-	    local panel_id = self:_mugshot_id_to_panel_id(id)
-	    if panel_id and panel_id ~= HUDManager.PLAYER_PANEL then
-		    self._teammate_panels[panel_id]:set_voice_com(active)
-  	    end
-    end
+	local panel_id = self:_mugshot_id_to_panel_id(id)
+		if HMH:GetOption("voice") and panel_id and panel_id ~= HUDManager.PLAYER_PANEL then
+			self._teammate_panels[panel_id]:set_voice_com(active)
+		end
+		return set_mugshot_voice_orig(self, id, active)
+	end
 
 	--Screen Effects
 	local custom_radial = HUDManager.set_teammate_custom_radial

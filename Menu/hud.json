@@ -81,6 +81,15 @@
 		},
 		{
 			"type": "toggle",
+			"id": "voice_toggle",
+			"title": "voice_title",
+			"description": "voice_desc",
+			"callback": "callback_voice",
+			"value": "voice",
+			"default_value": true	
+		},
+		{
+			"type": "toggle",
 			"id": "color_name_toggle",
 			"title": "color_name_title",
 			"description": "color_name_desc",

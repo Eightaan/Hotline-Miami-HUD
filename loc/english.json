@@ -18,12 +18,14 @@
 	"mod_font_title" : "Custom Text Font",
 	"mod_font_desc" : "Enables the custom pixel font.\nWhen changed, a game restart is required to take effect.",
 
-	"hmh_hud_title" : "Player/Team panels",
+	"hmh_hud_title" : "Player/Team panel",
 	"hmh_hud_desc" : "Customize the player and team panels",
 	"PLAYER_down_title" : "Show player down counter",
 	"PLAYER_down_desc" : "Display your own down counter in the hud.",
 	"TEAM_down_title" : "Show teammate down counter",
 	"TEAM_down_desc" : "Display down counter in the hud for teammates.",
+	"voice_title" : "Team Voice Chat Icon",
+	"voice_desc" : "Display an icon when a player is talking in-game.",
 	"color_name_title" : "Colored Name Panels",
 	"color_name_desc" : "",
 	"interact_info_title" : "Teammate Interaction Text",
@@ -46,7 +48,12 @@
 	"health_texture_desc" : "Enable a custom health texture.\nWhen changed, a game restart is required to take effect.",
 	"color_title" : "Custom Name and Chat Colors",
 	"color_desc" : "Enable the custom chat colors.",
-	
+
+	"hmh_custom_chat_title" : "Chat",
+	"hmh_custom_chat_desc" : "Customize the chat.",
+	"custom_chat_title" : "Custom Chat",
+	"custom_chat_desc" : "Enable the custom chat.",
+
 	"hmh_tab_title" : "Tabstats",
 	"hmh_tab_desc" : "Customize the tabstats panel.",
 	"tab_title" : "Custom Tabstats",
@@ -61,12 +68,12 @@
 	"greenciv_title" : "Green Civilian Pacified Marker",
 	"greenciv_desc" : "Civilians that are pacified will have a green ! marker above them.",
 
-	"hmh_timer_title" : "Heist Timer",
+	"hmh_timer_title" : "Timer",
 	"hmh_timer_desc" : "Customize the heist timer.",
 	"timer_title" : "Custom Heist Timer",
 	"timer_desc" : "Enable the custom colored heist timer.",
 
-	"hmh_presenter_title" : "Presenter Panel",
+	"hmh_presenter_title" : "Presenter",
 	"hmh_presenter_desc" : "Customize the presenter panel.",
 	"presenter_title" : "Custom Presenter Panel",
 	"presenter_desc" : "Enable the custom colored presenter panel.",
@@ -88,31 +95,31 @@
 	"interact_icons_title" : "Hud interaction icons",
 	"interact_icons_desc" : "Enable the custom colored interaction icons (saw, picklock, c4 and etc).\nWhen changed, a game restart is required to take effect.",	
 
-	"hmh_hint_title" : "Hint Text",
+	"hmh_hint_title" : "Hints",
 	"hmh_hint_desc" : "Customize the hint text.",
 	"hint_title" : "Custom Hint Text",
 	"hint_desc" : "Enable the custom colored hint text.",
 	"inspire_title" : "Inspire Cooldown Hint",
 	"inspire_desc" : "Displays a hint message with the remaining cooldown time.",
 	
-	"hmh_suspicion_title" : "Suspicion Meter",
+	"hmh_suspicion_title" : "Suspicion",
 	"hmh_suspicion_desc" : "Customize the suspicion meter.",
 	"suspicion_title" : "Custom Suspicion Meter",
 	"suspicion_desc" : "Adds a custom colored suspicion meter.\nWhen changed, a game restart is required to take effect.",
 
-	"hmh_downed_title" : "Custody And Downed Text",
+	"hmh_downed_title" : "Custody And Downed",
 	"hmh_downed_desc" : "Customize the downed and custody text.",
 	"downed_title" : "Custom Downed Text",
 	"downed_desc" : "Enable the custom colored downed text.",
 	"custody_title" : "Custom Custody Text",
 	"custody_desc" : "Enable the custom colored custody text.",
 
-	"hmh_carry_title" : "Carry Panel",
+	"hmh_carry_title" : "Carrying",
 	"hmh_carry_desc" : "Customize the carry panel.",
 	"carry_title" : "Custom Carry Panel",
 	"carry_desc" : "Enable the custom carry panel.",
 
-	"hmh_assault_title" : "Assault Panel",
+	"hmh_assault_title" : "Assault",
 	"hmh_assault_desc" : "Customize the assault panel.",
 	"assault_title" : "Custom Assault Panel",
 	"assault_desc" : "Enable the custom assault panel.",
@@ -121,14 +128,14 @@
 	"pager_jam_title" : "Upgraded ECM Icon",
 	"pager_jam_desc" : "Displays an icon on the ecm timer when it blocks pagers.",
 
-	"hmh_objective_title" : "Objective Panel",
+	"hmh_objective_title" : "Objective",
 	"hmh_objective_desc" : "Customize the objective panel.",
 	"objective_title" : "Custom Objective Panel",
 	"objective_desc" : "Enable the custom objective panel.",
 	"combo_title" : "Combo Counter",
 	"combo_desc" : "Enable a hotline miami styled combo counter.",
 
-	"hmh_subs_title" : "Subtitle Text",
+	"hmh_subs_title" : "Subtitle",
 	"hmh_subs_desc" : "Customize the subtitles.",
 	"subs_title" : "Custom Subtitle Text",
 	"subs_desc" : "Enable the custom subtitles.",
@@ -145,11 +152,6 @@
 	"pick_card_desc" : "Automatically pick a card, when the loot screen is displayed",
 	"skip_card_title" : "Card Screen Delay",
 	"skip_card_desc" : "Automatically skip loot screen.\n(0 = disabled)",	
-
-	"hmh_custom_chat_title" : "Chat Panel",
-	"hmh_custom_chat_desc" : "Customize the chat.",
-	"custom_chat_title" : "Custom Chat",
-	"custom_chat_desc" : "Enable the custom chat.",
 	"custom_filter_title" : "Custom Menu Color Grading",
 	"custom_filter_desc" : "This will disable the default blue menu color filter. The menu color grading can be changed in the games video options under advanced settings."
 }
