@@ -28,7 +28,6 @@
      		      	<post :script_path="downcounter.lua"/>
 				    <post :script_path="bulletstorm.lua"/>
 				    <post :script_path="ecm.lua"/>
-				    <post :script_path="custom_interaction.lua"/>
 				    <post :script_path="customchat.lua"/>
 					<post :script_path="scripts.lua"/>
 					<post :script_path="combo.lua"/>
@@ -40,7 +39,6 @@
 				</group>
 
                 <group :hook_id="menu/">
-				    <post :hook_id="circleguiobject"   :script_path="custom_interaction.lua"/>
 					<post :hook_id="stageendscreengui" :script_path="scripts.lua"/>
 					<post :hook_id="lootdropscreengui" :script_path="scripts.lua"/>
 					<post :hook_id="blackmarketgui"    :script_path="scripts.lua"/>
