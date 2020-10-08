@@ -15,7 +15,7 @@ if RequiredScript == "core/lib/managers/subtitle/coresubtitlepresenter" then
 			name = "label",
 			font = self.__font_name,
 			font_size = self.__font_size * self._text_scale,
-			color = _G.HMH:GetOption("custom_subs") and Color("66ff99") or Color.white,
+			color = _G.HMH:GetOption("custom_subs") and _G.HMH.Green or Color.white,
 			align = "center",
 			vertical = "bottom",
 			layer = 1,

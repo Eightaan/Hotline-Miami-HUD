@@ -99,7 +99,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
             visible = not managers.groupai:state():whisper_mode(),
             text = "0",
             layer = 1,
-            color = Color("66ff99"),
+            color = HMH.Green,
             w = self._player_panel:child("radial_health_panel"):w(),
             x = 0,
             y = 0,
@@ -125,7 +125,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
             self._revives_count = 0
             if not self._main_player then
                 self._revives_counter:set_text(tostring(self._revives_count))
-				self._revives_counter:set_color(Color("66ff99"))
+				self._revives_counter:set_color(HMH.Green)
             else
                 self._revives_counter:set_text(tostring(managers.modifiers:modify_value("PlayerDamage:GetMaximumLives", (Global.game_settings.one_down and 2 or tweak_data.player.damage.LIVES_INIT) + (self._main_player and managers.player:upgrade_value("player", "additional_lives", 0) or 0))-1))
             end
@@ -140,8 +140,8 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 
     function HUDTeammate:set_health(data)
         if data.revives then
-            local revive_colors = { Color("ffcc66"), Color("66ff99"), Color("66ff99"), Color("66ff99"), Color("66ff99")}
-            self._revives_counter:set_color(revive_colors[data.revives - 1] or Color("ff6666"))
+            local revive_colors = { HMH.Yellow, HMH.Green, HMH.Green, HMH.Green, HMH.Green}
+            self._revives_counter:set_color(revive_colors[data.revives - 1] or HMH.Red)
            
             self._revives_counter:set_text(tostring(data.revives - 1))
            
@@ -150,13 +150,13 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 
 		if not self._main_player then
 		    if Global.game_settings.one_down and self._revives_count == 1 then
-		        self._revives_counter:set_color(Color("ffcc66"))
+		        self._revives_counter:set_color(HMH.Yellow)
 		    elseif Global.game_settings.one_down and self._revives_count > 1 then
-		        self._revives_counter:set_color(Color("ff6666"))
+		        self._revives_counter:set_color(HMH.Red)
 		    elseif self._revives_count == 2 then
-		        self._revives_counter:set_color(Color("ffcc66"))
+		        self._revives_counter:set_color(HMH.Yellow)
 		    elseif self._revives_count > 2 then 
-		        self._revives_counter:set_color(Color("ff6666"))
+		        self._revives_counter:set_color(HMH.Red)
 		    end
 		end
 
