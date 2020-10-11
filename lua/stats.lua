@@ -531,47 +531,50 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 		end
 		placer:new_row()
 
-		local mandatory_bags_data = managers.loot:get_mandatory_bags_data()
-		local mandatory_amount = mandatory_bags_data and mandatory_bags_data.amount
-		local secured_amount = managers.loot:get_secured_mandatory_bags_amount()
-		local bonus_amount = managers.loot:get_secured_bonus_bags_amount()
-		local bag_text = placer:add_bottom(loot_panel:fine_text({
-			keep_w = true,
-			text = managers.localization:text("hud_stats_bags_secured"),
-			font = medium_font,
-			color = tweak_data.screen_colors.text,
-			font_size = medium_font_size
-		}))
-
-		placer:add_right(nil, 0)
-
-		local bag_texture, bag_rect = tweak_data.hud_icons:get_icon_data("bag_icon")
-		local bag_icon = placer:add_left(loot_panel:fit_bitmap({
-			w = 16,
-			h = 16,
-			color = tweak_data.screen_colors.text,
-			texture = bag_texture,
-			texture_rect = bag_rect
-		}))
-		bag_icon:set_center_y(bag_text:center_y())
-
-		if mandatory_amount and mandatory_amount > 0 then
-			local str = bonus_amount > 0 and string.format("%d/%d+%d", secured_amount, mandatory_amount, bonus_amount) or string.format("%d/%d", secured_amount, mandatory_amount)
-
-			placer:add_left(loot_panel:fine_text({
-				text = str,
+        if not managers.crime_spree:is_active() then
+			local mandatory_bags_data = managers.loot:get_mandatory_bags_data()
+			local mandatory_amount = mandatory_bags_data and mandatory_bags_data.amount
+			local secured_amount = managers.loot:get_secured_mandatory_bags_amount()
+			local bonus_amount = managers.loot:get_secured_bonus_bags_amount()
+			local bag_text = placer:add_bottom(loot_panel:fine_text({
+				keep_w = true,
+				text = managers.localization:text("hud_stats_bags_secured"),
 				font = medium_font,
 				color = tweak_data.screen_colors.text,
 				font_size = medium_font_size
 			}))
-		else
-			placer:add_left(loot_panel:fine_text({
-				text = tostring(bonus_amount),
-				font = medium_font,
+
+			placer:add_right(nil, 0)
+
+			local bag_texture, bag_rect = tweak_data.hud_icons:get_icon_data("bag_icon")
+			local bag_icon = placer:add_left(loot_panel:fit_bitmap({
+				w = 16,
+				h = 16,
 				color = tweak_data.screen_colors.text,
-				font_size = medium_font_size
+				texture = bag_texture,
+				texture_rect = bag_rect
 			}))
+			bag_icon:set_center_y(bag_text:center_y())
+
+			if mandatory_amount and mandatory_amount > 0 then
+				local str = bonus_amount > 0 and string.format("%d/%d+%d", secured_amount, mandatory_amount, bonus_amount) or string.format("%d/%d", secured_amount, mandatory_amount)
+
+				placer:add_left(loot_panel:fine_text({
+					text = str,
+					font = medium_font,
+					color = tweak_data.screen_colors.text,
+					font_size = medium_font_size
+				}))
+			else
+				placer:add_left(loot_panel:fine_text({
+					text = tostring(bonus_amount),
+					font = medium_font,
+					color = tweak_data.screen_colors.text,
+					font_size = medium_font_size
+				}))
+			end
 		end
+
 		placer:new_row()
 
 		local secured_bags_money = managers.experience:cash_string(managers.money:get_secured_mandatory_bags_money() + managers.money:get_secured_bonus_bags_money())
@@ -613,6 +616,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 		loot_panel:set_size(placer:most_rightbottom())
 		loot_panel:set_leftbottom(0, self._left:h() - 16)
 	end
+
 	function HUDStatsScreen:recreate_right()
 		if self._destroy_player_info then -- Enhanced Crew Loadout compatability
 			self:_destroy_player_info()
