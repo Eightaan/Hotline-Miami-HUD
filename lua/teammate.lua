@@ -75,7 +75,6 @@ if HMH:GetOption("bulletstorm") then
 	end
 
 	function HUDTeammate:_set_bulletstorm(state)
-		if not HMH:GetOption("bulletstorm") then return end
 		self._bullet_storm = state
 
     	if state then   
@@ -127,7 +126,6 @@ if HMH:GetOption("interact_info") or HMH:GetOption("color_name") then
 	    local name_bg = teammate_panel:child("name_bg")
         self._new_name:stop()
 	    self._new_name:set_text(name:text())
-
     	local x , y , w , h = self._new_name:text_rect()
 	    self._new_name:set_left(0)
 	    self._new_name:set_size(w, h)
@@ -142,7 +140,6 @@ if HMH:GetOption("interact_info") or HMH:GetOption("color_name") then
     Hooks:PostHook(HUDTeammate, "set_callsign", "HMH_HUDTeammateSetCallsign", function(self, id)
     	self._condition_icon = self._panel:child("condition_icon")
     	self._condition_icon:set_color(HMH:GetOption("color_name") and tweak_data.chat_colors[id] or Color.white)
-
     	self._panel:child("name"):set_color(HMH:GetOption("color_name") and tweak_data.chat_colors[id] or Color.white)
 	    self._new_name:set_color(HMH:GetOption("color_name") and tweak_data.chat_colors[id] or Color.white)
 
@@ -477,7 +474,6 @@ if HMH:GetOption("ammo") then
                     primary_weapon_panel:set_alpha(math.lerp(1, 0.5, p))
                 end)
             end)
-
             secondary_weapon_panel:animate(function(o)
                 over(0.5, function(p)
                     secondary_weapon_panel:set_alpha(math.lerp(0.5, 1, p))
@@ -489,7 +485,6 @@ if HMH:GetOption("ammo") then
                     secondary_weapon_panel:set_alpha(math.lerp(1, 0.5, p))
                 end)
             end)
-
             primary_weapon_panel:animate(function(o)
                 over(0.5, function(p)
                     primary_weapon_panel:set_alpha(math.lerp(0.5, 1, p))
@@ -502,15 +497,12 @@ if HMH:GetOption("ammo") then
         local weapon_panel = self._player_panel:child("weapons_panel"):child(type .. "_weapon_panel")
         local ammo_total = weapon_panel:child("ammo_total")
         local ammo_clip = weapon_panel:child("ammo_clip")
-
         local zero = current_left < 10 and "00" or current_left < 100 and "0" or ""
         local zero_clip = current_clip < 10 and "00" or current_clip < 100 and "0" or ""
-
         local low_ammo = current_left <= math.round(max / 3)
         local out_of_ammo = current_left <= 0
         local max_ammo = (current_left == max or ((current_left + current_clip == max)))
         local cheated_ammo = current_left > max
-
         local low_clip = current_clip <= math.round(max_clip / 4)
         local out_of_clip = current_clip <= 0
         local cheated_clip = current_clip > max_clip
@@ -567,7 +559,6 @@ if HMH:GetOption("ammo") then
         end
 
         if self._last_ammo and self._last_ammo[type] and self._last_ammo[type] < current_left then
-
             ammo_total:animate(function(o)
                 local s = self._last_ammo[type]
                 local e = current_left
@@ -575,12 +566,10 @@ if HMH:GetOption("ammo") then
                     local value = math.lerp(s, e, p)
                     local text = string.format("%.0f", value)
                     local zero = math.round(value) < 10 and "00" or math.round(value) < 100 and "0" or ""
-
                     local low_ammo = value <= math.round(max / 3)
                     local out_of_ammo = value <= 0
                     local max_ammo = (value == max or ((value + current_clip == max)))
                     local cheated_ammo = value > max
-
                     local color_total = out_of_ammo and Color(1, 0.9, 0.3, 0.3)
                     color_total = color_total or max_ammo and HMH.Green
                     color_total = color_total or low_ammo and HMH.Yellow
@@ -600,7 +589,6 @@ if HMH:GetOption("ammo") then
         end
 
         if self._last_clip and self._last_clip[type] and self._last_clip[type] < current_clip and not self._bullet_storm then
-
             ammo_clip:animate(function(o)
                 local s = self._last_clip[type]
                 local e = current_clip
@@ -608,11 +596,10 @@ if HMH:GetOption("ammo") then
                     local value = math.lerp(s, e, p)
                     local text = string.format( "%.0f", value)
                     local zero = math.round(value) < 10 and "00" or math.round(value) < 100 and "0" or ""
-
                     local low_clip = value <= math.round(max_clip / 4)
                     local out_of_clip = value <= 0
-
                     local color_clip = out_of_clip and Color(1, 0.9, 0.3, 0.3)
+
                     color_clip = color_clip or low_clip and HMH.Yellow
                     color_clip = color_clip or HMH.Blue
 
@@ -623,7 +610,6 @@ if HMH:GetOption("ammo") then
             end )
 
         end
-
         self._last_ammo[type] = current_left
         self._last_clip[type] = current_clip
     end)
