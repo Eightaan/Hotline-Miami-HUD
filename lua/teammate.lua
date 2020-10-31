@@ -53,7 +53,7 @@ if HMH:GetOption("bulletstorm") then
 			name = "primary_ammo",
 		    visible = false,
   		  	texture = "guis/textures/pd2/crimenet_marker_glow",
-		    color = HMH.Blue,
+		    color = Color("00AAFF"),
   		  	layer = 2,
 	 	   	blend_mode = "add"
     	})
@@ -64,7 +64,7 @@ if HMH:GetOption("bulletstorm") then
     		name = "secondary_ammo",
     		visible = false,
     		texture = "guis/textures/pd2/crimenet_marker_glow",
-    		color = HMH.Blue,
+    		color = Color("00AAFF"),
     		layer = 2,
 	   	 	blend_mode = "add"
    	 	})
@@ -126,6 +126,7 @@ if HMH:GetOption("interact_info") or HMH:GetOption("color_name") then
 	    local name_bg = teammate_panel:child("name_bg")
         self._new_name:stop()
 	    self._new_name:set_text(name:text())
+
     	local x , y , w , h = self._new_name:text_rect()
 	    self._new_name:set_left(0)
 	    self._new_name:set_size(w, h)
@@ -140,6 +141,7 @@ if HMH:GetOption("interact_info") or HMH:GetOption("color_name") then
     Hooks:PostHook(HUDTeammate, "set_callsign", "HMH_HUDTeammateSetCallsign", function(self, id)
     	self._condition_icon = self._panel:child("condition_icon")
     	self._condition_icon:set_color(HMH:GetOption("color_name") and tweak_data.chat_colors[id] or Color.white)
+
     	self._panel:child("name"):set_color(HMH:GetOption("color_name") and tweak_data.chat_colors[id] or Color.white)
 	    self._new_name:set_color(HMH:GetOption("color_name") and tweak_data.chat_colors[id] or Color.white)
 
@@ -319,9 +321,9 @@ if HMH:GetOption("equipment") then
 
         if data.amount > 0 then
             equipment:set_alpha(1)
-            equipment:set_color(HMH.Pink)
+            equipment:set_color(Color("ff80df"))
             amount:set_alpha(1)
-            amount:set_color(HMH.Blue)
+            amount:set_color(Color("66ffff"))
         end
 
         if data.amount > 0 then
@@ -333,7 +335,7 @@ if HMH:GetOption("equipment") then
             end)
         elseif data.amount == 0 then
             equipment:animate(function(o)
-                equipment:set_color(HMH.Pink)
+                equipment:set_color(Color("ff80df"))
                 over(1, function(p)
                     equipment:set_alpha(0.2)
                     amount:set_alpha(0.2)
@@ -357,8 +359,8 @@ if HMH:GetOption("equipment") then
 
         if data.amount > 0 then
             grenades:set_alpha(1)
-            grenades:set_color(HMH.Pink)
-            amount:set_color(HMH.Blue)
+            grenades:set_color(Color("ff80df"))
+            amount:set_color(Color("66ffff"))
             amount:set_alpha(1)
         end
 
@@ -371,7 +373,7 @@ if HMH:GetOption("equipment") then
             end)
         elseif data.amount == 0 then
             grenades:animate( function(o)
-                grenades:set_color(HMH.Pink)
+                grenades:set_color(Color("ff80df"))
                 over(1, function(p)
                     grenades:set_alpha(0.2)
                     amount:set_alpha(0.2)
@@ -393,8 +395,8 @@ if HMH:GetOption("equipment") then
 
         if amount > 0 then
             cable_ties:set_alpha(1)
-            cable_ties:set_color(HMH.Pink)
-            cable_ties_amount:set_color(HMH.Blue)
+            cable_ties:set_color(Color("ff80df"))
+            cable_ties_amount:set_color(Color("66ffff"))
             cable_ties_amount:set_alpha(1)
         end
 
@@ -407,7 +409,7 @@ if HMH:GetOption("equipment") then
             end)
         elseif amount == 0 then
             cable_ties:animate(function(o)
-                cable_ties:set_color(HMH.Pink)
+                cable_ties:set_color(Color("ff80df"))
                 over(1, function(p)
                     cable_ties:set_alpha(0.2)
                     cable_ties_amount:set_alpha(0.2)
@@ -447,12 +449,12 @@ if HMH:GetOption("equipment") then
             amounts = amounts .. amount_str
 
             if amount > 0 then
-			    color = HMH.Blue
+			    color = Color("66ffff")
                 alpha = 1
             end
         end
 
-        icon:set_color(HMH.Pink)
+        icon:set_color(Color("ff80df"))
         icon:set_alpha(alpha)
         amount:set_alpha(alpha)
         amount:set_color(color)
@@ -503,6 +505,7 @@ if HMH:GetOption("ammo") then
         local out_of_ammo = current_left <= 0
         local max_ammo = (current_left == max or ((current_left + current_clip == max)))
         local cheated_ammo = current_left > max
+
         local low_clip = current_clip <= math.round(max_clip / 4)
         local out_of_clip = current_clip <= 0
         local cheated_clip = current_clip > max_clip
@@ -515,15 +518,15 @@ if HMH:GetOption("ammo") then
 		end
 
         local color_total = out_of_ammo and Color(1 , 0.9 , 0.3 , 0.3)
-        color_total = color_total or max_ammo and HMH.Green
-        color_total = color_total or low_ammo and HMH.Yellow
+        color_total = color_total or max_ammo and (Color("66ff99"))
+        color_total = color_total or low_ammo and Color("ffcc66")
         color_total = color_total or cheated_ammo and Color.red
-        color_total = color_total or HMH.Green
+        color_total = color_total or (Color("66ff99"))
 
         local color_clip = out_of_clip and Color(1 , 0.9 , 0.3 , 0.3)
-        color_clip = color_clip or low_clip and HMH.Yellow
+        color_clip = color_clip or low_clip and Color("ffcc66")
         color_clip = color_clip or cheated_clip and Color.red
-        color_clip = color_clip or HMH.Blue
+        color_clip = color_clip or (Color("66ffff"))
 
         ammo_total:stop()
         ammo_total:set_text(zero .. current_left)
@@ -571,10 +574,10 @@ if HMH:GetOption("ammo") then
                     local max_ammo = (value == max or ((value + current_clip == max)))
                     local cheated_ammo = value > max
                     local color_total = out_of_ammo and Color(1, 0.9, 0.3, 0.3)
-                    color_total = color_total or max_ammo and HMH.Green
-                    color_total = color_total or low_ammo and HMH.Yellow
+                    color_total = color_total or max_ammo and (Color("66ff99"))
+                    color_total = color_total or low_ammo and Color("ffcc66")
                     color_total = color_total or cheated_ammo and Color.red
-                    color_total = color_total or HMH.Green
+                    color_total = color_total or (Color("66ff99"))
 
                     ammo_total:set_text(zero .. text)
                     ammo_total:set_color(color_total)
@@ -600,8 +603,8 @@ if HMH:GetOption("ammo") then
                     local out_of_clip = value <= 0
                     local color_clip = out_of_clip and Color(1, 0.9, 0.3, 0.3)
 
-                    color_clip = color_clip or low_clip and HMH.Yellow
-                    color_clip = color_clip or HMH.Blue
+                    color_clip = color_clip or low_clip and Color("ffcc66")
+                    color_clip = color_clip or (Color("66ffff"))
 
                     ammo_clip:set_text(zero .. text)
                     ammo_clip:set_color(color_clip)
@@ -620,7 +623,7 @@ if HMH:GetOption("ammo") then
         local sec_weapon_selection_panel = secondary_weapon_panel:child("weapon_selection")
         local prim_weapon_selection_panel = primary_weapon_panel:child("weapon_selection")
     
-        prim_weapon_selection_panel:child("weapon_selection"):set_color(HMH.Green)
-        sec_weapon_selection_panel:child("weapon_selection"):set_color(HMH.Blue)
+        prim_weapon_selection_panel:child("weapon_selection"):set_color(Color("66ff99"))
+        sec_weapon_selection_panel:child("weapon_selection"):set_color(Color("66ffff"))
     end)
 end

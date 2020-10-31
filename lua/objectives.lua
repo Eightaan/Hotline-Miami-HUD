@@ -60,13 +60,13 @@ Hooks:PostHook(HUDObjectives, "init", "HMH_hudobjectives_init", function(self, h
     	font = tweak_data.hud.medium_font_noshadow
     })   
 
-	icon_objectivebox:set_color(HMH.Pink)	
+	icon_objectivebox:set_color(Color("ff80df"))	
 	objective_text:set_x(34)
 	objective_text:set_y(0)
 	objective_text:set_font_size(24)
-	objective_text:set_color(HMH.Blue)
+	objective_text:set_color(Color("66ffff"))
 	objective_text:set_visible(true)
-	amount_text:set_color(HMH.Yellow)
+	amount_text:set_color(Color("ffcc66"))
 end)
 
 function HUDObjectives:activate_objective( data )

@@ -6,9 +6,9 @@ Hooks:PostHook(HUDPresenter, "init", "HMH_hudpresenter_init", function(self, ...
  	local text = self._bg_box:child("text")	
  	self._hud_panel:child("present_panel"):show()
  	self._bg_box:child("bg"):hide()
-	title:set_color(HMH.Green)
+	title:set_color(Color("66ff99"))
 	title:set_font_size(24)
-	text:set_color(HMH.Blue)
+	text:set_color(Color("66ffff"))
 	text:set_font_size(20)
 end)
 

@@ -531,7 +531,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 		end
 		placer:new_row()
 
-        if not managers.crime_spree:is_active() then
+		if not managers.crime_spree:is_active() then
 			local mandatory_bags_data = managers.loot:get_mandatory_bags_data()
 			local mandatory_amount = mandatory_bags_data and mandatory_bags_data.amount
 			local secured_amount = managers.loot:get_secured_mandatory_bags_amount()

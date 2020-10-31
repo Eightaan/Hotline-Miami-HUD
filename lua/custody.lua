@@ -6,11 +6,11 @@ Hooks:PostHook( HUDPlayerCustody , "init", "HMH_HUDTeammate_init", function(self
 	local trade_delay = custody_panel:child("trade_delay")
 
 	if HMH:GetOption("custody") then
-        timer_msg:set_color(HMH.Green)
-	    timer:set_color(HMH.Blue)
+        timer_msg:set_color(Color("66ff99"))
+	    timer:set_color(Color("66ffff"))
 	    timer:set_font(Idstring("fonts/font_medium"))
-	    civilians_killed:set_color(HMH.Red)
-	    trade_delay:set_color(HMH.Yellow)
+	    civilians_killed:set_color(Color("ff6666"))
+	    trade_delay:set_color(Color("ffcc66"))
 	end
 end)
 

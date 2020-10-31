@@ -5,8 +5,8 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 	local hostages_panel = self._hud_panel:child("hostages_panel")
 	local hostage_text = self._hostages_bg_box:child("num_hostages")
 	local hostages_icon = hostages_panel:child("hostages_icon")
-	hostage_text:set_color(HMH.Blue)
-	hostages_icon:set_color(HMH.Pink)
+	hostage_text:set_color(Color("66ffff"))
+	hostages_icon:set_color(Color("ff80df"))
 
 	-- ASSAULT
 	local assault_panel = self._hud_panel:child("assault_panel")
@@ -17,7 +17,7 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 	assault_panel:set_alpha(0)
 	assault_panel:text({
 		name = "text",
-		color = HMH.Yellow,
+		color = Color("ffcc66"),
 		font = tweak_data.hud.medium_font_noshadow
 	})
 
@@ -28,14 +28,14 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 	-- CASING
 	local casing_panel = self._hud_panel:child("casing_panel")
 	local icon_casingbox = casing_panel:child("icon_casingbox")
-	icon_casingbox:set_color(HMH.Pink)
+	icon_casingbox:set_color(Color("ff80df"))
 	icon_casingbox:set_blend_mode("normal")
 
 	casing_panel:show()
 	casing_panel:set_alpha(0)
 	casing_panel:text({
 		name = "text",
-        color = HMH.Green,
+        color = Color("66ff99"),
 		font = tweak_data.hud.medium_font_noshadow
 	})
 
@@ -51,9 +51,9 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 
 	point_of_no_return_panel:show()
 	point_of_no_return_panel:set_alpha(0)
-	icon_noreturnbox:set_color(HMH.Red)
-	point_of_no_return_text:set_color(HMH.Blue)
-	point_of_no_return_timer:set_color(HMH.Red)
+	icon_noreturnbox:set_color(Color("ff80df"))
+	point_of_no_return_text:set_color(Color("66ffff"))
+	point_of_no_return_timer:set_color(Color("ff3300"))
 	point_of_no_return_timer:set_y(0)
 	point_of_no_return_text:set_blend_mode("normal")
    	point_of_no_return_timer:set_blend_mode("normal")
@@ -67,7 +67,7 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 	local buffs_panel = self._hud_panel:child("buffs_panel")
 	buffs_panel:set_x(assault_panel:left() + self._bg_box:left() - icon_offset)
 	vip_icon:set_center(self._vip_bg_box:w() / 2, self._vip_bg_box:h() / 2 - 5)
-	vip_icon:set_color(HMH.Yellow)
+	vip_icon:set_color(Color("ffcc66"))
 	vip_icon:set_blend_mode("normal")
 	self._vip_bg_box:child("bg"):hide()
 end)
@@ -77,8 +77,8 @@ Hooks:PostHook(HUDAssaultCorner, "setup_wave_display", "HMH_hudassaultcorner_set
 		local wave_panel = self._hud_panel:child("wave_panel")
 	    local waves_icon = wave_panel:child("waves_icon")
 	    local num_waves = self._wave_bg_box:child("num_waves")
-	    waves_icon:set_color(HMH.Pink)
-	    num_waves:set_color(HMH.Blue)
+	    waves_icon:set_color(Color("ff80df"))
+	    num_waves:set_color(Color("66ffff"))
 	end
 end)
 
@@ -93,7 +93,7 @@ function HUDAssaultCorner:_start_assault(text_list)
 		self._hud_panel:child("wave_panel"):set_visible(true)
 	end
 
-	icon_assaultbox:set_color(HMH.Yellow)
+	icon_assaultbox:set_color(Color("ffcc66"))
 	self._assault = true
 	self:hide_casing()
 
@@ -168,7 +168,7 @@ function HUDAssaultCorner:sync_set_assault_mode(mode)
 	local text = assault_panel:child("text")
 	local icon_assaultbox = assault_panel:child("icon_assaultbox")
 	local image = mode == "phalanx" and "guis/textures/pd2/hud_icon_padlockbox" or "guis/textures/pd2/hud_icon_assaultbox"
-	local color = mode == "phalanx" and HMH.Red or HMH.Yellow
+	local color = mode == "phalanx" and Color("ff6666") or Color("ffcc66")
 	icon_assaultbox:set_image(image)
 	icon_assaultbox:set_color(color)
 	text:set_color(color)

@@ -3,8 +3,8 @@ Hooks:PostHook(HUDPlayerDowned, "init", "hudplayerdowned_HMH", function(self, ..
 	local timer_msg = downed_panel:child("timer_msg")
 
 	if HMH:GetOption("downed") then
-        timer_msg:set_color(HMH.Pink)
-        self._hud.timer:set_color(HMH.Blue)
+        timer_msg:set_color(Color("ff80df"))
+        self._hud.timer:set_color(Color("66ffff"))
 	    self._hud.timer:set_font(Idstring("fonts/font_medium"))
 	end
 end)

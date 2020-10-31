@@ -12,12 +12,6 @@ if not HMH then
 	HMH.KillTime = 0
 	HMH.TotalKills = 0
 
-	HMH.Red = Color("ff6666")
-	HMH.Blue = Color("66ffff")
-	HMH.Pink = Color("ff80df")
-	HMH.Green = Color("66ff99")
-	HMH.Yellow = Color("ffcc66")
-
     function HMH:Save()
         local file = io.open( self._data_path, "w+" )
         if file then
