@@ -42,6 +42,11 @@ Hooks:PostHook(HUDTeammate, "init", "HMH_HUDTeammateInit", function(self, ...)
 	if self._main_player and HMH:GetOption("bulletstorm") then
 	    self:inject_ammo_glow()
     end
+
+	self._next_latency_update_t = 0
+    if HMH:GetOption("ping") then
+	    self:_create_ping_info()
+	end
 end)
 
 if HMH:GetOption("bulletstorm") then
@@ -626,4 +631,57 @@ if HMH:GetOption("ammo") then
         prim_weapon_selection_panel:child("weapon_selection"):set_color(Color("66ff99"))
         sec_weapon_selection_panel:child("weapon_selection"):set_color(Color("66ffff"))
     end)
+end
+
+function HUDTeammate:update(t,dt)
+	self:update_latency(t,dt)
+end
+
+function HUDTeammate:update_latency(t,dt)
+	local ping_panel = self._panel:child("latency")
+	if ping_panel and self:peer_id() and t > self._next_latency_update_t then
+		local net_session = managers.network:session()
+		local peer = net_session and net_session:peer(self:peer_id())
+		local latency = peer and Network:qos(peer:rpc()).ping or "n/a"
+
+		if type(latency) == "number" then
+			ping_panel:set_text(string.format("%.0fms", latency))
+			ping_panel:set_color(latency < 75 and Color('66ff99') or latency < 150 and Color('ffcc66') or Color('ff6666'))
+		else
+			ping_panel:set_text(latency)
+			ping_panel:set_color(Color('ff6666'))
+		end
+
+		self._next_latency_update_t = t + 1
+	elseif not self:peer_id() and ping_panel then
+		ping_panel:set_text("")
+	end
+end
+
+local update_original = HUDManager.update
+function HUDManager:update(...)
+	for i, panel in ipairs(self._teammate_panels) do
+		panel:update(...)
+	end
+
+	return update_original(self, ...)
+end
+
+function HUDTeammate:_create_ping_info()
+	local name_panel = self._panel:child("name")
+	local ping_info = self._panel:text({
+		name = "latency",
+		vertical = "right",
+		font_size = tweak_data.hud.small_font_size,
+		align = "right",
+		halign = "right",
+		text = "",
+		font = "fonts/font_small_mf",
+		layer = 1,
+		visible = true,
+		color = Color.white,
+		x = -12,
+		y = name_panel:y() - tweak_data.hud.small_font_size,
+		h = 50
+	})
 end

@@ -59,6 +59,15 @@
 		},
 		{
 			"type": "toggle",
+			"id": "ping_toggle",
+			"title": "ping_title",
+			"description": "ping_desc",
+			"callback": "callback_ping",
+			"value": "ping",
+			"default_value": false
+		},
+		{
+			"type": "toggle",
 			"id": "bulletstorm_toggle",
 			"title": "bulletstorm_title",
 			"description": "bulletstorm_desc",

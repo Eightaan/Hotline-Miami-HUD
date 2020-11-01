@@ -47,5 +47,6 @@
 	"tab" : true,
 	"enemy_count" : false,
 	"custom_filter" : true,
-	"voice" : true
+	"voice" : true,
+	"ping" : false
 }

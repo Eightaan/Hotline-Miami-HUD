@@ -40,6 +40,8 @@
 	"ammo_desc" : "Custom ammo color and animation.",
 	"trueammo_title" : "Use Real Ammo",
 	"trueammo_desc" : "Shows ammo left, not taking the rounds in your current magazine into account.",
+	"ping_title" : "Show Player Ping",
+	"ping_desc" : "Displays the players ping by their name panels.",
 	"bulletstorm_title" : "Bulletstorm Indicator",
 	"bulletstorm_desc" : "",
 	"screen_effect_title" : "Ability Screen Effects",
