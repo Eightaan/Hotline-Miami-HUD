@@ -43,7 +43,7 @@ Hooks:PostHook(HUDTeammate, "init", "HMH_HUDTeammateInit", function(self, ...)
 	    self:inject_ammo_glow()
     end
 
-	self._next_latency_update_t = 0
+    self._next_latency_update_t = 0
     if HMH:GetOption("ping") then
 	    self:_create_ping_info()
 	end
