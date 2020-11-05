@@ -1,4 +1,4 @@
-if not HMH:GetOption("pager_outline") or VHUDPlus or GameInfoManager or WolfHUD then return end
+if not HMH:GetOption("pager_outline") or GameInfoManager then return end
 
 if RequiredScript == "lib/managers/objectinteractionmanager" then
     local init_original = ObjectInteractionManager.init
