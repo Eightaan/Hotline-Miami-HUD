@@ -24,7 +24,7 @@
 			"description": "custom_filter_desc",
 			"callback": "callback_custom_filter",
 			"value": "custom_filter",
-			"default_value": true
+			"default_value": false
 		},
 		{
 			"type": "divider",

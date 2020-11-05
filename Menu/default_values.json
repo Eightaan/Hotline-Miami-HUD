@@ -46,7 +46,7 @@
 	"pager_outline" : false,
 	"tab" : true,
 	"enemy_count" : false,
-	"custom_filter" : true,
+	"custom_filter" : false,
 	"voice" : true,
 	"ping" : false
 }
