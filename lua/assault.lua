@@ -51,9 +51,9 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 
 	point_of_no_return_panel:show()
 	point_of_no_return_panel:set_alpha(0)
-	icon_noreturnbox:set_color(Color("ff80df"))
+	icon_noreturnbox:set_color(Color("ff6666"))
 	point_of_no_return_text:set_color(Color("66ffff"))
-	point_of_no_return_timer:set_color(Color("ff3300"))
+	point_of_no_return_timer:set_color(Color("ff6666"))
 	point_of_no_return_timer:set_y(0)
 	point_of_no_return_text:set_blend_mode("normal")
    	point_of_no_return_timer:set_blend_mode("normal")
