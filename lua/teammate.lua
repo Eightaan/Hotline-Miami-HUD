@@ -678,7 +678,7 @@ function HUDTeammate:_create_ping_info()
 		text = "",
 		font = "fonts/font_small_mf",
 		layer = 1,
-		visible = true,
+		visible = HMH:GetOption("ping") or VHUDPlus and VHUDPlus:getSetting({"CustomHUD","TEAMMATE","LATENCY"}, true),
 		color = Color.white,
 		x = -12,
 		y = name_panel:y() - tweak_data.hud.small_font_size,

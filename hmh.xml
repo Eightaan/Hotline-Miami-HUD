@@ -56,11 +56,8 @@
 		            <post :hook_id="hudchat"                :script_path="customchat.lua"/>
 					<post :hook_id="newhudstatsscreen"      :script_path="stats.lua"/>
 					<post :hook_id="hudstatsscreenskirmish" :script_path="stats.lua"/>
+					<post :hook_id="hudobjectives"          :script_path="objectives.lua"/>
 
-					<group :hook_id="hudobjectives">
-					    <post :script_path="objectives.lua"/>
-						<post :script_path="combo.lua"/>
-					</group>
 
 					<group :hook_id="hudteammate">
 	                    <post :script_path="downcounter.lua"/>
