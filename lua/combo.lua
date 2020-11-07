@@ -33,7 +33,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 	end
 
 	function HUDComboCounter:init(hud)
-		local font = "fonts/hmcc_font"
+		local font = "guis/textures/pd2_mod_hmh/hmcc_font"
 		if not managers.dyn_resource:has_resource(Idstring("font"), Idstring(font), managers.dyn_resource.DYN_RESOURCES_PACKAGE) then
 			managers.dyn_resource:load(Idstring("font"), Idstring(font), managers.dyn_resource.DYN_RESOURCES_PACKAGE, nil)
 		end
@@ -58,7 +58,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 			color = Color("e2087c"),
 			text = "0", 
 			font_size = 96,
-			font = "fonts/hmcc_font",
+			font = font,
 			x = 6, 
 			y = 0, 
 			align = "left",
@@ -71,7 +71,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 			color = Color.black,
 			text="0", 
 			font_size = 96  ,
-			font = "fonts/hmcc_font",
+			font = font,
 			x = 8, 
 			y = 1, 
 			align = "left",
@@ -81,7 +81,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 			name = "Combo_bg",
 			visible = true, 
 			layer = 0, 
-			texture = "guis/textures/hmcc_bg",
+			texture = "guis/textures/pd2_mod_hmh/hmcc_bg",
 			x = 8, 
 			w = 200,
 			h = 64,
