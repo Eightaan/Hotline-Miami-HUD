@@ -48,5 +48,5 @@
 	"custom_filter" : false,
 	"voice" : true,
 	"ping" : false,
-	"interupt_interact_hint" : false,
+	"interupt_interact_hint" : false
 }

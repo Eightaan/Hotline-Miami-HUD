@@ -155,7 +155,7 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
 	MenuCallbackHandler.callback_interupt_interact = function(self, item)
         HMH._data.interupt_interact = item:value() == "on"
     end
-		MenuCallbackHandler.callback_interupt_interact_hint = function(self, item)
+	MenuCallbackHandler.callback_interupt_interact_hint = function(self, item)
         HMH._data.interupt_interact_hint = item:value() == "on"
     end
 	MenuCallbackHandler.callback_skip_blackscreen = function(self, item)
