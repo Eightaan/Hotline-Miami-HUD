@@ -155,6 +155,9 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
 	MenuCallbackHandler.callback_interupt_interact = function(self, item)
         HMH._data.interupt_interact = item:value() == "on"
     end
+		MenuCallbackHandler.callback_interupt_interact_hint = function(self, item)
+        HMH._data.interupt_interact_hint = item:value() == "on"
+    end
 	MenuCallbackHandler.callback_skip_blackscreen = function(self, item)
         HMH._data.skip_blackscreen = item:value() == "on"
     end
@@ -184,9 +187,6 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
     end
 	MenuCallbackHandler.callback_stealth_c4 = function(self, item)
         HMH._data.stealth_c4 = item:value() == "on"
-    end
-	MenuCallbackHandler.callback_pager_outline = function(self, item)
-        HMH._data.pager_outline = item:value() == "on"
     end
 	MenuCallbackHandler.callback_tab = function(self, item)
         HMH._data.tab = item:value() == "on"

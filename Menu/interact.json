@@ -48,17 +48,17 @@
 			"default_value": false
 		},
 		{
-			"type": "divider",
-			"size": 16
+			"type": "toggle",
+			"id": "interupt_interact_hint_toggle",
+			"title": "interupt_interact_hint_title",
+			"description": "interupt_interact_hint_desc",
+			"callback": "callback_interupt_interact_hint",
+			"value": "interupt_interact_hint",
+			"default_value": false
 		},
 		{
-			"type": "toggle",
-			"id": "pager_outline_toggle",
-			"title": "pager_outline_title",
-			"description": "pager_outline_desc",
-			"callback": "callback_pager_outline",
-			"value": "pager_outline",
-			"default_value": false
+			"type": "divider",
+			"size": 8
 		},
 		{
 			"type": "toggle",

@@ -43,10 +43,10 @@
 	"pager_jam" : true,
 	"interact_icons" : true,
 	"stealth_c4" : false,
-	"pager_outline" : false,
 	"tab" : true,
 	"enemy_count" : false,
 	"custom_filter" : false,
 	"voice" : true,
-	"ping" : false
+	"ping" : false,
+	"interupt_interact_hint" : false,
 }

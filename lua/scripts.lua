@@ -187,26 +187,6 @@ elseif RequiredScript == "lib/network/handlers/unitnetworkhandler" then
 	    unit:inventory():sync_weapon_gadget_color(Color(red / 255, green / 255, blue / 255))
     end
 
--- Toggle Interaction
-elseif RequiredScript == "lib/units/beings/player/states/playerstandard" then
-    local PlayerStandard__check_action_interact_original = PlayerStandard._check_action_interact
-	function PlayerStandard:_check_action_interact(t, input)
-		local interrupt_key_press = input.btn_interact_press
-		if HMH:GetOption("interupt_interact") and not VHUDPlus then
-			interrupt_key_press = input.btn_use_item_press
-		end
-
-		if not VHUDPlus and interrupt_key_press and self:_interacting() then
-			self:_interupt_action_interact()
-			return false
-		elseif input.btn_interact_release and self._interact_params and HMH:GetOption("toggle_interact") > 0 and not VHUDPlus then
-			if self._interact_params.timer >= HMH:GetOption("toggle_interact") then
-				return false
-			end
-		end
-		return PlayerStandard__check_action_interact_original(self, t, input)
-	end
-
 -- Skip and Autoselect
 elseif RequiredScript == "lib/managers/menu/stageendscreengui" then
 	local update_original = StageEndScreenGui.update
