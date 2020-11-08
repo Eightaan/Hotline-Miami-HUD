@@ -658,15 +658,6 @@ function HUDTeammate:update_latency(t,dt)
 	end
 end
 
-local update_original = HUDManager.update
-function HUDManager:update(...)
-	for i, panel in ipairs(self._teammate_panels) do
-		panel:update(...)
-	end
-
-	return update_original(self, ...)
-end
-
 function HUDTeammate:_create_ping_info()
 	local name_panel = self._panel:child("name")
 	local ping_info = self._panel:text({

@@ -1,6 +1,7 @@
 if RequiredScript == "lib/managers/hudmanagerpd2" then
 	local set_teammate_ammo_amount_orig = HUDManager.set_teammate_ammo_amount
 	local set_slot_ready_orig = HUDManager.set_slot_ready
+	local update_original = HUDManager.update
 	local set_mugshot_voice_orig = HUDManager.set_mugshot_voice
 	local force_ready_clicked = 0
 
@@ -12,6 +13,14 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		end
 		return set_mugshot_voice_orig(self, id, active)
 	end
+	
+    --Ping Display
+    function HUDManager:update(...)
+	    for i, panel in ipairs(self._teammate_panels) do
+		    panel:update(...)
+	    end
+	    return update_original(self, ...)
+    end
 
 	--Screen Effects
 	local custom_radial = HUDManager.set_teammate_custom_radial
