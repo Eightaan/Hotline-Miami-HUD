@@ -6,16 +6,19 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 	end
 
 elseif RequiredScript == "lib/units/beings/player/states/playerstandard" then
-    local _check_action_interact_original = PlayerStandard._check_action_interact
+	local _update_interaction_timers_original = PlayerStandard._update_interaction_timers
+	local _check_action_interact_original = PlayerStandard._check_action_interact
+
+	function PlayerStandard:_update_interaction_timers(t, ...)
+		self:_check_interaction_locked(t)
+		return _update_interaction_timers_original(self, t, ...)
+	end
+
 	function PlayerStandard:_check_action_interact(t, input, ...)
 		if not self:_check_interact_toggle(t, input) then
 			return _check_action_interact_original(self, t, input, ...)
 		end
 	end
-
-   Hooks:PostHook(PlayerStandard, "_update_interaction_timers", "HMM_PlayerStandard_update_interaction_timers", function(self, t, ...)
-		self:_check_interaction_locked(t)
-	end)
 
 	function PlayerStandard:_check_interaction_locked(t)
 		local is_locked = false
@@ -48,12 +51,16 @@ elseif RequiredScript == "lib/units/beings/player/states/playerstandard" then
 	end
 
 elseif RequiredScript == "lib/managers/hud/hudinteraction" then
-    Hooks:PostHook(HUDInteraction, "hide_interaction_bar", "HMM_HUDInteraction_hide_interaction_bar", function(self, complete, ...)
+	local hide_interaction_bar_original = HUDInteraction.hide_interaction_bar
+	local show_interact_original		= HUDInteraction.show_interact
+
+	function HUDInteraction:hide_interaction_bar(complete, ...)
 		if self._old_text then
 			self._hud_panel:child(self._child_name_text):set_text(self._old_text or "")
 			self._old_text = nil
 		end
-	end)
+		return hide_interaction_bar_original(self, complete, ...)
+	end
 
 	function HUDInteraction:set_locked(status, tweak_entry)
 		if status then
@@ -64,6 +71,12 @@ elseif RequiredScript == "lib/managers/hud/hudinteraction" then
 				locked_text = managers.localization:to_upper_text(tweak_entry == "corpse_alarm_pager" and "hmh_int_locked_pager" or "hmh_int_locked", {BTN_CANCEL = btn_cancel})
 			end
 			self._hud_panel:child(self._child_name_text):set_text(locked_text)
+		end
+	end
+
+	function HUDInteraction:show_interact(data)
+		if not self._old_text then
+			return show_interact_original(self, data)
 		end
 	end
 end

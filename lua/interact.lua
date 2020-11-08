@@ -33,7 +33,7 @@ elseif RequiredScript == "lib/units/interactions/interactionext" then
 	    macros.INTERACT = self:_btn_interact() or managers.localization:get_default_macro("BTN_INTERACT") --Ascii ID for RB
 	    if self._unit:carry_data() then
 		    local carry_id = self._unit:carry_data():carry_id()
-		    macros.BAG = managers.localization:text(tweak_data.carry[carry_id].name_id)
+			macros.BAG = managers.localization:text(tweak_data.carry[carry_id]) and managers.localization:text(tweak_data.carry[carry_id].name_id)
 	    end
     end
 
