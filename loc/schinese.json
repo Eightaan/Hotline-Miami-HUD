@@ -1,10 +1,12 @@
 {
 	"hud_instruct_mask_on" : "",
-	"hud_int_hold_grab_the_bag" : "Hold $INTERACT to grab the $BAG",
+	"hud_int_hold_grab_the_bag" : "按住 $INTERACT 捡起 $BAG",
 	"hmh_dialog_force_start_title" : "强制开始游戏？",
 	"hmh_dialog_force_start_desc" : "你确定要强制游戏开始吗？",
 	"hmh_hud_assault_assault" : "Assault in progress",
 	"hmh_inspire_cooldown_text" : "Inspire still has a cooldown of",
+	"hmh_int_locked" : "按 $BTN_CANCEL 中断",
+	"hmh_int_locked_pager" : "按 $BTN_CANCEL 中断\n(触发警报)",
 	"hmh_hud_stats_enemies_dominated" : "ENEMIES CUFFED",
 
 	"hmh_title" : "迈阿密热线Hud",
@@ -90,6 +92,8 @@
 	"toggle_interact_desc" : "选择要锁定多长时间以上的交互 (0 = 不锁定)",
 	"interupt_interact_title" : "设备中断键",
 	"interupt_interact_desc" : "单击交互按钮将中断交互",
+	"interupt_interact_hint_title" : "显示中断提示",
+	"interupt_interact_hint_desc" : "显示文本提醒你，按哪个键会打断你的互动"
 	"stealth_c4_title" : "聚能炸药抑制助手",
 	"stealth_c4_desc" : "以防出现事故，你需要双击才能在潜入中部署聚能炸药",
 	"interact_icons_title" : "Hud交互图标",
@@ -153,11 +157,5 @@
 	"skip_card_title" : "卡片界面延迟",
 	"skip_card_desc" : "自动跳过战利品选择界面.\n(0 = 不跳过)",	
 	"custom_filter_title" : "自定义菜单颜色分级",
-	"custom_filter_desc" : "这将禁用默认的蓝色菜单颜色滤镜。菜单颜色分级可以在“高级设置”下的“游戏视频选项”中更改。",
-	
-	
-	"hmh_int_locked" : "PRESS $BTN_CANCEL TO INTERRUPT",
-	"hmh_int_locked_pager" : "PRESS $BTN_CANCEL TO INTERRUPT\n(TRIGGERS ALARM)",
-	"interupt_interact_hint_title" : "Show Interrupt Hint",
-	"interupt_interact_hint_desc" : "Show a text to remind you, which button will interrupt your Interaction."
+	"custom_filter_desc" : "这将禁用默认的蓝色菜单颜色滤镜。菜单颜色分级可以在“高级设置”下的“游戏视频选项”中更改。"
 }
