@@ -93,7 +93,7 @@
 	"interupt_interact_title" : "设备中断键",
 	"interupt_interact_desc" : "单击交互按钮将中断交互",
 	"interupt_interact_hint_title" : "显示中断提示",
-	"interupt_interact_hint_desc" : "显示文本提醒你，按哪个键会打断你的互动"
+	"interupt_interact_hint_desc" : "显示文本提醒你，按哪个键会打断你的互动",
 	"stealth_c4_title" : "聚能炸药抑制助手",
 	"stealth_c4_desc" : "以防出现事故，你需要双击才能在潜入中部署聚能炸药",
 	"interact_icons_title" : "Hud交互图标",
