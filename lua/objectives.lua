@@ -58,8 +58,7 @@ Hooks:PostHook(HUDObjectives, "init", "HMH_hudobjectives_init", function(self, h
 		color = Color.white,
 		font_size = tweak_data.hud.active_objective_title_font_size,
     	font = tweak_data.hud.medium_font_noshadow
-    })   
-
+    })
 	icon_objectivebox:set_color(Color("ff80df"))	
 	objective_text:set_x(34)
 	objective_text:set_y(0)
