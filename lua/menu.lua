@@ -238,7 +238,7 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
                     CreateDirectory(directory)
 				else
 					table.remove(mod:GetUpdates(), i)
-					io.remove_directory_and_files(directory)
+					--io.remove_directory_and_files(directory)
 				end
 			end
 		end
