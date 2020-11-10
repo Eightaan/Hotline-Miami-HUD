@@ -80,6 +80,10 @@ if not HMH then
 			DB:create_entry(Idstring("texture"), Idstring("units/gui/sawblade_indicator_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/sawblade_indicator_df.texture")
 			DB:create_entry(Idstring("texture"), Idstring("units/gui/thermite_indicator_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/thermite_indicator_df.texture")
 		end
+
+		if HMH:GetOption("custom_menu_background") == 2 then
+		    DB:create_entry(Idstring("texture"), Idstring("units/menu/menu_scene/menu_background_pattern"), self._path .. "assets/guis/textures/pd2_mod_hmh/classic_purple_bg.texture")
+		end
     end
 
     function HMH:LoadDefaults()

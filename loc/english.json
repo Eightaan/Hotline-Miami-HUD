@@ -157,5 +157,10 @@
 	"skip_card_title" : "Card Screen Delay",
 	"skip_card_desc" : "Automatically skip loot screen.\n(0 = disabled)",	
 	"custom_filter_title" : "Custom Menu Color Grading",
-	"custom_filter_desc" : "This will disable the default blue menu color filter. The menu color grading can be changed in the games video options under advanced settings."
+	"custom_filter_desc" : "This will disable the default blue menu color filter. The menu color grading can be changed in the games video options under advanced settings.",
+	
+	"custom_menu_background_title" : "Menu Background",
+	"custom_menu_background_desc" : "Choose what background to use.\nWhen changed, a game restart is required to take effect.",
+	"default_background" : "Default",
+	"custom_background" : "Classic Purple"
 }

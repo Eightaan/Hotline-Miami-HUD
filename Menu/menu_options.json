@@ -5,6 +5,22 @@
 	"description": "hmh_menu_options_desc",
 	"items": [
 		{
+			"type" : "multiple_choice",
+			"id" : "custom_menu_background_multiple_choice",
+			"title" : "custom_menu_background_title",
+			"description" : "custom_menu_background_desc",
+			"callback" : "callback_custom_menu_background",
+			"items" : [
+				"default_background",
+				"custom_background"
+			],
+			"value" : "custom_menu_background"
+		},
+		{
+			"type": "divider",
+			"size": 8
+		},
+		{
 			"type": "toggle",
 			"id": "menu_color_toggle",
 			"title": "menu_color_title",

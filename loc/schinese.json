@@ -157,5 +157,10 @@
 	"skip_card_title" : "卡片界面延迟",
 	"skip_card_desc" : "自动跳过战利品选择界面.\n(0 = 不跳过)",	
 	"custom_filter_title" : "自定义菜单颜色分级",
-	"custom_filter_desc" : "这将禁用默认的蓝色菜单颜色滤镜。菜单颜色分级可以在“高级设置”下的“游戏视频选项”中更改。"
+	"custom_filter_desc" : "This will disable the default blue menu color filter. The menu color grading can be changed in the games video options under advanced settings.",
+	
+	"custom_menu_background_title" : "Menu Background",
+	"custom_menu_background_desc" : "Choose what background to use.\nWhen changed, a game restart is required to take effect.",
+	"default_background" : "Default",
+	"custom_background" : "Classic Purple"
 }
