@@ -1,0 +1,30 @@
+{
+	"menu_id": "hmh_tab",
+	"parent_menu_id": "hmh_menu",
+	"title": "hmh_tab_title",
+	"description": "hmh_tab_desc",
+	"items": [
+		{
+			"type": "toggle",
+			"id": "tab_toggle",
+			"title": "tab_title",
+			"description": "tab_desc",
+			"callback": "callback_tab",
+			"value": "tab",
+			"default_value": true
+		},
+		{
+			"type": "divider",
+			"size": 8
+		},
+		{
+			"type": "toggle",
+			"id": "enemy_count_toggle",
+			"title": "enemy_count_title",
+			"description": "enemy_count_desc",
+			"callback": "callback_enemy_count",
+			"value": "enemy_count",
+			"default_value": true
+		}
+	]
+}

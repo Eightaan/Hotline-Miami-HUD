@@ -1,0 +1,17 @@
+{
+	"menu_id": "hmh_menu_timer",
+	"parent_menu_id": "hmh_menu",
+	"title": "hmh_timer_title",
+	"description": "hmh_timer_desc",
+	"items": [
+		{
+			"type": "toggle",
+			"id": "timer_toggle",
+			"title": "timer_title",
+			"description": "timer_desc",
+			"callback": "callback_timer",
+			"value": "timer",
+			"default_value": true
+		}
+	]
+}

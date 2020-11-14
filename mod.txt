@@ -4,7 +4,7 @@
 	"author" : "Eightan",
 	"version" : "4.8.9",
 	"blt_version" : 2,
-	"supermod_definition" : "hmh.xml",
+	"supermod_definition" : "HMH.xml",
 	"image" : "icon.png",
 	"color" : "0 0.6 0.286",
 	"contact": "\n https://steamcommunity.com/id/Eightan/",

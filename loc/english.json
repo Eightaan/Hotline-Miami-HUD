@@ -19,8 +19,11 @@
     "mod_overrides_desc" : "Mod Overrides are custom textures and font that change the menu to Hotline Miami.\nWhen changed, a game restart is required to take effect.",
 	"mod_font_title" : "Custom Text Font",
 	"mod_font_desc" : "Enables the custom pixel font.\nWhen changed, a game restart is required to take effect.",
+	"combo_title" : "Combo Counter",
+	"combo_desc" : "Enable a hotline miami styled combo counter.",
+	
 
-	"hmh_hud_title" : "Player/Team panel",
+	"hmh_hud_title" : "Player/Team",
 	"hmh_hud_desc" : "Customize the player and team panels",
 	"PLAYER_down_title" : "Show player down counter",
 	"PLAYER_down_desc" : "Display your own down counter in the hud.",
@@ -52,6 +55,10 @@
 	"health_texture_desc" : "Enable a custom health texture.\nWhen changed, a game restart is required to take effect.",
 	"color_title" : "Custom Name and Chat Colors",
 	"color_desc" : "Enable the custom chat colors.",
+	"downed_title" : "Custom Downed Text",
+	"downed_desc" : "Enable the custom colored downed text at the top of the screen.",
+	"custody_title" : "Custom Custody Text",
+	"custody_desc" : "Enable the custom colored custody text when taken into custody(civillian killed/time).",
 
 	"hmh_custom_chat_title" : "Chat",
 	"hmh_custom_chat_desc" : "Customize the chat.",
@@ -111,13 +118,6 @@
 	"suspicion_title" : "Custom Suspicion Meter",
 	"suspicion_desc" : "Adds a custom colored suspicion meter.\nWhen changed, a game restart is required to take effect.",
 
-	"hmh_downed_title" : "Custody And Downed",
-	"hmh_downed_desc" : "Customize the downed and custody text.",
-	"downed_title" : "Custom Downed Text",
-	"downed_desc" : "Enable the custom colored downed text.",
-	"custody_title" : "Custom Custody Text",
-	"custody_desc" : "Enable the custom colored custody text.",
-
 	"hmh_carry_title" : "Carrying",
 	"hmh_carry_desc" : "Customize the carry panel.",
 	"carry_title" : "Custom Carry Panel",
@@ -136,8 +136,6 @@
 	"hmh_objective_desc" : "Customize the objective panel.",
 	"objective_title" : "Custom Objective Panel",
 	"objective_desc" : "Enable the custom objective panel.",
-	"combo_title" : "Combo Counter",
-	"combo_desc" : "Enable a hotline miami styled combo counter.",
 
 	"hmh_subs_title" : "Subtitle",
 	"hmh_subs_desc" : "Customize the subtitles.",

@@ -1,0 +1,64 @@
+{
+	"menu_id": "hmh_menu",
+	"parent_menu_id": "blt_options",
+	"title": "hmh_title",
+    "description": "hmh_desc",
+    "back_callback" : "HMHSave",
+	"items": [
+		{
+		    "type": "slider",
+			"id": "hud_scale_slider",
+			"title": "hud_scale_title",
+			"description": "hud_scale_desc",
+			"callback": "callback_hud_scale",
+			"value": "hud_scale",
+			"max": 1,
+            "min": 0.5,
+            "step": 0.05,
+            "default_value": 1
+		},
+		{
+			"type": "divider",
+			"size": 16
+        },
+        {
+			"type": "toggle",
+			"id": "mod_overrides_toggle",
+			"title": "mod_overrides_title",
+			"description": "mod_overrides_desc",
+			"callback": "callback_mod_overrides",
+			"value": "mod_overrides",
+			"default_value": true
+		},
+		{
+			"type": "divider",
+			"size": 4
+        },
+        {
+			"type": "toggle",
+			"id": "mod_font_toggle",
+			"title": "mod_font_title",
+			"description": "mod_font_desc",
+			"callback": "callback_font",
+			"value": "font",
+			"default_value": false
+        },
+        {
+			"type": "divider",
+			"size": 8
+		},
+		{
+			"type": "toggle",
+			"id": "combo_toggle",
+			"title": "combo_title",
+			"description": "combo_desc",
+			"callback": "callback_combo",
+			"value": "combo",
+			"default_value": false
+	    },
+        {
+			"type": "divider",
+			"size": 16
+        }
+	]
+}

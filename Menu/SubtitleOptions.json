@@ -1,0 +1,17 @@
+{
+	"menu_id": "hmh_menu_subs",
+	"parent_menu_id": "hmh_menu",
+	"title": "hmh_subs_title",
+	"description": "hmh_subs_desc",
+	"items": [
+		{
+			"type": "toggle",
+			"id": "subs_toggle",
+			"title": "subs_title",
+			"description": "subs_desc",
+			"callback": "callback_custom_subs",
+			"value": "custom_subs",
+			"default_value": true
+		}
+	]
+}

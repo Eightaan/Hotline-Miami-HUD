@@ -1,0 +1,17 @@
+{
+	"menu_id": "hmh_menu_custom_chat",
+	"parent_menu_id": "hmh_menu",
+	"title": "hmh_custom_chat_title",
+	"description": "hmh_custom_chat_desc",
+	"items": [
+		{
+			"type": "toggle",
+			"id": "custom_chat_toggle",
+			"title": "custom_chat_title",
+			"description": "custom_chat_desc",
+			"callback": "callback_custom_chat",
+			"value": "custom_chat",
+			"default_value": true
+		}
+	]
+}
