@@ -617,7 +617,13 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 		loot_panel:set_leftbottom(0, self._left:h() - 16)
 	end
 
-	function HUDStatsScreen:recreate_right()
+    local HUDStatsScreen_recreate_right = HUDStatsScreen.recreate_right
+	function HUDStatsScreen:recreate_right(...)
+	local setting = true
+		if _G.LobbyPlayerInfo and LobbyPlayerInfo.settings.show_skills_in_stats_screen and setting then
+            return HUDStatsScreen_recreate_right(self, ...) -- LobbyPlayerInfo compatability
+		end
+	
 		if self._destroy_player_info then -- Enhanced Crew Loadout compatability
 			self:_destroy_player_info()
 		end
