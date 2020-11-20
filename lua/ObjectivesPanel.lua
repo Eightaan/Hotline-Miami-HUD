@@ -115,3 +115,16 @@ function HUDObjectives:remind_objective(id)
 		return
 	end
 end
+
+local orig = HUDBGBox_create
+function HUDBGBox_create(panel, params, config)
+	config = config or {}
+	config.color = Color.white:with_alpha(0)
+	config.bg_color = Color.white:with_alpha(0)
+	local box_panel = orig(panel, params, config)
+	box_panel:child("left_top"):hide()
+	box_panel:child("left_bottom"):hide()
+	box_panel:child("right_top"):hide()
+	box_panel:child("right_bottom"):hide()
+	return box_panel
+end
