@@ -467,7 +467,7 @@ if HMH:GetOption("equipment") then
 end
 
 if HMH:GetOption("ammo") then
-    Hooks:PreHook(HUDTeammate, "set_weapon_selected", "HMH_HUDTeammateSetWeaponSelected", function(self, id, hud_icon)
+    Hooks:PreHook(HUDTeammate, "set_weapon_selected", "HMH_HUDTeammateSetWeaponSelected", function(self, id, ...)
         local is_secondary = id == 1
         local secondary_weapon_panel = self._player_panel:child("weapons_panel"):child("secondary_weapon_panel")
         local primary_weapon_panel = self._player_panel:child("weapons_panel"):child("primary_weapon_panel")
