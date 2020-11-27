@@ -4,16 +4,21 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 	local update_original = HUDManager.update
 	local set_mugshot_voice_orig = HUDManager.set_mugshot_voice
 	local force_ready_clicked = 0
-
-	--Voice Icon
+	
 	function HUDManager:set_mugshot_voice(id, active)
-	local panel_id = self:_mugshot_id_to_panel_id(id)
+	set_mugshot_voice_orig(self, id, active)
+	local panel_id
+		for _, data in pairs(managers.criminals:characters()) do
+			if data.data.mugshot_id == id then
+				panel_id = data.data.panel_id
+				break
+			end
+		end
 		if HMH:GetOption("voice") and panel_id and panel_id ~= HUDManager.PLAYER_PANEL then
 			self._teammate_panels[panel_id]:set_voice_com(active)
 		end
-		return set_mugshot_voice_orig(self, id, active)
 	end
-	
+
     --Ping Display
     function HUDManager:update(...)
 	    for i, panel in ipairs(self._teammate_panels) do
