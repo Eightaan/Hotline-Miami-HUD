@@ -1,11 +1,6 @@
-if VHUDPlus then return end
+if HMH:GetOption("toggle_interact") == 0 or VHUDPlus then return end
 
-if RequiredScript == "lib/managers/hudmanagerpd2" then
-	function HUDManager:set_interaction_bar_locked(status, tweak_entry)
-	    self._hud_interaction:set_locked(status, tweak_entry)
-	end
-
-elseif RequiredScript == "lib/units/beings/player/states/playerstandard" then
+if RequiredScript == "lib/units/beings/player/states/playerstandard" then
 	local _update_interaction_timers_original = PlayerStandard._update_interaction_timers
 	local _check_action_interact_original = PlayerStandard._check_action_interact
 
@@ -23,9 +18,7 @@ elseif RequiredScript == "lib/units/beings/player/states/playerstandard" then
 	function PlayerStandard:_check_interaction_locked(t)
 		local is_locked = false
 		if self._interact_params ~= nil then
-			if HMH:GetOption("toggle_interact") > 0 then
-				is_locked = self._interact_params and (self._interact_params.timer >= HMH:GetOption("toggle_interact"))
-			end
+			is_locked = self._interact_params and (self._interact_params.timer >= HMH:GetOption("toggle_interact"))
 		end
 
 		if self._interaction_locked ~= is_locked then
@@ -50,6 +43,11 @@ elseif RequiredScript == "lib/units/beings/player/states/playerstandard" then
 		end
 	end
 
+elseif RequiredScript == "lib/managers/hudmanagerpd2" then
+	function HUDManager:set_interaction_bar_locked(status, tweak_entry)
+	    self._hud_interaction:set_locked(status, tweak_entry)
+	end
+
 elseif RequiredScript == "lib/managers/hud/hudinteraction" then
 	local hide_interaction_bar_original = HUDInteraction.hide_interaction_bar
 	local show_interact_original		= HUDInteraction.show_interact
@@ -59,13 +57,13 @@ elseif RequiredScript == "lib/managers/hud/hudinteraction" then
 			self._hud_panel:child(self._child_name_text):set_text(self._old_text or "")
 			self._old_text = nil
 		end
-		return hide_interaction_bar_original(self, complete, ...)
+		return hide_interaction_bar_original(self, false, ...)
 	end
 
 	function HUDInteraction:set_locked(status, tweak_entry)
 		if status then
 			self._old_text = self._hud_panel:child(self._child_name_text):text()
-			local locked_text = self._old_text
+			local locked_text = ""
 			if HMH:GetOption("interupt_interact_hint") then
 				local btn_cancel = HMH:GetOption("interupt_interact") and (managers.localization:btn_macro("use_item", true) or managers.localization:get_default_macro("BTN_USE_ITEM")) or (managers.localization:btn_macro("interact", true) or managers.localization:get_default_macro("BTN_INTERACT"))
 				locked_text = managers.localization:to_upper_text(tweak_entry == "corpse_alarm_pager" and "hmh_int_locked_pager" or "hmh_int_locked", {BTN_CANCEL = btn_cancel})
