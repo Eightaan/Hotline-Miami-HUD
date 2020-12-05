@@ -63,7 +63,7 @@ elseif RequiredScript == "lib/managers/hud/hudinteraction" then
 	function HUDInteraction:set_locked(status, tweak_entry)
 		if status then
 			self._old_text = self._hud_panel:child(self._child_name_text):text()
-			local locked_text = ""
+			local locked_text = self._old_text
 			if HMH:GetOption("interupt_interact_hint") then
 				local btn_cancel = HMH:GetOption("interupt_interact") and (managers.localization:btn_macro("use_item", true) or managers.localization:get_default_macro("BTN_USE_ITEM")) or (managers.localization:btn_macro("interact", true) or managers.localization:get_default_macro("BTN_INTERACT"))
 				locked_text = managers.localization:to_upper_text(tweak_entry == "corpse_alarm_pager" and "hmh_int_locked_pager" or "hmh_int_locked", {BTN_CANCEL = btn_cancel})
