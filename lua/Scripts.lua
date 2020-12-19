@@ -1,5 +1,3 @@
-if _G.IS_VR then return end
-
 if RequiredScript == "lib/managers/hudmanagerpd2" then
 	local set_teammate_ammo_amount_orig = HUDManager.set_teammate_ammo_amount
 	local set_slot_ready_orig = HUDManager.set_slot_ready

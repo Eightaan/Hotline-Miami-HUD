@@ -1,4 +1,4 @@
-if not HMH:GetOption("bulletstorm") or (WolfHUD and WolfHUD:getSetting({"CustomHUD", "ENABLED"}, true)) or _G.IS_VR then return end
+if not HMH:GetOption("bulletstorm") or (WolfHUD and WolfHUD:getSetting({"CustomHUD", "ENABLED"}, true)) then return end
 
 if RequiredScript == "lib/managers/hudmanagerpd2" then
     function HUDManager:set_bulletstorm( state )
