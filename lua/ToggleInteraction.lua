@@ -57,7 +57,7 @@ elseif RequiredScript == "lib/managers/hud/hudinteraction" then
 			self._hud_panel:child(self._child_name_text):set_text(self._old_text or "")
 			self._old_text = nil
 		end
-		return hide_interaction_bar_original(self, false, ...)
+		return hide_interaction_bar_original(self, complete, ...)
 	end
 
 	function HUDInteraction:set_locked(status, tweak_entry)
