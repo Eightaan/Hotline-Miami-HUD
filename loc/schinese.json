@@ -162,5 +162,7 @@
 	"custom_menu_background_title" : "菜单背景",
 	"custom_menu_background_desc" : "选择要使用哪一个菜单背景",
 	"default_background" : "默认",
-	"custom_background" : "经典紫色"
+	"custom_background" : "经典紫色",
+	"stamina_title" : "Stamina Circle",
+	"stamina_desc" : "Display a stamina circle in the hud."
 }

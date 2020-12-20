@@ -31,6 +31,7 @@
 					<post :script_path="Scripts.lua"/>
 					<post :script_path="ComboCounter.lua"/>
 					<post :script_path="ToggleInteraction.lua"/>
+					<post :script_path="Stamina.lua"/>
                 </group>
 
 				<group :hook_id="group_ai_states/groupaistatebase">
@@ -62,6 +63,7 @@
 					<group :hook_id="hudteammate">
 	                    <post :script_path="Downcounter.lua"/>
                         <post :script_path="TeamPanel.lua"/>
+						<post :script_path="Stamina.lua"/>
                     </group>
 
 					<group :hook_id="hudinteraction">

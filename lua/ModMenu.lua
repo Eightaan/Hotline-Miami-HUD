@@ -203,6 +203,9 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
 	MenuCallbackHandler.callback_ping = function(self, item)
         HMH._data.ping = item:value() == "on"
     end
+	MenuCallbackHandler.callback_stamina = function(self, item)
+        HMH._data.stamina = item:value() == "on"
+    end
 	MenuCallbackHandler.callback_custom_menu_background = function(self, item)
         HMH._data.custom_menu_background = item:value()
     end
