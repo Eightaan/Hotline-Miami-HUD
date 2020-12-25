@@ -49,5 +49,6 @@
 	"voice" : true,
 	"ping" : false,
 	"interupt_interact_hint" : false,
-	"custom_menu_background" : 1
+	"custom_menu_background" : 1,
+	"stamina" : false
 }

@@ -95,6 +95,15 @@
 		},
 		{
 			"type": "toggle",
+			"id": "stamina_toggle",
+			"title": "stamina_title",
+			"description": "stamina_desc",
+			"callback": "callback_stamina",
+			"value": "stamina",
+			"default_value": false
+		},
+		{
+			"type": "toggle",
 			"id": "screen_effect_toggle",
 			"title": "screen_effect_title",
 			"description": "screen_effect_desc",
