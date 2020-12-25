@@ -1,5 +1,3 @@
-function MenuCallbackHandler:get_latest_dlc_locked(...) return false end
-
 local function DirectoryExists(path)
     if SystemFS and SystemFS.exists then
         return SystemFS:exists(path)

@@ -30,7 +30,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 			bitmap:set_color(Color.white:with_alpha(0.1))
 			self._panel:bitmap({
 				texture = "guis/dlcs/trk/textures/pd2/lock",
-				color = tweak_data.screen_colors.skirmish_color,
+				color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.skirmish_color or tweak_data.screen_colors.text,
 				w = bitmap:w(),
 				h = bitmap:h(),
 				x = bitmap:x(),
@@ -43,7 +43,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 
 		placer:add_right(self:fine_text({
 			text = title_text,
-			color = tweak_data.screen_colors.risk,
+			color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.risk or tweak_data.screen_colors.text,
 			font = medium_font,
 			font_size = medium_font_size
 		}))
@@ -142,7 +142,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 					font = medium_font,
 					font_size = tweak_data.hud_stats.loot_size,
 					text = managers.localization:to_upper_text("menu_lobby_difficulty_title"),
-					color = tweak_data.screen_colors.community_color
+					color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.community_color or tweak_data.screen_colors.text,
 				}), 16)
 
 				local str = managers.localization:text("menu_cs_level", {
@@ -163,7 +163,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 					keep_w = true,
 					font = tweak_data.hud_stats.objectives_font,
 					font_size = tweak_data.hud_stats.loot_size,
-					color = tweak_data.screen_colors.skirmish_color,
+					color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.skirmish_color or tweak_data.screen_colors.text,
 					text = civ_kills
 				}), 6)
 
@@ -173,7 +173,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 					keep_w = true,
 					font = tweak_data.hud_stats.objectives_font,
 					font_size = tweak_data.hud_stats.loot_size,
-					color = tweak_data.screen_colors.skirmish_color,
+					color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.skirmish_color or tweak_data.screen_colors.text,
 					text = delay
 				}), 0)
 
@@ -183,7 +183,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 					keep_w = true,
 					font = tweak_data.hud_stats.objectives_font,
 					font_size = tweak_data.hud_stats.loot_size,
-					color = tweak_data.screen_colors.risk,
+					color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.risk or tweak_data.screen_colors.text,
 					text = kill_count
 				}), 16)
 
@@ -193,7 +193,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 					keep_w = true,
 					font = tweak_data.hud_stats.objectives_font,
 					font_size = tweak_data.hud_stats.loot_size,
-					color = tweak_data.screen_colors.risk,
+					color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.risk or tweak_data.screen_colors.text,
 					text = accuracy 
 				}), 0)
 
@@ -225,7 +225,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 					    keep_w = true,
 					    font = tweak_data.hud_stats.objectives_font,
 					    font_size = tweak_data.hud_stats.loot_size,
-					    color = tweak_data.screen_colors.skirmish_color,
+					    color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.skirmish_color or tweak_data.screen_colors.text,
 					    text = managers.localization:to_upper_text("menu_mutators_category_enemies") .. ": " .. enemies
 				    }), 16)
                 end
@@ -273,7 +273,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 					font = medium_font,
 					font_size = tweak_data.hud_stats.loot_size,
 					text = managers.localization:to_upper_text("menu_lobby_difficulty_title"),
-					color = tweak_data.screen_colors.community_color
+					color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.community_color or tweak_data.screen_colors.text
 				}), 16)
 
 				if job_data then
@@ -320,7 +320,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 					keep_w = true,
 					font = tweak_data.hud_stats.objectives_font,
 					font_size = tweak_data.hud_stats.loot_size,
-					color = tweak_data.screen_colors.skirmish_color,
+					color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.skirmish_color or tweak_data.screen_colors.text,
 					text = civ_kills
 				}), 6)
 
@@ -330,7 +330,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 					keep_w = true,
 					font = tweak_data.hud_stats.objectives_font,
 					font_size = tweak_data.hud_stats.loot_size,
-					color = tweak_data.screen_colors.skirmish_color,
+					color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.skirmish_color or tweak_data.screen_colors.text,
 					text = delay
 				}), 0)
 
@@ -340,7 +340,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 					keep_w = true,
 					font = tweak_data.hud_stats.objectives_font,
 					font_size = tweak_data.hud_stats.loot_size,
-					color = tweak_data.screen_colors.risk,
+					color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.risk or tweak_data.screen_colors.text,
 					text = kill_count
 				}), 16)
 
@@ -350,7 +350,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 					keep_w = true,
 					font = tweak_data.hud_stats.objectives_font,
 					font_size = tweak_data.hud_stats.loot_size,
-					color = tweak_data.screen_colors.risk,
+					color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.risk or tweak_data.screen_colors.text,
 					text = accuracy 
 				}), 0)
 
@@ -382,7 +382,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 					    keep_w = true,
 					    font = tweak_data.hud_stats.objectives_font,
 					    font_size = tweak_data.hud_stats.loot_size,
-					    color = tweak_data.screen_colors.skirmish_color,
+					    color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.skirmish_color or tweak_data.screen_colors.text,
 					    text = managers.localization:to_upper_text("menu_mutators_category_enemies") .. ": " .. enemies
 				    }), 16)
                 end
@@ -406,7 +406,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 	        local dominated_text = placer:add_bottom(loot_panel:fine_text({
 			    keep_w = true,
 			    text = managers.localization:text("hmh_hud_stats_enemies_dominated"),
-				color = tweak_data.screen_colors.risk,
+				color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.risk or tweak_data.screen_colors.text,
 				font = medium_font,
 				font_size = medium_font_size
 			}))
@@ -417,7 +417,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 			local dominated_icon = placer:add_left(loot_panel:fit_bitmap({
 				w = 17,
 				h = 17,
-				color = tweak_data.screen_colors.risk,
+				color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.risk or tweak_data.screen_colors.text,
 				texture = dominated_texture,
 				texture_rect = dominated_rect
 			}))
@@ -425,7 +425,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 			dominated_icon:set_center_y(dominated_text:center_y())
 			placer:add_left(loot_panel:fine_text({
 				text = tostring(dominated),
-				color = tweak_data.screen_colors.risk,
+				color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.risk or tweak_data.screen_colors.text,
 				font = medium_font,
 				font_size = medium_font_size
 			}), 7)
@@ -434,7 +434,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 			local minion_text = placer:add_bottom(loot_panel:fine_text({
 				keep_w = true,
 				text = managers.localization:text("hud_stats_enemies_converted"),
-				color = tweak_data.screen_colors.risk,
+				color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.risk or tweak_data.screen_colors.text,
 				font = medium_font,
 				font_size = medium_font_size
 			}))
@@ -445,7 +445,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 			local minion_icon = placer:add_left(loot_panel:fit_bitmap({
 				w = 17,
 				h = 17,
-				color = tweak_data.screen_colors.risk,
+				color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.risk or tweak_data.screen_colors.text,
 				texture = minion_texture,
 				texture_rect = minion_rect
 			}))
@@ -453,14 +453,12 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 			minion_icon:set_center_y(minion_text:center_y())
 			placer:add_left(loot_panel:fine_text({
 				text = tostring(managers.player:num_local_minions()),
-				color = tweak_data.screen_colors.risk,
+				color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.risk or tweak_data.screen_colors.text,
 				font = medium_font,
 				font_size = medium_font_size
 			}), 7)
 			placer:new_row()
 		end
-		
-		
 
 		if is_whisper_mode then
 			local pagers_used = managers.groupai:state():get_nr_successful_alarm_pager_bluffs()
@@ -477,7 +475,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 			local pagers_text = placer:add_bottom(loot_panel:fine_text({
 				keep_w = true,
 				text = managers.localization:text("hud_stats_pagers_used"),
-				color = tweak_data.screen_colors.risk,
+				color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.risk or tweak_data.screen_colors.text,
 				font = medium_font,
 				font_size = medium_font_size
 			}))
@@ -488,7 +486,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 			local pagers_icon = placer:add_left(loot_panel:fit_bitmap({
 				w = 17,
 				h = 17,
-				color = tweak_data.screen_colors.risk,
+				color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.risk or tweak_data.screen_colors.text,
 				texture = pagers_texture,
 				texture_rect = pagers_rect
 			}))
@@ -496,17 +494,17 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 			pagers_icon:set_center_y(pagers_text:center_y())
 			placer:add_left(loot_panel:fine_text({
 				text = tostring(pagers_used) .. "/" .. tostring(max_num_pagers),
-				color = tweak_data.screen_colors.risk,
+				color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.risk or tweak_data.screen_colors.text,
 				font = medium_font,
 				font_size = medium_font_size
 			}), 7)
 			placer:new_row()
 
 			local body_text = placer:add_bottom(loot_panel:fine_text({
-		 	   keep_w = true,
-		 	   text = managers.localization:to_upper_text("hud_body_bags"),
-				color = tweak_data.screen_colors.community_color,
-		 	   font = medium_font,
+		 	    keep_w = true,
+		 	    text = managers.localization:to_upper_text("hud_body_bags"),
+			    color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.community_color or tweak_data.screen_colors.text,
+		 	    font = medium_font,
 			    font_size = medium_font_size
 	   		}))
 
@@ -516,7 +514,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 			local body_icon = placer:add_left(loot_panel:fit_bitmap({
 				w = 17,
 				h = 17,
-				color = tweak_data.screen_colors.community_color,
+				color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.community_color or tweak_data.screen_colors.text,
 				texture = body_texture,
 				texture_rect = body_rect
 			}))
@@ -525,7 +523,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 			placer:add_left(loot_panel:fine_text({
 				text = tostring(managers.player:get_body_bags_amount()),
 				font = medium_font,
-				color = tweak_data.screen_colors.community_color,
+				color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.community_color or tweak_data.screen_colors.text,
 				font_size = medium_font_size
 			}), 7)
 		end
@@ -583,7 +581,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 			keep_w = true,
 			text_id = "hud_stats_bags_secured_value",
 			font = medium_font,
-			color = tweak_data.screen_colors.community_color,
+			color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.community_color or tweak_data.screen_colors.text,
 			font_size = medium_font_size
 		}), 12)
 
@@ -592,7 +590,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 		placer:add_left(loot_panel:fine_text({
 			text = secured_bags_money,
 			font = medium_font,
-			color = tweak_data.screen_colors.community_color,
+			color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.community_color or tweak_data.screen_colors.text,
 			font_size = medium_font_size
 		}))
 		placer:new_row()
@@ -682,7 +680,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 				wrap = true,
 				word_wrap = true,
 				text_id = "hud_stats_no_tracked",
-				color = tweak_data.screen_colors.skirmish_color,
+				color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.skirmish_color or tweak_data.screen_colors.text,
 				font = medium_font,
 				font_size = medium_font_size,
 				w = self._right:w() - placer:current_left() * 2
@@ -712,7 +710,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 
 		placer:add_bottom(self._right:fine_text({
 			text = managers.localization:to_upper_text("menu_mutators"),
-			color = tweak_data.screen_colors.risk,
+			color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.risk or tweak_data.screen_colors.text,
 			font = medium_font,
 			font_size = tweak_data.hud_stats.objectives_title_size
 		}))
@@ -720,7 +718,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 		for i, active_mutator in ipairs(managers.mutators:active_mutators()) do
 			placer:add_row(self._right:fine_text({
 				text = active_mutator.mutator:name(),
-				color = tweak_data.screen_colors.community_color,
+				color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.community_color or tweak_data.screen_colors.text,
 				font = tweak_data.hud_stats.objectives_font,
 				font_size = tweak_data.hud_stats.day_description_size
 			}), 8, 2)
@@ -772,7 +770,7 @@ elseif RequiredScript == "lib/managers/hud/hudstatsscreenskirmish" then
 			keep_w = true,
 			font = tweak_data.hud_stats.objectives_font,
 			font_size = tweak_data.hud_stats.loot_size,
-			color = tweak_data.screen_colors.risk,
+			color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.risk or tweak_data.screen_colors.text,
 			text = kill_count
 		}), 16)
 
@@ -782,7 +780,7 @@ elseif RequiredScript == "lib/managers/hud/hudstatsscreenskirmish" then
 			keep_w = true,
 			font = tweak_data.hud_stats.objectives_font,
 			font_size = tweak_data.hud_stats.loot_size,
-			color = tweak_data.screen_colors.risk,
+			color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.risk or tweak_data.screen_colors.text,
 			text = accuracy 
 		}), 0)
 
@@ -801,7 +799,7 @@ elseif RequiredScript == "lib/managers/hud/hudstatsscreenskirmish" then
 				keep_w = true,
 				font = tweak_data.hud_stats.objectives_font,
 				font_size = tweak_data.hud_stats.loot_size,
-			    color = tweak_data.screen_colors.skirmish_color,
+			    color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.skirmish_color or tweak_data.screen_colors.text,
 				text = managers.localization:to_upper_text("menu_mutators_category_enemies") .. ": " .. enemies
 	        }), 16)
         end
@@ -817,7 +815,7 @@ elseif RequiredScript == "lib/managers/hud/hudstatsscreenskirmish" then
 			local minion_text = placer:add_bottom(loot_panel:fine_text({
 				keep_w = true,
 				text = managers.localization:text("hud_stats_enemies_converted"),
-				color = tweak_data.screen_colors.risk,
+				color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.risk or tweak_data.screen_colors.text,
 				font = medium_font,
 				font_size = medium_font_size
 			}))
@@ -828,7 +826,7 @@ elseif RequiredScript == "lib/managers/hud/hudstatsscreenskirmish" then
 			local minion_icon = placer:add_left(loot_panel:fit_bitmap({
 				w = 17,
 				h = 17,
-				color = tweak_data.screen_colors.risk,
+				color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.risk or tweak_data.screen_colors.text,
 				texture = minion_texture,
 				texture_rect = minion_rect
 			}))
@@ -836,7 +834,7 @@ elseif RequiredScript == "lib/managers/hud/hudstatsscreenskirmish" then
 
 	 	   	placer:add_left(loot_panel:fine_text({
 			    text = tostring(managers.player:num_local_minions()),
-		    	color = tweak_data.screen_colors.risk,
+		    	color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.risk or tweak_data.screen_colors.text,
 			    font = medium_font,
 			    font_size = medium_font_size
 		    }), 7)

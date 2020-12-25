@@ -10,14 +10,21 @@
 			<group :hook_id="managers/subtitle/">
 		        <post :hook_id="coresubtitlepresenter" :script_path="Subtitles.lua"/>
 			</group>
+			
+			<group :hook_id="managers/menu/items/">
+		        <post :hook_id="coremenuitemslider" :script_path="MenuTweak.lua"/>
+			</group>
         </group>
 
 	    <group hook_id="lib/">
 			<group :hook_id="managers/">
-                <post :hook_id="menumanager"              :script_path="ModMenu.lua" />
-                <post :hook_id="hudmanager"               :script_path="Waypoints.lua"/>
-				<post :hook_id="statisticsmanager"        :script_path="KillCounter.lua"/>
+                <post :hook_id="hudmanager"        :script_path="Waypoints.lua"/>
+				<post :hook_id="statisticsmanager" :script_path="KillCounter.lua"/>
 
+				<group :hook_id="menumanager">
+				    <post :script_path="ModMenu.lua" />
+					<post :script_path="MenuTweak.lua"/>
+                </group>
 				<group :hook_id="playermanager">
 				    <post :script_path="Bulletstorm.lua"/>
 					<post :script_path="ComboCounter.lua"/>
@@ -40,10 +47,15 @@
 				</group>
 
                 <group :hook_id="menu/">
-					<post :hook_id="stageendscreengui" :script_path="Scripts.lua"/>
-					<post :hook_id="lootdropscreengui" :script_path="Scripts.lua"/>
-					<post :hook_id="blackmarketgui"    :script_path="Scripts.lua"/>
+					<post :hook_id="stageendscreengui" :script_path="MenuTweak.lua"/>
+					<post :hook_id="lootdropscreengui" :script_path="MenuTweak.lua"/>
+					<post :hook_id="blackmarketgui"    :script_path="MenuTweak.lua"/>
+					<post :hook_id="skilltreeguinew"   :script_path="MenuTweak.lua"/>
 					<post :hook_id="menuscenemanager"  :script_path="Scripts.lua"/>
+					
+					<group :hook_id="renderers/menunodeskillswitchgui">
+					    <post :script_path="MenuTweak.lua"/>
+                    </group>
                 </group>
 
 			    <group :hook_id="hud/">
@@ -74,7 +86,7 @@
             </group>
             
 			<group :hook_id="states/ingamewaitingforplayers">
-			    <post :script_path="Scripts.lua"/>
+			    <post :script_path="MenuTweak.lua"/>
 			</group>	
 
 			<group :hook_id="units/">

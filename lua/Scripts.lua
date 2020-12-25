@@ -1,3 +1,5 @@
+if _G.IS_VR then return end
+
 if RequiredScript == "lib/managers/hudmanagerpd2" then
 	local set_teammate_ammo_amount_orig = HUDManager.set_teammate_ammo_amount
 	local set_slot_ready_orig = HUDManager.set_slot_ready
@@ -199,98 +201,6 @@ elseif RequiredScript == "lib/network/handlers/unitnetworkhandler" then
 		    end
 	    end
 	    unit:inventory():sync_weapon_gadget_color(Color(red / 255, green / 255, blue / 255))
-    end
-
--- Skip and Autoselect
-elseif RequiredScript == "lib/managers/menu/stageendscreengui" then
-	local update_original = StageEndScreenGui.update
-
-	function StageEndScreenGui:update(t, ...)
-		update_original(self, t, ...)
-		
-		if not self._button_not_clickable and HMH:GetOption("skip_xp") >= 0 and HMH:GetOption("skip_xp") > 0 and not VHUDPlus then
-			self._auto_continue_t = self._auto_continue_t or (t + HMH:GetOption("skip_xp"))
-			if t >= self._auto_continue_t then
-				managers.menu_component:post_event("menu_enter")
-				game_state_machine:current_state()._continue_cb()
-			end
-		end
-	end
-
-elseif RequiredScript == "lib/managers/menu/lootdropscreengui" then
-
-	local update_original = LootDropScreenGui.update
-
-	function LootDropScreenGui:update(t, ...)
-		update_original(self, t, ...)
-
-		if not self._card_chosen and HMH:GetOption("pick_card") and not VHUDPlus then
-			self:_set_selected_and_sync(math.random(3))
-			self:confirm_pressed()
-		end
-		
-		if not self._button_not_clickable and HMH:GetOption("skip_card") >= 0 and HMH:GetOption("skip_card") > 0 and not VHUDPlus then
-			self._auto_continue_t = self._auto_continue_t or (t + HMH:GetOption("skip_card"))
-			if t >= self._auto_continue_t then
-				self:continue_to_lobby()
-			end
-		end
-	end
-
-elseif RequiredScript == "lib/states/ingamewaitingforplayers" then
-	local update_original = IngameWaitingForPlayersState.update
-	
-	function IngameWaitingForPlayersState:update(...)
-		update_original(self, ...)
-		
-		if self._skip_promt_shown and HMH:GetOption("skip_blackscreen") and not VHUDPlus then
-			self:_skip()
-		end
-	end
-
--- Equipment Amount
-elseif RequiredScript == "lib/managers/menu/blackmarketgui" then
-	local function getEquipmentAmount(name_id)
-		local data = tweak_data.equipments[name_id]
-		if not (VHUDPlus or WolfHUD) and data and data.quantity then
-			if type(data.quantity) == "table" then
-				local amounts = data.quantity
-				local amount_str = ""
-				for i = 1, #amounts do
-					local equipment_name = name_id
-					if data.upgrade_name then
-						equipment_name = data.upgrade_name[i]
-					end
-					amount_str = amount_str .. (i > 1 and "/x" or "x") .. tostring((amounts[i] or 0) + managers.player:equiptment_upgrade_value(equipment_name, "quantity"))
-				end
-				return " (" .. amount_str .. ")"
-			else
-				return " (x" .. tostring(data.quantity) .. ")"
-			end
-		end
-		return ""
-	end
-
-	local populate_deployables_original = BlackMarketGui.populate_deployables
-	function BlackMarketGui:populate_deployables(data, ...)
-		populate_deployables_original(self, data, ...)
-		if not (VHUDPlus or WolfHUD) then
-		    for i, equipment in ipairs(data) do
-			    equipment.name_localized = equipment.name_localized .. (equipment.unlocked and getEquipmentAmount(equipment.name) or "")
-		    end
-		end	
-	end
-
-	local populate_grenades_original = BlackMarketGui.populate_grenades
-	function BlackMarketGui:populate_grenades(data, ...)
-		populate_grenades_original(self, data, ...)
-		if not (VHUDPlus or WolfHUD) then
-		    local t_data = tweak_data.blackmarket.projectiles
-		    for i, throwable in ipairs(data) do
-			    local has_amount = throwable.unlocked and t_data[throwable.name] or false
-			    throwable.name_localized = throwable.name_localized .. (has_amount and " (x" .. t_data[throwable.name].max_amount .. ")" or "")
-		    end
-	    end
     end
 
 -- Custom Filter
