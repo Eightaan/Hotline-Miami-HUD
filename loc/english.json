@@ -16,7 +16,7 @@
     "hud_scale_desc" : "Change the hud size.",
    
     "mod_overrides_title" : "Enable Mod Overrides Updates",
-    "mod_overrides_desc" : "Mod Overrides are custom textures and font that change the menu to Hotline Miami.\nWhen changed, a game restart is required to take effect.",
+    "mod_overrides_desc" : "Mod Overrides are custom textures that change the menu to Hotline Miami.\nWhen changed, a game restart is required to take effect.",
 	"mod_font_title" : "Custom Text Font",
 	"mod_font_desc" : "Enables the custom pixel font.\nWhen changed, a game restart is required to take effect.",
 	"combo_title" : "Combo Counter",
