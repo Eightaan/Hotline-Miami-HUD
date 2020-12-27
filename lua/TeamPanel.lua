@@ -145,20 +145,6 @@ if HMH:GetOption("interact_info") or HMH:GetOption("color_name") then
 		name_bg:set_visible(true)
     end)
 
-    Hooks:PostHook(HUDTeammate, "set_callsign", "HMH_HUDTeammateSetCallsign", function(self, id)
-    	self._condition_icon = self._panel:child("condition_icon")
-    	self._condition_icon:set_color(HMH:GetOption("color_name") and tweak_data.chat_colors[id] or Color.white)
-
-    	self._panel:child("name"):set_color(HMH:GetOption("color_name") and tweak_data.chat_colors[id] or Color.white)
-	    self._new_name:set_color(HMH:GetOption("color_name") and tweak_data.chat_colors[id] or Color.white)
-
-        if not self._main_player and self:peer_id() and managers.network:session() and managers.network:session():peer(self:peer_id()):is_cheater() then
-	    	self._panel:child("name"):set_color(tweak_data.screen_colors.pro_color)
-	    	self._new_name:set_color(tweak_data.screen_colors.pro_color)
-	    	self._panel:child("callsign"):set_color(tweak_data.screen_colors.pro_color)
-	    end
-    end)
-
     Hooks:PostHook(HUDTeammate, "set_state", "HMH_HUDTeammateSetState", function(self, state)
 	    if not self._main_player then
 		    self._panel:child("name_panel"):set_y(self._panel:child("name"):y())
@@ -182,6 +168,23 @@ if HMH:GetOption("interact_info") or HMH:GetOption("color_name") then
 	    end
     end
 end
+
+Hooks:PostHook(HUDTeammate, "set_callsign", "HMH_HUDTeammateSetCallsign", function(self, id)
+    if HMH:GetOption("color_condition") then
+        self._condition_icon = self._panel:child("condition_icon")
+        self._condition_icon:set_color(HMH:GetOption("color_condition") and tweak_data.chat_colors[id] or Color.white)
+	end
+    if HMH:GetOption("color_name") then
+        self._panel:child("name"):set_color(HMH:GetOption("color_name") and tweak_data.chat_colors[id] or Color.white)
+	    self._new_name:set_color(HMH:GetOption("color_name") and tweak_data.chat_colors[id] or Color.white)
+	end
+
+    if not self._main_player and self:peer_id() and managers.network:session() and managers.network:session():peer(self:peer_id()):is_cheater() and HMH:GetOption("color_name") then
+	    self._panel:child("name"):set_color(tweak_data.screen_colors.pro_color)
+	    self._new_name:set_color(tweak_data.screen_colors.pro_color)
+	    self._panel:child("callsign"):set_color(tweak_data.screen_colors.pro_color)
+	end
+end)
 
 if HMH:GetOption("interact_info") then
     local t = 2

@@ -60,6 +60,9 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
 	MenuCallbackHandler.callback_TEAM_down = function(self, item)
 		HMH._data.TEAM_down = item:value() == "on"
 	end
+	MenuCallbackHandler.callback_colored_downs = function(self, item)
+        HMH._data.colored_downs = item:value() == "on"
+    end
 	MenuCallbackHandler.callback_hud_scale = function(self, item)
         HMH._data.hud_scale = item:value()
     end
@@ -98,6 +101,9 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
     end
 	MenuCallbackHandler.callback_color_name = function(self, item)
         HMH._data.color_name = item:value() == "on"
+    end
+	MenuCallbackHandler.callback_color_condition = function(self, item)
+        HMH._data.color_condition = item:value() == "on"
     end
 	MenuCallbackHandler.callback_interact_info = function(self, item)
         HMH._data.interact_info = item:value() == "on"

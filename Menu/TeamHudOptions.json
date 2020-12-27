@@ -63,6 +63,15 @@
 			"default_value": true
 		},
 		{
+			"type": "toggle",
+			"id": "colored_downs_toggle",
+			"title": "colored_downs_title",
+			"description": "colored_downs_desc",
+			"callback": "callback_colored_downs",
+			"value": "colored_downs",
+			"default_value": true
+		},
+		{
 			"type": "divider",
 			"size": 16
 		},
@@ -131,6 +140,15 @@
 			"description": "color_name_desc",
 			"callback": "callback_color_name",
 			"value": "color_name",
+			"default_value": true
+		},
+		{
+			"type": "toggle",
+			"id": "color_condition_toggle",
+			"title": "color_condition_title",
+			"description": "color_condition_desc",
+			"callback": "callback_color_condition",
+			"value": "color_condition",
 			"default_value": true
 		},
 		{

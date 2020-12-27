@@ -16,6 +16,7 @@
 	"carry" : true,
 	"ammo" : true,
 	"color_name" : true,
+	"color_condition" : true,
 	"interact_info" : true,
 	"color_bag" : true,
 	"pickups" : true,
@@ -50,5 +51,6 @@
 	"ping" : false,
 	"interupt_interact_hint" : false,
 	"custom_menu_background" : 1,
-	"stamina" : false
+	"stamina" : false,
+	"colored_downs" : true
 }
