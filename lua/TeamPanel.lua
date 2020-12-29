@@ -172,11 +172,11 @@ end
 Hooks:PostHook(HUDTeammate, "set_callsign", "HMH_HUDTeammateSetCallsign", function(self, id)
     if HMH:GetOption("color_condition") then
         self._condition_icon = self._panel:child("condition_icon")
-        self._condition_icon:set_color(HMH:GetOption("color_condition") and tweak_data.chat_colors[id] or Color.white)
+        self._condition_icon:set_color(tweak_data.chat_colors[id])
 	end
     if HMH:GetOption("color_name") then
-        self._panel:child("name"):set_color(HMH:GetOption("color_name") and tweak_data.chat_colors[id] or Color.white)
-	    self._new_name:set_color(HMH:GetOption("color_name") and tweak_data.chat_colors[id] or Color.white)
+        self._panel:child("name"):set_color(tweak_data.chat_colors[id])
+	    self._new_name:set_color(tweak_data.chat_colors[id])
 	end
 
     if not self._main_player and self:peer_id() and managers.network:session() and managers.network:session():peer(self:peer_id()):is_cheater() and HMH:GetOption("color_name") then
