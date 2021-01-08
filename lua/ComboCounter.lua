@@ -1,4 +1,6 @@
-if not HMH:GetOption("combo") then return end
+if not HMH:GetOption("combo") then 
+    return
+end
 
 if RequiredScript == "lib/managers/hudmanagerpd2" then
 	HUDComboCounter = HUDComboCounter or class()

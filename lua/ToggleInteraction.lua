@@ -1,4 +1,6 @@
-if HMH:GetOption("toggle_interact") == 0 or VHUDPlus then return end
+if HMH:GetOption("toggle_interact") == 0 or VHUDPlus then 
+    return
+end
 
 if RequiredScript == "lib/units/beings/player/states/playerstandard" then
 	local _update_interaction_timers_original = PlayerStandard._update_interaction_timers

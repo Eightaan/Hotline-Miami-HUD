@@ -1,4 +1,6 @@
-if not HMH:GetOption("carry") then return end
+if not HMH:GetOption("carry") then 
+    return
+end
 
 function HUDTemp:_animate_hide_bag_panel(bag_panel)
 	set_alpha(bag_panel, 0)

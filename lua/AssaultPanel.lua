@@ -1,4 +1,6 @@
-if not HMH:GetOption("assault") then return end
+if not HMH:GetOption("assault") then 
+   return 
+end
 
 Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(self, hud, ...)
     -- HOSTAGES

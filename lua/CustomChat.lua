@@ -1,4 +1,6 @@
-if not HMH:GetOption("custom_chat") or VHUDPlus and VHUDPlus:getSetting({"HUDChat", "ENABLED"}, true) then return end
+if not HMH:GetOption("custom_chat") or VHUDPlus and VHUDPlus:getSetting({"HUDChat", "ENABLED"}, true) then 
+    return
+end
 
 if RequiredScript == "lib/managers/hudmanagerpd2" then
 

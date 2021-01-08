@@ -1,4 +1,6 @@
-if not HMH:GetOption("presenter") then return end
+if not HMH:GetOption("presenter") then 
+    return 
+end
 
 Hooks:PostHook(HUDPresenter, "init", "HMH_hudpresenter_init", function(self, ...)
 	self._hud_panel:child("present_panel"):set_alpha(0)

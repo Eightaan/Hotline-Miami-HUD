@@ -1,4 +1,6 @@
-if _G.IS_VR then return end
+if _G.IS_VR then 
+    return
+end
 
 Hooks:PostHook(HUDTeammate, "init", "HMH_HUDTeammateInit", function(self, ...)
     if HMH:GetOption("interact_info") or HMH:GetOption("color_name") then

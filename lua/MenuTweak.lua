@@ -1,4 +1,6 @@
-if VHUDPlus or WolfHUD then return end
+if VHUDPlus or WolfHUD then 
+    return
+end
 
 if string.lower(RequiredScript) == "lib/managers/menumanager" then
 	function MenuCallbackHandler:get_latest_dlc_locked(...) return false end		--Hide DLC ad in the main menu

@@ -1,4 +1,6 @@
-if not HMH:GetOption("objective") then return end
+if not HMH:GetOption("objective") or WolfHUD then 
+    return 
+end
 
 Hooks:PostHook(HUDObjectives, "init", "HMH_hudobjectives_init", function(self, hud, ...)
 	self._hud_panel = hud.panel

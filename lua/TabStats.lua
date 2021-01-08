@@ -1,4 +1,6 @@
-if not HMH:GetOption("tab") or (VHUDPlus and VHUDPlus:getSetting({"TabStats", "ENABLED"}, true)) or WolfHUD then return end
+if not HMH:GetOption("tab") or (VHUDPlus and VHUDPlus:getSetting({"TabStats", "ENABLED"}, true)) or WolfHUD then 
+    return
+end
 
 if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 	local medium_font = tweak_data.menu.pd2_medium_font

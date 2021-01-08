@@ -1,4 +1,6 @@
-if not HMH:GetOption("stamina") or VHUDPlus then return end
+if not HMH:GetOption("stamina") or VHUDPlus or WolfHUD then 
+    return
+end
 
 if RequiredScript == "lib/managers/hudmanagerpd2" then
 	local set_stamina_value_original = HUDManager.set_stamina_value
