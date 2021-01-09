@@ -195,5 +195,24 @@ elseif string.lower(RequiredScript) == "lib/managers/menu/renderers/menunodeskil
 				row_item.status_gui:set_text(managers.localization:to_upper_text("menu_specialization", {}) .. ":")
 			end
 		end
-	end	
+	end
+elseif string.lower(RequiredScript) == "lib/managers/menumanagerdialogs" then	
+	if HMH:GetOption("no_confirm") then
+		local function expect_yes(self, params) params.yes_func() end
+		MenuManager.show_confirm_buy_premium_contract = expect_yes
+		MenuManager.show_confirm_blackmarket_buy_mask_slot = expect_yes
+		MenuManager.show_confirm_blackmarket_buy_weapon_slot = expect_yes
+		MenuManager.show_confirm_mission_asset_buy = expect_yes
+		MenuManager.show_confirm_pay_casino_fee = expect_yes
+		MenuManager.show_confirm_mission_asset_buy_all = expect_yes
+	end
+
+	local show_person_joining_original = MenuManager.show_person_joining
+	function MenuManager:show_person_joining( id, nick, ... )
+		local peer = managers.network:session():peer(id)
+		if peer then
+			nick = "(" .. (peer:rank() > 0 and managers.experience:rank_string(peer:rank()) .. "-" or "") .. peer:level() .. ") " .. nick
+		end
+		return show_person_joining_original(self, id, nick, ...)
+	end
 end

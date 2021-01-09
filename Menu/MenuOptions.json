@@ -17,6 +17,15 @@
 			"value" : "custom_menu_background"
 		},
 		{
+			"type": "toggle",
+			"id": "custom_filter",
+			"title": "custom_filter_title",
+			"description": "custom_filter_desc",
+			"callback": "callback_custom_filter",
+			"value": "custom_filter",
+			"default_value": false
+		},
+		{
 			"type": "divider",
 			"size": 8
 		},
@@ -35,11 +44,24 @@
 		},
 		{
 			"type": "toggle",
-			"id": "custom_filter",
-			"title": "custom_filter_title",
-			"description": "custom_filter_desc",
-			"callback": "callback_custom_filter",
-			"value": "custom_filter",
+			"id": "profile_menu",
+			"title": "profile_menu_title",
+			"description": "profile_menu_desc",
+			"callback": "callback_profile_menu",
+			"value": "profile_menu",
+			"default_value": true
+		},
+		{
+			"type": "divider",
+			"size": 4
+		},
+		{
+			"type": "toggle",
+			"id": "no_confirm",
+			"title": "no_confirm_title",
+			"description": "no_confirm_desc",
+			"callback": "callback_no_confirm",
+			"value": "no_confirm",
 			"default_value": false
 		},
 		{

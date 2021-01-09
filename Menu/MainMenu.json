@@ -58,6 +58,28 @@
 	    },
         {
 			"type": "divider",
+			"size": 4
+		},
+		{
+			"type": "toggle",
+			"id": "crew_loadout_toggle",
+			"title": "crew_loadout_title",
+			"description": "crew_loadout_desc",
+			"callback": "callback_crew_loadout",
+			"value": "crew_loadout",
+			"default_value": true
+		},
+		{
+			"type": "toggle",
+			"id": "crew_loadout_briefing_toggle",
+			"title": "crew_loadout_briefing_title",
+			"description": "crew_loadout_briefing_desc",
+			"callback": "callback_crew_loadout_briefing",
+			"value": "crew_loadout_briefing",
+			"default_value": true
+	    },
+        {
+			"type": "divider",
 			"size": 16
         }
 	]

@@ -210,6 +210,21 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
 	MenuCallbackHandler.callback_custom_menu_background = function(self, item)
         HMH._data.custom_menu_background = item:value()
     end
+	MenuCallbackHandler.callback_no_confirm = function(self, item)
+        HMH._data.no_confirm = item:value() == "on"
+    end
+	MenuCallbackHandler.callback_crew_loadout_tab = function(self, item)
+        HMH._data.crew_loadout_tab = item:value() == "on"
+    end
+	MenuCallbackHandler.callback_crew_loadout = function(self, item)
+        HMH._data.crew_loadout = item:value() == "on"
+    end
+	MenuCallbackHandler.callback_crew_loadout_briefing = function(self, item)
+        HMH._data.crew_loadout_briefing = item:value() == "on"
+    end
+	MenuCallbackHandler.callback_profile_menu = function(self, item)
+        HMH._data.profile_menu = item:value() == "on"
+    end
     MenuCallbackHandler.HMHSave = function(this, item)
         HMH:Save()
     end

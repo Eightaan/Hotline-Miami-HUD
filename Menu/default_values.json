@@ -52,5 +52,10 @@
 	"interupt_interact_hint" : false,
 	"custom_menu_background" : 1,
 	"stamina" : false,
-	"colored_downs" : true
+	"colored_downs" : true,
+	"no_confirm" : false,
+	"crew_loadout" : true,
+	"crew_loadout_briefing" : true,
+	"crew_loadout_tab" : true,
+	"profile_menu" : true
 }

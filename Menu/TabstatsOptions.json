@@ -25,6 +25,19 @@
 			"callback": "callback_enemy_count",
 			"value": "enemy_count",
 			"default_value": true
+		},
+		{
+			"type": "divider",
+			"size": 8
+		},
+		{
+			"type": "toggle",
+			"id": "crew_loadout_tab_toggle",
+			"title": "crew_loadout_tab_title",
+			"description": "crew_loadout_tab_desc",
+			"callback": "callback_crew_loadout_tab",
+			"value": "crew_loadout_tab",
+			"default_value": true	
 		}
 	]
 }

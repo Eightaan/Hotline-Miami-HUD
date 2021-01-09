@@ -17,18 +17,31 @@
         </group>
 
 	    <group hook_id="lib/">
-			<group :hook_id="managers/">
-                <post :hook_id="hudmanager"        :script_path="Waypoints.lua"/>
-				<post :hook_id="statisticsmanager" :script_path="KillCounter.lua"/>
+			<group :hook_id="entry">
+			    <post :script_path="QuickInputMenu.lua"/>
+				<post :script_path="LoadoutPanel.lua"/>
+            </group>
 
+			<group :hook_id="managers/">
+                <post :hook_id="hudmanager"          :script_path="Waypoints.lua"/>
+				<post :hook_id="statisticsmanager"   :script_path="KillCounter.lua"/>
+				<post :hook_id="menumanagerdialogs"  :script_path="MenuTweak.lua"/>
+				<post :hook_id="systemmenumanager"   :script_path="InputDialog.lua"/>
+				<post :hook_id="preplanningmanager"  :script_path="PrePlanManager.lua"/>
+				<post :hook_id="multiprofilemanager" :script_path="ProfileMenu.lua"/>
 				<group :hook_id="menumanager">
 				    <post :script_path="ModMenu.lua" />
 					<post :script_path="MenuTweak.lua"/>
+					<post :script_path="PrePlanManager.lua"/>
+					<post :script_path="ProfileMenu.lua"/>
                 </group>
 				<group :hook_id="playermanager">
 				    <post :script_path="Bulletstorm.lua"/>
 					<post :script_path="ComboCounter.lua"/>
 				</group>
+				<group :hook_id="dialogs/specializationdialog">
+					<post :script_path="InputDialog.lua"/>
+                </group>
 
 				<group :hook_id="hudmanagerpd2">
      		      	<post :script_path="Downcounter.lua"/>
@@ -47,14 +60,26 @@
 				</group>
 
                 <group :hook_id="menu/">
-					<post :hook_id="stageendscreengui" :script_path="MenuTweak.lua"/>
-					<post :hook_id="lootdropscreengui" :script_path="MenuTweak.lua"/>
-					<post :hook_id="blackmarketgui"    :script_path="MenuTweak.lua"/>
-					<post :hook_id="skilltreeguinew"   :script_path="MenuTweak.lua"/>
-					<post :hook_id="menuscenemanager"  :script_path="Scripts.lua"/>
-					
+					<post :hook_id="stageendscreengui"              :script_path="MenuTweak.lua"/>
+					<post :hook_id="lootdropscreengui"              :script_path="MenuTweak.lua"/>
+					<post :hook_id="blackmarketgui"                 :script_path="MenuTweak.lua"/>
+					<post :hook_id="skilltreeguinew"                :script_path="MenuTweak.lua"/>
+					<post :hook_id="menuscenemanager"               :script_path="Scripts.lua"/>
+					<post :hook_id="specializationboxgui"           :script_path="InputDialog.lua"/>
+					<post :hook_id="multiprofileitemgui"            :script_path="ProfileMenu.lua"/>
+					<post :hook_id="contractboxgui"                 :script_path="EnhancedCrewLoadout.lua"/>
+					<post :hook_id="crimespreecontractboxgui"       :script_path="EnhancedCrewLoadout.lua"/>
+					<post :hook_id="crimespreedetailsmenucomponent" :script_path="EnhancedCrewLoadout.lua"/>
+					<group :hook_id="missionbriefinggui">
+					    <post :script_path="ProfileMenu.lua"/>
+						<post :script_path="EnhancedCrewLoadout.lua"/>
+                    </group>
 					<group :hook_id="renderers/menunodeskillswitchgui">
 					    <post :script_path="MenuTweak.lua"/>
+						<post :script_path="ProfileMenu.lua"/>
+                    </group>
+					<group :hook_id="dialogs/specializationdialog">
+					    <post :script_path="InputDialog.lua"/>
                     </group>
                 </group>
 
@@ -67,20 +92,20 @@
 	                <post :hook_id="hudassaultcorner"       :script_path="AssaultPanel.lua"/>
 		            <post :hook_id="hudplayercustody"       :script_path="CustodyPanel.lua"/>
 		            <post :hook_id="hudchat"                :script_path="CustomChat.lua"/>
-					<post :hook_id="newhudstatsscreen"      :script_path="TabStats.lua"/>
 					<post :hook_id="hudstatsscreenskirmish" :script_path="TabStats.lua"/>
 					<post :hook_id="hudobjectives"          :script_path="ObjectivesPanel.lua"/>
-
-
 					<group :hook_id="hudteammate">
 	                    <post :script_path="Downcounter.lua"/>
                         <post :script_path="TeamPanel.lua"/>
 						<post :script_path="Stamina.lua"/>
                     </group>
-
 					<group :hook_id="hudinteraction">
 		                <post :script_path="InteractionPanel.lua"/>
 						<post :script_path="ToggleInteraction.lua"/>
+                    </group>
+					<group :hook_id="newhudstatsscreen">
+		                <post :script_path="TabStats.lua"/>
+						<post :script_path="EnhancedCrewLoadout.lua"/>
                     </group>
 			    </group>
             </group>
