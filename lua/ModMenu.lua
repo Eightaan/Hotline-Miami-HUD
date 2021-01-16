@@ -253,16 +253,17 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
 
         local id = "Hotline Miami Hud"
 		local mod = BLT and BLT.Mods:GetMod(id)
-		for i, update in pairs(mod:GetUpdates()) do
-			if update:GetInstallFolder() ~= id then
-				local directory = Application:nice_path(update:GetInstallDirectory() .. "/" .. update:GetInstallFolder(), true)
-                if HMH:GetOption("mod_overrides") then
-                    CreateDirectory(directory)
-				else
-					table.remove(mod:GetUpdates(), i)
-					--io.remove_directory_and_files(directory)
-				end
-			end
+        if mod then
+		    for i, update in pairs(mod:GetUpdates()) do
+			    if update:GetInstallFolder() ~= id then
+				    local directory = Application:nice_path(update:GetInstallDirectory() .. "/" .. update:GetInstallFolder(), true)
+                    if HMH:GetOption("mod_overrides") then
+                        CreateDirectory(directory)
+				    else
+					    table.remove(mod:GetUpdates(), i)
+				    end
+			    end
+		    end
 		end
 	end
 end)
