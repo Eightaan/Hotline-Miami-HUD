@@ -6,24 +6,9 @@ if RequiredScript == "lib/managers/hud/hudinteraction" then
 	    end
     end)
     if HMH:GetOption("interact_texture") then
-	    function HUDInteraction:_animate_interaction_complete(bitmap, circle)
-        	local TOTAL_T = 0.6
-        	local t = TOTAL_T
-        	local mul = 1
-        	local c_x, c_y = bitmap:center()
-        	local size = bitmap:w()
-
-        	while t > 0 do
-	        	local dt = coroutine.yield()
-	        	t = t - dt
-	        	mul = mul + dt * 0.75
-
-    	    	bitmap:set_size(size * mul, size * mul)
-	        	bitmap:set_center(c_x, c_y)
-	        	bitmap:set_alpha(math.max(t / TOTAL_T, 0))
-	        end
-	        bitmap:parent():remove(bitmap)
-        end
+        Hooks:PreHook( HUDInteraction , "_animate_interaction_complete" , "uHUDPostHUDInteractionAnimateInteractionComplete" , function( self , bitmap , circle )
+		    circle:set_visible( false )
+        end )
 	end
 elseif RequiredScript == "lib/units/interactions/interactionext" then
 
