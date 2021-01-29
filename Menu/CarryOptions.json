@@ -12,6 +12,19 @@
 			"callback": "callback_carry",
 			"value": "carry",
 			"default_value": true
+		},
+		{
+			"type": "divider",
+			"size": 4
+		},
+		{
+			"type": "toggle",
+			"id": "carry_value_toggle",
+			"title": "carry_value_title",
+			"description": "carry_value_desc",
+			"callback": "callback_carry_value",
+			"value": "carry_value",
+			"default_value": true
 		}
 	]
 }

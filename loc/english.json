@@ -128,6 +128,8 @@
 	"hmh_carry_desc" : "Customize the carry panel.",
 	"carry_title" : "Custom Carry Panel",
 	"carry_desc" : "Enable the custom carry panel.",
+	"carry_value_title" : "Show loot value",
+	"carry_value_desc" : "Display the value of the loot being carried \n(Requires custom carry panel to be enabled).",
 
 	"hmh_assault_title" : "Assault",
 	"hmh_assault_desc" : "Customize the assault panel.",

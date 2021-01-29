@@ -225,6 +225,9 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
 	MenuCallbackHandler.callback_profile_menu = function(self, item)
         HMH._data.profile_menu = item:value() == "on"
     end
+	MenuCallbackHandler.callback_carry_value = function(self, item)
+        HMH._data.carry_value = item:value() == "on"
+    end
     MenuCallbackHandler.HMHSave = function(this, item)
         HMH:Save()
     end
