@@ -1,14 +1,14 @@
 if RequiredScript == "lib/managers/hud/hudinteraction" then
-    Hooks:PostHook(HUDInteraction, "init", "HMM_HUDInteractionInit", function(self, ...)
+    Hooks:PostHook(HUDInteraction, "init", "HMH_HUDInteractionInit", function(self, ...)
         local interact_text = self._hud_panel:child(self._child_name_text)
 	    if HMH:GetOption("interact") then
 	        interact_text:set_color(Color("ffcc66"))
 	    end
     end)
     if HMH:GetOption("interact_texture") then
-        Hooks:PreHook( HUDInteraction , "_animate_interaction_complete" , "uHUDPostHUDInteractionAnimateInteractionComplete" , function( self , bitmap , circle )
-		    circle:set_visible( false )
-        end )
+        Hooks:PreHook(HUDInteraction, "_animate_interaction_complete", "HMH_HUDInteractionAnimateInteractionComplete", function(self, circle, ...)
+		    circle:set_visible(false)
+        end)
 	end
 elseif RequiredScript == "lib/units/interactions/interactionext" then
 
