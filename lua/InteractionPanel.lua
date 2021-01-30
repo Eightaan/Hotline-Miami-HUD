@@ -6,7 +6,7 @@ if RequiredScript == "lib/managers/hud/hudinteraction" then
 	    end
     end)
     if HMH:GetOption("interact_texture") then
-        Hooks:PreHook(HUDInteraction, "_animate_interaction_complete", "HMH_HUDInteractionAnimateInteractionComplete", function(self, circle, ...)
+        Hooks:PreHook(HUDInteraction, "_animate_interaction_complete", "HMH_HUDInteractionAnimateInteractionComplete", function(self, bitmap, circle)
 		    circle:set_visible(false)
         end)
 	end
