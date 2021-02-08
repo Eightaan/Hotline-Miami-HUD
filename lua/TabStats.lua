@@ -459,6 +459,10 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 				font = medium_font,
 				font_size = medium_font_size
 			}), 7)
+			if managers.crime_spree:is_active() then
+			    loot_panel:set_size(placer:most_rightbottom())
+			    loot_panel:set_leftbottom(0, self._left:h() - 16)
+			end
 			placer:new_row()
 		end
 
@@ -528,8 +532,12 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 				color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.community_color or tweak_data.screen_colors.text,
 				font_size = medium_font_size
 			}), 7)
+			if managers.crime_spree:is_active() then
+			    loot_panel:set_size(placer:most_rightbottom())
+			    loot_panel:set_leftbottom(0, self._left:h() - 16)
+			end
+			placer:new_row()
 		end
-		placer:new_row()
 
 		if not managers.crime_spree:is_active() then
 			local mandatory_bags_data = managers.loot:get_mandatory_bags_data()
@@ -573,48 +581,54 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 					font_size = medium_font_size
 				}))
 			end
+			placer:new_row()
 		end
+       
+	    if managers.money and managers.statistics and managers.experience and not managers.crime_spree:is_active() then 
+       	    local money_current_stage = managers.money:get_potential_payout_from_current_stage() or 0
+			local offshore_rate = managers.money:get_tweak_value("money_manager", "offshore_rate") or 0
+			local offshore_total = money_current_stage - math.round(money_current_stage * offshore_rate)
+			local offshore_text = managers.experience:cash_string(offshore_total)
+			local civilian_kills = managers.statistics:session_total_civilian_kills() or 0
+			local cleaner_costs	= (managers.money:get_civilian_deduction() or 0) * civilian_kills
+			local spending_cash = money_current_stage * offshore_rate - cleaner_costs
+			local spending_cash_text = managers.experience:cash_string(spending_cash)
 
-		placer:new_row()
+			placer:add_bottom(loot_panel:fine_text({
+				keep_w = true,
+				text = managers.localization:to_upper_text("menu_cash_spending"),
+				font = medium_font,
+				color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.community_color or tweak_data.screen_colors.text,
+				font_size = medium_font_size
+			}), 12)
 
-		local secured_bags_money = managers.experience:cash_string(managers.money:get_secured_mandatory_bags_money() + managers.money:get_secured_bonus_bags_money())
+			placer:add_right(nil, 0)
 
-		placer:add_bottom(loot_panel:fine_text({
-			keep_w = true,
-			text_id = "hud_stats_bags_secured_value",
-			font = medium_font,
-			color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.community_color or tweak_data.screen_colors.text,
-			font_size = medium_font_size
-		}), 12)
+			placer:add_left(loot_panel:fine_text({
+				text = spending_cash_text,
+				font = medium_font,
+				color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.community_color or tweak_data.screen_colors.text,
+				font_size = medium_font_size
+			}))
+			placer:new_row()
 
-		placer:add_right(nil, 0)
-
-		placer:add_left(loot_panel:fine_text({
-			text = secured_bags_money,
-			font = medium_font,
-			color = HMH:GetOption("custom_menu_color") and tweak_data.screen_colors.community_color or tweak_data.screen_colors.text,
-			font_size = medium_font_size
-		}))
-		placer:new_row()
-
-		local instant_cash = managers.experience:cash_string(managers.loot:get_real_total_small_loot_value())
-
-		placer:add_bottom(loot_panel:fine_text({
-			keep_w = true,
-			text = managers.localization:to_upper_text("hud_instant_cash"),
-			font = medium_font,
-			color = tweak_data.screen_colors.title,
-			font_size = medium_font_size
-		}))
-		placer:add_right(nil, 0)
-		placer:add_left(loot_panel:fine_text({
-			text = instant_cash,
-			color = tweak_data.screen_colors.title,
-			font = medium_font,
-			font_size = medium_font_size
-		}))
-		loot_panel:set_size(placer:most_rightbottom())
-		loot_panel:set_leftbottom(0, self._left:h() - 16)
+			placer:add_bottom(loot_panel:fine_text({
+				keep_w = true,
+				text = managers.localization:to_upper_text("hud_offshore_account"),
+				font = medium_font,
+				color = tweak_data.screen_colors.title,
+				font_size = medium_font_size
+			}))
+			placer:add_right(nil, 0)
+			placer:add_left(loot_panel:fine_text({
+				text = offshore_text,
+				color = tweak_data.screen_colors.title,
+				font = medium_font,
+				font_size = medium_font_size
+			}))
+			loot_panel:set_size(placer:most_rightbottom())
+			loot_panel:set_leftbottom(0, self._left:h() - 16)
+		end
 	end
 
     local HUDStatsScreen_recreate_right = HUDStatsScreen.recreate_right

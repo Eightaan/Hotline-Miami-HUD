@@ -213,6 +213,8 @@
 	"profile_menu_desc" : "用WolfHUD的配置文件菜单替换默认.",
 	"stamina_title" : "显示耐力环",
 	"stamina_desc" : "将耐力环显示在你的生命环内侧.",
+	"headshot_mark_title" : "爆头射击确认圈",
+	"headshot_mark_desc" : "当你执行爆头打击时，在命中标记周围添加一个圆圈",
 
 	"crew_loadout_tab_title" : "Crew Loadout on Tabscreen",
 	"crew_loadout_title" : "Crew Loadout in Lobby",

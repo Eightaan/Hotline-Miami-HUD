@@ -21,6 +21,8 @@
 	"mod_font_desc" : "Enables the custom pixel font.\nWhen changed, a game restart is required to take effect.",
 	"combo_title" : "Combo Counter",
 	"combo_desc" : "Enable a hotline miami styled combo counter.",
+	"headshot_mark_title" : "Headshot Icon",
+	"headshot_mark_desc" : "Displays an icon when killing enemies with headshots.",
 	
 
 	"hmh_hud_title" : "Player/Team",
