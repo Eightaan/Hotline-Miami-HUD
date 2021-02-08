@@ -133,7 +133,7 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
         HMH._data.health_texture = item:value() == "on"
     end
     MenuCallbackHandler.callback_interact_texture = function(self, item)
-        HMH._data.interact_texture = item:value() == "on"
+        HMH._data.interact_texture = item:value()
     end
     MenuCallbackHandler.callback_custom_subs = function(self, item)
         HMH._data.custom_subs = item:value() == "on"

@@ -221,4 +221,8 @@
 	"crew_loadout_briefing_title" : "Crew Loadout in Briefing",
 	"carry_value_title" : "Show loot value",
 	"carry_value_desc" : "Display the value of the loot being carried \n(Requires custom carry panel to be enabled)."
+	"default_interact" : "Default Circle",
+	"50bl_interact" : "50 blessings",
+	"pink_interact" : "Pink Circle",
+	"hm2_interact" : "Wrong Number",
 }

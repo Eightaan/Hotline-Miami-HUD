@@ -47,10 +47,17 @@ if not HMH then
 			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/mission_briefing/inv_detection_meter"), self._path .. "assets/guis/textures/pd2_mod_hmh/inv_detection_meter.texture")
         end
 
-		if HMH:GetOption("interact_texture") then
+		if HMH:GetOption("interact_texture") == 2 then
 			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_active"), self._path .. "assets/guis/textures/pd2_mod_hmh/hud_progress_active.texture")
 			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_invalid"), self._path .. "assets/guis/textures/pd2_mod_hmh/hud_progress_invalid.texture")
 			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_bg"), self._path .. "assets/guis/textures/pd2_mod_hmh/hud_progress_bg.texture")
+		elseif HMH:GetOption("interact_texture") == 3 then
+			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_active"), self._path .. "assets/guis/textures/pd2_mod_hmh/pink_progress_active.texture")
+			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_invalid"), self._path .. "assets/guis/textures/pd2_mod_hmh/pink_progress_invalid.texture")
+		elseif HMH:GetOption("interact_texture") == 4 then
+			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_active"), self._path .. "assets/guis/textures/pd2_mod_hmh/hm2_progress_active.texture")
+			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_invalid"), self._path .. "assets/guis/textures/pd2_mod_hmh/hm2_progress_invalid.texture")
+			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_bg"), self._path .. "assets/guis/textures/pd2_mod_hmh/hm2_progress_bg.texture")
 		end
 
         if HMH:GetOption("health_texture") then

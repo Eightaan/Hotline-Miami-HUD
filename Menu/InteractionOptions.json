@@ -5,12 +5,18 @@
 	"description": "hmh_interact_desc",
 	"items": [
 		{
-			"type": "toggle",
-			"id": "interact_texture_toggle",
+			"type": "multiple_choice",
+			"id": "interact_texture_multiple_choice",
 			"title": "interact_texture_title",
 			"description": "interact_texture_desc",
 			"callback": "callback_interact_texture",
 			"value": "interact_texture",
+			"items" : [
+				"default_interact",
+				"50bl_interact",
+				"pink_interact",
+				"hm2_interact"
+			],
 			"default_value": true
 		},
 		{
