@@ -5,7 +5,7 @@ if RequiredScript == "lib/managers/hud/hudinteraction" then
 	        interact_text:set_color(Color("ffcc66"))
 	    end
     end)
-    if HMH:GetOption("interact_texture") then
+    if HMH:GetOption("interact_texture") > 1 then
         Hooks:PreHook(HUDInteraction, "_animate_interaction_complete", "HMH_HUDInteractionAnimateInteractionComplete", function(self, bitmap, circle)
 		    circle:set_visible(false)
         end)
