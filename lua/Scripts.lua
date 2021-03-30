@@ -18,7 +18,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 				break
 			end
 		end
-		if HMH:GetOption("voice") and panel_id and panel_id ~= HUDManager.PLAYER_PANEL then
+		if HMH:GetOption("voice") and panel_id and panel_id ~= HUDManager.PLAYER_PANEL and not WolfHUD then
 			self._teammate_panels[panel_id]:set_voice_com(active)
 		end
 	end
