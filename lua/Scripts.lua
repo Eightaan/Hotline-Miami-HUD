@@ -226,11 +226,6 @@ elseif RequiredScript == "lib/managers/hud/hudhitconfirm" then
 	local old_init = HUDHitConfirm.init
 	function HUDHitConfirm:init(...)
 		old_init(self, ...)
-		local size = 24
-		local red = (80)/100
-		local green = (20)/100
-		local blue = (20)/100
-		local new_color = Color(red, green, blue)
 		if self._hud_panel:child("headshot_confirm") then
 			self._hud_panel:remove(self._hud_panel:child("headshot_confirm"))
 		end
@@ -240,26 +235,26 @@ elseif RequiredScript == "lib/managers/hud/hudhitconfirm" then
 			visible = false,
 			name = "headshot_confirm",
 			texture = "guis/textures/pd2/hud_progress_active",
-			color = new_color,
+			color = Color("ff3633"),
 			layer = 1,
-			h = size,
-			w = size,
+			h = 24,
+			w = 24,
 			blend_mode = "normal"
 		})
 		self._headshot_confirm:set_center(self._hud_panel:w() / 2, self._hud_panel:h() / 2)
 	end
 
 	function HUDHitConfirm:on_headshot_confirmed()
-	    if VHUDPlus and VHUDPlus:getSetting({"MISCHUD", "HEADSHOT"}, true) or HMH:GetOption("headshot_mark") then
-		    self._headshot_confirm:stop()
-		    self._headshot_confirm:animate(callback(self, self, "_animate_show"), callback(self, self, "show_done"), 0.25)
-	    end
+		self._headshot_confirm:stop()
+		self._headshot_confirm:animate(callback(self, self, "_animate_show"), callback(self, self, "show_done"), 0.25)
 	end
 	
 elseif RequiredScript == "lib/managers/playermanager" then
-	local old_ohd = PlayerManager.on_headshot_dealt
-	function PlayerManager:on_headshot_dealt(...)
-		managers.hud:on_headshot_confirmed()
-		return old_ohd(self, ...)
+	local PlayerManager_on_lethal_headshot_dealt = PlayerManager.on_lethal_headshot_dealt
+	function PlayerManager:on_lethal_headshot_dealt(...)
+	    if VHUDPlus and VHUDPlus:getSetting({"MISCHUD", "HEADSHOT"}, true) or HMH:GetOption("headshot_mark") then
+		    --managers.hud:on_headshot_confirmed()
+	    end
+		return PlayerManager_on_lethal_headshot_dealt(self, ...)
 	end
 end

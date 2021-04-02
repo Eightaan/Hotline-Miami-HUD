@@ -55,15 +55,6 @@
 			"callback": "callback_combo",
 			"value": "combo",
 			"default_value": false
-		},
-		{
-			"type": "toggle",
-			"id": "headshot_mark_toggle",
-			"title": "headshot_mark_title",
-			"description": "headshot_mark_desc",
-			"callback": "callback_headshot_mark",
-			"value": "headshot_mark",
-			"default_value": true
 	    },
         {
 			"type": "divider",
