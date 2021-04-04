@@ -223,23 +223,21 @@ elseif RequiredScript == "lib/units/beings/player/states/playerdriving" then
 
 -- Headshoot confirm
 elseif RequiredScript == "lib/managers/hud/hudhitconfirm" then
-	local old_init = HUDHitConfirm.init
+	local HUDHitConfirm_init = HUDHitConfirm.init
 	function HUDHitConfirm:init(...)
-		old_init(self, ...)
+		HUDHitConfirm_init(self, ...)
 		if self._hud_panel:child("headshot_confirm") then
 			self._hud_panel:remove(self._hud_panel:child("headshot_confirm"))
 		end
 		self._headshot_confirm = self._hud_panel:bitmap({
-			valign = "center",
+		    texture = "guis/textures/pd2/hud_progress_active",
+			name = "headshot_confirm",
 			halign = "center",
 			visible = false,
-			name = "headshot_confirm",
-			texture = "guis/textures/pd2/hud_progress_active",
-			color = Color("ff3633"),
 			layer = 1,
-			h = 24,
-			w = 24,
-			blend_mode = "normal"
+			blend_mode = "normal",
+			valign = "center",
+			color = Color("ff3633")
 		})
 		self._headshot_confirm:set_center(self._hud_panel:w() / 2, self._hud_panel:h() / 2)
 	end
@@ -247,16 +245,16 @@ elseif RequiredScript == "lib/managers/hud/hudhitconfirm" then
 	function HUDHitConfirm:on_headshot_confirmed()
 	    if VHUDPlus and VHUDPlus:getSetting({"MISCHUD", "HEADSHOT"}, true) or HMH:GetOption("headshot_mark") then
 		    self._headshot_confirm:stop()
-		    self._headshot_confirm:animate(callback(self, self, "_animate_show"), callback(self, self, "show_done"), 0.25)
+		    self._headshot_confirm:animate(callback(self, self, "_animate_show"), callback(self, self, "show_done"), 0.25, 0.15)
 		end
 	end
 	
 elseif RequiredScript == "lib/managers/playermanager" then
-	local PlayerManager_on_lethal_headshot_dealt = PlayerManager.on_lethal_headshot_dealt
-	function PlayerManager:on_lethal_headshot_dealt(...)
-	    if VHUDPlus and VHUDPlus:getSetting({"MISCHUD", "HEADSHOT"}, true) or HMH:GetOption("headshot_mark") then
-		    --managers.hud:on_headshot_confirmed()
-	    end
-		return PlayerManager_on_lethal_headshot_dealt(self, ...)
+	local PlayerManager_on_headshot_dealt = PlayerManager.on_headshot_dealt
+	function PlayerManager:on_headshot_dealt(...)
+	    if HMH:GetOption("headshot_mark") then
+		    managers.hud:on_headshot_confirmed()
+		end
+		return PlayerManager_on_headshot_dealt(self, ...)
 	end
 end
