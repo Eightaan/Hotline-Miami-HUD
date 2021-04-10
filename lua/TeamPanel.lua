@@ -540,11 +540,6 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammateSetAmmoAm
     local out_of_clip = current_clip <= 0
     local cheated_clip = current_clip > max_clip
 
-	if self._main_player and HMH:GetOption("trueammo") and current_left - current_clip >= 0 then
-		current_left = current_left - current_clip
-		ammo_total:set_text(zero .. current_left)
-	end
-
     if HMH:GetOption("ammo") then
 		local ammo_font
 		if current_left > 1000 then
@@ -696,4 +691,14 @@ function HUDTeammate:_create_ping_info()
 		y = name_panel:y() - tweak_data.hud.small_font_size,
 		h = 50
 	})
+end
+
+local set_ammo_amount_by_type_orig = HUDTeammate.set_ammo_amount_by_type
+function HUDTeammate:set_ammo_amount_by_type(type, max_clip, current_clip, current_left, max, weapon_panel, ...)
+	if self._main_player and HMH:GetOption("trueammo") then
+		if current_left - current_clip >= 0 then
+			current_left = current_left - current_clip
+		end
+	end
+	return set_ammo_amount_by_type_orig(self, type, max_clip, current_clip, current_left, max, weapon_panel, ...)
 end
