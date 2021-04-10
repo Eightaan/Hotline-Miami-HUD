@@ -100,9 +100,11 @@ if HMH:GetOption("bulletstorm") then
     		pammo_clip:set_color(Color.white)
     		pammo_clip:set_text("8")
     		pammo_clip:set_rotation(90)
-    		pammo_clip:set_font_size(30)
+			if HMH:GetOption("ammo") then
+    		    pammo_clip:set_font_size(30)
+				sammo_clip:set_font_size(30)
+			end
 
-		    sammo_clip:set_font_size(30)
 		    sammo_clip:set_color(Color.white)
 		    sammo_clip:set_text("8")
 	 	    sammo_clip:set_rotation(90)
@@ -513,31 +515,37 @@ if HMH:GetOption("ammo") then
             end)
         end
     end)
+	
+	Hooks:PostHook(HUDTeammate, "_create_weapon_panels", "HMH_HUDTeammate_create_weapon_panels", function(self, weapons_panel)
+        local primary_weapon_panel = weapons_panel:child("primary_weapon_panel")
+        local secondary_weapon_panel = weapons_panel:child("secondary_weapon_panel")
+        local sec_weapon_selection_panel = secondary_weapon_panel:child("weapon_selection")
+        local prim_weapon_selection_panel = primary_weapon_panel:child("weapon_selection")
+    
+        prim_weapon_selection_panel:child("weapon_selection"):set_color(Color("66ff99"))
+        sec_weapon_selection_panel:child("weapon_selection"):set_color(Color("66ffff"))
+    end)
+end
 
-    Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammateSetAmmoAmountByType", function(self, type, max_clip, current_clip, current_left, max, weapon_panel)
-		local real_ammo = true
-		local true_ammo = nil
-		if self._main_player and real_ammo then
-			if current_left - current_clip >= 0 then
-				current_left = current_left - current_clip
-				--max = max - current_clip
-				true_ammo = true
-			end
-		end
-        local weapon_panel = self._player_panel:child("weapons_panel"):child(type .. "_weapon_panel")
-        local ammo_total = weapon_panel:child("ammo_total")
-        local ammo_clip = weapon_panel:child("ammo_clip")
-        local zero = current_left < 10 and "00" or current_left < 100 and "0" or ""
-        local zero_clip = current_clip < 10 and "00" or current_clip < 100 and "0" or ""
-        local low_ammo = current_left <= math.round(max / 3)
-        local out_of_ammo = current_left <= 0
-       -- local max_ammo = (current_left == max or ((current_left + current_clip == max)))
-		local max_ammo = (current_left == max or (true_ammo and (current_left + current_clip == max)))
-        local cheated_ammo = current_left > max
-        local low_clip = current_clip <= math.round(max_clip / 4)
-        local out_of_clip = current_clip <= 0
-        local cheated_clip = current_clip > max_clip
+Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammateSetAmmoAmountByType", function(self, type, max_clip, current_clip, current_left, max, weapon_panel)
+    local weapon_panel = self._player_panel:child("weapons_panel"):child(type .. "_weapon_panel")
+    local ammo_total = weapon_panel:child("ammo_total")
+    local ammo_clip = weapon_panel:child("ammo_clip")
+    local zero = current_left < 10 and "00" or current_left < 100 and "0" or ""
+    local zero_clip = current_clip < 10 and "00" or current_clip < 100 and "0" or ""
+    local low_ammo = current_left <= math.round(max / 3)
+    local out_of_ammo = current_left <= 0
+    local cheated_ammo = current_left > max
+    local low_clip = current_clip <= math.round(max_clip / 4)
+    local out_of_clip = current_clip <= 0
+    local cheated_clip = current_clip > max_clip
 
+	if self._main_player and HMH:GetOption("trueammo") and current_left - current_clip >= 0 then
+		current_left = current_left - current_clip
+		ammo_total:set_text(zero .. current_left)
+	end
+
+    if HMH:GetOption("ammo") then
 		local ammo_font
 		if current_left > 1000 then
 		    ammo_font = 18
@@ -546,18 +554,16 @@ if HMH:GetOption("ammo") then
 		end
 
         local color_total = out_of_ammo and Color(1 , 0.9 , 0.3 , 0.3)
-        color_total = color_total or max_ammo and (Color("66ff99"))
         color_total = color_total or low_ammo and Color("ffcc66")
         color_total = color_total or cheated_ammo and Color.red
-        color_total = color_total or (Color("66ff99"))
+        color_total = color_total or Color("66ff99")
 
         local color_clip = out_of_clip and Color(1 , 0.9 , 0.3 , 0.3)
         color_clip = color_clip or low_clip and Color("ffcc66")
         color_clip = color_clip or cheated_clip and Color.red
-        color_clip = color_clip or (Color("66ffff"))
+        color_clip = color_clip or Color("66ffff")
 
         ammo_total:stop()
-        ammo_total:set_text(zero .. current_left)
         ammo_total:set_font(Idstring("fonts/font_medium"))
         ammo_total:set_font_size(ammo_font)
         ammo_total:set_color(color_total)
@@ -568,18 +574,7 @@ if HMH:GetOption("ammo") then
         ammo_clip:set_range_color(0, string.len(zero_clip), color_clip:with_alpha(0.5))
         ammo_clip:set_font(Idstring("fonts/font_medium"))
 		
-		
-		if self._main_player and self._bullet_storm then
-			ammo_clip:set_color(Color.white)
-	    	ammo_clip:set_text( "8" )
-    		ammo_clip:set_rotation(90)
-		    ammo_clip:set_font_size(30)
-		else
-		    ammo_clip:set_rotation(0)
-            ammo_clip:set_font_size(21)
-	    end
-
-        if not self._last_ammo then
+		if not self._last_ammo then
             self._last_ammo = {}
             self._last_ammo[type] = current_left
         end
@@ -599,10 +594,8 @@ if HMH:GetOption("ammo") then
                     local zero = math.round(value) < 10 and "00" or math.round(value) < 100 and "0" or ""
                     local low_ammo = value <= math.round(max / 3)
                     local out_of_ammo = value <= 0
-                    local max_ammo = (value == max or ((value + current_clip == max)))
                     local cheated_ammo = value > max
                     local color_total = out_of_ammo and Color(1, 0.9, 0.3, 0.3)
-                    color_total = color_total or max_ammo and (Color("66ff99"))
                     color_total = color_total or low_ammo and Color("ffcc66")
                     color_total = color_total or cheated_ammo and Color.red
                     color_total = color_total or (Color("66ff99"))
@@ -637,24 +630,29 @@ if HMH:GetOption("ammo") then
                     ammo_clip:set_text(zero .. text)
                     ammo_clip:set_color(color_clip)
                     ammo_clip:set_range_color(0, string.len(zero), color_clip:with_alpha(0.5))
-                end )
-            end )
-
+                end)
+            end)
         end
         self._last_ammo[type] = current_left
         self._last_clip[type] = current_clip
-    end)
-    
-    Hooks:PostHook(HUDTeammate, "_create_weapon_panels", "HMH_HUDTeammate_create_weapon_panels", function(self, weapons_panel)
-        local primary_weapon_panel = weapons_panel:child("primary_weapon_panel")
-        local secondary_weapon_panel = weapons_panel:child("secondary_weapon_panel")
-        local sec_weapon_selection_panel = secondary_weapon_panel:child("weapon_selection")
-        local prim_weapon_selection_panel = primary_weapon_panel:child("weapon_selection")
-    
-        prim_weapon_selection_panel:child("weapon_selection"):set_color(Color("66ff99"))
-        sec_weapon_selection_panel:child("weapon_selection"):set_color(Color("66ffff"))
-    end)
-end
+	end
+
+	if HMH:GetOption("bulletstorm") then
+		if self._main_player and self._bullet_storm then
+			ammo_clip:set_color(Color.white)
+	    	ammo_clip:set_text( "8" )
+    		ammo_clip:set_rotation(90)
+			if HMH:GetOption("ammo") then
+		        ammo_clip:set_font_size(30)
+			end
+		else
+		    ammo_clip:set_rotation(0)
+			if HMH:GetOption("ammo") then
+                ammo_clip:set_font_size(21)
+			end
+	    end
+	end
+end)
 
 function HUDTeammate:update(t,dt)
 	self:update_latency(t,dt)

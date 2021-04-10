@@ -3,6 +3,17 @@ if not HMH:GetOption("assault") then
 end
 
 Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(self, hud, ...)
+    self._assault_color = Color("ffcc66")
+	self._vip_assault_color = Color("ff6666")
+	if managers.mutators:are_mutators_active() then
+		self._assault_color = Color(255, 255, 133, 225) / 255
+		self._vip_assault_color = Color(255, 211, 133, 255) / 255
+	end
+
+	if managers.skirmish:is_skirmish() then
+		self._assault_color = Color("ff6666")
+	end
+
     -- HOSTAGES
 	local hostages_panel = self._hud_panel:child("hostages_panel")
 	local hostage_text = self._hostages_bg_box:child("num_hostages")
@@ -19,7 +30,7 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 	assault_panel:set_alpha(0)
 	assault_panel:text({
 		name = "text",
-		color = Color("ffcc66"),
+		color = self._assault_color,
 		font = tweak_data.hud.medium_font_noshadow
 	})
 
@@ -95,7 +106,7 @@ function HUDAssaultCorner:_start_assault(text_list)
 		self._hud_panel:child("wave_panel"):set_visible(true)
 	end
 
-	icon_assaultbox:set_color(Color("ffcc66"))
+	icon_assaultbox:set_color(self._assault_color)
 	self._assault = true
 	self:hide_casing()
 
@@ -170,7 +181,7 @@ function HUDAssaultCorner:sync_set_assault_mode(mode)
 	local text = assault_panel:child("text")
 	local icon_assaultbox = assault_panel:child("icon_assaultbox")
 	local image = mode == "phalanx" and "guis/textures/pd2/hud_icon_padlockbox" or "guis/textures/pd2/hud_icon_assaultbox"
-	local color = mode == "phalanx" and Color("ff6666") or Color("ffcc66")
+	local color = mode == "phalanx" and self._vip_assault_color or self._assault_color
 	icon_assaultbox:set_image(image)
 	icon_assaultbox:set_color(color)
 	text:set_color(color)
