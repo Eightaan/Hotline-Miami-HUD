@@ -514,7 +514,16 @@ if HMH:GetOption("ammo") then
         end
     end)
 
-    Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammateSetAmmoAmountByType", function(self, type, max_clip, current_clip, current_left, max)
+    Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammateSetAmmoAmountByType", function(self, type, max_clip, current_clip, current_left, max, weapon_panel)
+		local real_ammo = true
+		local true_ammo = nil
+		if self._main_player and real_ammo then
+			if current_left - current_clip >= 0 then
+				current_left = current_left - current_clip
+				--max = max - current_clip
+				true_ammo = true
+			end
+		end
         local weapon_panel = self._player_panel:child("weapons_panel"):child(type .. "_weapon_panel")
         local ammo_total = weapon_panel:child("ammo_total")
         local ammo_clip = weapon_panel:child("ammo_clip")
@@ -522,9 +531,9 @@ if HMH:GetOption("ammo") then
         local zero_clip = current_clip < 10 and "00" or current_clip < 100 and "0" or ""
         local low_ammo = current_left <= math.round(max / 3)
         local out_of_ammo = current_left <= 0
-        local max_ammo = (current_left == max or ((current_left + current_clip == max)))
+       -- local max_ammo = (current_left == max or ((current_left + current_clip == max)))
+		local max_ammo = (current_left == max or (true_ammo and (current_left + current_clip == max)))
         local cheated_ammo = current_left > max
-
         local low_clip = current_clip <= math.round(max_clip / 4)
         local out_of_clip = current_clip <= 0
         local cheated_clip = current_clip > max_clip
