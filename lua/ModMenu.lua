@@ -231,6 +231,9 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
 	MenuCallbackHandler.callback_headshot_mark = function(self, item)
        HMH._data.headshot_mark = item:value() == "on"
     end
+	MenuCallbackHandler.callback_waypoint_alpha = function(self, item)
+        HMH._data.waypoint_alpha = item:value()
+    end
     MenuCallbackHandler.HMHSave = function(this, item)
         HMH:Save()
     end

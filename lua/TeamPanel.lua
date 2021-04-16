@@ -531,14 +531,38 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammateSetAmmoAm
     local weapon_panel = self._player_panel:child("weapons_panel"):child(type .. "_weapon_panel")
     local ammo_total = weapon_panel:child("ammo_total")
     local ammo_clip = weapon_panel:child("ammo_clip")
+	
+	if self._main_player and HMH:GetOption("trueammo") then
+		if current_left - current_clip >= 0 then
+			current_left = current_left - current_clip
+		end
+	end
+
     local zero = current_left < 10 and "00" or current_left < 100 and "0" or ""
     local zero_clip = current_clip < 10 and "00" or current_clip < 100 and "0" or ""
-    local low_ammo = current_left <= math.round(max / 3)
+    local low_ammo = current_left <= math.round(max_clip / 2)
     local out_of_ammo = current_left <= 0
     local cheated_ammo = current_left > max
     local low_clip = current_clip <= math.round(max_clip / 4)
     local out_of_clip = current_clip <= 0
     local cheated_clip = current_clip > max_clip
+
+	local color_total = out_of_ammo and Color(1 , 0.9 , 0.3 , 0.3)
+    color_total = color_total or low_ammo and (HMH:GetOption("ammo") and Color("ffcc66") or Color(1, 0.9, 0.9, 0.3))
+    color_total = color_total or cheated_ammo and Color.red
+    color_total = color_total or (HMH:GetOption("ammo") and Color("66ff99") or Color.white)
+
+    ammo_total:set_text(zero ..tostring(current_left))
+    ammo_total:set_color(color_total)
+    ammo_total:set_range_color(0, string.len(zero), color_total:with_alpha(0.5))
+   
+    local color_clip = out_of_clip and Color(1 , 0.9 , 0.3 , 0.3)
+    color_clip = color_clip or low_clip and (HMH:GetOption("ammo") and Color("ffcc66") or Color(1, 0.9, 0.9, 0.3))
+    color_clip = color_clip or cheated_clip and Color.red
+    color_clip = color_clip or (HMH:GetOption("ammo") and Color("66ffff") or Color.white)
+
+    ammo_clip:set_color(color_clip)
+    ammo_clip:set_range_color(0, string.len(zero_clip), color_clip:with_alpha(0.5))
 
     if HMH:GetOption("ammo") then
 		local ammo_font
@@ -548,25 +572,11 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammateSetAmmoAm
 		    ammo_font = 21
 		end
 
-        local color_total = out_of_ammo and Color(1 , 0.9 , 0.3 , 0.3)
-        color_total = color_total or low_ammo and Color("ffcc66")
-        color_total = color_total or cheated_ammo and Color.red
-        color_total = color_total or Color("66ff99")
-
-        local color_clip = out_of_clip and Color(1 , 0.9 , 0.3 , 0.3)
-        color_clip = color_clip or low_clip and Color("ffcc66")
-        color_clip = color_clip or cheated_clip and Color.red
-        color_clip = color_clip or Color("66ffff")
-
         ammo_total:stop()
         ammo_total:set_font(Idstring("fonts/font_medium"))
         ammo_total:set_font_size(ammo_font)
-        ammo_total:set_color(color_total)
-        ammo_total:set_range_color(0, string.len(zero), color_total:with_alpha(0.5))
 
         ammo_clip:stop()
-        ammo_clip:set_color(color_clip)
-        ammo_clip:set_range_color(0, string.len(zero_clip), color_clip:with_alpha(0.5))
         ammo_clip:set_font(Idstring("fonts/font_medium"))
 		
 		if not self._last_ammo then
@@ -587,7 +597,7 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammateSetAmmoAm
                     local value = math.lerp(s, e, p)
                     local text = string.format("%.0f", value)
                     local zero = math.round(value) < 10 and "00" or math.round(value) < 100 and "0" or ""
-                    local low_ammo = value <= math.round(max / 3)
+                    local low_ammo = value <= math.round(max_clip / 2)
                     local out_of_ammo = value <= 0
                     local cheated_ammo = value > max
                     local color_total = out_of_ammo and Color(1, 0.9, 0.3, 0.3)
@@ -691,14 +701,4 @@ function HUDTeammate:_create_ping_info()
 		y = name_panel:y() - tweak_data.hud.small_font_size,
 		h = 50
 	})
-end
-
-local set_ammo_amount_by_type_orig = HUDTeammate.set_ammo_amount_by_type
-function HUDTeammate:set_ammo_amount_by_type(type, max_clip, current_clip, current_left, max, weapon_panel, ...)
-	if self._main_player and HMH:GetOption("trueammo") then
-		if current_left - current_clip >= 0 then
-			current_left = current_left - current_clip
-		end
-	end
-	return set_ammo_amount_by_type_orig(self, type, max_clip, current_clip, current_left, max, weapon_panel, ...)
 end

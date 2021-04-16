@@ -59,5 +59,6 @@
 	"crew_loadout_tab" : true,
 	"profile_menu" : true,
 	"carry_value" : false,
-	"headshot_mark" : true
+	"headshot_mark" : true,
+	"waypoint_alpha" : 1
 }

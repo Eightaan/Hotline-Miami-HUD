@@ -220,9 +220,11 @@
 	"crew_loadout_title" : "Crew Loadout in Lobby",
 	"crew_loadout_briefing_title" : "Crew Loadout in Briefing",
 	"carry_value_title" : "Show loot value",
-	"carry_value_desc" : "Display the value of the loot being carried \n(Requires custom carry panel to be enabled)."
+	"carry_value_desc" : "Display the value of the loot being carried \n(Requires custom carry panel to be enabled).",
 	"default_interact" : "Default Circle",
 	"50bl_interact" : "50 blessings",
 	"pink_interact" : "Pink Circle",
 	"hm2_interact" : "Wrong Number",
+	"waypoint_alpha_title" : "Waypoint Opacity",
+	"waypoint_alpha_desc" : "Choose a value for how translucent the waypoint markers will be"
 }

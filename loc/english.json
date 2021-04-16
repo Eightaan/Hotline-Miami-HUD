@@ -84,6 +84,8 @@
 	"hmh_waypoints_desc" : "Customize Wayponts.",
 	"waypoints_title" : "Custom waypoints",
 	"waypoints_desc" : "Enable custom colored waypoints.",
+	"waypoint_alpha_title" : "Waypoint Opacity",
+	"waypoint_alpha_desc" : "Choose a value for how translucent the waypoint markers will be",
 	"greenciv_title" : "Green Civilian Pacified Marker",
 	"greenciv_desc" : "Civilians that are pacified will have a green ! marker above them.",
 
