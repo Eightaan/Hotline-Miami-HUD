@@ -25,21 +25,6 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		end
 	end
 
-    --Stamina Circle
-	function HUDManager:set_stamina_value(value, ...)
-		if HMH:GetOption("stamina") and not (VHUDPlus or WolfHUD) then
-		    self._teammate_panels[HUDManager.PLAYER_PANEL]:set_current_stamina_value(value)
-	    end
-		return set_stamina_value_original(self, value, ...)
-	end
-
-	function HUDManager:set_max_stamina(value, ...)
-		if HMH:GetOption("stamina") and not (VHUDPlus or WolfHUD) then
-		    self._teammate_panels[HUDManager.PLAYER_PANEL]:set_max_stamina_value(value)
-		end
-		return set_max_stamina_original(self, value, ...)
-	end
-
     --Ping Display
     function HUDManager:update(...)
 	    for i, panel in ipairs(self._teammate_panels) do

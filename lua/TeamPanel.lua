@@ -47,52 +47,11 @@ Hooks:PostHook(HUDTeammate, "init", "HMH_HUDTeammateInit", function(self, ...)
 	    self:inject_ammo_glow()
     end
 
-	if self._main_player and HMH:GetOption("stamina") and not (VHUDPlus or WolfHUD) then
-		self:_player_stamina_circle()
-	end
-
     self._next_latency_update_t = 0
     if HMH:GetOption("ping") then
 	    self:_create_ping_info()
 	end
 end)
-
-function HUDTeammate:_player_stamina_circle()
-	local radial_health_panel = self._panel:child("player"):child("radial_health_panel")
-	self._stamina_bar = radial_health_panel:bitmap({
-		name = "radial_stamina",
-		texture = "guis/dlcs/coco/textures/pd2/hud_absorb_stack_fg",
-		render_template = "VertexColorTexturedRadial",
-		w = radial_health_panel:w() * 0.7,
-		h = radial_health_panel:h() * 0.7,
-		layer = 5,
-	})
-	self._stamina_bar:set_center(radial_health_panel:child("radial_health"):center())
-end
-
-function HUDTeammate:set_max_stamina_value(value)
-	if not self._max_stamina or self._max_stamina ~= value then
-		self._max_stamina = value
-	end
-end
-
-function HUDTeammate:set_current_stamina_value(value)
-	self._stamina_bar:set_color(Color(1, value/self._max_stamina, 0, 0))
-	self:set_player_stamina_meter_visibility(HMH:GetOption("stamina") and not self._condition_icon:visible())
-end
-
-function HUDTeammate:set_player_stamina_meter_visibility(value)
-	if self._stamina_bar and self._stamina_bar:visible() ~= value then
-		self._stamina_bar:set_visible(value)
-	end
-end
-
-local set_condition_original = HUDTeammate.set_condition
-function HUDTeammate:set_condition(icon_data, ...)
-	local visible = icon_data ~= "mugshot_normal"
-	self:set_player_stamina_meter_visibility(not visible and HMH:GetOption("stamina"))
-	set_condition_original(self, icon_data, ...)
-end
 
 if HMH:GetOption("bulletstorm") then
 	function HUDTeammate:inject_ammo_glow()
