@@ -47,11 +47,52 @@ Hooks:PostHook(HUDTeammate, "init", "HMH_HUDTeammateInit", function(self, ...)
 	    self:inject_ammo_glow()
     end
 
+	if self._main_player and HMH:GetOption("stamina") and not (VHUDPlus or WolfHUD) then
+		self:_player_stamina_circle()
+	end
+
     self._next_latency_update_t = 0
     if HMH:GetOption("ping") then
 	    self:_create_ping_info()
 	end
 end)
+
+function HUDTeammate:_player_stamina_circle()
+	local radial_health_panel = self._panel:child("player"):child("radial_health_panel")
+	self._stamina_bar = radial_health_panel:bitmap({
+		name = "radial_stamina",
+		texture = "guis/dlcs/coco/textures/pd2/hud_absorb_stack_fg",
+		render_template = "VertexColorTexturedRadial",
+		w = radial_health_panel:w() * 0.7,
+		h = radial_health_panel:h() * 0.7,
+		layer = 5,
+	})
+	self._stamina_bar:set_center(radial_health_panel:child("radial_health"):center())
+end
+
+function HUDTeammate:set_max_stamina_value(value)
+	if not self._max_stamina or self._max_stamina ~= value then
+		self._max_stamina = value
+	end
+end
+
+function HUDTeammate:set_current_stamina_value(value)
+	self._stamina_bar:set_color(Color(1, value/self._max_stamina, 0, 0))
+	self:set_player_stamina_meter_visibility(HMH:GetOption("stamina") and not self._condition_icon:visible())
+end
+
+function HUDTeammate:set_player_stamina_meter_visibility(value)
+	if self._stamina_bar and self._stamina_bar:visible() ~= value then
+		self._stamina_bar:set_visible(value)
+	end
+end
+
+local set_condition_original = HUDTeammate.set_condition
+function HUDTeammate:set_condition(icon_data, ...)
+	local visible = icon_data ~= "mugshot_normal"
+	self:set_player_stamina_meter_visibility(not visible and HMH:GetOption("stamina"))
+	set_condition_original(self, icon_data, ...)
+end
 
 if HMH:GetOption("bulletstorm") then
 	function HUDTeammate:inject_ammo_glow()
@@ -127,7 +168,7 @@ function HUDTeammate:set_voice_com(status)
 	local texture = status and "guis/textures/pd2/jukebox_playing" or "guis/textures/pd2/hud_tabs"
 	local texture_rect = status and { 0, 0, 16, 16 } or { 84, 34, 19, 19 }
 	local callsign = self._panel:child("callsign")
-	if HMH:GetOption("voice") then callsign:set_image(texture, unpack(texture_rect)) end
+	callsign:set_image(texture, unpack(texture_rect))
 end
 
 if HMH:GetOption("interact_info") or HMH:GetOption("color_name") then
@@ -193,9 +234,8 @@ Hooks:PostHook(HUDTeammate, "set_callsign", "HMH_HUDTeammateSetCallsign", functi
 end)
 
 if HMH:GetOption("interact_info") then
-    local t = 1 -- How long an interaction should be in order for the text to display. If its shorter than 1 sec nothing will show when at default.
-    local HUDTeammate_teammate_progress = HUDTeammate.teammate_progress
-    function HUDTeammate:teammate_progress(enabled, tweak_data_id, timer, success)
+	Hooks:PreHook(HUDTeammate, "teammate_progress", "HMH_HUDTeammateTeammateProgress", function(self, enabled, tweak_data_id, timer, success)
+	    local t = 1 -- How long an interaction should be in order for the text to display. If its shorter than 1 sec nothing will show when at default.
         if not self._player_panel:child("interact_panel"):child("interact_info") then return end
         self._panel:child("name_panel"):child("interact_text"):stop()
         self._panel:child("name_panel"):child("interact_text"):set_left(0)
@@ -251,8 +291,7 @@ if HMH:GetOption("interact_info") then
                 self._panel:child("name_panel"):child("interact_text"):set_color(HMH:GetOption("color_name") and tweak_data.screen_colors.pro_color or Color.white)
             end
         end
-        HUDTeammate_teammate_progress(self, enabled, tweak_data_id, timer, success)
-    end
+    end)
 end
 
 Hooks:PreHook(HUDTeammate, "set_carry_info", "HMH_HUDTeammateSetCarryInfo", function(self, ...)
@@ -637,17 +676,15 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammateSetAmmoAm
         self._last_clip[type] = current_clip
 	end
 
-	if HMH:GetOption("bulletstorm") then
-		if self._main_player and self._bullet_storm then
-			ammo_clip:set_color(Color.white)
-	    	ammo_clip:set_text( "8" )
-    		ammo_clip:set_rotation(90)
-			if HMH:GetOption("ammo") then
-		        ammo_clip:set_font_size(30)
-			end
-		else
-		    ammo_clip:set_rotation(0)
-	    end
+	if self._main_player and self._bullet_storm then
+		ammo_clip:set_color(Color.white)
+	    ammo_clip:set_text( "8" )
+    	ammo_clip:set_rotation(90)
+		if HMH:GetOption("ammo") then
+		    ammo_clip:set_font_size(30)
+		end
+	else
+		ammo_clip:set_rotation(0)
 	end
 end)
 

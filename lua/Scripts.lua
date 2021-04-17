@@ -6,8 +6,11 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 	local set_slot_ready_orig = HUDManager.set_slot_ready
 	local update_original = HUDManager.update
 	local set_mugshot_voice_orig = HUDManager.set_mugshot_voice
+	local set_stamina_value_original = HUDManager.set_stamina_value
+	local set_max_stamina_original = HUDManager.set_max_stamina
 	local force_ready_clicked = 0
 	
+	--Voice Chat
 	function HUDManager:set_mugshot_voice(id, active)
 	set_mugshot_voice_orig(self, id, active)
 	local panel_id
@@ -20,6 +23,21 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		if HMH:GetOption("voice") and panel_id and panel_id ~= HUDManager.PLAYER_PANEL and not WolfHUD then
 			self._teammate_panels[panel_id]:set_voice_com(active)
 		end
+	end
+
+    --Stamina Circle
+	function HUDManager:set_stamina_value(value, ...)
+		if HMH:GetOption("stamina") and not (VHUDPlus or WolfHUD) then
+		    self._teammate_panels[HUDManager.PLAYER_PANEL]:set_current_stamina_value(value)
+	    end
+		return set_stamina_value_original(self, value, ...)
+	end
+
+	function HUDManager:set_max_stamina(value, ...)
+		if HMH:GetOption("stamina") and not (VHUDPlus or WolfHUD) then
+		    self._teammate_panels[HUDManager.PLAYER_PANEL]:set_max_stamina_value(value)
+		end
+		return set_max_stamina_original(self, value, ...)
 	end
 
     --Ping Display
@@ -230,7 +248,7 @@ elseif RequiredScript == "lib/managers/hud/hudhitconfirm" then
 	end
 
 	function HUDHitConfirm:on_headshot_confirmed()
-	    if VHUDPlus and VHUDPlus:getSetting({"MISCHUD", "HEADSHOT"}, true) or HMH:GetOption("headshot_mark") then
+	   if VHUDPlus and VHUDPlus:getSetting({"MISCHUD", "HEADSHOT"}, true) or HMH:GetOption("headshot_mark") then
 		    self._headshot_confirm:stop()
 		    self._headshot_confirm:animate(callback(self, self, "_animate_show"), callback(self, self, "show_done"), 0.25, 0.15)
 		end
