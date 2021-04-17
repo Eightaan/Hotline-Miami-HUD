@@ -248,7 +248,7 @@ elseif RequiredScript == "lib/managers/hud/hudhitconfirm" then
 	end
 
 	function HUDHitConfirm:on_headshot_confirmed()
-	   if VHUDPlus and VHUDPlus:getSetting({"MISCHUD", "HEADSHOT"}, true) or HMH:GetOption("headshot_mark") then
+	    if VHUDPlus and VHUDPlus:getSetting({"MISCHUD", "HEADSHOT"}, true) or HMH:GetOption("headshot_mark") then
 		    self._headshot_confirm:stop()
 		    self._headshot_confirm:animate(callback(self, self, "_animate_show"), callback(self, self, "show_done"), 0.25, 0.15)
 		end
