@@ -60,5 +60,6 @@
 	"profile_menu" : true,
 	"carry_value" : false,
 	"headshot_mark" : true,
-	"waypoint_alpha" : 1
+	"waypoint_alpha" : 1,
+	"custom_tab_color" : true
 }

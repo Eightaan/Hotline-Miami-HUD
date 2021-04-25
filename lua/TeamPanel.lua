@@ -3,7 +3,7 @@ if _G.IS_VR then
 end
 
 Hooks:PostHook(HUDTeammate, "init", "HMH_HUDTeammateInit", function(self, ...)
-    if HMH:GetOption("interact_info") or HMH:GetOption("color_name") then
+    if HMH:GetOption("interact_info") or HMH:GetOption("color_name") and not (restoration and restoration:all_enabled("HUD/MainHUD", "HUD/Teammate")) then
 	    local radial_health_panel = self._player_panel:child("radial_health_panel")
 	    local name_panel = self._panel:panel({
 		    name = "name_panel",
@@ -130,7 +130,7 @@ function HUDTeammate:set_voice_com(status)
 	if HMH:GetOption("voice") then callsign:set_image(texture, unpack(texture_rect)) end
 end
 
-if HMH:GetOption("interact_info") or HMH:GetOption("color_name") then
+if HMH:GetOption("interact_info") or HMH:GetOption("color_name") and not (restoration and restoration:all_enabled("HUD/MainHUD", "HUD/Teammate")) then
     Hooks:PostHook(HUDTeammate, "set_name", "HMH_HUDTeammateSetName", function(self, ...)
 	    local teammate_panel = self._panel
 	    local name = teammate_panel:child("name")
@@ -182,17 +182,17 @@ Hooks:PostHook(HUDTeammate, "set_callsign", "HMH_HUDTeammateSetCallsign", functi
 	end
 	
 	local is_cheater = not self._main_player and self:peer_id() and managers.network:session() and managers.network:session():peer(self:peer_id()):is_cheater()
-    if HMH:GetOption("color_name") then
+    if HMH:GetOption("color_name") and not (restoration and restoration:all_enabled("HUD/MainHUD", "HUD/Teammate")) then
         self._panel:child("name"):set_color(is_cheater and tweak_data.screen_colors.pro_color or tweak_data.chat_colors[id])
 	    self._new_name:set_color(is_cheater and tweak_data.screen_colors.pro_color or tweak_data.chat_colors[id])
 	end
 
-    if is_cheater and HMH:GetOption("color_name") then
+    if is_cheater and HMH:GetOption("color_name") and not (restoration and restoration:all_enabled("HUD/MainHUD", "HUD/Teammate")) then
 	    self._panel:child("callsign"):set_color(tweak_data.screen_colors.pro_color)
 	end
 end)
 
-if HMH:GetOption("interact_info") then
+if HMH:GetOption("interact_info") and not (restoration and restoration:all_enabled("HUD/MainHUD", "HUD/Teammate")) then
 	Hooks:PreHook(HUDTeammate, "teammate_progress", "HMH_HUDTeammateTeammateProgress", function(self, enabled, tweak_data_id, timer, success)
 	    local t = 1 -- How long an interaction should be in order for the text to display. If its shorter than 1 sec nothing will show when at default.
         if not self._player_panel:child("interact_panel"):child("interact_info") then return end

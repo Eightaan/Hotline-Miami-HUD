@@ -1,4 +1,4 @@
-if not (HMH:GetOption("PLAYER_down") or HMH:GetOption("TEAM_down")) or VHUDPlus and VHUDPlus:getSetting({"CustomHUD", "ENABLED"}, true) and VHUDPlus:getSetting({"CustomHUD", "TEAMMATE", "DOWNCOUNTER"}, true) or WolfHUD and WolfHUD:getSetting({"CustomHUD", "ENABLED"}, true)    then return 
+if not (HMH:GetOption("PLAYER_down") or HMH:GetOption("TEAM_down")) or VHUDPlus and VHUDPlus:getSetting({"CustomHUD", "ENABLED"}, true) and VHUDPlus:getSetting({"CustomHUD", "TEAMMATE", "DOWNCOUNTER"}, true) or WolfHUD and WolfHUD:getSetting({"CustomHUD", "ENABLED"}, true) or (restoration and restoration:all_enabled("HUD/MainHUD", "HUD/Teammate")) then return 
 end
 
 if RequiredScript == "lib/managers/hudmanagerpd2" then

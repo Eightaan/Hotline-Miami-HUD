@@ -234,6 +234,9 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
 	MenuCallbackHandler.callback_waypoint_alpha = function(self, item)
         HMH._data.waypoint_alpha = item:value()
     end
+	MenuCallbackHandler.callback_custom_tab_color = function(self, item)
+        HMH._data.custom_tab_color = item:value() == "on"
+    end
     MenuCallbackHandler.HMHSave = function(this, item)
         HMH:Save()
     end

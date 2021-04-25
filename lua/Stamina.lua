@@ -1,4 +1,4 @@
-if not HMH:GetOption("stamina") or VHUDPlus or WolfHUD then 
+if not HMH:GetOption("stamina") or VHUDPlus or WolfHUD or (restoration and restoration:all_enabled("HUD/MainHUD", "HUD/Teammate")) then 
     return
 end
 

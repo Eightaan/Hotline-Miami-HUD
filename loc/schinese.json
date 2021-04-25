@@ -226,5 +226,7 @@
 	"pink_interact" : "Pink Circle",
 	"hm2_interact" : "Wrong Number",
 	"waypoint_alpha_title" : "Waypoint Opacity",
-	"waypoint_alpha_desc" : "Choose a value for how translucent the waypoint markers will be"
+	"waypoint_alpha_desc" : "Choose a value for how translucent the waypoint markers will be",
+	"custom_tab_color_title" : "Custom tabstats colors",
+	"custom_tab_color_desc" : "Colorize the tabstats menu"
 }

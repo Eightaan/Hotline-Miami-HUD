@@ -77,6 +77,8 @@
 	"hmh_tab_desc" : "Customize the tabstats panel.",
 	"tab_title" : "Custom Tabstats",
 	"tab_desc" : "Enable tabstats changes.",
+	"custom_tab_color_title" : "Custom tabstats colors",
+	"custom_tab_color_desc" : "Colorize the tabstats menu",
 	"enemy_count_title" : "Enemy counter",
 	"enemy_count_desc" : "Shows the amount of enemies on the map",
 
