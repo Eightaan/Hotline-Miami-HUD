@@ -7,10 +7,10 @@ Hooks:PostHook( HUDPlayerCustody , "init", "HMH_HUDTeammate_init", function(self
 
 	if HMH:GetOption("custody") then
         timer_msg:set_color(Color("66ff99"))
-	    timer:set_color(Color("66ffff"))
+	    timer:set_color(BeardLib and hotlinemiamihud.Options:GetValue("CustodyTimer") or Color("66ffff"))
 	    timer:set_font(Idstring("fonts/font_medium"))
-	    civilians_killed:set_color(Color("ff6666"))
-	    trade_delay:set_color(Color("ffcc66"))
+	    civilians_killed:set_color(BeardLib and hotlinemiamihud.Options:GetValue("Civillans") or Color("ff6666"))
+	    trade_delay:set_color(BeardLib and hotlinemiamihud.Options:GetValue("Trade") or Color("ffcc66"))
 	end
 end)
 

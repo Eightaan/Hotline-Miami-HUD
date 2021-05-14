@@ -15,6 +15,19 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 
 	    local ecm_box = HUDBGBox_create(self._ecm_panel, { w = 38, h = 38, },  {})
 
+        local ecm_text_color
+		local pager_icon_color
+		local ecm_icon_color
+		if HMH:GetOption("assault") and BeardLib then
+		    ecm_icon_color = hotlinemiamihud.Options:GetValue("ECMIcon")
+			pager_icon_color = hotlinemiamihud.Options:GetValue("ECMUpgradeIcon")
+			ecm_text_color = hotlinemiamihud.Options:GetValue("ECMText")
+		else
+		    ecm_icon_color = HMH:GetOption("assault") and Color("ff80df") or Color.white
+			pager_icon_color = HMH:GetOption("assault") and Color("66ff99") or Color.white
+			ecm_text_color = HMH:GetOption("assault") and Color("66ffff") or Color.white
+		end
+		
 	    self._text = ecm_box:text({
 		    name = "text",
 		    text = "0",
@@ -24,7 +37,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		    w = ecm_box:w(),
 		    h = ecm_box:h(),
 		    layer = 1,
-		    color = HMH:GetOption("assault") and Color("66ffff") or Color.white,
+		    color = ecm_text_color,
 		    font = tweak_data.hud_corner.assault_font,
 		    font_size = tweak_data.hud_corner.numhostages_size * 0.9
 	    })
@@ -34,7 +47,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		    texture = "guis/textures/pd2/skilltree/icons_atlas",
 		    texture_rect = { 1 * 64, 4 * 64, 64, 64 },
 		    valign = "top",
-			color = HMH:GetOption("assault") and Color("ff80df") or Color.white,
+			color = ecm_icon_color,
 		    layer = 1,
 		    w = ecm_box:w(),
 		    h = ecm_box:h()	
@@ -50,7 +63,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		    texture_rect = pagers_rect,
 		    valign = "top",
 			visible = false,
-			color = HMH:GetOption("assault") and Color("66ff99") or Color.white,
+			color = pager_icon_color,
 		    layer = 2,
 		    w = ecm_box:w() / 2,
 		    h = ecm_box:h() / 2
@@ -61,9 +74,15 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 
     function HUDECMCounter:update(t)
 	    self._ecm_panel:set_visible(HMH:GetOption("infoboxes") and managers.groupai:state():whisper_mode() and t > 0 )
+		local text_color
+		if HMH:GetOption("assault") and BeardLib then
+		    text_color = hotlinemiamihud.Options:GetValue("ECMText")
+		else
+		    text_color = HMH:GetOption("assault") and Color("66ffff") or Color.white
+		end
 	    if t > 0 then
 		    self._text:set_text(string.format("%.fs", t))
-		    self._text:set_color(HMH:GetOption("assault") and Color("66ffff") or Color.white)
+		    self._text:set_color(text_color)
         end	
     end
 

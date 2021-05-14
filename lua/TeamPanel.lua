@@ -340,9 +340,9 @@ if HMH:GetOption("equipment") then
 
         if data.amount > 0 then
             equipment:set_alpha(1)
-            equipment:set_color(Color("ff80df"))
+            equipment:set_color(BeardLib and hotlinemiamihud.Options:GetValue("EquipmentIcon") or Color("ff80df"))
             amount:set_alpha(1)
-            amount:set_color(Color("66ffff"))
+            amount:set_color(BeardLib and hotlinemiamihud.Options:GetValue("EquipmentText") or Color("66ffff"))
         end
 
         if data.amount > 0 then
@@ -354,7 +354,7 @@ if HMH:GetOption("equipment") then
             end)
         elseif data.amount == 0 then
             equipment:animate(function(o)
-                equipment:set_color(Color("ff80df"))
+                equipment:set_color(BeardLib and hotlinemiamihud.Options:GetValue("EquipmentIcon") or Color("ff80df"))
                 over(1, function(p)
                     equipment:set_alpha(0.2)
                     amount:set_alpha(0.2)
@@ -378,8 +378,8 @@ if HMH:GetOption("equipment") then
 
         if data.amount > 0 then
             grenades:set_alpha(1)
-            grenades:set_color(Color("ff80df"))
-            amount:set_color(Color("66ffff"))
+            grenades:set_color(BeardLib and hotlinemiamihud.Options:GetValue("GrenadeIcon") or Color("ff80df"))
+            amount:set_color(BeardLib and hotlinemiamihud.Options:GetValue("GrenadeText") or Color("66ffff"))
             amount:set_alpha(1)
         end
 
@@ -392,7 +392,7 @@ if HMH:GetOption("equipment") then
             end)
         elseif data.amount == 0 then
             grenades:animate( function(o)
-                grenades:set_color(Color("ff80df"))
+                grenades:set_color(BeardLib and hotlinemiamihud.Options:GetValue("GrenadeIcon") or Color("ff80df"))
                 over(1, function(p)
                     grenades:set_alpha(0.2)
                     amount:set_alpha(0.2)
@@ -414,8 +414,8 @@ if HMH:GetOption("equipment") then
 
         if amount > 0 then
             cable_ties:set_alpha(1)
-            cable_ties:set_color(Color("ff80df"))
-            cable_ties_amount:set_color(Color("66ffff"))
+            cable_ties:set_color(BeardLib and hotlinemiamihud.Options:GetValue("CabletiesIcon") or Color("ff80df"))
+            cable_ties_amount:set_color(BeardLib and hotlinemiamihud.Options:GetValue("CabletiesText") or Color("66ffff"))
             cable_ties_amount:set_alpha(1)
         end
 
@@ -428,7 +428,7 @@ if HMH:GetOption("equipment") then
             end)
         elseif amount == 0 then
             cable_ties:animate(function(o)
-                cable_ties:set_color(Color("ff80df"))
+                cable_ties:set_color(BeardLib and hotlinemiamihud.Options:GetValue("CabletiesIcon") or Color("ff80df"))
                 over(1, function(p)
                     cable_ties:set_alpha(0.2)
                     cable_ties_amount:set_alpha(0.2)
@@ -468,12 +468,12 @@ if HMH:GetOption("equipment") then
             amounts = amounts .. amount_str
 
             if amount > 0 then
-			    color = Color("66ffff")
+			    color = BeardLib and hotlinemiamihud.Options:GetValue("EquipmentText") or Color("66ffff")
                 alpha = 1
             end
         end
 
-        icon:set_color(Color("ff80df"))
+        icon:set_color(BeardLib and hotlinemiamihud.Options:GetValue("EquipmentIcon") or Color("ff80df"))
         icon:set_alpha(alpha)
         amount:set_alpha(alpha)
         amount:set_color(color)
@@ -520,8 +520,8 @@ if HMH:GetOption("ammo") then
         local sec_weapon_selection_panel = secondary_weapon_panel:child("weapon_selection")
         local prim_weapon_selection_panel = primary_weapon_panel:child("weapon_selection")
     
-        prim_weapon_selection_panel:child("weapon_selection"):set_color(Color("66ff99"))
-        sec_weapon_selection_panel:child("weapon_selection"):set_color(Color("66ffff"))
+        prim_weapon_selection_panel:child("weapon_selection"):set_color(BeardLib and hotlinemiamihud.Options:GetValue("PrimFiremode") or Color("66ff99"))
+        sec_weapon_selection_panel:child("weapon_selection"):set_color(BeardLib and hotlinemiamihud.Options:GetValue("SecFiremode") or Color("66ffff"))
     end)
 end
 
@@ -534,6 +534,18 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammateSetAmmoAm
 		end
 	end
 
+    local low_ammo_color
+	local total_ammo_color
+	local clip_ammo_color
+	if BeardLib and HMH:GetOption("ammo") then
+        low_ammo_color = hotlinemiamihud.Options:GetValue("LowAmmo")
+		total_ammo_color = hotlinemiamihud.Options:GetValue("TotalAmmo")
+		clip_ammo_color = hotlinemiamihud.Options:GetValue("ClipAmmo")
+	else
+	    low_ammo_color = HMH:GetOption("ammo") and Color("ffcc66") or Color(1, 0.9, 0.9, 0.3)
+		total_ammo_color = HMH:GetOption("ammo") and Color("66ff99") or Color.white
+		clip_ammo_color = HMH:GetOption("ammo") and Color("66ffff") or Color.white
+	end
     local low_ammo = current_left <= math.round(max_clip / 2)
 	local low_clip = current_clip <= math.round(max_clip / 4)
 	local out_of_clip = current_clip <= 0
@@ -541,13 +553,13 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammateSetAmmoAm
     local cheated_ammo = current_left > max
     local cheated_clip = current_clip > max_clip
 	local color_total = out_of_ammo and Color(1 , 0.9 , 0.3 , 0.3)
-    color_total = color_total or low_ammo and (HMH:GetOption("ammo") and Color("ffcc66") or Color(1, 0.9, 0.9, 0.3))
+    color_total = color_total or low_ammo and (low_ammo_color)
     color_total = color_total or cheated_ammo and Color.red
-    color_total = color_total or (HMH:GetOption("ammo") and Color("66ff99") or Color.white)
+    color_total = color_total or (total_ammo_color)
 	local color_clip = out_of_clip and Color(1 , 0.9 , 0.3 , 0.3)
-    color_clip = color_clip or low_clip and (HMH:GetOption("ammo") and Color("ffcc66") or Color(1, 0.9, 0.9, 0.3))
+    color_clip = color_clip or low_clip and (low_ammo_color)
     color_clip = color_clip or cheated_clip and Color.red
-    color_clip = color_clip or (HMH:GetOption("ammo") and Color("66ffff") or Color.white)
+    color_clip = color_clip or (clip_ammo_color)
     local ammo_total = weapon_panel:child("ammo_total")
 	local zero = current_left < 10 and "00" or current_left < 100 and "0" or ""
 
@@ -594,9 +606,9 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammateSetAmmoAm
                     local out_of_ammo = value <= 0
                     local cheated_ammo = value > max
                     local color_total = out_of_ammo and Color(1, 0.9, 0.3, 0.3)
-                    color_total = color_total or low_ammo and Color("ffcc66")
+                    color_total = color_total or low_ammo and low_ammo_color
                     color_total = color_total or cheated_ammo and Color.red
-                    color_total = color_total or (Color("66ff99"))
+                    color_total = color_total or (total_ammo_color)
 
                     ammo_total:set_text(zero .. text)
                     ammo_total:set_color(color_total)
@@ -622,8 +634,8 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammateSetAmmoAm
                     local out_of_clip = value <= 0
                     local color_clip = out_of_clip and Color(1, 0.9, 0.3, 0.3)
 
-                    color_clip = color_clip or low_clip and Color("ffcc66")
-                    color_clip = color_clip or (Color("66ffff"))
+                    color_clip = color_clip or low_clip and low_ammo_color
+                    color_clip = color_clip or (clip_ammo_color)
 
                     ammo_clip:set_text(zero .. text)
                     ammo_clip:set_color(color_clip)

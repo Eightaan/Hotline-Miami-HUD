@@ -11,11 +11,17 @@ if RequiredScript == "core/lib/managers/subtitle/coresubtitlepresenter" then
 		end
 
 		self.__font_name = "fonts/font_medium_mf"
+		local sub_color
+		if _G.HMH:GetOption("custom_subs") and _G.BeardLib then
+		    sub_color = _G.hotlinemiamihud.Options:GetValue("Sub")
+		else
+		    sub_color = _G.HMH:GetOption("custom_subs") and Color("66ff99") or Color.white
+		end
 		local label = self.__subtitle_panel:child("label") or self.__subtitle_panel:text({
 			name = "label",
 			font = self.__font_name,
 			font_size = self.__font_size * self._text_scale,
-			color = _G.HMH:GetOption("custom_subs") and Color("66ff99") or Color.white,
+			color = sub_color,
 			align = "center",
 			vertical = "bottom",
 			layer = 1,

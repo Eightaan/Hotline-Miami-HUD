@@ -6,9 +6,9 @@ Hooks:PostHook(HUDManager, "add_waypoint", "HMH_hudmanager_add_waypoint", functi
 		local scale = HMH:GetOption("waypoint_alpha")
 		if wp and wp.bitmap and wp.distance and wp.arrow and data.distance then
 		    if HMH:GetOption("waypoints") then
-			    wp.bitmap:set_color(Color("66ff99"))
-			    wp.distance:set_color(Color("66ffff"))
-			    wp.arrow:set_color(Color("66ffff"))
+			    wp.bitmap:set_color(BeardLib and hotlinemiamihud.Options:GetValue("WaypointIcon") or Color("66ff99"))
+			    wp.distance:set_color(BeardLib and hotlinemiamihud.Options:GetValue("WaypointDist") or Color("66ffff"))
+			    wp.arrow:set_color(BeardLib and hotlinemiamihud.Options:GetValue("WaypointArrow") or Color("66ffff"))
 			end
 			wp.bitmap:set_alpha(1 * scale)
 			wp.distance:set_alpha(1 * scale)
