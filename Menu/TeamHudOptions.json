@@ -195,6 +195,15 @@
 			"callback": "callback_ammo",
 			"value": "ammo",
 			"default_value": true
+		},
+		{
+			"type": "toggle",
+			"id": "stop_ai_toggle",
+			"title": "stop_ai_title",
+			"description": "stop_ai_desc",
+			"callback": "callback_stop_ai",
+			"value": "stop_ai",
+			"default_value": true
 		}
 	]
 }

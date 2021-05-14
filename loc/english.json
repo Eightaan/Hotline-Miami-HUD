@@ -67,6 +67,8 @@
 	"downed_desc" : "Enable the custom colored downed text at the top of the screen.",
 	"custody_title" : "Custom Custody Text",
 	"custody_desc" : "Enable the custom colored custody text when taken into custody(civillian killed/time).",
+	"stop_ai_title" : "Stop ai icon",
+	"stop_ai_desc" : "Use a custom ai stop symbol",
 
 	"hmh_custom_chat_title" : "Chat",
 	"hmh_custom_chat_desc" : "Customize the chat.",
@@ -232,7 +234,6 @@
 	"extracted_preplanning_msg_file_creation_failed" : "Failed to create file: $FILE \nPlease make sure the game has the required permissions or create it manually.",
 	"extracted_dialog_save" : "Save",
 	
-	
 	"HotlineMiamiHudOptionsButtonTitleID" : "Hotline Miami Hud Color Options",
 	"HotlineMiamiHudColorOption" : "Change the color of this HUD element to your own liking",
 	"HotlineMiamiHudAssaultTitleID" : "Assault Panel",
@@ -265,6 +266,7 @@
 	"HotlineMiamiHudECMIconTitleID" : "ECm timer icon",
 	"HotlineMiamiHudECMTextTitleID" : "ECM timer text",
 	
+	"HotlineMiamiHudCustodyReleasedTitleID" : "Custody released text",
 	"HotlineMiamiHudCustodyTimerTitleID" : "Custody timer",
 	"HotlineMiamiHudCivillansTitleID" : "Civillans killed text",
 	"HotlineMiamiHudTradeTitleID" : "Trade text",
@@ -294,5 +296,12 @@
 	"HotlineMiamiHudSecFiremodeTitleID" : "Secondary firemode",
 	"HotlineMiamiHudLowAmmoTitleID" : "Low ammo",
 	"HotlineMiamiHudTotalAmmoTitleID" : "Total ammo",
-	"HotlineMiamiHudClipAmmoTitleID" : "Current ammo"
+	"HotlineMiamiHudClipAmmoTitleID" : "Current ammo",
+	
+	"HotlineMiamiHudPlayer1TitleID" : "Player 1",
+	"HotlineMiamiHudPlayer2TitleID" : "Player 2",
+	"HotlineMiamiHudPlayer3TitleID" : "Player 3",
+	"HotlineMiamiHudPlayer4TitleID" : "Player 4",
+	"HotlineMiamiHudPlayerAiTitleID" : "Bot",
+	"HotlineMiamiHudSystemTitleID" : "System"
 }

@@ -61,5 +61,6 @@
 	"carry_value" : false,
 	"headshot_mark" : true,
 	"waypoint_alpha" : 1,
-	"custom_tab_color" : true
+	"custom_tab_color" : true,
+	"stop_ai" : true
 }

@@ -237,6 +237,9 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
 	MenuCallbackHandler.callback_custom_tab_color = function(self, item)
         HMH._data.custom_tab_color = item:value() == "on"
     end
+	MenuCallbackHandler.callback_stop_ai = function(self, item)
+        HMH._data.stop_ai = item:value() == "on"
+    end
     MenuCallbackHandler.HMHSave = function(this, item)
         HMH:Save()
     end
