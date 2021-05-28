@@ -42,6 +42,9 @@ Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInit_HMH", func
 	if HMH:GetOption("skip_blackscreen") then
 	    localized_strings["hud_skip_blackscreen"] = ""
 	end
+	if HMH:GetOption("suspicion") then
+	    localized_strings["hud_suspicion_detected"] = ""
+	end
 
     loc:add_localized_strings(localized_strings)
 end)
