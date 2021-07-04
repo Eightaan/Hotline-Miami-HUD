@@ -1,0 +1,73 @@
+{
+	"HotlineMiamiHudOptionsButtonTitleID" : "Hotline Miami Hud Color Options",
+	"HotlineMiamiHudOptionsButtonDescID" : "Change the color of this HUD element to your own liking",
+	"HotlineMiamiHudColorOption" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudAssaultTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudCustodyTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudObjectivesTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudPresenterTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudWaypointTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudTeamTitleID" : "Hotline Miami Hud is Disabled!",
+	
+
+    "HotlineMiamiHudTimerTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudInteractionTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudHintTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudSubTitleID" : "Hotline Miami Hud is Disabled!",
+
+	"HotlineMiamiHudAssaultTextTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudCasingTextTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudCasingIconTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudNoReturnTextTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudNoReturnIconTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudNoReturnTimerTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudHoldoutTextTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudCaptainTextTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudCaptainBuffIconTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudHostagesTextTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudHostagesIconTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudWavesIconTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudWavesTextTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudECMUpgradeIconTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudECMIconTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudECMTextTitleID" : "Hotline Miami Hud is Disabled!",
+	
+	"HotlineMiamiHudCustodyReleasedTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudCustodyTimerTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudCivillansTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudTradeTitleID" : "Hotline Miami Hud is Disabled!",
+	
+	"HotlineMiamiHudDownedTextTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudDownedTimerTitleID" : "Hotline Miami Hud is Disabled!",
+	
+	"HotlineMiamiHudObjectiveTextTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudObjectiveIconTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudObjectiveAmountTitleID" : "Hotline Miami Hud is Disabled!",
+	
+	"HotlineMiamiHudPresenterTitleTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudPresenterTextTitleID" : "Hotline Miami Hud is Disabled!",
+	
+	"HotlineMiamiHudWaypointIconTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudWaypointDistTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudWaypointArrowTitleID" : "Hotline Miami Hud is Disabled!",
+	
+	"HotlineMiamiHudGrenadeIconTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudGrenadeTextTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudCasingIconTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudEquipmentIconTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudEquipmentTextTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudCabletiesIconTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudCabletiesTextTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudPrimFiremodeTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudSecFiremodeTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudLowAmmoTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudTotalAmmoTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudClipAmmoTitleID" : "Hotline Miami Hud is Disabled!",
+	
+	"HotlineMiamiHudPlayer1TitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudPlayer2TitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudPlayer3TitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudPlayer4TitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudPlayerAiTitleID" : "Hotline Miami Hud is Disabled!",
+	"HotlineMiamiHudSystemTitleID" : "Hotline Miami Hud is Disabled!"
+}

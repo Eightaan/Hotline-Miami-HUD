@@ -10,10 +10,6 @@
 			<group :hook_id="managers/subtitle/">
 		        <post :hook_id="coresubtitlepresenter" :script_path="Subtitles.lua"/>
 			</group>
-			
-			<group :hook_id="managers/menu/items/">
-		        <post :hook_id="coremenuitemslider" :script_path="MenuTweak.lua"/>
-			</group>
         </group>
 
 	    <group hook_id="lib/">

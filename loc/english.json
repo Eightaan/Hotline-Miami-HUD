@@ -235,6 +235,7 @@
 	"extracted_dialog_save" : "Save",
 	
 	"HotlineMiamiHudOptionsButtonTitleID" : "Hotline Miami Hud Color Options",
+	"HotlineMiamiHudOptionsButtonDescID" : "Change the color of this HUD element to your own liking",
 	"HotlineMiamiHudColorOption" : "Change the color of this HUD element to your own liking",
 	"HotlineMiamiHudAssaultTitleID" : "Assault Panel",
 	"HotlineMiamiHudCustodyTitleID" : "Custody Panel",

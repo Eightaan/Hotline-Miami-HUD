@@ -79,4 +79,7 @@
 			<option type="color" default_value="Color(1, 0.50196081399918, 0.87450981140137)" name="System" desc_id="HotlineMiamiHudColorOption"/>
         </options>
     </Options>
+    <Localization 
+	    directory="loc" default="colors.json">
+    </Localization>
 </mod>

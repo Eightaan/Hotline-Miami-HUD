@@ -2,7 +2,7 @@
 	"name" : "Hotline Miami Hud",
 	"description" : "",
 	"author" : "Eightan",
-	"version" : "5.1.7",
+	"version" : "5.1.8",
 	"blt_version" : 2,
 	"supermod_definition" : "HMH.xml",
 	"image" : "icon.png",

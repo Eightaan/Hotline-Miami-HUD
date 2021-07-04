@@ -82,38 +82,28 @@ elseif string.lower(RequiredScript) == "lib/managers/menu/skilltreeguinew" then
 		return val
 	end
 	function NewSkillTreeTierItem:refresh_points(selected, ...)
-		orig_newskilltreetieritem_refresh_points(self, selected, ...)
-			if alive(self._tier_points_total) and alive(self._tier_points_total_zero) and alive(self._tier_points_total_curr) then
-				self._tier_points_total:set_y(self._text_space or 10)
-				self._tier_points_total_zero:set_y(self._text_space or 10)
-				self._tier_points_total_curr:set_y(self._text_space or 10)
-			end
-			if alive(self._tier_points_0) and alive(self._tier_points) then
-				self._tier_points:set_visible(not self._tier_points_needed:visible())
-				self._tier_points_0:set_visible(not self._tier_points_needed:visible())
-			end
+	orig_newskilltreetieritem_refresh_points(self, selected, ...)
+		if alive(self._tier_points_total) and alive(self._tier_points_total_zero) and alive(self._tier_points_total_curr) then
+			self._tier_points_total:set_y(self._text_space or 10)
+			self._tier_points_total_zero:set_y(self._text_space or 10)
+			self._tier_points_total_curr:set_y(self._text_space or 10)
+		end
+		if alive(self._tier_points_0) and alive(self._tier_points) then
+			self._tier_points:set_visible(not self._tier_points_needed:visible())
+			self._tier_points_0:set_visible(not self._tier_points_needed:visible())
+		end
 	end
 	function NewSkillTreeTierItem:_refresh_tier_text(selected, ...)
-		orig_newskilltreetieritem_refresh_tier_text(self, selected, ...)
-			if selected and alive(self._tier_points_needed) and alive(self._tier_points_needed_curr) and alive(self._tier_points_needed_zero) then
-				self._tier_points_needed_zero:set_left(self._tier_points_0:left())
-				self._tier_points_needed_curr:set_left(self._tier_points_needed_zero:right())
-				self._tier_points_needed:set_left(self._tier_points_needed_curr:right() + self._text_space)
-			end
-			if alive(self._tier_points_0) and alive(self._tier_points) then
-				self._tier_points:set_visible(not self._tier_points_needed:visible())
-				self._tier_points_0:set_visible(not self._tier_points_needed:visible())
-			end
-	end
-
-elseif string.lower(RequiredScript) == "core/lib/managers/menu/items/coremenuitemslider" then
-	core:module("CoreMenuItemSlider")
-	local set_value_original = ItemSlider.set_value
-	function ItemSlider:set_value(value, ...)
-		local times = math.round((value - self._min) / self._step)
-		value = self._min + self._step * times
-
-		set_value_original(self, value, ...)
+	orig_newskilltreetieritem_refresh_tier_text(self, selected, ...)
+		if selected and alive(self._tier_points_needed) and alive(self._tier_points_needed_curr) and alive(self._tier_points_needed_zero) then
+			self._tier_points_needed_zero:set_left(self._tier_points_0:left())
+			self._tier_points_needed_curr:set_left(self._tier_points_needed_zero:right())
+			self._tier_points_needed:set_left(self._tier_points_needed_curr:right() + self._text_space)
+		end
+		if alive(self._tier_points_0) and alive(self._tier_points) then
+			self._tier_points:set_visible(not self._tier_points_needed:visible())
+			self._tier_points_0:set_visible(not self._tier_points_needed:visible())
+		end
 	end
 elseif string.lower(RequiredScript) == "lib/states/ingamewaitingforplayers" then
 	local update_original = IngameWaitingForPlayersState.update
