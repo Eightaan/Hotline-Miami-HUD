@@ -14,6 +14,15 @@
 			"default_value": true
 		},
 		{
+			"type": "toggle",
+			"id": "casing_toggle",
+			"title": "casing_title",
+			"description": "casing_desc",
+			"callback": "callback_casing",
+			"value": "casing",
+			"default_value": true
+		},
+		{
 			"type": "divider",
 			"size": 16
 		},

@@ -62,5 +62,6 @@
 	"headshot_mark" : true,
 	"waypoint_alpha" : 1,
 	"custom_tab_color" : true,
-	"stop_ai" : true
+	"stop_ai" : true,
+	"casing" : true
 }

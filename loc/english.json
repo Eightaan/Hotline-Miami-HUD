@@ -147,6 +147,8 @@
 	"hmh_assault_desc" : "Customize the assault panel.",
 	"assault_title" : "Custom Assault Panel",
 	"assault_desc" : "Enable the custom assault panel.",
+	"casing_title" : "Casing Text",
+	"casing_desc" : "Enable the casing text.",
 	"infoboxes_title" : "Ecm Timer",
 	"infoboxes_desc" : "Enable an ECM timer in stealth",
 	"pager_jam_title" : "Upgraded ECM Icon",
@@ -288,7 +290,6 @@
 	
 	"HotlineMiamiHudGrenadeIconTitleID" : "Grenades icon",
 	"HotlineMiamiHudGrenadeTextTitleID" : "Grenade amount",
-	"HotlineMiamiHudCasingIconTitleID" : "Casing icon",
 	"HotlineMiamiHudEquipmentIconTitleID" : "Equipment Icon",
 	"HotlineMiamiHudEquipmentTextTitleID" : "Equipment Amount",
 	"HotlineMiamiHudCabletiesIconTitleID" : "Cable ties Icon",

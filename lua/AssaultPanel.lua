@@ -213,15 +213,16 @@ function HUDAssaultCorner:_get_assault_strings()
 end
 
 function HUDAssaultCorner:show_casing(mode)
-	local delay_time = self._assault and 1.2 or 0
-	self:_end_assault()
-	local casing_panel = self._hud_panel:child("casing_panel")
-	self:_hide_hostages()
-	casing_panel:animate(callback(self, self, "_animate_show_casing"), delay_time)
-	self._casing = true
-
-	local msg = mode == "civilian" and "hud_casing_mode_ticker_clean" or "hud_casing_mode_ticker"
-	self:set_text("casing", managers.localization:to_upper_text(msg))
+    if HMH:GetOption("casing") then
+ 	    local delay_time = self._assault and 1.2 or 0
+	    self:_end_assault()
+	    local casing_panel = self._hud_panel:child("casing_panel")
+	    self:_hide_hostages()
+	    casing_panel:animate(callback(self, self, "_animate_show_casing"), delay_time)
+	    self._casing = true
+	    local msg = mode == "civilian" and "hud_casing_mode_ticker_clean" or "hud_casing_mode_ticker"
+	    self:set_text("casing", managers.localization:to_upper_text(msg))
+	end
 end
 
 function HUDAssaultCorner:hide_casing()
