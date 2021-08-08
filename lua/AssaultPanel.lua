@@ -95,9 +95,6 @@ Hooks:PostHook(HUDAssaultCorner, "setup_wave_display", "HMH_hudassaultcorner_set
 	end
 end)
 
-	function HUDAssaultCorner:_start_assault(text_list, ...)
-	end
-
 function HUDAssaultCorner:_start_assault(text_list)
 	local assault_panel = self._hud_panel:child("assault_panel")
 	local icon_assaultbox = self._hud_panel:child("assault_panel"):child("icon_assaultbox")
