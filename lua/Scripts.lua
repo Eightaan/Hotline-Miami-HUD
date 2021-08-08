@@ -9,7 +9,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 	local set_stamina_value_original = HUDManager.set_stamina_value
 	local set_max_stamina_original = HUDManager.set_max_stamina
 	local force_ready_clicked = 0
-	
+
 	--Voice Chat
 	function HUDManager:set_mugshot_voice(id, active)
 	set_mugshot_voice_orig(self, id, active)

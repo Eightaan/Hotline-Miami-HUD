@@ -246,6 +246,9 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
 	MenuCallbackHandler.callback_casing = function(self, item)
         HMH._data.casing = item:value() == "on"
     end
+	MenuCallbackHandler.callback_chat_font = function(self, item)
+        HMH._data.chat_font = item:value()
+    end
     MenuCallbackHandler.HMHSave = function(this, item)
         HMH:Save()
     end

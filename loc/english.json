@@ -74,6 +74,9 @@
 	"hmh_custom_chat_desc" : "Customize the chat.",
 	"custom_chat_title" : "Custom Chat",
 	"custom_chat_desc" : "Enable the custom chat.",
+	"chat_font_title" : "Chat Size",
+	"chat_font_desc" : "Change the chat size",
+	
 
 	"hmh_tab_title" : "Tabstats",
 	"hmh_tab_desc" : "Customize the tabstats panel.",

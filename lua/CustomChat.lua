@@ -17,7 +17,7 @@ end
 
 if RequiredScript == "lib/managers/hud/hudchat" then
 
-	HUDChat.LINE_HEIGHT = 20		--Size of each line in chat (and hence the text size)
+	HUDChat.LINE_HEIGHT = HMH:GetOption("chat_font") or 20		--Size of each line in chat (and hence the text size)
 	HUDChat.WIDTH = 380				--Width of the chat window
 	HUDChat.MAX_OUTPUT_LINES = 8	--Number of chat lines to show
 	HUDChat.MAX_INPUT_LINES = 5		--Number of lines of text you can type

@@ -63,5 +63,6 @@
 	"waypoint_alpha" : 1,
 	"custom_tab_color" : true,
 	"stop_ai" : true,
-	"casing" : true
+	"casing" : true,
+	"chat_font" : 20
 }
