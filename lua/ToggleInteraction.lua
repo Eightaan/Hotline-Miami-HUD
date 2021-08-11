@@ -44,6 +44,71 @@ if RequiredScript == "lib/units/beings/player/states/playerstandard" then
 			end
 		end
 	end
+	
+elseif RequiredScript == "lib/units/beings/player/states/playercivilian" then
+	local _update_interaction_timers_original = PlayerCivilian._update_interaction_timers
+	local _check_action_interact_original = PlayerCivilian._check_action_interact
+
+	function PlayerCivilian:_update_interaction_timers(t, ...)
+		self:_check_interaction_locked(t)
+		return _update_interaction_timers_original(self, t, ...)
+	end
+
+	function PlayerCivilian:_check_action_interact(t, input, ...)
+		if not self:_check_interact_toggle(t, input) then
+			return _check_action_interact_original(self, t, input, ...)
+		end
+	end
+
+elseif RequiredScript == "lib/units/beings/player/states/playerdriving" then
+
+	local _update_action_timers_original = PlayerDriving._update_action_timers
+	local _start_action_exit_vehicle_original = PlayerDriving._start_action_exit_vehicle
+	local _check_action_exit_vehicle_original = PlayerDriving._check_action_exit_vehicle
+
+	function PlayerDriving:_update_action_timers(t, ...)
+		self:_check_interaction_locked(t)
+		return _update_action_timers_original(self, t, ...)
+	end
+
+	function PlayerDriving:_start_action_exit_vehicle(t)
+		if not self:_interacting() then
+			return _start_action_exit_vehicle_original(self, t)
+		end
+	end
+
+	function PlayerDriving:_check_action_exit_vehicle(t, input, ...)
+		if not self:_check_interact_toggle(t, input) then
+			return _check_action_exit_vehicle_original(self, t, input, ...)
+		end
+	end
+
+	function PlayerDriving:_check_interact_toggle(t, input)
+		local interrupt_key_press = input.btn_interact_press
+		if HMH:GetOption("interupt_interact") then
+			interrupt_key_press = input.btn_use_item_press
+		end
+		if interrupt_key_press and self:_interacting() then
+			self:_interupt_action_exit_vehicle()
+			return true
+		elseif input.btn_interact_release and self:_interacting() then
+			if self._interaction_locked then
+				return true
+			end
+		end
+	end
+
+	function PlayerDriving:_check_interaction_locked(t)
+		local is_locked = false
+		if self._exit_vehicle_expire_t ~= nil then
+			is_locked = (PlayerDriving.EXIT_VEHICLE_TIMER >= HMH:GetOption("toggle_interact"))
+		end
+
+		if self._interaction_locked ~= is_locked then
+			managers.hud:set_interaction_bar_locked(is_locked, "")
+			self._interaction_locked = is_locked
+		end
+	end
 
 elseif RequiredScript == "lib/managers/hudmanagerpd2" then
 	function HUDManager:set_interaction_bar_locked(status, tweak_entry)

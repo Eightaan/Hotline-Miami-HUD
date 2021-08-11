@@ -129,7 +129,13 @@
 
 						<group :hook_id="playerdriving">
 						    <post :script_path="Scripts.lua"/>
+							<post :script_path="ToggleInteraction.lua"/>
                         </group>
+
+						<group :hook_id="playercivilian">
+						    <post :script_path="ToggleInteraction.lua"/>
+                        </group>
+
 			        </group>
 		    </group>
 
