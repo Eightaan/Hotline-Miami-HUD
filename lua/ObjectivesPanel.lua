@@ -61,13 +61,13 @@ Hooks:PostHook(HUDObjectives, "init", "HMH_hudobjectives_init", function(self, h
 		font_size = tweak_data.hud.active_objective_title_font_size,
     	font = tweak_data.hud.medium_font_noshadow
     })
-	icon_objectivebox:set_color(BeardLib and hotlinemiamihud.Options:GetValue("ObjectiveIcon") or Color("ff80df"))	
+	icon_objectivebox:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("ObjectiveIcon") or Color("ff80df"))	
 	objective_text:set_x(34)
 	objective_text:set_y(0)
 	objective_text:set_font_size(24)
-	objective_text:set_color(BeardLib and hotlinemiamihud.Options:GetValue("ObjectiveText") or Color("66ffff"))
+	objective_text:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("ObjectiveText") or Color("66ffff"))
 	objective_text:set_visible(true)
-	amount_text:set_color(BeardLib and hotlinemiamihud.Options:GetValue("ObjectiveAmount") or Color("ffcc66"))
+	amount_text:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("ObjectiveAmount") or Color("ffcc66"))
 end)
 
 function HUDObjectives:activate_objective( data )

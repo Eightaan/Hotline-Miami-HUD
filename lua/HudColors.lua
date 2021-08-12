@@ -1,11 +1,11 @@
 function TweakData:HMM()
     if HMH:GetOption("custom_color") then
-        self.chat_colors[1] = BeardLib and hotlinemiamihud.Options:GetValue("Player1") or Color("66ff99")
-        self.chat_colors[2] = BeardLib and hotlinemiamihud.Options:GetValue("Player2") or Color("66ffff")
-        self.chat_colors[3] = BeardLib and hotlinemiamihud.Options:GetValue("Player3") or Color("ff6666")
-        self.chat_colors[4] = BeardLib and hotlinemiamihud.Options:GetValue("Player4") or Color("ffcc66")
-        self.chat_colors[5] = BeardLib and hotlinemiamihud.Options:GetValue("PlayerAi") or Color(0.2, 0.8, 1)
-        self.system_chat_color = BeardLib and hotlinemiamihud.Options:GetValue("System") or Color("ff80df")
+        self.chat_colors[1] = BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("Player1") or Color("66ff99")
+        self.chat_colors[2] = BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("Player2") or Color("66ffff")
+        self.chat_colors[3] = BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("Player3") or Color("ff6666")
+        self.chat_colors[4] = BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("Player4") or Color("ffcc66")
+        self.chat_colors[5] = BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("PlayerAi") or Color(0.2, 0.8, 1)
+        self.system_chat_color = BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("System") or Color("ff80df")
 
 	    self.peer_vector_colors[1] = Vector3(self.chat_colors[1]:unpack())
         self.peer_vector_colors[2] = Vector3(self.chat_colors[2]:unpack())
@@ -14,10 +14,10 @@ function TweakData:HMM()
         self.peer_vector_colors[5] = Vector3(self.chat_colors[5]:unpack())
 
         self.preplanning_peer_colors = {
-            BeardLib and hotlinemiamihud.Options:GetValue("Player1") or Color("66ff99"), --Host.
-            BeardLib and hotlinemiamihud.Options:GetValue("Player2") or Color("66ffff"), --Peer2.
-            BeardLib and hotlinemiamihud.Options:GetValue("Player3") or Color("ff6666"), --Peer3.
-            BeardLib and hotlinemiamihud.Options:GetValue("Player4") or Color("ffcc66")  --Peer4.
+            BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("Player1") or Color("66ff99"), --Host.
+            BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("Player2") or Color("66ffff"), --Peer2.
+            BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("Player3") or Color("ff6666"), --Peer3.
+            BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("Player4") or Color("ffcc66")  --Peer4.
         }
     end
 

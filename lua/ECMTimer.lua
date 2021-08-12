@@ -18,7 +18,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
         local ecm_text_color
 		local pager_icon_color
 		local ecm_icon_color
-		if HMH:GetOption("assault") and BeardLib then
+		if HMH:GetOption("assault") and BeardLib and hotlinemiamihud then
 		    ecm_icon_color = hotlinemiamihud.Options:GetValue("ECMIcon")
 			pager_icon_color = hotlinemiamihud.Options:GetValue("ECMUpgradeIcon")
 			ecm_text_color = hotlinemiamihud.Options:GetValue("ECMText")
@@ -75,7 +75,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
     function HUDECMCounter:update(t)
 	    self._ecm_panel:set_visible(HMH:GetOption("infoboxes") and managers.groupai:state():whisper_mode() and t > 0 )
 		local text_color
-		if HMH:GetOption("assault") and BeardLib then
+		if HMH:GetOption("assault") and BeardLib and hotlinemiamihud then
 		    text_color = hotlinemiamihud.Options:GetValue("ECMText")
 		else
 		    text_color = HMH:GetOption("assault") and Color("66ffff") or Color.white

@@ -3,8 +3,8 @@ Hooks:PostHook(HUDPlayerDowned, "init", "hudplayerdowned_HMH", function(self, ..
 	local timer_msg = downed_panel:child("timer_msg")
 
 	if HMH:GetOption("downed") then
-        timer_msg:set_color(BeardLib and hotlinemiamihud.Options:GetValue("DownedText") or Color("ff80df"))
-        self._hud.timer:set_color(BeardLib and hotlinemiamihud.Options:GetValue("DownedTimer") or Color("66ffff"))
+        timer_msg:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("DownedText") or Color("ff80df"))
+        self._hud.timer:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("DownedTimer") or Color("66ffff"))
 	    self._hud.timer:set_font(Idstring("fonts/font_medium"))
 	end
 end)

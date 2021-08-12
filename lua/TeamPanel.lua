@@ -340,9 +340,9 @@ if HMH:GetOption("equipment") then
 
         if data.amount > 0 then
             equipment:set_alpha(1)
-            equipment:set_color(BeardLib and hotlinemiamihud.Options:GetValue("EquipmentIcon") or Color("ff80df"))
+            equipment:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("EquipmentIcon") or Color("ff80df"))
             amount:set_alpha(1)
-            amount:set_color(BeardLib and hotlinemiamihud.Options:GetValue("EquipmentText") or Color("66ffff"))
+            amount:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("EquipmentText") or Color("66ffff"))
         end
 
         if data.amount > 0 then
@@ -354,7 +354,7 @@ if HMH:GetOption("equipment") then
             end)
         elseif data.amount == 0 then
             equipment:animate(function(o)
-                equipment:set_color(BeardLib and hotlinemiamihud.Options:GetValue("EquipmentIcon") or Color("ff80df"))
+                equipment:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("EquipmentIcon") or Color("ff80df"))
                 over(1, function(p)
                     equipment:set_alpha(0.2)
                     amount:set_alpha(0.2)
@@ -378,8 +378,8 @@ if HMH:GetOption("equipment") then
 
         if data.amount > 0 then
             grenades:set_alpha(1)
-            grenades:set_color(BeardLib and hotlinemiamihud.Options:GetValue("GrenadeIcon") or Color("ff80df"))
-            amount:set_color(BeardLib and hotlinemiamihud.Options:GetValue("GrenadeText") or Color("66ffff"))
+            grenades:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("GrenadeIcon") or Color("ff80df"))
+            amount:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("GrenadeText") or Color("66ffff"))
             amount:set_alpha(1)
         end
 
@@ -392,7 +392,7 @@ if HMH:GetOption("equipment") then
             end)
         elseif data.amount == 0 then
             grenades:animate( function(o)
-                grenades:set_color(BeardLib and hotlinemiamihud.Options:GetValue("GrenadeIcon") or Color("ff80df"))
+                grenades:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("GrenadeIcon") or Color("ff80df"))
                 over(1, function(p)
                     grenades:set_alpha(0.2)
                     amount:set_alpha(0.2)
@@ -414,8 +414,8 @@ if HMH:GetOption("equipment") then
 
         if amount > 0 then
             cable_ties:set_alpha(1)
-            cable_ties:set_color(BeardLib and hotlinemiamihud.Options:GetValue("CabletiesIcon") or Color("ff80df"))
-            cable_ties_amount:set_color(BeardLib and hotlinemiamihud.Options:GetValue("CabletiesText") or Color("66ffff"))
+            cable_ties:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("CabletiesIcon") or Color("ff80df"))
+            cable_ties_amount:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("CabletiesText") or Color("66ffff"))
             cable_ties_amount:set_alpha(1)
         end
 
@@ -428,7 +428,7 @@ if HMH:GetOption("equipment") then
             end)
         elseif amount == 0 then
             cable_ties:animate(function(o)
-                cable_ties:set_color(BeardLib and hotlinemiamihud.Options:GetValue("CabletiesIcon") or Color("ff80df"))
+                cable_ties:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("CabletiesIcon") or Color("ff80df"))
                 over(1, function(p)
                     cable_ties:set_alpha(0.2)
                     cable_ties_amount:set_alpha(0.2)
@@ -468,12 +468,12 @@ if HMH:GetOption("equipment") then
             amounts = amounts .. amount_str
 
             if amount > 0 then
-			    color = BeardLib and hotlinemiamihud.Options:GetValue("EquipmentText") or Color("66ffff")
+			    color = BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("EquipmentText") or Color("66ffff")
                 alpha = 1
             end
         end
 
-        icon:set_color(BeardLib and hotlinemiamihud.Options:GetValue("EquipmentIcon") or Color("ff80df"))
+        icon:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("EquipmentIcon") or Color("ff80df"))
         icon:set_alpha(alpha)
         amount:set_alpha(alpha)
         amount:set_color(color)
@@ -520,8 +520,8 @@ if HMH:GetOption("ammo") then
         local sec_weapon_selection_panel = secondary_weapon_panel:child("weapon_selection")
         local prim_weapon_selection_panel = primary_weapon_panel:child("weapon_selection")
     
-        prim_weapon_selection_panel:child("weapon_selection"):set_color(BeardLib and hotlinemiamihud.Options:GetValue("PrimFiremode") or Color("66ff99"))
-        sec_weapon_selection_panel:child("weapon_selection"):set_color(BeardLib and hotlinemiamihud.Options:GetValue("SecFiremode") or Color("66ffff"))
+        prim_weapon_selection_panel:child("weapon_selection"):set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("PrimFiremode") or Color("66ff99"))
+        sec_weapon_selection_panel:child("weapon_selection"):set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("SecFiremode") or Color("66ffff"))
     end)
 end
 
@@ -537,7 +537,7 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammateSetAmmoAm
     local low_ammo_color
 	local total_ammo_color
 	local clip_ammo_color
-	if BeardLib and HMH:GetOption("ammo") then
+	if BeardLib and hotlinemiamihud and HMH:GetOption("ammo") then
         low_ammo_color = hotlinemiamihud.Options:GetValue("LowAmmo")
 		total_ammo_color = hotlinemiamihud.Options:GetValue("TotalAmmo")
 		clip_ammo_color = hotlinemiamihud.Options:GetValue("ClipAmmo")

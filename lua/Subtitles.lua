@@ -12,7 +12,7 @@ if RequiredScript == "core/lib/managers/subtitle/coresubtitlepresenter" then
 
 		self.__font_name = "fonts/font_medium_mf"
 		local sub_color
-		if _G.HMH:GetOption("custom_subs") and _G.BeardLib then
+		if _G.HMH:GetOption("custom_subs") and _G.BeardLib and _G.hotlinemiamihud then
 		    sub_color = _G.hotlinemiamihud.Options:GetValue("Sub")
 		else
 		    sub_color = _G.HMH:GetOption("custom_subs") and Color("66ff99") or Color.white
