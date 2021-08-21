@@ -16,8 +16,9 @@
 				"50bl_interact",
 				"pink_interact",
 				"hm2_interact"
+				"heart_interact"
 			],
-			"default_value": true
+			"default_value": 2
 		},
 		{
 			"type": "toggle",

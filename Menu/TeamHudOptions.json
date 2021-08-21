@@ -5,13 +5,18 @@
 	"description": "hmh_hud_desc",
 	"items": [
 		{
-			"type": "toggle",
-			"id": "health_texture_toggle",
+			"type": "multiple_choice",
+			"id": "health_texture__multiple_choice",
 			"title": "health_texture_title",
 			"description": "health_texture_desc",
 			"callback": "callback_health_texture",
 			"value": "health_texture",
-			"default_value": true
+			"items" : [
+				"default_health",
+				"faded_health",
+				"pixel_health",
+			],
+			"default_value": 2
 		},
 		{
 			"type": "toggle",

@@ -25,7 +25,7 @@
 	"assault" : true,
 	"objective" : true,
 	"bulletstorm" : true,
-	"health_texture" : true,
+	"health_texture" : 2,
 	"interact_texture" : 2,
 	"custom_subs" : true,
 	"custom_color" : true,
