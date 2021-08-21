@@ -235,8 +235,8 @@
     "casing_desc" : "启用面具提示文本",
 	"chat_font_title" : "Chat Size",
 	"chat_font_desc" : "Change the chat size",
-	"heart_interact" : "Pixel Heart"
+	"heart_interact" : "Pixel Heart",
 	"default_health" : "Default",
 	"faded_health" : "Faded",
-	"pixel_health" : "Pixel Heart",
+	"pixel_health" : "Pixel Heart"
 }
