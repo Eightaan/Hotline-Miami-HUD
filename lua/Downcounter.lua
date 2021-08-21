@@ -97,7 +97,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
             name = "revives_counter",
             visible = not managers.groupai:state():whisper_mode(),
             text = "0",
-            layer = 1,
+            layer = 3,
             color = HMH:GetOption("colored_downs") and Color("66ff99") or Color.white,
             w = self._player_panel:child("radial_health_panel"):w(),
             x = 0,

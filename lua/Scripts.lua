@@ -219,7 +219,7 @@ elseif RequiredScript == "lib/managers/hud/hudhitconfirm" then
 		    	self._hud_panel:remove(self._hud_panel:child("headshot_confirm"))
 		    end
 		    self._headshot_confirm = self._hud_panel:bitmap({
-		        texture = "guis/textures/pd2/hud_progress_active",
+				texture = "guis/textures/pd2_mod_hmh/Headshot_confirm",
 			    name = "headshot_confirm",
 			    halign = "center",
 			    visible = false,

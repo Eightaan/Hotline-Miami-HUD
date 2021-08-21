@@ -36,7 +36,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 			render_template = "VertexColorTexturedRadial",
 			w = radial_health_panel:w() * 0.7,
 			h = radial_health_panel:h() * 0.7,
-			layer = 5,
+			layer = 3,
 		})
 		self._stamina_bar:set_center(radial_health_panel:child("radial_health"):center())
 	end
