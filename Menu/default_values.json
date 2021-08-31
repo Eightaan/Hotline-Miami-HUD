@@ -7,8 +7,38 @@
     "PLAYER_down": false,
     "TEAM_down": true,
 	"waypoints" : true,
+	"WaypointIcon" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 153
+	},
+	"WaypointDistance" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
+	},
+	"WaypointArrow" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
+	},
 	"timer" : true,
 	"presenter" : true,
+	"PresenterTitle" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 153
+	},
+	"PresenterText" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
+	},
 	"interact" : true,
 	"hint" : true,
 	"downed" : true,
@@ -23,6 +53,72 @@
 	"equipment" : true,
 	"trueammo" : false,
 	"assault" : true,
+	"AssaultText" :
+	{
+		"r" : 255,
+		"g" : 204,
+		"b" : 102
+	},
+	"NoReturnText" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
+	},
+	"NoReturnIcon" :
+	{
+		"r" : 255,
+		"g" : 102,
+		"b" : 102
+	},
+	"NoReturnTimer" :
+	{
+		"r" : 255,
+		"g" : 102,
+		"b" : 102
+	},
+	"HoldoutText" :
+	{
+		"r" : 255,
+		"g" : 102,
+		"b" : 102
+	},
+	"CaptainText" :
+	{
+		"r" : 255,
+		"g" : 102,
+		"b" : 102
+	},
+	"CaptainBuffIcon" :
+	{
+		"r" : 255,
+		"g" : 204,
+		"b" : 102
+	},
+	"HostagesText" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
+	},
+	"HostagesIcon" :
+	{
+		"r" : 255,
+		"g" : 128,
+		"b" : 223
+	},
+	"WavesText" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
+	},
+	"WavesIcon" :
+	{
+		"r" : 255,
+		"g" : 128,
+		"b" : 223
+	},
 	"objective" : true,
 	"bulletstorm" : true,
 	"health_texture" : 2,
@@ -42,6 +138,24 @@
 	"combo" : false,
 	"font" : false,
 	"pager_jam" : true,
+	"ECMText" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
+	},
+	"ECMIcon" :
+	{
+		"r" : 255,
+		"g" : 128,
+		"b" : 223
+	},
+	"ECMUpgradeIcon" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 153
+	},
 	"interact_icons" : true,
 	"stealth_c4" : false,
 	"tab" : true,
@@ -64,5 +178,17 @@
 	"custom_tab_color" : true,
 	"stop_ai" : true,
 	"casing" : true,
+	"CasingText" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 153
+	},
+	"CasingIcon" :
+	{
+		"r" : 255,
+		"g" : 128,
+		"b" : 223
+	},
 	"chat_font" : 20
 }

@@ -9,26 +9,6 @@
 			<option type="color" default_value="Color(1, 0.50196081399918, 0.87450981140137)" name="DownedText" desc_id="HotlineMiamiHudColorOption"/>
 
 			<divider name="Divider" size="20"/>
-            <button name="Assault" desc_id="HotlineMiamiHudColorOption"/>
-			<divider name="Divider" size="4"/>
-			<option type="color" default_value="Color(1, 0.80000001192093, 0.40000000596046)" name="AssaultText" desc_id="HotlineMiamiHudColorOption"/>
-			<option type="color" default_value="Color(0.40000000596046, 1, 0.60000002384186)" name="CasingText" desc_id="HotlineMiamiHudColorOption"/>
-			<option type="color" default_value="Color(1, 0.50196081399918, 0.87450981140137)" name="CasingIcon" desc_id="HotlineMiamiHudColorOption"/>
-			<option type="color" default_value="Color(0.40000000596046, 1, 1)" name="NoReturnText" desc_id="HotlineMiamiHudColorOption"/>
-			<option type="color" default_value="Color(1, 0.40000000596046, 0.40000000596046)" name="NoReturnIcon" desc_id="HotlineMiamiHudColorOption"/>
-			<option type="color" default_value="Color(1, 0.40000000596046, 0.40000000596046)" name="NoReturnTimer" desc_id="HotlineMiamiHudColorOption"/>
-			<option type="color" default_value="Color(1, 0.40000000596046, 0.40000000596046)" name="HoldoutText" desc_id="HotlineMiamiHudColorOption"/>
-			<option type="color" default_value="Color(1, 0.40000000596046, 0.40000000596046)" name="CaptainText" desc_id="HotlineMiamiHudColorOption"/>
-		    <option type="color" default_value="Color(1, 0.80000001192093, 0.40000000596046)" name="CaptainBuffIcon" desc_id="HotlineMiamiHudColorOption"/>
-			<option type="color" default_value="Color(0.40000000596046, 1, 1)" name="HostagesText" desc_id="HotlineMiamiHudColorOption"/>
-			<option type="color" default_value="Color(1, 0.50196081399918, 0.87450981140137)" name="HostagesIcon" desc_id="HotlineMiamiHudColorOption"/>
-			<option type="color" default_value="Color(0.40000000596046, 1, 1)" name="WavesText" desc_id="HotlineMiamiHudColorOption"/>
-			<option type="color" default_value="Color(1, 0.50196081399918, 0.87450981140137)" name="WavesIcon" desc_id="HotlineMiamiHudColorOption"/>
-			<option type="color" default_value="Color(0.40000000596046, 1, 1)" name="ECMText" desc_id="HotlineMiamiHudColorOption"/>
-			<option type="color" default_value="Color(1, 0.50196081399918, 0.87450981140137)" name="ECMIcon" desc_id="HotlineMiamiHudColorOption"/>
-		    <option type="color" default_value="Color(0.40000000596046, 1, 0.60000002384186)" name="ECMUpgradeIcon" desc_id="HotlineMiamiHudColorOption"/>
-
-			<divider name="Divider" size="20"/>
             <button name="Custody" desc_id="HotlineMiamiHudColorOption"/>
 			<divider name="Divider" size="4"/>
 			<option type="color" default_value="Color(0.40000000596046, 1, 0.60000002384186)" name="CustodyReleased" desc_id="HotlineMiamiHudColorOption"/>
@@ -42,19 +22,6 @@
 			<option type="color" default_value="Color(0.40000000596046, 1, 1)" name="ObjectiveText" desc_id="HotlineMiamiHudColorOption"/>
 			<option type="color" default_value="Color(1, 0.50196081399918, 0.87450981140137)" name="ObjectiveIcon" desc_id="HotlineMiamiHudColorOption"/>
 			<option type="color" default_value="Color(1, 0.80000001192093, 0.40000000596046)" name="ObjectiveAmount" desc_id="HotlineMiamiHudColorOption"/>
-			
-			<divider name="Divider" size="20"/>
-			<button name="Presenter" desc_id="HotlineMiamiHudColorOption"/>
-			<divider name="Divider" size="4"/>
-			<option type="color" default_value="Color(0.40000000596046, 1, 0.60000002384186)" name="PresenterTitle" desc_id="HotlineMiamiHudColorOption"/>
-			<option type="color" default_value="Color(0.40000000596046, 1, 1)" name="PresenterText" desc_id="HotlineMiamiHudColorOption"/>
-			
-			<divider name="Divider" size="20"/>
-			<button name="Waypoint" desc_id="HotlineMiamiHudColorOption"/>
-			<divider name="Divider" size="4"/>
-			<option type="color" default_value="Color(0.40000000596046, 1, 0.60000002384186)" name="WaypointIcon" desc_id="HotlineMiamiHudColorOption"/>
-			<option type="color" default_value="Color(0.40000000596046, 1, 1)" name="WaypointDist" desc_id="HotlineMiamiHudColorOption"/>
-			<option type="color" default_value="Color(0.40000000596046, 1, 1)" name="WaypointArrow" desc_id="HotlineMiamiHudColorOption"/>
 			
 			<divider name="Divider" size="20"/>
             <button name="Team" desc_id="HotlineMiamiHudColorOption"/>

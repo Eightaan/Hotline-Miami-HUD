@@ -9,6 +9,12 @@
 	"hmh_int_locked_pager" : "PRESS $BTN_CANCEL TO INTERRUPT\n(TRIGGERS ALARM)",
 	"hmh_hud_stats_enemies_dominated" : "ENEMIES CUFFED",
 
+	"hmh_r" : "Red",
+	"hmh_g" : "Green",
+	"hmh_b" : "Blue",
+	"hmh_ok" : "Ok",
+	"hmh_color_reset" : "Reset Color",
+
 	"hmh_title" : "Hotline Miami Hud",
 	"hmh_desc" : "Hotline Miami Hud options",
 
@@ -240,5 +246,75 @@
 	"extracted_preplanning_msg_deleted_failed" : "An error occurred while deleting saved plan.",
 	"extracted_preplanning_msg_folder_creation_failed" : "Failed to create folder: $FOLDER \nPlease make sure the game has the required permissions or create it manually.",
 	"extracted_preplanning_msg_file_creation_failed" : "Failed to create file: $FILE \nPlease make sure the game has the required permissions or create it manually.",
-	"extracted_dialog_save" : "Save"
+	"extracted_dialog_save" : "Save",
+
+	"HotlineMiamiHudOptionsButtonTitleID" : "Hotline Miami Hud Color Options",
+	"HotlineMiamiHudOptionsButtonDescID" : "Change the color of this HUD element to your own liking",
+	"HotlineMiamiHudColorOption" : "Change the color of this HUD element to your own liking",
+	"HotlineMiamiHudAssaultTitleID" : "Assault Panel",
+	"HotlineMiamiHudCustodyTitleID" : "Custody Panel",
+	"HotlineMiamiHudObjectivesTitleID" : "Objectives Panel",
+	"HotlineMiamiHudPresenterTitleID" : "Presenter Panel",
+	"HotlineMiamiHudWaypointTitleID" : "Waypoints",
+	"HotlineMiamiHudTeamTitleID" : "Team Panel",
+
+    "HotlineMiamiHudTimerTitleID" : "Heist timer",
+	"HotlineMiamiHudInteractionTitleID" : "Interaction text",
+	"HotlineMiamiHudHintTitleID" : "Hint text",
+	"HotlineMiamiHudSubTitleID" : "Subtitles text",
+
+	"HotlineMiamiHudAssaultTextTitleID" : "Assault text",
+	"HotlineMiamiHudCasingTextTitleID" : "Casing text",
+	"HotlineMiamiHudCasingIconTitleID" : "Casing icon",
+	"HotlineMiamiHudNoReturnTextTitleID" : "Point of no return text",
+	"HotlineMiamiHudNoReturnIconTitleID" : "Point of no return icon",
+	"HotlineMiamiHudNoReturnTimerTitleID" : "Point of no return timer",
+	"HotlineMiamiHudHoldoutTextTitleID" : "Holdout text",
+	"HotlineMiamiHudCaptainTextTitleID" : "Captain winters text",
+	"HotlineMiamiHudCaptainBuffIconTitleID" : "Captain winters buff icon",
+	"HotlineMiamiHudHostagesTextTitleID" : "Hostages text",
+	"HotlineMiamiHudHostagesIconTitleID" : "Hostages Icon",
+	"HotlineMiamiHudWavesIconTitleID" : "Waves icon",
+	"HotlineMiamiHudWavesTextTitleID" : "Waves text",
+	"HotlineMiamiHudECMUpgradeIconTitleID" : "ECM upgrade icon",
+	"HotlineMiamiHudECMIconTitleID" : "ECm timer icon",
+	"HotlineMiamiHudECMTextTitleID" : "ECM timer text",
+	
+	"HotlineMiamiHudCustodyReleasedTitleID" : "Custody released text",
+	"HotlineMiamiHudCustodyTimerTitleID" : "Custody timer",
+	"HotlineMiamiHudCivillansTitleID" : "Civillans killed text",
+	"HotlineMiamiHudTradeTitleID" : "Trade text",
+	
+	"HotlineMiamiHudDownedTextTitleID" : "Downed text",
+	"HotlineMiamiHudDownedTimerTitleID" : "Downed timer",
+	
+	"HotlineMiamiHudObjectiveTextTitleID" : "Objective text",
+	"HotlineMiamiHudObjectiveIconTitleID" : "Objective icon",
+	"HotlineMiamiHudObjectiveAmountTitleID" : "Objective loot amount",
+	
+	"HotlineMiamiHudPresenterTitleTitleID" : "Presenter title",
+	"HotlineMiamiHudPresenterTextTitleID" : "Presenter text",
+	
+	"HotlineMiamiHudWaypointIconTitleID" : "Waypoint Icon",
+	"HotlineMiamiHudWaypointDistTitleID" : "Waypoint distance",
+	"HotlineMiamiHudWaypointArrowTitleID" : "Waypoint arrow",
+	
+	"HotlineMiamiHudGrenadeIconTitleID" : "Grenades icon",
+	"HotlineMiamiHudGrenadeTextTitleID" : "Grenade amount",
+	"HotlineMiamiHudEquipmentIconTitleID" : "Equipment Icon",
+	"HotlineMiamiHudEquipmentTextTitleID" : "Equipment Amount",
+	"HotlineMiamiHudCabletiesIconTitleID" : "Cable ties Icon",
+	"HotlineMiamiHudCabletiesTextTitleID" : "Cable ties text",
+	"HotlineMiamiHudPrimFiremodeTitleID" : "Primary firemode",
+	"HotlineMiamiHudSecFiremodeTitleID" : "Secondary firemode",
+	"HotlineMiamiHudLowAmmoTitleID" : "Low ammo",
+	"HotlineMiamiHudTotalAmmoTitleID" : "Total ammo",
+	"HotlineMiamiHudClipAmmoTitleID" : "Current ammo",
+	
+	"HotlineMiamiHudPlayer1TitleID" : "Player 1",
+	"HotlineMiamiHudPlayer2TitleID" : "Player 2",
+	"HotlineMiamiHudPlayer3TitleID" : "Player 3",
+	"HotlineMiamiHudPlayer4TitleID" : "Player 4",
+	"HotlineMiamiHudPlayerAiTitleID" : "Bot",
+	"HotlineMiamiHudSystemTitleID" : "System"
 }

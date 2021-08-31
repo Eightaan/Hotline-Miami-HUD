@@ -1,21 +1,21 @@
 {
 	"menu_id": "hmh_menu_interact",
-	"parent_menu_id": "hmh_menu",
+	"parent_menu": "hmh_menu",
 	"title": "hmh_interact_title",
-	"description": "hmh_interact_desc",
 	"items": [
 		{
 			"type": "multiple_choice",
 			"id": "interact_texture_multiple_choice",
 			"title": "interact_texture_title",
 			"description": "interact_texture_desc",
-			"callback": "callback_interact_texture",
+			"callback": "SetOption",
+			"callback_argument": "interact_texture",
 			"value": "interact_texture",
 			"items" : [
 				"default_interact",
 				"50bl_interact",
 				"pink_interact",
-				"hm2_interact"
+				"hm2_interact",
 				"heart_interact"
 			],
 			"default_value": 2
@@ -25,7 +25,8 @@
 			"id": "interact_toggle",
 			"title": "interact_title",
 			"description": "interact_desc",
-			"callback": "callback_interact",
+			"callback": "SetOption",
+			"callback_argument": "interact",
 			"value": "interact",
 			"default_value": true
 		},
@@ -38,11 +39,12 @@
 			"id": "toggle_interact_slider",
 			"title": "toggle_interact_title",
 			"description": "toggle_interact_desc",
-			"callback": "callback_toggle_interact",
+			"callback": "SetOption",
+			"callback_argument": "toggle_interact",
 			"value": "toggle_interact",
 			"max": 10,
             "min": 0,
-            "step": 0.5,
+            "step": 1,
             "default_value": 0
 		},
 		{
@@ -50,7 +52,8 @@
 			"id": "interupt_interact_toggle",
 			"title": "interupt_interact_title",
 			"description": "interupt_interact_desc",
-			"callback": "callback_interupt_interact",
+			"callback": "SetOption",
+			"callback_argument": "interupt_interact",
 			"value": "interupt_interact",
 			"default_value": false
 		},
@@ -59,7 +62,8 @@
 			"id": "interupt_interact_hint_toggle",
 			"title": "interupt_interact_hint_title",
 			"description": "interupt_interact_hint_desc",
-			"callback": "callback_interupt_interact_hint",
+			"callback": "SetOption",
+			"callback_argument": "interupt_interact_hint",
 			"value": "interupt_interact_hint",
 			"default_value": false
 		},
@@ -72,7 +76,8 @@
 			"id": "stealth_c4_toggle",
 			"title": "stealth_c4_title",
 			"description": "stealth_c4_desc",
-			"callback": "callback_stealth_c4",
+			"callback": "SetOption",
+			"callback_argument": "stealth_c4",
 			"value": "stealth_c4",
 			"default_value": false
 		},
@@ -85,7 +90,8 @@
 			"id": "interact_icons_toggle",
 			"title": "interact_icons_title",
 			"description": "interact_icons_desc",
-			"callback": "callback_interact_icons",
+			"callback": "SetOption",
+			"callback_argument": "interact_icons",
 			"value": "interact_icons",
 			"default_value": true
 		}

@@ -1,0 +1,17 @@
+{
+    "menu_id" : "hmh_menu",
+    "title" : "hmh_mod_title",
+    "description" : "hmh_mod_desc",
+        "items" : [
+              {
+                    "type": "color_select",
+                    "id": "heist_timer_color_id",
+                    "title": "heist_timer_color_title",
+                    "description": "heist_timer_color_desc",
+                    "value": "heist_timer_color",
+                    "default_value": [0.40000000596046, 1, 1],
+                    "callback": "SetColor",
+                    "callback_arguments": "heist_timer_color"
+                }
+        ]
+}

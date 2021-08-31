@@ -1,5 +1,5 @@
-if not HMH:GetOption("presenter") then 
-    return 
+if not HMH:GetOption("presenter") then
+    return
 end
 
 Hooks:PostHook(HUDPresenter, "init", "HMH_hudpresenter_init", function(self, ...)
@@ -8,9 +8,9 @@ Hooks:PostHook(HUDPresenter, "init", "HMH_hudpresenter_init", function(self, ...
  	local text = self._bg_box:child("text")	
  	self._hud_panel:child("present_panel"):show()
  	self._bg_box:child("bg"):hide()
-	title:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("PresenterTitle") or Color("66ff99"))
+	title:set_color(HMH:GetColor("PresenterTitle"))
 	title:set_font_size(24)
-	text:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("PresenterText") or Color("66ffff"))
+	text:set_color(HMH:GetColor("PresenterText"))
 	text:set_font_size(20)
 end)
 
