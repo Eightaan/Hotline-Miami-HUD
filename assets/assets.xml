@@ -6,5 +6,9 @@
         <file :name="hmcc_font.texture"        :path="hmcc_font.texture"/>
 		<file :name="hmcc_bg.texture"          :path="hmcc_bg.texture"/>
 		<file :name="Headshot_confirm.texture" :path="Headshot_confirm.texture"/>
+
+		<!-- Menu textures -->
+		<file :name="check_bg.texture"     :path="check_bg.texture"/>
+		<file :name="check.texture"        :path="check.texture"/>
     </group>
 </assets>
