@@ -25,3 +25,13 @@ function HUDPresenter:_animate_present_information(present_panel, params)
 	set_alpha(present_panel, 0)
 	self:_present_done()
 end
+
+-- For VanillaHUD Plus users
+function HUDPresenter:_present_done()
+	self._presenting = false
+	local queued = table.remove(self._present_queue, 1)
+
+	if queued and queued.present_mid_text then
+		setup:add_end_frame_clbk(callback(self, self, "_do_it", queued))
+	end
+end

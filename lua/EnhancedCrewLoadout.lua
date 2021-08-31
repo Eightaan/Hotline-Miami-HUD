@@ -1,4 +1,4 @@
-if VHUDPlus or WolfHUD then
+if WolfHUD then
     return
 end
 

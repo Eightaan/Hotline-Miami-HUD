@@ -1,4 +1,4 @@
-if not HMH:GetOption("stamina") or VHUDPlus or WolfHUD or (restoration and restoration:all_enabled("HUD/MainHUD", "HUD/Teammate")) then 
+if not HMH:GetOption("stamina") or VHUDPlus or WolfHUD or (restoration and restoration:all_enabled("HUD/MainHUD", "HUD/Teammate")) or (CustomEOStandalone and getSetting({"WolfHUDCustomHUD", "ENABLED"}, true)) then 
     return
 end
 
