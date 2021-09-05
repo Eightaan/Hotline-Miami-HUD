@@ -1,6 +1,7 @@
 {
 	"menu_id": "hmh_menu_subs",
 	"parent_menu": "hmh_menu",
+	"h" : 500,
 	"title": "hmh_subs_title",
 	"items": [
 		{

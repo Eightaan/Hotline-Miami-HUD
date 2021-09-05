@@ -1,6 +1,7 @@
 {
 	"menu_id": "hmh_hud_ammo_menu",
 	"parent_menu": "hmh_hud_menu",
+	"h" : 500,
 	"title": "hmh_hud_ammo_title",
 	"items": [
         {
