@@ -1,25 +1,25 @@
-if not HMH:GetOption("assault") then
-   return
+if not HMH:GetOption("assault") then 
+   return 
 end
 
 Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(self, hud, ...)
-    self._assault_color = HMH:GetColor("AssaultText")
-	self._vip_assault_color = HMH:GetColor("CaptainText")
+    self._assault_color = BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("AssaultText") or Color("ffcc66")
+	self._vip_assault_color = BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("CaptainText") or Color("ff6666")
 	if managers.mutators:are_mutators_active() then
 		self._assault_color = Color(255, 255, 133, 225) / 255
 		self._vip_assault_color = Color(255, 211, 133, 255) / 255
 	end
 
 	if managers.skirmish:is_skirmish() then
-		self._assault_color = HMH:GetColor("HoldoutText")
+		self._assault_color = BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("HoldoutText") or Color("ff6666")
 	end
 
     -- HOSTAGES
 	local hostages_panel = self._hud_panel:child("hostages_panel")
 	local hostage_text = self._hostages_bg_box:child("num_hostages")
 	local hostages_icon = hostages_panel:child("hostages_icon")
-	hostage_text:set_color(HMH:GetColor("HostagesText"))
-	hostages_icon:set_color(HMH:GetColor("HostagesIcon"))
+	hostage_text:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("HostagesText") or Color("66ffff"))
+	hostages_icon:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("HostagesIcon") or Color("ff80df"))
 
 	-- ASSAULT
 	local assault_panel = self._hud_panel:child("assault_panel")
@@ -41,14 +41,14 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 	-- CASING
 	local casing_panel = self._hud_panel:child("casing_panel")
 	local icon_casingbox = casing_panel:child("icon_casingbox")
-	icon_casingbox:set_color(HMH:GetColor("CasingIcon"))
+	icon_casingbox:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("CasingIcon") or Color("ff80df"))
 	icon_casingbox:set_blend_mode("normal")
 
 	casing_panel:show()
 	casing_panel:set_alpha(0)
 	casing_panel:text({
 		name = "text",
-        color = HMH:GetColor("CasingText"),
+        color = BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("CasingText") or Color("66ff99"),
 		font = tweak_data.hud.medium_font_noshadow
 	})
 
@@ -64,9 +64,9 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 
 	point_of_no_return_panel:show()
 	point_of_no_return_panel:set_alpha(0)
-	icon_noreturnbox:set_color(HMH:GetColor("NoReturnIcon"))
-	point_of_no_return_text:set_color(HMH:GetColor("NoReturnText"))
-	point_of_no_return_timer:set_color(HMH:GetColor("NoReturnTimer"))
+	icon_noreturnbox:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("NoReturnIcon") or Color("ff6666"))
+	point_of_no_return_text:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("NoReturnText") or Color("66ffff"))
+	point_of_no_return_timer:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("NoReturnTimer") or Color("ff6666"))
 	point_of_no_return_timer:set_y(0)
 	point_of_no_return_text:set_blend_mode("normal")
    	point_of_no_return_timer:set_blend_mode("normal")
@@ -80,7 +80,7 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 	local buffs_panel = self._hud_panel:child("buffs_panel")
 	buffs_panel:set_x(assault_panel:left() + self._bg_box:left() - icon_offset)
 	vip_icon:set_center(self._vip_bg_box:w() / 2, self._vip_bg_box:h() / 2 - 5)
-	vip_icon:set_color(HMH:GetColor("CaptainBuffIcon"))
+	vip_icon:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("CaptainBuffIcon") or Color("ffcc66"))
 	vip_icon:set_blend_mode("normal")
 	self._vip_bg_box:child("bg"):hide()
 end)
@@ -90,8 +90,8 @@ Hooks:PostHook(HUDAssaultCorner, "setup_wave_display", "HMH_hudassaultcorner_set
 		local wave_panel = self._hud_panel:child("wave_panel")
 	    local waves_icon = wave_panel:child("waves_icon")
 	    local num_waves = self._wave_bg_box:child("num_waves")
-	    waves_icon:set_color(HMH:GetColor("WavesIcon"))
-	    num_waves:set_color(HMH:GetColor("WavesText"))
+	    waves_icon:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("WavesIcon") or Color("ff80df"))
+	    num_waves:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("WavesText") or Color("66ffff"))
 	end
 end)
 
@@ -197,11 +197,10 @@ function HUDAssaultCorner:_get_assault_strings()
 	local crime_spree_rank
 	if managers.crime_spree:is_active() and self._assault_mode == "normal" then
 	    crime_spree_rank = ":" .. space ..  managers.localization:to_upper_text("menu_cs_level", {level = managers.experience:cash_string(managers.crime_spree:server_spree_level(), "")})
-	else
+	else 
 	    crime_spree_rank = ""
 	end
 
-	local assault_text = ""
 	if managers.crime_spree:is_active() then
 	    assault_text = managers.localization:to_upper_text(self._assault_mode == "normal" and "cn_crime_spree" or "hud_assault_vip") .. crime_spree_rank
 	elseif managers.skirmish:is_skirmish() then
@@ -210,7 +209,7 @@ function HUDAssaultCorner:_get_assault_strings()
 	    assault_text = managers.localization:to_upper_text(self._assault_mode == "normal" and "hmh_hud_assault_assault" or "hud_assault_vip") .. " " .. difficulty
 	end
 
-	return assault_text
+	return (assault_text)
 end
 
 function HUDAssaultCorner:show_casing(mode)

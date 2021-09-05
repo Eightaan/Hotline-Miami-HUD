@@ -1,20 +1,20 @@
 {
-	"menu_id": "hmh_hud_menu",
-	"parent_menu": "hmh_menu",
+	"menu_id": "hmh_menu_hud",
+	"parent_menu_id": "hmh_menu",
 	"title": "hmh_hud_title",
+	"description": "hmh_hud_desc",
 	"items": [
 		{
 			"type": "multiple_choice",
 			"id": "health_texture__multiple_choice",
 			"title": "health_texture_title",
 			"description": "health_texture_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "health_texture",
+			"callback": "callback_health_texture",
 			"value": "health_texture",
 			"items" : [
 				"default_health",
 				"faded_health",
-				"pixel_health"
+				"pixel_health",
 			],
 			"default_value": 2
 		},
@@ -23,8 +23,7 @@
 			"id": "color_toggle",
 			"title": "color_title",
 			"description": "color_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "custom_color",
+			"callback": "callback_custom_color",
 			"value": "custom_color",
 			"default_value": true
 		},
@@ -33,8 +32,7 @@
 			"id": "downed_toggle",
 			"title": "downed_title",
 			"description": "downed_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "downed",
+			"callback": "callback_downed",
 			"value": "downed",
 			"default_value": true
 		},
@@ -43,8 +41,7 @@
 			"id": "custody_toggle",
 			"title": "custody_title",
 			"description": "custody_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "custody",
+			"callback": "callback_custody",
 			"value": "custody",
 			"default_value": true
 		},
@@ -57,8 +54,7 @@
 			"id": "PLAYER_down_toggle",
 			"title": "PLAYER_down_title",
 			"description": "PLAYER_down_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "PLAYER_down",
+			"callback": "callback_PLAYER_down",
 			"value": "PLAYER_down",
 			"default_value": false
 		},
@@ -67,8 +63,7 @@
 			"id": "TEAM_down_toggle",
 			"title": "TEAM_down_title",
 			"description": "TEAM_down_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "TEAM_down",
+			"callback": "callback_TEAM_down",
 			"value": "TEAM_down",
 			"default_value": true
 		},
@@ -77,8 +72,7 @@
 			"id": "colored_downs_toggle",
 			"title": "colored_downs_title",
 			"description": "colored_downs_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "colored_downs",
+			"callback": "callback_colored_downs",
 			"value": "colored_downs",
 			"default_value": true
 		},
@@ -91,8 +85,7 @@
 			"id": "trueammo_toggle",
 			"title": "trueammo_title",
 			"description": "trueammo_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "trueammo",
+			"callback": "callback_trueammo",
 			"value": "trueammo",
 			"default_value": false
 		},
@@ -101,8 +94,7 @@
 			"id": "ping_toggle",
 			"title": "ping_title",
 			"description": "ping_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "ping",
+			"callback": "callback_ping",
 			"value": "ping",
 			"default_value": false
 		},
@@ -111,8 +103,7 @@
 			"id": "bulletstorm_toggle",
 			"title": "bulletstorm_title",
 			"description": "bulletstorm_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "bulletstorm",
+			"callback": "callback_bulletstorm",
 			"value": "bulletstorm",
 			"default_value": true
 		},
@@ -121,8 +112,7 @@
 			"id": "stamina_toggle",
 			"title": "stamina_title",
 			"description": "stamina_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "stamina",
+			"callback": "callback_stamina",
 			"value": "stamina",
 			"default_value": false
 		},
@@ -131,8 +121,7 @@
 			"id": "screen_effect_toggle",
 			"title": "screen_effect_title",
 			"description": "screen_effect_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "screen_effect",
+			"callback": "callback_screen_effect",
 			"value": "screen_effect",
 			"default_value": false			
 		},
@@ -145,8 +134,7 @@
 			"id": "voice_toggle",
 			"title": "voice_title",
 			"description": "voice_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "voice",
+			"callback": "callback_voice",
 			"value": "voice",
 			"default_value": true	
 		},
@@ -155,8 +143,7 @@
 			"id": "color_name_toggle",
 			"title": "color_name_title",
 			"description": "color_name_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "color_name",
+			"callback": "callback_color_name",
 			"value": "color_name",
 			"default_value": true
 		},
@@ -165,8 +152,7 @@
 			"id": "color_condition_toggle",
 			"title": "color_condition_title",
 			"description": "color_condition_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "color_condition",
+			"callback": "callback_color_condition",
 			"value": "color_condition",
 			"default_value": true
 		},
@@ -175,8 +161,7 @@
 			"id": "interact_info_toggle",
 			"title": "interact_info_title",
 			"description": "interact_info_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "interact_info",
+			"callback": "callback_interact_info",
 			"value": "interact_info",
 			"default_value": true
 		},
@@ -185,8 +170,7 @@
 			"id": "color_bag_toggle",
 			"title": "color_bag_title",
 			"description": "color_bag_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "color_bag",
+			"callback": "callback_color_bag",
 			"value": "color_bag",
 			"default_value": true
 		},
@@ -195,8 +179,7 @@
 			"id": "pickups_toggle",
 			"title": "pickups_title",
 			"description": "pickups_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "pickups",
+			"callback": "callback_pickups",
 			"value": "pickups",
 			"default_value": true
 		},
@@ -205,8 +188,7 @@
 			"id": "equipment_toggle",
 			"title": "equipment_title",
 			"description": "equipment_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "equipment",
+			"callback": "callback_equipment",
 			"value": "equipment",
 			"default_value": true
 		},
@@ -215,8 +197,7 @@
 			"id": "ammo_toggle",
 			"title": "ammo_title",
 			"description": "ammo_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "ammo",
+			"callback": "callback_ammo",
 			"value": "ammo",
 			"default_value": true
 		},
@@ -225,8 +206,7 @@
 			"id": "stop_ai_toggle",
 			"title": "stop_ai_title",
 			"description": "stop_ai_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "stop_ai",
+			"callback": "callback_stop_ai",
 			"value": "stop_ai",
 			"default_value": true
 		}

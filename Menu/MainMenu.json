@@ -1,19 +1,20 @@
 {
 	"menu_id": "hmh_menu",
+	"parent_menu_id": "blt_options",
 	"title": "hmh_title",
     "description": "hmh_desc",
+    "back_callback" : "HMHSave",
 	"items": [
 		{
 		    "type": "slider",
 			"id": "hud_scale_slider",
 			"title": "hud_scale_title",
 			"description": "hud_scale_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "hud_scale",
+			"callback": "callback_hud_scale",
 			"value": "hud_scale",
 			"max": 1,
             "min": 0.5,
-            "step": 2,
+            "step": 0.05,
             "default_value": 1
 		},
 		{
@@ -25,8 +26,7 @@
 			"id": "mod_overrides_toggle",
 			"title": "mod_overrides_title",
 			"description": "mod_overrides_desc",
-			"callback": "SetOption",
-			"callback_arguments": "mod_overrides",
+			"callback": "callback_mod_overrides",
 			"value": "mod_overrides",
 			"default_value": true
 		},
@@ -39,8 +39,7 @@
 			"id": "mod_font_toggle",
 			"title": "mod_font_title",
 			"description": "mod_font_desc",
-			"callback": "SetOption",
-			"callback_arguments": "font",
+			"callback": "callback_font",
 			"value": "font",
 			"default_value": false
         },
@@ -53,8 +52,7 @@
 			"id": "combo_toggle",
 			"title": "combo_title",
 			"description": "combo_desc",
-			"callback": "SetOption",
-			"callback_arguments": "combo",
+			"callback": "callback_combo",
 			"value": "combo",
 			"default_value": false
 		},
@@ -63,8 +61,7 @@
 			"id": "headshot_mark_toggle",
 			"title": "headshot_mark_title",
 			"description": "headshot_mark_desc",
-			"callback": "SetOption",
-			"callback_arguments": "headshot_mark",
+			"callback": "callback_headshot_mark",
 			"value": "headshot_mark",
 			"default_value": true
 	    },
@@ -77,8 +74,7 @@
 			"id": "crew_loadout_toggle",
 			"title": "crew_loadout_title",
 			"description": "crew_loadout_desc",
-			"callback": "SetOption",
-			"callback_arguments": "crew_loadout",
+			"callback": "callback_crew_loadout",
 			"value": "crew_loadout",
 			"default_value": true
 		},
@@ -87,112 +83,13 @@
 			"id": "crew_loadout_briefing_toggle",
 			"title": "crew_loadout_briefing_title",
 			"description": "crew_loadout_briefing_desc",
-			"callback": "SetOption",
-			"callback_arguments": "crew_loadout_briefing",
+			"callback": "callback_crew_loadout_briefing",
 			"value": "crew_loadout_briefing",
 			"default_value": true
 	    },
         {
 			"type": "divider",
 			"size": 16
-        },
-		{
-			"type": "button",
-			"id": "hmh_menu_options",
-			"title": "hmh_menu_options_title",
-			"description": "hmh_menu_options_desc",
-			"next_menu": "hmh_menu_options"
-		},
-		{
-			"type": "button",
-			"id": "hmh_hud",
-			"title": "hmh_hud_title",
-			"description": "hmh_hud_desc",
-			"next_menu": "hmh_hud_menu"
-		},
-		{
-			"type": "button",
-			"id": "hmh_interact",
-			"title": "hmh_interact_title",
-			"description": "hmh_interact_desc",
-			"next_menu": "hmh_menu_interact"
-		},
-		{
-			"type": "button",
-			"id": "hmh_assault",
-			"title": "hmh_assault_title",
-			"description": "hmh_assault_desc",
-			"next_menu": "hmh_menu_assault"
-		},
-		{
-			"type": "button",
-			"id": "hmh_tab",
-			"title": "hmh_tab_title",
-			"description": "hmh_tab_desc",
-			"next_menu": "hmh_tab"
-		},
-		{
-			"type": "button",
-			"id": "hmh_hint",
-			"title": "hmh_hint_title",
-			"description": "hmh_hint_desc",
-			"next_menu": "hmh_menu_hint"
-		},
-		{
-			"type": "button",
-			"id": "hmh_waypoints",
-			"title": "hmh_waypoints_title",
-			"description": "hmh_waypoints_desc",
-			"next_menu": "hmh_menu_waypoints"
-		},
-		{
-			"type": "button",
-			"id": "hmh_custom_chat",
-			"title": "hmh_custom_chat_title",
-			"description": "hmh_custom_chat_desc",
-			"next_menu": "hmh_menu_custom_chat"
-		},
-		{
-			"type": "button",
-			"id": "hmh_timer",
-			"title": "hmh_timer_title",
-			"description": "hmh_timer_desc",
-			"next_menu": "hmh_menu_timer"
-		},
-		{
-			"type": "button",
-			"id": "hmh_presenter",
-			"title": "hmh_presenter_title",
-			"description": "hmh_presenter_desc",
-			"next_menu": "hmh_menu_presenter"
-		},
-		{
-			"type": "button",
-			"id": "hmh_suspicion",
-			"title": "hmh_suspicion_title",
-			"description": "hmh_suspicion_desc",
-			"next_menu": "hmh_suspicion"
-		},
-		{
-			"type": "button",
-			"id": "hmh_carry_title",
-			"title": "hmh_carry_title",
-			"description": "hmh_carry_desc",
-			"next_menu": "hmh_menu_carry"
-		},
-		{
-			"type": "button",
-			"id": "hmh_objective_title",
-			"title": "hmh_objective_title",
-			"description": "hmh_objective_desc",
-			"next_menu": "hmh_menu_objective"
-		},
-		{
-			"type": "button",
-			"id": "hmh_subs",
-			"title": "hmh_subs_title",
-			"description": "hmh_subs_desc",
-			"next_menu": "hmh_menu_subs"
-		}
+        }
 	]
 }

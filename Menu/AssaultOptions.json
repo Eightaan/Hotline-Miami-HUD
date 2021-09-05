@@ -1,176 +1,26 @@
 {
 	"menu_id": "hmh_menu_assault",
-	"parent_menu": "hmh_menu",
+	"parent_menu_id": "hmh_menu",
 	"title": "hmh_assault_title",
+	"description": "hmh_assault_desc",
 	"items": [
 		{
 			"type": "toggle",
 			"id": "assault_toggle",
 			"title": "assault_title",
 			"description": "assault_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "assault",
+			"callback": "callback_assault",
 			"value": "assault",
-			"default_value": true,
-			"is_parent" : true
-		},
-		{
-			"type" : "divider",
-			"size" : 8
-		},
-		{
-			"type": "color_select",
-			"id": "assault_text_color_select",
-			"title": "HotlineMiamiHudAssaultTextTitleID",
-			"description": "HotlineMiamiHudColorOption",
-			"value": "AssaultText",
-			"default_value": [255, 204, 102],
-			"callback": "SetColorOption",
-			"callback_arguments": "AssaultText",
-			"parent" : "assault_toggle"
-		},
-		{
-			"type": "color_select",
-			"id": "no_return_text_color_select",
-			"title": "HotlineMiamiHudNoReturnTextTitleID",
-			"description": "HotlineMiamiHudColorOption",
-			"value": "NoReturnText",
-			"default_value": [102, 255, 255],
-			"callback": "SetColorOption",
-			"callback_arguments": "NoReturnText",
-			"parent" : "assault_toggle"
-		},
-		{
-			"type": "color_select",
-			"id": "no_return_icon_color_select",
-			"title": "HotlineMiamiHudNoReturnIconTitleID",
-			"description": "HotlineMiamiHudColorOption",
-			"value": "NoReturnIcon",
-			"default_value": [255, 102, 102],
-			"callback": "SetColorOption",
-			"callback_arguments": "NoReturnIcon",
-			"parent" : "assault_toggle"
-		},
-		{
-			"type": "color_select",
-			"id": "no_return_timer_color_select",
-			"title": "HotlineMiamiHudNoReturnTimerTitleID",
-			"description": "HotlineMiamiHudColorOption",
-			"value": "NoReturnTimer",
-			"default_value": [255, 102, 102],
-			"callback": "SetColorOption",
-			"callback_arguments": "NoReturnTimer",
-			"parent" : "assault_toggle"
-		},
-		{
-			"type": "color_select",
-			"id": "holdout_text_color_select",
-			"title": "HotlineMiamiHudHoldoutTextTitleID",
-			"description": "HotlineMiamiHudColorOption",
-			"value": "HoldoutText",
-			"default_value": [255, 102, 102],
-			"callback": "SetColorOption",
-			"callback_arguments": "HoldoutText",
-			"parent" : "assault_toggle"
-		},
-		{
-			"type": "color_select",
-			"id": "captain_text_color_select",
-			"title": "HotlineMiamiHudCaptainTextTitleID",
-			"description": "HotlineMiamiHudColorOption",
-			"value": "CaptainText",
-			"default_value": [255, 102, 102],
-			"callback": "SetColorOption",
-			"callback_arguments": "CaptainText",
-			"parent" : "assault_toggle"
-		},
-		{
-			"type": "color_select",
-			"id": "captain_buff_icon_color_select",
-			"title": "HotlineMiamiHudCaptainBuffIconTitleID",
-			"description": "HotlineMiamiHudColorOption",
-			"value": "CaptainBuffIcon",
-			"default_value": [255, 102, 102],
-			"callback": "SetColorOption",
-			"callback_arguments": "CaptainBuffIcon",
-			"parent" : "assault_toggle"
-		},
-		{
-			"type": "color_select",
-			"id": "hostages_text_icon_color_select",
-			"title": "HotlineMiamiHudHostagesTextTitleID",
-			"description": "HotlineMiamiHudColorOption",
-			"value": "HostagesText",
-			"default_value": [102, 255, 255],
-			"callback": "SetColorOption",
-			"callback_arguments": "HostagesText",
-			"parent" : "assault_toggle"
-		},
-		{
-			"type": "color_select",
-			"id": "hostages_icon_color_select",
-			"title": "HotlineMiamiHudHostagesIconTitleID",
-			"description": "HotlineMiamiHudColorOption",
-			"value": "HostagesIcon",
-			"default_value": [255, 128, 223],
-			"callback": "SetColorOption",
-			"callback_arguments": "HostagesIcon",
-			"parent" : "assault_toggle"
-		},
-		{
-			"type": "color_select",
-			"id": "waves_text_color_select",
-			"title": "HotlineMiamiHudWavesTextTitleID",
-			"description": "HotlineMiamiHudColorOption",
-			"value": "WavesText",
-			"default_value": [102, 255, 255],
-			"callback": "SetColorOption",
-			"callback_arguments": "WavesText",
-			"parent" : "assault_toggle"
-		},
-		{
-			"type": "color_select",
-			"id": "waves_icon_color_select",
-			"title": "HotlineMiamiHudWavesIconTitleID",
-			"description": "HotlineMiamiHudColorOption",
-			"value": "WavesIcon",
-			"default_value": [255, 128, 223],
-			"callback": "SetColorOption",
-			"callback_arguments": "WavesIcon",
-			"parent" : "assault_toggle"
+			"default_value": true
 		},
 		{
 			"type": "toggle",
 			"id": "casing_toggle",
 			"title": "casing_title",
 			"description": "casing_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "casing",
+			"callback": "callback_casing",
 			"value": "casing",
-			"default_value": true,
-			"is_parent" : true
-		},
-		{
-			"type": "color_select",
-			"id": "casing_text_color_select",
-			"title": "HotlineMiamiHudCasingTextTitleID",
-			"description": "HotlineMiamiHudColorOption",
-			"value": "CasingText",
-			"default_value": [102, 255, 153],
-			"callback": "SetColorOption",
-			"callback_arguments": "CasingText",
-			"parent" : ["assault_toggle", "casing_toggle"]
-		},
-		{
-			"type": "color_select",
-			"id": "casing_icon_color_select",
-			"title": "HotlineMiamiHudCasingIconTitleID",
-			"description": "HotlineMiamiHudColorOption",
-			"value": "CasingIcon",
-			"default_value": [255, 128, 223],
-			"callback": "SetColorOption",
-			"callback_arguments": "CasingIcon",
-			"parent" : ["assault_toggle", "casing_toggle"]
+			"default_value": true
 		},
 		{
 			"type": "divider",
@@ -181,60 +31,18 @@
 			"id": "infoboxes_toggle",
 			"title": "infoboxes_title",
 			"description": "infoboxes_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "infoboxes",
+			"callback": "callback_infoboxes",
 			"value": "infoboxes",
-			"default_value": true,
-			"is_parent" : true
+			"default_value": true
 		},
 		{
 			"type": "toggle",
 			"id": "pager_jam_toggle",
 			"title": "pager_jam_title",
 			"description": "pager_jam_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "pager_jam",
+			"callback": "callback_pager_jam",
 			"value": "pager_jam",
-			"default_value": true,
-			"is_parent" : true,
-			"parent" : "infoboxes_toggle"	
-		},
-		{
-			"type": "divider",
-			"size": 8
-		},
-		{
-			"type": "color_select",
-			"id": "ecm_text_color_select",
-			"title": "HotlineMiamiHudECMTextTitleID",
-			"description": "HotlineMiamiHudColorOption",
-			"value": "ECMText",
-			"default_value": [102, 255, 255],
-			"callback": "SetColorOption",
-			"callback_arguments": "ECMText",
-			"parent" : ["infoboxes_toggle", "pager_jam_toggle"]
-		},
-		{
-			"type": "color_select",
-			"id": "ecm_icon_color_select",
-			"title": "HotlineMiamiHudECMIconTitleID",
-			"description": "HotlineMiamiHudColorOption",
-			"value": "ECMIcon",
-			"default_value": [255, 128, 223],
-			"callback": "SetColorOption",
-			"callback_arguments": "ECMIcon",
-			"parent" : ["infoboxes_toggle", "pager_jam_toggle"]
-		},
-		{
-			"type": "color_select",
-			"id": "ecm_upgrade_icon_color_select",
-			"title": "HotlineMiamiHudECMUpgradeIconTitleID",
-			"description": "HotlineMiamiHudColorOption",
-			"value": "ECMUpgradeIcon",
-			"default_value": [102, 255, 153],
-			"callback": "SetColorOption",
-			"callback_arguments": "ECMUpgradeIcon",
-			"parent" : ["infoboxes_toggle", "pager_jam_toggle"]
+			"default_value": true			
 		}
 	]
 }

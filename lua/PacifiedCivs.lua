@@ -1,10 +1,7 @@
-if not HMH:GetOption("greenciv") then
-	return
-end
-
 local _upd_criminal_suspicion_progress_original = GroupAIStateBase._upd_criminal_suspicion_progress
+
 function GroupAIStateBase:_upd_criminal_suspicion_progress(...)
-	if self._ai_enabled then
+	if self._ai_enabled and HMH:GetOption("greenciv") then
 		for obs_key, obs_susp_data in pairs(self._suspicion_hud_data or {}) do
 			local unit = obs_susp_data.u_observer
 

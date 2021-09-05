@@ -2,11 +2,9 @@ if not HMH then
     _G.HMH =
     {
         _path = ModPath,
-        _menu_path = ModPath .. "Menu/",
         _data_path = SavePath .. "HMH.json",
         SaveDataVer = 1,
-        ModVersion = ModInstance and ModInstance:GetVersion() or "N/A",
-        _data = {}
+        data = {}
     }
 	HMH.TotalKills = 0
 
@@ -118,14 +116,6 @@ if not HMH then
 
     function HMH:GetOption(id)
         return self._data[id]
-    end
-
-    function HMH:GetColor(id)
-        local color = self._data[id]
-        if color and color.r and color.b and color.g then
-            return Color(255, color.r, color.g, color.b) / 255
-        end
-        return Color.white
     end
 
     HMH:Load()

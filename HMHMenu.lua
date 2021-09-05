@@ -43,7 +43,7 @@ function HMHMenu:init()
     local bg = self._panel:bitmap({
         name = "bg",
         color = Color.black,
-        alpha = 0.25,
+        alpha = 0.5,
         layer = -1,
         rotation = 360,
         w = background_size.w
@@ -79,9 +79,33 @@ function HMHMenu:init()
         wrap = true,
         word_wrap = true,
     })
-    local options_bg = self._panel:rect({
+    self._tooltip_bottom_enabled = self._panel:text({
+        name = "tooltip_bottom",
+        font_size = 18,
+        font = tweak_data.menu.pd2_medium_font,
+        text = managers.localization:text("hmh_enabled") .. ":",
+        y = 10,
+        w = 500,
+        align = "right",
+        wrap = true,
+        word_wrap = true,
+        visible = false
+    })
+    self._tooltip_bottom_disabled = self._panel:text({
+        name = "tooltip_bottom",
+        font_size = 18,
+        font = tweak_data.menu.pd2_medium_font,
+        text = managers.localization:text("hmh_disabled"),
+        y = 10,
+        w = 500,
+        align = "right",
+        wrap = true,
+        word_wrap = true,
+        visible = false
+    })
+    local options_bg = self._panel:bitmap({
         name = "options_bg",
-        color = Color.black,
+        texture = "guis/textures/pd2_mod_hmh/menu_background",
         w = self._panel:w() / 2.5,
         h = self._panel:h(),
     })
@@ -95,6 +119,8 @@ function HMHMenu:init()
     self._options_panel:set_right(self._panel:w() - 10)
     self._tooltip:set_right(self._options_panel:x() - 20)
     self._tooltip_bottom:set_right(self._options_panel:x() - 20)
+    self._tooltip_bottom_enabled:set_right(self._options_panel:x() - 20)
+    self._tooltip_bottom_disabled:set_right(self._options_panel:x() - 20)
     if managers.menu:is_pc_controller() then
         local back_button = self._panel:panel({
             name = "back_button",
@@ -134,21 +160,7 @@ function HMHMenu:init()
         self._button_legends:set_top(self._options_panel:bottom())
     end
 
-    self:GetMenuFromJson(HMH._menu_path .. "MainMenu.json", HMH._data)
-    self:GetMenuFromJson(HMH._menu_path .. "MenuOptions.json", HMH._data)
-	self:GetMenuFromJson(HMH._menu_path .. "TeamHudOptions.json", HMH._data)
-	self:GetMenuFromJson(HMH._menu_path .. "InteractionOptions.json", HMH._data)
-	self:GetMenuFromJson(HMH._menu_path .. "AssaultOptions.json", HMH._data)
-	self:GetMenuFromJson(HMH._menu_path .. "TabstatsOptions.json", HMH._data)
-	self:GetMenuFromJson(HMH._menu_path .. "HintOptions.json", HMH._data)
-	self:GetMenuFromJson(HMH._menu_path .. "WaypointOptions.json", HMH._data)
-	self:GetMenuFromJson(HMH._menu_path .. "ChatOptions.json", HMH._data)
-	self:GetMenuFromJson(HMH._menu_path .. "TimerOptions.json", HMH._data)
-	self:GetMenuFromJson(HMH._menu_path .. "PresenterOptions.json", HMH._data)
-	self:GetMenuFromJson(HMH._menu_path .. "SuspicionOptions.json", HMH._data)
-	self:GetMenuFromJson(HMH._menu_path .. "CarryOptions.json", HMH._data)
-    self:GetMenuFromJson(HMH._menu_path .. "ObjectivesOptions.json", HMH._data)
-    self:GetMenuFromJson(HMH._menu_path .. "SubtitleOptions.json", HMH._data)
+    self:GetMenuFromJson(HMH.MenuPath .. "menu.json", HMH.settings)
 
     self:OpenMenu("hmh_menu")
 end
@@ -703,8 +715,8 @@ function HMHMenu:GetMenuFromJson(path, ...)
         local menu_title = managers.localization:text(content.title)
         local items = content.items
 
-        if content.title == "hmh_title" then
-            menu_title = menu_title .. " " .. HMH.ModVersion
+        if content.title == "hmh_mod_title" then
+            menu_title = menu_title .. " r" .. HMH.ModVersion
         end
 
         local menu = self:CreateMenu({
@@ -746,6 +758,10 @@ function HMHMenu:CreateItem(item, items, menu_id, ...)
                 break
             end
         end
+    end
+
+    if item.special_remarks then
+        value = HMH.settings.assault_panel[item.special_remarks][item_type == "toggle" and "enabled" or "custom_text"]
     end
 
     if n ~= 0 and parents then
@@ -883,7 +899,20 @@ function HMHMenu:CreateItem(item, items, menu_id, ...)
             callback_arguments = item.callback_arguments
         })
     elseif item_type == "color_select" then
-        value = HMH:GetColor(item.value)
+        local stored_value = HMH.settings.assault_panel
+        if item.hud_value then
+            if item.hud_value == "pdth_hud_reborn" then
+                stored_value = HMH.settings.hud.pdth_hud_reborn
+            elseif item.hud_value == "restoration_mod" then
+                stored_value = HMH.settings.hud.restoration_mod.assault_panel
+            end
+        end
+
+        if item.hud_value and item.hud_value == "restoration_mod" then
+            value = HMH:GetColorFromTable(stored_value[item.value][item.hud_c])
+        else
+            value = HMH:GetColorFromTable(stored_value[item.value])
+        end
 
         itm = self:CreateColorSelect({
             menu_id = menu_id,
@@ -1990,7 +2019,7 @@ function HMHMenu:OpenColorMenu(item)
         name = "title",
         font_size = 18,
         font = tweak_data.menu.pd2_small_font,
-        text = managers.localization:text("hmh_ok"),
+        text = managers.localization:text("hmh_button_ok"),
         x = 5,
         w = red_panel:w() - 10,
         h = 25,
@@ -2105,15 +2134,4 @@ function HMHMenu:ResetColorMenu()
             self:SetColorSlider(v, math.lerp(world_x, world_x + v:w(), c[number] / 255), number)
         end
     end
-end
-
-function HMHMenu:SetOption(value, option)
-    HMH._data[option] = value
-end
-
-function HMHMenu:SetColorOption(color, option)
-    local c = HMH._data[option]
-    c.r = color.red
-    c.g = color.green
-    c.b = color.blue
 end

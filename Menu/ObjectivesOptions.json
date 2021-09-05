@@ -1,15 +1,15 @@
 {
 	"menu_id": "hmh_menu_objective",
-	"parent_menu": "hmh_menu",
+	"parent_menu_id": "hmh_menu",
 	"title": "hmh_objective_title",
+	"description": "hmh_objective_desc",
 	"items": [
 		{
 			"type": "toggle",
 			"id": "objective_toggle",
 			"title": "objective_title",
 			"description": "objective_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "objective",
+			"callback": "callback_objective",
 			"value": "objective",
 			"default_value": true
 		}

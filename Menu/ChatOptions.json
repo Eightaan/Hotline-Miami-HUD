@@ -1,15 +1,15 @@
 {
 	"menu_id": "hmh_menu_custom_chat",
-	"parent_menu": "hmh_menu",
+	"parent_menu_id": "hmh_menu",
 	"title": "hmh_custom_chat_title",
+	"description": "hmh_custom_chat_desc",
 	"items": [
 		{
 			"type": "toggle",
 			"id": "custom_chat_toggle",
 			"title": "custom_chat_title",
 			"description": "custom_chat_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "custom_chat",
+			"callback": "callback_custom_chat",
 			"value": "custom_chat",
 			"default_value": true
 		},
@@ -18,12 +18,11 @@
 			"id": "chat_font_slider",
 			"title": "chat_font_title",
 			"description": "chat_font_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "chat_font",
+			"callback": "callback_chat_font",
 			"value": "chat_font",
 			"max": 40,
             "min": 10,
-            "step": 1,
+            "step": 0.5,
             "default_value": 20
 		}
 	]

@@ -1,15 +1,15 @@
 {
 	"menu_id": "hmh_menu_hint",
-	"parent_menu": "hmh_menu",
+	"parent_menu_id": "hmh_menu",
 	"title": "hmh_hint_title",
+	"description": "hmh_hint_desc",
 	"items": [
 		{
 			"type": "toggle",
 			"id": "hint_toggle",
 			"title": "hint_title",
 			"description": "hint_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "hint",
+			"callback": "callback_hint",
 			"value": "hint",
 			"default_value": true
 		},
@@ -22,8 +22,7 @@
 			"id": "inspire_toggle",
 			"title": "inspire_title",
 			"description": "inspire_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "inspire",
+			"callback": "callback_inspire",
 			"value": "inspire",
 			"default_value": true
 		}
