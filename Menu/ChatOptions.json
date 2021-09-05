@@ -11,7 +11,8 @@
 			"callback": "SetOption",
 			"callback_arguments" : "custom_chat",
 			"value": "custom_chat",
-			"default_value": true
+			"default_value": true,
+			"is_parent" : true
 		},
 		{
 			"type": "slider",
@@ -24,7 +25,8 @@
 			"max": 40,
             "min": 10,
             "step": 1,
-            "default_value": 20
+            "default_value": 20,
+			"parent" : ["custom_chat_toggle"]
 		}
 	]
 }

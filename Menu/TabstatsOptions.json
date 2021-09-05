@@ -11,7 +11,8 @@
 			"callback": "SetOption",
 			"callback_arguments" : "tab",
 			"value": "tab",
-			"default_value": true
+			"default_value": true,
+			"is_parent" : true
 		},
 		{
 			"type": "divider",
@@ -25,7 +26,8 @@
 			"callback": "SetOption",
 			"callback_arguments" : "custom_tab_color",
 			"value": "custom_tab_color",
-			"default_value": true
+			"default_value": true,
+			"parent" : ["tab_toggle"]
 		},
 		{
 			"type": "divider",
@@ -39,7 +41,8 @@
 			"callback": "SetOption",
 			"callback_arguments" : "enemy_count",
 			"value": "enemy_count",
-			"default_value": true
+			"default_value": true,
+			"parent" : ["tab_toggle"]
 		},
 		{
 			"type": "divider",

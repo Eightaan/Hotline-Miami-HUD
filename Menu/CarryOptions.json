@@ -11,7 +11,8 @@
 			"callback": "SetOption",
 			"callback_arguments" : "carry",
 			"value": "carry",
-			"default_value": true
+			"default_value": true,
+			"is_parent" : true
 		},
 		{
 			"type": "divider",
@@ -25,7 +26,8 @@
 			"callback": "SetOption",
 			"callback_arguments" : "carry_value",
 			"value": "carry_value",
-			"default_value": true
+			"default_value": true,
+			"parent" : ["carry_toggle"]
 		}
 	]
 }

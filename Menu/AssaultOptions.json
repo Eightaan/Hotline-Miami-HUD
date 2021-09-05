@@ -148,7 +148,8 @@
 			"callback_arguments" : "casing",
 			"value": "casing",
 			"default_value": true,
-			"is_parent" : true
+			"is_parent" : true,
+			"parent" : ["assault_toggle"]
 		},
 		{
 			"type": "color_select",
@@ -212,7 +213,7 @@
 			"default_value": [102, 255, 255],
 			"callback": "SetColorOption",
 			"callback_arguments": "ECMText",
-			"parent" : ["infoboxes_toggle", "pager_jam_toggle"]
+			"parent" : ["infoboxes_toggle"]
 		},
 		{
 			"type": "color_select",
@@ -223,7 +224,7 @@
 			"default_value": [255, 128, 223],
 			"callback": "SetColorOption",
 			"callback_arguments": "ECMIcon",
-			"parent" : ["infoboxes_toggle", "pager_jam_toggle"]
+			"parent" : ["infoboxes_toggle"]
 		},
 		{
 			"type": "color_select",
