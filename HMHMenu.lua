@@ -82,7 +82,7 @@ function HMHMenu:init()
     local options_bg = self._panel:rect({
         name = "options_bg",
         color = Color.black,
-        alpha = 0.3,		
+        alpha = 0.3,
         w = self._panel:w() / 2.5,
         h = self._panel:h(),
     })
