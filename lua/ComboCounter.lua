@@ -1,4 +1,4 @@
-if not HMH:GetOption("combo") then 
+if not HMH:GetOption("combo") then
     return
 end
 
@@ -42,7 +42,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
             color = Color("e2087c"),
             text = "0",
             font_size = 96,
-            font = "guis/textures/pd2_mod_hmh/hmcc_font",
+            font = font,
             x = 6,
             y = 0,
             align = "left",
@@ -55,7 +55,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
             color = Color.black,
             text="0",
             font_size = 96,
-            font = "guis/textures/pd2_mod_hmh/hmcc_font",
+            font = font,
             x = 8,
             y = 1,
             align = "left",
@@ -90,7 +90,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
             if combo > 9 then
                 Combo_bg:set_w(240)
             end
-            if combo > 99 then 
+            if combo > 99 then
                 Combo_bg:set_w(310)
             end
         end

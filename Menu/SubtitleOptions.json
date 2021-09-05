@@ -1,17 +1,32 @@
 {
 	"menu_id": "hmh_menu_subs",
-	"parent_menu_id": "hmh_menu",
+	"parent_menu": "hmh_menu",
 	"title": "hmh_subs_title",
-	"description": "hmh_subs_desc",
 	"items": [
 		{
 			"type": "toggle",
 			"id": "subs_toggle",
 			"title": "subs_title",
 			"description": "subs_desc",
-			"callback": "callback_custom_subs",
+			"callback": "SetOption",
+			"callback_arguments" : "custom_subs",
 			"value": "custom_subs",
 			"default_value": true
+		},
+		{
+			"type" : "divider",
+			"size" : 8
+		},
+		{
+			"type": "color_select",
+			"id": "hint_color_select",
+			"title": "HotlineMiamiHudSubTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "Sub",
+			"default_value": [102, 255, 153],
+			"callback": "SetColorOption",
+			"callback_arguments": "Sub",
+			"parent" : "subs_toggle"
 		}
 	]
 }

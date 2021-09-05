@@ -1,0 +1,129 @@
+{
+	"menu_id": "hmh_hud_custody_downed_menu",
+	"parent_menu": "hmh_hud_menu",
+	"title": "hmh_hud_custody_downed_title",
+	"items": [
+		{
+			"type": "toggle",
+			"id": "downed_toggle",
+			"title": "downed_title",
+			"description": "downed_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "downed",
+			"value": "downed",
+			"default_value": true,
+			"is_parent" : true
+		},
+        {
+            "type": "color_select",
+            "id": "downed_text_color_select",
+            "title": "HotlineMiamiHudDownedTextTitleID",
+            "description": "HotlineMiamiHudColorOption",
+            "value": "DownedText",
+            "default_value": [255, 128, 223],
+            "callback": "SetColorOption",
+            "callback_arguments": "DownedText",
+            "parent" : "downed_toggle"
+        },
+        {
+            "type": "color_select",
+            "id": "downed_timer_color_select",
+            "title": "HotlineMiamiHudDownedTimerTitleID",
+            "description": "HotlineMiamiHudColorOption",
+            "value": "DownedTimer",
+            "default_value": [102, 255, 255],
+            "callback": "SetColorOption",
+            "callback_arguments": "DownedTimer",
+            "parent" : "downed_toggle"
+        },
+		{
+			"type": "toggle",
+			"id": "custody_toggle",
+			"title": "custody_title",
+			"description": "custody_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "custody",
+			"value": "custody",
+			"default_value": true,
+			"is_parent" : true
+		},
+        {
+            "type": "color_select",
+            "id": "custody_released_color_select",
+            "title": "HotlineMiamiHudCustodyReleasedTitleID",
+            "description": "HotlineMiamiHudColorOption",
+            "value": "CustodyReleased",
+            "default_value": [102, 255, 153],
+            "callback": "SetColorOption",
+            "callback_arguments": "CustodyReleased",
+            "parent" : "custody_toggle"
+        },
+        {
+            "type": "color_select",
+            "id": "custody_timer_color_select",
+            "title": "HotlineMiamiHudCustodyTimerTitleID",
+            "description": "HotlineMiamiHudColorOption",
+            "value": "CustodyTimer",
+            "default_value": [102, 255, 255],
+            "callback": "SetColorOption",
+            "callback_arguments": "CustodyTimer",
+            "parent" : "custody_toggle"
+        },
+        {
+            "type": "color_select",
+            "id": "civilians_color_select",
+            "title": "HotlineMiamiHudCivillansTitleID",
+            "description": "HotlineMiamiHudColorOption",
+            "value": "Civilians",
+            "default_value": [255, 102, 102],
+            "callback": "SetColorOption",
+            "callback_arguments": "Civilians",
+            "parent" : "custody_toggle"
+        },
+        {
+            "type": "color_select",
+            "id": "trade_color_select",
+            "title": "HotlineMiamiHudTradeTitleID",
+            "description": "HotlineMiamiHudColorOption",
+            "value": "Trade",
+            "default_value": [255, 204, 102],
+            "callback": "SetColorOption",
+            "callback_arguments": "Trade",
+            "parent" : "custody_toggle"
+        },
+		{
+			"type": "divider",
+			"size": 8
+		},
+		{
+			"type": "toggle",
+			"id": "PLAYER_down_toggle",
+			"title": "PLAYER_down_title",
+			"description": "PLAYER_down_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "PLAYER_down",
+			"value": "PLAYER_down",
+			"default_value": false
+		},
+		{
+			"type": "toggle",
+			"id": "TEAM_down_toggle",
+			"title": "TEAM_down_title",
+			"description": "TEAM_down_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "TEAM_down",
+			"value": "TEAM_down",
+			"default_value": true
+		},
+		{
+			"type": "toggle",
+			"id": "colored_downs_toggle",
+			"title": "colored_downs_title",
+			"description": "colored_downs_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "colored_downs",
+			"value": "colored_downs",
+			"default_value": true
+		}
+	]
+}

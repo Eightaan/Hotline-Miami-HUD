@@ -1,17 +1,44 @@
 {
 	"menu_id": "hmh_menu_presenter",
-	"parent_menu_id": "hmh_menu",
+	"parent_menu": "hmh_menu",
 	"title": "hmh_presenter_title",
-	"description": "hmh_presenter_desc",
 	"items": [
 		{
 			"type": "toggle",
 			"id": "presenter_toggle",
 			"title": "presenter_title",
 			"description": "presenter_desc",
-			"callback": "callback_presenter",
+			"callback": "SetOption",
+			"callback_arguments" : "presenter",
 			"value": "presenter",
-			"default_value": true
+			"default_value": true,
+			"is_parent" : true
+		},
+		{
+			"type": "divider",
+			"size": 8
+		},
+		{
+			"type": "color_select",
+			"id": "presenter_title_color_select",
+			"title": "HotlineMiamiHudPresenterTitleTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "PresenterTitle",
+			"default_value": [102, 255, 153],
+			"callback": "SetColorOption",
+			"callback_arguments": "PresenterTitle",
+			"parent" : "presenter_toggle"
+		},
+		{
+			"type": "color_select",
+			"id": "presenter_text_color_select",
+			"title": "HotlineMiamiHudPresenterTextTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "PresenterText",
+			"default_value": [102, 255, 255],
+			"callback": "SetColorOption",
+			"callback_arguments": "PresenterText",
+			"parent" : "presenter_toggle"
 		}
 	]
 }

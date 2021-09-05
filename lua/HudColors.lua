@@ -1,24 +1,27 @@
 function TweakData:HMM()
     if HMH:GetOption("custom_color") then
-        self.chat_colors[1] = BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("Player1") or Color("66ff99")
-        self.chat_colors[2] = BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("Player2") or Color("66ffff")
-        self.chat_colors[3] = BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("Player3") or Color("ff6666")
-        self.chat_colors[4] = BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("Player4") or Color("ffcc66")
-        self.chat_colors[5] = BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("PlayerAi") or Color(0.2, 0.8, 1)
-        self.system_chat_color = BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("System") or Color("ff80df")
+        local player1 = HMH:GetColor("Player1")
+        local player2 = HMH:GetColor("Player2")
+        local player3 = HMH:GetColor("Player3")
+        local player4 = HMH:GetColor("Player4")
+        local ai = HMH:GetColor("PlayerAi")
+        self.chat_colors[1] = player1
+        self.chat_colors[2] = player2
+        self.chat_colors[3] = player3
+        self.chat_colors[4] = player4
+        self.chat_colors[5] = ai
+        self.system_chat_color = HMH:GetColor("System")
 
-	    self.peer_vector_colors[1] = Vector3(self.chat_colors[1]:unpack())
-        self.peer_vector_colors[2] = Vector3(self.chat_colors[2]:unpack())
-        self.peer_vector_colors[3] = Vector3(self.chat_colors[3]:unpack())
-        self.peer_vector_colors[4] = Vector3(self.chat_colors[4]:unpack())
-        self.peer_vector_colors[5] = Vector3(self.chat_colors[5]:unpack())
+	    self.peer_vector_colors[1] = Vector3(player1:unpack())
+        self.peer_vector_colors[2] = Vector3(player2:unpack())
+        self.peer_vector_colors[3] = Vector3(player3:unpack())
+        self.peer_vector_colors[4] = Vector3(player4:unpack())
+        self.peer_vector_colors[5] = Vector3(ai:unpack())
 
-        self.preplanning_peer_colors = {
-            BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("Player1") or Color("66ff99"), --Host.
-            BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("Player2") or Color("66ffff"), --Peer2.
-            BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("Player3") or Color("ff6666"), --Peer3.
-            BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("Player4") or Color("ffcc66")  --Peer4.
-        }
+        self.preplanning_peer_colors[1] = player1 -- Host
+        self.preplanning_peer_colors[2] = player2 -- Peer 2
+        self.preplanning_peer_colors[3] = player3 -- Peer 3
+        self.preplanning_peer_colors[4] = player4 -- Peer 4
     end
 
     if HMH:GetOption("custom_menu_color") then

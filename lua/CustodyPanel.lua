@@ -1,17 +1,17 @@
 Hooks:PostHook( HUDPlayerCustody , "init", "HMH_HUDTeammate_init", function(self, ...)
-    local custody_panel = self._hud_panel:child("custody_panel")
+    if not HMH:GetOption("custody") then
+		return
+	end
+	local custody_panel = self._hud_panel:child("custody_panel")
     local timer_msg = custody_panel:child("timer_msg")
 	local timer = custody_panel:child("timer")
 	local civilians_killed = custody_panel:child("civilians_killed")
 	local trade_delay = custody_panel:child("trade_delay")
-
-	if HMH:GetOption("custody") then
-        timer_msg:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("CustodyReleased") or Color("66ff99"))
-	    timer:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("CustodyTimer") or Color("66ffff"))
-	    timer:set_font(Idstring("fonts/font_medium"))
-	    civilians_killed:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("Civillans") or Color("ff6666"))
-	    trade_delay:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("Trade") or Color("ffcc66"))
-	end
+	timer_msg:set_color(HMH:GetColor("CustodyReleased"))
+	timer:set_color(HMH:GetColor("CustodyTimer"))
+	timer:set_font(Idstring("fonts/font_medium"))
+	civilians_killed:set_color(HMH:GetColor("Civillans"))
+	trade_delay:set_color(HMH:GetColor("Trade"))
 end)
 
 Hooks:PostHook( HUDPlayerCustody , "set_negotiating_visible", "HMH_HUDTeammate_set_negotiating_visible", function(self, ...)

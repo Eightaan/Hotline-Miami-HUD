@@ -1,8 +1,7 @@
 if RequiredScript == "lib/managers/hud/hudinteraction" then
     Hooks:PostHook(HUDInteraction, "init", "HMH_HUDInteractionInit", function(self, ...)
-        local interact_text = self._hud_panel:child(self._child_name_text)
 	    if HMH:GetOption("interact") then
-	        interact_text:set_color(BeardLib and hotlinemiamihud and hotlinemiamihud.Options:GetValue("Interaction") or Color("ffcc66"))
+			self._hud_panel:child(self._child_name_text):set_color(HMH:GetColor("Interaction"))
 	    end
     end)
     if HMH:GetOption("interact_texture") > 1 then

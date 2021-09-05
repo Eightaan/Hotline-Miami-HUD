@@ -26,6 +26,7 @@
 				<post :hook_id="preplanningmanager"  :script_path="PrePlanManager.lua"/>
 				<post :hook_id="multiprofilemanager" :script_path="ProfileMenu.lua"/>
 				<group :hook_id="menumanager">
+					<post script_path="HMHMenu.lua" />
 				    <post :script_path="ModMenu.lua" />
 					<post :script_path="MenuTweak.lua"/>
 					<post :script_path="PrePlanManager.lua"/>

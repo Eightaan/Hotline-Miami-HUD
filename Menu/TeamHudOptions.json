@@ -1,100 +1,62 @@
 {
-	"menu_id": "hmh_menu_hud",
-	"parent_menu_id": "hmh_menu",
+	"menu_id": "hmh_hud_menu",
+	"parent_menu": "hmh_menu",
 	"title": "hmh_hud_title",
-	"description": "hmh_hud_desc",
 	"items": [
 		{
 			"type": "multiple_choice",
-			"id": "health_texture__multiple_choice",
+			"id": "health_texture_multiple_choice",
 			"title": "health_texture_title",
 			"description": "health_texture_desc",
-			"callback": "callback_health_texture",
+			"callback": "SetOption",
+			"callback_arguments" : "health_texture",
 			"value": "health_texture",
 			"items" : [
 				"default_health",
 				"faded_health",
-				"pixel_health",
+				"pixel_health"
 			],
 			"default_value": 2
 		},
 		{
-			"type": "toggle",
-			"id": "color_toggle",
-			"title": "color_title",
-			"description": "color_desc",
-			"callback": "callback_custom_color",
-			"value": "custom_color",
-			"default_value": true
+			"type": "button",
+			"id": "hmh_hud_player_color_menu",
+			"title": "hmh_hud_player_color_title",
+			"description": "hmh_hud_player_color_title",
+			"next_menu": "hmh_hud_player_color_menu"
 		},
 		{
-			"type": "toggle",
-			"id": "downed_toggle",
-			"title": "downed_title",
-			"description": "downed_desc",
-			"callback": "callback_downed",
-			"value": "downed",
-			"default_value": true
+			"type": "button",
+			"id": "hmh_hud_custody_downed_menu",
+			"title": "hmh_hud_custody_downed_title",
+			"description": "hmh_hud_custody_downed_desc",
+			"next_menu": "hmh_hud_custody_downed_menu"
 		},
 		{
-			"type": "toggle",
-			"id": "custody_toggle",
-			"title": "custody_title",
-			"description": "custody_desc",
-			"callback": "callback_custody",
-			"value": "custody",
-			"default_value": true
+			"type": "button",
+			"id": "hmh_hud_ammo_menu",
+			"title": "hmh_hud_ammo_title",
+			"description": "hmh_hud_ammo_desc",
+			"next_menu": "hmh_hud_ammo_menu"
 		},
 		{
-			"type": "divider",
-			"size": 16
-		},
-		{
-			"type": "toggle",
-			"id": "PLAYER_down_toggle",
-			"title": "PLAYER_down_title",
-			"description": "PLAYER_down_desc",
-			"callback": "callback_PLAYER_down",
-			"value": "PLAYER_down",
-			"default_value": false
-		},
-		{
-			"type": "toggle",
-			"id": "TEAM_down_toggle",
-			"title": "TEAM_down_title",
-			"description": "TEAM_down_desc",
-			"callback": "callback_TEAM_down",
-			"value": "TEAM_down",
-			"default_value": true
-		},
-		{
-			"type": "toggle",
-			"id": "colored_downs_toggle",
-			"title": "colored_downs_title",
-			"description": "colored_downs_desc",
-			"callback": "callback_colored_downs",
-			"value": "colored_downs",
-			"default_value": true
+			"type": "button",
+			"id": "hmh_hud_equipment_menu",
+			"title": "hmh_hud_equipment_title",
+			"description": "hmh_hud_equipment_desc",
+			"next_menu": "hmh_hud_equipment_menu"
 		},
 		{
 			"type": "divider",
-			"size": 16
-		},
-		{
-			"type": "toggle",
-			"id": "trueammo_toggle",
-			"title": "trueammo_title",
-			"description": "trueammo_desc",
-			"callback": "callback_trueammo",
-			"value": "trueammo",
-			"default_value": false
+			"size": 8
 		},
 		{
 			"type": "toggle",
 			"id": "ping_toggle",
 			"title": "ping_title",
 			"description": "ping_desc",
-			"callback": "callback_ping",
+			"callback": "SetOption",
+			"callback_arguments" : "ping",
 			"value": "ping",
 			"default_value": false
 		},
@@ -103,7 +65,8 @@
 			"id": "bulletstorm_toggle",
 			"title": "bulletstorm_title",
 			"description": "bulletstorm_desc",
-			"callback": "callback_bulletstorm",
+			"callback": "SetOption",
+			"callback_arguments" : "bulletstorm",
 			"value": "bulletstorm",
 			"default_value": true
 		},
@@ -112,7 +75,8 @@
 			"id": "stamina_toggle",
 			"title": "stamina_title",
 			"description": "stamina_desc",
-			"callback": "callback_stamina",
+			"callback": "SetOption",
+			"callback_arguments" : "stamina",
 			"value": "stamina",
 			"default_value": false
 		},
@@ -121,20 +85,22 @@
 			"id": "screen_effect_toggle",
 			"title": "screen_effect_title",
 			"description": "screen_effect_desc",
-			"callback": "callback_screen_effect",
+			"callback": "SetOption",
+			"callback_arguments" : "screen_effect",
 			"value": "screen_effect",
 			"default_value": false			
 		},
 		{
 			"type": "divider",
-			"size": 16
+			"size": 8
 		},
 		{
 			"type": "toggle",
 			"id": "voice_toggle",
 			"title": "voice_title",
 			"description": "voice_desc",
-			"callback": "callback_voice",
+			"callback": "SetOption",
+			"callback_arguments" : "voice",
 			"value": "voice",
 			"default_value": true	
 		},
@@ -143,7 +109,8 @@
 			"id": "color_name_toggle",
 			"title": "color_name_title",
 			"description": "color_name_desc",
-			"callback": "callback_color_name",
+			"callback": "SetOption",
+			"callback_arguments" : "color_name",
 			"value": "color_name",
 			"default_value": true
 		},
@@ -152,7 +119,8 @@
 			"id": "color_condition_toggle",
 			"title": "color_condition_title",
 			"description": "color_condition_desc",
-			"callback": "callback_color_condition",
+			"callback": "SetOption",
+			"callback_arguments" : "color_condition",
 			"value": "color_condition",
 			"default_value": true
 		},
@@ -161,7 +129,8 @@
 			"id": "interact_info_toggle",
 			"title": "interact_info_title",
 			"description": "interact_info_desc",
-			"callback": "callback_interact_info",
+			"callback": "SetOption",
+			"callback_arguments" : "interact_info",
 			"value": "interact_info",
 			"default_value": true
 		},
@@ -170,7 +139,8 @@
 			"id": "color_bag_toggle",
 			"title": "color_bag_title",
 			"description": "color_bag_desc",
-			"callback": "callback_color_bag",
+			"callback": "SetOption",
+			"callback_arguments" : "color_bag",
 			"value": "color_bag",
 			"default_value": true
 		},
@@ -179,26 +149,9 @@
 			"id": "pickups_toggle",
 			"title": "pickups_title",
 			"description": "pickups_desc",
-			"callback": "callback_pickups",
+			"callback": "SetOption",
+			"callback_arguments" : "pickups",
 			"value": "pickups",
-			"default_value": true
-		},
-		{
-			"type": "toggle",
-			"id": "equipment_toggle",
-			"title": "equipment_title",
-			"description": "equipment_desc",
-			"callback": "callback_equipment",
-			"value": "equipment",
-			"default_value": true
-		},
-		{
-			"type": "toggle",
-			"id": "ammo_toggle",
-			"title": "ammo_title",
-			"description": "ammo_desc",
-			"callback": "callback_ammo",
-			"value": "ammo",
 			"default_value": true
 		},
 		{
@@ -206,7 +159,8 @@
 			"id": "stop_ai_toggle",
 			"title": "stop_ai_title",
 			"description": "stop_ai_desc",
-			"callback": "callback_stop_ai",
+			"callback": "SetOption",
+			"callback_arguments" : "stop_ai",
 			"value": "stop_ai",
 			"default_value": true
 		}
