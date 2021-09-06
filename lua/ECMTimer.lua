@@ -96,8 +96,8 @@ elseif RequiredScript == "lib/units/equipment/ecm_jammer/ecmjammerbase" then
     local update_original = ECMJammerBase.update
 
     function ECMJammerBase:_check_new_ecm()
-	    if not self._max_ecm or self._max_ecm:battery_life() < self:battery_life() then
-			self._max_ecm = self
+	    if not ECMJammerBase._max_ecm or ECMJammerBase._max_ecm:battery_life() < self:battery_life() then
+			ECMJammerBase._max_ecm = self
 	    end
     end
 
@@ -114,8 +114,8 @@ elseif RequiredScript == "lib/units/equipment/ecm_jammer/ecmjammerbase" then
     end
 
     function ECMJammerBase:destroy(...)
-	    if self._max_ecm == self then
-		    self._max_ecm = nil
+	    if ECMJammerBase._max_ecm == self then
+		    ECMJammerBase._max_ecm = nil
 		    managers.hud:update_ecm(0)
 	    end
 	    return destroy_original(self, ...)
@@ -128,7 +128,7 @@ elseif RequiredScript == "lib/units/equipment/ecm_jammer/ecmjammerbase" then
 
     function ECMJammerBase:update(unit, t, ...)
 	    update_original(self, unit, t, ...)
-	    if self._max_ecm == self then
+	    if ECMJammerBase._max_ecm == self then
 		    managers.hud:update_ecm(self:battery_life())
 	    end
     end
