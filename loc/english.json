@@ -29,6 +29,9 @@
 	"combo_desc" : "Enable a hotline miami styled combo counter.",
 	"headshot_mark_title" : "Headshot Indicator",
 	"headshot_mark_desc" : "Displays a hitmark when killing enemies with headshots.",
+	"disabled_icon" : "Disabled",
+	"circle_icon" : "Red Circle",
+	"50blessings" : "50 Blessings",
 	
 
 	"hmh_hud_title" : "Player/Team",
@@ -129,7 +132,7 @@
 	"interact_texture_title" : "Interaction Texture",
 	"interact_texture_desc" : "Choose what Interaction Texture to use.\nWhen changed, a game restart is required to take effect.",
 	"default_interact" : "Default Circle",
-	"50bl_interact" : "50 blessings",
+	"50bl_interact" : "50 Blessings",
 	"pink_interact" : "Pink Circle",
 	"hm2_interact" : "Wrong Number",
 	"heart_interact" : "Pixel Heart",

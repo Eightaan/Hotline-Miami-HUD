@@ -311,5 +311,8 @@
 	"heart_interact" : "Pixel Heart",
 	"default_health" : "Default",
 	"faded_health" : "Faded",
-	"pixel_health" : "Pixel Heart"
+	"pixel_health" : "Pixel Heart",
+	"disabled_icon" : "Disabled",
+	"circle_icon" : "Red Circle",
+	"50blessings" : "50 Blessings"
 }
