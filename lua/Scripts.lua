@@ -243,7 +243,7 @@ elseif RequiredScript == "lib/managers/hud/hudhitconfirm" then
 elseif RequiredScript == "lib/managers/playermanager" then
 	Hooks:PostHook(PlayerManager, "on_headshot_dealt", "hmh_on_headshot_dealt", function(self, ...)
 		if not VHUDPlus then
-	        if HMH:GetOption("headshot_texture") == 2 or 3 then
+	        if HMH:GetOption("headshot_texture") > 1 then
 		        managers.hud:on_headshot_confirmed()
 		    end
 		end
