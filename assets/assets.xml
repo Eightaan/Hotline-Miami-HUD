@@ -1,11 +1,12 @@
 <?xml version="1.0"?>
 <assets base_path="assets/" load="startup">
     <group name="guis/textures/pd2_mod_hmh/" path="assets/guis/textures/pd2_mod_hmh/">
-		<file :name="screeneffect.texture"     :path="screeneffect.texture"/>
-		<file :name="hmcc_font.font"           :path="hmcc_font.font"/>
-        <file :name="hmcc_font.texture"        :path="hmcc_font.texture"/>
-		<file :name="hmcc_bg.texture"          :path="hmcc_bg.texture"/>
-		<file :name="Headshot_confirm.texture" :path="Headshot_confirm.texture"/>
+		<file :name="screeneffect.texture"               :path="screeneffect.texture"/>
+		<file :name="hmcc_font.font"                     :path="hmcc_font.font"/>
+        <file :name="hmcc_font.texture"                  :path="hmcc_font.texture"/>
+		<file :name="hmcc_bg.texture"                    :path="hmcc_bg.texture"/>
+		<file :name="Headshot_confirm.texture"           :path="Headshot_confirm.texture"/>
+		<file :name="Headshot_confirm_blessings.texture" :path="Headshot_confirm_blessings.texture"/>
 
 		<!-- Menu textures -->
 		<file :name="check_bg.texture"     :path="check_bg.texture"/>
