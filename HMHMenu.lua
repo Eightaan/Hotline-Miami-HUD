@@ -29,7 +29,18 @@ end
 
 HMHMenu = HMHMenu or class()
 function HMHMenu:init()
-    self._ws = managers.gui_data:create_fullscreen_workspace()
+   local aspect_ratio = RenderSettings.resolution.x / RenderSettings.resolution.y
+    if aspect_ratio == 1.6 then -- 16:10
+        self._ws = managers.gui_data:create_fullscreen_16_9_workspace()
+        self._convert_mouse_pos = function(menu, x, y)
+            return managers.mouse_pointer:convert_fullscreen_16_9_mouse_pos(x, y)
+        end
+    else
+        self._ws = managers.gui_data:create_fullscreen_workspace()
+        self._convert_mouse_pos = function(menu, x, y)
+            return x, y
+        end
+    end
     self._ws:connect_keyboard(Input:keyboard())
     self._mouse_id = managers.mouse_pointer:get_id()
     self._menus = {}
@@ -294,6 +305,7 @@ end
 
 -- Mouse Functions
 function HMHMenu:mouse_move(o, x, y)
+    x, y = self:_convert_mouse_pos(x, y)
     if self._open_menu then
         managers.mouse_pointer:set_pointer_image("arrow")
         if self._open_choice_dialog and self._open_choice_dialog.panel then
@@ -346,6 +358,7 @@ function HMHMenu:mouse_move(o, x, y)
 end
 
 function HMHMenu:mouse_press(o, button, x, y)
+    x, y = self:_convert_mouse_pos(x, y)
     if button == Idstring("0") then
         if self._open_choice_dialog then
             if self._open_choice_dialog.panel:inside(x,y) then
