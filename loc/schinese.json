@@ -302,8 +302,7 @@
 	"HotlineMiamiHudPlayer4TitleID" : "玩家4",
 	"HotlineMiamiHudPlayerAiTitleID" : "ai队友",
 	"HotlineMiamiHudSystemTitleID" : "系统",
-    "casing_title" : "面具提示文本",
-    "casing_desc" : "启用面具提示文本",
+
 	"chat_font_title" : "Chat Size",
 	"chat_font_desc" : "Change the chat size",
 	"heart_interact" : "Pixel Heart",
@@ -312,5 +311,6 @@
 	"pixel_health" : "Pixel Heart",
 	"disabled_icon" : "Disabled",
 	"circle_icon" : "Red Circle",
-	"50blessings" : "50 Blessings"
+	"50blessings" : "50 Blessings",
+	"interaction" : "Interaction Texture"
 }

@@ -1950,26 +1950,26 @@ function HMHMenu:OpenColorMenu(item)
         vertical = "center",
         layer = 3
     })
-    local blue_panel = dialog:panel({
-        name = "blue_panel",
+    local purple_panel = dialog:panel({
+        name = "purple_panel",
         x = 5,
         y = 59,
         w = dialog:w() - 10,
         h = 25,
         layer = 3
     })
-    local blue_slider = blue_panel:bitmap({
+    local purple_slider = purple_panel:bitmap({
         name = "slider",
         alpha = 0.3,
         layer = 2,
-        w = math.max(1, blue_panel:w() * (color.blue / 1)),
+        w = math.max(1, purple_panel:w() * (color.blue / 1)),
         color = Color(0,0,color.blue)
     })
-    blue_panel:bitmap({
+    purple_panel:bitmap({
         name = "bg",
         alpha = 0,
     })
-    blue_panel:text({
+    purple_panel:text({
         name = "title",
         font_size = 18,
         font = tweak_data.menu.pd2_small_font,
@@ -1981,7 +1981,7 @@ function HMHMenu:OpenColorMenu(item)
         vertical = "center",
         layer = 3
     })
-    blue_panel:text({
+    purple_panel:text({
         name = "value",
         font_size = 18,
         font = tweak_data.menu.pd2_small_font,
@@ -2049,7 +2049,7 @@ function HMHMenu:OpenColorMenu(item)
         items = {
             red_panel,
             green_panel,
-            blue_panel,
+            purple_panel,
             accept_panel,
             reset_panel
         }

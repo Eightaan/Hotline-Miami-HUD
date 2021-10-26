@@ -68,7 +68,8 @@
 			"items" : [
 				"disabled_icon",
 				"circle_icon",
-				"50blessings"
+				"50blessings",
+				"interaction"
 			],
 			"value" : "headshot_texture",
 			"default_value" : 2

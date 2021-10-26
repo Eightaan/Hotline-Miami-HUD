@@ -218,7 +218,7 @@ elseif RequiredScript == "lib/managers/hud/hudhitconfirm" then
 		    if self._hud_panel:child("headshot_confirm") then
 		    	self._hud_panel:remove(self._hud_panel:child("headshot_confirm"))
 		    end
-			local headshot_icon = HMH:GetOption("headshot_texture") == 3 and "guis/textures/pd2_mod_hmh/Headshot_confirm_blessings" or "guis/textures/pd2_mod_hmh/Headshot_confirm"
+			local headshot_icon = HMH:GetOption("headshot_texture") == 3 and "guis/textures/pd2_mod_hmh/Headshot_confirm_blessings" or HMH:GetOption("headshot_texture") == 4 and "guis/textures/pd2/hud_progress_active" or "guis/textures/pd2_mod_hmh/Headshot_confirm"
 		    self._headshot_confirm = self._hud_panel:bitmap({
 				texture = headshot_icon,
 			    name = "headshot_confirm",
