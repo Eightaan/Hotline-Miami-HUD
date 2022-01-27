@@ -22,10 +22,6 @@
 
 	"hmh_hud_title" : "玩家/团队 面板",
 	"hmh_hud_desc" : "自定义玩家和团队面板",
-	"PLAYER_down_title" : "显示玩家倒地计数",
-	"PLAYER_down_desc" : "在Hud中显示你的倒地计数",
-	"TEAM_down_title" : "显示队友倒地计数",
-	"TEAM_down_desc" : "在Hud中显示队友的倒地计数",
 	"voice_title" : "团队语音聊天图标",
 	"voice_desc" : "玩家在游戏中说话时显示一个图标",
 	"color_name_title" : "彩色姓名板",

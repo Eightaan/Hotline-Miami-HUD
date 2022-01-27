@@ -4,7 +4,7 @@ end
 
 local ammo = HMH:GetOption("ammo")
 Hooks:PostHook(HUDTeammate, "init", "HMH_HUDTeammateInit", function(self, ...)
-    if HMH:GetOption("interact_info") or HMH:GetOption("color_name") and not (restoration and restoration:all_enabled("HUD/MainHUD", "HUD/Teammate")) then
+    if HMH:GetOption("interact_info") and not (restoration and restoration:all_enabled("HUD/MainHUD", "HUD/Teammate")) then
 	    local radial_health_panel = self._player_panel:child("radial_health_panel")
 	    local name_panel = self._panel:panel({
 		    name = "name_panel",
@@ -124,14 +124,7 @@ if HMH:GetOption("bulletstorm") then
 	end
 end
 
-function HUDTeammate:set_voice_com(status)
-	local texture = status and "guis/textures/pd2/jukebox_playing" or "guis/textures/pd2/hud_tabs"
-	local texture_rect = status and { 0, 0, 16, 16 } or { 84, 34, 19, 19 }
-	local callsign = self._panel:child("callsign")
-	if HMH:GetOption("voice") then callsign:set_image(texture, unpack(texture_rect)) end
-end
-
-if HMH:GetOption("interact_info") or HMH:GetOption("color_name") and not (restoration and restoration:all_enabled("HUD/MainHUD", "HUD/Teammate")) then
+if HMH:GetOption("interact_info") and not (restoration and restoration:all_enabled("HUD/MainHUD", "HUD/Teammate")) then
     Hooks:PostHook(HUDTeammate, "set_name", "HMH_HUDTeammateSetName", function(self, ...)
 	    local teammate_panel = self._panel
 	    local name = teammate_panel:child("name")
@@ -157,23 +150,6 @@ if HMH:GetOption("interact_info") or HMH:GetOption("color_name") and not (restor
 		    self._panel:child("name_panel"):set_y(self._panel:child("name"):y())
         end
     end)
-
-	Hooks:PostHook(HUDTeammate, "_create_radial_health", "HMH_HUDTeammateCreateRadialHealth", function(self, radial_health_panel)
-	    local radial_ability_panel = radial_health_panel:child("radial_ability")
-        local ability_icon = radial_ability_panel:child("ability_icon")
-
-	    if HMH:GetOption("color_name") then
-	        ability_icon:set_visible(false)
-	    end
-    end)
-
-	--function HUDTeammate:_animate_name(name, width)
-	--    local t = 0
-	--    while true do
-	--	    t = t + coroutine.yield()
-	--	    name:set_left(width * ( math.sin(90 + t * 50) * 0.5 - 0.5))
-	--   end
-    --end
 end
 
 Hooks:PostHook(HUDTeammate, "set_callsign", "HMH_HUDTeammateSetCallsign", function(self, id)
@@ -183,12 +159,12 @@ Hooks:PostHook(HUDTeammate, "set_callsign", "HMH_HUDTeammateSetCallsign", functi
 	end
 
 	local is_cheater = not self._main_player and self:peer_id() and managers.network:session() and managers.network:session():peer(self:peer_id()):is_cheater()
-    if HMH:GetOption("color_name") and not (restoration and restoration:all_enabled("HUD/MainHUD", "HUD/Teammate")) then
+    if not (restoration and restoration:all_enabled("HUD/MainHUD", "HUD/Teammate")) then
         self._panel:child("name"):set_color(is_cheater and tweak_data.screen_colors.pro_color or tweak_data.chat_colors[id])
 	    self._new_name:set_color(is_cheater and tweak_data.screen_colors.pro_color or tweak_data.chat_colors[id])
 	end
 
-    if is_cheater and HMH:GetOption("color_name") and not (restoration and restoration:all_enabled("HUD/MainHUD", "HUD/Teammate")) then
+    if is_cheater and not (restoration and restoration:all_enabled("HUD/MainHUD", "HUD/Teammate")) then
 	    self._panel:child("callsign"):set_color(tweak_data.screen_colors.pro_color)
 	end
 end)
@@ -243,12 +219,12 @@ if HMH:GetOption("interact_info") and not (restoration and restoration:all_enabl
 		--	self._panel:child("name_bg"):set_visible(true)
         end
 
-        self._panel:child("name_panel"):child("interact_text"):set_color(HMH:GetOption("color_name") and tweak_data.chat_colors[self._peer_id] or Color.white)
+        self._panel:child("name_panel"):child("interact_text"):set_color(tweak_data.chat_colors[self._peer_id] or Color.white)
 
         if not self._main_player and self:peer_id() then
             local peer = managers.network:session() and managers.network:session():peer(self:peer_id())
             if peer and peer:is_cheater() then
-                self._panel:child("name_panel"):child("interact_text"):set_color(HMH:GetOption("color_name") and tweak_data.screen_colors.pro_color or Color.white)
+                self._panel:child("name_panel"):child("interact_text"):set_color(tweak_data.screen_colors.pro_color or Color.white)
             end
         end
     end)
@@ -650,6 +626,38 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammateSetAmmoAm
 		ammo_clip:set_rotation(0)
 	end
 end)
+
+if HMH:GetOption("colored_downs") then 
+    Hooks:PostHook(HUDTeammate, "set_revives_amount", "HMH_set_revives_amount", function(self, revive_amount, ...)
+	    if revive_amount then
+		    local teammate_panel = self._panel:child("player")
+		    local revive_panel = teammate_panel:child("revive_panel")
+		    local revive_amount_text = revive_panel:child("revive_amount")
+		    local revive_arrow = revive_panel:child("revive_arrow")
+		    local revive_bg = revive_panel:child("revive_bg")
+            local team_color
+
+        	if self._peer_id then
+                team_color = tweak_data.chat_colors[self._peer_id]
+            elseif not self._ai then
+                team_color = tweak_data.chat_colors[managers.network:session():local_peer():id()]
+            end
+
+    		if revive_amount_text then
+	    		revive_amount_text:set_text(tostring(math.max(revive_amount - 1, 0)) .. "x")
+	    		revive_amount_text:set_color(team_color or Color.white)
+    		end
+		
+    		if revive_arrow then
+    		    revive_arrow:set_color(team_color or Color.white)
+    		end
+
+    		if revive_bg then
+    			revive_bg:set_alpha(0)
+    		end
+    	end
+    end)
+end
 
 function HUDTeammate:update(t,dt)
 	self:update_latency(t,dt)

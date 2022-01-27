@@ -102,16 +102,16 @@
 			"callback": "SetOption",
 			"callback_arguments" : "voice",
 			"value": "voice",
-			"default_value": true	
+			"default_value": true
 		},
 		{
 			"type": "toggle",
-			"id": "color_name_toggle",
-			"title": "color_name_title",
-			"description": "color_name_desc",
+			"id": "colored_downs_toggle",
+			"title": "colored_downs_title",
+			"description": "colored_downs_desc",
 			"callback": "SetOption",
-			"callback_arguments" : "color_name",
-			"value": "color_name",
+			"callback_arguments" : "colored_downs",
+			"value": "colored_downs",
 			"default_value": true
 		},
 		{

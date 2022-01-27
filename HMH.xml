@@ -32,6 +32,10 @@
 					<post :script_path="PrePlanManager.lua"/>
 					<post :script_path="ProfileMenu.lua"/>
                 </group>
+				<group :hook_id="hudmanager">
+				    <post :script_path="Waypoints.lua"/>
+					<post :script_path="Scripts.lua"/>
+				</group>	
 				<group :hook_id="playermanager">
 				    <post :script_path="Bulletstorm.lua"/>
 					<post :script_path="ComboCounter.lua"/>
@@ -42,7 +46,6 @@
                 </group>
 
 				<group :hook_id="hudmanagerpd2">
-     		      	<post :script_path="Downcounter.lua"/>
 				    <post :script_path="Bulletstorm.lua"/>
 				    <post :script_path="ECMTimer.lua"/>
 				    <post :script_path="CustomChat.lua"/>
@@ -50,10 +53,10 @@
 					<post :script_path="ComboCounter.lua"/>
 					<post :script_path="ToggleInteraction.lua"/>
 					<post :script_path="Stamina.lua"/>
+					<post :script_path="VoiceChat.lua"/>
                 </group>
 
 				<group :hook_id="group_ai_states/groupaistatebase">
-					<post :script_path="Downcounter.lua"/>
 					<post :script_path="PacifiedCivs.lua"/>
 				</group>
 
@@ -94,7 +97,6 @@
 					<post :hook_id="hudobjectives"          :script_path="ObjectivesPanel.lua"/>
 					<post :hook_id="hudhitconfirm"          :script_path="Scripts.lua"/>
 					<group :hook_id="hudteammate">
-	                    <post :script_path="Downcounter.lua"/>
                         <post :script_path="TeamPanel.lua"/>
 						<post :script_path="Stamina.lua"/>
                     </group>
@@ -145,8 +147,10 @@
 			</group>
 
 			<group :hook_id="network/handlers/unitnetworkhandler">
-			    <post :script_path="Downcounter.lua"/>
 				<post :script_path="Scripts.lua"/>
+			</group>
+			<group :hook_id="network/matchmaking/networkvoicechatsteam">
+				<post :script_path="VoiceChat.lua"/>
 			</group>
         </group>
     </hooks>

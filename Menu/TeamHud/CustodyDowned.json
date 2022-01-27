@@ -74,10 +74,10 @@
             "id": "civilians_color_select",
             "title": "HotlineMiamiHudCivillansTitleID",
             "description": "HotlineMiamiHudColorOption",
-            "value": "Civilians",
+            "value": "Civilans_color",
             "default_value": [255, 102, 102],
             "callback": "SetColorOption",
-            "callback_arguments": "Civilians",
+            "callback_arguments": "Civilans_color",
             "parent" : "custody_toggle"
         },
         {
@@ -90,40 +90,6 @@
             "callback": "SetColorOption",
             "callback_arguments": "Trade",
             "parent" : "custody_toggle"
-        },
-		{
-			"type": "divider",
-			"size": 8
-		},
-		{
-			"type": "toggle",
-			"id": "PLAYER_down_toggle",
-			"title": "PLAYER_down_title",
-			"description": "PLAYER_down_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "PLAYER_down",
-			"value": "PLAYER_down",
-			"default_value": false
-		},
-		{
-			"type": "toggle",
-			"id": "TEAM_down_toggle",
-			"title": "TEAM_down_title",
-			"description": "TEAM_down_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "TEAM_down",
-			"value": "TEAM_down",
-			"default_value": true
-		},
-		{
-			"type": "toggle",
-			"id": "colored_downs_toggle",
-			"title": "colored_downs_title",
-			"description": "colored_downs_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "colored_downs",
-			"value": "colored_downs",
-			"default_value": true
 		}
 	]
 }

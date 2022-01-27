@@ -4,8 +4,6 @@
     "infoboxes" : true,
     "inspire": true,
     "greenciv": true,
-    "PLAYER_down": false,
-    "TEAM_down": true,
 	"waypoints" : true,
 	"WaypointIcon" :
 	{
@@ -85,7 +83,7 @@
 		"g" : 255,
 		"b" : 255
 	},
-	"Civilians" :
+	"Civilans_color" :
 	{
 		"r" : 255,
 		"g" : 102,
@@ -129,7 +127,6 @@
 		"g" : 255,
 		"b" : 255
 	},
-	"color_name" : true,
 	"color_condition" : true,
 	"interact_info" : true,
 	"color_bag" : true,

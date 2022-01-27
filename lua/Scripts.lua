@@ -5,25 +5,9 @@ end
 if RequiredScript == "lib/managers/hudmanagerpd2" then
 	local set_slot_ready_orig = HUDManager.set_slot_ready
 	local update_original = HUDManager.update
-	local set_mugshot_voice_orig = HUDManager.set_mugshot_voice
 	local set_stamina_value_original = HUDManager.set_stamina_value
 	local set_max_stamina_original = HUDManager.set_max_stamina
 	local force_ready_clicked = 0
-
-	--Voice Chat
-	function HUDManager:set_mugshot_voice(id, active)
-	set_mugshot_voice_orig(self, id, active)
-	local panel_id
-		for _, data in pairs(managers.criminals:characters()) do
-			if data.data.mugshot_id == id then
-				panel_id = data.data.panel_id
-				break
-			end
-		end
-		if HMH:GetOption("voice") and panel_id and panel_id ~= HUDManager.PLAYER_PANEL and not WolfHUD then
-			self._teammate_panels[panel_id]:set_voice_com(active)
-		end
-	end
 
     --Ping Display
     function HUDManager:update(...)
@@ -248,4 +232,33 @@ elseif RequiredScript == "lib/managers/playermanager" then
 		    end
 		end
 	end)
+	
+elseif RequiredScript == "lib/managers/hudmanager" then
+	local setup_player_info_hud_pd2 = HUDManager._setup_player_info_hud_pd2
+	function HUDManager:_setup_player_info_hud_pd2()
+		setup_player_info_hud_pd2(self)
+		if HMH:GetOption("voice") then
+		    local hud = managers.hud:script(PlayerBase.PLAYER_INFO_HUD_PD2)
+		    self:_create_voice_panel(hud)
+		end
+	end
+    if HMH:GetOption("voice") then
+		function HUDManager:_create_voice_panel(hud)
+			if managers.network:session() then
+				self._voice_panel = HUDVoice:new(hud)
+			end
+		end
+		function HUDManager:set_mugshot_voice(id, active)
+			local data = self:_get_mugshot_data(id)
+			if not id or not self._voice_panel or not data or not managers.network:session() then
+				return
+			end
+			self:set_voice(data, active)
+		end
+		function HUDManager:set_voice(data, active)
+			if managers.network:session() then
+				self._voice_panel:set_voice(data, active)
+			end
+		end
+	end
 end
