@@ -173,7 +173,7 @@ Hooks:PostHook(HUDTeammate, "set_callsign", "HMH_HUDTeammateSetCallsign", functi
 	end
 
 	local is_cheater = not self._main_player and self:peer_id() and managers.network:session() and managers.network:session():peer(self:peer_id()):is_cheater()
-    if not (restoration and restoration:all_enabled("HUD/MainHUD", "HUD/Teammate")) then
+    if HMH:GetOption("interact_info") and not (restoration and restoration:all_enabled("HUD/MainHUD", "HUD/Teammate")) then
         self._panel:child("name"):set_color(is_cheater and tweak_data.screen_colors.pro_color or tweak_data.chat_colors[id])
 	    self._new_name:set_color(is_cheater and tweak_data.screen_colors.pro_color or tweak_data.chat_colors[id])
 	end
