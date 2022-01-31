@@ -1,4 +1,7 @@
-if HMH:GetOption("voice") then
+if not HMH:GetOption("voice") then
+   return
+end
+
 if RequiredScript == "lib/managers/hudmanagerpd2" then 
         HUDVoice = HUDVoice or class()
         function HUDVoice:init(hud)
@@ -74,13 +77,11 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
         end
 
         function HUDVoice:align_panels()
-		  --  if HMH:GetOption("hud_scale") > 0.99 then L = 26
-			--elseif  HMH:GetOption("hud_scale") 
             for j, k in ipairs(self._speakers) do 
                 k.panel:set_bottom(self._hud_panel:h() - ((j+26) * 22 * self._main_scale)) 
             end
         end
-		
+
 elseif RequiredScript == "lib/network/matchmaking/networkvoicechatsteam" then
     Hooks:PostHook(NetworkVoiceChatSTEAM, "set_recording", "set_player_voice", function(self, enabled)
         if managers.hud and (self._voice_enabled == nil or self._voice_enabled ~= enabled) and managers.network and managers.network.session and managers.network:session():local_peer() and managers.network:session():local_peer():id() then
@@ -88,5 +89,4 @@ elseif RequiredScript == "lib/network/matchmaking/networkvoicechatsteam" then
             managers.hud:set_voice({peer_id = managers.network:session():local_peer():id()}, enabled)
         end
     end)
-end
 end

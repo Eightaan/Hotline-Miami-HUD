@@ -177,10 +177,6 @@ Hooks:PostHook(HUDTeammate, "set_callsign", "HMH_HUDTeammateSetCallsign", functi
         self._panel:child("name"):set_color(is_cheater and tweak_data.screen_colors.pro_color or tweak_data.chat_colors[id])
 	    self._new_name:set_color(is_cheater and tweak_data.screen_colors.pro_color or tweak_data.chat_colors[id])
 	end
-
-    if is_cheater and not (restoration and restoration:all_enabled("HUD/MainHUD", "HUD/Teammate")) then
-	    self._panel:child("callsign"):set_color(tweak_data.screen_colors.pro_color)
-	end
 end)
 
 if HMH:GetOption("interact_info") and not (restoration and restoration:all_enabled("HUD/MainHUD", "HUD/Teammate")) then
