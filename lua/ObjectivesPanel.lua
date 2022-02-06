@@ -14,7 +14,6 @@ Hooks:PostHook(HUDObjectives, "init", "HMH_hudobjectives_init", function(self, h
 		visible = false,
 		w = 500,
 		x = 0,
-		alpha = 0.2,
 		valign = "top"
 	})
 	local icon_objectivebox = objectives_panel:bitmap({
