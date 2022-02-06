@@ -1,4 +1,4 @@
-if not HMH:GetOption("custom_chat") or VHUDPlus and VHUDPlus:getSetting({"HUDChat", "ENABLED"}, true) then 
+if not HMH:GetOption("custom_chat") or VoidUI and VoidUI.options.enable_chat or VHUDPlus and VHUDPlus:getSetting({"HUDChat", "ENABLED"}, true) then 
     return
 end
 

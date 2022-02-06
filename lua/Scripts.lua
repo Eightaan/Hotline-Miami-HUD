@@ -232,7 +232,8 @@ elseif RequiredScript == "lib/managers/playermanager" then
 		    end
 		end
 	end)
-	
+
+-- Voice chat
 elseif RequiredScript == "lib/managers/hudmanager" then
 	local setup_player_info_hud_pd2 = HUDManager._setup_player_info_hud_pd2
 	function HUDManager:_setup_player_info_hud_pd2()

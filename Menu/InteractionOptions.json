@@ -28,11 +28,26 @@
 			"callback": "SetOption",
 			"callback_arguments": "interact",
 			"value": "interact",
-			"default_value": true
+			"default_value": true,
+			"is_parent" : true
 		},
 		{
 			"type" : "divider",
 			"size" : 8
+		},
+		{
+		    "type": "slider",
+			"id": "interact_text_slider",
+			"title": "interact_text_title",
+			"description": "interact_text_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "InteractAlpha",
+			"parent" : "interact_toggle",
+			"value": "InteractAlpha",
+			"max": 1,
+            "min": 0,
+            "step": 1,
+            "default_value": 1
 		},
 		{
 			"type": "color_select",

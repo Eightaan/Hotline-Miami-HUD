@@ -31,6 +31,7 @@ function HUDTemp:show_carry_bag(carry_id, value)
 	local team_color = tweak_data.chat_colors[managers.network:session():local_peer():id()]
 	bag_text:set_color(team_color)
 	bag_text:set_font_size(20)
+	bag_text:set_alpha(HMH:GetOption("CarryAlpha"))
 	
 	bag_panel:stop()
 	bag_panel:animate(callback(self, self, "_animate_show_bag_panel"))

@@ -20,6 +20,20 @@
 			"size" : 8
 		},
 		{
+		    "type": "slider",
+			"id": "hint_text_slider",
+			"title": "hint_text_title",
+			"description": "hint_text_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "HintAlpha",
+			"parent" : "hint_toggle",
+			"value": "HintAlpha",
+			"max": 1,
+            "min": 0,
+            "step": 1,
+            "default_value": 1
+		},
+		{
 			"type": "color_select",
 			"id": "hint_color_select",
 			"title": "HotlineMiamiHudHintTitleID",

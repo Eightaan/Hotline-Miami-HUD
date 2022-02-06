@@ -5,7 +5,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 	    self._hud_panel = hud.panel
 	    self._ecm_panel = self._hud_panel:panel({
 		    name = "ecm_counter_panel",
-			alpha = HMH:GetOption("infoboxes") and 1 or 0,
+			alpha = HMH:GetOption("infoboxes") and HMH:GetOption("info_box_alpha") or 0,
 		    visible = false,
 		    w = 200,
 		    h = 200

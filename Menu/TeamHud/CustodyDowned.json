@@ -15,6 +15,20 @@
 			"default_value": true,
 			"is_parent" : true
 		},
+		{
+		    "type": "slider",
+			"id": "downed_text_slider",
+			"title": "downed_text_title",
+			"description": "downed_text_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "DownedAlpha",
+			"parent" : "downed_toggle",
+			"value": "DownedAlpha",
+			"max": 1,
+            "min": 0,
+            "step": 1,
+            "default_value": 1
+		},
         {
             "type": "color_select",
             "id": "downed_text_color_select",
@@ -47,6 +61,20 @@
 			"value": "custody",
 			"default_value": true,
 			"is_parent" : true
+		},
+		{
+		    "type": "slider",
+			"id": "custody_text_slider",
+			"title": "custody_text_title",
+			"description": "custody_text_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "CustodyAlpha",
+			"parent" : "custody_toggle",
+			"value": "CustodyAlpha",
+			"max": 1,
+            "min": 0,
+            "step": 1,
+            "default_value": 1
 		},
         {
             "type": "color_select",

@@ -20,6 +20,20 @@
 			"size": 8
 		},
 		{
+		    "type": "slider",
+			"id": "present_text_slider",
+			"title": "present_text_title",
+			"description": "present_text_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "presentAlpha",
+			"parent" : "presenter_toggle",
+			"value": "presentAlpha",
+			"max": 1,
+            "min": 0,
+            "step": 1,
+            "default_value": 1
+		},
+		{
 			"type": "color_select",
 			"id": "presenter_title_color_select",
 			"title": "HotlineMiamiHudPresenterTitleTitleID",

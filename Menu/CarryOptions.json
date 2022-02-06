@@ -28,6 +28,24 @@
 			"value": "carry_value",
 			"default_value": true,
 			"parent" : ["carry_toggle"]
+		},
+		{
+			"type": "divider",
+			"size": 8
+		},
+		{
+		    "type": "slider",
+			"id": "carry_text_slider",
+			"title": "carry_text_title",
+			"description": "carry_text_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "CarryAlpha",
+			"parent" : "carry_toggle",
+			"value": "CarryAlpha",
+			"max": 1,
+            "min": 0,
+            "step": 1,
+            "default_value": 1
 		}
 	]
 }

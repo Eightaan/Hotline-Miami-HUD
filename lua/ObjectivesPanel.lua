@@ -14,6 +14,7 @@ Hooks:PostHook(HUDObjectives, "init", "HMH_hudobjectives_init", function(self, h
 		visible = false,
 		w = 500,
 		x = 0,
+		alpha = 0.2,
 		valign = "top"
 	})
 	local icon_objectivebox = objectives_panel:bitmap({
@@ -62,12 +63,15 @@ Hooks:PostHook(HUDObjectives, "init", "HMH_hudobjectives_init", function(self, h
     	font = tweak_data.hud.medium_font_noshadow
     })
 	icon_objectivebox:set_color(HMH:GetColor("ObjectiveIcon"))
+	icon_objectivebox:set_alpha(HMH:GetOption("objective_text"))
 	objective_text:set_x(34)
+	objective_text:set_alpha(HMH:GetOption("objective_text"))
 	objective_text:set_y(0)
 	objective_text:set_font_size(24)
 	objective_text:set_color(HMH:GetColor("ObjectiveText"))
 	objective_text:set_visible(true)
 	amount_text:set_color(HMH:GetColor("ObjectiveAmount"))
+	amount_text:set_alpha(HMH:GetOption("objective_text"))
 end)
 
 function HUDObjectives:activate_objective( data )

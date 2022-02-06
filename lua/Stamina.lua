@@ -58,8 +58,10 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 	end
 
 	function HUDTeammate:set_current_stamina(value)
-		self._stamina_bar:set_color(Color(1, value/self._max_stamina, 0, 0))
-		self:set_stamina_meter_visibility(HMH:GetOption("stamina") and not self._condition_icon:visible())
+	    if self._stamina_bar then
+		    self._stamina_bar:set_color(Color(1, value/self._max_stamina, 0, 0))
+		    self:set_stamina_meter_visibility(HMH:GetOption("stamina") and not self._condition_icon:visible())
+		end
 	end
 
 	function HUDTeammate:set_stamina_meter_visibility(value)

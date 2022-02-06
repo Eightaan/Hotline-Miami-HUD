@@ -2,6 +2,7 @@ if RequiredScript == "lib/managers/hud/hudinteraction" then
     Hooks:PostHook(HUDInteraction, "init", "HMH_HUDInteractionInit", function(self, ...)
 	    if HMH:GetOption("interact") then
 			self._hud_panel:child(self._child_name_text):set_color(HMH:GetColor("Interaction"))
+			self._hud_panel:child(self._child_name_text):set_alpha(HMH:GetOption("InteractAlpha"))
 	    end
     end)
     if HMH:GetOption("interact_texture") > 1 then

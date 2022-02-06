@@ -3,6 +3,9 @@ if not HMH:GetOption("presenter") then
 end
 
 Hooks:PostHook(HUDPresenter, "init", "HMH_hudpresenter_init", function(self, ...)
+    if not self._hud_panel:child("present_panel") then
+	    return
+	end
 	self._hud_panel:child("present_panel"):set_alpha(0)
     local title = self._bg_box:child("title")
  	local text = self._bg_box:child("text")	
@@ -10,7 +13,9 @@ Hooks:PostHook(HUDPresenter, "init", "HMH_hudpresenter_init", function(self, ...
  	self._bg_box:child("bg"):hide()
 	title:set_color(HMH:GetColor("PresenterTitle"))
 	title:set_font_size(24)
+	title:set_alpha(HMH:GetOption("presentAlpha"))
 	text:set_color(HMH:GetColor("PresenterText"))
+	text:set_alpha(HMH:GetOption("presentAlpha"))
 	text:set_font_size(20)
 end)
 

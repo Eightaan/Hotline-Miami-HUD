@@ -3,8 +3,9 @@ if _G.IS_VR then
 end
 
 local ammo = HMH:GetOption("ammo")
+local interact_info_text = HMH:GetOption("interact_info") and not (restoration and restoration:all_enabled("HUD/MainHUD", "HUD/Teammate") or VoidUI and VoidUI.options.teammate_panels)
 Hooks:PostHook(HUDTeammate, "init", "HMH_HUDTeammateInit", function(self, ...)
-    if HMH:GetOption("interact_info") and not (restoration and restoration:all_enabled("HUD/MainHUD", "HUD/Teammate")) then
+    if interact_info_text then
 	    local radial_health_panel = self._player_panel:child("radial_health_panel")
 	    local name_panel = self._panel:panel({
 		    name = "name_panel",
@@ -124,7 +125,7 @@ if HMH:GetOption("bulletstorm") then
 	end
 end
 
-if HMH:GetOption("interact_info") and not (restoration and restoration:all_enabled("HUD/MainHUD", "HUD/Teammate")) then
+if interact_info_text then
     Hooks:PostHook(HUDTeammate, "set_name", "HMH_HUDTeammateSetName", function(self, ...)
 	    local teammate_panel = self._panel
 	    local name = teammate_panel:child("name")
@@ -145,13 +146,13 @@ if HMH:GetOption("interact_info") and not (restoration and restoration:all_enabl
 		name_bg:set_visible(true)
     end)
 
-    Hooks:PostHook(HUDTeammate, "set_state", "HMH_HUDTeammateSetState", function(self, state)
+    Hooks:PostHook(HUDTeammate, "set_state", "HMH_HUDTeammateSetState", function(self, state, ...)
 	    if not self._main_player then
 		    self._panel:child("name_panel"):set_y(self._panel:child("name"):y())
         end
     end)
 
-	Hooks:PostHook(HUDTeammate, "_create_radial_health", "HMH_HUDTeammateCreateRadialHealth", function(self, radial_health_panel)
+	Hooks:PostHook(HUDTeammate, "_create_radial_health", "HMH_HUDTeammateCreateRadialHealth", function(self, radial_health_panel, ...)
 	    local radial_ability_panel = radial_health_panel:child("radial_ability")
         local ability_icon = radial_ability_panel:child("ability_icon")
 	    ability_icon:set_visible(false)
@@ -166,21 +167,21 @@ if HMH:GetOption("interact_info") and not (restoration and restoration:all_enabl
     --end
 end
 
-Hooks:PostHook(HUDTeammate, "set_callsign", "HMH_HUDTeammateSetCallsign", function(self, id)
+Hooks:PostHook(HUDTeammate, "set_callsign", "HMH_HUDTeammateSetCallsign", function(self, id, ...)
     if HMH:GetOption("color_condition") then
         self._condition_icon = self._panel:child("condition_icon")
         self._condition_icon:set_color(tweak_data.chat_colors[id])
 	end
 
 	local is_cheater = not self._main_player and self:peer_id() and managers.network:session() and managers.network:session():peer(self:peer_id()):is_cheater()
-    if HMH:GetOption("interact_info") and not (restoration and restoration:all_enabled("HUD/MainHUD", "HUD/Teammate")) then
+    if interact_info_text then
         self._panel:child("name"):set_color(is_cheater and tweak_data.screen_colors.pro_color or tweak_data.chat_colors[id])
 	    self._new_name:set_color(is_cheater and tweak_data.screen_colors.pro_color or tweak_data.chat_colors[id])
 	end
 end)
 
-if HMH:GetOption("interact_info") and not (restoration and restoration:all_enabled("HUD/MainHUD", "HUD/Teammate")) then
-	Hooks:PreHook(HUDTeammate, "teammate_progress", "HMH_HUDTeammateTeammateProgress", function(self, enabled, tweak_data_id, timer, success)
+if interact_info_text then
+	Hooks:PreHook(HUDTeammate, "teammate_progress", "HMH_HUDTeammateTeammateProgress", function(self, enabled, tweak_data_id, timer, success, ...)
 	    local t = 1 -- How long an interaction should be in order for the text to display. If its shorter than 1 sec nothing will show when at default.
         if not self._player_panel:child("interact_panel"):child("interact_info") then return end
         self._panel:child("name_panel"):child("interact_text"):stop()
@@ -318,7 +319,7 @@ if HMH:GetOption("pickups") then
 end
 
 if HMH:GetOption("equipment") then
-    Hooks:PostHook(HUDTeammate, "set_deployable_equipment_amount", "HMH_HUDTeammateSetDeployableEquipmentAmount", function(self, index, data)
+    Hooks:PostHook(HUDTeammate, "set_deployable_equipment_amount", "HMH_HUDTeammateSetDeployableEquipmentAmount", function(self, index, data, ...)
         local deployable_equipment_panel = self._player_panel:child("deployable_equipment_panel")
         local equipment = deployable_equipment_panel:child("equipment")
         local amount = deployable_equipment_panel:child("amount")
@@ -350,7 +351,7 @@ if HMH:GetOption("equipment") then
         end
     end)
 
-    Hooks:PostHook(HUDTeammate, "set_grenades_amount", "HMH_HUDTeammateSetGrenadesAmount", function(self, data)
+    Hooks:PostHook(HUDTeammate, "set_grenades_amount", "HMH_HUDTeammateSetGrenadesAmount", function(self, data, ...)
         if not PlayerBase.USE_GRENADES then
             return
         end
@@ -390,7 +391,7 @@ if HMH:GetOption("equipment") then
         self._grenade_amount = data.amount
     end)
 
-    Hooks:PostHook(HUDTeammate, "set_cable_ties_amount", "HMH_HUDTeammateSetCableTiesAmount", function(self, amount)
+    Hooks:PostHook(HUDTeammate, "set_cable_ties_amount", "HMH_HUDTeammateSetCableTiesAmount", function(self, amount, ...)
         if not self._cable_amount then self._cable_amount = amount end
 
         local cable_ties_panel = self._player_panel:child("cable_ties_panel")
@@ -424,7 +425,7 @@ if HMH:GetOption("equipment") then
         end
     end)
 
-    Hooks:PostHook(HUDTeammate, "set_deployable_equipment_amount_from_string", "HMH_HUDTeammateSetDeployableEquipmentAmountFromString", function(self, index, data)
+    Hooks:PostHook(HUDTeammate, "set_deployable_equipment_amount_from_string", "HMH_HUDTeammateSetDeployableEquipmentAmountFromString", function(self, index, data, ...)
         local teammate_panel = self._panel:child("player")
         local deployable_equipment_panel = self._player_panel:child("deployable_equipment_panel")
         local icon = deployable_equipment_panel:child("equipment")
@@ -468,7 +469,8 @@ if HMH:GetOption("equipment") then
 end
 
 if ammo then
-    Hooks:PreHook(HUDTeammate, "set_weapon_selected", "HMH_HUDTeammateSetWeaponSelected", function(self, id, hud_icon)
+    Hooks:PreHook(HUDTeammate, "set_weapon_selected", "HMH_HUDTeammateSetWeaponSelected", function(self, id, hud_icon, ...)
+	    if not self._player_panel:child("weapons_panel"):child("secondary_weapon_panel") then return end
         local is_secondary = id == 1
         local secondary_weapon_panel = self._player_panel:child("weapons_panel"):child("secondary_weapon_panel")
         local primary_weapon_panel = self._player_panel:child("weapons_panel"):child("primary_weapon_panel")
@@ -501,7 +503,7 @@ if ammo then
         end
     end)
 
-	Hooks:PostHook(HUDTeammate, "_create_weapon_panels", "HMH_HUDTeammate_create_weapon_panels", function(self, weapons_panel)
+	Hooks:PostHook(HUDTeammate, "_create_weapon_panels", "HMH_HUDTeammate_create_weapon_panels", function(self, weapons_panel, ...)
         local primary_weapon_panel = weapons_panel:child("primary_weapon_panel")
         local secondary_weapon_panel = weapons_panel:child("secondary_weapon_panel")
         local sec_weapon_selection_panel = secondary_weapon_panel:child("weapon_selection")
@@ -512,7 +514,7 @@ if ammo then
     end)
 end
 
-Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammateSetAmmoAmountByType", function(self, type, max_clip, current_clip, current_left, max, weapon_panel)
+Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammateSetAmmoAmountByType", function(self, type, max_clip, current_clip, current_left, max, weapon_panel, ...)
     local weapon_panel = self._player_panel:child("weapons_panel"):child(type .. "_weapon_panel")
 
 	if self._main_player and HMH:GetOption("trueammo") then
@@ -669,11 +671,11 @@ if HMH:GetOption("colored_downs") then
     end)
 end
 
-function HUDTeammate:update(t,dt)
-	self:update_latency(t,dt)
+function HUDTeammate:update(t, dt, ...)
+	self:update_latency(t, dt)
 end
 
-function HUDTeammate:update_latency(t,dt)
+function HUDTeammate:update_latency(t, dt)
 	local ping_panel = self._panel:child("latency")
 	if ping_panel and self:peer_id() and t > self._next_latency_update_t then
 		local net_session = managers.network:session()

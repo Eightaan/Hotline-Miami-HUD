@@ -12,10 +12,12 @@ if RequiredScript == "core/lib/managers/subtitle/coresubtitlepresenter" then
 
 		self.__font_name = "fonts/font_medium_mf"
 		local sub_color = _G.HMH:GetOption("custom_subs") and _G.HMH:GetColor("Sub") or Color.white
+		local sub_alpha = _G.HMH:GetOption("SubAlpha") or 1
 		local label = self.__subtitle_panel:child("label") or self.__subtitle_panel:text({
 			name = "label",
 			font = self.__font_name,
 			font_size = self.__font_size * self._text_scale,
+			alpha = sub_alpha,
 			color = sub_color,
 			align = "center",
 			vertical = "bottom",
@@ -30,6 +32,7 @@ if RequiredScript == "core/lib/managers/subtitle/coresubtitlepresenter" then
 			font = self.__font_name,
 			font_size = self.__font_size * self._text_scale,
 			color = Color.black:with_alpha(1),
+			alpha = sub_alpha,
 			align = "center",
 			vertical = "bottom",
 			layer = 0,
