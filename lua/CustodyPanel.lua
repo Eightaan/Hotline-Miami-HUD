@@ -13,10 +13,6 @@ Hooks:PostHook( HUDPlayerCustody , "init", "HMH_HUDTeammate_init", function(self
 	timer:set_font(Idstring("fonts/font_medium"))
 	civilians_killed:set_color(HMH:GetColor("Civilans_color"))
 	trade_delay:set_color(HMH:GetColor("Trade"))
-	--timer_msg:set_alpha(HMH:GetOption("CustodyAlpha"))
-	--timer:set_alpha(HMH:GetOption("CustodyAlpha"))
-	--civilians_killed:set_alpha(HMH:GetOption("CustodyAlpha"))
-	--trade_delay:set_alpha(HMH:GetOption("CustodyAlpha"))
 end)
 
 Hooks:PostHook( HUDPlayerCustody , "set_negotiating_visible", "HMH_HUDTeammate_set_negotiating_visible", function(self, ...)

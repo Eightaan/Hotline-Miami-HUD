@@ -152,12 +152,6 @@ if interact_info_text then
         end
     end)
 
-	Hooks:PostHook(HUDTeammate, "_create_radial_health", "HMH_HUDTeammateCreateRadialHealth", function(self, radial_health_panel, ...)
-	    local radial_ability_panel = radial_health_panel:child("radial_ability")
-        local ability_icon = radial_ability_panel:child("ability_icon")
-	    ability_icon:set_visible(false)
-    end)
-
 	--function HUDTeammate:_animate_name(name, width)
 	--    local t = 0
 	--    while true do
@@ -165,6 +159,14 @@ if interact_info_text then
 	--	    name:set_left(width * ( math.sin(90 + t * 50) * 0.5 - 0.5))
 	--   end
     --end
+end
+
+if HMH:GetOption("color_condition") then
+	Hooks:PostHook(HUDTeammate, "_create_radial_health", "HMH_HUDTeammateCreateRadialHealth", function(self, radial_health_panel, ...)
+	    local radial_ability_panel = radial_health_panel:child("radial_ability")
+        local ability_icon = radial_ability_panel:child("ability_icon")
+	    ability_icon:set_visible(false)
+    end)
 end
 
 Hooks:PostHook(HUDTeammate, "set_callsign", "HMH_HUDTeammateSetCallsign", function(self, id, ...)
