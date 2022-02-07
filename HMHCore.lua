@@ -108,6 +108,10 @@ if not HMH then
         if self:GetOption("stop_ai") then
             DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/stophand_symbol"), self._path .. "assets/guis/textures/pd2_mod_hmh/stophand_symbol.texture")
 		end
+
+		if HMH:GetOption("Reset") then
+	        HMH:LoadDefaults()
+	    end
     end
 
     function HMH:LoadDefaults()

@@ -1,0 +1,18 @@
+{
+	"menu_id": "hmh_menu_reset",
+	"parent_menu": "hmh_menu",
+	"title": "reset_title",
+	"description": "reset_desc",
+	"items": [
+		{
+			"type": "toggle",
+			"id": "reset_toggle",
+			"title": "reset_all_title",
+			"description": "reset_all_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "Reset",
+			"value": "Reset",
+			"default_value": false
+		}
+	]
+}

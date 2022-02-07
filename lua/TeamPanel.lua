@@ -516,7 +516,7 @@ if ammo then
     end)
 end
 
-Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammateSetAmmoAmountByType", function(self, type, max_clip, current_clip, current_left, max, weapon_panel, ...)
+Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammateSetAmmoAmountByType", function(self, type, max_clip, current_clip, current_left, max, weapon_panel)
     local weapon_panel = self._player_panel:child("weapons_panel"):child(type .. "_weapon_panel")
 
 	if self._main_player and HMH:GetOption("trueammo") then

@@ -165,6 +165,7 @@ function HMHMenu:init()
 	self:GetMenuFromJson(HMH._menu_path .. "CarryOptions.json", HMH._data)
     self:GetMenuFromJson(HMH._menu_path .. "ObjectivesOptions.json", HMH._data)
     self:GetMenuFromJson(HMH._menu_path .. "SubtitleOptions.json", HMH._data)
+	self:GetMenuFromJson(HMH._menu_path .. "ResetOptions.json", HMH._data)
 
     self:OpenMenu("hmh_menu")
 end

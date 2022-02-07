@@ -203,7 +203,8 @@
 	"hmh_subs_desc" : "Customize the subtitles.",
 	"subs_title" : "Colored Subtitle Text",
 	"subs_desc" : "Enable the custom colored subtitles.",
-
+    "sub_text_title" : "Subtitles Transparency",
+	"sub_text_desc" : "Choose a value for how translucent the subtitles text will be.",
 
 	"hmh_menu_options_title" : "Menu Options",
 	"hmh_menu_options_desc" : "Customize the menu.",
@@ -234,6 +235,11 @@
 	"crew_loadout_briefing_desc" : "Replaces the default Crew Loadout Panel in Mission briefing.",
 	"profile_menu_title" : "Replace Profile Menu",
 	"profile_menu_desc" : "Replaces the default Profile-Selector with WolfHUDs advanced one.",
+	
+	"reset_title" : "Reset Options",
+	"reset_desc" : "Reset all the game options back to default",
+	"reset_all_title" : "Cick this option to reset all settings. A game restart is required for it to take effect.",
+	"reset_all_desc" : "",
 	
 	"extracted_preplanning_save" : "Save Plan",
 	"extracted_preplanning_load" : "Load Plan",

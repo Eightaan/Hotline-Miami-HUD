@@ -199,6 +199,13 @@
 			"title": "hmh_subs_title",
 			"description": "hmh_subs_desc",
 			"next_menu": "hmh_menu_subs"
+		},
+		{
+			"type": "button",
+			"id": "reset_id",
+			"title": "reset_title",
+			"description": "reset_desc",
+			"next_menu": "hmh_menu_reset"
 		}
 	]
 }

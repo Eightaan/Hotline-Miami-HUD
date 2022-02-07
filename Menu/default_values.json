@@ -16,6 +16,7 @@
 	"DownedAlpha" : 1,
 	"CustodyAlpha" : 1,
 	"waypoints" : true,
+	"Reset" : false,
 	"WaypointIcon" :
 	{
 		"r" : 102,
