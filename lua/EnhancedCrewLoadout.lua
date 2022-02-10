@@ -1,7 +1,3 @@
-if WolfHUD then
-    return
-end
-
 if string.lower(RequiredScript) == "lib/managers/menu/contractboxgui" then
 	local init_original = ContractBoxGui.init
 	local update_original = ContractBoxGui.update

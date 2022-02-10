@@ -3,7 +3,7 @@ if _G.IS_VR then
 end
 
 local ammo = HMH:GetOption("ammo")
-local interact_info_text = HMH:GetOption("interact_info") and not (restoration and restoration:all_enabled("HUD/MainHUD", "HUD/Teammate") or VoidUI and VoidUI.options.teammate_panels)
+local interact_info_text = HMH:GetOption("interact_info") and not (VHUDPlus and VHUDPlus:getSetting({"CustomHUD", "HUDTYPE"}, 2) > 1 or VoidUI and VoidUI.options.teammate_panels)
 Hooks:PostHook(HUDTeammate, "init", "HMH_HUDTeammateInit", function(self, ...)
     if interact_info_text then
 	    local radial_health_panel = self._player_panel:child("radial_health_panel")
@@ -87,6 +87,7 @@ if HMH:GetOption("bulletstorm") then
 
 	function HUDTeammate:_set_bulletstorm(state)
 		self._bullet_storm = state
+        if not self._primary_ammo then return end
 
     	if state then   
 			local pweapon_panel = self._player_panel:child("weapons_panel"):child("primary_weapon_panel")
@@ -151,38 +152,7 @@ if interact_info_text then
 		    self._panel:child("name_panel"):set_y(self._panel:child("name"):y())
         end
     end)
-
-	--function HUDTeammate:_animate_name(name, width)
-	--    local t = 0
-	--    while true do
-	--	    t = t + coroutine.yield()
-	--	    name:set_left(width * ( math.sin(90 + t * 50) * 0.5 - 0.5))
-	--   end
-    --end
-end
-
-if HMH:GetOption("color_condition") then
-	Hooks:PostHook(HUDTeammate, "_create_radial_health", "HMH_HUDTeammateCreateRadialHealth", function(self, radial_health_panel, ...)
-	    local radial_ability_panel = radial_health_panel:child("radial_ability")
-        local ability_icon = radial_ability_panel:child("ability_icon")
-	    ability_icon:set_visible(false)
-    end)
-end
-
-Hooks:PostHook(HUDTeammate, "set_callsign", "HMH_HUDTeammateSetCallsign", function(self, id, ...)
-    if HMH:GetOption("color_condition") then
-        self._condition_icon = self._panel:child("condition_icon")
-        self._condition_icon:set_color(tweak_data.chat_colors[id])
-	end
-
-	local is_cheater = not self._main_player and self:peer_id() and managers.network:session() and managers.network:session():peer(self:peer_id()):is_cheater()
-    if interact_info_text then
-        self._panel:child("name"):set_color(is_cheater and tweak_data.screen_colors.pro_color or tweak_data.chat_colors[id])
-	    self._new_name:set_color(is_cheater and tweak_data.screen_colors.pro_color or tweak_data.chat_colors[id])
-	end
-end)
-
-if interact_info_text then
+	
 	Hooks:PreHook(HUDTeammate, "teammate_progress", "HMH_HUDTeammateTeammateProgress", function(self, enabled, tweak_data_id, timer, success, ...)
 	    local t = 1 -- How long an interaction should be in order for the text to display. If its shorter than 1 sec nothing will show when at default.
         if not self._player_panel:child("interact_panel"):child("interact_info") then return end
@@ -241,7 +211,36 @@ if interact_info_text then
             end
         end
     end)
+
+	--function HUDTeammate:_animate_name(name, width)
+	--    local t = 0
+	--    while true do
+	--	    t = t + coroutine.yield()
+	--	    name:set_left(width * ( math.sin(90 + t * 50) * 0.5 - 0.5))
+	--   end
+    --end
 end
+
+if HMH:GetOption("color_condition") then
+	Hooks:PostHook(HUDTeammate, "_create_radial_health", "HMH_HUDTeammateCreateRadialHealth", function(self, radial_health_panel, ...)
+	    local radial_ability_panel = radial_health_panel:child("radial_ability")
+        local ability_icon = radial_ability_panel:child("ability_icon")
+	    ability_icon:set_visible(false)
+    end)
+end
+
+Hooks:PostHook(HUDTeammate, "set_callsign", "HMH_HUDTeammateSetCallsign", function(self, id, ...)
+    if HMH:GetOption("color_condition") then
+        self._condition_icon = self._panel:child("condition_icon")
+        self._condition_icon:set_color(tweak_data.chat_colors[id])
+	end
+
+	local is_cheater = not self._main_player and self:peer_id() and managers.network:session() and managers.network:session():peer(self:peer_id()):is_cheater()
+    if interact_info_text  and self._new_name then
+        self._panel:child("name"):set_color(is_cheater and tweak_data.screen_colors.pro_color or tweak_data.chat_colors[id])
+	    self._new_name:set_color(is_cheater and tweak_data.screen_colors.pro_color or tweak_data.chat_colors[id])
+	end
+end)
 
 Hooks:PreHook(HUDTeammate, "set_carry_info", "HMH_HUDTeammateSetCarryInfo", function(self, ...)
     if self._peer_id then

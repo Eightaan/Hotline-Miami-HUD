@@ -1,4 +1,4 @@
-if not HMH:GetOption("bulletstorm") or (WolfHUD and WolfHUD:getSetting({"CustomHUD", "ENABLED"}, true)) or VHUDPlus or (restoration and restoration:all_enabled("HUD/MainHUD", "HUD/Teammate")) or (CustomEOStandalone and getSetting({"WolfHUDCustomHUD", "ENABLED"}, true)) or _G.IS_VR then
+if not HMH:GetOption("bulletstorm") or WolfHUD or VHUDPlus or _G.IS_VR then
    return
 end
 

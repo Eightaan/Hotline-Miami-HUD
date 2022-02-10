@@ -1,4 +1,4 @@
-if not HMH:GetOption("tab") or (VHUDPlus and VHUDPlus:getSetting({"TabStats", "ENABLED"}, true)) or WolfHUD then 
+if not HMH:GetOption("tab") or (VHUDPlus and VHUDPlus:getSetting({"TabStats", "ENABLED"}, true)) then 
     return
 end
 
