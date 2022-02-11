@@ -14,6 +14,7 @@
 	"hmh_b" : "Blue",
 	"hmh_ok" : "Ok",
 	"hmh_color_reset" : "Reset Color",
+	"HMH_warning_desc" : "Some of your changes may not take effect until the next heist or game restart!",
 
 	"hmh_title" : "Hotline Miami Hud",
 	"hmh_desc" : "Hotline Miami Hud options",
@@ -238,7 +239,7 @@
 	
 	"reset_title" : "Reset Options",
 	"reset_desc" : "Reset all the game options back to default",
-	"reset_all_title" : "Click this option to reset all settings. A game restart is required for it to take effect.",
+	"reset_all_title" : "Click this option to reset all settings.",
 	"reset_all_desc" : "",
 	
 	"extracted_preplanning_save" : "Save Plan",

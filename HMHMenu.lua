@@ -145,6 +145,10 @@ function HMHMenu:init()
         self._button_legends:set_right(self._options_panel:right() - 5)
         self._button_legends:set_top(self._options_panel:bottom())
     end
+	
+	if HMHMenu.Warning == 1 then
+		self:CreateChangeWarning()
+	end
 
     self:GetMenuFromJson(HMH._menu_path .. "MainMenu.json", HMH._data)
     self:GetMenuFromJson(HMH._menu_path .. "MenuOptions.json", HMH._data)
@@ -369,6 +373,7 @@ function HMHMenu:mouse_press(o, button, x, y)
                         parent_item.panel:child("title_selected"):set_text(self._open_choice_dialog.items[i]:text())
                         parent_item.value = i
                         self:CloseMultipleChoicePanel()
+						self:CreateChangeWarning()
                     end
                 end
             else
@@ -426,6 +431,7 @@ function HMHMenu:Confirm()
                 parent_item.panel:child("title_selected"):set_text(self._open_choice_dialog.items[i]:text())
                 parent_item.value = i
                 self:CloseMultipleChoicePanel()
+				self:CreateChangeWarning()
             end
         end
     elseif self._open_color_dialog then
@@ -554,11 +560,31 @@ function HMHMenu:ActivateItem(item, x)
         self._slider = item
         self:SetSlider(item, x)
         managers.mouse_pointer:set_pointer_image("grab")
+		self:CreateChangeWarning()
     elseif item.type == "input" then
         self:SetInput(item)
     elseif item.type == "color_select" and not self._open_color_dialog then
         self:OpenColorMenu(item)
     end
+end
+
+function HMHMenu:CreateChangeWarning()
+	if managers.hud and not self._panel:child("changed_warning") then
+		HMHMenu.Warning = 1
+		local changed_warning = self._panel:text({
+			name = "changed_warning",
+			layer = 2,
+			w = 500,
+			h = 20,
+			font_size = 18,
+			font = tweak_data.menu.pd2_small_font,
+			color = Color.red,
+			align = "right",
+			text = managers.localization:text("HMH_warning_desc")
+		})
+		changed_warning:set_right(self._options_panel:left() - 15)
+		changed_warning:set_bottom(self._panel:h())
+	end
 end
 
 function HMHMenu:SetMenuItemsEnabled(menu, parent_item_id, enabled)
@@ -702,6 +728,7 @@ function HMHMenu:SetItem(item, value, menu)
             item.panel:child("color"):set_color(value)
             item.value = value
         end
+		self:CreateChangeWarning()
         self:CallCallback(item, { to_n = item.type == "slider" })
         if item.is_parent then
             self:SetMenuItemsEnabled(menu, item.id, value)
@@ -2108,6 +2135,7 @@ function HMHMenu:CloseColorMenu()
         self._open_color_dialog.parent_item.value = c
         self._open_color_dialog.parent_item.panel:child("color"):set_color(c)
         self._open_color_dialog = nil
+		self:CreateChangeWarning()
     end)
 end
 

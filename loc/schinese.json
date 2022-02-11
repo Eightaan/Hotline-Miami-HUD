@@ -325,6 +325,7 @@
 	"reset_desc" : "Reset all the game options back to default",
 	"reset_all_title" : "Click this option to reset all settings. A game restart is required for it to take effect.",
 	"reset_all_desc" : "",
+	"HMH_warning_desc" : "Some of your changes may not take effect until the next heist or game restart!",
 	"chat_font_title" : "Chat Size",
 	"chat_font_desc" : "Change the chat size",
 	"heart_interact" : "Pixel Heart",
