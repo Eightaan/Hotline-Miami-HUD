@@ -198,7 +198,7 @@ elseif RequiredScript == "lib/units/beings/player/states/playerdriving" then
 -- Headshoot confirm
 elseif RequiredScript == "lib/managers/hud/hudhitconfirm" then
 	Hooks:PostHook(HUDHitConfirm, "init", "hmh_HUDHitConfirm_init", function(self, ...)
-	    if not VHUDPlus then
+	    if HMH:GetOption("headshot_texture") > 1 and not (VHUDPlus and VHUDPlus:getSetting({"MISCHUD", "HEADSHOT"}, true)) then
 		    if self._hud_panel:child("headshot_confirm") then
 		    	self._hud_panel:remove(self._hud_panel:child("headshot_confirm"))
 		    end
@@ -218,7 +218,7 @@ elseif RequiredScript == "lib/managers/hud/hudhitconfirm" then
     end)
     
 	Hooks:PostHook(HUDHitConfirm, "on_headshot_confirmed", "hmh_on_headshot_confirmed", function(self, ...)
-		if not VHUDPlus then
+		if HMH:GetOption("headshot_texture") > 1 and not (VHUDPlus and VHUDPlus:getSetting({"MISCHUD", "HEADSHOT"}, true)) then
 		    self._headshot_confirm:stop()
 		    self._headshot_confirm:animate(callback(self, self, "_animate_show"), callback(self, self, "show_done"), 0.25, 0.15)
 	    end
@@ -226,10 +226,8 @@ elseif RequiredScript == "lib/managers/hud/hudhitconfirm" then
 	
 elseif RequiredScript == "lib/managers/playermanager" then
 	Hooks:PostHook(PlayerManager, "on_headshot_dealt", "hmh_on_headshot_dealt", function(self, ...)
-		if not VHUDPlus then
-	        if HMH:GetOption("headshot_texture") > 1 then
-		        managers.hud:on_headshot_confirmed()
-		    end
+	    if HMH:GetOption("headshot_texture") > 1 and not (VHUDPlus and VHUDPlus:getSetting({"MISCHUD", "HEADSHOT"}, true)) then
+		    managers.hud:on_headshot_confirmed()
 		end
 	end)
 
