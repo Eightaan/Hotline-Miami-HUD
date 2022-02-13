@@ -1,4 +1,4 @@
-if not HMH:GetOption("objective") then
+if not HMH:GetOption("objective") or BL2Options then
     return
 end
 

@@ -2,6 +2,7 @@ if HMH:GetOption("toggle_interact") == 0 or VHUDPlus then
     return
 end
 
+local interupt_interact_hint = HMH:GetOption("interupt_interact_hint") and not MUIInteract
 if RequiredScript == "lib/units/beings/player/states/playerstandard" then
 	local _update_interaction_timers_original = PlayerStandard._update_interaction_timers
 	local _check_action_interact_original = PlayerStandard._check_action_interact
@@ -24,7 +25,9 @@ if RequiredScript == "lib/units/beings/player/states/playerstandard" then
 		end
 
 		if self._interaction_locked ~= is_locked then
-			managers.hud:set_interaction_bar_locked(is_locked, self._interact_params and self._interact_params.tweak_data or "")
+			if interupt_interact_hint then
+			    managers.hud:set_interaction_bar_locked(is_locked, self._interact_params and self._interact_params.tweak_data or "")
+			end
 			self._interaction_locked = is_locked
 		end
 	end
@@ -105,7 +108,9 @@ elseif RequiredScript == "lib/units/beings/player/states/playerdriving" then
 		end
 
 		if self._interaction_locked ~= is_locked then
-			managers.hud:set_interaction_bar_locked(is_locked, "")
+		    if interupt_interact_hint then
+			    managers.hud:set_interaction_bar_locked(is_locked, "")
+			end
 			self._interaction_locked = is_locked
 		end
 	end
@@ -131,7 +136,7 @@ elseif RequiredScript == "lib/managers/hud/hudinteraction" then
 		if status then
 			self._old_text = self._hud_panel:child(self._child_name_text):text()
 			local locked_text = self._old_text
-			if HMH:GetOption("interupt_interact_hint") then
+			if interupt_interact_hint then
 				local btn_cancel = HMH:GetOption("interupt_interact") and (managers.localization:btn_macro("use_item", true) or managers.localization:get_default_macro("BTN_USE_ITEM")) or (managers.localization:btn_macro("interact", true) or managers.localization:get_default_macro("BTN_INTERACT"))
 				locked_text = managers.localization:to_upper_text(tweak_entry == "corpse_alarm_pager" and "hmh_int_locked_pager" or "hmh_int_locked", {BTN_CANCEL = btn_cancel})
 			end
