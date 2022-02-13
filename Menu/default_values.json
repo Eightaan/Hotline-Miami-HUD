@@ -379,5 +379,7 @@
 		"g" : 128,
 		"b" : 223
 	},
-	"chat_font" : 20
+	"chat_font" : 20,
+	"animate_text" : true,
+	"colored_carry_text" : true
 }

@@ -9,9 +9,11 @@ end
 function HUDTemp:_animate_show_bag_panel(bag_panel)
 	local bag_text = self._bg_box:child("bag_text")
 	set_alpha(bag_panel, 1)
-	while bag_text:visible() do
-		set_alpha(bag_panel, 0.6)
-		set_alpha(bag_panel, 1)
+	if HMH:GetOption("animate_text") then
+	    while bag_text:visible() do
+		    set_alpha(bag_panel, 0.6)
+		    set_alpha(bag_panel, 1)
+		end
 	end
 end
 
@@ -28,7 +30,7 @@ function HUDTemp:show_carry_bag(carry_id, value)
 
 	self._bg_box:child("bag_text"):set_text(utf8.to_upper(carrying_text .. "\n" .. value_text))
 
-	local team_color = tweak_data.chat_colors[managers.network:session():local_peer():id()]
+	local team_color = HMH:GetOption("colored_carry_text") and tweak_data.chat_colors[managers.network:session():local_peer():id()] or Color.white
 	bag_text:set_color(team_color)
 	bag_text:set_font_size(20)
 	bag_text:set_alpha(HMH:GetOption("CarryAlpha"))

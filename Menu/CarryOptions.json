@@ -20,6 +20,28 @@
 		},
 		{
 			"type": "toggle",
+			"id": "colored_carry_text_toggle",
+			"title": "colored_carry_text_title",
+			"description": "colored_carry_text_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "colored_carry_text",
+			"value": "colored_carry_text",
+			"default_value": true,
+			"parent" : ["carry_toggle"]
+		},
+		{
+			"type": "toggle",
+			"id": "animate_text_toggle",
+			"title": "animate_text_title",
+			"description": "animate_text_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "animate_text",
+			"value": "animate_text",
+			"default_value": true,
+			"parent" : ["carry_toggle"]
+		},
+		{
+			"type": "toggle",
 			"id": "carry_value_toggle",
 			"title": "carry_value_title",
 			"description": "carry_value_desc",
@@ -28,10 +50,6 @@
 			"value": "carry_value",
 			"default_value": true,
 			"parent" : ["carry_toggle"]
-		},
-		{
-			"type": "divider",
-			"size": 8
 		},
 		{
 		    "type": "slider",

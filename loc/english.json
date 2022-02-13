@@ -171,7 +171,11 @@
 
 	"hmh_carry_title" : "Carrying",
 	"hmh_carry_desc" : "Customize the carry panel.",
-	"carry_title" : "Flashing Carry Panel",
+	"carry_title" : "Carry Panel",
+	"animate_text_title" : "Animate Carry Text",
+	"animate_text_desc" : "Enable the flashing text when carrying bags.",
+	"colored_carry_text_title" : "Colored Carry Text",
+	"colored_carry_text_desc" : "Matches the carrying text with the current player color.",
 	"carry_desc" : "Enable the custom carry panel.",
 	"carry_value_title" : "Show Loot Value",
 	"carry_value_desc" : "Display the value of the loot being carried.",
