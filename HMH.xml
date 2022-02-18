@@ -40,6 +40,7 @@
 				    <post :script_path="Bulletstorm.lua"/>
 					<post :script_path="ComboCounter.lua"/>
 					<post :script_path="Scripts.lua"/>
+					<post :script_path="InvulnerabilityCooldown.lua"/>
 				</group>
 				<group :hook_id="dialogs/specializationdialog">
 					<post :script_path="InputDialog.lua"/>
@@ -99,6 +100,7 @@
 					<group :hook_id="hudteammate">
                         <post :script_path="TeamPanel.lua"/>
 						<post :script_path="Stamina.lua"/>
+						<post :script_path="InvulnerabilityCooldown.lua"/>
                     </group>
 					<group :hook_id="hudinteraction">
 		                <post :script_path="InteractionPanel.lua"/>

@@ -221,13 +221,13 @@ if interact_info_text then
     --end
 end
 
-if HMH:GetOption("color_condition") then
-	Hooks:PostHook(HUDTeammate, "_create_radial_health", "HMH_HUDTeammateCreateRadialHealth", function(self, radial_health_panel, ...)
-	    local radial_ability_panel = radial_health_panel:child("radial_ability")
-        local ability_icon = radial_ability_panel:child("ability_icon")
-	    ability_icon:set_visible(false)
-    end)
-end
+
+Hooks:PostHook(HUDTeammate, "_create_radial_health", "HMH_HUDTeammateCreateRadialHealth", function(self, radial_health_panel, ...)
+	local radial_ability_panel = radial_health_panel:child("radial_ability")
+    local ability_icon = radial_ability_panel:child("ability_icon")
+	ability_icon:set_color(HMH:GetColor("Ability_icon_color") or Color.white)
+	ability_icon:set_visible(HMH:GetOption("ability_icon"))
+end)
 
 Hooks:PostHook(HUDTeammate, "set_callsign", "HMH_HUDTeammateSetCallsign", function(self, id, ...)
     if HMH:GetOption("color_condition") then

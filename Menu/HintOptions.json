@@ -43,20 +43,6 @@
 			"callback": "SetColorOption",
 			"callback_arguments": "HintColor",
 			"parent" : "hint_toggle"
-		},
-		{
-			"type": "divider",
-			"size": 16
-		},
-		{
-			"type": "toggle",
-			"id": "inspire_toggle",
-			"title": "inspire_title",
-			"description": "inspire_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "inspire",
-			"value": "inspire",
-			"default_value": true
 		}
 	]
 }

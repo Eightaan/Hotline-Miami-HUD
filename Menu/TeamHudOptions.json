@@ -20,9 +20,16 @@
 		},
 		{
 			"type": "button",
+			"id": "hmh_hud_ability_menu",
+			"title": "hmh_hud_ability_title",
+			"description": "hmh_hud_ability_desc",
+			"next_menu": "hmh_hud_ability_menu"
+		},
+		{
+			"type": "button",
 			"id": "hmh_hud_player_color_menu",
 			"title": "hmh_hud_player_color_title",
-			"description": "hmh_hud_player_color_title",
+			"description": "hmh_hud_player_color_desc",
 			"next_menu": "hmh_hud_player_color_menu"
 		},
 		{
@@ -59,40 +66,6 @@
 			"callback_arguments" : "ping",
 			"value": "ping",
 			"default_value": false
-		},
-		{
-			"type": "toggle",
-			"id": "bulletstorm_toggle",
-			"title": "bulletstorm_title",
-			"description": "bulletstorm_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "bulletstorm",
-			"value": "bulletstorm",
-			"default_value": true
-		},
-		{
-			"type": "toggle",
-			"id": "stamina_toggle",
-			"title": "stamina_title",
-			"description": "stamina_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "stamina",
-			"value": "stamina",
-			"default_value": false
-		},
-		{
-			"type": "toggle",
-			"id": "screen_effect_toggle",
-			"title": "screen_effect_title",
-			"description": "screen_effect_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "screen_effect",
-			"value": "screen_effect",
-			"default_value": false			
-		},
-		{
-			"type": "divider",
-			"size": 8
 		},
 		{
 			"type": "toggle",
