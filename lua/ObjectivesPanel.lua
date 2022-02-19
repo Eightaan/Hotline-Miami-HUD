@@ -1,4 +1,4 @@
-if not HMH:GetOption("objective") or (VHUDPlus and VHUDPlus:getSetting({"CustomHUD", "ENABLED_ENHANCED_OBJECTIVE"}, false)) then
+if not HMH:GetOption("objective") or (VHUDPlus and VHUDPlus:getSetting({"CustomHUD", "ENABLED_ENHANCED_OBJECTIVE"}, false)) or WolfHUD then
     return
 end
 
