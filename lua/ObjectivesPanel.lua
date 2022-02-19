@@ -1,25 +1,21 @@
-if not HMH:GetOption("objective") then
+if not HMH:GetOption("objective") or (VHUDPlus and VHUDPlus:getSetting({"CustomHUD", "ENABLED_ENHANCED_OBJECTIVE"}, false)) then
     return
 end
 
 local init_orig = HUDObjectives.init
 function HUDObjectives:init(...)
     init_orig(self, ...)
-	if not self._bg_box then
-	    return
+	if self._bg_box then
+	    self._bg_box:child("bg"):hide()
+    	self._bg_box:child("left_top"):hide()
+     	self._bg_box:child("left_bottom"):hide()
+	    self._bg_box:child("right_top"):hide()
+    	self._bg_box:child("right_bottom"):hide()
 	end
-	self._bg_box:child("bg"):hide()
-	self._bg_box:child("left_top"):hide()
-	self._bg_box:child("left_bottom"):hide()
-	self._bg_box:child("right_top"):hide()
-	self._bg_box:child("right_bottom"):hide()
 end
 local activate_objective_orig = HUDObjectives.activate_objective
 function HUDObjectives:activate_objective(data)
 	self._active_objective_id = data.id
-	if not self._hud_panel then
-	   return activate_objective_orig(self, data) -- To prevent crashes with vanillahud plus
-	end
 	local objectives_panel = self._hud_panel:child("objectives_panel")
 	local objective_text = objectives_panel:child("objective_text")
 	local amount_text = objectives_panel:child("amount_text")
