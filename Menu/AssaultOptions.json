@@ -29,7 +29,8 @@
 			"max": 1,
             "min": 0,
             "step": 1,
-            "default_value": 1
+            "default_value": 1,
+			"parent" : "assault_toggle"
 		},
 		{
 		    "type": "slider",
@@ -42,7 +43,8 @@
 			"max": 1,
             "min": 0,
             "step": 1,
-            "default_value": 1
+            "default_value": 1,
+			"parent" : "assault_toggle"
 		},
 		{
 			"type" : "divider",
@@ -202,70 +204,6 @@
 			"callback": "SetColorOption",
 			"callback_arguments": "CasingIcon",
 			"parent" : ["assault_toggle", "casing_toggle"]
-		},
-		{
-			"type": "divider",
-			"size": 16
-		},
-		{
-			"type": "toggle",
-			"id": "infoboxes_toggle",
-			"title": "infoboxes_title",
-			"description": "infoboxes_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "infoboxes",
-			"value": "infoboxes",
-			"default_value": true,
-			"is_parent" : true
-		},
-		{
-			"type": "toggle",
-			"id": "pager_jam_toggle",
-			"title": "pager_jam_title",
-			"description": "pager_jam_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "pager_jam",
-			"value": "pager_jam",
-			"default_value": true,
-			"is_parent" : true,
-			"parent" : "infoboxes_toggle"	
-		},
-		{
-			"type": "divider",
-			"size": 8
-		},
-		{
-			"type": "color_select",
-			"id": "ecm_text_color_select",
-			"title": "HotlineMiamiHudECMTextTitleID",
-			"description": "HotlineMiamiHudColorOption",
-			"value": "ECMText",
-			"default_value": [102, 255, 255],
-			"callback": "SetColorOption",
-			"callback_arguments": "ECMText",
-			"parent" : ["infoboxes_toggle"]
-		},
-		{
-			"type": "color_select",
-			"id": "ecm_icon_color_select",
-			"title": "HotlineMiamiHudECMIconTitleID",
-			"description": "HotlineMiamiHudColorOption",
-			"value": "ECMIcon",
-			"default_value": [255, 128, 223],
-			"callback": "SetColorOption",
-			"callback_arguments": "ECMIcon",
-			"parent" : ["infoboxes_toggle"]
-		},
-		{
-			"type": "color_select",
-			"id": "ecm_upgrade_icon_color_select",
-			"title": "HotlineMiamiHudECMUpgradeIconTitleID",
-			"description": "HotlineMiamiHudColorOption",
-			"value": "ECMUpgradeIcon",
-			"default_value": [102, 255, 153],
-			"callback": "SetColorOption",
-			"callback_arguments": "ECMUpgradeIcon",
-			"parent" : ["infoboxes_toggle", "pager_jam_toggle"]
 		}
 	]
 }

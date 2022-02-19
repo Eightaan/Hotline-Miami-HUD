@@ -2,6 +2,16 @@ if not HMH:GetOption("carry") then
     return
 end
 
+local init_orig = HUDTemp.init
+function HUDTemp:init(...)
+    init_orig(self, ...)
+    self._bg_box:child("left_top"):hide()
+	self._bg_box:child("left_bottom"):hide()
+	self._bg_box:child("right_top"):hide()
+	self._bg_box:child("right_bottom"):hide()
+	self._bg_box:child("bg"):hide()
+end
+
 function HUDTemp:_animate_hide_bag_panel(bag_panel)
 	set_alpha(bag_panel, 0)
 end

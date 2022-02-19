@@ -5,7 +5,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 	    self._hud_panel = hud.panel
 	    self._ecm_panel = self._hud_panel:panel({
 		    name = "ecm_counter_panel",
-			alpha = HMH:GetOption("infoboxes") and HMH:GetOption("info_box_alpha") or 0,
+			alpha = HMH:GetOption("infoboxes") or 0,
 		    visible = false,
 		    w = 200,
 		    h = 200
@@ -14,16 +14,23 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 	    self._ecm_panel:set_top(50)
         self._ecm_panel:set_right(self._hud_panel:w() + 11)
 
-	    local ecm_box = HUDBGBox_create(self._ecm_panel, { w = 38, h = 38 }, {})
-
-	    self._text = ecm_box:text({
+	    self._ecm_box = HUDBGBox_create(self._ecm_panel, { w = 38, h = 38 }, {})
+		
+		if HMH:GetOption("assault") then
+		   self._ecm_box:child("bg"):hide()
+		   self._ecm_box:child("left_top"):hide()
+		   self._ecm_box:child("left_bottom"):hide()
+		   self._ecm_box:child("right_top"):hide()
+		   self._ecm_box:child("right_bottom"):hide()
+	    end
+	    self._text = self._ecm_box:text({
 		    name = "text",
 		    text = "0",
 		    valign = "center",
 		    align = "center",
 		    vertical = "center",
-		    w = ecm_box:w(),
-		    h = ecm_box:h(),
+		    w = self._ecm_box:w(),
+		    h = self._ecm_box:h(),
 		    layer = 1,
 		    color = HMH:GetColor("ECMText"),
 		    font = tweak_data.hud_corner.assault_font,
@@ -37,12 +44,12 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		    valign = "top",
 			color = HMH:GetColor("ECMIcon"),
 		    layer = 1,
-		    w = ecm_box:w(),
-		    h = ecm_box:h()
+		    w = self._ecm_box:w(),
+		    h = self._ecm_box:h()
 	    })
-	    ecm_icon:set_right(ecm_box:parent():w())
-	    ecm_icon:set_center_y(ecm_box:h() / 2)
-		ecm_box:set_right(ecm_icon:left())
+	    ecm_icon:set_right(self._ecm_box:parent():w())
+	    ecm_icon:set_center_y(self._ecm_box:h() / 2)
+		self._ecm_box:set_right(ecm_icon:left())
 
 		local pagers_texture, pagers_rect = tweak_data.hud_icons:get_icon_data("pagers_used")
 		local pager_icon = self._ecm_panel:bitmap({
@@ -53,11 +60,11 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 			visible = false,
 			color = HMH:GetColor("ECMUpgradeIcon"),
 		    layer = 2,
-		    w = ecm_box:w() / 2,
-		    h = ecm_box:h() / 2
+		    w = self._ecm_box:w() / 2,
+		    h = self._ecm_box:h() / 2
 	    })
 		pager_icon:set_right(self._ecm_panel:w() - 20)
-		pager_icon:set_center_y(ecm_box:h())
+		pager_icon:set_center_y(self._ecm_box:h())
     end
 
 	local string_format = string.format
