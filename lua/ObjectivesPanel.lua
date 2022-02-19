@@ -45,7 +45,7 @@ function HUDObjectives:activate_objective( data )
 
     amount_text:set_visible(data.amount)
 	amount_text:set_x( objective_text:x() + 5 + w )
-	--amount_text:set_y(0)
+	amount_text:set_y(0)
 end
 
 function HUDObjectives:update_amount_objective(data)
