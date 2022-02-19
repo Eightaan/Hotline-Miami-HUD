@@ -3,7 +3,7 @@ if _G.IS_VR then
 end
 
 local ammo = HMH:GetOption("ammo")
-local interact_info_text = HMH:GetOption("interact_info") and not (VHUDPlus and VHUDPlus:getSetting({"CustomHUD", "HUDTYPE"}, 2) > 1 or VoidUI and VoidUI.options.teammate_panels)
+local interact_info_text = HMH:GetOption("interact_info") and not (VoidUI and VoidUI.options.teammate_panels)
 Hooks:PostHook(HUDTeammate, "init", "HMH_HUDTeammateInit", function(self, ...)
     if interact_info_text then
 	    local radial_health_panel = self._player_panel:child("radial_health_panel")

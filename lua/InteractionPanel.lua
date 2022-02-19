@@ -25,9 +25,7 @@ elseif RequiredScript == "lib/units/interactions/interactionext" then
     local BaseInteraction_interact_start_original = BaseInteractionExt.interact_start
 	function BaseInteractionExt:interact_start(player, data, ...)
 		local t = Application:time()
-		if HMH:GetOption("stealth_c4") and managers.groupai:state():whisper_mode() and not (VHUDPlus and VHUDPlus:getSetting({"EQUIPMENT", "SHAPED_CHARGE_STEALTH_DISABLED"}, true))
-				and self._tweak_data.required_deployable and self._tweak_data.required_deployable == "trip_mine"
-				and (t - (self._last_shaped_charge_t or 0) >= 0.25) then
+		if HMH:GetOption("stealth_c4") and managers.groupai:state():whisper_mode() and self._tweak_data.required_deployable and self._tweak_data.required_deployable == "trip_mine" and (t - (self._last_shaped_charge_t or 0) >= 0.25) then
 			self._last_shaped_charge_t = t
 			return false
 		end

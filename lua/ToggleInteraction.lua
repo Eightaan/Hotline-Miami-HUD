@@ -1,4 +1,4 @@
-if HMH:GetOption("toggle_interact") == 0 or VHUDPlus then 
+if HMH:GetOption("toggle_interact") == 0 then 
     return
 end
 

@@ -2,16 +2,6 @@ if not HMH:GetOption("carry") then
     return
 end
 
-local init_orig = HUDTemp.init
-function HUDTemp:init(...)
-    init_orig(self, ...)
-    self._bg_box:child("left_top"):hide()
-	self._bg_box:child("left_bottom"):hide()
-	self._bg_box:child("right_top"):hide()
-	self._bg_box:child("right_bottom"):hide()
-	self._bg_box:child("bg"):hide()
-end
-
 function HUDTemp:_animate_hide_bag_panel(bag_panel)
 	set_alpha(bag_panel, 0)
 end
@@ -33,6 +23,14 @@ function HUDTemp:show_carry_bag(carry_id, value)
 	local type_text = carry_data.name_id and managers.localization:text(carry_data.name_id)
 	local bag_text = self._bg_box:child("bag_text")
 	local bag_value = managers.money:get_secured_bonus_bag_value(carry_id, value)
+	
+	if self._bg_box then
+	    self._bg_box:child("bg"):hide()
+    	self._bg_box:child("left_top"):hide()
+     	self._bg_box:child("left_bottom"):hide()
+	    self._bg_box:child("right_top"):hide()
+    	self._bg_box:child("right_bottom"):hide()
+	end
 
 	bag_panel:set_visible(true)
 	local carrying_text = managers.localization:text("hud_carrying") .. " " .. type_text
