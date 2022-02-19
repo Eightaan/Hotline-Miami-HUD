@@ -669,6 +669,9 @@ if HMH:GetOption("colored_downs") then
     			revive_bg:set_alpha(0)
     		end
     	end
+		self._panel:child("player"):child("revive_panel"):set_visible(true)
+	    self._panel:child("callsign_bg"):set_visible(false)
+		self._panel:child("callsign"):set_visible(false)
     end)
 end
 
