@@ -1,4 +1,4 @@
-if not HMH:GetOption("objective") or VHUDPlus and VHUDPlus:getSetting({"CustomHUD", "ENABLED_ENHANCED_OBJECTIVE"}, false) then
+if not HMH:GetOption("objective") or (VHUDPlus and VHUDPlus:getSetting({"CustomHUD", "ENABLED_ENHANCED_OBJECTIVE"}, false)) or (VoidUI and VoidUI.options.enable_objectives) or WolfHUD or then
     return
 end
 
@@ -16,8 +16,7 @@ function HUDObjectives:activate_objective(data)
 	    self._bg_box:child("right_top"):hide()
     	self._bg_box:child("right_bottom"):hide()
 	end
-	
-	if not icon_objectivebox then return end -- To prevent crahses with voidui
+
 	icon_objectivebox:set_color(HMH:GetColor("ObjectiveIcon"))
 	icon_objectivebox:set_alpha(HMH:GetOption("objective_text"))
 	objective_text:set_x(34)
@@ -54,6 +53,7 @@ function HUDObjectives:update_amount_objective(data)
 	local current = data.current_amount or 0
 	local amount = data.amount
 	local objectives_panel = self._hud_panel:child("objectives_panel")
+	objectives_panel:child("amount_text"):set_text(current .. "/" .. amount)
 end
 
 function HUDObjectives:complete_objective(data)
