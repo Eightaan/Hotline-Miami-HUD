@@ -2,7 +2,7 @@ if not HMH:GetOption("assault") then
    return
 end
 
-Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(self, hud, tweak_hud, ...)
+Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(self, hud, ...)
     self._assault_color = HMH:GetColor("AssaultText")
 	self._vip_assault_color = HMH:GetColor("CaptainText")
 	if managers.mutators:are_mutators_active() then
