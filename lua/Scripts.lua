@@ -8,6 +8,27 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 	local set_stamina_value_original = HUDManager.set_stamina_value
 	local set_max_stamina_original = HUDManager.set_max_stamina
 	local force_ready_clicked = 0
+	local show_casing_original = HUDManager.show_casing
+	local sync_start_assault_original = HUDManager.sync_start_assault
+	local show_point_of_no_return_timer_original = HUDManager.show_point_of_no_return_timer
+    local show_heist_timer = HMH:GetOption("assault") and VHUDPlus and VHUDPlus:getSetting({"AssaultBanner", "USE_CENTER_ASSAULT"}, true)
+	
+	if show_heist_timer then
+		function HUDManager:show_casing(...)
+		    show_casing_original(self, ...)
+			self._hud_heist_timer._heist_timer_panel:set_visible(true)
+		end
+
+		function HUDManager:sync_start_assault(...)
+		    sync_start_assault_original(self, ...)
+			self._hud_heist_timer._heist_timer_panel:set_visible(true)
+		end
+
+		function HUDManager:show_point_of_no_return_timer(...)
+	    	show_point_of_no_return_timer_original(self, ...)
+			self._hud_heist_timer._heist_timer_panel:set_visible(true)
+		end
+	end
 
     --Ping Display
     function HUDManager:update(...)

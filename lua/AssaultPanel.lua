@@ -2,7 +2,7 @@ if not HMH:GetOption("assault") then
    return
 end
 
-Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(self, hud, ...)
+Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(self, hud, tweak_hud, ...)
     self._assault_color = HMH:GetColor("AssaultText")
 	self._vip_assault_color = HMH:GetColor("CaptainText")
 	if managers.mutators:are_mutators_active() then
@@ -81,18 +81,13 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 	local point_of_no_return_text = self._noreturn_bg_box:child( "point_of_no_return_text" )
 	local icon_noreturnbox = point_of_no_return_panel:child("icon_noreturnbox")
 	local point_of_no_return_timer = self._noreturn_bg_box:child( "point_of_no_return_timer" )
-
 	self._noreturn_bg_box:child("bg"):hide()
 	self._noreturn_bg_box:child("left_top"):hide()
 	self._noreturn_bg_box:child("left_bottom"):hide()
 	self._noreturn_bg_box:child("right_top"):hide()
 	self._noreturn_bg_box:child("right_bottom"):hide()
-	point_of_no_return_panel:show()
-	point_of_no_return_panel:set_alpha(0)
 	icon_noreturnbox:set_color(HMH:GetColor("NoReturnIcon"))
 	icon_noreturnbox:set_alpha(HMH:GetOption("assault_text"))
-	point_of_no_return_text:set_color(HMH:GetColor("NoReturnText"))
-	point_of_no_return_text:set_alpha(HMH:GetOption("assault_text"))
 	point_of_no_return_timer:set_color(HMH:GetColor("NoReturnTimer"))
 	point_of_no_return_timer:set_alpha(HMH:GetOption("assault_text"))
 	point_of_no_return_timer:set_y(0)
@@ -101,6 +96,18 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 	icon_noreturnbox:set_blend_mode("normal")
 	self._noreturn_bg_box:set_right(icon_noreturnbox:left() - 3)
 	self._noreturn_bg_box:set_center_y(icon_noreturnbox:center_y())
+
+	point_of_no_return_panel:show()
+	point_of_no_return_panel:set_alpha(0)
+	point_of_no_return_panel:text({
+		name = "text",
+		color = HMH:GetColor("NoReturnText"),
+		alpha = HMH:GetOption("assault_text"),
+		font = tweak_data.hud.medium_font_noshadow
+	})
+	local _,_,w,h = point_of_no_return_panel:child("text"):text_rect()
+	point_of_no_return_panel:set_size(500, 40)
+	point_of_no_return_panel:set_righttop(self._hud_panel:w(), 0)
 
     -- VIP ICON
     local icon_offset = 140 + (10 * managers.job:current_difficulty_stars())
@@ -117,6 +124,21 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 	vip_icon:set_blend_mode("normal")
 	vip_icon:set_alpha(HMH:GetOption("assault_text"))
 	self._vip_bg_box:child("bg"):hide()
+	
+	if VHUDPlus then  
+	    if VHUDPlus:getSetting({"AssaultBanner", "USE_CENTER_ASSAULT"}, true) and not VHUDPlus:getSetting({"CustomHUD", "ENABLED_ENHANCED_OBJECTIVE"}, false) then 
+	        self._casing_timer._timer_text:set_visible(false)
+		    self._assault_timer._timer_text:set_visible(false)
+	    end
+
+	    if self:should_display_waves() and alive(assault_panel) and VHUDPlus:getSetting({"AssaultBanner", "WAVE_COUNTER"}, true) then
+	        local wave_panel = self._hud_panel:child("wave_panel")
+	        self._wave_text:set_visible(false)
+		    if alive(wave_panel) then
+		        wave_panel:set_alpha(1)
+		    end
+		end
+	end
 end)
 
 Hooks:PostHook(HUDAssaultCorner, "setup_wave_display", "HMH_hudassaultcorner_setup_wave_display", function(self, top, ...)
