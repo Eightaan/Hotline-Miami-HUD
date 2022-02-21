@@ -86,8 +86,12 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 	self._noreturn_bg_box:child("left_bottom"):hide()
 	self._noreturn_bg_box:child("right_top"):hide()
 	self._noreturn_bg_box:child("right_bottom"):hide()
+	point_of_no_return_panel:show()
+	point_of_no_return_panel:set_alpha(0)
 	icon_noreturnbox:set_color(HMH:GetColor("NoReturnIcon"))
 	icon_noreturnbox:set_alpha(HMH:GetOption("assault_text"))
+	point_of_no_return_text:set_color(HMH:GetColor("NoReturnText"))
+	point_of_no_return_text:set_alpha(HMH:GetOption("assault_text"))
 	point_of_no_return_timer:set_color(HMH:GetColor("NoReturnTimer"))
 	point_of_no_return_timer:set_alpha(HMH:GetOption("assault_text"))
 	point_of_no_return_timer:set_y(0)
@@ -96,18 +100,6 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 	icon_noreturnbox:set_blend_mode("normal")
 	self._noreturn_bg_box:set_right(icon_noreturnbox:left() - 3)
 	self._noreturn_bg_box:set_center_y(icon_noreturnbox:center_y())
-
-	point_of_no_return_panel:show()
-	point_of_no_return_panel:set_alpha(0)
-	point_of_no_return_panel:text({
-		name = "text",
-		color = HMH:GetColor("NoReturnText"),
-		alpha = HMH:GetOption("assault_text"),
-		font = tweak_data.hud.medium_font_noshadow
-	})
-	local _,_,w,h = point_of_no_return_panel:child("text"):text_rect()
-	point_of_no_return_panel:set_size(500, 40)
-	point_of_no_return_panel:set_righttop(self._hud_panel:w(), 0)
 
     -- VIP ICON
     local icon_offset = 140 + (10 * managers.job:current_difficulty_stars())
@@ -126,12 +118,16 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 	self._vip_bg_box:child("bg"):hide()
 	
 	if VHUDPlus then  
-	    if VHUDPlus:getSetting({"AssaultBanner", "USE_CENTER_ASSAULT"}, true) and not VHUDPlus:getSetting({"CustomHUD", "ENABLED_ENHANCED_OBJECTIVE"}, false) then 
+	    local VHUDPlus_waves = VHUDPlus:getSetting({"AssaultBanner", "WAVE_COUNTER"}, true)
+	    local VHUDPlus_enhanced_obj = VHUDPlus:getSetting({"CustomHUD", "ENABLED_ENHANCED_OBJECTIVE"}, false)
+	    local VHUDPlus_center_assault = VHUDPlus:getSetting({"AssaultBanner", "USE_CENTER_ASSAULT"}, true)
+
+	    if VHUDPlus_center_assault and not VHUDPlus_enhanced_obj then 
 	        self._casing_timer._timer_text:set_visible(false)
 		    self._assault_timer._timer_text:set_visible(false)
 	    end
 
-	    if self:should_display_waves() and alive(assault_panel) and VHUDPlus:getSetting({"AssaultBanner", "WAVE_COUNTER"}, true) then
+	    if self:should_display_waves() and alive(assault_panel) and VHUDPlus_waves then
 	        local wave_panel = self._hud_panel:child("wave_panel")
 	        self._wave_text:set_visible(false)
 		    if alive(wave_panel) then

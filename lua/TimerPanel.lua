@@ -1,9 +1,4 @@
 Hooks:PostHook(HUDHeistTimer, "init", "HMMTimer", function(self, hud, tweak_hud)
-    if HMH:GetOption("timer")  then
-	    self._timer_text:set_color(HMH:GetColor("TimerColor"))
-        self._timer_text:set_alpha(HMH:GetOption("TimerAlpha"))
-	end
-
     if HMH:GetOption("objective") and VHUDPlus and VHUDPlus:getSetting({"CustomHUD", "ENABLED_ENHANCED_OBJECTIVE"}, false) then
         self._hud_panel = hud.panel
 
@@ -37,5 +32,9 @@ Hooks:PostHook(HUDHeistTimer, "init", "HMMTimer", function(self, hud, tweak_hud)
         if not self._enabled then
 	        self._heist_timer_panel:hide()
         end
+	end
+	if HMH:GetOption("timer")  then
+	    self._timer_text:set_color(HMH:GetColor("TimerColor"))
+        self._timer_text:set_alpha(HMH:GetOption("TimerAlpha"))
 	end
 end)

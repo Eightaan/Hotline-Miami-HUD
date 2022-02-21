@@ -205,4 +205,10 @@ elseif string.lower(RequiredScript) == "lib/managers/menumanagerdialogs" then
 		end
 		return show_person_joining_original(self, id, nick, ...)
 	end
+elseif string.lower(RequiredScript) == "lib/managers/menu/menuscenemanager" then
+    Hooks:PostHook(MenuSceneManager, "_set_up_environments", "hmh_set_up_environments", function(self)
+	    if HMH:GetOption("custom_filter") and self._environments and self._environments.standard and self._environments.standard.color_grading then
+		    self._environments.standard.color_grading = "color_off"
+	    end
+    end)
 end
