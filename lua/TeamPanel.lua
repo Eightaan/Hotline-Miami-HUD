@@ -120,9 +120,6 @@ if HMH:GetOption("bulletstorm") then
     local set_custom_radial_orig = HUDTeammate.set_custom_radial
 	function HUDTeammate:set_custom_radial(data)
 	    set_custom_radial_orig(self, data)
-			local teammate_panel = self._panel:child("player")
-	local radial_health_panel = self._radial_health_panel
-	local radial_custom = radial_health_panel:child("radial_custom")
 	    local duration = data.current / data.total
 		local aced = managers.player:upgrade_level("player", "berserker_no_ammo_cost", 0) == 1
 		if not VHUDPlus or WolfHUD then
@@ -132,7 +129,6 @@ if HMH:GetOption("bulletstorm") then
 	            managers.hud:set_bulletstorm(false)
 	        end
 		end
-		radial_custom:set_alpha(duration > 0 and 1)
     end
 end
 
