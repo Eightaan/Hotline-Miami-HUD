@@ -88,8 +88,8 @@ if HMH:GetOption("bulletstorm") then
 	function HUDTeammate:_set_bulletstorm(state)
 		self._bullet_storm = state
         if not self._primary_ammo then return end
-
-    	if state then   
+    	if self._bullet_storm then
+		    local hudinfo = managers.hud:script(PlayerBase.PLAYER_INFO_HUD_PD2)
 			local pweapon_panel = self._player_panel:child("weapons_panel"):child("primary_weapon_panel")
 			local pammo_clip = pweapon_panel:child("ammo_clip")
 	   	 	local sweapon_panel = self._player_panel:child("weapons_panel"):child("secondary_weapon_panel")
@@ -97,8 +97,8 @@ if HMH:GetOption("bulletstorm") then
 
 		    self._primary_ammo:set_visible(true)
     		self._secondary_ammo:set_visible(true)
-		    self._secondary_ammo:animate(callback(self, self, "_animate_glow"))
-    		self._primary_ammo:animate(callback(self, self, "_animate_glow"))
+			self._primary_ammo:animate(hudinfo.flash_icon, 4000000000)
+			self._secondary_ammo:animate(hudinfo.flash_icon, 4000000000)
 
     		pammo_clip:set_color(Color.white)
     		pammo_clip:set_text("8")
@@ -117,13 +117,23 @@ if HMH:GetOption("bulletstorm") then
 		end
 	end
 
-	function HUDTeammate:_animate_glow(glow)
-		local t = 0
-		while true do
-	  		t = t + coroutine.yield()
-	    	glow:set_alpha((math.abs(math.sin((4 + t) * 360 * 4 / 4))))
+    local set_custom_radial_orig = HUDTeammate.set_custom_radial
+	function HUDTeammate:set_custom_radial(data)
+	    set_custom_radial_orig(self, data)
+			local teammate_panel = self._panel:child("player")
+	local radial_health_panel = self._radial_health_panel
+	local radial_custom = radial_health_panel:child("radial_custom")
+	    local duration = data.current / data.total
+		local aced = managers.player:upgrade_level("player", "berserker_no_ammo_cost", 0) == 1
+		if not VHUDPlus or WolfHUD then
+	        if aced and duration > 0 then
+	            managers.hud:set_bulletstorm(true)
+	        else
+	            managers.hud:set_bulletstorm(false)
+	        end
 		end
-	end
+		radial_custom:set_alpha(duration > 0 and 1)
+    end
 end
 
 if interact_info_text then
