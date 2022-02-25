@@ -123,7 +123,7 @@ if HMH:GetOption("bulletstorm") then
 	    local duration = data.current / data.total
 		local aced = managers.player:upgrade_level("player", "berserker_no_ammo_cost", 0) == 1
 		if not VHUDPlus or WolfHUD then
-	        if aced and duration > 0 then
+	        if self._main_player and aced and duration > 0 then
 	            managers.hud:set_bulletstorm(true)
 	        else
 	            managers.hud:set_bulletstorm(false)
@@ -537,15 +537,11 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammateSetAmmoAm
 	local low_clip = current_clip <= math.round(max_clip / 4)
 	local out_of_clip = current_clip <= 0
     local out_of_ammo = current_left <= 0
-    local cheated_ammo = current_left > max
-    local cheated_clip = current_clip > max_clip
 	local color_total = out_of_ammo and Color(1 , 0.9 , 0.3 , 0.3)
     color_total = color_total or low_ammo and (low_ammo_color)
-    color_total = color_total or cheated_ammo and Color.red
     color_total = color_total or (total_ammo_color)
 	local color_clip = out_of_clip and Color(1 , 0.9 , 0.3 , 0.3)
     color_clip = color_clip or low_clip and (low_ammo_color)
-    color_clip = color_clip or cheated_clip and Color.red
     color_clip = color_clip or (clip_ammo_color)
     local ammo_total = weapon_panel:child("ammo_total")
 	local zero = current_left < 10 and "00" or current_left < 100 and "0" or ""
@@ -591,10 +587,8 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammateSetAmmoAm
                     local zero = math.round(value) < 10 and "00" or math.round(value) < 100 and "0" or ""
                     local low_ammo = value <= math.round(max_clip / 2)
                     local out_of_ammo = value <= 0
-                    local cheated_ammo = value > max
                     local color_total = out_of_ammo and Color(1, 0.9, 0.3, 0.3)
                     color_total = color_total or low_ammo and low_ammo_color
-                    color_total = color_total or cheated_ammo and Color.red
                     color_total = color_total or (total_ammo_color)
 
                     ammo_total:set_text(zero .. text)
