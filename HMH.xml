@@ -129,8 +129,8 @@
 
 					<group :hook_id="beings/player/states/">
 						<group :hook_id="playerstandard">
-							<post :script_path="Inspirecooldown.lua"/>
 						    <post :script_path="ToggleInteraction.lua"/>
+							<post :script_path="Inspirecooldown.lua"/>
                         </group>
 
 						<group :hook_id="playerdriving">

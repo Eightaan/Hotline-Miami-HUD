@@ -70,8 +70,9 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 	local string_format = string.format
     function HUDECMCounter:update(t)
 	    self._ecm_panel:set_visible(managers.groupai:state():whisper_mode() and t > 0)
-	    if t > 0 then
-		    self._text:set_text(string_format("%.fs", t))
+	    if t > 0.1 then
+		    local t_format = t < 10 and "%.1fs" or "%.fs"
+		    self._text:set_text(string_format(t_format, t))
         end
     end
 
