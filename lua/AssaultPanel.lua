@@ -115,7 +115,6 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 	vip_icon:set_color(HMH:GetColor("CaptainBuffIcon"))
 	vip_icon:set_blend_mode("normal")
 	vip_icon:set_alpha(HMH:GetOption("assault_text"))
-	self._vip_bg_box:child("bg"):hide()
 	
 	if VHUDPlus then  
 	    local VHUDPlus_waves = VHUDPlus:getSetting({"AssaultBanner", "WAVE_COUNTER"}, true)
