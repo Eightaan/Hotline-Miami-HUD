@@ -145,10 +145,6 @@
 			<group :hook_id="tweak_data/tweakdata">
 				<post :script_path="HudColors.lua"/>
 			</group>
-
-			<group :hook_id="network/handlers/unitnetworkhandler">
-				<post :script_path="Lasers.lua"/>
-			</group>
 			<group :hook_id="network/matchmaking/networkvoicechatsteam">
 				<post :script_path="VoiceChat.lua"/>
 			</group>

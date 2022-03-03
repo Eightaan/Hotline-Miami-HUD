@@ -690,7 +690,7 @@ function HUDTeammate:update_latency(t, dt)
 
 		if type(latency) == "number" then
 			ping_panel:set_text(string.format("%.0fms", latency))
-			ping_panel:set_color(latency < 75 and Color('66ff99') or latency < 150 and Color('ffcc66') or Color('ff6666'))
+			ping_panel:set_color(latency < 75 and  tweak_data.chat_colors[1] or latency < 150 and  tweak_data.chat_colors[4] or  tweak_data.chat_colors[3])
 		else
 			ping_panel:set_text(latency)
 			ping_panel:set_color(Color('ff6666'))

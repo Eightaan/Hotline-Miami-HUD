@@ -765,9 +765,9 @@ function LoadoutPingItem:update(t, dt)
 			local peer = self._owner:get_peer()
 			if peer then
 				local latency = Network:qos(peer:rpc()).ping or 0
-				self:set_text(string.format("%.0fms", latency), latency < 75 and Color('C2FC97') or latency < 150 and Color('CEA168') or Color('E24E4E'))
+				self:set_text(string.format("%.0fms", latency), latency < 75 and tweak_data.chat_colors[1] or latency < 150 and tweak_data.chat_colors[4] or tweak_data.chat_colors[3])
 			else
-				self:set_text("---ms", Color('E24E4E'))
+				self:set_text("---ms", tweak_data.chat_colors[3])
 			end
 			self._next_update_t = (t + 1)
 
