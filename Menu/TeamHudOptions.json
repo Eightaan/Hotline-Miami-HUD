@@ -129,6 +129,16 @@
 		},
 		{
 			"type": "toggle",
+			"id": "promt_toggle",
+			"title": "promt_title",
+			"description": "promt_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "promt",
+			"value": "promt",
+			"default_value": true
+		},
+		{
+			"type": "toggle",
 			"id": "stop_ai_toggle",
 			"title": "stop_ai_title",
 			"description": "stop_ai_desc",

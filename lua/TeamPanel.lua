@@ -458,19 +458,23 @@ if HMH:GetOption("equipment") then
         amount:set_alpha(alpha)
         amount:set_color(color)
     end)
-		
-    local set_waiting_orig = HUDTeammate.set_waiting
-    function HUDTeammate:set_waiting(waiting, ...)
-        set_waiting_orig(self, waiting, ...)
+
+	Hooks:PostHook(HUDTeammate, "set_waiting", "HMH_HUDTeammate_set_waiting", function(self, waiting, peer)
 	    if self._wait_panel then
-            self._wait_panel:child("throw"):child("icon"):set_color(HMH:GetColor("EquipmentIcon"))
-		    self._wait_panel:child("perk"):child("icon"):set_color(HMH:GetColor("EquipmentIcon"))
-		    self._wait_panel:child("deploy"):child("icon"):set_color(HMH:GetColor("EquipmentIcon"))   
-		    self._wait_panel:child("deploy"):child("amount"):set_color(HMH:GetColor("EquipmentText"))
-		    self._wait_panel:child("throw"):child("amount"):set_color(HMH:GetColor("EquipmentText"))
-	    	self._wait_panel:child("perk"):child("amount"):set_color(HMH:GetColor("EquipmentText"))
+		    if waiting then
+			    local color_id = peer:id()
+	            local color = tweak_data.chat_colors[color_id] or tweak_data.chat_colors[#tweak_data.chat_colors]
+			    local name = self._wait_panel:child("name")
+			    name:set_color(color)
+                self._wait_panel:child("throw"):child("icon"):set_color(HMH:GetColor("EquipmentIcon"))
+		        self._wait_panel:child("perk"):child("icon"):set_color(HMH:GetColor("EquipmentIcon"))
+		        self._wait_panel:child("deploy"):child("icon"):set_color(HMH:GetColor("EquipmentIcon"))   
+		        self._wait_panel:child("deploy"):child("amount"):set_color(HMH:GetColor("EquipmentText"))
+		        self._wait_panel:child("throw"):child("amount"):set_color(HMH:GetColor("EquipmentText"))
+	    	    self._wait_panel:child("perk"):child("amount"):set_color(HMH:GetColor("EquipmentText"))
+		    end
 	    end
-    end
+    end)
 end
 
 if ammo then

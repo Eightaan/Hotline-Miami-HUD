@@ -68,6 +68,8 @@
 	"color_bag_desc" : "",
 	"pickups_title" : "Colored Pickup Items",
 	"pickups_desc" : "",
+	"promt_title" : "Colored Promt Panel",
+	"promt_desc" : "",
 	"equipment_title" : "Colored Equipment",
 	"equipment_desc" : "",
 	"ammo_title" : "Enhanced Ammo Display",

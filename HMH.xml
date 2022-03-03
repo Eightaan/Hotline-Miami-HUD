@@ -96,6 +96,7 @@
 					<post :hook_id="hudstatsscreenskirmish" :script_path="TabStats.lua"/>
 					<post :hook_id="hudobjectives"          :script_path="ObjectivesPanel.lua"/>
 					<post :hook_id="hudhitconfirm"          :script_path="HeadshotIcon.lua"/>
+					<post :hook_id="hudwaitinglegend"       :script_path="PromtPanel.lua"/>
 					<group :hook_id="hudteammate">
                         <post :script_path="TeamPanel.lua"/>
 						<post :script_path="Abilities.lua"/>
