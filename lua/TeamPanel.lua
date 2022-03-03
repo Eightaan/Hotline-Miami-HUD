@@ -465,7 +465,7 @@ if HMH:GetOption("equipment") then
 			    local color_id = peer:id()
 	            local color = tweak_data.chat_colors[color_id] or tweak_data.chat_colors[#tweak_data.chat_colors]
 			    local name = self._wait_panel:child("name")
-			    name:set_color(color)
+			    name:set_color(HMH:GetOption("promt") and color or Color.white)
                 self._wait_panel:child("throw"):child("icon"):set_color(HMH:GetColor("EquipmentIcon"))
 		        self._wait_panel:child("perk"):child("icon"):set_color(HMH:GetColor("EquipmentIcon"))
 		        self._wait_panel:child("deploy"):child("icon"):set_color(HMH:GetColor("EquipmentIcon"))   
