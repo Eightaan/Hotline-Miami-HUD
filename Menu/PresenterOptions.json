@@ -54,6 +54,20 @@
 			"callback": "SetColorOption",
 			"callback_arguments": "PresenterText",
 			"parent" : "presenter_toggle"
+		},
+		{
+			"type": "divider",
+			"size": 12
+		},
+		{
+			"type": "toggle",
+			"id": "silent_obj_toggle",
+			"title": "silent_obj_title",
+			"description": "silent_obj_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "silent_obj",
+			"value": "silent_obj",
+			"default_value": false
 		}
 	]
 }

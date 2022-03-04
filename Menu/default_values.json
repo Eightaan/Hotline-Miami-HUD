@@ -397,5 +397,6 @@
 	"armorer_cooldown_timer" : false,
 	"armorer_cooldown_radial" : false,
 	"ability_icon" : true,
-	"promt" : true
+	"promt" : true,
+	"silent_obj" : false
 }

@@ -323,6 +323,8 @@
 	"custody_text_desc" : "Choose a value for how translucent the custody text will be.",
 	"promt_title" : "Colored Promt Panel",
 	"promt_desc" : "",
+	"silent_obj_title" : "No Objective Sound",
+	"silent_obj_desc" : "Replaces the objective sound with silence.\nWhen changed, a game restart is required to take effect.",
 	"reset_title" : "Reset Options",
 	"reset_desc" : "Reset all the game options back to default",
 	"reset_all_title" : "Click this option to reset all settings. A game restart is required for it to take effect.",

@@ -116,6 +116,7 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 	vip_icon:set_blend_mode("normal")
 	vip_icon:set_alpha(HMH:GetOption("assault_text"))
 	
+	-- VHUDPlus Compatibility
 	if VHUDPlus then  
 	    local VHUDPlus_waves = VHUDPlus:getSetting({"AssaultBanner", "WAVE_COUNTER"}, true)
 	    local VHUDPlus_enhanced_obj = VHUDPlus:getSetting({"CustomHUD", "ENABLED_ENHANCED_OBJECTIVE"}, false)
@@ -299,7 +300,7 @@ function HUDAssaultCorner:hide_casing()
 	self._casing = false
 end
 
-function HUDAssaultCorner:_animate_show_casing( casing_panel, delay_time )
+function HUDAssaultCorner:_animate_show_casing(casing_panel, delay_time)
 	set_alpha(casing_panel, 1)
 end
 
@@ -307,16 +308,16 @@ function HUDAssaultCorner:_animate_show_noreturn(point_of_no_return_panel, delay
 	set_alpha(point_of_no_return_panel, 1)
 end
 
-function HUDAssaultCorner:flash_point_of_no_return_timer( beep )
+function HUDAssaultCorner:flash_point_of_no_return_timer(beep)
 	local flash_timer = function (o)
 		local t = 0
 		while t < 0.5 do
 			t = t + coroutine.yield()
-			local n = 1 - math.sin( t * 180 )
-            o:set_font_size( math.lerp( 24 , (24) * 1.25, n) )
+			local n = 1 - math.sin(t * 180)
+            o:set_font_size( math.lerp(24 , (24) * 1.25, n))
 		end
   	end
-  	local point_of_no_return_timer = self._noreturn_bg_box:child( "point_of_no_return_timer" )
+  	local point_of_no_return_timer = self._noreturn_bg_box:child("point_of_no_return_timer")
 	self:hide_casing()
-	point_of_no_return_timer:animate( flash_timer )
+	point_of_no_return_timer:animate(flash_timer)
 end

@@ -5,12 +5,9 @@ end
 if RequiredScript == "lib/managers/hudmanagerpd2" then
 	local set_slot_ready_orig = HUDManager.set_slot_ready
 	local update_original = HUDManager.update
-	local set_stamina_value_original = HUDManager.set_stamina_value
-	local set_max_stamina_original = HUDManager.set_max_stamina
 	local force_ready_clicked = 0
 	local show_casing_original = HUDManager.show_casing
 	local sync_start_assault_original = HUDManager.sync_start_assault
-	local show_point_of_no_return_timer_original = HUDManager.show_point_of_no_return_timer
     local show_heist_timer = VHUDPlus and VHUDPlus:getSetting({"AssaultBanner", "USE_CENTER_ASSAULT"}, true) and HMH:GetOption("assault")
 	
 	--VHUDPlus Compatibility

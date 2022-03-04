@@ -140,6 +140,8 @@
 	"presenter_desc" : "Enable the custom colored presenter panel.",
 	"present_text_title" : "Presenter Panel Transparency",
 	"present_text_desc" : "Choose a value for how translucent the presenter text will be.",
+	"silent_obj_title" : "No Objective Sound",
+	"silent_obj_desc" : "Replaces the objective sound with silence.\nWhen changed, a game restart is required to take effect.",
 
 	"hmh_interact_title" : "Interaction",
 	"hmh_interact_desc" : "Customize the interaction settings.",

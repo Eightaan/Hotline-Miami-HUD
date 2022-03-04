@@ -1,7 +1,7 @@
 if VHUDPlus or WolfHUD or _G.IS_VR then 
     return
 end
-
+-- Stamina, Infinite ammo and Invulnerable display
 if RequiredScript == "lib/managers/hudmanagerpd2" then
 	local set_stamina_value_original = HUDManager.set_stamina_value
 	local set_max_stamina_original = HUDManager.set_max_stamina
@@ -94,6 +94,19 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
                 managers.hud:set_bulletstorm(false)
 	        end
 		end
+		
+		if self._main_player and HMH:GetOption("armorer_cooldown_timer") then
+		    if duration > 0 then
+			    self._cooldown_timer:set_alpha(0)
+				self._cooldown_icon:set_alpha(0)
+				self._radial_health_panel:child("radial_armor"):set_alpha(0)
+			else
+			    self._cooldown_timer:set_alpha(1)
+				self._cooldown_icon:set_alpha(0.4)
+				self._radial_health_panel:child("radial_armor"):set_alpha(1)
+			end
+		end
+			
 	end
 
 	function HUDTeammate:_init_cooldown_timer()
@@ -122,6 +135,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 			color = HMH:GetColor("Ability_icon_color") or Color.white,
 			visible = false,
 			align = "center",
+			alpha = 0.4,
 			layer = 3
 		})
 	end
@@ -165,7 +179,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
         	self._cooldown_timer:animate(function(o)
             	o:set_visible(true)
             	local t_left = t
-            	while t_left >= 0.1 and not managers.player:player_unit():character_damage().swansong do
+            	while t_left >= 0.1 do
                 	t_left = t_left - coroutine.yield()
 					t_format = t_left < 10 and "%.1f" or "%.f"
                 	o:set_text(string.format(t_format, t_left))
@@ -191,11 +205,10 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 	  	    	self._stamina_bar:set_alpha(0) 
 			end
 			icon:set_visible(HMH:GetOption("ability_icon"))
-			icon:set_alpha(managers.player:has_activate_temporary_upgrade("temporary", "berserker_damage_multiplier") and 0 or 1)
+			icon:set_alpha(1)
     		o:set_visible(true)
     		over(duration, function (p)
       			o:set_color(Color(1, 1 - p, 1, 1))
-				o:set_alpha(managers.player:has_activate_temporary_upgrade("temporary", "berserker_damage_multiplier") and 0 or 1)
     		end)
     		o:set_visible(false)
 		    timer:set_alpha(1)
