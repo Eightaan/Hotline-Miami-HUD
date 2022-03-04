@@ -87,8 +87,8 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
        	set_custom_radial_orig(self, data)
         local duration = data.current / data.total
         local aced = managers.player:upgrade_level("player", "berserker_no_ammo_cost", 0) == 1
-		if self._main_player then
-            if HMH:GetOption("bulletstorm") and aced and duration > 0 then
+		if self._main_player and HMH:GetOption("bulletstorm") and aced then
+            if duration > 0 then
                 managers.hud:set_bulletstorm(true)
             else
                 managers.hud:set_bulletstorm(false)
