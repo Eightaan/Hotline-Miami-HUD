@@ -87,11 +87,13 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
        	set_custom_radial_orig(self, data)
         local duration = data.current / data.total
         local aced = managers.player:upgrade_level("player", "berserker_no_ammo_cost", 0) == 1
-        if HMH:GetOption("bulletstorm") and self._main_player and aced and duration > 0 then
-            managers.hud:set_bulletstorm(true)
-        else
-            managers.hud:set_bulletstorm(false)
-	    end
+		if self._main_player then
+            if HMH:GetOption("bulletstorm") and aced and duration > 0 then
+                managers.hud:set_bulletstorm(true)
+            else
+                managers.hud:set_bulletstorm(false)
+	        end
+		end
 	end
 
 	function HUDTeammate:_init_cooldown_timer()
