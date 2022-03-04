@@ -76,7 +76,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 	function HUDTeammate:init(...)
 		init_original(self, ...)
 		if self._main_player then
-			self:_init_armor_timer()
+			self:_init_cooldown_timer()
 			if HMH:GetOption("stamina") then
 			    self:_create_stamina_circle()
 			end
@@ -94,7 +94,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 	    end
 	end
 
-	function HUDTeammate:_init_armor_timer()
+	function HUDTeammate:_init_cooldown_timer()
     	self._health_panel = self._health_panel or self._player_panel:child("radial_health_panel")
 		self._cooldown_timer = self._health_panel:text({
 			name = "cooldown_timer",
