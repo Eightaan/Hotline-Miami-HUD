@@ -46,7 +46,7 @@ Hooks:PostHook(HUDTeammate, "init", "HMH_HUDTeammateInit", function(self, ...)
     end
 
 	if self._main_player and HMH:GetOption("bulletstorm") then
-	    self:inject_ammo_glow()
+	    self:infinite_ammo_glow()
     end
 
     self._next_latency_update_t = 0
@@ -55,8 +55,8 @@ Hooks:PostHook(HUDTeammate, "init", "HMH_HUDTeammateInit", function(self, ...)
 	end
 end)
 
-function HUDTeammate:inject_ammo_glow()
-	self._primary_ammo = self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):bitmap({
+function HUDTeammate:infinite_ammo_glow()
+	self._prim_ammo = self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):bitmap({
 		align = "center",
 		w = 50,
 		h = 45,
@@ -67,7 +67,7 @@ function HUDTeammate:inject_ammo_glow()
   	  	layer = 2,
 	 	blend_mode = "add"
    	})
-	self._secondary_ammo = self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):bitmap({
+	self._sec_ammo = self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):bitmap({
     	align = "center",
     	w = 50,
 	  	h = 45,
@@ -78,26 +78,26 @@ function HUDTeammate:inject_ammo_glow()
     	layer = 2,
 	   	blend_mode = "add"
    	 })
-	self._primary_ammo:set_center_y(self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("ammo_clip"):y() + self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("ammo_clip"):h() / 2 - 2)
-	self._secondary_ammo:set_center_y(self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):child("ammo_clip"):y() + self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):child("ammo_clip"):h() / 2 - 2)
-    self._primary_ammo:set_center_x(self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("ammo_clip"):x() + self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("ammo_clip"):w() / 2)
-	self._secondary_ammo:set_center_x(self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):child("ammo_clip"):x() + self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):child("ammo_clip"):w() / 2)
+	self._prim_ammo:set_center_y(self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("ammo_clip"):y() + self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("ammo_clip"):h() / 2 - 2)
+	self._sec_ammo:set_center_y(self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):child("ammo_clip"):y() + self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):child("ammo_clip"):h() / 2 - 2)
+    self._prim_ammo:set_center_x(self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("ammo_clip"):x() + self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("ammo_clip"):w() / 2)
+	self._sec_ammo:set_center_x(self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):child("ammo_clip"):x() + self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):child("ammo_clip"):w() / 2)
 end
 
-function HUDTeammate:_set_bulletstorm(state)
-	self._bullet_storm = state
-    if self._primary_ammo then
-        if self._bullet_storm then
+function HUDTeammate:_set_infinite_ammo(state)
+	self._infinite_ammo = state
+    if self._prim_ammo then
+        if self._infinite_ammo then
     	    local hudinfo = managers.hud:script(PlayerBase.PLAYER_INFO_HUD_PD2)
     		local pweapon_panel = self._player_panel:child("weapons_panel"):child("primary_weapon_panel")
     		local pammo_clip = pweapon_panel:child("ammo_clip")
       	 	local sweapon_panel = self._player_panel:child("weapons_panel"):child("secondary_weapon_panel")
        	 	local sammo_clip = sweapon_panel:child("ammo_clip")
 
-    	    self._primary_ammo:set_visible(true)
-        	self._secondary_ammo:set_visible(true)
-    		self._primary_ammo:animate(hudinfo.flash_icon, 4000000000)
-    		self._secondary_ammo:animate(hudinfo.flash_icon, 4000000000)
+    	    self._prim_ammo:set_visible(true)
+        	self._sec_ammo:set_visible(true)
+    		self._prim_ammo:animate(hudinfo.flash_icon, 4000000000)
+    		self._sec_ammo:animate(hudinfo.flash_icon, 4000000000)
 
         	pammo_clip:set_color(Color.white)
        		pammo_clip:set_text("8")
@@ -111,8 +111,8 @@ function HUDTeammate:_set_bulletstorm(state)
             sammo_clip:set_text("8")
 	        sammo_clip:set_rotation(90)
         else
-            self._primary_ammo:set_visible(false)
-    	    self._secondary_ammo:set_visible(false)
+            self._prim_ammo:set_visible(false)
+    	    self._sec_ammo:set_visible(false)
 	    end
 	end
 end
@@ -605,7 +605,7 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammateSetAmmoAm
             end)
         end
 
-        if self._last_clip and self._last_clip[type] and self._last_clip[type] < current_clip and not self._bullet_storm then
+        if self._last_clip and self._last_clip[type] and self._last_clip[type] < current_clip and not self._infinite_ammo then
             ammo_clip:animate(function(o)
                 local s = self._last_clip[type]
                 local e = current_clip
@@ -630,7 +630,7 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammateSetAmmoAm
         self._last_clip[type] = current_clip
 	end
 
-	if self._main_player and self._bullet_storm then
+	if self._main_player and self._infinite_ammo then
 		ammo_clip:set_color(Color.white)
 	    ammo_clip:set_text( "8" )
     	ammo_clip:set_rotation(90)
