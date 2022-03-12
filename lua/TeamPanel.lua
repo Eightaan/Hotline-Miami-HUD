@@ -31,18 +31,6 @@ Hooks:PostHook(HUDTeammate, "init", "HMH_HUDTeammateInit", function(self, ...)
 		    	font = tweak_data.hud_players.name_font
 		    })
 	    end
-
-	    self._new_name = name_panel:text({
-		    name = "name",
-		    text = " Dallas",
-		    layer = 1,
-		    color = Color.white,
-		    y = 0,
-		    vertical = "bottom",
-		    font_size = tweak_data.hud_players.name_size,
-		    font = tweak_data.hud_players.name_font
-	    })
-	    self._panel:child("name"):set_visible(false)
     end
 
 	if self._main_player and HMH:GetOption("bulletstorm") then
@@ -122,42 +110,24 @@ if interact_info_text then
 	    local teammate_panel = self._panel
 	    local name = teammate_panel:child("name")
 	    local name_bg = teammate_panel:child("name_bg")
-        self._new_name:stop()
-	    self._new_name:set_text(name:text())
-
-    	local x , y , w , h = self._new_name:text_rect()
-	    self._new_name:set_left(0)
-	    self._new_name:set_size(w, h)
-	    name_bg:set_w(self._new_name:w() + 4)
 
 	    if self._panel:child("name_panel"):w() < name_bg:w() then
-		    self._new_name:set_font_size(tweak_data.hud_players.name_size * 0.75)
-			name_bg:set_w(self._new_name:w() - 45)
-		    --self._new_name:animate(callback(self, self, "_animate_name"), name_bg:w() - self._panel:child("name_panel"):w() + 2)
+		    name:set_font_size(tweak_data.hud_players.name_size * 0.75)
+			name_bg:set_w(name:w() - 45)
 	    end
-		name_bg:set_visible(true)
-    end)
-
-    Hooks:PostHook(HUDTeammate, "set_state", "HMH_HUDTeammateSetState", function(self, state, ...)
-	    if not self._main_player then
-		    self._panel:child("name_panel"):set_y(self._panel:child("name"):y())
-        end
     end)
 	
 	Hooks:PreHook(HUDTeammate, "teammate_progress", "HMH_HUDTeammateTeammateProgress", function(self, enabled, tweak_data_id, timer, success, ...)
 	    local t = 1 -- How long an interaction should be in order for the text to display. If its shorter than 1 sec nothing will show when at default.
         if not self._player_panel:child("interact_panel"):child("interact_info") then return end
-        self._panel:child("name_panel"):child("interact_text"):stop()
-        self._panel:child("name_panel"):child("interact_text"):set_left(0)
 
         if enabled and not self._main_player and self:peer_id() and timer >= t then
-            self._new_name:set_alpha(0.1)
+            self._panel:child("name"):set_alpha(0.1)
             self._panel:child("name_panel"):child("interact_text"):set_visible(true)
             self._panel:child("name_panel"):child("interact_text"):set_text(" " .. managers.hud:_name_label_by_peer_id(self:peer_id()).panel:child("action"):text())
 
-			local x , y , w , h = self._panel:child("name_panel"):child("interact_text"):text_rect()
+			local x, y, w, h = self._panel:child("name_panel"):child("interact_text"):text_rect()
 			self._panel:child("name_bg"):set_w( w + 4)
-			--self._panel:child("name_bg"):set_visible(false)
             self._panel:child("name_panel"):child("interact_text"):set_size(w, h)
 
             if self._panel:child("name_panel"):child("interact_text"):w() + 4 > self._panel:child("name_bg"):w() then
@@ -167,30 +137,26 @@ if interact_info_text then
             if self._panel:child("name_panel"):w() < self._panel:child("name_panel"):child("interact_text"):w() + 4 then
 			    self._panel:child("name_panel"):child("interact_text"):set_font_size(tweak_data.hud_players.name_size * 0.75)
 				self._panel:child("name_bg"):set_w(self._panel:child("name_panel"):child("interact_text"):w() - 45)
-               -- self._panel:child("name_panel"):child("interact_text"):animate(callback(self,self, "_animate_name"), self._panel:child("name_bg"):w() - self._panel:child("name_panel"):w() + 2)
             end
 
         elseif not success and not self._main_player then
-            local x, y, w, h = self._new_name:text_rect()
-            self._new_name:set_size(w, h)
+            local x, y, w, h =  self._panel:child("name"):text_rect()
+            self._panel:child("name"):set_size(w, h)
             self._panel:child("name_panel"):child("interact_text"):stop()
             self._panel:child("name_panel"):child("interact_text"):set_left(0)
 
-            self._new_name:set_alpha(1)
+            self._panel:child("name"):set_alpha(1)
             self._panel:child("name_panel"):child("interact_text"):set_visible(false)
 			self._panel:child("name_panel"):child("interact_text"):set_font_size(tweak_data.hud_players.name_size)
-			--self._panel:child("name_bg"):set_w(self._panel:child("name_panel"):child("interact_text"):w() + 4)
             self._panel:child("name_bg"):set_w( w + 4)
-			--self._panel:child("name_bg"):set_visible(true)
         end
 
         if success then
-            self._new_name:set_alpha(1)
+            self._panel:child("name"):set_alpha(1)
 			self._panel:child("name_panel"):child("interact_text"):set_font_size(tweak_data.hud_players.name_size)
             self._panel:child("name_panel"):child("interact_text"):set_visible(false)
-			local x , y , w , h = self._new_name:text_rect()
+			local x, y, w , h =  self._panel:child("name"):text_rect()
 			self._panel:child("name_bg"):set_w( w + 4)
-		--	self._panel:child("name_bg"):set_visible(true)
         end
 
         self._panel:child("name_panel"):child("interact_text"):set_color(tweak_data.chat_colors[self._peer_id] or Color.white)
@@ -202,16 +168,7 @@ if interact_info_text then
             end
         end
     end)
-
-	--function HUDTeammate:_animate_name(name, width)
-	--    local t = 0
-	--    while true do
-	--	    t = t + coroutine.yield()
-	--	    name:set_left(width * ( math.sin(90 + t * 50) * 0.5 - 0.5))
-	--   end
-    --end
 end
-
 
 Hooks:PostHook(HUDTeammate, "_create_radial_health", "HMH_HUDTeammateCreateRadialHealth", function(self, radial_health_panel, ...)
 	local radial_ability_panel = radial_health_panel:child("radial_ability")
@@ -224,12 +181,6 @@ Hooks:PostHook(HUDTeammate, "set_callsign", "HMH_HUDTeammateSetCallsign", functi
     if HMH:GetOption("color_condition") then
         self._condition_icon = self._panel:child("condition_icon")
         self._condition_icon:set_color(tweak_data.chat_colors[id])
-	end
-
-	local is_cheater = not self._main_player and self:peer_id() and managers.network:session() and managers.network:session():peer(self:peer_id()):is_cheater()
-    if interact_info_text  and self._new_name then
-        self._panel:child("name"):set_color(is_cheater and tweak_data.screen_colors.pro_color or tweak_data.chat_colors[id])
-	    self._new_name:set_color(is_cheater and tweak_data.screen_colors.pro_color or tweak_data.chat_colors[id])
 	end
 end)
 
