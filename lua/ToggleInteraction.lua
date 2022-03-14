@@ -2,7 +2,7 @@ if HMH:GetOption("toggle_interact") == 0 then
     return
 end
 
-local interupt_interact_hint = HMH:GetOption("interupt_interact_hint")
+local interupt_interact_hint = HMH:GetOption("interupt_interact_hint") and not MUIInteract
 if RequiredScript == "lib/units/beings/player/states/playerstandard" then
 	local _update_interaction_timers_original = PlayerStandard._update_interaction_timers
 	local _check_action_interact_original = PlayerStandard._check_action_interact

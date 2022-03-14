@@ -1,4 +1,4 @@
-if not HMH:GetOption("custom_chat") or VoidUI and VoidUI.options.enable_chat or VHUDPlus then 
+if not HMH:GetOption("custom_chat") or VoidUI and VoidUI.options.enable_chat or VHUDPlus or WFHud then 
     return
 end
 

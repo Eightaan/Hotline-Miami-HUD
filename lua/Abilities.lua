@@ -98,7 +98,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 	        end
 		end
 		
-		if self._main_player and HMH:GetOption("armorer_cooldown_timer") then
+		if self._main_player and HMH:GetOption("armorer_cooldown_timer") and self._cooldown_timer then
 		    if duration > 0 then
 			    self._cooldown_timer:set_alpha(0)
 				self._cooldown_icon:set_alpha(0)

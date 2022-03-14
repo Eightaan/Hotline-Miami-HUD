@@ -122,7 +122,7 @@ if interact_info_text then
         if not self._player_panel:child("interact_panel"):child("interact_info") then return end
 
         if enabled and not self._main_player and self:peer_id() and timer >= t then
-            self._panel:child("name"):set_alpha(0.1)
+            self._panel:child("name"):set_alpha(0)
             self._panel:child("name_panel"):child("interact_text"):set_visible(true)
             self._panel:child("name_panel"):child("interact_text"):set_text(" " .. managers.hud:_name_label_by_peer_id(self:peer_id()).panel:child("action"):text())
 
