@@ -31,10 +31,7 @@
 					<post :script_path="MenuTweak.lua"/>
 					<post :script_path="PrePlanManager.lua"/>
 					<post :script_path="ProfileMenu.lua"/>
-                </group>
-				<group :hook_id="hudmanager">
-				    <post :script_path="Waypoints.lua"/>
-				</group>	
+                </group>	
 				<group :hook_id="playermanager">
 					<post :script_path="ComboCounter.lua"/>
 					<post :script_path="HeadshotIcon.lua"/>
@@ -78,9 +75,6 @@
 					<group :hook_id="renderers/menunodeskillswitchgui">
 					    <post :script_path="MenuTweak.lua"/>
 						<post :script_path="ProfileMenu.lua"/>
-                    </group>
-					<group :hook_id="dialogs/specializationdialog">
-					    <post :script_path="InputDialog.lua"/>
                     </group>
                 </group>
 

@@ -347,12 +347,12 @@
 	"ability_icon_desc" : "",
 	"chat_font_title" : "Chat Size",
 	"chat_font_desc" : "Change the chat size",
+	"interaction" : "Interaction Texture",
+	"disabled_icon" : "Disabled",
 	"heart_interact" : "Pixel Heart",
 	"default_health" : "Default",
 	"faded_health" : "Faded",
 	"pixel_health" : "Pixel Heart",
-	"disabled_icon" : "Disabled",
 	"circle_icon" : "Red Circle",
-	"50blessings" : "50 Blessings",
-	"interaction" : "Interaction Texture"
+	"50blessings" : "50 Blessings"
 }

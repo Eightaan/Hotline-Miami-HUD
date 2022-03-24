@@ -190,7 +190,7 @@ Hooks:PreHook(HUDTeammate, "set_carry_info", "HMH_HUDTeammateSetCarryInfo", func
     end
 end)
 
-if HMH:GetOption("pickups") then
+if HMH:GetOption("pickups") and not VoidUI_HMV then
     function HUDTeammate:add_special_equipment(data)
         local team_color
     	if self._peer_id then

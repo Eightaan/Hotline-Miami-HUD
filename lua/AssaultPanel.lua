@@ -1,4 +1,4 @@
-if not HMH:GetOption("assault") then
+if VoidUI_HMV or not HMH:GetOption("assault") then
    return
 end
 
