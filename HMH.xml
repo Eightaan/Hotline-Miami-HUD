@@ -25,6 +25,8 @@
 				<post :hook_id="systemmenumanager"   :script_path="InputDialog.lua"/>
 				<post :hook_id="preplanningmanager"  :script_path="PrePlanManager.lua"/>
 				<post :hook_id="multiprofilemanager" :script_path="ProfileMenu.lua"/>
+				<post :hook_id="trademanager"        :script_path="TradeDelay.lua"/>
+				<post :hook_id="moneymanager"        :script_path="TradeDelay.lua"/>
 				<group :hook_id="menumanager">
 					<post script_path="HMHMenu.lua" />
 				    <post :script_path="ModMenu.lua" />

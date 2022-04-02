@@ -169,8 +169,9 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 					text = civ_kills
 				}), 6)
 
-		    	local trade_delay = alive(managers.player:player_unit()) and managers.groupai:state():all_criminals()[managers.player:player_unit():key()] and managers.groupai:state():all_criminals()[managers.player:player_unit():key()].respawn_penalty			
-				local delay = trade_delay and managers.localization:to_upper_text("hud_trade_delay", {TIME = tostring(self:_trade_delay_time(trade_delay))}) or ""
+		    	local trade_delay = (5 + (HMH.CivKill * 30))
+                local total_time = trade_delay and trade_delay > 30					
+				local delay = total_time and managers.localization:to_upper_text("hud_trade_delay", {TIME = tostring(self:_trade_delay_time(trade_delay))}) or ""
 				placer:add_bottom(self._left:fine_text({
 					keep_w = true,
 					font = tweak_data.hud_stats.objectives_font,
@@ -330,8 +331,9 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 					text = civ_kills
 				}), 6)
 
-		    	local trade_delay = alive(managers.player:player_unit()) and managers.groupai:state():all_criminals()[managers.player:player_unit():key()] and managers.groupai:state():all_criminals()[managers.player:player_unit():key()].respawn_penalty			
-				local delay = trade_delay and managers.localization:to_upper_text("hud_trade_delay", {TIME = tostring(self:_trade_delay_time(trade_delay))}) or ""
+		    	local trade_delay = (5 + (HMH.CivKill * 30))
+                local total_time = trade_delay and trade_delay > 30			
+				local delay = total_time and managers.localization:to_upper_text("hud_trade_delay", {TIME = tostring(self:_trade_delay_time(trade_delay))}) or ""
 				placer:add_bottom(self._left:fine_text({
 					keep_w = true,
 					font = tweak_data.hud_stats.objectives_font,

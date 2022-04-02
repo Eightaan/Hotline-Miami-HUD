@@ -9,6 +9,7 @@ if not HMH then
         _data = {}
     }
 	HMH.TotalKills = 0
+	HMH.CivKill = 0
 
     function HMH:Save()
         local file = io.open( self._data_path, "w+" )
