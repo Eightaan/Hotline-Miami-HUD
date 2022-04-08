@@ -177,7 +177,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 					font = tweak_data.hud_stats.objectives_font,
 					font_size = tweak_data.hud_stats.loot_size,
 					color = HMH:GetOption("custom_tab_color") and Color("ff6666") or Color.white,
-					text = delay
+					text = is_whisper_mode and "" or delay
 				}), 0)
 
 				local total_kills = HMH.TotalKills
@@ -339,7 +339,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 					font = tweak_data.hud_stats.objectives_font,
 					font_size = tweak_data.hud_stats.loot_size,
 					color = HMH:GetOption("custom_tab_color") and Color("ff6666") or Color.white,
-					text = delay
+					text = is_whisper_mode and "" or delay
 				}), 0)
 
 				local total_kills = HMH.TotalKills
