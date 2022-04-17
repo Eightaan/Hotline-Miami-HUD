@@ -1,7 +1,3 @@
- if HMH:GetOption("headshot_texture") < 2 or (VHUDPlus and VHUDPlus:getSetting({"MISCHUD", "HEADSHOT"}, true)) then
-    return
-end
-
 if RequiredScript == "lib/managers/hud/hudhitconfirm" then
 	Hooks:PostHook(HUDHitConfirm, "init", "hmh_HUDHitConfirm_init", function(self, ...)
 		if self._hud_panel:child("headshot_confirm") then
@@ -28,6 +24,8 @@ if RequiredScript == "lib/managers/hud/hudhitconfirm" then
 	
 elseif RequiredScript == "lib/managers/playermanager" then
 	Hooks:PostHook(PlayerManager, "on_headshot_dealt", "hmh_on_headshot_dealt", function(self, ...)
-		managers.hud:on_headshot_confirmed()
+	    if HMH:GetOption("headshot_texture") > 1 then
+		    managers.hud:on_headshot_confirmed()
+		end
 	end)
 end
