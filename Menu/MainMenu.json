@@ -43,6 +43,16 @@
 			"callback_arguments": "font",
 			"value": "font",
 			"default_value": false
+	    },
+        {
+			"type": "toggle",
+			"id": "pink_corner_toggle",
+			"title": "pink_corner_title",
+			"description": "pink_corner_desc",
+			"callback": "SetOption",
+			"callback_arguments": "pink_corner",
+			"value": "pink_corner",
+			"default_value": true
         },
         {
 			"type": "divider",

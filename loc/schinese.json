@@ -325,6 +325,8 @@
 	"promt_desc" : "",
 	"silent_obj_title" : "No Objective Sound",
 	"silent_obj_desc" : "Replaces the objective sound with silence.\nWhen changed, a game restart is required to take effect.",
+	"pink_corner_title" : "Pink Hud Corners",
+	"pink_corner_desc" : "Makes the corners of hud elements pink.",
 	"reset_title" : "Reset Options",
 	"reset_desc" : "Reset all the game options back to default",
 	"reset_all_title" : "Click this option to reset all settings. A game restart is required for it to take effect.",

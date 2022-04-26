@@ -24,6 +24,8 @@
    
     "mod_overrides_title" : "Enable Mod Overrides Updates",
     "mod_overrides_desc" : "Mod Overrides are custom textures that change the menu to Hotline Miami.\nWhen changed, a game restart is required to take effect.",
+	"pink_corner_title" : "Pink Hud Corners",
+	"pink_corner_desc" : "Makes the corners of hud elements pink.",
 	"mod_font_title" : "Custom Text Font",
 	"mod_font_desc" : "Enables the custom pixel font.\nWhen changed, a game restart is required to take effect.",
 	"combo_title" : "Combo Counter",

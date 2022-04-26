@@ -17,6 +17,7 @@
 	"CustodyAlpha" : 1,
 	"waypoints" : true,
 	"Reset" : false,
+	"pink_corner" : true,
 	"WaypointIcon" :
 	{
 		"r" : 102,

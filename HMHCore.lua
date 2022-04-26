@@ -110,6 +110,10 @@ if not HMH then
             DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/stophand_symbol"), self._path .. "assets/guis/textures/pd2_mod_hmh/stophand_symbol.texture")
 		end
 		
+		if self:GetOption("pink_corner") then
+		    DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_corner"), self._path .. "assets/guis/textures/pd2_mod_hmh/hud_corner.texture")
+		end
+		
 		if self:GetOption("silent_obj") then
 		    DB:create_entry(Idstring("stream"), Idstring("soundbanks/streamed/hud/670238416"), self._path .. "assets/guis/textures/pd2_mod_hmh/objective.stream")
 		end
