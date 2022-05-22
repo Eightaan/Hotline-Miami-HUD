@@ -347,6 +347,8 @@
 	"HMH_warning_desc" : "Some of your changes may not take effect until the next heist or game restart!",
 	"ability_icon_title" : "Show Ability Icon",
 	"ability_icon_desc" : "",
+	"no_smoke_title" : "No Menu Smoke",
+	"no_smoke_desc" : "Disables the some in the main menu.\nWhen changed, a game restart is required to take effect.",
 	"chat_font_title" : "Chat Size",
 	"chat_font_desc" : "Change the chat size",
 	"interaction" : "Interaction Texture",

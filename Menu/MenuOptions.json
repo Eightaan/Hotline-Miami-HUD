@@ -19,6 +19,16 @@
 		},
 		{
 			"type": "toggle",
+			"id": "no_smoke",
+			"title": "no_smoke_title",
+			"description": "no_smoke_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "no_smoke",
+			"value": "no_smoke",
+			"default_value": false
+		},
+		{
+			"type": "toggle",
 			"id": "custom_filter",
 			"title": "custom_filter_title",
 			"description": "custom_filter_desc",

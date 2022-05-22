@@ -118,6 +118,11 @@ if not HMH then
 		    DB:create_entry(Idstring("stream"), Idstring("soundbanks/streamed/hud/670238416"), self._path .. "assets/guis/textures/pd2_mod_hmh/objective.stream")
 		end
 		
+		if self:GetOption("no_smoke") then
+		    DB:create_entry(Idstring("texture"), Idstring("units/menu/menu_scene/menu_cylinder_smoke"), self._path .. "assets/guis/textures/pd2_mod_hmh/menu_cylinder_smoke.texture")
+			DB:create_entry(Idstring("texture"), Idstring("units/menu/menu_scene/menu_cylinder_smoke_tile"), self._path .. "assets/guis/textures/pd2_mod_hmh/menu_cylinder_smoke_tile.texture")
+		end
+		
 		if HMH:GetOption("Reset") then
 	        HMH:LoadDefaults()
 	    end

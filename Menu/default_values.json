@@ -16,6 +16,7 @@
 	"DownedAlpha" : 1,
 	"CustodyAlpha" : 1,
 	"waypoints" : true,
+	"no_smoke" : false,
 	"Reset" : false,
 	"pink_corner" : true,
 	"WaypointIcon" :
