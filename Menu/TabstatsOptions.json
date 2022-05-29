@@ -27,7 +27,7 @@
 			"callback_arguments" : "custom_tab_color",
 			"value": "custom_tab_color",
 			"default_value": true,
-			"parent" : ["tab_toggle"]
+			"parent" : "tab_toggle"
 		},
 		{
 			"type": "divider",
@@ -42,7 +42,7 @@
 			"callback_arguments" : "enemy_count",
 			"value": "enemy_count",
 			"default_value": true,
-			"parent" : ["tab_toggle"]
+			"parent" : "tab_toggle"
 		},
 		{
 			"type": "divider",

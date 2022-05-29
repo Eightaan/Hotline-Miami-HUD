@@ -27,7 +27,7 @@
 			"callback_arguments" : "colored_carry_text",
 			"value": "colored_carry_text",
 			"default_value": true,
-			"parent" : ["carry_toggle"]
+			"parent" : "carry_toggle"
 		},
 		{
 			"type": "toggle",
@@ -38,7 +38,7 @@
 			"callback_arguments" : "animate_text",
 			"value": "animate_text",
 			"default_value": true,
-			"parent" : ["carry_toggle"]
+			"parent" : "carry_toggle"
 		},
 		{
 			"type": "toggle",
@@ -49,7 +49,7 @@
 			"callback_arguments" : "carry_value",
 			"value": "carry_value",
 			"default_value": true,
-			"parent" : ["carry_toggle"]
+			"parent" : "carry_toggle"
 		},
 		{
 		    "type": "slider",

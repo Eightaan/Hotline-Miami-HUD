@@ -247,7 +247,7 @@
 	"default_background" : "Default",
 	"custom_background" : "Classic Purple",
 	"no_smoke_title" : "No Menu Smoke",
-	"no_smoke_desc" : "Disables the some in the main menu.\nWhen changed, a game restart is required to take effect.",
+	"no_smoke_desc" : "Disables the smoke in the main menu.\nWhen changed, a game restart is required to take effect.",
 	"no_confirm_title" : "No Confirm Dialogs",
 	"no_confirm_desc" : "Remove some of the >Are you sure< messages when navigating menus.",
 	"crew_loadout_tab_title" : "Crew Loadout on Tabscreen",

@@ -181,7 +181,7 @@
 			"value": "casing",
 			"default_value": true,
 			"is_parent" : true,
-			"parent" : ["assault_toggle"]
+			"parent" : "assault_toggle"
 		},
 		{
 			"type": "color_select",

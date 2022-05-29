@@ -95,7 +95,7 @@ function HUDTeammate:_set_infinite_ammo(state)
 	    		sammo_clip:set_font_size(30)
     		end
 
-	       sammo_clip:set_color(Color.white)
+	        sammo_clip:set_color(Color.white)
             sammo_clip:set_text("8")
 	        sammo_clip:set_rotation(90)
         else

@@ -228,7 +228,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 					    keep_w = true,
 					    font = tweak_data.hud_stats.objectives_font,
 					    font_size = tweak_data.hud_stats.loot_size,
-					    color = HMH:GetOption("custom_tab_color") and Color("ff6666") or Color.white,
+					    color = HMH:GetOption("custom_tab_color") and Color("ff6666") or Color(255, 255, 51, 51) / 255,
 					    text = managers.localization:to_upper_text("menu_mutators_category_enemies") .. ": " .. enemies
 				    }), 16)
                 end
@@ -250,7 +250,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 				local day_title = placer:add_bottom(self._left:fine_text({
 					font = tweak_data.hud_stats.objectives_font,
 					font_size = 30,
-					color = HMH:GetOption("custom_tab_color") and Color("66ff99") or Color.white,
+					color = HMH:GetOption("custom_tab_color") and Color("66ff99") or Color(255, 255, 51, 51) / 255,
 					text = heist_title .. space .. managers.localization:to_upper_text("hud_days_title", {
 						DAY = day,
 						DAYS = days
@@ -390,7 +390,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 					    keep_w = true,
 					    font = tweak_data.hud_stats.objectives_font,
 					    font_size = tweak_data.hud_stats.loot_size,
-					    color = HMH:GetOption("custom_tab_color") and Color("ff6666") or Color.white,
+					    color = HMH:GetOption("custom_tab_color") and Color("ff6666") or Color(255, 255, 51, 51) / 255,
 					    text = managers.localization:to_upper_text("menu_mutators_category_enemies") .. ": " .. enemies
 				    }), 16)
                 end
@@ -821,7 +821,7 @@ elseif RequiredScript == "lib/managers/hud/hudstatsscreenskirmish" then
 				keep_w = true,
 				font = tweak_data.hud_stats.objectives_font,
 				font_size = tweak_data.hud_stats.loot_size,
-			    color = HMH:GetOption("custom_tab_color") and Color("ff6666") or Color.white,
+			    color = HMH:GetOption("custom_tab_color") and Color("ff6666") or Color(255, 255, 51, 51) / 255,
 				text = managers.localization:to_upper_text("menu_mutators_category_enemies") .. ": " .. enemies
 	        }), 16)
         end
@@ -834,6 +834,40 @@ elseif RequiredScript == "lib/managers/hud/hudstatsscreenskirmish" then
 		placer = UiPlacer:new(16, 0, 8, 4)
 
 		if managers.player:has_category_upgrade("player", "convert_enemies") then
+			local dominated = 0
+		    for _, unit in pairs(managers.enemy:all_enemies()) do
+			    if (unit and unit.unit and alive(unit.unit)) and (unit.unit:anim_data() and unit.unit:anim_data().hands_up or unit.unit:anim_data() and unit.unit:anim_data().surrender or unit.unit:base() and unit.unit:base().mic_is_being_moved)then
+				    dominated = dominated + 1
+			    end
+		    end
+	        local dominated_text = placer:add_bottom(loot_panel:fine_text({
+			    keep_w = true,
+			    text = managers.localization:text("hmh_hud_stats_enemies_dominated"),
+				color = Color.white,
+				font = medium_font,
+				font_size = medium_font_size
+			}))
+
+			placer:add_right(nil, 0)
+			local dominated_texture = "guis/textures/pd2/skilltree/icons_atlas"
+			local dominated_rect = {128,512,64,64}
+			local dominated_icon = placer:add_left(loot_panel:fit_bitmap({
+				w = 17,
+				h = 17,
+				color = Color.white,
+				texture = dominated_texture,
+				texture_rect = dominated_rect
+			}))
+
+			dominated_icon:set_center_y(dominated_text:center_y())
+			placer:add_left(loot_panel:fine_text({
+				text = tostring(dominated),
+				color = Color.white,
+				font = medium_font,
+				font_size = medium_font_size
+			}), 7)
+			placer:new_row()
+
 			local minion_text = placer:add_bottom(loot_panel:fine_text({
 				keep_w = true,
 				text = managers.localization:text("hud_stats_enemies_converted"),
