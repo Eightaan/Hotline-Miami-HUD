@@ -250,7 +250,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 				local day_title = placer:add_bottom(self._left:fine_text({
 					font = tweak_data.hud_stats.objectives_font,
 					font_size = 30,
-					color = HMH:GetOption("custom_tab_color") and Color("66ff99") or Color(255, 255, 51, 51) / 255,
+					color = HMH:GetOption("custom_tab_color") and Color("66ff99") or Color.white,
 					text = heist_title .. space .. managers.localization:to_upper_text("hud_days_title", {
 						DAY = day,
 						DAYS = days
