@@ -128,9 +128,9 @@
 			"callback": "SetOption",
 			"callback_arguments" : "pager_jam",
 			"value": "pager_jam",
-			"is_parent" : true,
 			"default_value": true,
-			"parent" : "infoboxes_toggle"
+			"is_parent" : true,
+			"parent" : "infoboxes_toggle"	
 		},
 		{
 			"type": "divider",
@@ -145,7 +145,7 @@
 			"default_value": [102, 255, 255],
 			"callback": "SetColorOption",
 			"callback_arguments": "ECMText",
-			"parent" : ["infoboxes_toggle"]
+			"parent" : "infoboxes_toggle"
 		},
 		{
 			"type": "color_select",
@@ -156,7 +156,7 @@
 			"default_value": [255, 128, 223],
 			"callback": "SetColorOption",
 			"callback_arguments": "ECMIcon",
-			"parent" : ["infoboxes_toggle"]
+			"parent" : "infoboxes_toggle"
 		},
 		{
 			"type": "color_select",
