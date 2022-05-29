@@ -784,57 +784,32 @@ function HMHMenu:CreateItem(item, items, menu_id, ...)
     local default_value = item.default_value
     local parents = item.parent
     local enabled = true
-    local n = select("#", ...)
 
-    if n ~= 0 then
-        for k, v in pairs(...) do
-            if k == item.value and v ~= nil then
-                value = v
-                break
-            end
-        end
-    end
-
-    if n ~= 0 and parents then
-        if type(parents) == "string" then
-            for _, pitem in pairs(items) do
-                if pitem.id == parents then
-                    for k, v in pairs(...) do
-                        if k == item.value and v ~= nil then
-                            enabled = v
-                            break
-                        end
-                    end
-                    break
-                end
-            end
-        else
-
-        end
-    elseif item.enabled ~= nil then
+    if item.enabled ~= nil then
         enabled = item.enabled
     elseif parents then
         if type(parents) == "string" then
             for _, pitem in pairs(items) do
                 if pitem.id == parents then
-                    enabled = HMH.settings.assault_panel[pitem.special_remarks].enabled
+                    enabled = HMH._data[pitem.value]
                     break
                 end
             end
+        elseif type(parents) == "table" then
+            local final = true
+            for _, parent in ipairs(parents) do
+                for _, pitem in pairs(items) do
+                    if pitem.id == parent then
+                        final = final and HMH._data[pitem.value]
+                        break
+                    end
+                end
+            end
+            enabled = final
         end
     end
 
-    --[[if parents ~= nil and type(parents) == "string" and VoidUI.options[parents] ~= nil then
-        enabled = VoidUI.options[parents]
-    elseif parents ~= nil and type(parents) == "table" then
-        for _, parent in pairs(parents) do
-            if VoidUI.options[parent] == false and VoidUI.options[parent] ~= nil then
-                enabled = VoidUI.options[parent]
-            end
-        end
-    elseif item.enabled ~= nil then
-        enabled = item.enabled
-    end]]
+    value = HMH._data[item.value]
 
     local itm
     if item_type == "label" then
