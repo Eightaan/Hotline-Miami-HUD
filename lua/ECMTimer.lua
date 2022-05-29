@@ -16,7 +16,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 
 	    self._ecm_box = HUDBGBox_create(self._ecm_panel, { w = 38, h = 38 }, {})
 		
-		if HMH:GetOption("assault") then
+		if HMH:GetOption("assault") or HMH:GetOption("hide_hudbox") then
 		   self._ecm_box:child("bg"):hide()
 		   self._ecm_box:child("left_top"):hide()
 		   self._ecm_box:child("left_bottom"):hide()

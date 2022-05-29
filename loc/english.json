@@ -103,6 +103,8 @@
 	"downed_text_desc" : "Choose a value for how translucent the downed text will be.",
 	"custody_text_title" : "Custody Text Transparency",
 	"custody_text_desc" : "Choose a value for how translucent the custody text will be.",
+	"hide_hudbox_title" : "Always Hide Corners/Background",
+	"hide_hudbox_desc" : "The hudbox corners and background will always be hidden even when the rest of the assault panel options are disabled. Useful to match other huds like MUI.",
 
 	"hmh_custom_chat_title" : "Chat",
 	"hmh_custom_chat_desc" : "Customize the chat.",

@@ -128,9 +128,9 @@
 			"callback": "SetOption",
 			"callback_arguments" : "pager_jam",
 			"value": "pager_jam",
-			"default_value": true,
 			"is_parent" : true,
-			"parent" : "infoboxes_toggle"	
+			"default_value": true,
+			"parent" : "infoboxes_toggle"
 		},
 		{
 			"type": "divider",
@@ -168,6 +168,17 @@
 			"callback": "SetColorOption",
 			"callback_arguments": "ECMUpgradeIcon",
 			"parent" : ["infoboxes_toggle", "pager_jam_toggle"]
+		},
+		{
+			"type": "toggle",
+			"id": "hide_hudbox_toggle",
+			"title": "hide_hudbox_title",
+			"description": "hide_hudbox_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "hide_hudbox",
+			"value": "hide_hudbox",
+			"default_value": false,
+			"parent" : "infoboxes_toggle"
 		}
 	]
 }

@@ -18,6 +18,7 @@
 	"waypoints" : true,
 	"no_smoke" : false,
 	"Reset" : false,
+	"hide_hudbox" : false,
 	"pink_corner" : true,
 	"WaypointIcon" :
 	{
