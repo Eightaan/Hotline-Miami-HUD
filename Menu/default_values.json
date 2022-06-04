@@ -1,5 +1,6 @@
 {
     "hud_scale": 1,
+	"xp" : 1,
     "mod_overrides" : true,
     "infoboxes" : true,
     "inspire": true,
