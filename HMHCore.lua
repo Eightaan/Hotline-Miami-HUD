@@ -10,6 +10,7 @@ if not HMH then
     }
 	HMH.TotalKills = 0
 	HMH.CivKill = 0
+	HMH._in_heist = false
 
     function HMH:Save()
         local file = io.open( self._data_path, "w+" )

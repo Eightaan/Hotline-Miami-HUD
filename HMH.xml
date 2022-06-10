@@ -17,6 +17,10 @@
 			    <post :script_path="QuickInputMenu.lua"/>
 				<post :script_path="LoadoutPanel.lua"/>
             </group>
+			
+			<group :hook_id="utils/accelbyte/telemetry">
+			    <post :script_path="ComboCounter.lua"/>
+            </group>
 
 			<group :hook_id="managers/">
                 <post :hook_id="hudmanager"          :script_path="Waypoints.lua"/>
@@ -121,20 +125,18 @@
 					    <post :script_path="InteractionPanel.lua"/>
                     </group>
 
-					<group :hook_id="beings/player/states/">
-						<group :hook_id="playerstandard">
-						    <post :script_path="ToggleInteraction.lua"/>
-							<post :script_path="Inspirecooldown.lua"/>
+					<group :hook_id="beings/player/">
+					    <post :hook_id="playerinventory" :script_path="ECMTimer.lua"/>
+						<post :hook_id="playerdamage"    :script_path="Scripts.lua"/>
+						
+						<group :hook_id="states/">
+						    <post :hook_id="playerdriving"  :script_path="ToggleInteraction.lua"/>
+		                    <post :hook_id="playercivilian" :script_path="ToggleInteraction.lua"/>
+							    <group :hook_id="playerstandard">
+						            <post :script_path="ToggleInteraction.lua"/>
+							        <post :script_path="Inspirecooldown.lua"/>
+                                </group>
                         </group>
-
-						<group :hook_id="playerdriving">
-							<post :script_path="ToggleInteraction.lua"/>
-                        </group>
-
-						<group :hook_id="playercivilian">
-						    <post :script_path="ToggleInteraction.lua"/>
-                        </group>
-
 			        </group>
 		    </group>
 

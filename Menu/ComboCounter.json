@@ -1,0 +1,40 @@
+{
+	"menu_id": "hmh_combo_options",
+	"parent_menu": "hmh_menu",
+	"title": "hmh_combo_options_title",
+	"items": [
+		{
+			"type": "toggle",
+			"id": "combo_toggle",
+			"title": "combo_title",
+			"description": "combo_desc",
+			"callback": "SetOption",
+			"callback_arguments": "combo",
+			"value": "combo",
+			"default_value": true,
+			"is_parent" : true
+		},
+		{
+			"type": "toggle",
+			"id": "combo_kill_anim_toggle",
+			"title": "combo_kill_anim_title",
+			"description": "combo_kill_anim_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "combo_kill_anim",
+			"value": "combo_kill_anim",
+			"default_value": true,
+			"parent" : "combo_toggle"
+		},
+		{
+			"type": "toggle",
+			"id": "combo_kill_flash_toggle",
+			"title": "combo_kill_flash_title",
+			"description": "combo_kill_flash_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "combo_kill_flash",
+			"value": "combo_kill_flash",
+			"default_value": false,
+			"parent" : "combo_toggle"
+		}
+	]
+}

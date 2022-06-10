@@ -15,6 +15,8 @@
 	"CarryAlpha" : 1,
 	"SubAlpha" : 1,
 	"DownedAlpha" : 1,
+	"combo_kill_anim" : true,
+	"combo_kill_flash" : false,
 	"CustodyAlpha" : 1,
 	"waypoints" : true,
 	"no_smoke" : false,
@@ -328,7 +330,7 @@
 	"skip_card" : 0,
 	"pick_card" : false,
 	"suspicion" : true,
-	"combo" : false,
+	"combo" : true,
 	"font" : false,
 	"pager_jam" : true,
 	"ECMText" :
@@ -336,6 +338,18 @@
 		"r" : 102,
 		"g" : 255,
 		"b" : 255
+	},
+	"ecm_low" :
+	{
+		"r" : 255,
+		"g" : 102,
+		"b" : 102
+	},
+	"ecm_mid" :
+	{
+		"r" : 255,
+		"g" : 204,
+		"b" : 102
 	},
 	"ECMIcon" :
 	{
@@ -397,6 +411,12 @@
 		"r" : 255,
 		"g" : 102,
 		"b" : 102
+	},
+	"armorer_duration_timer_color" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 153
 	},
 	"armorer_cooldown_timer" : false,
 	"armorer_cooldown_radial" : false,

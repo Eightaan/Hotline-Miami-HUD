@@ -575,6 +575,10 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammateSetAmmoAm
                     ammo_clip:set_color(color_clip)
                     ammo_clip:set_range_color(0, string.len(zero), color_clip:with_alpha(0.5))
                 end)
+				over(1 , function(p)
+                    local n = 1 - math.sin((p / 2 ) * 180)
+                    ammo_clip:set_font_size(math.lerp(24, 24 + 4, n))
+                end)
             end)
         end
         self._last_ammo[type] = current_left
@@ -612,6 +616,12 @@ if HMH:GetOption("colored_downs") then
     		if revive_amount_text then
 	    		revive_amount_text:set_text(tostring(math.max(revive_amount - 1, 0)) .. "x")
 	    		revive_amount_text:set_color(team_color or Color.white)
+		        revive_amount_text:animate(function(o)
+				    over(1 , function(p)
+                        local n = 1 - math.sin((p / 2 ) * 180)
+                        revive_amount_text:set_font_size(math.lerp(16, 16 * 1.16, n))
+                    end)
+                end)
     		end
 		
     		if revive_arrow then

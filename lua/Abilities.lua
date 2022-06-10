@@ -192,7 +192,11 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
                 	t_left = t_left - coroutine.yield()
 					t_format = t_left < 10 and "%.1f" or "%.f"
                 	o:set_text(string.format(t_format, t_left))
-					o:set_color(HMH:GetColor("armorer_cooldown_timer_color") or Color.red)
+					if t_left > 13.5 and not HMH:GetOption("armorer_cooldown_radial") then
+						o:set_color(HMH:GetColor("armorer_duration_timer_color") or Color.green)
+					else
+					    o:set_color(HMH:GetColor("armorer_cooldown_timer_color") or Color.red)
+					end
             	end
             	o:set_visible(false)
 				self._cooldown_icon:set_visible(false)
@@ -253,6 +257,14 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
     function HUDTeammate:set_condition(icon_data, ...)
 	    local visible = icon_data ~= "mugshot_normal"
     	self:set_stamina_visibility(not visible and HMH:GetOption("stamina"))
+		
+		if icon_data == "mugshot_in_custody" and self._main_player then
+            self._cooldown_icon:set_alpha(0)
+		    self._cooldown_timer:set_alpha(0)
+		elseif icon_data == "mugshot_normal" and self._main_player then
+		    self._cooldown_icon:set_alpha(0.4)
+		    self._cooldown_timer:set_alpha(1)
+        end
     	set_condition_original(self, icon_data, ...)
     end
 	

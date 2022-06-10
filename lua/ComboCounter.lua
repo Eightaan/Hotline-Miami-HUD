@@ -73,13 +73,20 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
         })
         Combo_bg:set_left(self._full_hud_panel:left())
         Combo_bg:set_top(40 + 5)
+		
+		HMH._in_heist = true
     end
 
     function HUDComboCounter:set_combo(combo)
         local Combo_text = self._combo_panel:child("Combo_text")
         local Combo_text_bg = self._combo_panel:child("Combo_text_bg")
         local Combo_bg = self._combo_panel:child("Combo_bg")
-        self._combo_panel:set_visible(combo > 1)
+	    if combo > 1 and HMH._in_heist then 
+			self._combo_panel:set_visible(true)  
+	    else
+		    Combo_text:animate(callback(self, self, "close_anim"))
+		    Combo_text_bg:animate(callback(self, self, "close_anim"))
+	    end
         if combo .. "x" ~= Combo_text:text() and combo ~= 0 then
             Combo_text:set_text(combo.."x")
             Combo_text_bg:set_text(combo.."x")
@@ -99,7 +106,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
     function HUDComboCounter:open_anim(panel)
         local speed = 50
         panel:set_x(-150)
-        panel:set_visible(true)
+       -- panel:set_visible(true)
         local TOTAL_T = 10/speed
         local t = TOTAL_T
         while t > 0 do
@@ -108,11 +115,64 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
             panel:set_x((1 - t / TOTAL_T) * 60)
         end
     end
+	
+	function HUDComboCounter:close_anim( panel )
+	local Combo_text = self._combo_panel:child("Combo_text")
+	local Combo_text_bg = self._combo_panel:child("Combo_text_bg")
+	local speed = 2000
+	local cw = panel:x()
+	local TOTAL_T = cw/speed
+	local t = TOTAL_T
+	while t > 0 do
+		local dt = coroutine.yield()
+		t = t - dt
+		panel:set_x((1 - t/TOTAL_T) * -80 )
+	end
+	self._combo_panel:set_visible(false) 
+    self._combo_panel:set_x(0)
+    Combo_text:set_x(6)
+    Combo_text_bg:set_x(8)	
+	Combo_text:animate(callback(self, self, "open_anim"))
+    Combo_text_bg:animate(callback(self, self, "open_anim"))
+	
+end
+
+function HUDComboCounter:flash_text(text, config)
+	local Combo_text_bg = self._combo_panel:child("Combo_text_bg")
+	local TOTAL_T = 0.4
+	local t = TOTAL_T
+	while t > 0 do
+		local dt = coroutine.yield()
+		t = t - dt
+		local cv = math.abs((math.sin(t * 180 * 16)))
+		text:set_color(Color("e2087c") * cv + Color("e2087c") * cv)
+	end
+	text:set_color(Color("e2087c"))
+end
+
+	function HUDComboCounter:kill_anim(panel)
+	    local Combo_text = self._combo_panel:child("Combo_text")
+		local Combo_text_bg = self._combo_panel:child("Combo_text_bg")
+		over(0.4 , function(p)
+            local n = 1 - math.sin((p / 2 ) * 180)
+            Combo_text:set_font_size(math.lerp(96, 96 + 125, n))
+			Combo_text_bg:set_font_size(math.lerp(96, 96 + 125, n))
+        end)
+    end
 
     function HUDComboCounter:OnKillshot()
+	    local Combo_text = self._combo_panel:child("Combo_text")
+		local Combo_text_bg = self._combo_panel:child("Combo_text_bg")
         self._kills = self._kills + 1
         self._last_kill_time = self._kill_time
         self._kill_time = self._t
+		if HMH:GetOption("combo_kill_anim") then
+		    Combo_text:animate(callback(self, self, "kill_anim"))
+            Combo_text_bg:animate(callback(self, self, "kill_anim"))
+		end
+		if HMH:GetOption("combo_kill_flash") then
+		    Combo_text:animate(callback(self, self, "flash_text"))
+		end
     end
 
     local time_buffer = 3
@@ -132,4 +192,8 @@ elseif RequiredScript == "lib/managers/playermanager" then
             managers.hud:HMHCC_OnKillshot()
         end
     end)
+elseif RequiredScript == "lib/utils/accelbyte/telemetry" then
+	Hooks:PostHook(Telemetry, "on_end_heist", "HMH_on_end_heist", function(self)
+		HMH._in_heist = false
+	end)
 end

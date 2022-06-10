@@ -215,8 +215,18 @@ function HUDAssaultCorner:_hide_icon_assaultbox(icon_assaultbox)
 	end
 end
 
+function HUDAssaultCorner:hostage_anim(text)
+	over(1 , function(p)
+		local font_size = tweak_data.hud_corner.numhostages_size
+        local n = 1 - math.sin((p / 2 ) * 180)
+        self._hostages_bg_box:child("num_hostages"):set_font_size(math.lerp(font_size, font_size * 1.20, n))
+    end)
+end
+
 function HUDAssaultCorner:set_control_info(data)
 	self._hostages_bg_box:child("num_hostages"):set_text(data.nr_hostages)
+	self._hostages_bg_box:child("num_hostages"):animate(callback(self, self, "hostage_anim"))
+
 end
 
 function HUDAssaultCorner:set_text(typ, text_list, add)
@@ -302,6 +312,16 @@ end
 
 function HUDAssaultCorner:_animate_show_casing(casing_panel, delay_time)
 	set_alpha(casing_panel, 1)
+end
+
+function HUDAssaultCorner:_hide_hostages()
+	self._hud_panel:child( "hostages_panel" ):animate(callback(nil, _G, "set_alpha"), 0)
+end
+
+function HUDAssaultCorner:_show_hostages()
+	if not self._point_of_no_return then
+		self._hud_panel:child( "hostages_panel" ):animate(callback(nil, _G, "set_alpha"), 1)
+	end
 end
 
 function HUDAssaultCorner:_animate_show_noreturn(point_of_no_return_panel, delay_time)
