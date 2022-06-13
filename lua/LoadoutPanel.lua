@@ -657,12 +657,17 @@ function LoadoutNameItem:set_outfit(outfit)
 		self:set_enabled("peer", true)
 		if peer_uid ~= self._loadout then
 			local name = peer:name()
-			local level, infamy = self._owner:local_peer() and managers.experience:current_level() or peer:level(), self._owner:local_peer() and managers.experience:current_rank() or peer:rank()
-			local level_str = string.format(" [%s%s]",
-				(infamy or 0) > 0 and string.format("%s-", managers.experience:rank_string(infamy)) or "",
-				tostring(level or 0)
-			)
-			self:set_text(string.format("%s%s", name, self._show_level and level_str or ""))
+			local level, infamy
+			if self._owner:local_peer() then
+				level = managers.experience:current_level()
+				infamy = managers.experience:current_rank()
+			else
+				level = peer:level()
+				infamy = peer:rank()
+			end
+			local level_string, _ = managers.experience:gui_string(level, infamy)
+			level_string = " " .. level_string
+			self:set_text(string.format("%s%s", name, self._show_level and level_string or ""))
 
 			if name and level then
 				self._loadout = peer_uid
@@ -683,12 +688,17 @@ function LoadoutLevelItem:set_outfit(outfit)
 	if peer_uid then
 		self:set_enabled("peer", true)
 		if peer_uid ~= self._loadout then
-			local level, infamy = self._owner:local_peer() and managers.experience:current_level() or peer:level(), self._owner:local_peer() and managers.experience:current_rank() or peer:rank()
-			local level_str = string.format(" [%s%s]",
-				(infamy or 0) > 0 and string.format("%s-", managers.experience:rank_string(infamy)) or "",
-				tostring(level or 0)
-			)
-			self:set_text(level_str or "")
+			local level, infamy
+			if self._owner:local_peer() then
+				level = managers.experience:current_level()
+				infamy = managers.experience:current_rank()
+			else
+				level = peer:level()
+				infamy = peer:rank()
+			end
+			local level_string, _ = managers.experience:gui_string(level, infamy)
+			level_string = " " .. level_string
+			self:set_text(level_string)
 
 			if level then
 				self._loadout = peer_uid
