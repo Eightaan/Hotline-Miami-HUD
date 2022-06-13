@@ -127,12 +127,12 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
     end
 
 	--Init
-	Hooks:PostHook(HUDManager, "_setup_player_info_hud_pd2", "buuECM_post_HUDManager__setup_player_info_hud_pd2", function(self)
+	Hooks:PostHook(HUDManager, "_setup_player_info_hud_pd2", "hmh_setup_player_info_hud_pd2", function(self)
 		self._hud_ecm_counter = HUDECMCounter:new(managers.hud:script(PlayerBase.PLAYER_INFO_HUD_PD2))
 	end)
 	
 	--Update ECM timer
-	Hooks:PostHook(HUDManager, "update", "buuECM_post_HUDManager_update", function(self)
+	Hooks:PostHook(HUDManager, "update", "hmh_HUDManager_update", function(self)
 		self._hud_ecm_counter:update()
 	end)
 
@@ -142,7 +142,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 
 elseif RequiredScript == "lib/units/equipment/ecm_jammer/ecmjammerbase" then
 	
-	Hooks:PostHook(ECMJammerBase, "setup", "buuECM_post_ECMJammerBase_setup", function(self, battery_life_upgrade_lvl, ...)
+	Hooks:PostHook(ECMJammerBase, "setup", "hmh_ECMJammerBase_setup", function(self, battery_life_upgrade_lvl, ...)
 		local new_end_time = TimerManager:game():time() + self:battery_life()
 		if new_end_time > managers.hud._hud_ecm_counter._end_time then
 			if battery_life_upgrade_lvl ~= 3 then
@@ -159,7 +159,7 @@ elseif RequiredScript == "lib/units/equipment/ecm_jammer/ecmjammerbase" then
 		end
 	end)
 	
-	Hooks:PostHook(ECMJammerBase, "sync_setup", "buuECM_post_ECMJammerBase_sync_setup", function(self, upgrade_lvl, ...)
+	Hooks:PostHook(ECMJammerBase, "sync_setup", "hmh_ECMJammerBase_sync_setup", function(self, upgrade_lvl, ...)
 		local new_end_time = TimerManager:game():time() + self:battery_life()
 		if new_end_time > managers.hud._hud_ecm_counter._end_time then
 			if upgrade_lvl ~= 3 then
@@ -176,7 +176,7 @@ elseif RequiredScript == "lib/units/equipment/ecm_jammer/ecmjammerbase" then
 		end
 	end)
 
-	Hooks:PostHook(ECMJammerBase, "update", "buuECM_ECMJammerBase_update", function(self, unit, t, ...)
+	Hooks:PostHook(ECMJammerBase, "update", "hmh_ECMJammerBase_update", function(self, unit, t, ...)
 		if (managers.hud._hud_ecm_counter._end_time == 0) then
 			local new_end_time = TimerManager:game():time() + self:battery_life()
 			managers.hud._hud_ecm_counter._end_time = new_end_time
@@ -187,7 +187,7 @@ elseif RequiredScript == "lib/units/equipment/ecm_jammer/ecmjammerbase" then
 	end)
 	
 elseif RequiredScript == "lib/units/beings/player/playerinventory" then
-	Hooks:PostHook(PlayerInventory, "_start_jammer_effect", "buuECM_post_PlayerInventory__start_jammer_effect", function(self, end_time)
+	Hooks:PostHook(PlayerInventory, "_start_jammer_effect", "hmh_PlayerInventory__start_jammer_effect", function(self, end_time)
 		local new_end_time = end_time or TimerManager:game():time() + self:get_jammer_time()
 		if new_end_time > managers.hud._hud_ecm_counter._end_time or managers.hud._hud_ecm_counter._pager_block == false then
 			managers.hud._hud_ecm_counter._end_time = new_end_time
