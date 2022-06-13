@@ -2,6 +2,10 @@ if _G.IS_VR then
     return
 end
 
+local Color = Color
+local math_lerp = math.lerp
+
+local HMH = HMH
 local ammo = HMH:GetOption("ammo")
 local interact_info_text = HMH:GetOption("interact_info") and not (VoidUI and VoidUI.options.teammate_panels)
 Hooks:PostHook(HUDTeammate, "init", "HMH_HUDTeammateInit", function(self, ...)
@@ -116,7 +120,7 @@ if interact_info_text then
 			name_bg:set_w(name:w() - 45)
 	    end
     end)
-	
+
 	Hooks:PreHook(HUDTeammate, "teammate_progress", "HMH_HUDTeammateTeammateProgress", function(self, enabled, tweak_data_id, timer, success, ...)
 	    local t = 1 -- How long an interaction should be in order for the text to display. If its shorter than 1 sec nothing will show when at default.
         if not self._player_panel:child("interact_panel"):child("interact_info") then return end
@@ -280,7 +284,7 @@ if HMH:GetOption("equipment") then
             equipment:animate(function(o)
                 over(1, function(p)
                     local n = 1 - math.sin((p / 2) * 180)
-                    equipment:set_alpha(math.lerp(1, 0.2, n))
+                    equipment:set_alpha(math_lerp(1, 0.2, n))
                 end)
             end)
         elseif data.amount == 0 then
@@ -318,7 +322,7 @@ if HMH:GetOption("equipment") then
             grenades:animate( function(o)
                 over(1, function(p)
                     local n = 1 - math.sin((p / 2 ) * 180)
-                    grenades:set_alpha( math.lerp(1, 0.2, n))
+                    grenades:set_alpha(math_lerp(1, 0.2, n))
                 end)
             end)
         elseif data.amount == 0 then
@@ -354,7 +358,7 @@ if HMH:GetOption("equipment") then
             cable_ties:animate(function(o)
                 over(1, function(p)
                     local n = 1 - math.sin((p / 2 ) * 180)
-                    cable_ties:set_alpha(math.lerp(1, 0.2, n))
+                    cable_ties:set_alpha(math_lerp(1, 0.2, n))
                 end)
             end)
         elseif amount == 0 then
@@ -429,6 +433,16 @@ if HMH:GetOption("equipment") then
 end
 
 if ammo then
+    local function selected(o)
+        over(0.5, function(p)
+            o:set_alpha(math_lerp(0.5, 1, p))
+        end)
+    end
+    local function unselected(o)
+        over(0.5, function(p)
+            o:set_alpha(math_lerp(1, 0.5, p))
+        end)
+    end
     Hooks:PreHook(HUDTeammate, "set_weapon_selected", "HMH_HUDTeammateSetWeaponSelected", function(self, id, hud_icon, ...)
 	    if not self._player_panel:child("weapons_panel"):child("secondary_weapon_panel") then return end
         local is_secondary = id == 1
@@ -439,27 +453,11 @@ if ammo then
         primary_weapon_panel:stop()
 
         if is_secondary then
-            primary_weapon_panel:animate(function(o)
-                over(0.5, function(p)
-                    primary_weapon_panel:set_alpha(math.lerp(1, 0.5, p))
-                end)
-            end)
-            secondary_weapon_panel:animate(function(o)
-                over(0.5, function(p)
-                    secondary_weapon_panel:set_alpha(math.lerp(0.5, 1, p))
-                end)
-            end)
+            primary_weapon_panel:animate(unselected)
+            secondary_weapon_panel:animate(selected)
         else
-            secondary_weapon_panel:animate(function(o)
-                over(0.5, function(p)
-                    secondary_weapon_panel:set_alpha(math.lerp(1, 0.5, p))
-                end)
-            end)
-            primary_weapon_panel:animate(function(o)
-                over(0.5, function(p)
-                    primary_weapon_panel:set_alpha(math.lerp(0.5, 1, p))
-                end)
-            end)
+            secondary_weapon_panel:animate(unselected)
+            primary_weapon_panel:animate(selected)
         end
     end)
 
@@ -535,7 +533,7 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammateSetAmmoAm
                 local s = self._last_ammo[type]
                 local e = current_left
                 over(0.5, function(p)
-                    local value = math.lerp(s, e, p)
+                    local value = math_lerp(s, e, p)
                     local text = string.format("%.0f", value)
                     local zero = math.round(value) < 10 and "00" or math.round(value) < 100 and "0" or ""
                     local low_ammo = value <= math.round(max_clip / 2)
@@ -551,7 +549,7 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammateSetAmmoAm
                 over(1 , function(p)
                     local n = 1 - math.sin((p / 2 ) * 180)
 
-                    ammo_total:set_font_size(math.lerp(ammo_font, ammo_font + 4, n))
+                    ammo_total:set_font_size(math_lerp(ammo_font, ammo_font + 4, n))
                 end)
             end)
         end
@@ -561,7 +559,7 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammateSetAmmoAm
                 local s = self._last_clip[type]
                 local e = current_clip
                 over(0.25, function(p)
-                    local value = math.lerp(s, e, p)
+                    local value = math_lerp(s, e, p)
                     local text = string.format( "%.0f", value)
                     local zero = math.round(value) < 10 and "00" or math.round(value) < 100 and "0" or ""
                     local low_clip = value <= math.round(max_clip / 4)
@@ -577,7 +575,7 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammateSetAmmoAm
                 end)
 				over(1 , function(p)
                     local n = 1 - math.sin((p / 2 ) * 180)
-                    ammo_clip:set_font_size(math.lerp(24, 24 + 4, n))
+                    ammo_clip:set_font_size(math_lerp(24, 24 + 4, n))
                 end)
             end)
         end
@@ -619,7 +617,7 @@ if HMH:GetOption("colored_downs") then
 		        revive_amount_text:animate(function(o)
 				    over(1 , function(p)
                         local n = 1 - math.sin((p / 2 ) * 180)
-                        revive_amount_text:set_font_size(math.lerp(16, 16 * 1.16, n))
+                        revive_amount_text:set_font_size(math_lerp(16, 16 * 1.16, n))
                     end)
                 end)
     		end
