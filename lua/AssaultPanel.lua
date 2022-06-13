@@ -2,6 +2,11 @@ if VoidUI_HMV or not HMH:GetOption("assault") then
    return
 end
 
+local HMH = HMH
+local math_sin = math.sin
+local math_lerp = math.lerp
+local set_alpha = set_alpha
+
 Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(self, hud, ...)
     self._assault_color = HMH:GetColor("AssaultText")
 	self._vip_assault_color = HMH:GetColor("CaptainText")
@@ -11,8 +16,11 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 	end
 
 	if managers.skirmish:is_skirmish() then
+		self._is_skirmish = true
 		self._assault_color = HMH:GetColor("HoldoutText")
 	end
+
+	self._is_crimespree = managers.crime_spree:is_active()
 
     -- HOSTAGES
 	local hostages_panel = self._hud_panel:child("hostages_panel")
@@ -115,7 +123,7 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 	vip_icon:set_color(HMH:GetColor("CaptainBuffIcon"))
 	vip_icon:set_blend_mode("normal")
 	vip_icon:set_alpha(HMH:GetOption("assault_text"))
-	
+
 	-- VHUDPlus Compatibility
 	if VHUDPlus then  
 	    local VHUDPlus_waves = VHUDPlus:getSetting({"AssaultBanner", "WAVE_COUNTER"}, true)
@@ -166,7 +174,7 @@ function HUDAssaultCorner:_start_assault(text_list)
 	end
 
 	icon_assaultbox:set_color(self._assault_color)
-	icon_assaultbox:set_alpha(HMH:GetOption("assault_text")) 
+	icon_assaultbox:set_alpha(HMH:GetOption("assault_text"))
 	self._assault = true
 	self:hide_casing()
 
@@ -216,17 +224,17 @@ function HUDAssaultCorner:_hide_icon_assaultbox(icon_assaultbox)
 end
 
 function HUDAssaultCorner:hostage_anim(text)
-	over(1 , function(p)
+	over(1, function(p)
 		local font_size = tweak_data.hud_corner.numhostages_size
-        local n = 1 - math.sin((p / 2 ) * 180)
-        self._hostages_bg_box:child("num_hostages"):set_font_size(math.lerp(font_size, font_size * 1.20, n))
+        local n = 1 - math_sin((p / 2) * 180)
+        self._hostages_bg_box:child("num_hostages"):set_font_size(math_lerp(font_size, font_size * 1.20, n))
     end)
 end
 
 function HUDAssaultCorner:set_control_info(data)
 	self._hostages_bg_box:child("num_hostages"):set_text(data.nr_hostages)
+	self._hostages_bg_box:child("num_hostages"):stop()
 	self._hostages_bg_box:child("num_hostages"):animate(callback(self, self, "hostage_anim"))
-
 end
 
 function HUDAssaultCorner:set_text(typ, text_list, add)
@@ -260,25 +268,24 @@ function HUDAssaultCorner:sync_set_assault_mode(mode)
 end
 
 function HUDAssaultCorner:_get_assault_strings()
-	local difficulty = ""
-	for i = 1, managers.job:current_difficulty_stars() do
-		difficulty = difficulty .. managers.localization:get_default_macro("BTN_SKULL")
-	end
-
-	local space = string.rep(" ", 2)
 	local crime_spree_rank
-	if managers.crime_spree:is_active() and self._assault_mode == "normal" then
+	if self._is_crimespree and self._assault_mode == "normal" then
+		local space = string.rep(" ", 2)
 	    crime_spree_rank = ":" .. space ..  managers.localization:to_upper_text("menu_cs_level", {level = managers.experience:cash_string(managers.crime_spree:server_spree_level(), "")})
 	else
 	    crime_spree_rank = ""
 	end
 
 	local assault_text = ""
-	if managers.crime_spree:is_active() then
+	if self._is_crimespree then
 	    assault_text = managers.localization:to_upper_text(self._assault_mode == "normal" and "cn_crime_spree" or "hud_assault_vip") .. crime_spree_rank
-	elseif managers.skirmish:is_skirmish() then
+	elseif self._is_skirmish then
 	    assault_text = managers.localization:to_upper_text("hmh_hud_assault_assault")
 	else
+		local difficulty = ""
+		for i = 1, managers.job:current_difficulty_stars() do
+			difficulty = difficulty .. managers.localization:get_default_macro("BTN_SKULL")
+		end
 	    assault_text = managers.localization:to_upper_text(self._assault_mode == "normal" and "hmh_hud_assault_assault" or "hud_assault_vip") .. " " .. difficulty
 	end
 
@@ -302,7 +309,7 @@ function HUDAssaultCorner:hide_casing()
 	local icon_casingbox = self._hud_panel:child("casing_panel"):child("icon_casingbox")
 	icon_casingbox:stop()
 	local function close_done()
-		self._hud_panel:child("casing_panel"):animate(callback(nil, _G, "set_alpha"), 0)
+		self._hud_panel:child("casing_panel"):animate(set_alpha, 0)
 		icon_casingbox:animate(callback(self, self, "_hide_icon_assaultbox"))
 	end
 	self._casing_bg_box:stop()
@@ -315,12 +322,12 @@ function HUDAssaultCorner:_animate_show_casing(casing_panel, delay_time)
 end
 
 function HUDAssaultCorner:_hide_hostages()
-	self._hud_panel:child( "hostages_panel" ):animate(callback(nil, _G, "set_alpha"), 0)
+	self._hud_panel:child("hostages_panel"):animate(set_alpha, 0)
 end
 
 function HUDAssaultCorner:_show_hostages()
 	if not self._point_of_no_return then
-		self._hud_panel:child( "hostages_panel" ):animate(callback(nil, _G, "set_alpha"), 1)
+		self._hud_panel:child("hostages_panel"):animate(set_alpha, 1)
 	end
 end
 
@@ -333,8 +340,8 @@ function HUDAssaultCorner:flash_point_of_no_return_timer(beep)
 		local t = 0
 		while t < 0.5 do
 			t = t + coroutine.yield()
-			local n = 1 - math.sin(t * 180)
-            o:set_font_size( math.lerp(24 , (24) * 1.25, n))
+			local n = 1 - math_sin(t * 180)
+            o:set_font_size(math_lerp(24 , (24) * 1.25, n))
 		end
   	end
   	local point_of_no_return_timer = self._noreturn_bg_box:child("point_of_no_return_timer")
