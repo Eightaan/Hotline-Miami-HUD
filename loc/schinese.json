@@ -1,8 +1,6 @@
 {
 	"hud_instruct_mask_on" : "",
 	"hud_int_hold_grab_the_bag" : "按住 $INTERACT 捡起 $BAG",
-	"hmh_dialog_force_start_title" : "强制开始游戏？",
-	"hmh_dialog_force_start_desc" : "你确定要强制游戏开始吗？",
 	"hmh_hud_assault_assault" : "突击进行中",
 	"hmh_inspire_cooldown_text" : "激励启发冷却剩余时间:",
 	"hmh_int_locked" : "按 $BTN_CANCEL 中断",
@@ -351,7 +349,7 @@
 	"ability_icon_title" : "Show Ability Icon",
 	"ability_icon_desc" : "",
 	"hide_hudbox_title" : "Always Hide Corners/Background",
-	"hide_hudbox_desc" : "The hudbox corners and background will always be hidden even when the rest of the assault panel options are disabled. Useful to match other huds like MUI.",
+	"hide_hudbox_desc" : "The hudbox corners and background will always be hidden even when the rest of the assault panel options are disabled.",
 	"no_smoke_title" : "No Menu Smoke",
 	"no_smoke_desc" : "Disables the smoke in the main menu.\nWhen changed, a game restart is required to take effect.",
 	"xp_title" : "Experience Ring Texture",

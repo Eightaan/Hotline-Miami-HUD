@@ -117,38 +117,37 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
     end
 	
 	function HUDComboCounter:close_anim( panel )
-	local Combo_text = self._combo_panel:child("Combo_text")
-	local Combo_text_bg = self._combo_panel:child("Combo_text_bg")
-	local speed = 2000
-	local cw = panel:x()
-	local TOTAL_T = cw/speed
-	local t = TOTAL_T
-	while t > 0 do
-		local dt = coroutine.yield()
-		t = t - dt
-		panel:set_x((1 - t/TOTAL_T) * -80 )
-	end
-	self._combo_panel:set_visible(false) 
-    self._combo_panel:set_x(0)
-    Combo_text:set_x(6)
-    Combo_text_bg:set_x(8)	
-	Combo_text:animate(callback(self, self, "open_anim"))
-    Combo_text_bg:animate(callback(self, self, "open_anim"))
-	
-end
+		local Combo_text = self._combo_panel:child("Combo_text")
+		local Combo_text_bg = self._combo_panel:child("Combo_text_bg")
+		local speed = 2000
+		local cw = panel:x()
+		local TOTAL_T = cw/speed
+		local t = TOTAL_T
+		while t > 0 do
+			local dt = coroutine.yield()
+			t = t - dt
+			panel:set_x((1 - t/TOTAL_T) * -80 )
+		end
+		self._combo_panel:set_visible(false) 
+ 	    self._combo_panel:set_x(0)
+ 	    Combo_text:set_x(6)
+ 	    Combo_text_bg:set_x(8)	
+	    Combo_text:animate(callback(self, self, "open_anim"))
+ 	    Combo_text_bg:animate(callback(self, self, "open_anim"))
+    end
 
-function HUDComboCounter:flash_text(text, config)
-	local Combo_text_bg = self._combo_panel:child("Combo_text_bg")
-	local TOTAL_T = 0.4
-	local t = TOTAL_T
-	while t > 0 do
-		local dt = coroutine.yield()
-		t = t - dt
-		local cv = math.abs((math.sin(t * 180 * 16)))
-		text:set_color(Color("e2087c") * cv + Color("e2087c") * cv)
-	end
-	text:set_color(Color("e2087c"))
-end
+    function HUDComboCounter:flash_text(text, config)
+	    local Combo_text_bg = self._combo_panel:child("Combo_text_bg")
+    	local TOTAL_T = 0.4
+	    local t = TOTAL_T
+    	while t > 0 do
+	    	local dt = coroutine.yield()
+    		t = t - dt
+	    	local cv = math.abs((math.sin(t * 180 * 16)))
+	    	text:set_color(Color("e2087c") * cv + Color("e2087c") * cv)
+    	end
+    	text:set_color(Color("e2087c"))
+    end
 
 	function HUDComboCounter:kill_anim(panel)
 	    local Combo_text = self._combo_panel:child("Combo_text")
