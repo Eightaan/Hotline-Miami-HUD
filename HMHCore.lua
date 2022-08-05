@@ -128,13 +128,14 @@ if not HMH then
             DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/endscreen/exp_ring"), self._path .. "assets/guis/textures/pd2_mod_hmh/exp_ring.texture")
         end
 		
-		if HMH:GetOption("Reset") then
+		if HMH:GetOption("preset") ~= 1 then
 	        HMH:LoadDefaults()
 	    end
     end
 
     function HMH:LoadDefaults()
-        local default_file = io.open(HMH._path .."Menu/default_values.json")
+	    local values = HMH:GetOption("preset") == 3 and "Menu/default_values_vanilla.json" or "Menu/default_values.json"
+        local default_file = io.open(HMH._path ..values)
         self._data = json.decode(default_file:read("*all"))
         default_file:close()
     end

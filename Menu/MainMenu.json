@@ -17,8 +17,26 @@
             "default_value": 1
 		},
 		{
+			"type": "button",
+			"id": "reset_id",
+			"title": "reset_title",
+			"description": "reset_desc",
+			"next_menu": "hmh_menu_reset"
+		},
+		{
 			"type": "divider",
 			"size": 16
+		},
+		{
+			"type": "toggle",
+			"id": "no_menu_textures_toggle",
+			"title": "no_menu_textures_title",
+			"description": "no_menu_textures_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "no_menu_textures",
+			"value": "no_menu_textures",
+			"default_value": false,
+			"is_parent" : true
         },
         {
 			"type": "toggle",
@@ -28,7 +46,8 @@
 			"callback": "SetOption",
 			"callback_arguments": "mod_overrides",
 			"value": "mod_overrides",
-			"default_value": true
+			"default_value": true,
+			"parent" : "no_menu_textures_toggle"
 		},
 		{
 			"type": "divider",
@@ -182,13 +201,6 @@
 			"title": "hmh_subs_title",
 			"description": "hmh_subs_desc",
 			"next_menu": "hmh_menu_subs"
-		},
-		{
-			"type": "button",
-			"id": "reset_id",
-			"title": "reset_title",
-			"description": "reset_desc",
-			"next_menu": "hmh_menu_reset"
 		}
 	]
 }

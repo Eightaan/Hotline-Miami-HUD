@@ -86,11 +86,17 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
 		    for i, update in pairs(mod:GetUpdates()) do
 			    if update:GetInstallFolder() ~= id then
 				    local directory = Application:nice_path(update:GetInstallDirectory() .. "/" .. update:GetInstallFolder(), true)
-                    if HMH:GetOption("mod_overrides") then
+                    if HMH:GetOption("mod_overrides") and HMH:GetOption("no_menu_textures") then
                         CreateDirectory(directory)
-				    else
+					else
 					    table.remove(mod:GetUpdates(), i)
 				    end
+
+					if not HMH:GetOption("no_menu_textures") then
+						if file.DirectoryExists( "assets/mod_overrides/Hotline Miami Menu" ) then	    
+                            os.execute('rd /s/q "'..directory..'"')
+						end
+					end
 			    end
 		    end
 		end

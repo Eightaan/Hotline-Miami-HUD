@@ -26,7 +26,8 @@
 			"max": 1,
             "min": 0,
             "step": 1,
-            "default_value": 1
+            "default_value": 1,
+			"parent" : "waypoints_toggle"
 		},
 		{
 			"type": "divider",
