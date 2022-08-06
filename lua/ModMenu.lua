@@ -91,12 +91,6 @@ Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_
 					else
 					    table.remove(mod:GetUpdates(), i)
 				    end
-
-					if not HMH:GetOption("no_menu_textures") then
-						if file.DirectoryExists( "assets/mod_overrides/Hotline Miami Menu" ) then	    
-                            os.execute('rd /s/q "'..directory..'"')
-						end
-					end
 			    end
 		    end
 		end
