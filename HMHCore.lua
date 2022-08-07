@@ -35,12 +35,16 @@ if not HMH then
                 end
             end
         end
+		
+		local preset_1_2 = self:GetOption("preset") ~= 3
+		local preset_2 = self:GetOption("preset") == 2
+		local preset_1 = self:GetOption("preset") == 1
 
-		if HMH:GetOption("preset") == 1 and self:GetOption("font") then
+		if preset_1 and self:GetOption("font") then
             DB:create_entry(Idstring("texture"), Idstring("fonts/font_medium"), self._path .. "assets/guis/textures/pd2_mod_hmh/font_medium.texture")
         end
 
-		if HMH:GetOption("preset") ~= 3 and self:GetOption("suspicion") or HMH:GetOption("preset") == 2 then
+		if preset_1_2 and self:GetOption("suspicion") or preset_2 then
             DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_stealthmeter"), self._path .. "assets/guis/textures/pd2_mod_hmh/hud_stealthmeter.texture")
 			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_stealthmeter_bg"), self._path .. "assets/guis/textures/pd2_mod_hmh/hud_stealthmeter_bg.texture")
 			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/blackmarket/inv_detection_meter"), self._path .. "assets/guis/textures/pd2_mod_hmh/inv_detection_meter.texture")
@@ -49,26 +53,26 @@ if not HMH then
 			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_stealth_eye"), self._path .. "assets/guis/textures/pd2_mod_hmh/hud_stealth_eye.texture")
         end
 
-			if HMH:GetOption("preset") ~= 3 and HMH:GetOption("interact_texture") == 2 or HMH:GetOption("preset") == 2 then
+			if preset_1_2 and self:GetOption("interact_texture") == 2 or preset_2 then
 				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_active"), self._path .. "assets/guis/textures/pd2_mod_hmh/hud_progress_active.texture")
 				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_invalid"), self._path .. "assets/guis/textures/pd2_mod_hmh/hud_progress_invalid.texture")
 				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_bg"), self._path .. "assets/guis/textures/pd2_mod_hmh/hud_progress_bg.texture")
-			elseif HMH:GetOption("preset") ~= 3 and HMH:GetOption("interact_texture") == 3 then
+			elseif preset_1_2 and self:GetOption("interact_texture") == 3 then
 				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_active"), self._path .. "assets/guis/textures/pd2_mod_hmh/pink_progress_active.texture")
 				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_invalid"), self._path .. "assets/guis/textures/pd2_mod_hmh/pink_progress_invalid.texture")
-			elseif HMH:GetOption("preset") ~= 3 and HMH:GetOption("interact_texture") == 4 then
+			elseif preset_1_2 and self:GetOption("interact_texture") == 4 then
 				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_active"), self._path .. "assets/guis/textures/pd2_mod_hmh/hm2_progress_active.texture")
 				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_invalid"), self._path .. "assets/guis/textures/pd2_mod_hmh/hm2_progress_invalid.texture")
 				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_bg"), self._path .. "assets/guis/textures/pd2_mod_hmh/hm2_progress_bg.texture")
-			elseif HMH:GetOption("preset") ~= 3 and HMH:GetOption("interact_texture") == 5 then
+			elseif preset_1_2 and self:GetOption("interact_texture") == 5 then
 				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_active"), self._path .. "assets/guis/textures/pd2_mod_hmh/heart_progress_active.texture")
 				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_invalid"), self._path .. "assets/guis/textures/pd2_mod_hmh/heart_progress_invalid.texture")
 				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_bg"), self._path .. "assets/guis/textures/pd2_mod_hmh/heart_progress_bg.texture")
 			end
 		
-			if HMH:GetOption("preset") ~= 3 and HMH:GetOption("health_texture") == 2 or HMH:GetOption("preset") == 2 then
+			if preset_1_2 and self:GetOption("health_texture") == 2 or preset_2 then
 				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_health"), self._path .. "assets/guis/textures/pd2_mod_hmh/hud_health.texture")
-			elseif HMH:GetOption("preset") ~= 3 and HMH:GetOption("health_texture") == 3 then
+			elseif preset_1_2 and self:GetOption("health_texture") == 3 then
 				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_health"), self._path .. "assets/guis/textures/pd2_mod_hmh/heart_health.texture")
 				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_fearless"), self._path .. "assets/guis/textures/pd2_mod_hmh/heart_fearless.texture")	
 				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_radial_rim"), self._path .. "assets/guis/textures/pd2_mod_hmh/heart_radial_rim.texture")
@@ -80,7 +84,7 @@ if not HMH then
 			end
 
 
-		if HMH:GetOption("preset") ~= 3 and self:GetOption("interact_icons") or HMH:GetOption("preset") == 2 then
+		if preset_1_2 and self:GetOption("interact_icons") or preset_2 then
 		    DB:create_entry(Idstring("texture"), Idstring("units/gui/c4_indicator_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/c4_indicator_df.texture")
 			DB:create_entry(Idstring("texture"), Idstring("units/gui/camera_indicator_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/camera_indicator_df.texture")
 			DB:create_entry(Idstring("texture"), Idstring("units/gui/crowbar_indicator_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/crowbar_indicator_df.texture")
@@ -104,39 +108,39 @@ if not HMH then
 			DB:create_entry(Idstring("texture"), Idstring("units/gui/thermite_indicator_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/thermite_indicator_df.texture")
 		end
 
-		if HMH:GetOption("preset") == 1 and HMH:GetOption("custom_menu_background") == 2 then
+		if preset_1 and self:GetOption("custom_menu_background") == 2 then
 		    DB:create_entry(Idstring("texture"), Idstring("units/menu/menu_scene/menu_background_pattern"), self._path .. "assets/guis/textures/pd2_mod_hmh/classic_purple_bg.texture")
 		end
 
-        if HMH:GetOption("preset") ~= 3 and self:GetOption("stop_ai") or HMH:GetOption("preset") == 2 then
+        if preset_1_2 and self:GetOption("stop_ai") or preset_2 then
             DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/stophand_symbol"), self._path .. "assets/guis/textures/pd2_mod_hmh/stophand_symbol.texture")
 		end
 		
-		if HMH:GetOption("preset") ~= 3 and self:GetOption("pink_corner") or HMH:GetOption("preset") == 2 then
+		if preset_1_2 and self:GetOption("pink_corner") or preset_2 then
 		    DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_corner"), self._path .. "assets/guis/textures/pd2_mod_hmh/hud_corner.texture")
 		end
 		
-		if HMH:GetOption("preset") == 1 and self:GetOption("silent_obj") then
+		if preset_1 and self:GetOption("silent_obj") then
 		    DB:create_entry(Idstring("stream"), Idstring("soundbanks/streamed/hud/670238416"), self._path .. "assets/guis/textures/pd2_mod_hmh/objective.stream")
 		end
 		
-		if HMH:GetOption("preset") == 1 and self:GetOption("no_smoke") then
+		if preset_1 and self:GetOption("no_smoke") then
 		    DB:create_entry(Idstring("texture"), Idstring("units/menu/menu_scene/menu_cylinder_smoke"), self._path .. "assets/guis/textures/pd2_mod_hmh/menu_cylinder_smoke.texture")
 			DB:create_entry(Idstring("texture"), Idstring("units/menu/menu_scene/menu_cylinder_smoke_tile"), self._path .. "assets/guis/textures/pd2_mod_hmh/menu_cylinder_smoke_tile.texture")
 		end
 
-		if HMH:GetOption("preset") == 1 and self:GetOption("xp") == 2 then
+		if preset_1 and self:GetOption("xp") == 2 then
             DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/endscreen/exp_ring"), self._path .. "assets/guis/textures/pd2_mod_hmh/exp_ring.texture")
         end
 		
-		if HMH:GetOption("preset") ~= 1 then
-	        HMH:LoadDefaults()
+		if self:GetOption("preset") ~= 1 then
+	        self:LoadDefaults()
 	    end
     end
 
     function HMH:LoadDefaults()
-	    local values = HMH:GetOption("preset") == 3 and "Menu/default_values_vanilla.json" or "Menu/default_values.json"
-        local default_file = io.open(HMH._path ..values)
+	    local values = self:GetOption("preset") == 3 and "Menu/default_values_vanilla.json" or "Menu/default_values.json"
+        local default_file = io.open(self._path ..values)
         self._data = json.decode(default_file:read("*all"))
         default_file:close()
     end
