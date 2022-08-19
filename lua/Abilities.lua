@@ -71,6 +71,7 @@ elseif RequiredScript == "lib/managers/playermanager" then
 
 elseif RequiredScript == "lib/managers/hud/hudteammate" then	
 	local init_original = HUDTeammate.init
+	local original_create_condition = HUDTeammate._create_condition
 	local set_custom_radial_orig = HUDTeammate.set_custom_radial
 	local set_condition_original = HUDTeammate.set_condition
   	local set_ability_radial_original = HUDTeammate.set_ability_radial
@@ -79,7 +80,6 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 	function HUDTeammate:init(...)
 		init_original(self, ...)
 		if self._main_player then
-			self:_init_cooldown_timer()
 			if HMH:GetOption("stamina") then
 			    self:_create_circle_stamina()
 			end
@@ -102,45 +102,52 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 		    if duration > 0 then
 			    self._cooldown_timer:set_alpha(0)
 				self._cooldown_icon:set_alpha(0)
-				self._radial_health_panel:child("radial_armor"):set_alpha(0)
+				if self._radial_health_panel:child("radial_armor") then
+					self._radial_health_panel:child("radial_armor"):set_alpha(0)
+				end
 			else
 			    self._cooldown_timer:set_alpha(1)
 				self._cooldown_icon:set_alpha(0.4)
-				self._radial_health_panel:child("radial_armor"):set_alpha(1)
+				if self._radial_health_panel:child("radial_armor") then
+					self._radial_health_panel:child("radial_armor"):set_alpha(1)
+				end
 			end
 		end
 			
 	end
-
-	function HUDTeammate:_init_cooldown_timer()
-    	self._health_panel = self._health_panel or self._player_panel:child("radial_health_panel")
-		self._cooldown_timer = self._health_panel:text({
-			name = "cooldown_timer",
-			text = "",
-			color = Color.white,
-			visible = false,
-			align = "center",
-			vertical = "center",
-			y = HMH:GetOption("ability_icon") and 10 or 0,
-			font = tweak_data.hud.medium_font_noshadow,
-			font_size = 16,
-			layer = 4
-		})
-		self._cooldown_icon = self._health_panel:bitmap({
-			name = "cooldown_icon",
-			texture = "guis/dlcs/opera/textures/pd2/specialization/icons_atlas",
-			texture_rect = {0, 0, 64, 64},
-			valign = "center",
-			x = 14,
-			y = 15,
-			w = 40,
-			h = 40,
-			color = HMH:GetColor("Ability_icon_color") or Color.white,
-			visible = false,
-			align = "center",
-			alpha = 0.4,
-			layer = 3
-		})
+		
+	function HUDTeammate:_create_condition(...)
+		original_create_condition(self, ...)
+		self._health_panel = self._health_panel or self._player_panel:child("radial_health_panel")
+		if self._main_player then
+			self._cooldown_timer = self._health_panel:text({
+				name = "cooldown_timer",
+				text = "",
+				color = Color.white,
+				visible = false,
+				align = "center",
+				vertical = "center",
+				y = HMH:GetOption("ability_icon") and 10 or 0,
+				font = tweak_data.hud.medium_font_noshadow,
+				font_size = 16,
+				layer = 4
+			})
+			self._cooldown_icon = self._health_panel:bitmap({
+				name = "cooldown_icon",
+				texture = "guis/dlcs/opera/textures/pd2/specialization/icons_atlas",
+				texture_rect = {0, 0, 64, 64},
+				valign = "center",
+				x = 14,
+				y = 15,
+				w = 40,
+				h = 40,
+				color = HMH:GetColor("Ability_icon_color") or Color.white,
+				visible = false,
+				align = "center",
+				alpha = 0.4,
+				layer = 3
+			})
+		end
 	end
 	
 	function HUDTeammate:_create_circle_stamina()
@@ -192,7 +199,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
                 	t_left = t_left - coroutine.yield()
 					t_format = t_left < 10 and "%.1f" or "%.f"
                 	o:set_text(string.format(t_format, t_left))
-					if t_left > 13.5 and not HMH:GetOption("armorer_cooldown_radial") then
+					if t_left > 13.5 then
 						o:set_color(HMH:GetColor("armorer_duration_timer_color") or Color.green)
 					else
 					    o:set_color(HMH:GetColor("armorer_cooldown_timer_color") or Color.red)
@@ -255,6 +262,9 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
     end
 
     function HUDTeammate:set_condition(icon_data, ...)
+	    if MUITeammate then 
+		    return set_condition_original(self, icon_data, ...)
+		end
 	    local visible = icon_data ~= "mugshot_normal"
     	self:set_stamina_visibility(not visible and HMH:GetOption("stamina"))
 		
