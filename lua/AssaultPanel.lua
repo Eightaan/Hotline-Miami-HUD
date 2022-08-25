@@ -129,17 +129,24 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 	    local VHUDPlus_waves = VHUDPlus:getSetting({"AssaultBanner", "WAVE_COUNTER"}, true)
 	    local VHUDPlus_enhanced_obj = VHUDPlus:getSetting({"CustomHUD", "ENABLED_ENHANCED_OBJECTIVE"}, false)
 	    local VHUDPlus_center_assault = VHUDPlus:getSetting({"AssaultBanner", "USE_CENTER_ASSAULT"}, true)
+		local VHUDPlus_hide_infoboxes = VHUDPlus:getSetting({"HUDList", "ENABLED"}, true) and not VHUDPlus:getSetting({"HUDList", "ORIGNIAL_HOSTAGE_BOX"}, false)
+		
+		if VHUDPlus_hide_infoboxes then
+			hostages_panel:set_visible(false)
+		end
 
 	    if VHUDPlus_center_assault and not VHUDPlus_enhanced_obj then 
 	        self._casing_timer._timer_text:set_visible(false)
 		    self._assault_timer._timer_text:set_visible(false)
 	    end
 
-	    if self:should_display_waves() and alive(assault_panel) and VHUDPlus_waves then
+	    if self:should_display_waves() and alive(assault_panel) then
 	        local wave_panel = self._hud_panel:child("wave_panel")
-	        self._wave_text:set_visible(false)
-		    if alive(wave_panel) then
-		        wave_panel:set_alpha(1)
+			if VHUDPlus_waves then
+				self._wave_text:set_visible(false)
+			end
+		    if alive(wave_panel) and VHUDPlus_hide_infoboxes then
+		        wave_panel:set_alpha(0)
 		    end
 		end
 	end
