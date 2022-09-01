@@ -262,19 +262,15 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
     end
 
     function HUDTeammate:set_condition(icon_data, ...)
-	    if MUITeammate then 
-		    return set_condition_original(self, icon_data, ...)
-		end
-	    local visible = icon_data ~= "mugshot_normal"
-    	self:set_stamina_visibility(not visible and HMH:GetOption("stamina"))
+	    local custody = icon_data ~= "mugshot_normal"
+    	self:set_stamina_visibility(not custody and HMH:GetOption("stamina"))
 		
-		if icon_data == "mugshot_in_custody" and self._main_player then
-            self._cooldown_icon:set_alpha(0)
-		    self._cooldown_timer:set_alpha(0)
-		elseif icon_data == "mugshot_normal" and self._main_player then
-		    self._cooldown_icon:set_alpha(0.4)
-		    self._cooldown_timer:set_alpha(1)
-        end
+		local icon = self._cooldown_icon
+		local timer = self._cooldown_timer
+		if self._main_player and icon or timer then
+			icon:set_alpha(custody and 0 or 0.4)
+			timer:set_alpha(custody and 0 or 1)
+		end
     	set_condition_original(self, icon_data, ...)
     end
 	
