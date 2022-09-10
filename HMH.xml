@@ -56,11 +56,18 @@
 					<post :script_path="Abilities.lua"/>
 					<post :script_path="VoiceChat.lua"/>
 					<post :script_path="Scale.lua"/>
+					<post :script_path="CaptainBuff.lua"/>
 					<post :script_path="ScreenEffects.lua"/>
                 </group>
 
-				<group :hook_id="group_ai_states/groupaistatebase">
-					<post :script_path="PacifiedCivs.lua"/>
+				<group :hook_id="group_ai_states/">
+					<group :hook_id="groupaistatebase">
+						<post :script_path="PacifiedCivs.lua"/>
+					</group>
+				
+					<group :hook_id="groupaistatebesiege">
+						<post :script_path="CaptainBuff.lua"/>
+					</group>
 				</group>
 
                 <group :hook_id="menu/">

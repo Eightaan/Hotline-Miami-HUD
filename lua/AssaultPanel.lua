@@ -123,6 +123,23 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 	vip_icon:set_color(HMH:GetColor("CaptainBuffIcon"))
 	vip_icon:set_blend_mode("normal")
 	vip_icon:set_alpha(HMH:GetOption("assault_text"))
+	
+	local vip_text = self._vip_bg_box:text({
+		name = "vip_text",
+		text = "0",
+		h = 38,
+		layer = 10,
+		w = 38,
+		visible = HMH:GetOption("captain_buff"),
+		valign = "center",
+		align = "center",
+		vertical = "center",
+		x = 2,
+		y = 14,
+		color = HMH:GetColor("captain_buff_color") or Color("66ffff"),
+		font = tweak_data.hud_corner.assault_font,
+		font_size = tweak_data.hud_corner.numhostages_size * 0.7
+	})
 
 	-- VHUDPlus Compatibility
 	if VHUDPlus then  
@@ -354,4 +371,10 @@ function HUDAssaultCorner:flash_point_of_no_return_timer(beep)
   	local point_of_no_return_timer = self._noreturn_bg_box:child("point_of_no_return_timer")
 	self:hide_casing()
 	point_of_no_return_timer:animate(flash_timer)
+end
+
+function HUDAssaultCorner:set_vip_text(buff)
+    if buff then
+		self._vip_bg_box:child("vip_text"):set_text(managers.localization:to_upper_text("hmh_damage_resistance", { NUM = buff }))
+	end
 end

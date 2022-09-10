@@ -23,6 +23,13 @@
 	"no_smoke" : false,
 	"preset" : 1,
 	"hide_hudbox" : false,
+	"captain_buff" : true,
+	"captain_buff_color" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
+	},
 	"pink_corner" : true,
 	"WaypointIcon" :
 	{

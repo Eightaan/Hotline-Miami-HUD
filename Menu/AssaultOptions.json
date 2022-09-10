@@ -204,6 +204,33 @@
 			"callback": "SetColorOption",
 			"callback_arguments": "CasingIcon",
 			"parent" : ["assault_toggle", "casing_toggle"]
+		},
+		{
+			"type" : "divider",
+			"size" : 8
+		},
+		{
+			"type": "toggle",
+			"id": "captain_buff_toggle",
+			"title": "captain_buff_title",
+			"description": "captain_buff_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "captain_buff",
+			"value": "captain_buff",
+			"default_value": true,
+			"is_parent" : true,
+			"parent" : "assault_toggle"
+		},
+		{
+			"type": "color_select",
+			"id": "captain_buff_color_select",
+			"title": "HotlineMiamiHudcaptainBuffTextTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "captain_buff_color",
+			"default_value": [102, 255, 255],
+			"callback": "SetColorOption",
+			"callback_arguments": "captain_buff_color",
+			"parent" : ["assault_toggle", "captain_buff_toggle"]
 		}
 	]
 }

@@ -1,5 +1,6 @@
 {
 	"hud_instruct_mask_on" : "",
+	"hmh_damage_resistance" : "$NUM%",
 	"hud_int_hold_grab_the_bag" : "Hold $INTERACT to grab the $BAG",
 	"hmh_hud_assault_assault" : "Assault in progress",
 	"hmh_inspire_cooldown_text" : "Inspire still has a cooldown of",
@@ -218,6 +219,9 @@
 	"infoboxes_desc" : "Enable an ECM timer in stealth.",
 	"pager_jam_title" : "Upgraded ECM Icon",
 	"pager_jam_desc" : "Displays an icon on the ecm timer when it blocks pagers.",
+	"captain_buff_title" : "Show Damage Reduction Buff",
+	"captain_buff_desc" : "Shows Damage Reduction Buff when Captain is present.",
+	"HotlineMiamiHudcaptainBuffTextTitleID" : "Damage Reduction Buff",
 
 	"hmh_objective_title" : "Objective",
 	"hmh_objective_desc" : "Customize the objective panel.",
