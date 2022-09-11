@@ -112,21 +112,26 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
     -- VIP ICON
     local icon_offset = 140 + (10 * managers.job:current_difficulty_stars())
 	local vip_icon = self._vip_bg_box:child("vip_icon")
+	local vip_icon_new = self._vip_bg_box:child("vip_icon_new")
 	local buffs_panel = self._hud_panel:child("buffs_panel")
+	local vip_h = 43
+	local vip_w = 43
 	self._vip_bg_box:child("bg"):hide()
 	self._vip_bg_box:child("left_top"):hide()
 	self._vip_bg_box:child("left_bottom"):hide()
 	self._vip_bg_box:child("right_top"):hide()
 	self._vip_bg_box:child("right_bottom"):hide()
 	buffs_panel:set_x(assault_panel:left() + self._bg_box:left() - icon_offset)
-	vip_icon:set_center(self._vip_bg_box:w() / 2, self._vip_bg_box:h() / 2 - 5)
 	vip_icon:set_color(HMH:GetColor("CaptainBuffIcon"))
 	vip_icon:set_blend_mode("normal")
 	vip_icon:set_alpha(HMH:GetOption("assault_text"))
-	
+	vip_icon:set_h(vip_h)
+	vip_icon:set_w(vip_w)
+	vip_icon:set_center(self._vip_bg_box:w() / 2, self._vip_bg_box:h() / 2 - 5)
+
 	local vip_text = self._vip_bg_box:text({
 		name = "vip_text",
-		text = "0%",
+		text = "0",
 		h = 38,
 		layer = 10,
 		w = 38,
@@ -134,12 +139,11 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 		valign = "center",
 		align = "center",
 		vertical = "center",
-		x = 2,
-		y = 14,
+		y = - 4.2,
 		alpha = HMH:GetOption("assault_text") or 1,
 		color = HMH:GetColor("captain_buff_color") or Color("66ffff"),
 		font = tweak_data.hud_corner.assault_font,
-		font_size = tweak_data.hud_corner.numhostages_size * 0.7
+		font_size = tweak_data.hud_corner.numhostages_size * 0.61
 	})
 
 	-- VHUDPlus Compatibility
