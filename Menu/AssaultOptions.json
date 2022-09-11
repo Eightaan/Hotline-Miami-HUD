@@ -227,7 +227,7 @@
 			"title": "HotlineMiamiHudcaptainBuffTextTitleID",
 			"description": "HotlineMiamiHudColorOption",
 			"value": "captain_buff_color",
-			"default_value": [102, 255, 255],
+			"default_value": [255, 204, 102],
 			"callback": "SetColorOption",
 			"callback_arguments": "captain_buff_color",
 			"parent" : ["assault_toggle", "captain_buff_toggle"]

@@ -26,9 +26,9 @@
 	"captain_buff" : true,
 	"captain_buff_color" :
 	{
-		"r" : 102,
-		"g" : 255,
-		"b" : 255
+		"r" : 255,
+		"g" : 204,
+		"b" : 102
 	},
 	"pink_corner" : true,
 	"WaypointIcon" :
