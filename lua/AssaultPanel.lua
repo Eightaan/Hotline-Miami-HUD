@@ -136,7 +136,7 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 		vertical = "center",
 		x = 2,
 		y = 14,
-		alpha = HMH:GetOption("assault_text") or 1
+		alpha = HMH:GetOption("assault_text") or 1,
 		color = HMH:GetColor("captain_buff_color") or Color("66ffff"),
 		font = tweak_data.hud_corner.assault_font,
 		font_size = tweak_data.hud_corner.numhostages_size * 0.7
