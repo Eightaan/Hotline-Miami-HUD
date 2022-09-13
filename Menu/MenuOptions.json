@@ -16,22 +16,6 @@
 			],
 			"value" : "custom_menu_background",
 			"default_value" : 1
-			
-		},
-		{
-			"type" : "multiple_choice",
-			"id" : "xp_multiple_choice",
-			"title" : "xp_title",
-			"description" : "xp_desc",
-			"callback" : "SetOption",
-			"callback_arguments" : "xp",
-			"items" : [
-				"default_xp",
-				"old_xp"
-			],
-			"value" : "xp",
-			"default_value" : 1
-			
 		},
 		{
 			"type": "toggle",

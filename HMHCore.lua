@@ -128,10 +128,6 @@ if not HMH then
 		    DB:create_entry(Idstring("texture"), Idstring("units/menu/menu_scene/menu_cylinder_smoke"), self._path .. "assets/guis/textures/pd2_mod_hmh/menu_cylinder_smoke.texture")
 			DB:create_entry(Idstring("texture"), Idstring("units/menu/menu_scene/menu_cylinder_smoke_tile"), self._path .. "assets/guis/textures/pd2_mod_hmh/menu_cylinder_smoke_tile.texture")
 		end
-
-		if preset_1 and self:GetOption("xp") == 2 then
-            DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/endscreen/exp_ring"), self._path .. "assets/guis/textures/pd2_mod_hmh/exp_ring.texture")
-        end
 		
 		if self:GetOption("preset") ~= 1 then
 	        self:LoadDefaults()

@@ -1,6 +1,5 @@
 {
     "hud_scale" : 1,
-	"xp" : 1, 
 	"no_menu_textures" : false,
     "mod_overrides" : true, 
     "infoboxes" : true, 
