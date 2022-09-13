@@ -67,7 +67,7 @@
 			"title": "HotlineMiamiHudNoReturnTextTitleID",
 			"description": "HotlineMiamiHudColorOption",
 			"value": "NoReturnText",
-			"default_value": [102, 255, 255],
+			"default_value": [255, 102, 102],
 			"callback": "SetColorOption",
 			"callback_arguments": "NoReturnText",
 			"parent" : "assault_toggle"

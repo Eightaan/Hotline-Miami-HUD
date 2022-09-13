@@ -163,6 +163,9 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 	        local wave_panel = self._hud_panel:child("wave_panel")
 			if VHUDPlus_waves then
 				self._wave_text:set_visible(false)
+				if alive(wave_panel) then
+					wave_panel:set_alpha(1)
+				end
 			end
 		    if alive(wave_panel) and VHUDPlus_hide_infoboxes then
 		        wave_panel:set_alpha(0)
@@ -366,7 +369,13 @@ function HUDAssaultCorner:flash_point_of_no_return_timer(beep)
 		local t = 0
 		while t < 0.5 do
 			t = t + coroutine.yield()
-			local n = 1 - math_sin(t * 180)
+			local color = HMH:GetColor("NoReturnTimer") or Color(1, 1, 0, 0)
+			local flash_color = self._noreturn_data.flash_color or Color(1, 1, 0.8, 0.2)
+			local n = 1 - math.sin(t * 180)
+			local r = math.lerp(color.r, flash_color.r, n)
+			local g = math.lerp(color.g, flash_color.g, n)
+			local b = math.lerp(color.b, flash_color.b, n)
+			o:set_color(Color(r, g, b))
             o:set_font_size(math_lerp(24 , (24) * 1.25, n))
 		end
   	end
