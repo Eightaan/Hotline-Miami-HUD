@@ -366,6 +366,8 @@
 	"captain_buff_title" : "Show Damage Reduction Level",
 	"captain_buff_desc" : "Shows damage reduction level when Captain is present. (1 = 10% | 5 = 50%)",
 	"HotlineMiamiHudcaptainBuffTextTitleID" : "Damage Reduction Level",
+	"panel_position_title" : "Vertical Position",
+	"panel_position_desc" : "Change the vertical position of the combo counter.",
 	"hmh_combo_options_title" : "Combo Counter",
 	"hmh_combo_options_desc" : "Combo counter options.",
 	"combo_kill_anim_title" : "Kill Anmiation",

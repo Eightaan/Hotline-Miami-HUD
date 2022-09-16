@@ -37,6 +37,8 @@
 	"combo_kill_flash_desc" : "Flash the combo text for each kill.",
 	"combo_title" : "Combo Counter",
 	"combo_desc" : "Enable a hotline miami styled combo counter.",
+	"panel_position_title" : "Vertical Position",
+	"panel_position_desc" : "Change the vertical position of the combo counter.",
 	"headshot_mark_title" : "Headshot Indicator",
 	"headshot_mark_desc" : "Displays a hitmark when killing enemies with headshots.",
 	"disabled_icon" : "Disabled",

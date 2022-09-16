@@ -15,6 +15,7 @@
 	"CarryAlpha" : 1,
 	"SubAlpha" : 1,
 	"DownedAlpha" : 1,
+	"panel_position" : 40,
 	"combo_kill_anim" : true,
 	"combo_kill_flash" : false,
 	"CustodyAlpha" : 1,

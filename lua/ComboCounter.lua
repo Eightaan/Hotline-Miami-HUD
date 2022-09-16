@@ -34,7 +34,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
             valign = "top",
             blend_mode = "normal"
         })
-        self._combo_panel:set_top(40)
+		self._combo_panel:set_top(40)
         local Combo_text = self._combo_panel:text({
             name = "Combo_text",
             visible = true,
@@ -105,6 +105,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 
     function HUDComboCounter:open_anim(panel)
         local speed = 50
+		local panel_position = HMH:GetOption("panel_position") or 40
         panel:set_x(-150)
        -- panel:set_visible(true)
         local TOTAL_T = 10/speed
@@ -114,6 +115,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
             t = t - dt
             panel:set_x((1 - t / TOTAL_T) * 60)
         end
+		self._combo_panel:set_top(panel_position)
     end
 	
 	function HUDComboCounter:close_anim( panel )
