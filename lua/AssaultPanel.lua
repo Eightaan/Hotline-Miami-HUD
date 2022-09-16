@@ -110,6 +110,7 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 	self._noreturn_bg_box:set_center_y(icon_noreturnbox:center_y())
 
     -- VIP ICON
+	local width = 200
     local icon_offset = 140 + (10 * managers.job:current_difficulty_stars())
 	local vip_icon = self._vip_bg_box:child("vip_icon")
 	local vip_icon_new = self._vip_bg_box:child("vip_icon_new")
@@ -120,6 +121,7 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 	self._vip_bg_box:child("right_top"):hide()
 	self._vip_bg_box:child("right_bottom"):hide()
 	buffs_panel:set_x(assault_panel:left() + self._bg_box:left() - icon_offset)
+	self._vip_bg_box:set_x(width - 38)
 	vip_icon:set_color(HMH:GetColor("CaptainBuffIcon"))
 	vip_icon:set_blend_mode("normal")
 	vip_icon:set_alpha(HMH:GetOption("assault_text"))
