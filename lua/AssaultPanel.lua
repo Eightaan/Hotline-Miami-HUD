@@ -262,8 +262,8 @@ end
 
 function HUDAssaultCorner:set_control_info(data)
 	self._hostages_bg_box:child("num_hostages"):set_text(data.nr_hostages)
-	self._hostages_bg_box:child("num_hostages"):stop()
-	self._hostages_bg_box:child("num_hostages"):animate(callback(self, self, "hostage_anim"))
+	--self._hostages_bg_box:child("num_hostages"):stop()
+	--self._hostages_bg_box:child("num_hostages"):animate(callback(self, self, "hostage_anim"))
 end
 
 function HUDAssaultCorner:set_text(typ, text_list, add)

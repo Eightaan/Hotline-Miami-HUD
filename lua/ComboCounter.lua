@@ -136,8 +136,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
  	    Combo_text_bg:animate(callback(self, self, "open_anim"))
     end
 
-    function HUDComboCounter:flash_text(text, config)
-	    local Combo_text_bg = self._combo_panel:child("Combo_text_bg")
+    function HUDComboCounter:flash_text(text)
     	local TOTAL_T = 0.4
 	    local t = TOTAL_T
     	while t > 0 do
