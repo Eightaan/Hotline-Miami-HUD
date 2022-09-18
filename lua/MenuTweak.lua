@@ -141,9 +141,7 @@ elseif string.lower(RequiredScript) == "lib/managers/menu/stageendscreengui" the
 
 	function StageEndScreenGui:special_btn_released(...)
 	end
-elseif string.lower(RequiredScript) == "lib/managers/menu/lootdropscreengui" then
-	local SKIP_LOOT_SCREEN_DELAY = 3
-	
+elseif string.lower(RequiredScript) == "lib/managers/menu/lootdropscreengui" then	
 	local update_original = LootDropScreenGui.update
 	function LootDropScreenGui:update(t, ...)
 		update_original(self, t, ...)
