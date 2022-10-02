@@ -1,4 +1,4 @@
-if not HMH:GetOption("tab") or (VHUDPlus and VHUDPlus:getSetting({"TabStats", "ENABLED"}, true)) then 
+if not HMH:GetOption("tab") or (VHUDPlus and VHUDPlus:getSetting({"TabStats", "ENABLED"}, true)) or VoidUI and VoidUI.options.enable_stats then 
     return
 end
 
