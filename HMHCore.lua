@@ -41,7 +41,7 @@ if not HMH then
 		local preset_1 = self:GetOption("preset") == 1
 
 		if preset_1 and self:GetOption("font") then
-          --  DB:create_entry(Idstring("texture"), Idstring("fonts/font_medium"), self._path .. "assets/guis/textures/pd2_mod_hmh/font_medium.texture")
+            DB:create_entry(Idstring("texture"), Idstring("fonts/font_medium"), self._path .. "assets/guis/textures/pd2_mod_hmh/font_medium.texture")
         end
 
 		if preset_1_2 and self:GetOption("suspicion") or preset_2 then
