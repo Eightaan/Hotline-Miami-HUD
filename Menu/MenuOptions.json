@@ -26,6 +26,23 @@
 			"callback_arguments" : "no_smoke",
 			"value": "no_smoke",
 			"default_value": false
+			
+		},
+		{
+			"type" : "multiple_choice",
+			"id" : "mouse_pointer_multiple_choice",
+			"title" : "mouse_pointer_title",
+			"description" : "mouse_pointer_desc",
+			"callback" : "SetOption",
+			"callback_arguments" : "mouse_pointer",
+			"items" : [
+				"default_mouse_pointer",
+				"fingerless_gloves",
+				"jacket",
+				"pink_mouse_pointer"
+			],
+			"value" : "mouse_pointer",
+			"default_value" : 2
 		},
 		{
 			"type": "toggle",

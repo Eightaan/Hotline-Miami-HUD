@@ -18,7 +18,7 @@
 				"hm2_interact",
 				"heart_interact"
 			],
-			"default_value": 2
+			"default_value": 3
 		},
 		{
 			"type": "toggle",

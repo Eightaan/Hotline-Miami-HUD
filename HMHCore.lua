@@ -41,7 +41,7 @@ if not HMH then
 		local preset_1 = self:GetOption("preset") == 1
 
 		if preset_1 and self:GetOption("font") then
-            DB:create_entry(Idstring("texture"), Idstring("fonts/font_medium"), self._path .. "assets/guis/textures/pd2_mod_hmh/font_medium.texture")
+          --  DB:create_entry(Idstring("texture"), Idstring("fonts/font_medium"), self._path .. "assets/guis/textures/pd2_mod_hmh/font_medium.texture")
         end
 
 		if preset_1_2 and self:GetOption("suspicion") or preset_2 then
@@ -52,36 +52,40 @@ if not HMH then
 			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_stealth_exclam"), self._path .. "assets/guis/textures/pd2_mod_hmh/hud_stealth_exclam.texture")
 			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_stealth_eye"), self._path .. "assets/guis/textures/pd2_mod_hmh/hud_stealth_eye.texture")
         end
-
-			if preset_1_2 and self:GetOption("interact_texture") == 2 or preset_2 then
-				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_active"), self._path .. "assets/guis/textures/pd2_mod_hmh/hud_progress_active.texture")
-				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_invalid"), self._path .. "assets/guis/textures/pd2_mod_hmh/hud_progress_invalid.texture")
-				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_bg"), self._path .. "assets/guis/textures/pd2_mod_hmh/hud_progress_bg.texture")
-			elseif preset_1_2 and self:GetOption("interact_texture") == 3 then
-				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_active"), self._path .. "assets/guis/textures/pd2_mod_hmh/pink_progress_active.texture")
-				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_invalid"), self._path .. "assets/guis/textures/pd2_mod_hmh/pink_progress_invalid.texture")
-			elseif preset_1_2 and self:GetOption("interact_texture") == 4 then
-				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_active"), self._path .. "assets/guis/textures/pd2_mod_hmh/hm2_progress_active.texture")
-				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_invalid"), self._path .. "assets/guis/textures/pd2_mod_hmh/hm2_progress_invalid.texture")
-				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_bg"), self._path .. "assets/guis/textures/pd2_mod_hmh/hm2_progress_bg.texture")
-			elseif preset_1_2 and self:GetOption("interact_texture") == 5 then
-				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_active"), self._path .. "assets/guis/textures/pd2_mod_hmh/heart_progress_active.texture")
-				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_invalid"), self._path .. "assets/guis/textures/pd2_mod_hmh/heart_progress_invalid.texture")
-				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_bg"), self._path .. "assets/guis/textures/pd2_mod_hmh/heart_progress_bg.texture")
-			end
 		
-			if preset_1_2 and self:GetOption("health_texture") == 2 or preset_2 then
-				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_health"), self._path .. "assets/guis/textures/pd2_mod_hmh/hud_health.texture")
-			elseif preset_1_2 and self:GetOption("health_texture") == 3 then
-				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_health"), self._path .. "assets/guis/textures/pd2_mod_hmh/heart_health.texture")
-				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_fearless"), self._path .. "assets/guis/textures/pd2_mod_hmh/heart_fearless.texture")	
-				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_radial_rim"), self._path .. "assets/guis/textures/pd2_mod_hmh/heart_radial_rim.texture")
-				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_radialbg"), self._path .. "assets/guis/textures/pd2_mod_hmh/heart_radialbg.texture")	
-				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_shield"), self._path .. "assets/guis/textures/pd2_mod_hmh/heart_shield.texture")
-				DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_swansong"), self._path .. "assets/guis/textures/pd2_mod_hmh/heart_swansong.texture")	
-				DB:create_entry(Idstring("texture"), Idstring("guis/dlcs/coco/textures/pd2/hud_absorb_health"), self._path .. "assets/guis/textures/pd2_mod_hmh/heart_absorb_health.texture")
-				DB:create_entry(Idstring("texture"), Idstring("guis/dlcs/coco/textures/pd2/hud_absorb_shield"), self._path .. "assets/guis/textures/pd2_mod_hmh/heart_absorb_shield.texture")				
-			end
+		if preset_1_2 and self:GetOption("ammo") or preset_2 then
+            DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_fireselector"), self._path .. "assets/guis/textures/pd2_mod_hmh/hud_fireselector.texture")
+        end
+
+		if preset_1_2 and self:GetOption("interact_texture") == 2 or preset_2 then
+			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_active"), self._path .. "assets/guis/textures/pd2_mod_hmh/hud_progress_active.texture")
+			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_invalid"), self._path .. "assets/guis/textures/pd2_mod_hmh/hud_progress_invalid.texture")
+			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_bg"), self._path .. "assets/guis/textures/pd2_mod_hmh/hud_progress_bg.texture")
+		elseif preset_1_2 and self:GetOption("interact_texture") == 3 then
+			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_active"), self._path .. "assets/guis/textures/pd2_mod_hmh/pink_progress_active.texture")
+			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_invalid"), self._path .. "assets/guis/textures/pd2_mod_hmh/pink_progress_invalid.texture")
+		elseif preset_1_2 and self:GetOption("interact_texture") == 4 then
+			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_active"), self._path .. "assets/guis/textures/pd2_mod_hmh/hm2_progress_active.texture")
+			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_invalid"), self._path .. "assets/guis/textures/pd2_mod_hmh/hm2_progress_invalid.texture")
+			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_bg"), self._path .. "assets/guis/textures/pd2_mod_hmh/hm2_progress_bg.texture")
+		elseif preset_1_2 and self:GetOption("interact_texture") == 5 then
+			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_active"), self._path .. "assets/guis/textures/pd2_mod_hmh/heart_progress_active.texture")
+			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_invalid"), self._path .. "assets/guis/textures/pd2_mod_hmh/heart_progress_invalid.texture")
+			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_bg"), self._path .. "assets/guis/textures/pd2_mod_hmh/heart_progress_bg.texture")
+		end
+		
+		if preset_1_2 and self:GetOption("health_texture") == 2 or preset_2 then
+			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_health"), self._path .. "assets/guis/textures/pd2_mod_hmh/hud_health.texture")
+		elseif preset_1_2 and self:GetOption("health_texture") == 3 then
+			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_health"), self._path .. "assets/guis/textures/pd2_mod_hmh/heart_health.texture")
+			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_fearless"), self._path .. "assets/guis/textures/pd2_mod_hmh/heart_fearless.texture")	
+			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_radial_rim"), self._path .. "assets/guis/textures/pd2_mod_hmh/heart_radial_rim.texture")
+			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_radialbg"), self._path .. "assets/guis/textures/pd2_mod_hmh/heart_radialbg.texture")	
+			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_shield"), self._path .. "assets/guis/textures/pd2_mod_hmh/heart_shield.texture")
+			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_swansong"), self._path .. "assets/guis/textures/pd2_mod_hmh/heart_swansong.texture")	
+			DB:create_entry(Idstring("texture"), Idstring("guis/dlcs/coco/textures/pd2/hud_absorb_health"), self._path .. "assets/guis/textures/pd2_mod_hmh/heart_absorb_health.texture")
+			DB:create_entry(Idstring("texture"), Idstring("guis/dlcs/coco/textures/pd2/hud_absorb_shield"), self._path .. "assets/guis/textures/pd2_mod_hmh/heart_absorb_shield.texture")				
+		end
 
 
 		if preset_1_2 and self:GetOption("interact_icons") or preset_2 then
@@ -127,6 +131,14 @@ if not HMH then
 		if preset_1 and self:GetOption("no_smoke") then
 		    DB:create_entry(Idstring("texture"), Idstring("units/menu/menu_scene/menu_cylinder_smoke"), self._path .. "assets/guis/textures/pd2_mod_hmh/menu_cylinder_smoke.texture")
 			DB:create_entry(Idstring("texture"), Idstring("units/menu/menu_scene/menu_cylinder_smoke_tile"), self._path .. "assets/guis/textures/pd2_mod_hmh/menu_cylinder_smoke_tile.texture")
+		end
+		
+		if preset_1_2 and self:GetOption("mouse_pointer") == 2 or preset_2 then
+			DB:create_entry(Idstring("texture"), Idstring("guis/textures/mouse_pointer"), self._path .. "assets/guis/textures/pd2_mod_hmh/fingerless_gloves.texture")
+		elseif preset_1_2 and self:GetOption("mouse_pointer") == 3 then
+			DB:create_entry(Idstring("texture"), Idstring("guis/textures/mouse_pointer"), self._path .. "assets/guis/textures/pd2_mod_hmh/jacket_pointer.texture")
+		elseif preset_1_2 and self:GetOption("mouse_pointer") == 4 then
+			DB:create_entry(Idstring("texture"), Idstring("guis/textures/mouse_pointer"), self._path .. "assets/guis/textures/pd2_mod_hmh/pink_pointer.texture")
 		end
 		
 		if self:GetOption("preset") ~= 1 then
