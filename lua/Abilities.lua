@@ -1,4 +1,4 @@
-if VHUDPlus and VHUDPlus:getSetting({"CustomHUD", "HUDTYPE"}, 2) == 3 or WolfHUD or _G.IS_VR then 
+if VHUDPlus and VHUDPlus:getSetting({"CustomHUD", "HUDTYPE"}, 2) == 3 or WolfHUD or _G.IS_VR or CustomEOStandalone and CustomEOStandalone:getSetting({"WolfHUDCustomHUD", "ENABLED"}, true) then 
     return
 end
 -- Stamina, Infinite ammo and Invulnerable display
