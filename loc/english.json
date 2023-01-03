@@ -396,7 +396,6 @@
 	"HotlineMiamiHudClipAmmoTitleID" : "Current Ammo",
 	"HotlineMiamiHudAbilityIconTitleID" : "Ability Icon",
 	"HotlineMiamiHudArmorerTimerTitleID" : "Invulnerability Cooldown Timer",
-	"HotlineMiamiHudArmorerDurationTimerTitleID" : "Invulnerability Duration Timer",
 	
 	"HotlineMiamiHudPlayer1TitleID" : "Player 1",
 	"HotlineMiamiHudPlayer2TitleID" : "Player 2",

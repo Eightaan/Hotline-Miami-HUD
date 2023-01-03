@@ -199,11 +199,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
                 	t_left = t_left - coroutine.yield()
 					t_format = t_left < 10 and "%.1f" or "%.f"
                 	o:set_text(string.format(t_format, t_left))
-					if t_left > 13.5 then
-						o:set_color(HMH:GetColor("armorer_duration_timer_color") or Color.green)
-					else
-					    o:set_color(HMH:GetColor("armorer_cooldown_timer_color") or Color.red)
-					end
+					o:set_color(HMH:GetColor("armorer_cooldown_timer_color") or Color.red)
             	end
             	o:set_visible(false)
 				self._cooldown_icon:set_visible(false)
