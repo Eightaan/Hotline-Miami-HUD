@@ -110,6 +110,8 @@ if not HMH then
 			DB:create_entry(Idstring("texture"), Idstring("units/gui/plank_indicator_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/plank_indicator_df.texture")
 			DB:create_entry(Idstring("texture"), Idstring("units/gui/sawblade_indicator_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/sawblade_indicator_df.texture")
 			DB:create_entry(Idstring("texture"), Idstring("units/gui/thermite_indicator_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/thermite_indicator_df.texture")
+			DB:create_entry(Idstring("texture"), Idstring("units/gui/scissors_indicator_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/scissors_indicator_df.texture")
+			DB:create_entry(Idstring("texture"), Idstring("units/gui/turret_indicator_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/turret_indicator_df.texture")
 		end
 
 		if preset_1 and self:GetOption("custom_menu_background") == 2 then
