@@ -11,8 +11,9 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
     self._assault_color = HMH:GetColor("AssaultText")
 	self._vip_assault_color = HMH:GetColor("CaptainText")
 	if managers.mutators:are_mutators_active() then
-		self._assault_color = Color(255, 255, 133, 225) / 255
-		self._vip_assault_color = Color(255, 211, 133, 255) / 255
+		local mutator_color = managers.mutators:get_category_color(managers.mutators:get_enabled_active_mutator_category())
+		self._assault_color = mutator_color
+		self._vip_assault_color = Color(mutator_color.a, mutator_color.b, mutator_color.g, mutator_color.r)
 	end
 
 	if managers.skirmish:is_skirmish() then
@@ -108,6 +109,7 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 	icon_noreturnbox:set_blend_mode("normal")
 	self._noreturn_bg_box:set_right(icon_noreturnbox:left() - 3)
 	self._noreturn_bg_box:set_center_y(icon_noreturnbox:center_y())
+	
 
     -- VIP ICON
 	local width = 200
@@ -254,18 +256,8 @@ function HUDAssaultCorner:_hide_icon_assaultbox(icon_assaultbox)
 	end
 end
 
-function HUDAssaultCorner:hostage_anim(text)
-	over(1, function(p)
-		local font_size = tweak_data.hud_corner.numhostages_size
-        local n = 1 - math_sin((p / 2) * 180)
-        self._hostages_bg_box:child("num_hostages"):set_font_size(math_lerp(font_size, font_size * 1.20, n))
-    end)
-end
-
 function HUDAssaultCorner:set_control_info(data)
 	self._hostages_bg_box:child("num_hostages"):set_text(data.nr_hostages)
-	--self._hostages_bg_box:child("num_hostages"):stop()
-	--self._hostages_bg_box:child("num_hostages"):animate(callback(self, self, "hostage_anim"))
 end
 
 function HUDAssaultCorner:set_text(typ, text_list, add)
@@ -364,6 +356,38 @@ end
 
 function HUDAssaultCorner:_animate_show_noreturn(point_of_no_return_panel, delay_time)
 	set_alpha(point_of_no_return_panel, 1)
+	local point_of_no_return_text = self._noreturn_bg_box:child("point_of_no_return_text")
+	local point_of_no_return_timer = self._noreturn_bg_box:child("point_of_no_return_timer")
+	
+	point_of_no_return_text:set_visible(false)
+	point_of_no_return_timer:set_visible(false)
+	wait(delay_time)
+	point_of_no_return_panel:set_visible(true)
+
+	self._noreturn_bg_box:stop()
+	self._noreturn_bg_box:animate(callback(self, self, "_animate_hudbox_open"), {
+		attention_forever = true,
+		attention_color = self._noreturn_data.attention_color
+	})
+end
+
+function HUDAssaultCorner:_animate_hudbox_open()
+	local point_of_no_return_timer = self._noreturn_bg_box:child("point_of_no_return_timer")
+	local point_of_no_return_text = self._noreturn_bg_box:child("point_of_no_return_text")
+	point_of_no_return_text:animate(callback(self, self, "_animate_show_texts"), {
+		point_of_no_return_text,
+		point_of_no_return_timer
+	})
+end
+
+function HUDAssaultCorner:_animate_show_texts(anim_object, texts)
+	for _, text in ipairs(texts) do
+		text:set_visible(true)
+	end
+
+	for _, text in ipairs(texts) do
+		text:set_alpha(1)
+	end
 end
 
 function HUDAssaultCorner:flash_point_of_no_return_timer(beep)
