@@ -109,7 +109,6 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 	icon_noreturnbox:set_blend_mode("normal")
 	self._noreturn_bg_box:set_right(icon_noreturnbox:left() - 3)
 	self._noreturn_bg_box:set_center_y(icon_noreturnbox:center_y())
-	
 
     -- VIP ICON
 	local width = 200
@@ -356,38 +355,8 @@ end
 
 function HUDAssaultCorner:_animate_show_noreturn(point_of_no_return_panel, delay_time)
 	set_alpha(point_of_no_return_panel, 1)
-	local point_of_no_return_text = self._noreturn_bg_box:child("point_of_no_return_text")
-	local point_of_no_return_timer = self._noreturn_bg_box:child("point_of_no_return_timer")
-	
-	point_of_no_return_text:set_visible(false)
-	point_of_no_return_timer:set_visible(false)
 	wait(delay_time)
 	point_of_no_return_panel:set_visible(true)
-
-	self._noreturn_bg_box:stop()
-	self._noreturn_bg_box:animate(callback(self, self, "_animate_hudbox_open"), {
-		attention_forever = true,
-		attention_color = self._noreturn_data.attention_color
-	})
-end
-
-function HUDAssaultCorner:_animate_hudbox_open()
-	local point_of_no_return_timer = self._noreturn_bg_box:child("point_of_no_return_timer")
-	local point_of_no_return_text = self._noreturn_bg_box:child("point_of_no_return_text")
-	point_of_no_return_text:animate(callback(self, self, "_animate_show_texts"), {
-		point_of_no_return_text,
-		point_of_no_return_timer
-	})
-end
-
-function HUDAssaultCorner:_animate_show_texts(anim_object, texts)
-	for _, text in ipairs(texts) do
-		text:set_visible(true)
-	end
-
-	for _, text in ipairs(texts) do
-		text:set_alpha(1)
-	end
 end
 
 function HUDAssaultCorner:flash_point_of_no_return_timer(beep)
