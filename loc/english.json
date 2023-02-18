@@ -7,6 +7,7 @@
 	"hmh_int_locked" : "PRESS $BTN_CANCEL TO INTERRUPT",
 	"hmh_int_locked_pager" : "PRESS $BTN_CANCEL TO INTERRUPT\n(TRIGGERS ALARM)",
 	"hmh_hud_stats_enemies_dominated" : "ENEMIES CUFFED",
+	"hmh_chat_clipboard" : "Message copied to clipboard",
 
 	"hmh_r" : "Red",
 	"hmh_g" : "Green",

@@ -7,7 +7,6 @@
 	"hmh_int_locked" : "按 $BTN_CANCEL 中断",
 	"hmh_int_locked_pager" : "按 $BTN_CANCEL 中断\n(触发警报)",
 	"hmh_hud_stats_enemies_dominated" : "拷上手铐的敌人",
-
 	"hmh_title" : "迈阿密热线Hud",
 	"hmh_desc" : "迈阿密热线Hud选项",
 
@@ -372,6 +371,7 @@
 	"captain_buff_title" : "Show Damage Reduction Level",
 	"captain_buff_desc" : "Shows damage reduction level when Captain is present. (1 = 10% | 5 = 50%)",
 	"HotlineMiamiHudcaptainBuffTextTitleID" : "Damage Reduction Level",
+	"hmh_chat_clipboard" : "Message copied to clipboard",
 	"panel_position_title" : "Vertical Position",
 	"panel_position_desc" : "Change the vertical position of the combo counter.",
 	"hmh_combo_options_title" : "Combo Counter",
