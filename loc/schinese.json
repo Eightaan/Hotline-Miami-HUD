@@ -7,6 +7,7 @@
 	"hmh_int_locked" : "按 $BTN_CANCEL 中断",
 	"hmh_int_locked_pager" : "按 $BTN_CANCEL 中断\n(触发警报)",
 	"hmh_hud_stats_enemies_dominated" : "拷上手铐的敌人",
+
 	"hmh_title" : "迈阿密热线Hud",
 	"hmh_desc" : "迈阿密热线Hud选项",
 
