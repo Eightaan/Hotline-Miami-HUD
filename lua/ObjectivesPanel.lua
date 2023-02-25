@@ -12,7 +12,7 @@ Hooks:PostHook(HUDObjectives, "init", "HMH_hudobjectives_init", function(self, h
 		name = "objectives_panel",
 		h = 100,
 		visible = false,
-		w = 500,
+		w = 700,
 		x = 0,
 		valign = "top"
 	})
