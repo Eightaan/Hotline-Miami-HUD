@@ -7,6 +7,8 @@
 		<file :name="hmcc_bg.texture"                    :path="hmcc_bg.texture"/>
 		<file :name="Headshot_confirm.texture"           :path="Headshot_confirm.texture"/>
 		<file :name="Headshot_confirm_blessings.texture" :path="Headshot_confirm_blessings.texture"/>
+		<file :name="animate_health_circle.texture" 	 :path="animate_health_circle.texture"/>
+		<file :name="health_cooldown_icon.texture" 	 	 :path="health_cooldown_icon.texture"/>
 
 		<!-- Menu textures -->
 		<file :name="check_bg.texture"     :path="check_bg.texture"/>
