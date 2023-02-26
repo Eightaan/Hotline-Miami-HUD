@@ -379,8 +379,9 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
     function HUDTeammate:set_ability_radial(data)
         local progress = data.current / data.total
         if self._main_player then
+			local stamina_alpha = self._health_timer and 0 or 1
 			if self._stamina_circle and HMH:GetOption("ability_icon") then
-				self._stamina_circle:set_alpha(progress > 0 and 0 or 1) 
+				self._stamina_circle:set_alpha(progress > 0 and 0 or stamina_alpha) 
 			end
 			if self._radial_health_panel:child("animate_health_circle") then
 				self._radial_health_panel:child("animate_health_circle"):set_alpha(progress > 0 and 0 or 1)
