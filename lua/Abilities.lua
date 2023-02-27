@@ -162,18 +162,6 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 				alpha = 0.4,
 				layer = 3
 			})
-			self._health_cooldown_timer = self._health_panel:text({
-				name = "health_cooldown_timer",
-				text = "",
-				color = Color.white,
-				visible = false,
-				align = "center",
-				vertical = "center",
-				y = HMH:GetOption("ability_icon") and 10 or 0,
-				font = tweak_data.hud.medium_font_noshadow,
-				font_size = 16,
-				layer = 4
-			})
 			self._health_cooldown_icon = self._health_panel:bitmap({
 				name = "health_cooldown_icon",
 				texture = "guis/textures/pd2_mod_hmh/health_cooldown_icon",
