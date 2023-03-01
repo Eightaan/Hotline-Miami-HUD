@@ -23,7 +23,7 @@
     "hud_scale_desc" : "Change the hud size.",
    
 	"no_menu_textures_title" : "Enable Menu Textures",
-	"no_menu_textures_desc" : "This will delete the menu textures from the mod_overrides.",
+	"no_menu_textures_desc" : "This will delete the menu textures from the mod_overrides.\nWhen changed, a game restart is required to take effect.",
     "mod_overrides_title" : "Enable Menu Textures Updates",
     "mod_overrides_desc" : "This will disable the update notificaton for the Menu Textures.\nWhen changed, a game restart is required to take effect.",
 	"pink_corner_title" : "Pink Hud Corners",

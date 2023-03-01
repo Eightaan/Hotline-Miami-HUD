@@ -343,7 +343,7 @@
 	"hotline_vibe" : "Hotline Miami",
 	"vanilla_classic" : "Classic Vanilla",
 	"no_menu_textures_title" : "Enable Menu Textures",
-	"no_menu_textures_desc" : "This will delete the menu textures from the mod_overrides.",
+	"no_menu_textures_desc" : "This will delete the menu textures from the mod_overrides.\nWhen changed, a game restart is required to take effect.",
 	"reset_all_title" : "Click this option to reset all settings. A game restart is required for it to take effect.",
 	"reset_all_desc" : "",
 	"hmh_hud_ability_title" : "Player Abilities",
