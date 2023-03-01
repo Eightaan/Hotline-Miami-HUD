@@ -11,6 +11,15 @@ if not HMH then
 	HMH.TotalKills = 0
 	HMH.CivKill = 0
 	HMH._in_heist = false
+	
+	local function DirectoryExists(path)
+		if SystemFS and SystemFS.exists then
+			return SystemFS:exists(path)
+		elseif file and file.DirectoryExists then
+			log("")	-- For some weird reason the function below always returns true if we don't log anything previously...
+			return file.DirectoryExists(path)
+		end
+	end
 
     function HMH:Save()
         local file = io.open( self._data_path, "w+" )
@@ -19,6 +28,9 @@ if not HMH then
             file:write( json.encode( self._data ) )
             file:close()
         end
+		if DirectoryExists("assets/mod_overrides/Hotline Miami Menu") and (HMH:GetOption("preset") == 3 or not HMH:GetOption("no_menu_textures")) then
+			SystemFS:delete_file("assets/mod_overrides/Hotline Miami Menu")
+		end
     end
 
     function HMH:Load()
