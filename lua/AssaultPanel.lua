@@ -130,7 +130,7 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 
 	local vip_text = self._vip_bg_box:text({
 		name = "vip_text",
-		text = "0",
+		text = "",
 		h = 38,
 		layer = 10,
 		w = 38,
