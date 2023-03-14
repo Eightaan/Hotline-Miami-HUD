@@ -181,17 +181,6 @@
 			"parent" : "infoboxes_toggle"
 		},
 		{
-			"type": "color_select",
-			"id": "ecm_upgrade_icon_color_select",
-			"title": "HotlineMiamiHudECMUpgradeIconTitleID",
-			"description": "HotlineMiamiHudColorOption",
-			"value": "ECMUpgradeIcon",
-			"default_value": [102, 255, 153],
-			"callback": "SetColorOption",
-			"callback_arguments": "ECMUpgradeIcon",
-			"parent" : ["infoboxes_toggle", "pager_jam_toggle"]
-		},
-		{
 			"type": "toggle",
 			"id": "hide_hudbox_toggle",
 			"title": "hide_hudbox_title",

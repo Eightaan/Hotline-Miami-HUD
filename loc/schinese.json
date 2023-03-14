@@ -124,8 +124,6 @@
 	"assault_desc" : "启用自定义突击面板（可能与其他Hud冲突导致崩溃）",
 	"infoboxes_title" : "Ecm计时器",
 	"infoboxes_desc" : "潜入中启用Ecm计时器",
-	"pager_jam_title" : "进阶的Ecm图标",
-	"pager_jam_desc" : "在Ecm上显示一个图标当它干扰一个对讲机回答",
 
 	"hmh_objective_title" : "目标",
 	"hmh_objective_desc" : "自定义目标面板",
@@ -256,7 +254,6 @@
 	"HotlineMiamiHudHostagesIconTitleID" : "人质图标",
 	"HotlineMiamiHudWavesIconTitleID" : "袭击波数图标",
 	"HotlineMiamiHudWavesTextTitleID" : "袭击波数文本",
-	"HotlineMiamiHudECMUpgradeIconTitleID" : "ECM升级图标",
 	"HotlineMiamiHudECMIconTitleID" : "ECm计时器图标",
 	"HotlineMiamiHudECMTextTitleID" : "ECM计时器文本",
 
@@ -348,6 +345,10 @@
 	"reset_all_desc" : "",
 	"hmh_hud_ability_title" : "Player Abilities",
 	"hmh_hud_ability_desc" : "",
+	"infoboxes_title" : "ECM Timer",
+	"infoboxes_desc" : "Enable an ECM timer in stealth.",
+	"pager_jam_title" : "Only Display Pager Blocking ECM Timers",
+	"pager_jam_desc" : "Hides ECM timers that don't block pagers.",
 	"HotlineMiamiHudAbilityIconTitleID" : "Ability Icon",
 	"HotlineMiamiHudArmorerTimerTitleID" : "Invulnerability Cooldown Timer",
 	"HotlineMiamiHudArmorerDurationTimerTitleID" : "Invulnerability Duration Timer",
