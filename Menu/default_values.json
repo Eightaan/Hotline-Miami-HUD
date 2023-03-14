@@ -366,12 +366,6 @@
 		"g" : 128,
 		"b" : 223
 	},
-	"ECMUpgradeIcon" :
-	{
-		"r" : 102,
-		"g" : 255,
-		"b" : 153
-	},
 	"interact_icons" : true,
 	"stealth_c4" : true,
 	"tab" : true,
