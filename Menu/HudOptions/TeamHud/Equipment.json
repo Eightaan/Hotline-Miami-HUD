@@ -6,6 +6,20 @@
 	"items": [
 		{
 			"type": "toggle",
+			"id": "stealth_c4_toggle",
+			"title": "stealth_c4_title",
+			"description": "stealth_c4_desc",
+			"callback": "SetOption",
+			"callback_arguments": "stealth_c4",
+			"value": "stealth_c4",
+			"default_value": false
+		},
+        {
+			"type": "divider",
+			"size": 12
+        },
+		{
+			"type": "toggle",
 			"id": "equipment_toggle",
 			"title": "equipment_title",
 			"description": "equipment_desc",

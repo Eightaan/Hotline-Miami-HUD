@@ -36,7 +36,7 @@
 	"hotline_vibe" : "Hotline Miami",
 	"vanilla_classic" : "Classic Vanilla",
 	"refresh_title" : "Refresh Textures",
-	"refresh_desc" : "This will apply any texture changes that have been made. For example font or health texture changes.",
+	"refresh_desc" : "This will apply any texture changes that have been made.\nFor example font or health texture changes.",
 	
 	"hmh_hud_options_title" : "Hud Options",
 	"hmh_hud_options_desc" : "Customize the hud.",
@@ -184,6 +184,7 @@
 	"silent_obj_desc" : "Replaces the objective sound with silence.\nWhen changed, a texture refresh is required to take effect.",
 
 	"hmh_toggle_interaction_title" : "Toggle Interaction",
+	"hmh_toggle_interaction_desc" : "",
 	"hmh_interact_title" : "Interaction",
 	"hmh_interact_desc" : "Customize the interaction settings.",
 	"interact_title" : "Colored Interaction Text",

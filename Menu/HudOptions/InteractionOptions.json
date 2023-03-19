@@ -73,32 +73,6 @@
 			"callback_arguments": "interact_icons",
 			"value": "interact_icons",
 			"default_value": true
-		},
-		{
-
-			"type": "divider",
-			"size": 16
-		},
-		{
-			"type": "button",
-			"id": "hmh_toggle_interaction",
-			"title": "hmh_toggle_interaction_title",
-			"description": "hmh_toggle_interaction_desc",
-			"next_menu": "hmh_toggle_interaction_options"
-		},
-		{
-			"type": "divider",
-			"size": 12
-		},
-		{
-			"type": "toggle",
-			"id": "stealth_c4_toggle",
-			"title": "stealth_c4_title",
-			"description": "stealth_c4_desc",
-			"callback": "SetOption",
-			"callback_arguments": "stealth_c4",
-			"value": "stealth_c4",
-			"default_value": false
 		}
 	]
 }

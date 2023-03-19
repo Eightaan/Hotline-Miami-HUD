@@ -22,6 +22,10 @@
 			"callback" : "RefreshTextures"
 		},
 		{
+			"type": "divider",
+			"size": 8
+		},
+		{
 			"type": "toggle",
 			"id": "no_menu_textures_toggle",
 			"title": "no_menu_textures_title",
@@ -60,6 +64,17 @@
         {
 			"type": "divider",
 			"size": 8
+		},
+		{
+			"type": "button",
+			"id": "hmh_toggle_interaction",
+			"title": "hmh_toggle_interaction_title",
+			"description": "hmh_toggle_interaction_desc",
+			"next_menu": "hmh_toggle_interaction_options"
+		},
+        {
+			"type": "divider",
+			"size": 12
         },
 		{
 			"type": "button",
