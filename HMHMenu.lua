@@ -150,28 +150,34 @@ function HMHMenu:init()
 		self:CreateChangeWarning()
 	end
 
-    self:GetMenuFromJson(HMH._menu_path .. "MainMenu.json", HMH._data)
-    self:GetMenuFromJson(HMH._menu_path .. "MenuOptions.json", HMH._data)
-	self:GetMenuFromJson(HMH._menu_path .. "TeamHudOptions.json", HMH._data)
-    self:GetMenuFromJson(HMH._menu_path .. "TeamHud/PlayerColor.json", HMH._data)
-    self:GetMenuFromJson(HMH._menu_path .. "TeamHud/CustodyDowned.json", HMH._data)
-    self:GetMenuFromJson(HMH._menu_path .. "TeamHud/Ammo.json", HMH._data)
-	self:GetMenuFromJson(HMH._menu_path .. "TeamHud/Ability.json", HMH._data)
-    self:GetMenuFromJson(HMH._menu_path .. "TeamHud/Equipment.json", HMH._data)
-	self:GetMenuFromJson(HMH._menu_path .. "InteractionOptions.json", HMH._data)
-	self:GetMenuFromJson(HMH._menu_path .. "AssaultOptions.json", HMH._data)
-	self:GetMenuFromJson(HMH._menu_path .. "TabstatsOptions.json", HMH._data)
-	self:GetMenuFromJson(HMH._menu_path .. "HintOptions.json", HMH._data)
-	self:GetMenuFromJson(HMH._menu_path .. "WaypointOptions.json", HMH._data)
-	self:GetMenuFromJson(HMH._menu_path .. "ChatOptions.json", HMH._data)
-	self:GetMenuFromJson(HMH._menu_path .. "TimerOptions.json", HMH._data)
-	self:GetMenuFromJson(HMH._menu_path .. "PresenterOptions.json", HMH._data)
-	self:GetMenuFromJson(HMH._menu_path .. "SuspicionOptions.json", HMH._data)
-	self:GetMenuFromJson(HMH._menu_path .. "CarryOptions.json", HMH._data)
-    self:GetMenuFromJson(HMH._menu_path .. "ObjectivesOptions.json", HMH._data)
-    self:GetMenuFromJson(HMH._menu_path .. "SubtitleOptions.json", HMH._data)
-	self:GetMenuFromJson(HMH._menu_path .. "ComboCounter.json", HMH._data)
+    self:GetMenuFromJson(HMH._menu_path .. "Main.json", HMH._data)
 	self:GetMenuFromJson(HMH._menu_path .. "ResetOptions.json", HMH._data)
+    self:GetMenuFromJson(HMH._menu_path .. "MenuOptions.json", HMH._data)
+	self:GetMenuFromJson(HMH._menu_path .. "MenuOptions/MainMenuOptions.json", HMH._data)
+	self:GetMenuFromJson(HMH._menu_path .. "MenuOptions/EnhancedLoadout.json", HMH._data)
+	self:GetMenuFromJson(HMH._menu_path .. "MenuOptions/SkipMenus.json", HMH._data)
+	self:GetMenuFromJson(HMH._menu_path .. "HudOptions.json", HMH._data)
+	self:GetMenuFromJson(HMH._menu_path .. "HudOptions/TeamHudOptions.json", HMH._data)
+    self:GetMenuFromJson(HMH._menu_path .. "HudOptions/TeamHud/PlayerColor.json", HMH._data)
+    self:GetMenuFromJson(HMH._menu_path .. "HudOptions/TeamHud/CustodyDowned.json", HMH._data)
+    self:GetMenuFromJson(HMH._menu_path .. "HudOptions/TeamHud/Ammo.json", HMH._data)
+	self:GetMenuFromJson(HMH._menu_path .. "HudOptions/TeamHud/Ability.json", HMH._data)
+    self:GetMenuFromJson(HMH._menu_path .. "HudOptions/TeamHud/Equipment.json", HMH._data)
+	self:GetMenuFromJson(HMH._menu_path .. "HudOptions/TeamHud/ECMTimer/ECMTimerOptions.json", HMH._data)
+	self:GetMenuFromJson(HMH._menu_path .. "HudOptions/InteractionOptions.json", HMH._data)
+	self:GetMenuFromJson(HMH._menu_path .. "HudOptions/ToggleInteraction/ToggleInteractionOptions.json", HMH._data)
+	self:GetMenuFromJson(HMH._menu_path .. "HudOptions/AssaultOptions.json", HMH._data)
+	self:GetMenuFromJson(HMH._menu_path .. "HudOptions/TabstatsOptions.json", HMH._data)
+	self:GetMenuFromJson(HMH._menu_path .. "HudOptions/HintOptions.json", HMH._data)
+	self:GetMenuFromJson(HMH._menu_path .. "HudOptions/WaypointOptions.json", HMH._data)
+	self:GetMenuFromJson(HMH._menu_path .. "HudOptions/ChatOptions.json", HMH._data)
+	self:GetMenuFromJson(HMH._menu_path .. "HudOptions/TimerOptions.json", HMH._data)
+	self:GetMenuFromJson(HMH._menu_path .. "HudOptions/PresenterOptions.json", HMH._data)
+	self:GetMenuFromJson(HMH._menu_path .. "HudOptions/SuspicionOptions.json", HMH._data)
+	self:GetMenuFromJson(HMH._menu_path .. "HudOptions/CarryOptions.json", HMH._data)
+    self:GetMenuFromJson(HMH._menu_path .. "HudOptions/ObjectivesOptions.json", HMH._data)
+    self:GetMenuFromJson(HMH._menu_path .. "HudOptions/SubtitleOptions.json", HMH._data)
+	self:GetMenuFromJson(HMH._menu_path .. "HudOptions/ComboCounter.json", HMH._data)
 
     self:OpenMenu("hmh_menu")
 end
@@ -408,6 +414,7 @@ function HMHMenu:mouse_press(o, button, x, y)
         elseif self._highlighted_item and self._highlighted_item.panel:inside(x,y) then
             self:ActivateItem(self._highlighted_item, x)
         end
+		HMH:Save()
     end
 end
 
@@ -2140,4 +2147,9 @@ function HMHMenu:SetColorOption(color, option)
     c.r = color.red
     c.g = color.green
     c.b = color.blue
+end
+
+function HMHMenu:RefreshTextures()
+	local viewport = managers.viewport
+	managers.viewport._render_settings_change_map = {resolution = RenderSettings.resolution}
 end

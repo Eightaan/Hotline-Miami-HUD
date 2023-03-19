@@ -1,0 +1,40 @@
+{
+	"menu_id": "hmh_toggle_interaction_options",
+	"parent_menu": "hmh_menu_interact",
+	"title": "hmh_toggle_interaction_title",
+	"items": [
+		{
+			"type": "slider",
+			"id": "toggle_interact_slider",
+			"title": "toggle_interact_title",
+			"description": "toggle_interact_desc",
+			"callback": "SetOption",
+			"callback_arguments": "toggle_interact",
+			"value": "toggle_interact",
+			"max": 10,
+            "min": 0,
+            "step": 1,
+            "default_value": 0
+		},
+		{
+			"type": "toggle",
+			"id": "interupt_interact_toggle",
+			"title": "interupt_interact_title",
+			"description": "interupt_interact_desc",
+			"callback": "SetOption",
+			"callback_arguments": "interupt_interact",
+			"value": "interupt_interact",
+			"default_value": false
+		},
+		{
+			"type": "toggle",
+			"id": "interupt_interact_hint_toggle",
+			"title": "interupt_interact_hint_title",
+			"description": "interupt_interact_hint_desc",
+			"callback": "SetOption",
+			"callback_arguments": "interupt_interact_hint",
+			"value": "interupt_interact_hint",
+			"default_value": false
+		}
+	]
+}

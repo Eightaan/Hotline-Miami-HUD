@@ -4,109 +4,6 @@
 	"title": "hmh_menu_options_title",
 	"items": [
 		{
-			"type" : "multiple_choice",
-			"id" : "custom_menu_background_multiple_choice",
-			"title" : "custom_menu_background_title",
-			"description" : "custom_menu_background_desc",
-			"callback" : "SetOption",
-			"callback_arguments" : "custom_menu_background",
-			"items" : [
-				"default_background",
-				"custom_background"
-			],
-			"value" : "custom_menu_background",
-			"default_value" : 1
-		},
-		{
-			"type": "toggle",
-			"id": "no_smoke",
-			"title": "no_smoke_title",
-			"description": "no_smoke_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "no_smoke",
-			"value": "no_smoke",
-			"default_value": false
-			
-		},
-		{
-			"type" : "multiple_choice",
-			"id" : "mouse_pointer_multiple_choice",
-			"title" : "mouse_pointer_title",
-			"description" : "mouse_pointer_desc",
-			"callback" : "SetOption",
-			"callback_arguments" : "mouse_pointer",
-			"items" : [
-				"default_mouse_pointer",
-				"fingerless_gloves",
-				"jacket",
-				"pink_mouse_pointer"
-			],
-			"value" : "mouse_pointer",
-			"default_value" : 2
-		},
-		{
-			"type": "toggle",
-			"id": "custom_filter",
-			"title": "custom_filter_title",
-			"description": "custom_filter_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "custom_filter",
-			"value": "custom_filter",
-			"default_value": false
-		},
-		{
-			"type": "divider",
-			"size": 8
-		},
-		{
-			"type": "toggle",
-			"id": "menu_color_toggle",
-			"title": "menu_color_title",
-			"description": "menu_color_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "custom_menu_color",
-			"value": "custom_menu_color",
-			"default_value": true
-		},
-		{
-			"type": "divider",
-			"size": 16
-		},
-		{
-			"type": "toggle",
-			"id": "crew_loadout_toggle",
-			"title": "crew_loadout_title",
-			"description": "crew_loadout_desc",
-			"callback": "SetOption",
-			"callback_arguments": "crew_loadout",
-			"value": "crew_loadout",
-			"default_value": true
-		},
-		{
-			"type": "toggle",
-			"id": "crew_loadout_briefing_toggle",
-			"title": "crew_loadout_briefing_title",
-			"description": "crew_loadout_briefing_desc",
-			"callback": "SetOption",
-			"callback_arguments": "crew_loadout_briefing",
-			"value": "crew_loadout_briefing",
-			"default_value": true
-		},
-		{
-			"type": "toggle",
-			"id": "profile_menu",
-			"title": "profile_menu_title",
-			"description": "profile_menu_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "profile_menu",
-			"value": "profile_menu",
-			"default_value": true
-		},
-		{
-			"type": "divider",
-			"size": 8
-		},
-		{
 			"type": "toggle",
 			"id": "no_confirm",
 			"title": "no_confirm_title",
@@ -121,54 +18,25 @@
 			"size": 16
 		},
 		{
-			"type": "toggle",
-			"id": "skip_blackscreen_toggle",
-			"title": "skip_blackscreen_title",
-			"description": "skip_blackscreen_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "skip_blackscreen",
-			"value": "skip_blackscreen",
-			"default_value": false
+			"type": "button",
+			"id": "hmh_main_menu",
+			"title": "hmh_main_menu_options_title",
+			"description": "hmh_main_menu_options_desc",
+			"next_menu": "hmh_main_menu_options"
 		},
 		{
-		    "type": "slider",
-			"id": "skip_xp_slider",
-			"title": "skip_xp_title",
-			"description": "skip_xp_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "skip_xp",
-			"value": "skip_xp",
-			"max": 25,
-            "min": 0,
-            "step": 1,
-            "default_value": 0
+			"type": "button",
+			"id": "hmh_enhanced_loadout",
+			"title": "hmh_enhanced_loadout_options_title",
+			"description": "hmh_enhanced_loadout_options_desc",
+			"next_menu": "hmh_enhanced_loadout_options"
 		},
 		{
-			"type": "divider",
-			"size": 12
-		},
-		{
-			"type": "toggle",
-			"id": "pick_card_toggle",
-			"title": "pick_card_title",
-			"description": "pick_card_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "pick_card",
-			"value": "pick_card",
-			"default_value": false
-		},
-		{
-		    "type": "slider",
-			"id": "skip_card_slider",
-			"title": "skip_card_title",
-			"description": "skip_card_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "skip_card",
-			"value": "skip_card",
-			"max": 25,
-            "min": 0,
-            "step": 1,
-            "default_value": 0
+			"type": "button",
+			"id": "hmh_skip_menus",
+			"title": "hmh_skip_menu_options_title",
+			"description": "hmh_skip_menu_options_desc",
+			"next_menu": "hmh_skip_menus_options"
 		}
 	]
 }

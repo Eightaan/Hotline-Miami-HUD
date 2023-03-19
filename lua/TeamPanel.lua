@@ -115,8 +115,11 @@ if interact_info_text then
 	    local name = teammate_panel:child("name")
 	    local name_bg = teammate_panel:child("name_bg")
 
-	    if self._panel:child("name_panel"):w() < name_bg:w() then
+	    if self._panel:child("name_panel"):w() < name_bg:w() and not self._main_player then
 		    name:set_font_size(tweak_data.hud_players.name_size * 0.75)
+			name_bg:set_w(name:w() - 45)
+		elseif self._panel:child("name_panel"):w() < name_bg:w() and self._main_player then
+			name:set_font_size(tweak_data.hud_players.name_size * 0.75)
 			name_bg:set_w(name:w() - 45)
 	    end
     end)
