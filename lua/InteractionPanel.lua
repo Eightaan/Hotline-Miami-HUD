@@ -11,7 +11,6 @@ if RequiredScript == "lib/managers/hud/hudinteraction" then
         end)
 	end
 elseif RequiredScript == "lib/units/interactions/interactionext" then
-
     local _add_string_macros_original = BaseInteractionExt._add_string_macros
     function BaseInteractionExt:_add_string_macros(macros, ...)
 	    _add_string_macros_original(self, macros, ...)

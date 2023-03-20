@@ -137,7 +137,6 @@ if not HMH then
 			DB:create_entry(Idstring("texture"), Idstring("guis/dlcs/coco/textures/pd2/hud_absorb_shield"), self._path .. "guis/dlcs/coco/textures/pd2/hud_absorb_shield.texture")
 		end
 
-
 		if preset_1_2 and self:GetOption("interact_icons") or preset_2 then
 		    DB:create_entry(Idstring("texture"), Idstring("units/gui/c4_indicator_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/c4_indicator_df.texture")
 			DB:create_entry(Idstring("texture"), Idstring("units/gui/camera_indicator_df"), self._path .. "assets/guis/textures/pd2_mod_hmh/camera_indicator_df.texture")
