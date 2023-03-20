@@ -170,9 +170,6 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 					wave_panel:set_alpha(1)
 				end
 			end
-		    if alive(wave_panel) and VHUDPlus_hide_infoboxes then
-		        wave_panel:set_alpha(0)
-		    end
 		end
 	end
 end)
