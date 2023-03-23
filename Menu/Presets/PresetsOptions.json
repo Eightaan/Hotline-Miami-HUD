@@ -1,0 +1,35 @@
+{
+	"menu_id": "hmh_menu_reset",
+	"parent_menu": "hmh_menu",
+	"title": "reset_title",
+	"description": "reset_desc",
+	"items": [
+		{
+			"type": "button",
+			"id": "preset_id",
+			"title": "preset_title",
+			"description": "preset_desc"
+		},
+		{
+			"type": "button",
+			"id": "preset4_id",
+			"title": "restart_preset_title",
+			"description": "preset_desc"
+		},
+        {
+			"type" : "multiple_choice",
+			"id" : "preset_multiple_choice",
+			"title" : "preset_multi_title",
+			"description" : "preset_multi_desc",
+			"callback" : "SetOption",
+			"callback_arguments" : "preset",
+			"items" : [
+				"custom_preset",
+				"hotline_vibe",
+				"vanilla_classic"
+			],
+			"value" : "preset",
+			"default_value" : 1
+	    }
+	]
+}

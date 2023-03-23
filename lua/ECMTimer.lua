@@ -6,7 +6,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 	    self._hud_panel = hud.panel
 	    self._ecm_panel = self._hud_panel:panel({
 		    name = "ecm_counter_panel",
-			alpha = HMH:GetOption("infoboxes") or 0,
+			alpha = 1,
 		    visible = false,
 		    w = 200,
 		    h = 200
@@ -55,7 +55,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
     function HUDECMCounter:update()
 		local current_time = TimerManager:game():time()
 		local t = self._ecm_timer - current_time
-		if managers.groupai:state():whisper_mode() then
+		if managers.groupai and managers.groupai:state():whisper_mode() then
 			self._ecm_panel:set_visible(t > 0)
 			if t > 0.1 then
 			    local t_format = t < 10 and "%.1fs" or "%.fs"
@@ -134,7 +134,7 @@ elseif RequiredScript == "lib/units/equipment/ecm_jammer/ecmjammerbase" then
 	local set_active_original = ECMJammerBase.set_active
 	function ECMJammerBase:set_active(active, ...)
     set_active_original(self, active, ...)
-		if active then
+		if active and HMH:GetOption("infoboxes") then
 		    local battery_life = self:battery_life()
             if battery_life == 0 then
                 return
@@ -161,7 +161,7 @@ elseif RequiredScript == "lib/units/beings/player/playerinventory" then
 	-- Pocket ECM
 	Hooks:PostHook(PlayerInventory, "_start_jammer_effect", "hmh_PlayerInventory__start_jammer_effect", function(self, end_time)
 		local ecm_timer = end_time or TimerManager:game():time() + self:get_jammer_time()
-		if ecm_timer > managers.hud._hud_ecm_counter._ecm_timer then
+		if HMH:GetOption("infoboxes") and HMH:GetOption("pocket_ecm") and ecm_timer > managers.hud._hud_ecm_counter._ecm_timer then
 			managers.hud._hud_ecm_counter._ecm_timer = ecm_timer
 		end
 	end)

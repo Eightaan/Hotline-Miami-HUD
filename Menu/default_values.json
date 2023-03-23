@@ -342,6 +342,7 @@
 	"combo" : true,
 	"font" : false,
 	"pager_jam" : true,
+	"pocket_ecm" : true,
 	"ECMText" :
 	{
 		"r" : 102,
