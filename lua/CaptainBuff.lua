@@ -1,4 +1,4 @@
-if not (HMH:GetOption("assault") and HMH:GetOption("captain_buff")) then
+if not HMH:GetOption("assault") and HMH:GetOption("captain_buff") then
 	return
 end
 
