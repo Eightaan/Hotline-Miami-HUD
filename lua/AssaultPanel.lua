@@ -1,4 +1,4 @@
-if VoidUI_HMV or not HMH:GetOption("assault") then
+if not HMH:GetOption("assault") then
    return
 end
 
@@ -377,7 +377,7 @@ function HUDAssaultCorner:flash_point_of_no_return_timer(beep)
 end
 
 function HUDAssaultCorner:set_vip_text(buff)
-    if buff then
+    if buff and self._vip_bg_box then
 		self._vip_bg_box:child("vip_text"):set_text(managers.localization:to_upper_text("hmh_damage_resistance", { NUM = buff }))
 	end
 end
