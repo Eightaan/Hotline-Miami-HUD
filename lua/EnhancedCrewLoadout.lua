@@ -1,7 +1,3 @@
-if VHUDPlus and VHUDPlus:getSetting({"TabStats", "ENABLED"}, true) then 
-    return 
-end
-
 if string.lower(RequiredScript) == "lib/managers/menu/contractboxgui" then
 	local init_original = ContractBoxGui.init
 	local update_original = ContractBoxGui.update
@@ -721,6 +717,10 @@ elseif string.lower(RequiredScript) == "lib/managers/hud/newhudstatsscreen" then
 	local show_original = HUDStatsScreen.show
 	local hide_original = HUDStatsScreen.hide
 	local update_original = HUDStatsScreen.update
+	
+	if not HMH:GetOption("tab") then 
+		return 
+	end
 
 	HUDStatsScreen._LOADOUT_H = 215
 	function HUDStatsScreen:recreate_right(...)
@@ -732,7 +732,7 @@ elseif string.lower(RequiredScript) == "lib/managers/hud/newhudstatsscreen" then
 	end
 
 	function HUDStatsScreen:_create_player_info()
-		self._USING_CREW_LOADOUT = HMH:GetOption("crew_loadout_tab") and not (_G.LobbyPlayerInfo and LobbyPlayerInfo.settings.show_skills_in_stats_screen)
+		self._USING_CREW_LOADOUT = HMH:GetOption("crew_loadout_tab")
 		if self._USING_CREW_LOADOUT then
 			if alive(self._right) and not self._loadout_data then
 				self._loadout_data = self._right:panel({

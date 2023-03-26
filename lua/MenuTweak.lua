@@ -1,7 +1,3 @@
-if VHUDPlus then 
-    return
-end
-
 if string.lower(RequiredScript) == "lib/managers/menumanager" then
 	function MenuCallbackHandler:get_latest_dlc_locked(...) return false end		--Hide DLC ad in the main menu
 	
@@ -18,7 +14,7 @@ if string.lower(RequiredScript) == "lib/managers/menumanager" then
 elseif string.lower(RequiredScript) == "lib/managers/menu/blackmarketgui" then
 	local function getEquipmentAmount(name_id)
 		local data = tweak_data.equipments[name_id]
-		if data and data.quantity then
+		if data and data.quantity and HMH:GetOption("inventory_amount") then
 			if type(data.quantity) == "table" then
 				local amounts = data.quantity
 				local amount_str = ""
@@ -40,8 +36,10 @@ elseif string.lower(RequiredScript) == "lib/managers/menu/blackmarketgui" then
 	local populate_deployables_original = BlackMarketGui.populate_deployables
 	function BlackMarketGui:populate_deployables(data, ...)
 		populate_deployables_original(self, data, ...)
-		for i, equipment in ipairs(data) do
-			equipment.name_localized = equipment.name_localized .. (equipment.unlocked and getEquipmentAmount(equipment.name) or "")
+		if HMH:GetOption("inventory_amount") then
+			for i, equipment in ipairs(data) do
+				equipment.name_localized = equipment.name_localized .. (equipment.unlocked and getEquipmentAmount(equipment.name) or "")
+			end
 		end
 	end
 
@@ -49,9 +47,11 @@ elseif string.lower(RequiredScript) == "lib/managers/menu/blackmarketgui" then
 	function BlackMarketGui:populate_grenades(data, ...)
 		populate_grenades_original(self, data, ...)
 		local t_data = tweak_data.blackmarket.projectiles
-		for i, throwable in ipairs(data) do
-			local has_amount = throwable.unlocked and t_data[throwable.name] or false
-			throwable.name_localized = throwable.name_localized .. (has_amount and " (x" .. t_data[throwable.name].max_amount .. ")" or "")
+		if HMH:GetOption("inventory_amount") then
+			for i, throwable in ipairs(data) do
+				local has_amount = throwable.unlocked and t_data[throwable.name] or false
+				throwable.name_localized = throwable.name_localized .. (has_amount and " (x" .. t_data[throwable.name].max_amount .. ")" or "")
+			end
 		end
 	end
 elseif string.lower(RequiredScript) == "lib/managers/menu/skilltreeguinew" then
@@ -198,7 +198,7 @@ elseif string.lower(RequiredScript) == "lib/managers/menumanagerdialogs" then
 	local show_person_joining_original = MenuManager.show_person_joining
 	function MenuManager:show_person_joining( id, nick, ... )
 		local peer = managers.network:session():peer(id)
-		if peer then
+		if peer and HMH:GetOption("join_rank") then
 			local level_string, _ = managers.experience:gui_string(peer:level(), peer:rank())
 			nick = "(" .. level_string .. ") " .. nick
 		end

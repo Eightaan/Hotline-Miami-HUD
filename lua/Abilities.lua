@@ -1,13 +1,14 @@
-if VHUDPlus and VHUDPlus:getSetting({"CustomHUD", "HUDTYPE"}, 2) == 3 or WolfHUD or _G.IS_VR or CustomEOStandalone and CustomEOStandalone:getSetting({"WolfHUDCustomHUD", "ENABLED"}, true) then 
+if _G.IS_VR then 
     return
 end
 -- Stamina, Infinite ammo and Invulnerable display
 if RequiredScript == "lib/managers/hudmanagerpd2" then
 	local set_stamina_value_original = HUDManager.set_stamina_value
 	local set_max_stamina_original = HUDManager.set_max_stamina
+	local update_original = HUDManager.update
 	
 	function HUDManager:set_stamina_value(value, ...)
-	    if HMH:GetOption("stamina") and self._teammate_panels[self.PLAYER_PANEL] then
+	    if HMH:GetOption("stamina") and self._teammate_panels[self.PLAYER_PANEL].set_stamina_current then
 		    self._teammate_panels[HUDManager.PLAYER_PANEL]:set_stamina_current(value)
 		end
 		return set_stamina_value_original(self, value, ...)
@@ -21,13 +22,22 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 	end
 	
     function HUDManager:set_infinite_ammo(state)
-		if HMH:GetOption("bulletstorm") and self._teammate_panels[self.PLAYER_PANEL] then
-	        self._teammate_panels[HUDManager.PLAYER_PANEL]:_set_infinite_ammo(state)
-			if VHUDPlus and VHUDPlus:getSetting({"CustomHUD", "HUDTYPE"}, 2) == 2 then
-			    self._teammate_panels[ self.PLAYER_PANEL ]:_set_bulletstorm(false)
-			end
+		if HMH:GetOption("bulletstorm") and self._teammate_panels[self.PLAYER_PANEL]._set_infinite_ammo then
+	        self._teammate_panels[HUDManager.PLAYER_PANEL]:_set_infinite_ammo(state)		
         end
+		-- Hides the bulletstorm display used by VHUDPlus		
+		if self._teammate_panels[self.PLAYER_PANEL]._set_bulletstorm then
+			self._teammate_panels[self.PLAYER_PANEL]:_set_bulletstorm(false)
+		end
 	end
+	
+    --Ping Display
+    function HUDManager:update(...)
+	    for i, panel in ipairs(self._teammate_panels) do
+		    panel:update(...)
+	    end
+	    return update_original(self, ...)
+    end
 
 elseif RequiredScript == "lib/managers/playermanager" then
 	Hooks:PreHook(PlayerManager, "activate_temporary_upgrade", "activate_temporary_upgrade_armor_timer", function (self, category, upgrade)
@@ -36,10 +46,10 @@ elseif RequiredScript == "lib/managers/playermanager" then
 			if upgrade_value == 0 then return end
 			local teammate_panel = managers.hud:get_teammate_panel_by_peer()
 			if teammate_panel then
-			    if HMH:GetOption("armorer_cooldown_timer") then
+			    if HMH:GetOption("armorer_cooldown_timer") and teammate_panel.update_cooldown_timer then
 				    teammate_panel:update_cooldown_timer(upgrade_value[2])
 				end
-				if HMH:GetOption("armorer_cooldown_radial") then
+				if HMH:GetOption("armorer_cooldown_radial") and teammate_panel.animate_invulnerability then
 				    teammate_panel:animate_invulnerability(upgrade_value[1])
 				end
 			end
@@ -49,10 +59,10 @@ elseif RequiredScript == "lib/managers/playermanager" then
 			if upgrade_value == 0 then return end
 			local teammate_panel = managers.hud:get_teammate_panel_by_peer()
 			if teammate_panel then
-			    if HMH:GetOption("armorer_cooldown_timer") then
+			    if HMH:GetOption("armorer_cooldown_timer") and teammate_panel.health_cooldown_timer then
 				    teammate_panel:health_cooldown_timer(2)
 				end
-				if HMH:GetOption("armorer_cooldown_radial") then
+				if HMH:GetOption("armorer_cooldown_radial") and teammate_panel.animate_health_invulnerability then
 				    teammate_panel:animate_health_invulnerability(2)
 				end
 			end
@@ -193,7 +203,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 		self._stamina_circle:set_visible(HMH:GetOption("stamina"))
  
         -- Hides the stamina display used by VHUDPlus
-		if VHUDPlus and VHUDPlus:getSetting({"CustomHUD", "HUDTYPE"}, 2) == 2 then
+		if self._stamina_bar and self._stamina_line then
 		    self._stamina_bar:set_alpha(0)
 			self._stamina_line:set_alpha(0)
 		end

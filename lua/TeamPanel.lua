@@ -7,7 +7,8 @@ local math_lerp = math.lerp
 
 local HMH = HMH
 local ammo = HMH:GetOption("ammo")
-local interact_info_text = HMH:GetOption("interact_info") and not (VoidUI and VoidUI.options.teammate_panels)
+local interact_info_text = HMH:GetOption("interact_info") and not VoidUI
+local special_equipment = HMH:GetOption("pickups")
 Hooks:PostHook(HUDTeammate, "init", "HMH_HUDTeammateInit", function(self, ...)
     if interact_info_text then
 	    local radial_health_panel = self._player_panel:child("radial_health_panel")
@@ -197,7 +198,7 @@ Hooks:PreHook(HUDTeammate, "set_carry_info", "HMH_HUDTeammateSetCarryInfo", func
     end
 end)
 
-if HMH:GetOption("pickups") and not VoidUI_HMV then
+if special_equipment then
     function HUDTeammate:add_special_equipment(data)
         local team_color
     	if self._peer_id then
@@ -386,31 +387,24 @@ if HMH:GetOption("equipment") then
         local alpha = 0.2
 
         icon:stop()
-
         for i, amount in ipairs(data.amount) do
             local amount_str = string.format("%01d", amount)
-
             if i > 1 then
                 amounts = amounts .. "|"
             end
-
             if amount == 0 then
                 local current_length = string.len(amounts)
-
                 table.insert(zero_ranges, {
                     current_length,
                     current_length + string.len(amount_str)
                 })
             end
-
             amounts = amounts .. amount_str
-
             if amount > 0 then
 			    color = HMH:GetColor("EquipmentText")
                 alpha = 1
             end
         end
-
         icon:set_color(HMH:GetColor("EquipmentIcon"))
         icon:set_alpha(alpha)
         amount:set_alpha(alpha)
@@ -675,7 +669,7 @@ function HUDTeammate:_create_ping_info()
 		text = "",
 		font = "fonts/font_small_mf",
 		layer = 1,
-		visible = HMH:GetOption("ping") or VHUDPlus and VHUDPlus:getSetting({"CustomHUD","TEAMMATE","LATENCY"}, true),
+		visible = HMH:GetOption("ping"),
 		color = Color.white,
 		x = -12,
 		y = name_panel:y() - tweak_data.hud.small_font_size,

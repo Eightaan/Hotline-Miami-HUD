@@ -11,7 +11,11 @@
 	"objective_text" : 1, 
 	"TimerAlpha" : 1, 
 	"HintAlpha" : 1, 
-	"InteractAlpha" : 1, 
+	"InteractAlpha" : 1,
+	"inventory_amount" : true,
+	"hostage_panel" : false,
+	"wave_panel" : false,
+	"show_rank" : true,
 	"presentAlpha" : 1, 
 	"CarryAlpha" : 1, 
 	"SubAlpha" : 1, 
@@ -24,7 +28,7 @@
 	"no_smoke" : false, 
 	"preset" : 1,
 	"hide_hudbox" : false, 
-	"captain_buff" : true,
+	"captain_buff" : false,
 	"captain_buff_color" :
 	{
 		"r" : 255,

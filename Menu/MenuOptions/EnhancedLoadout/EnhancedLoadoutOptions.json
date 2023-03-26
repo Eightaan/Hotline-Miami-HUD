@@ -14,6 +14,10 @@
 			"default_value": true
 		},
 		{
+			"type": "divider",
+			"size": 8
+		},
+		{
 			"type": "toggle",
 			"id": "crew_loadout_briefing_toggle",
 			"title": "crew_loadout_briefing_title",
@@ -21,20 +25,6 @@
 			"callback": "SetOption",
 			"callback_arguments": "crew_loadout_briefing",
 			"value": "crew_loadout_briefing",
-			"default_value": true
-		},
-		{
-			"type": "divider",
-			"size": 8
-		},
-		{
-			"type": "toggle",
-			"id": "profile_menu",
-			"title": "profile_menu_title",
-			"description": "profile_menu_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "profile_menu",
-			"value": "profile_menu",
 			"default_value": true
 		}
 	]

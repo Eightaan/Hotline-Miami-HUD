@@ -62,6 +62,10 @@
 			"parent" : "assault_toggle"
 		},
 		{
+			"type" : "divider",
+			"size" : 4
+		},
+		{
 			"type": "color_select",
 			"id": "no_return_text_color_select",
 			"title": "HotlineMiamiHudNoReturnTextTitleID",
@@ -95,6 +99,10 @@
 			"parent" : "assault_toggle"
 		},
 		{
+			"type" : "divider",
+			"size" : 4
+		},
+		{
 			"type": "color_select",
 			"id": "holdout_text_color_select",
 			"title": "HotlineMiamiHudHoldoutTextTitleID",
@@ -106,25 +114,18 @@
 			"parent" : "assault_toggle"
 		},
 		{
-			"type": "color_select",
-			"id": "captain_text_color_select",
-			"title": "HotlineMiamiHudCaptainTextTitleID",
-			"description": "HotlineMiamiHudColorOption",
-			"value": "CaptainText",
-			"default_value": [255, 102, 102],
-			"callback": "SetColorOption",
-			"callback_arguments": "CaptainText",
-			"parent" : "assault_toggle"
+			"type" : "divider",
+			"size" : 4
 		},
 		{
-			"type": "color_select",
-			"id": "captain_buff_icon_color_select",
-			"title": "HotlineMiamiHudCaptainBuffIconTitleID",
-			"description": "HotlineMiamiHudColorOption",
-			"value": "CaptainBuffIcon",
-			"default_value": [255, 102, 102],
-			"callback": "SetColorOption",
-			"callback_arguments": "CaptainBuffIcon",
+			"type": "toggle",
+			"id": "hostage_panel_toggle",
+			"title": "hostage_panel_title",
+			"description": "hostage_panel_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "hostage_panel",
+			"value": "hostage_panel",
+			"default_value": true,
 			"parent" : "assault_toggle"
 		},
 		{
@@ -150,6 +151,21 @@
 			"parent" : "assault_toggle"
 		},
 		{
+			"type" : "divider",
+			"size" : 4
+		},
+		{
+			"type": "toggle",
+			"id": "wave_panel_toggle",
+			"title": "wave_panel_title",
+			"description": "wave_panel_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "wave_panel",
+			"value": "wave_panel",
+			"default_value": true,
+			"parent" : "assault_toggle"
+		},
+		{
 			"type": "color_select",
 			"id": "waves_text_color_select",
 			"title": "HotlineMiamiHudWavesTextTitleID",
@@ -170,6 +186,10 @@
 			"callback": "SetColorOption",
 			"callback_arguments": "WavesIcon",
 			"parent" : "assault_toggle"
+		},
+		{
+			"type" : "divider",
+			"size" : 4
 		},
 		{
 			"type": "toggle",
@@ -208,6 +228,28 @@
 		{
 			"type" : "divider",
 			"size" : 8
+		},
+		{
+			"type": "color_select",
+			"id": "captain_text_color_select",
+			"title": "HotlineMiamiHudCaptainTextTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "CaptainText",
+			"default_value": [255, 102, 102],
+			"callback": "SetColorOption",
+			"callback_arguments": "CaptainText",
+			"parent" : "assault_toggle"
+		},
+		{
+			"type": "color_select",
+			"id": "captain_buff_icon_color_select",
+			"title": "HotlineMiamiHudCaptainBuffIconTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "CaptainBuffIcon",
+			"default_value": [255, 102, 102],
+			"callback": "SetColorOption",
+			"callback_arguments": "CaptainBuffIcon",
+			"parent" : "assault_toggle"
 		},
 		{
 			"type": "toggle",

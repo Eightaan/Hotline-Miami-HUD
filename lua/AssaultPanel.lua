@@ -27,6 +27,7 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 	local hostages_panel = self._hud_panel:child("hostages_panel")
 	local hostage_text = self._hostages_bg_box:child("num_hostages")
 	local hostages_icon = hostages_panel:child("hostages_icon")
+	hostages_panel:set_visible(HMH:GetOption("hostage_panel"))
 	self._hostages_bg_box:child("bg"):hide()
 	self._hostages_bg_box:child("left_top"):hide()
 	self._hostages_bg_box:child("left_bottom"):hide()
@@ -145,33 +146,6 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 		font = tweak_data.hud_corner.assault_font,
 		font_size = tweak_data.hud_corner.numhostages_size * 0.6
 	})
-
-	-- VHUDPlus Compatibility
-	if VHUDPlus then  
-	    local VHUDPlus_waves = VHUDPlus:getSetting({"AssaultBanner", "WAVE_COUNTER"}, true)
-	    local VHUDPlus_enhanced_obj = VHUDPlus:getSetting({"CustomHUD", "ENABLED_ENHANCED_OBJECTIVE"}, false)
-	    local VHUDPlus_center_assault = VHUDPlus:getSetting({"AssaultBanner", "USE_CENTER_ASSAULT"}, true)
-		local VHUDPlus_hide_infoboxes = VHUDPlus:getSetting({"HUDList", "ENABLED"}, true) and not VHUDPlus:getSetting({"HUDList", "ORIGNIAL_HOSTAGE_BOX"}, false)
-		
-		if VHUDPlus_hide_infoboxes then
-			hostages_panel:set_visible(false)
-		end
-
-	    if VHUDPlus_center_assault and not VHUDPlus_enhanced_obj then 
-	        self._casing_timer._timer_text:set_visible(false)
-		    self._assault_timer._timer_text:set_visible(false)
-	    end
-
-	    if self:should_display_waves() and alive(assault_panel) then
-	        local wave_panel = self._hud_panel:child("wave_panel")
-			if VHUDPlus_waves then
-				self._wave_text:set_visible(false)
-				if alive(wave_panel) then
-					wave_panel:set_alpha(1)
-				end
-			end
-		end
-	end
 end)
 
 Hooks:PostHook(HUDAssaultCorner, "setup_wave_display", "HMH_hudassaultcorner_setup_wave_display", function(self, top, ...)
@@ -179,6 +153,7 @@ Hooks:PostHook(HUDAssaultCorner, "setup_wave_display", "HMH_hudassaultcorner_set
 		local wave_panel = self._hud_panel:child("wave_panel")
 	    local waves_icon = wave_panel:child("waves_icon")
 	    local num_waves = self._wave_bg_box:child("num_waves")
+		wave_panel:set_visible(HMH:GetOption("wave_panel"))
 		self._wave_bg_box:child("bg"):hide()
         self._wave_bg_box:child("left_top"):hide()
         self._wave_bg_box:child("left_bottom"):hide()
@@ -199,7 +174,7 @@ function HUDAssaultCorner:_start_assault(text_list)
 	    local wave_text = panel:child("num_waves")
 		local num_waves = self._wave_bg_box:child("num_waves")
 	    num_waves:set_text(self:get_completed_waves_string())
-		self._hud_panel:child("wave_panel"):set_visible(true)
+		self._hud_panel:child("wave_panel"):set_visible(HMH:GetOption("wave_panel"))
 	end
 
 	icon_assaultbox:set_color(self._assault_color)

@@ -2,7 +2,7 @@ if HMH:GetOption("toggle_interact") == 0 then
     return
 end
 
-local interupt_interact_hint = HMH:GetOption("interupt_interact_hint") and not MUIInteract
+local interupt_interact_hint = HMH:GetOption("interupt_interact_hint")-- and not MUIInteract
 if RequiredScript == "lib/units/beings/player/states/playerstandard" then
 	local _update_interaction_timers_original = PlayerStandard._update_interaction_timers
 	local _check_action_interact_original = PlayerStandard._check_action_interact
@@ -117,7 +117,9 @@ elseif RequiredScript == "lib/units/beings/player/states/playerdriving" then
 
 elseif RequiredScript == "lib/managers/hudmanagerpd2" then
 	function HUDManager:set_interaction_bar_locked(status, tweak_entry)
-	    self._hud_interaction:set_locked(status, tweak_entry)
+		if self._hud_interaction.set_locked then
+			self._hud_interaction:set_locked(status, tweak_entry)
+		end
 	end
 
 elseif RequiredScript == "lib/managers/hud/hudinteraction" then

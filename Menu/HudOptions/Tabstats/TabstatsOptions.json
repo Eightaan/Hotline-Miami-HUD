@@ -56,7 +56,8 @@
 			"callback": "SetOption",
 			"callback_arguments" : "crew_loadout_tab",
 			"value": "crew_loadout_tab",
-			"default_value": true	
+			"default_value": true,
+			"parent" : "tab_toggle"
 		}
 	]
 }

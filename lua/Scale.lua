@@ -24,13 +24,7 @@ if HMH:GetOption("hud_scale") ~= 1 then
 
     core:module("CoreGuiDataManager")
     function GuiDataManager:layout_scaled_fullscreen_workspace(ws)
-        local scale
-        if _G.VHUDPlus and _G.VHUDPlus:getSetting({"CustomHUD", "ENABLED"}, true) then
-    	    scale = _G.VHUDPlus:getSetting({"CustomHUD", "HUD_SCALE"}, 1)
-        else
-	        scale = _G.HMH:GetOption("hud_scale")
-        end
-
+	    local scale = _G.HMH:GetOption("hud_scale")
         local base_res = {x = 1280, y = 720}
         local res = RenderSettings.resolution
         local sc = (2 - scale)

@@ -50,7 +50,6 @@
 				<group :hook_id="hudmanagerpd2">
 				    <post :script_path="ECMTimer.lua"/>
 				    <post :script_path="CustomChat.lua"/>
-					<post :script_path="HudManager.lua"/>
 					<post :script_path="ComboCounter.lua"/>
 					<post :script_path="ToggleInteraction.lua"/>
 					<post :script_path="Abilities.lua"/>

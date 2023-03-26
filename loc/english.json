@@ -244,6 +244,10 @@
 	"assault_text_desc" : "Choose a value for how translucent the assault text will be.",
 	"info_box_title" : "Infobox Transparency",
 	"info_box_desc" : "Choose a value for how translucent the assault text will be.",
+	"hostage_panel_title" : "Show Hostages",
+	"hostage_panel_desc" : "Enable/disable the hostage panel.",
+	"wave_panel_title" : "Show Waves",
+	"wave_panel_desc" : "Enable/disable the wave panel",
 	"assault_title" : "Flashing Assault Panel",
 	"assault_desc" : "Enable the custom flashing assault panel.",
 	"casing_title" : "Casing Text",
@@ -265,12 +269,24 @@
 	"subs_desc" : "Enable the custom colored subtitles.",
     "sub_text_title" : "Subtitles Transparency",
 	"sub_text_desc" : "Choose a value for how translucent the subtitles text will be.",
+	
+	"hmh_joining_player_options_title" : "Joining Players",
+	"hmh_joining_player_options_desc" : "",
+	"show_rank_title" : "Show Player Rank / Level",
+	"show_rank_desc" : "Displays the level and rank of players that are joining mid game.",
 
 	"hmh_menu_options_title" : "Menu Options",
 	"hmh_menu_options_desc" : "Customize the menu.",
 	
 	"no_confirm_title" : "No Confirm Dialogs",
 	"no_confirm_desc" : "Remove some of the >Are you sure< messages when navigating menus.",
+	
+	"hmh_inventory_options_title" : "Inventory",
+	"hmh_inventory_options_desc" : "",
+	"inventory_amount_title" : "Show Equipment Amount",
+	"inventory_amount_desc" : "Displays how many deployables/grenades the player has.",
+	"profile_menu_title" : "Improved Profile Menu",
+	"profile_menu_desc" : "Replaces the default Profile-Selector.",
 	
 	"hmh_skip_menu_options_title" : "Menu Skipper",
 	"hmh_skip_menu_options_desc" : "",
@@ -285,7 +301,7 @@
 	"custom_filter_title" : "Menu Color Grading",
 	"custom_filter_desc" : "This will disable the default blue menu color filter. The menu color grading can be changed in the games video options under advanced settings.",
 	
-	"hmh_main_menu_options_title" : "Main Menu Options",
+	"hmh_main_menu_options_title" : "Main Menu",
 	"hmh_main_menu_options_desc" : "",
 	"custom_menu_background_title" : "Menu Background",
 	"custom_menu_background_desc" : "Choose what background to use.\nWhen changed, a texture refresh is required to take effect.",
@@ -302,14 +318,12 @@
 	"jacket" : "Jacket",
 	"pink_mouse_pointer" : "Pink",
 	
-	"hmh_enhanced_loadout_options_title" : "Enhanced Loadout",
+	"hmh_enhanced_loadout_options_title" : "Enhanced Crew Loadout",
 	"hmh_enhanced_loadout_options_desc" : "",
 	"crew_loadout_title" : "Crew Loadout in Lobby",
 	"crew_loadout_desc" : "Adds a button to your Lobby screen, that can display the loadout of you and your crew.",
 	"crew_loadout_briefing_title" : "Crew Loadout in Briefing",
 	"crew_loadout_briefing_desc" : "Replaces the default Crew Loadout Panel in Mission briefing.",
-	"profile_menu_title" : "Replace Profile Menu",
-	"profile_menu_desc" : "Replaces the default Profile-Selector with WolfHUDs advanced one.",
 	
 	
 	"extracted_preplanning_save" : "Save Plan",

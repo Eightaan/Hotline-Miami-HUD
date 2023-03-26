@@ -29,6 +29,13 @@
 		},
         {
 			"type": "button",
+			"id": "hmh_joining_player_options",
+			"title": "hmh_joining_player_options_title",
+			"description": "hmh_joining_player_options_desc",
+			"next_menu": "hmh_joining_player_options"
+		},
+        {
+			"type": "button",
 			"id": "hmh_ecm_timer",
 			"title": "hmh_ecm_timer_title",
 			"description": "hmh_ecm_timer_desc",

@@ -1,4 +1,4 @@
-if not HMH:GetOption("custom_chat") or VoidUI and VoidUI.options.enable_chat or VHUDPlus or Holo and Holo:ShouldModify(nil, "Chat") then 
+if not HMH:GetOption("custom_chat") then 
     return
 end
 

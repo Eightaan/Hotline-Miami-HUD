@@ -16,6 +16,7 @@
 		{
 			"type": "divider",
 			"size": 16
+			
 		},
 		{
 			"type": "button",
@@ -23,6 +24,17 @@
 			"title": "hmh_main_menu_options_title",
 			"description": "hmh_main_menu_options_desc",
 			"next_menu": "hmh_main_menu_options"
+		},
+		{
+			"type": "divider",
+			"size": 4
+		},
+		{
+			"type": "button",
+			"id": "hmh_inventory",
+			"title": "hmh_inventory_options_title",
+			"description": "hmh_inventory_options_desc",
+			"next_menu": "hmh_inventory_options"
 		},
 		{
 			"type": "divider",

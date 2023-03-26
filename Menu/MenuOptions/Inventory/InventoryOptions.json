@@ -1,0 +1,31 @@
+{
+	"menu_id": "hmh_inventory_options",
+	"parent_menu": "hmh_menu_options",
+	"title": "hmh_inventory_options_title",
+	"items": [
+		{
+			"type": "toggle",
+			"id": "profile_menu",
+			"title": "profile_menu_title",
+			"description": "profile_menu_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "profile_menu",
+			"value": "profile_menu",
+			"default_value": true
+		},
+		{
+			"type": "divider",
+			"size": 12
+		},
+		{
+			"type": "toggle",
+			"id": "inventory_amount_id",
+			"title": "inventory_amount_title",
+			"description": "inventory_amount_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "inventory_amount",
+			"value": "inventory_amount",
+			"default_value": true
+		}
+	]
+}
