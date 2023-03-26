@@ -6,6 +6,8 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 	local set_stamina_value_original = HUDManager.set_stamina_value
 	local set_max_stamina_original = HUDManager.set_max_stamina
 	local update_original = HUDManager.update
+	local show_casing_original = HUDManager.show_casing
+	local sync_start_assault_original = HUDManager.sync_start_assault
 	
 	function HUDManager:set_stamina_value(value, ...)
 	    if HMH:GetOption("stamina") and self._teammate_panels[self.PLAYER_PANEL].set_stamina_current then
@@ -40,10 +42,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
     end
 	
 	--VHUDPlus Compatibility
-	local show_casing_original = HUDManager.show_casing
-	local sync_start_assault_original = HUDManager.sync_start_assault
-    local show_heist_timer = VHUDPlus and VHUDPlus:getSetting({"AssaultBanner", "USE_CENTER_ASSAULT"}, true) and HMH:GetOption("assault")
-	if show_heist_timer then
+	if HMH:GetOption("assault") then
 		function HUDManager:show_casing(...)
 		    show_casing_original(self, ...)
 			self._hud_heist_timer._heist_timer_panel:set_visible(true)
@@ -54,9 +53,6 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 			self._hud_heist_timer._heist_timer_panel:set_visible(true)
 		end
 	end
-
-
-
 elseif RequiredScript == "lib/managers/playermanager" then
 	Hooks:PreHook(PlayerManager, "activate_temporary_upgrade", "activate_temporary_upgrade_armor_timer", function (self, category, upgrade)
 		if upgrade == "armor_break_invulnerable" then
