@@ -12,9 +12,10 @@ if string.lower(RequiredScript) == "lib/managers/menumanager" then
 	    end
     end	
 elseif string.lower(RequiredScript) == "lib/managers/menu/blackmarketgui" then
+	local inventory_amount = HMH:GetOption("inventory_amount") and not VHUDPlus
 	local function getEquipmentAmount(name_id)
 		local data = tweak_data.equipments[name_id]
-		if data and data.quantity and HMH:GetOption("inventory_amount") then
+		if data and data.quantity and inventory_amount then
 			if type(data.quantity) == "table" then
 				local amounts = data.quantity
 				local amount_str = ""
@@ -36,7 +37,7 @@ elseif string.lower(RequiredScript) == "lib/managers/menu/blackmarketgui" then
 	local populate_deployables_original = BlackMarketGui.populate_deployables
 	function BlackMarketGui:populate_deployables(data, ...)
 		populate_deployables_original(self, data, ...)
-		if HMH:GetOption("inventory_amount") then
+		if inventory_amount then
 			for i, equipment in ipairs(data) do
 				equipment.name_localized = equipment.name_localized .. (equipment.unlocked and getEquipmentAmount(equipment.name) or "")
 			end
@@ -47,7 +48,7 @@ elseif string.lower(RequiredScript) == "lib/managers/menu/blackmarketgui" then
 	function BlackMarketGui:populate_grenades(data, ...)
 		populate_grenades_original(self, data, ...)
 		local t_data = tweak_data.blackmarket.projectiles
-		if HMH:GetOption("inventory_amount") then
+		if inventory_amount then
 			for i, throwable in ipairs(data) do
 				local has_amount = throwable.unlocked and t_data[throwable.name] or false
 				throwable.name_localized = throwable.name_localized .. (has_amount and " (x" .. t_data[throwable.name].max_amount .. ")" or "")
@@ -198,7 +199,7 @@ elseif string.lower(RequiredScript) == "lib/managers/menumanagerdialogs" then
 	local show_person_joining_original = MenuManager.show_person_joining
 	function MenuManager:show_person_joining( id, nick, ... )
 		local peer = managers.network:session():peer(id)
-		if peer and HMH:GetOption("join_rank") then
+		if peer and HMH:GetOption("join_rank") and not VHUDPlus then
 			local level_string, _ = managers.experience:gui_string(peer:level(), peer:rank())
 			nick = "(" .. level_string .. ") " .. nick
 		end

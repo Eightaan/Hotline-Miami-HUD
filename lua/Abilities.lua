@@ -38,6 +38,24 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 	    end
 	    return update_original(self, ...)
     end
+	
+	--VHUDPlus Compatibility
+	local show_casing_original = HUDManager.show_casing
+	local sync_start_assault_original = HUDManager.sync_start_assault
+    local show_heist_timer = VHUDPlus and VHUDPlus:getSetting({"AssaultBanner", "USE_CENTER_ASSAULT"}, true) and HMH:GetOption("assault")
+	if show_heist_timer then
+		function HUDManager:show_casing(...)
+		    show_casing_original(self, ...)
+			self._hud_heist_timer._heist_timer_panel:set_visible(true)
+		end
+
+		function HUDManager:sync_start_assault(...)
+		    sync_start_assault_original(self, ...)
+			self._hud_heist_timer._heist_timer_panel:set_visible(true)
+		end
+	end
+
+
 
 elseif RequiredScript == "lib/managers/playermanager" then
 	Hooks:PreHook(PlayerManager, "activate_temporary_upgrade", "activate_temporary_upgrade_armor_timer", function (self, category, upgrade)
