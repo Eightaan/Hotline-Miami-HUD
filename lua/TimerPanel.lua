@@ -1,5 +1,5 @@
 Hooks:PostHook(HUDHeistTimer, "init", "HMMTimer", function(self, hud, tweak_hud)
-    if HMH:GetOption("objective") then
+    if HMH:GetOption("objective") and not self._heist_timer_panel:child("bags_panel") then
         self._hud_panel = hud.panel
 
    	    if self._hud_panel:child("heist_timer_panel") then
