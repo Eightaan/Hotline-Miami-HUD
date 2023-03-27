@@ -9,8 +9,6 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 	local tiny_font_size = tweak_data.menu.pd2_tiny_font_size
 
 	function HudTrackedAchievement:init(parent, id, black_bg)
-			local setting = true
-	if setting then return end
 		HudTrackedAchievement.super.init(self, parent, {
 			border = 10,
 			padding = 4,
