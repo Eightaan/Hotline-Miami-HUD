@@ -45,12 +45,16 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 	if HMH:GetOption("assault") then
 		function HUDManager:show_casing(...)
 		    show_casing_original(self, ...)
-			self._hud_heist_timer._heist_timer_panel:set_visible(true)
+			if self._hud_heist_timer._heist_timer_panel then
+				self._hud_heist_timer._heist_timer_panel:set_visible(true)
+			end
 		end
 
 		function HUDManager:sync_start_assault(...)
 		    sync_start_assault_original(self, ...)
-			self._hud_heist_timer._heist_timer_panel:set_visible(true)
+			if self._hud_heist_timer._heist_timer_panel then
+				self._hud_heist_timer._heist_timer_panel:set_visible(true)
+			end
 		end
 	end
 elseif RequiredScript == "lib/managers/playermanager" then
