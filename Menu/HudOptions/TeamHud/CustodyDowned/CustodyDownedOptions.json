@@ -5,6 +5,11 @@
 	"h" : 500,
 	"items": [
 		{
+			"type" : "label",
+			"parent" : "downed_toggle",
+			"title" : "hmh_downed_panel_text"
+		},
+		{
 			"type": "toggle",
 			"id": "downed_toggle",
 			"title": "downed_title",
@@ -30,6 +35,10 @@
             "default_value": 1
 		},
         {
+			"type" : "divider",
+			"size" : 8
+		},
+		{
             "type": "color_select",
             "id": "downed_text_color_select",
             "title": "HotlineMiamiHudDownedTextTitleID",
@@ -51,6 +60,15 @@
             "callback_arguments": "DownedTimer",
             "parent" : "downed_toggle"
         },
+		{
+			"type" : "divider",
+			"size" : 45
+		},
+		{
+			"type" : "label",
+			"parent" : "downed_toggle",
+			"title" : "hmh_custody_panel_text"
+		},
 		{
 			"type": "toggle",
 			"id": "custody_toggle",
@@ -77,6 +95,10 @@
             "default_value": 1
 		},
         {
+			"type" : "divider",
+			"size" : 8
+		},
+		{
             "type": "color_select",
             "id": "custody_released_color_select",
             "title": "HotlineMiamiHudCustodyReleasedTitleID",

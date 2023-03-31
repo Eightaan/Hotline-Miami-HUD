@@ -4,6 +4,11 @@
 	"title": "hmh_custom_chat_title",
 	"items": [
 		{
+			"type" : "label",
+			"parent" : "custom_chat_toggle",
+			"title" : "hmh_chat_panel_text"
+		},
+		{
 			"type": "toggle",
 			"id": "custom_chat_toggle",
 			"title": "custom_chat_title",
@@ -27,6 +32,24 @@
             "step": 1,
             "default_value": 20,
 			"parent" : "custom_chat_toggle"
+		},
+		{
+			"type" : "divider",
+			"size" : 45
+		},
+		{
+			"type" : "label",
+			"title" : "hmh_voice_panel_text"
+		},
+		{
+			"type": "toggle",
+			"id": "voice_toggle",
+			"title": "voice_title",
+			"description": "voice_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "voice",
+			"value": "voice",
+			"default_value": true
 		}
 	]
 }

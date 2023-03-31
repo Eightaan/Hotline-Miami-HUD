@@ -79,13 +79,27 @@
 		},
 		{
 			"type": "toggle",
-			"id": "voice_toggle",
-			"title": "voice_title",
-			"description": "voice_desc",
+			"id": "interact_info_toggle",
+			"title": "interact_info_title",
+			"description": "interact_info_desc",
 			"callback": "SetOption",
-			"callback_arguments" : "voice",
-			"value": "voice",
+			"callback_arguments" : "interact_info",
+			"value": "interact_info",
 			"default_value": true
+		},
+		{
+			"type": "toggle",
+			"id": "stop_ai_toggle",
+			"title": "stop_ai_title",
+			"description": "stop_ai_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "stop_ai",
+			"value": "stop_ai",
+			"default_value": true
+		},
+		{
+			"type": "divider",
+			"size": 8
 		},
 		{
 			"type": "toggle",
@@ -105,16 +119,6 @@
 			"callback": "SetOption",
 			"callback_arguments" : "color_condition",
 			"value": "color_condition",
-			"default_value": true
-		},
-		{
-			"type": "toggle",
-			"id": "interact_info_toggle",
-			"title": "interact_info_title",
-			"description": "interact_info_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "interact_info",
-			"value": "interact_info",
 			"default_value": true
 		},
 		{
@@ -145,16 +149,6 @@
 			"callback": "SetOption",
 			"callback_arguments" : "promt",
 			"value": "promt",
-			"default_value": true
-		},
-		{
-			"type": "toggle",
-			"id": "stop_ai_toggle",
-			"title": "stop_ai_title",
-			"description": "stop_ai_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "stop_ai",
-			"value": "stop_ai",
 			"default_value": true
 		}
 	]

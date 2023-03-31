@@ -50,6 +50,10 @@
             "callback": "SetColorOption",
             "callback_arguments": "EquipmentText",
             "parent" : "equipment_toggle"
+		},
+		{
+			"type": "divider",
+			"size": 8
         },
         {
             "type": "color_select",
@@ -72,6 +76,10 @@
             "callback": "SetColorOption",
             "callback_arguments": "GrenadeText",
             "parent" : "equipment_toggle"
+		},
+		{
+			"type": "divider",
+			"size": 8
         },
         {
             "type": "color_select",

@@ -171,7 +171,7 @@ elseif RequiredScript == "lib/managers/playermanager" then
     end)
 
 elseif RequiredScript == "lib/managers/hud/hudteammate" then	
-	Hooks:PostHook(HUDTeammate, "init", "HMH_HUDTeammate_init", function (self, ...)
+	Hooks:PostHook(HUDTeammate, "init", "HMH_Stamina_init", function (self, ...)
 		if self._main_player then
 			self:_create_circle_stamina()
 		end
@@ -276,7 +276,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 		end
 	end
 
-	Hooks:PreHook(HUDTeammate, "_create_radial_health", "_create_radial_health_armor_radial", function (self, radial_health_panel)
+	Hooks:PreHook(HUDTeammate, "_create_radial_health", "HMH_Ability_create_radial_health", function (self, radial_health_panel)
 		self._radial_health_panel = radial_health_panel
 		local radial_armor = radial_health_panel:bitmap({
 			texture = "guis/textures/pd2/hud_swansong",

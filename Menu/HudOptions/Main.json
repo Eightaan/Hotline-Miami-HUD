@@ -29,13 +29,6 @@
 		},
         {
 			"type": "button",
-			"id": "hmh_joining_player_options",
-			"title": "hmh_joining_player_options_title",
-			"description": "hmh_joining_player_options_desc",
-			"next_menu": "hmh_joining_player_options"
-		},
-        {
-			"type": "button",
 			"id": "hmh_ecm_timer",
 			"title": "hmh_ecm_timer_title",
 			"description": "hmh_ecm_timer_desc",
@@ -88,38 +81,45 @@
 		},
 		{
 			"type": "button",
-			"id": "hmh_interact",
-			"title": "hmh_interact_title",
-			"description": "hmh_interact_desc",
-			"next_menu": "hmh_menu_interact"
-		},
-		{
-			"type": "button",
 			"id": "hmh_assault",
 			"title": "hmh_assault_title",
 			"description": "hmh_assault_desc",
 			"next_menu": "hmh_menu_assault"
 		},
-		{
+        {
 			"type": "button",
-			"id": "hmh_tab",
-			"title": "hmh_tab_title",
-			"description": "hmh_tab_desc",
-			"next_menu": "hmh_tab"
+			"id": "hmh_objective_and_timer_title",
+			"title": "hmh_objective_and_timer_title",
+			"description": "hmh_objective_and_timer_desc",
+			"next_menu": "hmh_menu_objective_and_timer"
 		},
 		{
 			"type": "button",
-			"id": "hmh_hint",
-			"title": "hmh_hint_title",
-			"description": "hmh_hint_desc",
-			"next_menu": "hmh_menu_hint"
+			"id": "hmh_notifications",
+			"title": "hmh_notifications_title",
+			"description": "hmh_notifications_desc",
+			"next_menu": "hmh_menu_notifications"
 		},
-		{
+        {
 			"type": "button",
-			"id": "hmh_waypoints",
-			"title": "hmh_waypoints_title",
-			"description": "hmh_waypoints_desc",
-			"next_menu": "hmh_menu_waypoints"
+			"id": "hmh_interact_and_carry",
+			"title": "hmh_interact_and_carry_title",
+			"description": "hmh_interact_and_carry_desc",
+			"next_menu": "hmh_menu_interact_and_carry"
+		},
+        {
+			"type": "button",
+			"id": "hmh_waypoints_and_detection",
+			"title": "hmh_waypoints_and_detection_title",
+			"description": "hmh_waypoints_and_detection_desc",
+			"next_menu": "hmh_menu_waypoints_and_detection"
+		},
+        {
+			"type": "button",
+			"id": "hmh_tab_and_subs",
+			"title": "hmh_tab_and_subs_title",
+			"description": "hmh_tab_and_subs_desc",
+			"next_menu": "hmh_tab_and_subs"
 		},
 		{
 			"type": "button",
@@ -128,47 +128,12 @@
 			"description": "hmh_custom_chat_desc",
 			"next_menu": "hmh_menu_custom_chat"
 		},
-		{
+        {
 			"type": "button",
-			"id": "hmh_timer",
-			"title": "hmh_timer_title",
-			"description": "hmh_timer_desc",
-			"next_menu": "hmh_menu_timer"
-		},
-		{
-			"type": "button",
-			"id": "hmh_presenter",
-			"title": "hmh_presenter_title",
-			"description": "hmh_presenter_desc",
-			"next_menu": "hmh_menu_presenter"
-		},
-		{
-			"type": "button",
-			"id": "hmh_suspicion",
-			"title": "hmh_suspicion_title",
-			"description": "hmh_suspicion_desc",
-			"next_menu": "hmh_suspicion"
-		},
-		{
-			"type": "button",
-			"id": "hmh_carry_title",
-			"title": "hmh_carry_title",
-			"description": "hmh_carry_desc",
-			"next_menu": "hmh_menu_carry"
-		},
-		{
-			"type": "button",
-			"id": "hmh_objective_title",
-			"title": "hmh_objective_title",
-			"description": "hmh_objective_desc",
-			"next_menu": "hmh_menu_objective"
-		},
-		{
-			"type": "button",
-			"id": "hmh_subs",
-			"title": "hmh_subs_title",
-			"description": "hmh_subs_desc",
-			"next_menu": "hmh_menu_subs"
+			"id": "hmh_joining_player_options",
+			"title": "hmh_joining_player_options_title",
+			"description": "hmh_joining_player_options_desc",
+			"next_menu": "hmh_joining_player_options"
 		}
 	]
 }

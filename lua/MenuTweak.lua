@@ -178,13 +178,15 @@ elseif string.lower(RequiredScript) == "lib/managers/menumanagerdialogs" then
 		MenuManager.show_confirm_mission_asset_buy_all = expect_yes
 	end
 
-	 Hooks:PostHook(MenuManager, "show_person_joining", "HMH_MenuManager_show_person_joining", function(self, id, nick, ...)
+	local show_person_joining_original = MenuManager.show_person_joining
+	function MenuManager:show_person_joining( id, nick, ... )
 		local peer = managers.network:session():peer(id)
-		if peer and HMH:GetOption("join_rank") and not VHUDPlus then
+		if peer and HMH:GetOption("show_rank") and not VHUDPlus then
 			local level_string, _ = managers.experience:gui_string(peer:level(), peer:rank())
 			nick = "(" .. level_string .. ") " .. nick
 		end
-	end)
+		return show_person_joining_original(self, id, nick, ...)
+	end
 
 elseif string.lower(RequiredScript) == "lib/managers/menu/menuscenemanager" then
     Hooks:PostHook(MenuSceneManager, "_set_up_environments", "HMH_MenuSceneManager_set_up_environments", function(self)

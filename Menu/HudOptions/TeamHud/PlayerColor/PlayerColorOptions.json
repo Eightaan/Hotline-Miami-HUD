@@ -69,6 +69,10 @@
             "callback": "SetColorOption",
             "callback_arguments": "PlayerAi",
             "parent" : "color_toggle"
+		},
+		{
+			"type": "divider",
+			"size": 8
         },
         {
             "type": "color_select",

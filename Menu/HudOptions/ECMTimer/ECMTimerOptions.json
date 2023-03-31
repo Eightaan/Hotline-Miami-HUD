@@ -6,7 +6,7 @@
         {
 			"type": "toggle",
 			"id": "infoboxes_toggle",
-			"title": "infoboxes_title",
+			"title": "hmh_ecm_timer_title",
 			"description": "infoboxes_desc",
 			"callback": "SetOption",
 			"callback_arguments" : "infoboxes",

@@ -38,28 +38,6 @@
 			"value": "ammo",
 			"default_value": true,
 			"is_parent" : true
-		},
-        {
-            "type": "color_select",
-            "id": "primary_fire_color_select",
-            "title": "HotlineMiamiHudPrimFiremodeTitleID",
-            "description": "HotlineMiamiHudColorOption",
-            "value": "PrimFiremode",
-            "default_value": [102, 255, 153],
-            "callback": "SetColorOption",
-            "callback_arguments": "PrimFiremode",
-            "parent" : "ammo_toggle"
-        },
-        {
-            "type": "color_select",
-            "id": "secondary_fire_color_select",
-            "title": "HotlineMiamiHudSecFiremodeTitleID",
-            "description": "HotlineMiamiHudColorOption",
-            "value": "SecFiremode",
-            "default_value": [102, 255, 255],
-            "callback": "SetColorOption",
-            "callback_arguments": "SecFiremode",
-            "parent" : "ammo_toggle"
         },
 		{
 			"type": "color_select",
@@ -93,6 +71,32 @@
 			"callback": "SetColorOption",
 			"callback_arguments": "ClipAmmo",
 			"parent" : "ammo_toggle"
+		},
+		{
+			"type": "divider",
+			"size": 8
+		},
+        {
+            "type": "color_select",
+            "id": "primary_fire_color_select",
+            "title": "HotlineMiamiHudPrimFiremodeTitleID",
+            "description": "HotlineMiamiHudColorOption",
+            "value": "PrimFiremode",
+            "default_value": [102, 255, 153],
+            "callback": "SetColorOption",
+            "callback_arguments": "PrimFiremode",
+            "parent" : "ammo_toggle"
+        },
+        {
+            "type": "color_select",
+            "id": "secondary_fire_color_select",
+            "title": "HotlineMiamiHudSecFiremodeTitleID",
+            "description": "HotlineMiamiHudColorOption",
+            "value": "SecFiremode",
+            "default_value": [102, 255, 255],
+            "callback": "SetColorOption",
+            "callback_arguments": "SecFiremode",
+            "parent" : "ammo_toggle"
 		}
 	]
 }

@@ -28,6 +28,10 @@
             "default_value": 40
 		},
 		{
+			"type": "divider",
+			"size": 8
+		},
+		{
 			"type": "toggle",
 			"id": "combo_kill_anim_toggle",
 			"title": "combo_kill_anim_title",
