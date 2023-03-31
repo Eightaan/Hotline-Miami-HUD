@@ -1,6 +1,6 @@
 if RequiredScript == "core/lib/managers/subtitle/coresubtitlepresenter" then
 	core:module("CoreSubtitlePresenter")
-	function OverlayPresenter:show_text(text, duration)
+	Hooks:OverrideFunction(OverlayPresenter, "show_text", function(self, text, duration)
         local text_shadow = _G.HMH:GetOption("custom_subs")
 		self._text_scale = _G.HMH:GetOption("hud_scale")
 		self.__font_name = "fonts/font_medium_mf"
@@ -37,5 +37,5 @@ if RequiredScript == "core/lib/managers/subtitle/coresubtitlepresenter" then
 		label:set_font_size(self.__font_size * self._text_scale)
 		shadow:set_font_size(self.__font_size * self._text_scale)
 		shadow:set_visible(text_shadow)
-	end
+	end)
 end

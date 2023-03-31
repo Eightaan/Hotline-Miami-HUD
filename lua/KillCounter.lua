@@ -5,7 +5,7 @@ local civies =
     civilian_mariachi = true
 }
 
-Hooks:PostHook( StatisticsManager, "killed", "hmh_StatisticsManager_killed", function(self, data, ...)
+Hooks:PostHook( StatisticsManager, "killed", "HMH_StatisticsManager_killed", function(self, data, ...)
     if civies[data.name] then
         return
     end

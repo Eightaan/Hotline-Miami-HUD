@@ -1,8 +1,8 @@
 if string.lower(RequiredScript) == "lib/managers/menumanager" then
-	function MenuCallbackHandler:get_latest_dlc_locked(...) return false end		--Hide DLC ad in the main menu
+	Hooks:OverrideFunction(MenuCallbackHandler, "get_latest_dlc_locked", function(self) return false end) --Hide DLC ad in the main menu
 	
-	-- Offline chat.
-	function MenuManager:toggle_chatinput()
+	-- Offline chat
+	Hooks:OverrideFunction(MenuManager, "toggle_chatinput", function(self)
 	    if Application:editor() or SystemInfo:platform() ~= Idstring("WIN32") or self:active_menu() or not managers.network:session() then
 		    return
 	    end
@@ -10,7 +10,8 @@ if string.lower(RequiredScript) == "lib/managers/menumanager" then
 		    managers.hud:toggle_chatinput()
 		    return true
 	    end
-    end	
+    end)
+
 elseif string.lower(RequiredScript) == "lib/managers/menu/blackmarketgui" then
 	local inventory_amount = HMH:GetOption("inventory_amount") and not VHUDPlus
 	local function getEquipmentAmount(name_id)
@@ -34,19 +35,15 @@ elseif string.lower(RequiredScript) == "lib/managers/menu/blackmarketgui" then
 		return ""
 	end
 
-	local populate_deployables_original = BlackMarketGui.populate_deployables
-	function BlackMarketGui:populate_deployables(data, ...)
-		populate_deployables_original(self, data, ...)
+	Hooks:PostHook(BlackMarketGui, "populate_deployables", "HMH_BlackMarketGui_populate_deployables", function(self, data, ...)
 		if inventory_amount then
 			for i, equipment in ipairs(data) do
 				equipment.name_localized = equipment.name_localized .. (equipment.unlocked and getEquipmentAmount(equipment.name) or "")
 			end
 		end
-	end
+	end)
 
-	local populate_grenades_original = BlackMarketGui.populate_grenades
-	function BlackMarketGui:populate_grenades(data, ...)
-		populate_grenades_original(self, data, ...)
+	Hooks:PostHook(BlackMarketGui, "populate_grenades", "HMH_BlackMarketGui_populate_grenades", function(self, data, ...)
 		local t_data = tweak_data.blackmarket.projectiles
 		if inventory_amount then
 			for i, throwable in ipairs(data) do
@@ -54,7 +51,8 @@ elseif string.lower(RequiredScript) == "lib/managers/menu/blackmarketgui" then
 				throwable.name_localized = throwable.name_localized .. (has_amount and " (x" .. t_data[throwable.name].max_amount .. ")" or "")
 			end
 		end
-	end
+	end)
+
 elseif string.lower(RequiredScript) == "lib/managers/menu/skilltreeguinew" then
 	--Fix mouse pointer for locked skills
 	local orig_newskilltreeskillitem_is_active = NewSkillTreeSkillItem.is_active
@@ -64,26 +62,21 @@ elseif string.lower(RequiredScript) == "lib/managers/menu/skilltreeguinew" then
 	end
 
 	--Resize and move total points label
-	local orig_newskilltreetieritem_init = NewSkillTreeTierItem.init
-	local orig_newskilltreetieritem_refresh_points = NewSkillTreeTierItem.refresh_points
-	local orig_newskilltreetieritem_refresh_tier_text = NewSkillTreeTierItem._refresh_tier_text
-	function NewSkillTreeTierItem:init(...)
-		local val = orig_newskilltreetieritem_init(self, ...)
-			if self._tier_points_total and self._tier_points_total_zero and self._tier_points_total_curr then
-				local font_size = tweak_data.menu.pd2_small_font_size * 0.75
-				self._tier_points_total:set_font_size(font_size)
-				local _, _, w, h = self._tier_points_total:text_rect()
-				self._tier_points_total:set_size(w, h)
-				self._tier_points_total_zero:set_font_size(font_size)
-				self._tier_points_total_curr:set_font_size(font_size)
-				self._tier_points_total:set_alpha(0.9)
-				self._tier_points_total_curr:set_alpha(0.9)
-				self._tier_points_total_zero:set_alpha(0.6)
-			end
-		return val
-	end
-	function NewSkillTreeTierItem:refresh_points(selected, ...)
-	orig_newskilltreetieritem_refresh_points(self, selected, ...)
+	Hooks:PostHook(NewSkillTreeTierItem, "init", "HMH_NewSkillTreeTierItem_init", function(self, ...)
+		if self._tier_points_total and self._tier_points_total_zero and self._tier_points_total_curr then
+			local font_size = tweak_data.menu.pd2_small_font_size * 0.75
+			self._tier_points_total:set_font_size(font_size)
+			local _, _, w, h = self._tier_points_total:text_rect()
+			self._tier_points_total:set_size(w, h)
+			self._tier_points_total_zero:set_font_size(font_size)
+			self._tier_points_total_curr:set_font_size(font_size)
+			self._tier_points_total:set_alpha(0.9)
+			self._tier_points_total_curr:set_alpha(0.9)
+			self._tier_points_total_zero:set_alpha(0.6)
+		end
+	end)
+	
+	Hooks:PostHook(NewSkillTreeTierItem, "refresh_points", "HMH_NewSkillTreeTierItem_refresh_points", function(self, selected, ...)
 		if alive(self._tier_points_total) and alive(self._tier_points_total_zero) and alive(self._tier_points_total_curr) then
 			self._tier_points_total:set_y(self._text_space or 10)
 			self._tier_points_total_zero:set_y(self._text_space or 10)
@@ -93,9 +86,9 @@ elseif string.lower(RequiredScript) == "lib/managers/menu/skilltreeguinew" then
 			self._tier_points:set_visible(not self._tier_points_needed:visible())
 			self._tier_points_0:set_visible(not self._tier_points_needed:visible())
 		end
-	end
-	function NewSkillTreeTierItem:_refresh_tier_text(selected, ...)
-	orig_newskilltreetieritem_refresh_tier_text(self, selected, ...)
+	end)
+
+	Hooks:PostHook(NewSkillTreeTierItem, "_refresh_tier_text", "HMH_NewSkillTreeTierItem_refresh_tier_text", function(self, selected, ...)
 		if selected and alive(self._tier_points_needed) and alive(self._tier_points_needed_curr) and alive(self._tier_points_needed_zero) then
 			self._tier_points_needed_zero:set_left(self._tier_points_0:left())
 			self._tier_points_needed_curr:set_left(self._tier_points_needed_zero:right())
@@ -105,28 +98,22 @@ elseif string.lower(RequiredScript) == "lib/managers/menu/skilltreeguinew" then
 			self._tier_points:set_visible(not self._tier_points_needed:visible())
 			self._tier_points_0:set_visible(not self._tier_points_needed:visible())
 		end
-	end
-elseif string.lower(RequiredScript) == "lib/states/ingamewaitingforplayers" then
-	local update_original = IngameWaitingForPlayersState.update
-	function IngameWaitingForPlayersState:update(...)
-		update_original(self, ...)
+	end)
 
+elseif string.lower(RequiredScript) == "lib/states/ingamewaitingforplayers" then
+	Hooks:PostHook(IngameWaitingForPlayersState, "update", "HMH_IngameWaitingForPlayersState_update", function(self, ...)
 		if self._skip_promt_shown and HMH:GetOption("skip_blackscreen") then
 			self:_skip()
 		end
-	end
+	end)
+
 elseif string.lower(RequiredScript) == "lib/managers/menu/stageendscreengui" then
-	local init_original = StageEndScreenGui.init
-	local update_original = StageEndScreenGui.update
-	function StageEndScreenGui:init(...)
-		init_original(self, ...)
+	Hooks:PostHook(StageEndScreenGui, "init", "HMH_StageEndScreenGui_init", function(self, ...)
 		if self._enabled and managers.hud then
 			managers.hud:set_speed_up_endscreen_hud(5)
 		end
-	end
-
-	function StageEndScreenGui:update(t, ...)
-		update_original(self, t, ...)
+	end)
+	Hooks:PostHook(StageEndScreenGui, "update", "HMH_StageEndScreenGui_update", function(self, t, ...)
 		if not self._button_not_clickable and HMH:GetOption("skip_xp") >= 0 and HMH:GetOption("skip_xp") > 0 then
 			self._auto_continue_t = self._auto_continue_t or (t + HMH:GetOption("skip_xp"))
 			local gsm = game_state_machine:current_state()
@@ -135,18 +122,13 @@ elseif string.lower(RequiredScript) == "lib/managers/menu/stageendscreengui" the
 				gsm._continue_cb()
 			end
 		end
-	end
+	end)
 
-	function StageEndScreenGui:special_btn_pressed(...)
-	end
+	Hooks:OverrideFunction(StageEndScreenGui, "special_btn_pressed", function(self) end)
+	Hooks:OverrideFunction(StageEndScreenGui, "special_btn_released", function(self) end)
 
-	function StageEndScreenGui:special_btn_released(...)
-	end
 elseif string.lower(RequiredScript) == "lib/managers/menu/lootdropscreengui" then	
-	local update_original = LootDropScreenGui.update
-	function LootDropScreenGui:update(t, ...)
-		update_original(self, t, ...)
-
+	Hooks:PostHook(LootDropScreenGui, "update", "HMH_LootDropScreenGui_update", function(self, t, ...)
 		if not self._card_chosen and HMH:GetOption("pick_card") then
 			self:_set_selected_and_sync(math.random(3))
 			self:confirm_pressed()
@@ -159,11 +141,10 @@ elseif string.lower(RequiredScript) == "lib/managers/menu/lootdropscreengui" the
 				self:continue_to_lobby()
 			end
 		end
-	end
+	end)
+
 elseif string.lower(RequiredScript) == "lib/managers/menu/renderers/menunodeskillswitchgui" then
-	local _create_menu_item=MenuNodeSkillSwitchGui._create_menu_item
-	function MenuNodeSkillSwitchGui:_create_menu_item(row_item, ...)
-		_create_menu_item(self, row_item, ...)
+	Hooks:PostHook(MenuNodeSkillSwitchGui, "_create_menu_item", "HMH_MenuNodeSkillSwitchGui_create_menu_item", function(self, row_item, ...)
 		if row_item.type~="divider" and row_item.name~="back" then
 			local gd=Global.skilltree_manager.skill_switches[row_item.name]
 			row_item.status_gui:set_text( managers.localization:to_upper_text( ("menu_st_spec_%d"):format( managers.skilltree:digest_value(gd.specialization, false, 1) or 1 ) ) )
@@ -184,7 +165,8 @@ elseif string.lower(RequiredScript) == "lib/managers/menu/renderers/menunodeskil
 				row_item.status_gui:set_text(managers.localization:to_upper_text("menu_specialization", {}) .. ":")
 			end
 		end
-	end
+	end)
+
 elseif string.lower(RequiredScript) == "lib/managers/menumanagerdialogs" then	
 	if HMH:GetOption("no_confirm") then
 		local function expect_yes(self, params) params.yes_func() end
@@ -196,17 +178,16 @@ elseif string.lower(RequiredScript) == "lib/managers/menumanagerdialogs" then
 		MenuManager.show_confirm_mission_asset_buy_all = expect_yes
 	end
 
-	local show_person_joining_original = MenuManager.show_person_joining
-	function MenuManager:show_person_joining( id, nick, ... )
+	 Hooks:PostHook(MenuManager, "show_person_joining", "HMH_MenuManager_show_person_joining", function(self, id, nick, ...)
 		local peer = managers.network:session():peer(id)
 		if peer and HMH:GetOption("join_rank") and not VHUDPlus then
 			local level_string, _ = managers.experience:gui_string(peer:level(), peer:rank())
 			nick = "(" .. level_string .. ") " .. nick
 		end
-		return show_person_joining_original(self, id, nick, ...)
-	end
+	end)
+
 elseif string.lower(RequiredScript) == "lib/managers/menu/menuscenemanager" then
-    Hooks:PostHook(MenuSceneManager, "_set_up_environments", "hmh_set_up_environments", function(self)
+    Hooks:PostHook(MenuSceneManager, "_set_up_environments", "HMH_MenuSceneManager_set_up_environments", function(self)
 	    if HMH:GetOption("custom_filter") and self._environments and self._environments.standard and self._environments.standard.color_grading then
 		    self._environments.standard.color_grading = "color_off"
 	    end

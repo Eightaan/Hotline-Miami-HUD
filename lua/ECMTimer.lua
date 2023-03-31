@@ -1,6 +1,5 @@
 if RequiredScript == "lib/managers/hudmanagerpd2" then
 	HUDECMCounter = HUDECMCounter or class()
-
     function HUDECMCounter:init(hud)
 		self._ecm_timer = 0
 	    self._hud_panel = hud.panel
@@ -84,45 +83,31 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
     end
 
 	--Init
-	Hooks:PostHook(HUDManager, "_setup_player_info_hud_pd2", "hmh_setup_player_info_hud_pd2", function(self)
+	Hooks:PostHook(HUDManager, "_setup_player_info_hud_pd2", "HMH_ECM_setup_player_info_hud_pd2", function(self, ...)
 		self._hud_ecm_counter = HUDECMCounter:new(managers.hud:script(PlayerBase.PLAYER_INFO_HUD_PD2))
-	end)
-	
-	--Update ECM timer
-	Hooks:PostHook(HUDManager, "update", "hmh_HUDManager_update", function(self)
-		self._hud_ecm_counter:update()
+		self:add_updator("HMH_ECM_UPDATOR", callback(self._hud_ecm_counter, self._hud_ecm_counter, "update"))
 	end)
 
 elseif RequiredScript == "lib/units/equipment/ecm_jammer/ecmjammerbase" then
 	--PeerID
-	local original =
-	{
-		spawn = ECMJammerBase.spawn,
-		set_server_information = ECMJammerBase.set_server_information,
-		set_owner = ECMJammerBase.set_owner,
-		sync_setup = ECMJammerBase.sync_setup
-	}
-
+	local original_spawn = ECMJammerBase.spawn
 	function ECMJammerBase.spawn(pos, rot, battery_life_upgrade_lvl, owner, peer_id, ...)
-		local unit = original.spawn(pos, rot, battery_life_upgrade_lvl, owner, peer_id, ...)
+		local unit = original_spawn(pos, rot, battery_life_upgrade_lvl, owner, peer_id, ...)
 		unit:base():SetPeersID(peer_id)
 		return unit
 	end
 
-	function ECMJammerBase:set_server_information(peer_id, ...)
-		original.set_server_information(self, peer_id, ...)
+	Hooks:PostHook(ECMJammerBase, "set_server_information", "HMH_ECMJammerBase_set_server_information", function(self, peer_id, ...)
 		self:SetPeersID(peer_id)
-	end
+	end)
 
-	function ECMJammerBase:sync_setup(upgrade_lvl, peer_id, ...)
-		original.sync_setup(self, upgrade_lvl, peer_id, ...)
+	Hooks:PostHook(ECMJammerBase, "sync_setup", "HMH_ECMJammerBase_sync_setup", function(self, upgrade_lvl, peer_id, ...)
 		self:SetPeersID(peer_id)
-	end
+	end)
 
-	function ECMJammerBase:set_owner(...)
-		original.set_owner(self, ...)
+	Hooks:PostHook(ECMJammerBase, "set_owner", "HMH_ECMJammerBase_set_owner", function(self, ...)
 		self:SetPeersID(self._owner_id or 0)
-	end
+	end)
 
 	function ECMJammerBase:SetPeersID(peer_id)
 		local id = peer_id or 0
@@ -131,9 +116,7 @@ elseif RequiredScript == "lib/units/equipment/ecm_jammer/ecmjammerbase" then
 	end
 
 	--ECM Timer Host and Client
-	local set_active_original = ECMJammerBase.set_active
-	function ECMJammerBase:set_active(active, ...)
-    set_active_original(self, active, ...)
+	Hooks:PostHook(ECMJammerBase, "set_active", "HMH_ECMJammerBase_set_active", function(self, active, ...)
 		if active and HMH:GetOption("infoboxes") then
 		    local battery_life = self:battery_life()
             if battery_life == 0 then
@@ -155,11 +138,11 @@ elseif RequiredScript == "lib/units/equipment/ecm_jammer/ecmjammerbase" then
 				return
 			end
 		end
-	end
+	end)
 
 elseif RequiredScript == "lib/units/beings/player/playerinventory" then
 	-- Pocket ECM
-	Hooks:PostHook(PlayerInventory, "_start_jammer_effect", "hmh_PlayerInventory__start_jammer_effect", function(self, end_time)
+	Hooks:PostHook(PlayerInventory, "_start_jammer_effect", "HMH_PlayerInventory_start_jammer_effect", function(self, end_time, ...)
 		local ecm_timer = end_time or TimerManager:game():time() + self:get_jammer_time()
 		if HMH:GetOption("infoboxes") and HMH:GetOption("pocket_ecm") and ecm_timer > managers.hud._hud_ecm_counter._ecm_timer then
 			managers.hud._hud_ecm_counter._ecm_timer = ecm_timer

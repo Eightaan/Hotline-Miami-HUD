@@ -3,13 +3,10 @@ if not HMH:GetOption("voice") then
 end
 
 if RequiredScript == "lib/managers/hudmanagerpd2" then 
-
-	local setup_player_info_hud_pd2 = HUDManager._setup_player_info_hud_pd2
-	function HUDManager:_setup_player_info_hud_pd2()
-		setup_player_info_hud_pd2(self)
+	Hooks:PreHook(HUDManager, "_setup_player_info_hud_pd2", "HMH_VoiceChat_setup_player_info_hud_pd2", function(self, ...)
 		local hud = managers.hud:script(PlayerBase.PLAYER_INFO_HUD_PD2)
 		self:_create_voice_panel(hud)
-	end
+	end)
 		
 	function HUDManager:_create_voice_panel(hud)
 		if managers.network:session() then
@@ -114,7 +111,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
     end
 
 elseif RequiredScript == "lib/network/matchmaking/networkvoicechatsteam" then
-    Hooks:PostHook(NetworkVoiceChatSTEAM, "set_recording", "set_player_voice", function(self, enabled)
+    Hooks:PostHook(NetworkVoiceChatSTEAM, "set_recording", "HMH_NetworkVoiceChatSTEAM_set_player_voice", function(self, enabled)
         if managers.hud and (self._voice_enabled == nil or self._voice_enabled ~= enabled) and managers.network and managers.network.session and managers.network:session():local_peer() and managers.network:session():local_peer():id() then
             self._voice_enabled = enabled
             managers.hud:set_voice({peer_id = managers.network:session():local_peer():id()}, enabled)

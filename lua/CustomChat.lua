@@ -3,20 +3,14 @@ if not HMH:GetOption("custom_chat") then
 end
 
 if RequiredScript == "lib/managers/hudmanagerpd2" then
-
-	local setup_endscreen_hud_original = HUDManager.setup_endscreen_hud
-
-	function HUDManager:setup_endscreen_hud(...)
+	Hooks:PostHook(HUDManager, "setup_endscreen_hud", "HMH_HUDManager_setup_endscreen_hud", function(self, ...)
 		if HUDChat.MOUSE_SUPPORT then
 			self._hud_chat_ingame:disconnect_mouse()
 		end
-		return setup_endscreen_hud_original(self, ...)
-	end
-
+	end)
 end
 
 if RequiredScript == "lib/managers/hud/hudchat" then
-
 	HUDChat.LINE_HEIGHT = HMH:GetOption("chat_font") or 20		--Size of each line in chat (and hence the text size)
 	HUDChat.WIDTH = 380				--Width of the chat window
 	HUDChat.MAX_OUTPUT_LINES = 8	--Number of chat lines to show
@@ -24,13 +18,8 @@ if RequiredScript == "lib/managers/hud/hudchat" then
 	HUDChat.MOUSE_SUPPORT = true	--For scolling and stuff. Experimental, you have been warned
 	HUDChat.COLORED_BG = false		--Colorize the line bg based on the message source
 	HUDChat.SCROLLBAR_ALIGN = 1		--Alignment of the scroll bar (1 = left, 2 = right)
-
-	local enter_key_callback_original = HUDChat.enter_key_callback
-	local esc_key_callback_original = HUDChat.esc_key_callback
-	local _on_focus_original = HUDChat._on_focus
-	local _loose_focus_original = HUDChat._loose_focus
-
-	function HUDChat:init(ws, hud)
+	
+	Hooks:OverrideFunction(HUDChat, "init", function(self, ws, hud)
 		local fullscreen = managers.hud:script(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2)
 		self._hud_panel = fullscreen.panel
 		self._x_offset = (fullscreen.panel:w() - hud.panel:w()) / 2
@@ -53,17 +42,15 @@ if RequiredScript == "lib/managers/hud/hudchat" then
 			h = HUDChat.LINE_HEIGHT * (HUDChat.MAX_OUTPUT_LINES + 1),
 			w = HUDChat.WIDTH,
 		})
-
 		self._panel:set_left(0)
 		self._panel:set_bottom(self._parent:h() - 112)
-
 
 		self:_create_output_panel()
 		self:_create_input_panel()
 		self:_layout_output_panel()
-	end
+	end)
 
-	function HUDChat:_create_input_panel()
+	Hooks:OverrideFunction(HUDChat, "_create_input_panel", function(self)
 		self._input_panel = self._panel:panel({
 			name = "input_panel",
 			alpha = 0,
@@ -140,7 +127,7 @@ if RequiredScript == "lib/managers/hud/hudchat" then
 
 		focus_indicator:set_shape(input_text:shape())
 		self._input_panel:set_bottom(self._panel:h())
-	end
+	end)
 
 	function HUDChat:_create_output_panel()
 		local output_panel = self._panel:panel({
@@ -202,8 +189,6 @@ if RequiredScript == "lib/managers/hud/hudchat" then
 		if HUDChat.COLORED_BG then
 			output_panel:gradient({
 				name = "output_bg",
-				--gradient_points = { 0, Color.white:with_alpha(0), 0.2, Color.white:with_alpha(0.25), 1, Color.white:with_alpha(0) },
-				--gradient_points = { 0, Color.white:with_alpha(0.4), 0.2, Color.white:with_alpha(0.3), 1, Color.white:with_alpha(0.2) },
 				gradient_points = { 0, Color.white:with_alpha(0.3), 0.3, Color.white:with_alpha(0.1), 0.5, Color.white:with_alpha(0.2) , 0.7, Color.white:with_alpha(0.1), 1, Color.white:with_alpha(0.3) },
 				layer = -1,
 				valign = "grow",
@@ -218,7 +203,7 @@ if RequiredScript == "lib/managers/hud/hudchat" then
 		output_panel:set_bottom(self._panel:h())
 	end
 
-	function HUDChat:_layout_output_panel()
+	Hooks:OverrideFunction(HUDChat, "_layout_output_panel", function(self)
 		local output_panel = self._panel:child("output_panel")
 
 		output_panel:set_h(HUDChat.LINE_HEIGHT * math.min(HUDChat.MAX_OUTPUT_LINES, self._total_message_lines))
@@ -246,9 +231,9 @@ if RequiredScript == "lib/managers/hud/hudchat" then
 			msg.panel:set_bottom(output_panel:h() - y)
 			y = y + msg.panel:h()
 		end
-	end
+	end)
 
-	function HUDChat:receive_message(name, message, color, icon)
+	Hooks:OverrideFunction(HUDChat, "receive_message", function(self, name, message, color, icon)
 		local output_panel = self._panel:child("output_panel")
 		local scroll_bar_bg = output_panel and output_panel:child("scroll_bar_bg")
 		local x_offset = HUDChat.COLORED_BG and 2 or 0
@@ -366,27 +351,9 @@ if RequiredScript == "lib/managers/hud/hudchat" then
 			output_panel:animate(callback(self, self, "_animate_show_component"), output_panel:alpha())
 			output_panel:animate(callback(self, self, "_animate_fade_output"))
 		end
-	end
+	end)
 
-	function HUDChat:_animate_fade_output()
-		local wait_t = 10
-		if wait_t <= 0 then return end
-		local fade_t = 1
-		local t = 0
-		while wait_t > t do
-			local dt = coroutine.yield()
-			t = t + dt
-		end
-		local t = 0
-		while fade_t > t do
-			local dt = coroutine.yield()
-			t = t + dt
-			self:set_output_alpha(1 - (t / fade_t))
-		end
-		self:set_output_alpha(0)
-	end
-
-	function HUDChat:enter_text(o, s)
+	Hooks:OverrideFunction(HUDChat, "enter_text", function(self, o, s)
 		if managers.hud and managers.hud:showing_stats_screen() then
 			return
 		end
@@ -410,19 +377,17 @@ if RequiredScript == "lib/managers/hud/hudchat" then
 			text:replace_text("")
 		end
 		self:update_caret()
-	end
+	end)
 
-	function HUDChat:enter_key_callback(...)
-		enter_key_callback_original(self, ...)
+	Hooks:PostHook(HUDChat, "enter_key_callback", "HMH_HUDChat_enter_key_callback", function(self, ...)
 		self:_set_input_lines(1)
 		self:_set_line_offset(0)
-	end
+	end)
 
-	function HUDChat:esc_key_callback(...)
-		esc_key_callback_original(self, ...)
+	Hooks:PostHook(HUDChat, "esc_key_callback", "HMH_HUDChat_esc_key_callback", function(self, ...)
 		self:_set_input_lines(1)
 		self:_set_line_offset(0)
-	end
+	end)
 
 	function HUDChat:_set_input_lines(no_lines)
 		if no_lines ~= self._current_input_lines then
@@ -435,19 +400,7 @@ if RequiredScript == "lib/managers/hud/hudchat" then
 		end
 	end
 
-	function HUDChat:set_offset(offset, align)
-		self._panel:set_bottom(self._parent:h() - offset)
-		if align and self._align ~= align then
-			if align == "left" then
-				self._panel:set_left(0)
-			else
-				self._panel:set_right(self._parent:w())
-			end
-			self._align = align
-		end
-	end
-
-	function HUDChat:update_key_down(o, k)
+	Hooks:OverrideFunction(HUDChat, "update_key_down", function(self, o, k)
 		local first_wait_done = false
 		local text = self._input_panel:child("input_text")
 		repeat
@@ -509,9 +462,9 @@ if RequiredScript == "lib/managers/hud/hudchat" then
 			wait(first_wait_done and 0.03 or 0.6)
 			first_wait_done = true
 		until (self._key_pressed ~= k)
-	end
+	end)
 
-	function HUDChat:key_press(o, k)
+	Hooks:OverrideFunction(HUDChat, "key_press", function(self, o, k)
 		if self._skip_first then
 			self._skip_first = false
 			return
@@ -540,7 +493,7 @@ if RequiredScript == "lib/managers/hud/hudchat" then
 			text:animate(callback(self, self, "update_key_down"), k)
 		end
 		self:update_caret()
-	end
+	end)
 
 	function HUDChat:_change_line_offset(diff)
 		if diff ~= 0 then
@@ -555,21 +508,17 @@ if RequiredScript == "lib/managers/hud/hudchat" then
 		end
 	end
 
-	function HUDChat:_on_focus(...)
+	Hooks:PostHook(HUDChat, "_on_focus", "HMH_HUDChat_on_focus", function(self, ...)
 		if HUDChat.MOUSE_SUPPORT then
 			self:connect_mouse()
 		end
+	end)
 
-		return _on_focus_original(self, ...)
-	end
-
-	function HUDChat:_loose_focus(...)
+	Hooks:PostHook(HUDChat, "_loose_focus", "HMH_HUDChat_loose_focus", function(self, ...)
 		if HUDChat.MOUSE_SUPPORT then
 			self:disconnect_mouse()
 		end
-
-		return _loose_focus_original(self, ...)
-	end
+	end)
 
 	function HUDChat:connect_mouse()
 		if not self._mouse_connected then

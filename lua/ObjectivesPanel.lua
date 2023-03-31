@@ -2,7 +2,7 @@ if not HMH:GetOption("objective") then
     return
 end
 
-Hooks:PostHook(HUDObjectives, "init", "HMH_hudobjectives_init", function(self, hud, ...)
+Hooks:PostHook(HUDObjectives, "init", "HMH_HUDObjectives_init", function(self, hud, ...)
 	self._hud_panel = hud.panel
 	if self._hud_panel:child("objectives_panel") then
 		self._hud_panel:remove(self._hud_panel:child("objectives_panel"))
@@ -73,7 +73,7 @@ Hooks:PostHook(HUDObjectives, "init", "HMH_hudobjectives_init", function(self, h
 	amount_text:set_alpha(HMH:GetOption("objective_text"))
 end)
 
-function HUDObjectives:activate_objective(data)
+Hooks:OverrideFunction(HUDObjectives, "activate_objective", function(self, data)
 	self._active_objective_id = data.id
 	local objectives_panel = self._hud_panel:child("objectives_panel")
 	local objective_text = objectives_panel:child("objective_text")
@@ -103,9 +103,9 @@ function HUDObjectives:activate_objective(data)
 
     amount_text:set_visible(data.amount)
 	amount_text:set_x( objective_text:x() + 5 + w )
-end
+end)
 
-function HUDObjectives:update_amount_objective(data)
+Hooks:OverrideFunction(HUDObjectives, "update_amount_objective", function(self, data)
 	if data.id ~= self._active_objective_id then
 		return
 	end
@@ -113,19 +113,19 @@ function HUDObjectives:update_amount_objective(data)
 	local amount = data.amount
 	local objectives_panel = self._hud_panel:child("objectives_panel")
 	objectives_panel:child("amount_text"):set_text(current .. "/" .. amount)
-end
+end)
 
-function HUDObjectives:complete_objective(data)
+Hooks:OverrideFunction(HUDObjectives, "complete_objective", function(self, data)
 	if data.id ~= self._active_objective_id then
 		return
 	end
 	local objectives_panel = self._hud_panel:child("objectives_panel")
 	objectives_panel:stop()
 	objectives_panel:animate(callback(nil, _G, "set_alpha"), 0)
-end
+end)
 
-function HUDObjectives:remind_objective(id)
+Hooks:OverrideFunction(HUDObjectives, "remind_objective", function(self, id)
 	if id ~= self._active_objective_id then
 		return
 	end
-end
+end)

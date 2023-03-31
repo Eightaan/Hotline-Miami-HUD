@@ -4,14 +4,11 @@ end
 
 local interupt_interact_hint = HMH:GetOption("interupt_interact_hint")
 if RequiredScript == "lib/units/beings/player/states/playerstandard" then
-	local _update_interaction_timers_original = PlayerStandard._update_interaction_timers
-	local _check_action_interact_original = PlayerStandard._check_action_interact
-
-	function PlayerStandard:_update_interaction_timers(t, ...)
+	Hooks:PostHook(PlayerStandard, "_update_interaction_timers", "HMH_PlayerStandard_update_interaction_timers", function(self, t, ...)
 		self:_check_interaction_locked(t)
-		return _update_interaction_timers_original(self, t, ...)
-	end
+	end)
 
+	local _check_action_interact_original = PlayerStandard._check_action_interact
 	function PlayerStandard:_check_action_interact(t, input, ...)
 		if not self:_check_interact_toggle(t, input) then
 			return _check_action_interact_original(self, t, input, ...)
@@ -49,14 +46,11 @@ if RequiredScript == "lib/units/beings/player/states/playerstandard" then
 	end
 	
 elseif RequiredScript == "lib/units/beings/player/states/playercivilian" then
-	local _update_interaction_timers_original = PlayerCivilian._update_interaction_timers
-	local _check_action_interact_original = PlayerCivilian._check_action_interact
-
-	function PlayerCivilian:_update_interaction_timers(t, ...)
+	Hooks:PostHook(PlayerCivilian, "_update_interaction_timers", "HMH_PlayerCivilian_update_interaction_timers", function(self, t, ...)
 		self:_check_interaction_locked(t)
-		return _update_interaction_timers_original(self, t, ...)
-	end
+	end)
 
+	local _check_action_interact_original = PlayerCivilian._check_action_interact
 	function PlayerCivilian:_check_action_interact(t, input, ...)
 		if not self:_check_interact_toggle(t, input) then
 			return _check_action_interact_original(self, t, input, ...)
@@ -64,16 +58,12 @@ elseif RequiredScript == "lib/units/beings/player/states/playercivilian" then
 	end
 
 elseif RequiredScript == "lib/units/beings/player/states/playerdriving" then
+	Hooks:PostHook(PlayerDriving, "_update_action_timers", "HMH_PlayerDriving_update_action_timers", function(self, t, ...)
+		self:_check_interaction_locked(t)
+	end)
 
-	local _update_action_timers_original = PlayerDriving._update_action_timers
 	local _start_action_exit_vehicle_original = PlayerDriving._start_action_exit_vehicle
 	local _check_action_exit_vehicle_original = PlayerDriving._check_action_exit_vehicle
-
-	function PlayerDriving:_update_action_timers(t, ...)
-		self:_check_interaction_locked(t)
-		return _update_action_timers_original(self, t, ...)
-	end
-
 	function PlayerDriving:_start_action_exit_vehicle(t)
 		if not self:_interacting() then
 			return _start_action_exit_vehicle_original(self, t)
@@ -122,17 +112,13 @@ elseif RequiredScript == "lib/managers/hudmanagerpd2" then
 		end
 	end
 
-elseif RequiredScript == "lib/managers/hud/hudinteraction" then
-	local hide_interaction_bar_original = HUDInteraction.hide_interaction_bar
-	local show_interact_original		= HUDInteraction.show_interact
-
-	function HUDInteraction:hide_interaction_bar(complete, ...)
+elseif RequiredScript == "lib/managers/hud/hudinteraction" then	
+	Hooks:PostHook(HUDInteraction, "hide_interaction_bar", "HMH_HUDInteraction_hide_interaction_bar", function(self, complete, ...)
 		if self._old_text then
 			self._hud_panel:child(self._child_name_text):set_text(self._old_text or "")
 			self._old_text = nil
 		end
-		return hide_interaction_bar_original(self, complete, ...)
-	end
+	end)
 
 	function HUDInteraction:set_locked(status, tweak_entry)
 		if status then
@@ -146,6 +132,7 @@ elseif RequiredScript == "lib/managers/hud/hudinteraction" then
 		end
 	end
 
+	local show_interact_original = HUDInteraction.show_interact
 	function HUDInteraction:show_interact(data)
 		if not self._old_text then
 			return show_interact_original(self, data)

@@ -7,8 +7,18 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 	local tiny_font = tweak_data.menu.pd2_tiny_font
 	local medium_font_size = tweak_data.menu.pd2_medium_font_size
 	local tiny_font_size = tweak_data.menu.pd2_tiny_font_size
+	
+	function HUDStatsScreen:_trade_delay_time(time)
+		time = math.max(math.floor(time), 0)
+		local minutes = math.floor(time / 60)
+		time = time - minutes * 60
+		local seconds = math.round(time)
+		local text = ""
 
-	function HudTrackedAchievement:init(parent, id, black_bg)
+		return text .. (minutes < 10 and "0" .. minutes or minutes) .. ":" .. (seconds < 10 and "0" .. seconds or seconds)
+	end	
+
+	Hooks:OverrideFunction(HudTrackedAchievement, "init", function(self, parent, id, black_bg)
 		HudTrackedAchievement.super.init(self, parent, {
 			border = 10,
 			padding = 4,
@@ -81,19 +91,9 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 				color = Color.black:with_alpha(0.6)
 			})
 		end
-	end
-
-	function HUDStatsScreen:_trade_delay_time(time)
-		time = math.max(math.floor(time), 0)
-		local minutes = math.floor(time / 60)
-		time = time - minutes * 60
-		local seconds = math.round(time)
-		local text = ""
-
-		return text .. (minutes < 10 and "0" .. minutes or minutes) .. ":" .. (seconds < 10 and "0" .. seconds or seconds)
-	end	
-
-	function HUDStatsScreen:recreate_left()
+	end)
+	
+	Hooks:OverrideFunction(HUDStatsScreen, "recreate_left", function(self)
 		self._left:clear()
 		self._left:bitmap({
 			texture = "guis/textures/test_blur_df",
@@ -635,17 +635,17 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 			loot_panel:set_size(placer:most_rightbottom())
 			loot_panel:set_leftbottom(0, self._left:h() - 16)
 		end
-	end
+	end)
 
-    local HUDStatsScreen_recreate_right = HUDStatsScreen.recreate_right
-	function HUDStatsScreen:recreate_right(...)
-		if _G.LobbyPlayerInfo and LobbyPlayerInfo.settings.show_skills_in_stats_screen then
-            return HUDStatsScreen_recreate_right(self, ...) -- LobbyPlayerInfo compatability
-		end
+    --local HUDStatsScreen_recreate_right = HUDStatsScreen.recreate_right
+	Hooks:OverrideFunction(HUDStatsScreen, "recreate_right", function(self)
+	--	if _G.LobbyPlayerInfo and LobbyPlayerInfo.settings.show_skills_in_stats_screen then
+    --        return HUDStatsScreen_recreate_right(self, ...) -- LobbyPlayerInfo compatability
+	--	end
 	
-		if self._destroy_player_info then -- Enhanced Crew Loadout compatability
-			self:_destroy_player_info()
-		end
+	--	if self._destroy_player_info then -- Enhanced Crew Loadout compatability
+	--		self:_destroy_player_info()
+	--	end
 
 	    self._right:clear()
 	    self._right:bitmap({
@@ -680,12 +680,12 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 
 	    track_text:set_leftbottom(10, self._right:h() - 10)
 
-	    if self._create_player_info then -- Enhanced Crew Loadout compatability
-		    self:_create_player_info()
-	    end
-    end
+	--   if self._create_player_info then -- Enhanced Crew Loadout compatability
+	--	    self:_create_player_info()
+	--   end
+    end)
 
-	function HUDStatsScreen:_create_tracked_list(panel)
+	Hooks:OverrideFunction(HUDStatsScreen, "_create_tracked_list", function(self, panel)
 		local placer = UiPlacer:new(10, 10, 0, 8)
 
 		placer:add_bottom(self._right:fine_text({
@@ -725,9 +725,9 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 
 			with_bg = not with_bg
 		end
-	end
+	end)
 
-	function HUDStatsScreen:_create_mutators_list(panel)
+	Hooks:OverrideFunction(HUDStatsScreen, "_create_mutators_list", function(self, panel)
 		local placer = UiPlacer:new(10, 10)
 
 		placer:add_bottom(self._right:fine_text({
@@ -745,13 +745,13 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 				font_size = tweak_data.hud_stats.day_description_size
 			}), 8, 2)
 		end
-    end
+    end)
 
 elseif RequiredScript == "lib/managers/hud/hudstatsscreenskirmish" then
     local medium_font = tweak_data.menu.pd2_medium_font
     local medium_font_size = tweak_data.menu.pd2_medium_font_size
 
-    function HUDStatsScreenSkirmish:recreate_left()
+	Hooks:OverrideFunction(HUDStatsScreenSkirmish, "recreate_left", function(self)
 	    self._left:clear()
 	    self._left:bitmap({
 			texture = "guis/textures/test_blur_df",
@@ -917,5 +917,5 @@ elseif RequiredScript == "lib/managers/hud/hudstatsscreenskirmish" then
 	    }))
 	    loot_panel:set_size(placer:most_rightbottom())
 	    loot_panel:set_leftbottom(0, self._left:h() - 16)
-    end
+    end)
 end

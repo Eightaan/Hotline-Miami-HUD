@@ -7,7 +7,7 @@ local math_sin = math.sin
 local math_lerp = math.lerp
 local set_alpha = set_alpha
 
-Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(self, hud, ...)
+Hooks:PostHook(HUDAssaultCorner, "init", "HMH_HUDAssaultCorner_init", function(self, hud, ...)
     self._assault_color = HMH:GetColor("AssaultText")
 	self._vip_assault_color = HMH:GetColor("CaptainText")
 	if managers.mutators:are_mutators_active() then
@@ -164,7 +164,7 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_hudassaultcorner_init", function(s
 	end
 end)
 
-Hooks:PostHook(HUDAssaultCorner, "setup_wave_display", "HMH_hudassaultcorner_setup_wave_display", function(self, top, ...)
+Hooks:PostHook(HUDAssaultCorner, "setup_wave_display", "HMH_HUDAssaultCorner_setup_wave_display", function(self, top, ...)
 	if self:should_display_waves() then
 		local wave_panel = self._hud_panel:child("wave_panel")
 	    local waves_icon = wave_panel:child("waves_icon")
@@ -182,7 +182,7 @@ Hooks:PostHook(HUDAssaultCorner, "setup_wave_display", "HMH_hudassaultcorner_set
 	end
 end)
 
-function HUDAssaultCorner:_start_assault(text_list)
+Hooks:OverrideFunction(HUDAssaultCorner, "_start_assault", function(self, text_list)
 	local assault_panel = self._hud_panel:child("assault_panel")
 	local icon_assaultbox = self._hud_panel:child("assault_panel"):child("icon_assaultbox")
 	if alive(self._wave_bg_box) then
@@ -200,6 +200,15 @@ function HUDAssaultCorner:_start_assault(text_list)
 
 	self:set_text("assault", text_list)
 	assault_panel:animate(callback(self, self, "animate_assault_in_progress"))
+end)
+
+function HUDAssaultCorner:set_text(typ, text_list, add)
+	local panel = self._hud_panel:child(typ .. "_panel")
+	local text = panel:child("text")
+	text:set_text(text_list)
+	local _,_,w,h = text:text_rect()
+	text:set_size(w,h)
+	text:set_right(panel:child("icon_" .. typ .. "box"):left() - 4)
 end
 
 function HUDAssaultCorner:animate_assault_in_progress(o)
@@ -210,7 +219,13 @@ function HUDAssaultCorner:animate_assault_in_progress(o)
 	set_alpha(o, 0)
 end
 
-function HUDAssaultCorner:_end_assault()
+function HUDAssaultCorner:set_vip_text(buff)
+    if buff and self._vip_bg_box then
+		self._vip_bg_box:child("vip_text"):set_text(managers.localization:to_upper_text("hmh_damage_resistance", { NUM = buff }))
+	end
+end
+
+Hooks:OverrideFunction(HUDAssaultCorner, "_end_assault", function(self)
 	if not self._assault then
 		self._start_assault_after_hostage_offset = nil
 		return
@@ -220,9 +235,9 @@ function HUDAssaultCorner:_end_assault()
 	self._remove_hostage_offset = true
 	self._start_assault_after_hostage_offset = nil
 	self:_close_assault_box()
-end
+end)
 
-function HUDAssaultCorner:_hide_icon_assaultbox(icon_assaultbox)
+Hooks:OverrideFunction(HUDAssaultCorner, "_hide_icon_assaultbox", function(self, icon_assaultbox)
 	local TOTAL_T = 1
 	local t = TOTAL_T
 
@@ -241,28 +256,15 @@ function HUDAssaultCorner:_hide_icon_assaultbox(icon_assaultbox)
 	if not self._casing then
 		self:_show_hostages()
 	end
-end
+end)
 
-function HUDAssaultCorner:set_control_info(data)
-	self._hostages_bg_box:child("num_hostages"):set_text(data.nr_hostages)
-end
+Hooks:OverrideFunction(HUDAssaultCorner, "set_control_info", function(self, data) self._hostages_bg_box:child("num_hostages"):set_text(data.nr_hostages) end)
 
-function HUDAssaultCorner:set_text(typ, text_list, add)
-	local panel = self._hud_panel:child(typ .. "_panel")
-	local text = panel:child("text")
-	text:set_text(text_list)
-	local _,_,w,h = text:text_rect()
-	text:set_size(w,h)
-	text:set_right(panel:child("icon_" .. typ .. "box"):left() - 4)
-end
-
-function HUDAssaultCorner:sync_set_assault_mode(mode)
+Hooks:OverrideFunction(HUDAssaultCorner, "sync_set_assault_mode", function(self, mode)
 	if self._assault_mode == mode then
 		return
 	end
-
 	self._assault_mode = mode
-
 	self:set_text("assault", self:_get_assault_strings())
 
 	local assault_panel = self._hud_panel:child("assault_panel")
@@ -275,9 +277,9 @@ function HUDAssaultCorner:sync_set_assault_mode(mode)
 	icon_assaultbox:set_alpha(HMH:GetOption("assault_text"))
 	text:set_color(color)
 	text:set_alpha(HMH:GetOption("assault_text"))
-end
+end)
 
-function HUDAssaultCorner:_get_assault_strings()
+Hooks:OverrideFunction(HUDAssaultCorner, "_get_assault_strings", function(self)
 	local crime_spree_rank
 	if self._is_crimespree and self._assault_mode == "normal" then
 		local space = string.rep(" ", 2)
@@ -300,9 +302,9 @@ function HUDAssaultCorner:_get_assault_strings()
 	end
 
 	return assault_text
-end
+end)
 
-function HUDAssaultCorner:show_casing(mode)
+Hooks:OverrideFunction(HUDAssaultCorner, "show_casing", function(self, mode)
     if HMH:GetOption("casing") then
  	    local delay_time = self._assault and 1.2 or 0
 	    self:_end_assault()
@@ -313,9 +315,9 @@ function HUDAssaultCorner:show_casing(mode)
 	    local msg = mode == "civilian" and "hud_casing_mode_ticker_clean" or "hud_casing_mode_ticker"
 	    self:set_text("casing", managers.localization:to_upper_text(msg))
 	end
-end
+end)
 
-function HUDAssaultCorner:hide_casing()
+Hooks:OverrideFunction(HUDAssaultCorner, "hide_casing", function(self)
 	local icon_casingbox = self._hud_panel:child("casing_panel"):child("icon_casingbox")
 	icon_casingbox:stop()
 	local function close_done()
@@ -325,29 +327,24 @@ function HUDAssaultCorner:hide_casing()
 	self._casing_bg_box:stop()
 	self._casing_bg_box:animate(callback(nil, _G, "HUDBGBox_animate_close_left"), close_done)
 	self._casing = false
-end
+end)
 
-function HUDAssaultCorner:_animate_show_casing(casing_panel, delay_time)
-	set_alpha(casing_panel, 1)
-end
+Hooks:OverrideFunction(HUDAssaultCorner, "_animate_show_casing", function(self, casing_panel, delay_time) set_alpha(casing_panel, 1) end)
+Hooks:OverrideFunction(HUDAssaultCorner, "_hide_hostages", function(self) self._hud_panel:child("hostages_panel"):animate(set_alpha, 0) end)
 
-function HUDAssaultCorner:_hide_hostages()
-	self._hud_panel:child("hostages_panel"):animate(set_alpha, 0)
-end
-
-function HUDAssaultCorner:_show_hostages()
+Hooks:OverrideFunction(HUDAssaultCorner, "_show_hostages", function(self)
 	if not self._point_of_no_return then
 		self._hud_panel:child("hostages_panel"):animate(set_alpha, 1)
 	end
-end
+end)
 
-function HUDAssaultCorner:_animate_show_noreturn(point_of_no_return_panel, delay_time)
+Hooks:OverrideFunction(HUDAssaultCorner, "_animate_show_noreturn", function(self, delay_time)
 	set_alpha(point_of_no_return_panel, 1)
 	wait(delay_time)
 	point_of_no_return_panel:set_visible(true)
-end
+end)
 
-function HUDAssaultCorner:flash_point_of_no_return_timer(beep)
+Hooks:OverrideFunction(HUDAssaultCorner, "flash_point_of_no_return_timer", function(self, beep)
 	local flash_timer = function (o)
 		local t = 0
 		while t < 0.5 do
@@ -365,10 +362,4 @@ function HUDAssaultCorner:flash_point_of_no_return_timer(beep)
   	local point_of_no_return_timer = self._noreturn_bg_box:child("point_of_no_return_timer")
 	self:hide_casing()
 	point_of_no_return_timer:animate(flash_timer)
-end
-
-function HUDAssaultCorner:set_vip_text(buff)
-    if buff and self._vip_bg_box then
-		self._vip_bg_box:child("vip_text"):set_text(managers.localization:to_upper_text("hmh_damage_resistance", { NUM = buff }))
-	end
-end
+end)

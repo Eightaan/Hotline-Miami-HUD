@@ -2,7 +2,7 @@ if not HMH:GetOption("hint") then
 	return
 end
 
-Hooks:PostHook(HUDHint, "init", "hudhint_HMH", function(self, ...)
+Hooks:PostHook(HUDHint, "init", "HMH_HUDHint_init", function(self, ...)
 	local clip_panel = self._hint_panel:child("clip_panel")
 	clip_panel:child("bg"):hide()
 	clip_panel:child("hint_text"):set_color(HMH:GetColor("HintColor"))
@@ -10,7 +10,12 @@ Hooks:PostHook(HUDHint, "init", "hudhint_HMH", function(self, ...)
 	self._hint_panel:child("marker"):set_h(0)
 end)
 
-function HUDHint:_animate_show(hint_panel, done_cb, seconds, text)
+Hooks:PostHook(HUDHint, "show", "HMH_HUDHint_show", function(self, params, ...)
+	self._hint_panel:stop()
+	self._hint_panel:animate(callback(self, self, "_animate_show_hint"), callback(self, self, "show_done"), params.time or 3, utf8.to_upper(params.text))
+end)
+
+function HUDHint:_animate_show_hint(hint_panel, done_cb, seconds, text)
 	local clip_panel = hint_panel:child("clip_panel")
 	local hint_text = clip_panel:child("hint_text")
 	hint_panel:set_visible(true)

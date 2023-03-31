@@ -1,30 +1,23 @@
 if _G.IS_VR then 
     return
 end
--- Stamina, Infinite ammo and Invulnerable display
 if RequiredScript == "lib/managers/hudmanagerpd2" then
-	local set_stamina_value_original = HUDManager.set_stamina_value
-	local set_max_stamina_original = HUDManager.set_max_stamina
-	local update_original = HUDManager.update
-	local show_casing_original = HUDManager.show_casing
-	local sync_start_assault_original = HUDManager.sync_start_assault
-	
-	function HUDManager:set_stamina_value(value, ...)
-	    if HMH:GetOption("stamina") and self._teammate_panels[self.PLAYER_PANEL].set_stamina_current then
+	-- Stamina Circle
+	Hooks:PostHook(HUDManager, "set_stamina_value", "HMH_HUDManager_set_stamina_value", function (self, value, ...)
+	    if self._teammate_panels[self.PLAYER_PANEL].set_stamina_current then --VHUDPlus Compatibility
 		    self._teammate_panels[HUDManager.PLAYER_PANEL]:set_stamina_current(value)
 		end
-		return set_stamina_value_original(self, value, ...)
-	end
+	end)
 
-	function HUDManager:set_max_stamina(value, ...)
-	    if HMH:GetOption("stamina") and self._teammate_panels[self.PLAYER_PANEL] then
+	Hooks:PostHook(HUDManager, "set_max_stamina", "HMH_HUDManager_set_max_stamina", function (self, value, ...)
+	    if self._teammate_panels[self.PLAYER_PANEL] then --VHUDPlus Compatibility
 		    self._teammate_panels[HUDManager.PLAYER_PANEL]:set_stamina_max(value)
 		end
-		return set_max_stamina_original(self, value, ...)
-	end
+	end)
 	
+	--Infinite Ammo Display
     function HUDManager:set_infinite_ammo(state)
-		if HMH:GetOption("bulletstorm") and self._teammate_panels[self.PLAYER_PANEL]._set_infinite_ammo then
+		if self._teammate_panels[self.PLAYER_PANEL]._set_infinite_ammo then
 	        self._teammate_panels[HUDManager.PLAYER_PANEL]:_set_infinite_ammo(state)		
         end
 		-- Hides the bulletstorm display used by VHUDPlus		
@@ -33,32 +26,101 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		end
 	end
 	
+	--Captain Winters Buff
+	function HUDManager:set_vip_text(buff)
+		if self._hud_assault_corner.set_vip_text then
+			self._hud_assault_corner:set_vip_text(buff)
+		end
+	end
+	
     --Ping Display
-    function HUDManager:update(...)
+	Hooks:PostHook(HUDManager, "update", "HMH_HUDManager_update", function (self, ...)
 	    for i, panel in ipairs(self._teammate_panels) do
 		    panel:update(...)
 	    end
-	    return update_original(self, ...)
-    end
+    end)
 	
 	--VHUDPlus Compatibility
 	if HMH:GetOption("assault") then
-		function HUDManager:show_casing(...)
-		    show_casing_original(self, ...)
+		Hooks:PostHook(HUDManager, "show_casing", "HMH_HUDManager_show_casing", function (self, ...)
 			if self._hud_heist_timer._heist_timer_panel then
 				self._hud_heist_timer._heist_timer_panel:set_visible(true)
 			end
+		end)
+		Hooks:PostHook(HUDManager, "sync_start_assault", "HMH_HUDManager_sync_start_assault", function (self, ...)
+			if self._hud_heist_timer._heist_timer_panel then
+				self._hud_heist_timer._heist_timer_panel:set_visible(true)
+			end
+		end)
+	end
+	
+	--Swansong and Kingpin Screen Effects
+	Hooks:PostHook(HUDManager, "set_teammate_custom_radial", "HMH_HUDManager_set_teammate_custom_radial", function (self, i, data, ...)
+		local hud = managers.hud:script( PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2)
+		if not hud.panel:child("swan_song_left") then
+			local swan_song_left = hud.panel:bitmap({
+				name = "swan_song_left",
+				visible = false,
+				texture = "guis/textures/pd2_mod_hmh/screeneffect",
+				layer = 0,
+				color = Color(0, 0.7, 1),
+				blend_mode = "add",
+				w = hud.panel:w(),
+				h = hud.panel:h(),
+				x = 0,
+				y = 0 
+			})
+		end
+		
+		local swan_song_left = hud.panel:child("swan_song_left")
+		if i == 4 and data.current < data.total and data.current > 0 and swan_song_left then
+			local hudinfo = managers.hud:script(PlayerBase.PLAYER_INFO_HUD_PD2)
+			swan_song_left:set_visible(HMH:GetOption("screen_effect"))
+			swan_song_left:animate(hudinfo.flash_icon, 4000000000)
+		elseif hud.panel:child("swan_song_left") then
+			swan_song_left:stop()
+			swan_song_left:set_visible(false)
 		end
 
-		function HUDManager:sync_start_assault(...)
-		    sync_start_assault_original(self, ...)
-			if self._hud_heist_timer._heist_timer_panel then
-				self._hud_heist_timer._heist_timer_panel:set_visible(true)
-			end
+		if swan_song_left and data.current == 0 then
+			swan_song_left:set_visible(false)
 		end
-	end
+	end)
+	
+	Hooks:PostHook(HUDManager, "set_teammate_ability_radial", "HMH_HUDManager_set_teammate_ability_radial", function (self, i, data, ...)
+		local hud = managers.hud:script( PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2)
+		if not hud.panel:child("chico_injector_left") then
+			local chico_injector_left = hud.panel:bitmap({
+				name = "chico_injector_left",
+				visible = false,
+				texture = "guis/textures/pd2_mod_hmh/screeneffect",
+				layer = 0,
+				color = Color(1, 0.6, 0),
+				blend_mode = "add",
+				w = hud.panel:w(),
+				h = hud.panel:h(),
+				x = 0,
+				y = 0 
+			})
+		end
+
+		local chico_injector_left = hud.panel:child("chico_injector_left")
+		if i == 4 and data.current < data.total and data.current > 0 and chico_injector_left then
+			local hudinfo = managers.hud:script(PlayerBase.PLAYER_INFO_HUD_PD2)
+			chico_injector_left:set_visible(HMH:GetOption("screen_effect"))
+			chico_injector_left:animate(hudinfo.flash_icon, 4000000000)
+		elseif hud.panel:child("chico_injector_left") then
+			chico_injector_left:stop()
+			chico_injector_left:set_visible(false)
+		end
+
+		if chico_injector_left and data.current == 0 then
+			chico_injector_left:set_visible(false)
+		end
+	end)
+
 elseif RequiredScript == "lib/managers/playermanager" then
-	Hooks:PreHook(PlayerManager, "activate_temporary_upgrade", "activate_temporary_upgrade_armor_timer", function (self, category, upgrade)
+	Hooks:PreHook(PlayerManager, "activate_temporary_upgrade", "HMH_PlayerManager_activate_temporary_upgrade_armor_timer", function (self, category, upgrade)
 		if upgrade == "armor_break_invulnerable" then
 			local upgrade_value = self:upgrade_value(category, upgrade)
 			if upgrade_value == 0 then return end
@@ -87,7 +149,6 @@ elseif RequiredScript == "lib/managers/playermanager" then
 		end
 	end)
 
-    local add_to_temporary_property_original = PlayerManager.add_to_temporary_property
     function PlayerManager:_clbk_bulletstorm_expire()
        	self._infinite_ammo_clbk = nil
         managers.hud:set_infinite_ammo(false)
@@ -99,8 +160,7 @@ elseif RequiredScript == "lib/managers/playermanager" then
      	end
     end
 
-    function PlayerManager:add_to_temporary_property(name, time, value, ...)
-        add_to_temporary_property_original(self, name, time, value, ...)
+	Hooks:PostHook(PlayerManager, "add_to_temporary_property", "HMH_PlayerManager_add_to_temporary_property", function (self, name, time, value, ...)
         if HMH:GetOption("bulletstorm") and name == "bullet_storm" and time then
             if not self._infinite_ammo_clbk then
 	    	    self._infinite_ammo_clbk = "infinite"
@@ -108,25 +168,16 @@ elseif RequiredScript == "lib/managers/playermanager" then
 				managers.enemy:add_delayed_clbk(self._infinite_ammo_clbk, callback(self, self, "_clbk_bulletstorm_expire"), TimerManager:game():time() + time)
 	   	    end
         end
-    end
+    end)
 
 elseif RequiredScript == "lib/managers/hud/hudteammate" then	
-	local init_original = HUDTeammate.init
-	local original_create_condition = HUDTeammate._create_condition
-	local set_custom_radial_orig = HUDTeammate.set_custom_radial
-	local set_condition_original = HUDTeammate.set_condition
-  	local set_ability_radial_original = HUDTeammate.set_ability_radial
-	local activate_ability_radial_original = HUDTeammate.activate_ability_radial
-
-	function HUDTeammate:init(...)
-		init_original(self, ...)
+	Hooks:PostHook(HUDTeammate, "init", "HMH_HUDTeammate_init", function (self, ...)
 		if self._main_player then
 			self:_create_circle_stamina()
 		end
-	end
+	end)
 	
-	function HUDTeammate:set_custom_radial(data)
-       	set_custom_radial_orig(self, data)
+	Hooks:PostHook(HUDTeammate, "set_custom_radial", "HMH_HUDTeammate_set_custom_radial", function (self, data, ...)
         local duration = data.current / data.total
         local aced = managers.player:upgrade_level("player", "berserker_no_ammo_cost", 0) == 1
 		if self._main_player and HMH:GetOption("bulletstorm") and aced then
@@ -156,11 +207,9 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 				end
 			end
 		end
-			
-	end
-		
-	function HUDTeammate:_create_condition(...)
-		original_create_condition(self, ...)
+	end)
+	
+	Hooks:PostHook(HUDTeammate, "_create_condition", "HMH_HUDTeammate_create_condition", function (self, ...)
 		self._health_panel = self._health_panel or self._player_panel:child("radial_health_panel")
 		if self._main_player then
 			self._cooldown_timer = self._health_panel:text({
@@ -205,7 +254,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 				layer = 3
 			})
 		end
-	end
+	end)
 	
 	function HUDTeammate:_create_circle_stamina()
 		local radial_health_panel = self._panel:child("player"):child("radial_health_panel")
@@ -381,7 +430,6 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
         if self._stamina_circle then
     	    self._stamina_circle:set_color(Color(1, value/self._max_stamina, 0, 0))
     	    self:set_stamina_visibility(not self._condition_icon:visible())
-			
     	end
     end
 
@@ -391,7 +439,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 	    end
     end
 
-    function HUDTeammate:set_condition(icon_data, ...)
+	Hooks:PostHook(HUDTeammate, "set_condition", "HMH_HUDTeammate_set_condition", function (self, icon_data, ...)
 	    local custody = icon_data ~= "mugshot_normal"
     	self:set_stamina_visibility(not custody and HMH:GetOption("stamina"))
 		local timer = self._cooldown_timer
@@ -402,10 +450,9 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 			icon:set_alpha(custody and 0 or 0.4)
 			health_icon:set_alpha(custody and 0 or 0.4)
 		end
-    	set_condition_original(self, icon_data, ...)
-    end
+    end)
 	
-    function HUDTeammate:set_ability_radial(data)
+	Hooks:PostHook(HUDTeammate, "set_ability_radial", "HMH_HUDTeammate_set_ability_radial", function (self, data, ...)
         local progress = data.current / data.total
         if self._main_player then
 			local stamina_alpha = self._health_timer and 0 or 1
@@ -420,10 +467,9 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 				self._cooldown_timer:set_alpha(progress > 0 and 0 or 1)
 			end
     	end
-        set_ability_radial_original(self, data)
-    end
+    end)
 
-    function HUDTeammate:activate_ability_radial(time_left, ...)
+	Hooks:PostHook(HUDTeammate, "activate_ability_radial", "HMH_HUDTeammate_activate_ability_radial", function (self, time_left, ...)
       	self._radial_health_panel:child("radial_custom"):animate(function (o)
         	over(time_left, function (p)
 	    	    if self._main_player then
@@ -444,6 +490,5 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 			self._cooldown_timer:set_alpha(1)
 			self._health_cooldown_icon:set_alpha(0.4)
      	end)
-    	activate_ability_radial_original(self, time_left, ...)
-    end
+    end)
 end

@@ -1,7 +1,6 @@
-Hooks:PostHook(HUDHeistTimer, "init", "HMMTimer", function(self, hud, tweak_hud)
-    if HMH:GetOption("objective") and not self._heist_timer_panel:child("bags_panel") then
+Hooks:PostHook(HUDHeistTimer, "init", "HMH_HUDHeistTimer_init", function(self, hud, tweak_hud)
+    if HMH:GetOption("objective") and not self._heist_timer_panel:child("bags_panel") then -- VoidUI Compatibility
         self._hud_panel = hud.panel
-
    	    if self._hud_panel:child("heist_timer_panel") then
 	   	    self._hud_panel:remove(self._hud_panel:child("heist_timer_panel"))
         end

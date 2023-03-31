@@ -9,7 +9,7 @@ local HMH = HMH
 local ammo = HMH:GetOption("ammo")
 local interact_info_text = HMH:GetOption("interact_info") and not VoidUI
 local special_equipment = HMH:GetOption("pickups")
-Hooks:PostHook(HUDTeammate, "init", "HMH_HUDTeammateInit", function(self, ...)
+Hooks:PostHook(HUDTeammate, "init", "HMH_HUDTeammate_init", function(self, ...)
     if interact_info_text then
 	    local radial_health_panel = self._player_panel:child("radial_health_panel")
 	    local name_panel = self._panel:panel({
@@ -111,7 +111,7 @@ function HUDTeammate:_set_infinite_ammo(state)
 end
 
 if interact_info_text then
-    Hooks:PostHook(HUDTeammate, "set_name", "HMH_HUDTeammateSetName", function(self, ...)
+    Hooks:PostHook(HUDTeammate, "set_name", "HMH_HUDTeammate_set_name", function(self, ...)
 	    local teammate_panel = self._panel
 	    local name = teammate_panel:child("name")
 	    local name_bg = teammate_panel:child("name_bg")
@@ -125,7 +125,7 @@ if interact_info_text then
 	    end
     end)
 
-	Hooks:PreHook(HUDTeammate, "teammate_progress", "HMH_HUDTeammateTeammateProgress", function(self, enabled, tweak_data_id, timer, success, ...)
+	Hooks:PreHook(HUDTeammate, "teammate_progress", "HMH_HUDTeammate_teammate_progress", function(self, enabled, tweak_data_id, timer, success, ...)
 	    local t = 1 -- How long an interaction should be in order for the text to display. If its shorter than 1 sec nothing will show when at default.
         if not self._player_panel:child("interact_panel"):child("interact_info") then return end
 
@@ -178,28 +178,28 @@ if interact_info_text then
     end)
 end
 
-Hooks:PostHook(HUDTeammate, "_create_radial_health", "HMH_HUDTeammateCreateRadialHealth", function(self, radial_health_panel, ...)
+Hooks:PostHook(HUDTeammate, "_create_radial_health", "HMH_HUDTeammate_create_radial_health", function(self, radial_health_panel, ...)
 	local radial_ability_panel = radial_health_panel:child("radial_ability")
     local ability_icon = radial_ability_panel:child("ability_icon")
 	ability_icon:set_color(HMH:GetColor("Ability_icon_color") or Color.white)
 	ability_icon:set_visible(HMH:GetOption("ability_icon"))
 end)
 
-Hooks:PostHook(HUDTeammate, "set_callsign", "HMH_HUDTeammateSetCallsign", function(self, id, ...)
+Hooks:PostHook(HUDTeammate, "set_callsign", "HMH_HUDTeammate_set_callsign", function(self, id, ...)
     if HMH:GetOption("color_condition") then
         self._condition_icon = self._panel:child("condition_icon")
         self._condition_icon:set_color(tweak_data.chat_colors[id])
 	end
 end)
 
-Hooks:PreHook(HUDTeammate, "set_carry_info", "HMH_HUDTeammateSetCarryInfo", function(self, ...)
+Hooks:PreHook(HUDTeammate, "set_carry_info", "HMH_HUDTeammate_set_carry_info", function(self, ...)
     if self._peer_id then
         self._player_panel:child("carry_panel"):child("bag"):set_color(HMH:GetOption("color_bag") and tweak_data.chat_colors[self._peer_id] or Color.white)
     end
 end)
 
 if special_equipment then
-    function HUDTeammate:add_special_equipment(data)
+	Hooks:OverrideFunction(HUDTeammate, "add_special_equipment", function(self, data)
         local team_color
     	if self._peer_id then
             team_color = tweak_data.chat_colors[self._peer_id]
@@ -266,11 +266,11 @@ if special_equipment then
 			amount:set_visible(data.amount > 1)
 		end
 		self:layout_special_equipments()
-	end
+	end)
 end
 
 if HMH:GetOption("equipment") then
-    Hooks:PostHook(HUDTeammate, "set_deployable_equipment_amount", "HMH_HUDTeammateSetDeployableEquipmentAmount", function(self, index, data, ...)
+    Hooks:PostHook(HUDTeammate, "set_deployable_equipment_amount", "HMH_HUDTeammate_set_deployable_equipment_amount", function(self, index, data, ...)
         local deployable_equipment_panel = self._player_panel:child("deployable_equipment_panel")
         local equipment = deployable_equipment_panel:child("equipment")
         local amount = deployable_equipment_panel:child("amount")
@@ -302,7 +302,7 @@ if HMH:GetOption("equipment") then
         end
     end)
 
-    Hooks:PostHook(HUDTeammate, "set_grenades_amount", "HMH_HUDTeammateSetGrenadesAmount", function(self, data, ...)
+    Hooks:PostHook(HUDTeammate, "set_grenades_amount", "HMH_HUDTeammate_set_grenades_amount", function(self, data, ...)
         if not PlayerBase.USE_GRENADES then
             return
         end
@@ -342,7 +342,7 @@ if HMH:GetOption("equipment") then
         self._grenade_amount = data.amount
     end)
 
-    Hooks:PostHook(HUDTeammate, "set_cable_ties_amount", "HMH_HUDTeammateSetCableTiesAmount", function(self, amount, ...)
+    Hooks:PostHook(HUDTeammate, "set_cable_ties_amount", "HMH_HUDTeammate_set_cable_ties_amount", function(self, amount, ...)
         if not self._cable_amount then self._cable_amount = amount end
 
         local cable_ties_panel = self._player_panel:child("cable_ties_panel")
@@ -376,7 +376,7 @@ if HMH:GetOption("equipment") then
         end
     end)
 
-    Hooks:PostHook(HUDTeammate, "set_deployable_equipment_amount_from_string", "HMH_HUDTeammateSetDeployableEquipmentAmountFromString", function(self, index, data, ...)
+    Hooks:PostHook(HUDTeammate, "set_deployable_equipment_amount_from_string", "HMH_HUDTeammate_set_deployable_equipment_amount_from_string", function(self, index, data, ...)
         local teammate_panel = self._panel:child("player")
         local deployable_equipment_panel = self._player_panel:child("deployable_equipment_panel")
         local icon = deployable_equipment_panel:child("equipment")
@@ -440,7 +440,7 @@ if ammo then
             o:set_alpha(math_lerp(1, 0.5, p))
         end)
     end
-    Hooks:PreHook(HUDTeammate, "set_weapon_selected", "HMH_HUDTeammateSetWeaponSelected", function(self, id, hud_icon, ...)
+    Hooks:PreHook(HUDTeammate, "set_weapon_selected", "HMH_HUDTeammate_set_weapon_selected", function(self, id, hud_icon, ...)
 	    if not self._player_panel:child("weapons_panel"):child("secondary_weapon_panel") then return end
         local is_secondary = id == 1
         local secondary_weapon_panel = self._player_panel:child("weapons_panel"):child("secondary_weapon_panel")
@@ -469,7 +469,7 @@ if ammo then
     end)
 end
 
-Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammateSetAmmoAmountByType", function(self, type, max_clip, current_clip, current_left, max, weapon_panel)
+Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammate_set_ammo_amount_by_type", function(self, type, max_clip, current_clip, current_left, max, weapon_panel)
     local weapon_panel = self._player_panel:child("weapons_panel"):child(type .. "_weapon_panel")
 
 	if self._main_player and HMH:GetOption("trueammo") then
@@ -593,7 +593,7 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammateSetAmmoAm
 end)
 
 if HMH:GetOption("colored_downs") then 
-    Hooks:PostHook(HUDTeammate, "set_revives_amount", "HMH_set_revives_amount", function(self, revive_amount, ...)
+    Hooks:PostHook(HUDTeammate, "set_revives_amount", "HMH_HUDTeammate_set_revives_amount", function(self, revive_amount, ...)
 	    if revive_amount then
 		    local teammate_panel = self._panel:child("player")
 		    local revive_panel = teammate_panel:child("revive_panel")

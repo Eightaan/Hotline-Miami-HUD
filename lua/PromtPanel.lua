@@ -1,4 +1,4 @@
-Hooks:PostHook(HUDWaitingLegend, "update_buttons", "HMH_HUDTeammate_update_buttons", function(self)
+Hooks:PostHook(HUDWaitingLegend, "update_buttons", "HMH_HUDWaitingLegend_update_buttons", function(self)
 	if HMH:GetOption("promt") and self._box then
 		self._box:child("bg"):hide()
 		self._box:child("left_top"):hide()
@@ -8,13 +8,11 @@ Hooks:PostHook(HUDWaitingLegend, "update_buttons", "HMH_HUDTeammate_update_butto
 	end
 end)
 
-local show_on_orig = HUDWaitingLegend.show_on
-function HUDWaitingLegend:show_on(teammate_hud, peer)
+Hooks:PostHook(HUDWaitingLegend, "show_on", "HMH_HUDWaitingLegend_show_on", function(self, teammate_hud, peer)
     if HMH:GetOption("promt") then
 	    local color_id = peer:id()
 	    local color = tweak_data.chat_colors[color_id] or tweak_data.chat_colors[#tweak_data.chat_colors]
 	    self._btn_text:set_color(color)
 	    self._icon:set_alpha(0)
 	end
-	show_on_orig(self, teammate_hud, peer)
-end
+end)

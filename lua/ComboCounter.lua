@@ -3,9 +3,9 @@ if not HMH:GetOption("combo") then
 end
 
 if RequiredScript == "lib/managers/hudmanagerpd2" then
-    Hooks:PostHook(HUDManager, "_setup_player_info_hud_pd2", "Combo_setup_player_info_hud_pd2", function(self, ...)
+    Hooks:PostHook(HUDManager, "_setup_player_info_hud_pd2", "HMH_Combo_setup_player_info_hud_pd2", function(self, ...)
         self._hud_combo_counter = HUDComboCounter:new(managers.hud:script(PlayerBase.PLAYER_INFO_HUD_PD2))
-        self:add_updator("HHM_CC_Updater", callback(self._hud_combo_counter, self._hud_combo_counter, "update"))
+        self:add_updator("HMH_CC_Updater", callback(self._hud_combo_counter, self._hud_combo_counter, "update"))
     end)
 
     function HUDManager:HMHCC_OnKillshot()
@@ -186,14 +186,16 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
         end
         self:set_combo(self._kills)
     end
+
 elseif RequiredScript == "lib/managers/playermanager" then
-    Hooks:PostHook(PlayerManager, "on_killshot", "combo_update", function(self, killed_unit)
+    Hooks:PostHook(PlayerManager, "on_killshot", "HMH_PlayerManager_update", function(self, killed_unit)
         if not CopDamage.is_civilian(killed_unit:base()._tweak_table) then
             managers.hud:HMHCC_OnKillshot()
         end
     end)
+
 elseif RequiredScript == "lib/utils/accelbyte/telemetry" then
-	Hooks:PostHook(Telemetry, "on_end_heist", "HMH_on_end_heist", function(self)
+	Hooks:PostHook(Telemetry, "on_end_heist", "HMH_Telemetry_on_end_heist", function(self)
 		HMH._in_heist = false
 	end)
 end

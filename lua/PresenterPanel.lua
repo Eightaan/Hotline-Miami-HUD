@@ -2,7 +2,7 @@ if not HMH:GetOption("presenter") then
     return
 end
 
-Hooks:PostHook(HUDPresenter, "init", "HMH_hudpresenter_init", function(self, ...)
+Hooks:PostHook(HUDPresenter, "init", "HMH_HUDPresenter_init", function(self, ...)
     if not self._hud_panel:child("present_panel") then
 	    return
 	end
@@ -23,7 +23,7 @@ Hooks:PostHook(HUDPresenter, "init", "HMH_hudpresenter_init", function(self, ...
 	text:set_font_size(20)
 end)
 
-function HUDPresenter:_animate_present_information(present_panel, params)
+Hooks:OverrideFunction(HUDPresenter, "_animate_present_information", function(self, present_panel, params)
 	local title = self._bg_box:child("title")
 	local text = self._bg_box:child("text")
 	title:set_visible(params.has_title)
@@ -33,4 +33,4 @@ function HUDPresenter:_animate_present_information(present_panel, params)
 	wait(3)
 	set_alpha(present_panel, 0)
 	self:_present_done()
-end
+end)

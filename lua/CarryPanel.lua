@@ -2,22 +2,9 @@ if not HMH:GetOption("carry") then
     return
 end
 
-function HUDTemp:_animate_hide_bag_panel(bag_panel)
-	set_alpha(bag_panel, 0)
-end
+Hooks:OverrideFunction(HUDTemp, "_animate_hide_bag_panel", function(self, bag_panel) set_alpha(bag_panel, 0) end)
 
-function HUDTemp:_animate_show_bag_panel(bag_panel)
-	local bag_text = self._bg_box:child("bag_text")
-	set_alpha(bag_panel, 1)
-	if HMH:GetOption("animate_text") then
-	    while bag_text:visible() do
-		    set_alpha(bag_panel, 0.6)
-		    set_alpha(bag_panel, 1)
-		end
-	end
-end
-
-function HUDTemp:show_carry_bag(carry_id, value)
+Hooks:OverrideFunction(HUDTemp, "show_carry_bag", function(self, carry_id, value)
 	local bag_panel = self._temp_panel:child("bag_panel")
 	local carry_data = tweak_data.carry[carry_id]
 	local type_text = carry_data.name_id and managers.localization:text(carry_data.name_id)
@@ -44,8 +31,19 @@ function HUDTemp:show_carry_bag(carry_id, value)
 	bag_text:set_alpha(HMH:GetOption("CarryAlpha"))
 	
 	bag_panel:stop()
-	bag_panel:animate(callback(self, self, "_animate_show_bag_panel"))
+	bag_panel:animate(callback(self, self, "_animate_show_bag_panel_hmh"))
 
 	managers.hud:make_fine_text(self._bg_box:child("bag_text"))
 	self._bg_box:child("bag_text"):set_right(bag_panel:w())
+end)
+
+function HUDTemp:_animate_show_bag_panel_hmh(bag_panel)
+	local bag_text = self._bg_box:child("bag_text")
+	set_alpha(bag_panel, 1)
+	if HMH:GetOption("animate_text") then
+	    while bag_text:visible() do
+		    set_alpha(bag_panel, 0.6)
+		    set_alpha(bag_panel, 1)
+		end
+	end
 end

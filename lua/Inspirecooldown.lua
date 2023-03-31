@@ -10,7 +10,6 @@ function PlayerStandard:_get_intimidation_action(prime_target, primary_only, det
 
 	local unit_type_enemy = 0
 	local unit_type_teammate = 2
-
 	if prime_target then
 		if prime_target.unit_type == unit_type_teammate then
 			local record = managers.groupai:state():all_criminals()[prime_target.unit:key()]
@@ -41,6 +40,5 @@ function PlayerStandard:_get_intimidation_action(prime_target, primary_only, det
 			end
 		end
 	end
-
 	return voice_type, plural, prime_target
 end

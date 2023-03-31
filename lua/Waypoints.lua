@@ -5,7 +5,7 @@ local bitmap = waypoints and HMH:GetColor("WaypointIcon") or Color.white
 local distance = waypoints and HMH:GetColor("WaypointDistance") or Color.white
 local arrow = waypoints and HMH:GetColor("WaypointArrow") or Color.white
 
-Hooks:PostHook(HUDManager, "add_waypoint", "HMH_hudmanager_add_waypoint", function(self, id, data, ...)
+Hooks:PostHook(HUDManager, "add_waypoint", "HMH_HUDManager_add_waypoint", function(self, id, data, ...)
 	local waypoints_available = id and self._hud and self._hud.waypoints and self._hud.waypoints[id]
 
 	if waypoints_available then
