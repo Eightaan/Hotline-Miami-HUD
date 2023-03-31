@@ -4,13 +4,13 @@ end
 if RequiredScript == "lib/managers/hudmanagerpd2" then
 	-- Stamina Circle
 	Hooks:PostHook(HUDManager, "set_stamina_value", "HMH_HUDManager_set_stamina_value", function (self, value, ...)
-	    if self._teammate_panels[self.PLAYER_PANEL].set_stamina_current then --VHUDPlus Compatibility
+	    if HMH:GetOption("stamina") and self._teammate_panels[self.PLAYER_PANEL].set_stamina_current then --VHUDPlus Compatibility
 		    self._teammate_panels[HUDManager.PLAYER_PANEL]:set_stamina_current(value)
 		end
 	end)
 
 	Hooks:PostHook(HUDManager, "set_max_stamina", "HMH_HUDManager_set_max_stamina", function (self, value, ...)
-	    if self._teammate_panels[self.PLAYER_PANEL] then --VHUDPlus Compatibility
+	    if HMH:GetOption("stamina") and self._teammate_panels[self.PLAYER_PANEL] then --VHUDPlus Compatibility
 		    self._teammate_panels[HUDManager.PLAYER_PANEL]:set_stamina_max(value)
 		end
 	end)
