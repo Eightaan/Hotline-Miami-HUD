@@ -338,7 +338,7 @@ Hooks:OverrideFunction(HUDAssaultCorner, "_show_hostages", function(self)
 	end
 end)
 
-Hooks:OverrideFunction(HUDAssaultCorner, "_animate_show_noreturn", function(self, delay_time)
+Hooks:OverrideFunction(HUDAssaultCorner, "_animate_show_noreturn", function(self, point_of_no_return_panel, delay_time)
 	set_alpha(point_of_no_return_panel, 1)
 	wait(delay_time)
 	point_of_no_return_panel:set_visible(true)

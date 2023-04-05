@@ -126,7 +126,7 @@
 	"pink_corner_desc" : "Makes the corners of hud elements pink.",
 	
 	"hmh_hud_title" : "Player And Teammate Panels",
-	"hmh_hud_desc" : "Options related to you and your teammates' hud panels",
+	"hmh_hud_desc" : "Options related to you and your teammates' hud panels.",
 	"health_texture_title" : "Health Texture",
 	"health_texture_desc" : "Enable a custom health texture (The pixel heart may cause issues with some perkdecks).\nWhen changed, a texture refresh is required to take effect.",
 	"default_health" : "Default",
