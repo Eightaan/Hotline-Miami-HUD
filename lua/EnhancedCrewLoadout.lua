@@ -170,22 +170,8 @@ if string.lower(RequiredScript) == "lib/managers/menu/contractboxgui" then
 		elseif self._loadout_visible then
 
 		else
-	        if button == Idstring("0") then
-		        local used = false
-		        local pointer = "arrow"
-		        if self._peers and SystemInfo:platform() == Idstring("WIN32") and MenuCallbackHandler:is_overlay_enabled() then
-			        for peer_id, object in pairs(self._peers) do
-				        if alive(object) and object:inside(x, y) then
-					        local peer = managers.network:session() and managers.network:session():peer(peer_id)
-					        if peer then
-						        Steam:overlay_activate("url", "http://www.steamcommunity.com/profiles/" .. peer:user_id() .. "/")
-						        return
-					        end
-				        end
-			        end
-		        end
-	        end		
 			return mouse_pressed_original(self, button, x, y, ...)
+
 		end	
 	end
 
@@ -248,11 +234,10 @@ if string.lower(RequiredScript) == "lib/managers/menu/contractboxgui" then
 				self._peer_loadout[peer_id] = LoadoutPanel:new(self._loadout_data, self, peer_id, width, ContractBoxGui._LOADOUT_H + 8, {
 					component_layout =
 						{
-							{ "playtime", "ping" },
+							{ "ping" },
 							{ "name" },
-							{ "character" },
-							{ "skills" },
 							{ "perk" },
+							{ "skills" },
 							{ "primary" },
 							{ "secondary" },
 							{ "melee_weapon" },
@@ -261,6 +246,7 @@ if string.lower(RequiredScript) == "lib/managers/menu/contractboxgui" then
 						},
 					name = 		{ alpha = 1, use_peer_color = true },
 					character = { alpha = 1, use_peer_color = true },
+					perk = { alpha = 1, use_peer_color = true },
 					default = 	{ alpha = 0.9 },
 					margin = 5,
 					borders = {1, 1, 1, 1}
@@ -482,17 +468,17 @@ elseif string.lower(RequiredScript) == "lib/managers/menu/crimespreedetailsmenuc
 				self._peer_loadout[peer_id] = LoadoutPanel:new(self._loadout_data, self, peer_id, width, math.floor(self._loadout_data:h() + 9), {
 					component_layout =
 						{
-							{ "playtime", "ping" },
+							{ "ping" },
 							{ "name" },
-							{ "skills" },
 							{ "perk" },
+							{ "skills" },
 							{ "primary", "secondary" },
 							{ "grenade", "armor" },
 							{ "deployable", "secondary_deployable" }
 						},
 					name = 		{ font_size = tweak_data.menu.pd2_medium_font_size * 0.95, height = tweak_data.menu.pd2_medium_font_size * 1.00, align = "center", margin = 3, use_peer_color = true, alpha = 1 },
 					level = 	{ font_size = tweak_data.menu.pd2_medium_font_size * 0.9,  height = tweak_data.menu.pd2_medium_font_size * 0.95, align = "right",  margin = 3, use_peer_color = true, alpha = 1 },
-					skills = 	{ font_size = tweak_data.menu.pd2_small_font_size  * 0.7,  height = tweak_data.menu.pd2_small_font_size  * 0.75, align = "center", use_peer_color = true, alpha = 0.95 },
+					skills = 	{ font_size = tweak_data.menu.pd2_small_font_size  * 0.7,  height = tweak_data.menu.pd2_small_font_size  * 0.75, align = "center", alpha = 0.95 },
 					perk = 		{ font_size = tweak_data.menu.pd2_medium_font_size * 0.7,  height = tweak_data.menu.pd2_medium_font_size * 0.75, align = "center", use_peer_color = true, alpha = 0.95 },
 					ping = 		{ font_size = tweak_data.menu.pd2_small_font_size  * 0.75, height = tweak_data.menu.pd2_small_font_size  * 0.8,  align = "right",  alpha = 1 	},
 					playtime = 	{ font_size = tweak_data.menu.pd2_small_font_size  * 0.7,  height = tweak_data.menu.pd2_small_font_size  * 0.75, align = "center", alpha = 1 	},
@@ -543,7 +529,7 @@ elseif string.lower(RequiredScript) == "lib/managers/menu/missionbriefinggui" th
 			self._player_slots[peer_id] = LoadoutPanel:new(self._panel, self, peer_id, quarter_width, self._panel:h() + 7, {
 				component_layout =
 					{
-						{ "perk", "playtime" },
+						{ "perk", "ping" },
 						{ "skills" },
 						{ "primary" },
 						{ "secondary" },
@@ -630,88 +616,7 @@ elseif string.lower(RequiredScript) == "lib/managers/menu/missionbriefinggui" th
 		if self._team_loadout_item and self._team_loadout_item.update then
 			self._team_loadout_item:update(t, dt)
 		end
-	end
-	
-    function MissionBriefingGui:mouse_pressed(button, x, y)
-	    if not alive(self._panel) or not alive(self._fullscreen_panel) or not self._enabled then
-		    return
-	    end
-	    if game_state_machine:current_state().blackscreen_started and game_state_machine:current_state():blackscreen_started() then
-		    return
-	    end
-	    if self._displaying_asset then
-		    if button == Idstring("mouse wheel down") then
-			    self:zoom_asset("out")
-			    return
-		    elseif button == Idstring("mouse wheel up") then
-			    self:zoom_asset("in")
-			    return
-		    end
-		    self:close_asset()
-		    return
-	    end
-	    local mwheel_down = button == Idstring("mouse wheel down")
-	    local mwheel_up = button == Idstring("mouse wheel up")
-	    if (mwheel_down or mwheel_up) and managers.menu:is_pc_controller() then
-		    local mouse_pos_x, mouse_pos_y = managers.mouse_pointer:modified_mouse_pos()
-		    if mouse_pos_x < self._panel:x() then
-			    return
-		    end
-	    end
-	    if mwheel_down then
-		    self:next_tab(true)
-		    return
-	    elseif mwheel_up then
-		    self:prev_tab(true)
-		    return
-	    end
-	    if button ~= Idstring("0") then
-		    return
-	    end
-	    if MenuCallbackHandler:is_overlay_enabled() then
-		    local fx, fy = managers.mouse_pointer:modified_fullscreen_16_9_mouse_pos()
-		    for peer_id = 1, CriminalsManager.MAX_NR_CRIMINALS do
-			    if managers.hud:is_inside_mission_briefing_slot(peer_id, "name", fx, fy) then
-				    local peer = managers.network:session() and managers.network:session():peer(peer_id)
-				    if peer then
-					    Steam:overlay_activate("url", "http://www.steamcommunity.com/profiles/" .. peer:user_id() .. "/")
-					    return
-				    end
-			    end
-		    end
-	    end
-	    for index, tab in ipairs(self._items) do
-		    local pressed, cost = tab:mouse_pressed(button, x, y)
-		    if pressed == true then
-			    self:set_tab(index)
-		    elseif type(pressed) == "number" then
-			    if cost then
-				    if type(cost) == "number" then
-					    local asset_id, is_gage_asset, locked = tab:get_asset_id(pressed)
-					    if is_gage_asset and not locked then
-						    self:open_gage_asset(asset_id)
-					    else
-						    self:open_asset_buy(pressed, asset_id, is_gage_asset)
-					    end
-				    end
-			    else
-				    local asset_id, is_gage_asset, locked = tab:get_asset_id(pressed)
-				    if is_gage_asset then
-					    self:open_gage_asset(asset_id)
-				    else
-					    self:open_asset(pressed)
-				    end
-			    end
-		    end
-	    end
-	    if self._ready_button:inside(x, y) or self._ready_tick_box:inside(x, y) then
-		    self:on_ready_pressed()
-	    end
-	    if not self._ready then
-		    self._multi_profile_item:mouse_pressed(button, x, y)
-	    end
-	    return self._selected_item
-    end		
+	end	
 elseif string.lower(RequiredScript) == "lib/managers/hud/newhudstatsscreen" then
 	local recreate_right_original = HUDStatsScreen.recreate_right
 	local show_original = HUDStatsScreen.show
@@ -792,14 +697,14 @@ elseif string.lower(RequiredScript) == "lib/managers/hud/newhudstatsscreen" then
 					self._peer_loadout[peer_id] = LoadoutPanel:new(parent_panel, self, peer_id, parent_panel:w(), parent_panel:h() * 0.17, {
 						component_layout =
 						{
-						    { "name", "ping", "playtime" },
+						    { "name", "ping" },
 						    { "skills", "perk" },
 						},
 						name = 		{ font_size = tweak_data.menu.pd2_medium_font_size * 0.90, height = tweak_data.menu.pd2_medium_font_size * 0.95, align = "left",  margin = 0, use_peer_color = true },
 						level = 	{ font_size = tweak_data.menu.pd2_medium_font_size * 0.90, height = tweak_data.menu.pd2_medium_font_size * 0.95, align = "left",  margin = 0, use_peer_color = true },
 						skills = 	{ font_size = tweak_data.menu.pd2_small_font_size  * 1.10, height = tweak_data.menu.pd2_small_font_size  * 1.15, align = "left",  margin = 3 },
-						perk = 		{ font_size = tweak_data.menu.pd2_medium_font_size * 0.95, height = tweak_data.menu.pd2_medium_font_size * 1.00, align = "left",  margin = 3 },
-						ping = 		{ font_size = tweak_data.menu.pd2_small_font_size  * 0.75, height = tweak_data.menu.pd2_small_font_size  * 0.80, align = "left" 			 },
+						perk = 		{ font_size = tweak_data.menu.pd2_medium_font_size * 0.95, height = tweak_data.menu.pd2_medium_font_size * 1.00, align = "left",  margin = 3, use_peer_color = true },
+						ping = 		{ font_size = tweak_data.menu.pd2_small_font_size  * 0.75, height = tweak_data.menu.pd2_small_font_size  * 0.80, align = "right" 			 },
 						playtime = 	{ font_size = tweak_data.menu.pd2_small_font_size  * 0.75, height = tweak_data.menu.pd2_small_font_size  * 0.80, align = "right"             },
 						default = 	{ hide_name = true },
 						margin = 5,
@@ -838,21 +743,4 @@ elseif string.lower(RequiredScript) == "lib/managers/hud/newhudstatsscreen" then
 			parent_panel:set_leftbottom(10, self._right:h() - 40)
 		end
 	end
-elseif string.lower(RequiredScript) == "lib/managers/menu/crimespreecontractboxgui" then
-    function CrimeSpreeContractBoxGui:mouse_pressed(button, x, y)
-	    if not self:can_take_input() or not self:_can_update() then
-		    return
-	    end
-	    if button == Idstring("0") and self._peer_panels and SystemInfo:platform() == Idstring("WIN32") and MenuCallbackHandler:is_overlay_enabled() then
-		    for peer_id, object in pairs(self._peer_panels) do
-			    if alive(object:panel()) and object:panel():inside(x, y) then
-				    local peer = managers.network:session() and managers.network:session():peer(peer_id)
-				    if peer then
-					    Steam:overlay_activate("url", "http://www.steamcommunity.com/profiles/" .. peer:user_id() .. "/")
-					    return
-				    end
-			    end
-		    end
-	    end
-    end	
 end

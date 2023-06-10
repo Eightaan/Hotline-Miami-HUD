@@ -76,7 +76,6 @@
 					<post :hook_id="specializationboxgui"           :script_path="InputDialog.lua"/>
 					<post :hook_id="multiprofileitemgui"            :script_path="ProfileMenu.lua"/>
 					<post :hook_id="contractboxgui"                 :script_path="EnhancedCrewLoadout.lua"/>
-					<post :hook_id="crimespreecontractboxgui"       :script_path="EnhancedCrewLoadout.lua"/>
 					<post :hook_id="crimespreedetailsmenucomponent" :script_path="EnhancedCrewLoadout.lua"/>
 					<group :hook_id="missionbriefinggui">
 					    <post :script_path="ProfileMenu.lua"/>
