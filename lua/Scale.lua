@@ -1,4 +1,4 @@
-if not _G.IS_VR or HMH:GetOption("hud_scale") ~= 1 then
+if not _G.IS_VR and HMH:GetOption("hud_scale") ~= 1 then
     Hooks:PreHook(HUDManager, "_setup_player_info_hud_pd2", "HMH_Scale_setup_player_info_hud_pd2", function(self, ...)
         managers.gui_data:layout_scaled_fullscreen_workspace(managers.hud._saferect)
     end)
