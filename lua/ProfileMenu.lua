@@ -127,7 +127,8 @@ elseif RequiredScript == "lib/managers/menu/renderers/menunodeskillswitchgui" th
 
 		if alive(self.item_panel) and LoadoutPanel then
 			local offset_h = managers.menu:is_pc_controller() and 25 or 0
-			self.profile_preview = LoadoutPanel:new(self.item_panel:parent(), self, 0, self.PROFILE_PREVIEW_W, math.floor(self.item_panel:h()) - offset_h, {
+			local height = math.min(math.floor(self.item_panel:h()), ws_panel:height())
+			self.profile_preview = LoadoutPanel:new(self.item_panel:parent(), self, 0, self.PROFILE_PREVIEW_W, height - offset_h, {
 				component_layout = {
 					{ "skills" },
 					{ "perk" },
@@ -142,6 +143,9 @@ elseif RequiredScript == "lib/managers/menu/renderers/menunodeskillswitchgui" th
 			})
 			local outfit = managers.multi_profile:get_profile_outfit(managers.multi_profile:current_profile_id())
 			self.profile_preview:set_outfit(outfit)
+			if managers.multi_profile:profile_count() > 30 then
+				self.profile_preview:set_top(0)
+			end
 		end
 	end
 
@@ -223,7 +227,7 @@ elseif RequiredScript == "lib/managers/menu/renderers/menunodeskillswitchgui" th
 
 	function MenuNodeProfileSwitchGui:change_outfit_preview(profile_id)
 		local mpm = managers.multi_profile
-		if self.profile_preview and mpm:is_valid_id(profile_id) and (self._previewing_outfit or 0) ~= profile_id then
+		if self.profile_preview and mpm and mpm:is_valid_id(profile_id) and (self._previewing_outfit or 0) ~= profile_id then
 			local outfit = mpm:get_profile_outfit(profile_id)
 			self.profile_preview:set_outfit(outfit)
 			self._previewing_outfit = profile_id
@@ -253,7 +257,7 @@ elseif RequiredScript == "lib/managers/multiprofilemanager" then
 			local profile = self:profile(profile_id)
 			local gd = Global.skilltree_manager.skill_switches[profile.skillset]
 			local skills = {}
-			if gd.trees then
+			if gd and gd.trees then
 				local pts = 0
 				for i=1, #gd.trees do
 					pts=Application:digest_value(gd.trees[i].points_spent, false)

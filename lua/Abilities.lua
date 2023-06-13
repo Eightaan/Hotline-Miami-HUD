@@ -5,20 +5,20 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 	-- Stamina Circle
 	Hooks:PostHook(HUDManager, "set_stamina_value", "HMH_HUDManager_set_stamina_value", function (self, value, ...)
 	    if HMH:GetOption("stamina") and self._teammate_panels[self.PLAYER_PANEL].set_stamina_current then --VHUDPlus Compatibility
-		    self._teammate_panels[HUDManager.PLAYER_PANEL]:set_stamina_current(value)
+		    self._teammate_panels[self.PLAYER_PANEL]:set_stamina_current(value)
 		end
 	end)
 
 	Hooks:PostHook(HUDManager, "set_max_stamina", "HMH_HUDManager_set_max_stamina", function (self, value, ...)
 	    if HMH:GetOption("stamina") and self._teammate_panels[self.PLAYER_PANEL] then --VHUDPlus Compatibility
-		    self._teammate_panels[HUDManager.PLAYER_PANEL]:set_stamina_max(value)
+		    self._teammate_panels[self.PLAYER_PANEL]:set_stamina_max(value)
 		end
 	end)
 	
 	--Infinite Ammo Display
     function HUDManager:set_infinite_ammo(state)
 		if self._teammate_panels[self.PLAYER_PANEL]._set_infinite_ammo then
-	        self._teammate_panels[HUDManager.PLAYER_PANEL]:_set_infinite_ammo(state)		
+	        self._teammate_panels[self.PLAYER_PANEL]:_set_infinite_ammo(state)		
         end
 		-- Hides the bulletstorm display used by VHUDPlus		
 		if self._teammate_panels[self.PLAYER_PANEL]._set_bulletstorm then

@@ -4,9 +4,7 @@ end
 
 if RequiredScript == "lib/managers/hudmanagerpd2" then
 	Hooks:PostHook(HUDManager, "setup_endscreen_hud", "HMH_HUDManager_setup_endscreen_hud", function(self, ...)
-		if HUDChat.MOUSE_SUPPORT then
-			self._hud_chat_ingame:disconnect_mouse()
-		end
+		self._hud_chat_ingame:disconnect_mouse()
 	end)
 end
 
@@ -21,9 +19,10 @@ if RequiredScript == "lib/managers/hud/hudchat" then
 	
 	Hooks:OverrideFunction(HUDChat, "init", function(self, ws, hud)
 		local fullscreen = managers.hud:script(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2)
-		self._hud_panel = fullscreen.panel
-		self._x_offset = (fullscreen.panel:w() - hud.panel:w()) / 2
-		self._y_offset = (fullscreen.panel:h() - hud.panel:h()) / 2
+		self._ws = ws
+		self._hud_panel = hud.panel
+		self._x_offset = (fullscreen.panel:w() - self._hud_panel:w()) / 2
+		self._y_offset = (fullscreen.panel:h() - self._hud_panel:h()) / 2
 		self._esc_callback = callback(self, self, "esc_key_callback")
 		self._enter_callback = callback(self, self, "enter_key_callback")
 		self._typing_callback = 0
@@ -33,17 +32,16 @@ if RequiredScript == "lib/managers/hud/hudchat" then
 		self._total_message_lines = 0
 		self._current_input_lines = 1
 		self._ws = ws
-		self._parent = hud.panel
 		self:set_channel_id(ChatManager.GAME)
 		self._align = "right"
 
-		self._panel = self._parent:panel({
+		self._panel = self._hud_panel:panel({
 			name = "chat_panel",
 			h = HUDChat.LINE_HEIGHT * (HUDChat.MAX_OUTPUT_LINES + 1),
 			w = HUDChat.WIDTH,
 		})
 		self._panel:set_left(0)
-		self._panel:set_bottom(self._parent:h() - 112)
+		self._panel:set_bottom(self._hud_panel:h() - 112)
 
 		self:_create_output_panel()
 		self:_create_input_panel()
