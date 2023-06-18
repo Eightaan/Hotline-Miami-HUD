@@ -237,8 +237,7 @@ if string.lower(RequiredScript) == "lib/managers/menu/contractboxgui" then
 				self._peer_loadout[peer_id] = LoadoutPanel:new(self._loadout_data, self, peer_id, width, ContractBoxGui._LOADOUT_H + 8, {
 					component_layout =
 						{
-							{ "ping" },
-							{ "name" },
+							{ "name", "ping" },
 							{ "perk" },
 							{ "skills" },
 							{ "primary" },
@@ -543,7 +542,7 @@ elseif string.lower(RequiredScript) == "lib/managers/menu/missionbriefinggui" th
 				name = 		{ font_size = tweak_data.menu.pd2_medium_font_size * 0.95, height = tweak_data.menu.pd2_medium_font_size * 1.00, align = "center", margin = 3, use_peer_color = true },
 				level = 	{ font_size = tweak_data.menu.pd2_medium_font_size * 0.9,  height = tweak_data.menu.pd2_medium_font_size * 0.95, align = "right",  margin = 3, use_peer_color = true },
 				skills = 	{ font_size = tweak_data.menu.pd2_small_font_size  * 0.9,  height = tweak_data.menu.pd2_small_font_size  * 0.95, align = "center", use_peer_color = true },
-				perk = 		{ font_size = tweak_data.menu.pd2_medium_font_size * 0.9,  height = tweak_data.menu.pd2_medium_font_size * 0.95, align = "left",   use_peer_color = true },
+				perk = 		{ font_size = tweak_data.menu.pd2_medium_font_size * 0.9,  height = tweak_data.menu.pd2_medium_font_size * 0.95, align = "center",   use_peer_color = true },
 				ping = 		{ font_size = tweak_data.menu.pd2_small_font_size  * 0.75, height = tweak_data.menu.pd2_small_font_size  * 0.8,  align = "right" 	},
 				playtime = 	{ font_size = tweak_data.menu.pd2_small_font_size  * 0.7,  height = tweak_data.menu.pd2_small_font_size  * 0.75, align = "center" 	},
 				default = 	{ hide_name = true },
