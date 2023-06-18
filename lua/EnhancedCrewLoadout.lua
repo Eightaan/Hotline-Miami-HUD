@@ -19,13 +19,13 @@ if string.lower(RequiredScript) == "lib/managers/menu/contractboxgui" then
 		local talking
 		local distribution_id = SystemInfo:distribution()
 		
-	--	if distribution_id == Idstring("STEAM") then		
+		if distribution_id == Idstring("STEAM") then		
 			if is_local_peer and not managers.network.voice_chat._push_to_talk then
 				talking = managers.network.voice_chat._enabled
 			else
 				talking = managers.network.voice_chat._users_talking[peer_id] and managers.network.voice_chat._users_talking[peer_id].active
 			end
-	--	end		
+		end		
 		self._peers_talking = self._peers_talking or {}
 	    self._peers_talking[peer_id] = self._peers_talking[peer_id] or self._panel:bitmap({
 		    texture = voice_icon,

@@ -76,14 +76,17 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		
 		HMH._in_heist = true
     end
-
+	
+	local should_be_open = false
     function HUDComboCounter:set_combo(combo)
         local Combo_text = self._combo_panel:child("Combo_text")
         local Combo_text_bg = self._combo_panel:child("Combo_text_bg")
         local Combo_bg = self._combo_panel:child("Combo_bg")
-	    if combo > 1 and HMH._in_heist then 
+	    if combo > 1 and HMH._in_heist then
+			should_be_open = true
 			self._combo_panel:set_visible(true)  
 	    else
+			should_be_open = false
 		    Combo_text:animate(callback(self, self, "close_anim"))
 		    Combo_text_bg:animate(callback(self, self, "close_anim"))
 	    end
@@ -102,41 +105,43 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
             end
         end
     end
-
-    function HUDComboCounter:open_anim(panel)
-        local speed = 50
-		local panel_position = HMH:GetOption("panel_position") or 40
-        panel:set_x(-150)
-       -- panel:set_visible(true)
-        local TOTAL_T = 10/speed
-        local t = TOTAL_T
-        while t > 0 do
-            local dt = coroutine.yield()
-            t = t - dt
-            panel:set_x((1 - t / TOTAL_T) * 60)
-        end
-		self._combo_panel:set_top(panel_position)
-    end
 	
-	function HUDComboCounter:close_anim( panel )
+	function HUDComboCounter:open_anim(panel)
+		local speed = 50
+		panel:set_x(-150)
+		local distance = 50 - panel:x()
+		local timespan = 10/speed
+		local elapsed = 0
+		local panel_y = HMH:GetOption("panel_position") or 40
+		self._combo_panel:set_top(panel_y)
+		while elapsed < timespan do
+			if not should_be_open then return end
+			local delta = coroutine.yield()
+			elapsed = elapsed + delta
+			panel:set_x( ( distance * ( elapsed / timespan ) ) - 150 )
+		end
+	end
+	
+	function HUDComboCounter:close_anim(panel)
+		local speed = 50
+		local distance = panel:x() + 150
+		local timespan = 10/speed
+		local elapsed = 0
+		while elapsed < timespan do
+			if should_be_open then break end
+			local delta = coroutine.yield()
+			elapsed = elapsed + delta
+			panel:set_x( math.max( ( distance * ( 1 - ( elapsed / timespan ) ) ) - 150 , -150 ) )
+		end
 		local Combo_text = self._combo_panel:child("Combo_text")
 		local Combo_text_bg = self._combo_panel:child("Combo_text_bg")
-		local speed = 2000
-		local cw = panel:x()
-		local TOTAL_T = cw/speed
-		local t = TOTAL_T
-		while t > 0 do
-			local dt = coroutine.yield()
-			t = t - dt
-			panel:set_x((1 - t/TOTAL_T) * -80 )
-		end
 		self._combo_panel:set_visible(false) 
- 	    self._combo_panel:set_x(0)
- 	    Combo_text:set_x(6)
- 	    Combo_text_bg:set_x(8)	
-	    Combo_text:animate(callback(self, self, "open_anim"))
- 	    Combo_text_bg:animate(callback(self, self, "open_anim"))
-    end
+		self._combo_panel:set_x(0)
+		Combo_text:set_x(6)
+		Combo_text_bg:set_x(8)	
+		Combo_text:animate(callback(self, self, "open_anim"))
+		Combo_text_bg:animate(callback(self, self, "open_anim"))
+	end
 
     function HUDComboCounter:flash_text(text)
     	local TOTAL_T = 0.4
@@ -166,6 +171,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
         self._kills = self._kills + 1
         self._last_kill_time = self._kill_time
         self._kill_time = self._t
+		if self._kills <= 2 then return end
 		if HMH:GetOption("combo_kill_anim") then
 		    Combo_text:animate(callback(self, self, "kill_anim"))
             Combo_text_bg:animate(callback(self, self, "kill_anim"))

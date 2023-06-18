@@ -174,6 +174,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 	Hooks:PostHook(HUDTeammate, "init", "HMH_Stamina_init", function (self, ...)
 		if self._main_player then
 			self:_create_circle_stamina()
+			self:infinite_ammo_glow()
 		end
 	end)
 	
@@ -181,10 +182,10 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
         local duration = data.current / data.total
         local aced = managers.player:upgrade_level("player", "berserker_no_ammo_cost", 0) == 1
 		if self._main_player and HMH:GetOption("bulletstorm") and aced then
-            if duration > 0 then
-                managers.hud:set_infinite_ammo(true)
+			if duration > 0 then
+				managers.hud:set_infinite_ammo(true)
             else
-                managers.hud:set_infinite_ammo(false)
+				managers.hud:set_infinite_ammo(false)
 	        end
 		end
 		
@@ -208,6 +209,68 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 			end
 		end
 	end)
+	
+	function HUDTeammate:infinite_ammo_glow()
+		self._prim_ammo = self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):bitmap({
+			align = "center",
+			w = 50,
+			h = 45,
+			name = "primary_ammo",
+			visible = false,
+			texture = "guis/textures/pd2/crimenet_marker_glow",
+			color = Color("00AAFF"),
+			layer = 2,
+			blend_mode = "add"
+		})
+		self._sec_ammo = self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):bitmap({
+			align = "center",
+			w = 50,
+			h = 45,
+			name = "secondary_ammo",
+			visible = false,
+			texture = "guis/textures/pd2/crimenet_marker_glow",
+			color = Color("00AAFF"),
+			layer = 2,
+			blend_mode = "add"
+		})
+		self._prim_ammo:set_center_y(self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("ammo_clip"):y() + self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("ammo_clip"):h() / 2 - 2)
+		self._sec_ammo:set_center_y(self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):child("ammo_clip"):y() + self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):child("ammo_clip"):h() / 2 - 2)
+		self._prim_ammo:set_center_x(self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("ammo_clip"):x() + self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("ammo_clip"):w() / 2)
+		self._sec_ammo:set_center_x(self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):child("ammo_clip"):x() + self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):child("ammo_clip"):w() / 2)
+		end
+
+	function HUDTeammate:_set_infinite_ammo(state)
+		self._infinite_ammo = state
+		if self._prim_ammo then
+			if self._infinite_ammo then
+				local hudinfo = managers.hud:script(PlayerBase.PLAYER_INFO_HUD_PD2)
+				local pweapon_panel = self._player_panel:child("weapons_panel"):child("primary_weapon_panel")
+				local pammo_clip = pweapon_panel:child("ammo_clip")
+				local sweapon_panel = self._player_panel:child("weapons_panel"):child("secondary_weapon_panel")
+				local sammo_clip = sweapon_panel:child("ammo_clip")
+
+				self._prim_ammo:set_visible(true)
+				self._sec_ammo:set_visible(true)
+				self._prim_ammo:animate(hudinfo.flash_icon, 4000000000)
+				self._sec_ammo:animate(hudinfo.flash_icon, 4000000000)
+
+				pammo_clip:set_color(Color.white)
+				pammo_clip:set_text("8")
+				pammo_clip:set_rotation(90)
+				if ammo then
+					pammo_clip:set_font_size(30)
+					sammo_clip:set_font_size(30)
+				end
+
+				sammo_clip:set_color(Color.white)
+				sammo_clip:set_text("8")
+				sammo_clip:set_rotation(90)
+			else
+				self._prim_ammo:set_visible(false)
+				self._sec_ammo:set_visible(false)
+			end
+		end
+	end
 	
 	Hooks:PostHook(HUDTeammate, "_create_condition", "HMH_HUDTeammate_create_condition", function (self, ...)
 		self._health_panel = self._health_panel or self._player_panel:child("radial_health_panel")
