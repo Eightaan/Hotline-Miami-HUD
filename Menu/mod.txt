@@ -1,0 +1,28 @@
+{
+	"name" : "Hotline Miami Hud",
+	"description" : "",
+	"author" : "Eightan",
+	"version" : "5.7.5",
+	"blt_version" : 2,
+	"supermod_definition" : "HMH.xml",
+	"image" : "icon.png",
+	"color" : "0 0.6 0.286",
+	"contact": "\n https://steamcommunity.com/id/Eightan/",
+	"updates" : [
+        {
+            "identifier" : "hotline_miami_hud_updates",
+            "host": {
+                "meta": "https://raw.githubusercontent.com/Eightaan/mod_updates/master/HotlineMiamiHud/meta_info.json"
+            }
+        },
+		{
+			"identifier" : "hotline_miami_assets_updates",
+			"host" : {
+				"meta" : "https://raw.githubusercontent.com/Eightaan/mod_updates/master/HotlineMiamiHud/meta_info_assets.json"
+			},
+			"install_dir" : "assets/mod_overrides/",
+			"install_folder" : "Hotline Miami Menu",
+			"display_name" : "Hotline Miami Menu Mod Overrides"
+		}
+    ]
+}

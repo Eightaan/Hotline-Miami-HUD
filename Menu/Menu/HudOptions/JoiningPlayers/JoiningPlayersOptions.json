@@ -1,0 +1,17 @@
+{
+	"menu_id": "hmh_joining_player_options",
+	"parent_menu": "hmh_hud_options",
+	"title": "hmh_joining_player_options_title",
+	"items": [
+		{
+			"type": "toggle",
+			"id": "show_rank_toggle",
+			"title": "show_rank_title",
+			"description": "show_rank_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "show_rank",
+			"value": "show_rank",
+			"default_value": true
+		}
+	]
+}
