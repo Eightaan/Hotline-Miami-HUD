@@ -54,7 +54,8 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_HUDAssaultCorner_init", function(s
 		name = "text",
 		color = self._assault_color,
 		alpha = HMH:GetOption("assault_text"),
-		font = tweak_data.hud.medium_font_noshadow
+		font_size = tweak_data.hud_corner.noreturn_size,
+		font = tweak_data.hud_corner.assault_font
 	})
 
 	local _,_,w,h = assault_panel:child("text"):text_rect()
@@ -79,7 +80,8 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_HUDAssaultCorner_init", function(s
 		name = "text",
         color = HMH:GetColor("CasingText"),
 		alpha = HMH:GetOption("assault_text"),
-		font = tweak_data.hud.medium_font_noshadow
+		font_size = tweak_data.hud_corner.noreturn_size,
+		font = tweak_data.hud_corner.assault_font
 	})
 
 	local _,_,w,h = casing_panel:child("text"):text_rect()
