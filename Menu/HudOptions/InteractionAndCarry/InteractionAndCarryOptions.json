@@ -46,8 +46,7 @@
 			"value": "interactcolor",
 			"default_value": [255, 127, 0],
 			"callback": "SetColorOption",
-			"callback_arguments": "interactcolor",
-			"parent" : "interact_toggle"
+			"callback_arguments": "interactcolor"
 		},
 		{
 			"type" : "divider",
