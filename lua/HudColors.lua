@@ -23,6 +23,8 @@ function TweakData:HMM()
         self.preplanning_peer_colors[3] = player3 -- Peer 3
         self.preplanning_peer_colors[4] = player4 -- Peer 4
     end
+	
+	self.contour.interactable.standard_color = HMH:GetColor("interactcolor") --Vector3(1, 0.5, 0), 255,127,0
 
     if HMH:GetOption("custom_menu_color") then
         self.screen_colors.resource = Color("66ffff")

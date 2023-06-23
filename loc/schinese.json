@@ -388,6 +388,7 @@
 	"pager_jam_desc" : "Hides ECM timers that don't delay pagers.",
 	"hmh_inventory_options_title" : "Inventory",
 	"hmh_inventory_options_desc" : "",
+	"HotlineMiamiHudInteractionOutlineTitleID" : "Interaction outline",
 	"inventory_amount_title" : "Show Equipment Amount",
 	"inventory_amount_desc" : "Displays how many deployables/grenades the player has.",
 	"HotlineMiamiHudAbilityIconTitleID" : "Ability Icon",

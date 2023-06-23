@@ -373,6 +373,7 @@
     "HotlineMiamiHudTimerTitleID" : "Heist timer",
 	
 	"HotlineMiamiHudInteractionTitleID" : "Interaction text",
+	"HotlineMiamiHudInteractionOutlineTitleID" : "Interactable Outlines",
 	
 	"HotlineMiamiHudHintTitleID" : "Hint text",
 	

@@ -12,6 +12,12 @@
 	"TimerAlpha" : 1, 
 	"HintAlpha" : 1, 
 	"InteractAlpha" : 1,
+	"interactcolor" :
+	{
+		"r" : 255,
+		"g" : 127,
+		"b" : 0
+	},
 	"inventory_amount" : true,
 	"hostage_panel" : false,
 	"wave_panel" : false,

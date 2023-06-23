@@ -39,6 +39,21 @@
 			"size" : 8
 		},
 		{
+			"type": "color_select",
+			"id": "interaction_outline_color_select",
+			"title": "HotlineMiamiHudInteractionOutlineTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "interactcolor",
+			"default_value": [255, 127, 0],
+			"callback": "SetColorOption",
+			"callback_arguments": "interactcolor",
+			"parent" : "interact_toggle"
+		},
+		{
+			"type" : "divider",
+			"size" : 8
+		},
+		{
 			"type": "toggle",
 			"id": "interact_toggle",
 			"title": "interact_title",
