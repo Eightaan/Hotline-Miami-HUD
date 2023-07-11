@@ -111,10 +111,10 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
     end
 
 elseif RequiredScript == "lib/network/matchmaking/networkvoicechatsteam" then
-    Hooks:PostHook(NetworkVoiceChatSTEAM, "set_recording", "HMH_NetworkVoiceChatSTEAM_set_player_voice", function(self, enabled)
-        if managers.hud and (self._voice_enabled == nil or self._voice_enabled ~= enabled) and managers.network and managers.network.session and managers.network:session():local_peer() and managers.network:session():local_peer():id() then
-            self._voice_enabled = enabled
-            managers.hud:set_voice({peer_id = managers.network:session():local_peer():id()}, enabled)
-        end
-    end)
+	Hooks:PostHook(NetworkVoiceChatSTEAM, "set_recording", "set_player_voice", function(self, enabled)
+		if managers.hud and (self._voice_enabled == nil or self._voice_enabled ~= enabled) and managers.network and managers.network.session and managers.network:session():local_peer() and managers.network:session():local_peer():id() and SystemInfo:distribution() == Idstring("STEAM") then
+			self._voice_enabled = enabled
+			managers.hud:set_voice({peer_id = managers.network:session():local_peer():id()}, enabled)
+		end
+	end)
 end

@@ -155,6 +155,11 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_HUDAssaultCorner_init", function(s
 		self._assault_timer._timer_text:set_visible(false)
 	end
 
+	if alive(self._hud_panel:child("casing_panel")) or alive(self._hud_panel:child("point_of_no_return_panel")) then
+		self._hud_panel:child("casing_panel"):child("icon_casingbox"):set_visible(true)
+		self._hud_panel:child("point_of_no_return_panel"):set_right(self._hud_panel:w())
+	end
+
 	if self:should_display_waves() and alive(assault_panel) then
 	    local wave_panel = self._hud_panel:child("wave_panel")
 		if self._wave_text then
