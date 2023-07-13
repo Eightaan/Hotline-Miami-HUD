@@ -14,7 +14,7 @@
 
 	    <group hook_id="lib/">
 			<group :hook_id="setups/setup">
-			    <post script_path="LoadTextures.lua"/>
+			    <post :script_path="LoadTextures.lua"/>
             </group>
 
 			<group :hook_id="entry">
