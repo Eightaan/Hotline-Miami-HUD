@@ -31,7 +31,7 @@ if not HMH then
 		if DirectoryExists("assets/mod_overrides/Hotline Miami Menu") and (HMH:GetOption("preset") == 3 or not HMH:GetOption("no_menu_textures")) then
 			SystemFS:delete_file("assets/mod_overrides/Hotline Miami Menu")
 		end
-		HMH:LoadTextures()
+		self:LoadTextures()
     end
 
     function HMH:Load()
