@@ -427,6 +427,45 @@ if HMH:GetOption("equipment") then
 		    end
 	    end
     end)
+	
+	Hooks:PostHook(HUDTeammate, "animate_grenade_flash", "HMH_HUDTeammate_animate_grenade_flash", function(self, ...)
+		local teammate_panel = self._panel:child("player")
+		local grenades_panel = self._player_panel:child("grenades_panel")
+		local radial = grenades_panel:child("grenades_radial")
+		local icon = grenades_panel:child("grenades_icon")
+		local radial_ghost = grenades_panel:child("grenades_radial_ghost")
+		local icon_ghost = grenades_panel:child("grenades_icon_ghost")
+
+		local function animate_flash()
+			local radial_w, radial_h = radial:size()
+			local radial_x, radial_y = radial:center()
+			local icon_w, icon_h = icon:size()
+			local icon_x, icon_y = icon:center()
+
+			radial_ghost:set_visible(true)
+			icon_ghost:set_visible(true)
+			over(0.6, function (p)
+				local color = Color(1 - p, 1, 1, 1)
+				local scale = 1 + p
+
+				radial_ghost:set_color(color)
+				radial_ghost:set_size(radial_w * scale, radial_h * scale)
+				radial_ghost:set_center(radial_x, radial_y)
+				icon_ghost:set_color(HMH:GetColor("GrenadeIcon"))
+				icon_ghost:set_size(icon_w * scale, icon_h * scale)
+				icon_ghost:set_center(icon_x, icon_y)
+			end)
+			radial_ghost:set_visible(false)
+			radial_ghost:set_size(radial_w, radial_h)
+			radial_ghost:set_center(radial_x, radial_y)
+			icon_ghost:set_visible(false)
+			icon_ghost:set_size(icon_w, icon_h)
+			icon_ghost:set_center(icon_x, icon_y)
+		end
+
+		grenades_panel:stop()
+		grenades_panel:animate(animate_flash)
+	end)
 end
 
 if ammo then

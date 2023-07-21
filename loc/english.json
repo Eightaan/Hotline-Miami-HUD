@@ -286,6 +286,8 @@
 	"pink_interact" : "Pink Circle",
 	"hm2_interact" : "Wrong Number",
 	"heart_interact" : "Pixel Heart",
+	"faded_interact" : "Faded",
+	"triangle_interact" : "Neon Triangle",
 	"interact_icons_title" : "Hud Interaction Icons",
 	"interact_icons_desc" : "Enable the custom colored interaction icons (saw, picklock, c4 and etc).\nWhen changed, a texture refresh or a restart is required to take effect.",
 	"interact_text_title" : "Interaction Text Transparency",

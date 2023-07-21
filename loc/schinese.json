@@ -443,5 +443,7 @@
 	"faded_health" : "Faded",
 	"pixel_health" : "Pixel Heart",
 	"circle_icon" : "Red Circle",
-	"50blessings" : "50 Blessings"
+	"50blessings" : "50 Blessings",
+	"faded_interact" : "Faded",
+	"triangle_interact" : "Neon Triangle"
 }

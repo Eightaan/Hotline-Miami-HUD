@@ -17,10 +17,12 @@
 			"value": "interact_texture",
 			"items" : [
 				"default_interact",
-				"50bl_interact",
 				"pink_interact",
+				"faded_interact",
+				"triangle_interact",
 				"hm2_interact",
-				"heart_interact"
+				"heart_interact",
+				"50bl_interact"
 			],
 			"default_value": 3
 		},

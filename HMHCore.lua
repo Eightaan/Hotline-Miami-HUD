@@ -6,11 +6,11 @@ if not HMH then
         _data_path = SavePath .. "HMH.json",
         SaveDataVer = 2,
         ModVersion = ModInstance and ModInstance:GetVersion() or "N/A",
+		TotalKills = 0,
+		CivKill = 0,
+		_in_heist = false,
         _data = {}
     }
-	HMH.TotalKills = 0
-	HMH.CivKill = 0
-	HMH._in_heist = false
 	
 	local function DirectoryExists(path)
 		if SystemFS and SystemFS.exists then
@@ -28,7 +28,7 @@ if not HMH then
             file:write( json.encode( self._data ) )
             file:close()
         end
-		if DirectoryExists("assets/mod_overrides/Hotline Miami Menu") and (HMH:GetOption("preset") == 3 or not HMH:GetOption("no_menu_textures")) then
+		if DirectoryExists("assets/mod_overrides/Hotline Miami Menu") and (self:GetOption("preset") == 3 or not self:GetOption("no_menu_textures")) then
 			SystemFS:delete_file("assets/mod_overrides/Hotline Miami Menu")
 		end
 		self:LoadTextures()

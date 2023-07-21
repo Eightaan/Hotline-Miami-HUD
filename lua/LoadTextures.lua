@@ -31,21 +31,29 @@ function HMH:LoadTextures()
 	end
 
 	if preset_1_2 and HMH:GetOption("interact_texture") == 2 or preset_2 then
-		DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_active"), HMH._path .. "assets/guis/textures/pd2_mod_hmh/hud_progress_active.texture")
-		DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_invalid"), HMH._path .. "assets/guis/textures/pd2_mod_hmh/hud_progress_invalid.texture")
-		DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_bg"), HMH._path .. "assets/guis/textures/pd2_mod_hmh/hud_progress_bg.texture")
-	elseif preset_1_2 and HMH:GetOption("interact_texture") == 3 then
 		DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_active"), HMH._path .. "assets/guis/textures/pd2_mod_hmh/pink_progress_active.texture")
 		DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_invalid"), HMH._path .. "assets/guis/textures/pd2_mod_hmh/pink_progress_invalid.texture")
 		DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_bg"), HMH._path .. "assets/guis/textures/pd2_mod_hmh/pink_progress_bg.texture")
+	elseif preset_1_2 and HMH:GetOption("interact_texture") == 3 then
+		DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_active"), HMH._path .. "assets/guis/textures/pd2_mod_hmh/hud_health.texture")
+		DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_invalid"), HMH._path .. "assets/guis/textures/pd2_mod_hmh/faded_invalid.texture")
+		DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_bg"), HMH._path .. "assets/guis/textures/pd2_mod_hmh/faded_bg.texture")
 	elseif preset_1_2 and HMH:GetOption("interact_texture") == 4 then
+		DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_active"), HMH._path .. "assets/guis/textures/pd2_mod_hmh/triangle.texture")
+		DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_invalid"), HMH._path .. "assets/guis/textures/pd2_mod_hmh/triangle_invalid.texture")
+		DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_bg"), HMH._path .. "assets/guis/textures/pd2_mod_hmh/triangle_bg.texture")
+	elseif preset_1_2 and HMH:GetOption("interact_texture") == 5 then
 		DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_active"), HMH._path .. "assets/guis/textures/pd2_mod_hmh/hm2_progress_active.texture")
 		DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_invalid"), HMH._path .. "assets/guis/textures/pd2_mod_hmh/hm2_progress_invalid.texture")
 		DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_bg"), HMH._path .. "assets/guis/textures/pd2_mod_hmh/hm2_progress_bg.texture")
-	elseif preset_1_2 and HMH:GetOption("interact_texture") == 5 then
+	elseif preset_1_2 and HMH:GetOption("interact_texture") == 6 then
 		DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_active"), HMH._path .. "assets/guis/textures/pd2_mod_hmh/heart_progress_active.texture")
 		DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_invalid"), HMH._path .. "assets/guis/textures/pd2_mod_hmh/heart_progress_invalid.texture")
 		DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_bg"), HMH._path .. "assets/guis/textures/pd2_mod_hmh/heart_progress_bg.texture")
+	elseif preset_1_2 and HMH:GetOption("interact_texture") == 7 then
+		DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_active"), HMH._path .. "assets/guis/textures/pd2_mod_hmh/hud_progress_active.texture")
+		DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_invalid"), HMH._path .. "assets/guis/textures/pd2_mod_hmh/hud_progress_invalid.texture")
+		DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_bg"), HMH._path .. "assets/guis/textures/pd2_mod_hmh/hud_progress_bg.texture")	
 	else
 		DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_active"), HMH._path .. "guis/textures/pd2/hud_progress_active.texture")
 		DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_invalid"), HMH._path .. "guis/textures/pd2/hud_progress_invalid.texture")
