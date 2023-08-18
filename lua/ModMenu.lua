@@ -1,12 +1,4 @@
-local function DirectoryExists(path)
-    if SystemFS and SystemFS.exists then
-        return SystemFS:exists(path)
-    elseif file and file.DirectoryExists then
-        log("")	-- For some weird reason the function below always returns true if we don't log anything previously...
-        return file.DirectoryExists(path)
-    end
-end
-
+local Menu_File = file
 local function CreateDirectory(path)
     local current = ""
     path = Application:nice_path(path, true):gsub("\\", "/")
@@ -14,7 +6,7 @@ local function CreateDirectory(path)
     for folder in string.gmatch(path, "([^/]*)/") do
         current = Application:nice_path(current .. folder, true)
 
-        if not DirectoryExists(current) then
+		if not Menu_File.DirectoryExists(current) then
             if SystemFS and SystemFS.make_dir then
                 SystemFS:make_dir(current)
             elseif file and file.CreateDirectory then
@@ -45,6 +37,7 @@ Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInit_HMH", func
 	if HMH:GetOption("suspicion") then
 	    localized_strings["hud_suspicion_detected"] = ""
 	end
+	localized_strings["hud_instruct_mask_on"] = ""
 
     loc:add_localized_strings(localized_strings)
 end)
@@ -76,7 +69,7 @@ end)
 
 Hooks:Add( "MenuManagerInitialize", "MenuManagerInitialize_HMH", function( menu_manager )
     do	-- Romove Disabled Updates, so they don't show up in the download manager.
-        if not DirectoryExists("./assets/mod_overrides/") then
+        if not Menu_File.DirectoryExists("./assets/mod_overrides/") then
             CreateDirectory("./assets/mod_overrides/")
         end
 

@@ -1,5 +1,4 @@
 {
-	"hud_instruct_mask_on" : "",
 	"hmh_damage_resistance" : "$NUM",
 	"hud_int_hold_grab_the_bag" : "按住 $INTERACT 捡起 $BAG",
 	"hmh_hud_assault_assault" : "突击进行中",
@@ -365,7 +364,7 @@
 	"hmh_interact_panel_text" : "Interaction Panel",
 	"hmh_carry_panel_text" : "Carry Panel",
 	"refresh_title" : "Refresh Textures",
-	"refresh_desc" : "This will apply any texture changes that have been made.\nFor example font or health texture changes.",
+	"refresh_desc" : "This will apply any texture changes that have been made.\nFor example font or health texture changes.\n\nNote: Will be disabled when in a heist if the hud is scaled down.",
 	"hmh_hud_options_title" : "Hud Options",
 	"hmh_hud_options_desc" : "Customize the hud.",
 	"hmh_ecm_timer_title" : "ECM Timer",

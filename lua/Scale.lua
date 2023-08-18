@@ -1,33 +1,10 @@
 if not _G.IS_VR and HMH:GetOption("hud_scale") ~= 1 then
     Hooks:PreHook(HUDManager, "_setup_player_info_hud_pd2", "HMH_Scale_setup_player_info_hud_pd2", function(self, ...)
-        managers.gui_data:layout_scaled_fullscreen_workspace(managers.hud._saferect)
-    end)
-
-	Hooks:OverrideFunction(HUDManager, "recreate_player_info_hud_pd2", function(self)
-        if not self:alive(PlayerBase.PLAYER_INFO_HUD_PD2) then return end
-    	local hud = managers.hud:script(PlayerBase.PLAYER_INFO_HUD_PD2)
-		self:_create_teammates_panel(hud)
-        self:_create_present_panel(hud)
-        self:_create_interaction(hud)
-        self:_create_progress_timer(hud)
-        self:_create_objectives(hud)
-   	    self:_create_hint(hud)
-        self:_create_heist_timer(hud)
-        self:_create_temp_hud(hud)
-        self:_create_suspicion(hud)
-        self:_create_hit_confirm(hud)
-        self:_create_hit_direction(hud)
-        self:_create_downed_hud()
-        self:_create_custody_hud()
-		self:_create_hud_chat()
-		self:_create_assault_corner()
-        self:_create_waiting_legend(hud)
-		self:_create_accessibility(hud)
+        managers.gui_data:layout_scaled_fullscreen_workspace(managers.hud._saferect, HMH:GetOption("hud_scale"))
     end)
 
     core:module("CoreGuiDataManager")
-	Hooks:OverrideFunction(GuiDataManager, "layout_scaled_fullscreen_workspace", function(self, ws)
-	    local scale = _G.HMH:GetOption("hud_scale")
+	Hooks:OverrideFunction(GuiDataManager, "layout_scaled_fullscreen_workspace", function(self, ws, scale)
         local base_res = {x = 1280, y = 720}
         local res = RenderSettings.resolution
         local sc = (2 - scale)

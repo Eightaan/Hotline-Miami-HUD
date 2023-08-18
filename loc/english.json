@@ -28,7 +28,7 @@
 	"hotline_vibe" : "Hotline Miami",
 	"vanilla_classic" : "Classic Vanilla",
 	"refresh_title" : "Refresh Textures",
-	"refresh_desc" : "This will apply any texture changes that have been made.\nFor example font or health texture changes.",
+	"refresh_desc" : "This will apply any texture changes that have been made.\nFor example font or health texture changes.\n\nNote: Will be disabled when in a heist if the hud is scaled down.",
 	
 	"hmh_skip_menu_options_title" : "Auto Menu Skip And Card Select",
 	"hmh_skip_menu_options_desc" : "",
@@ -89,7 +89,6 @@
 	
 	"hmh_hud_options_title" : "Hud Options",
 	"hmh_hud_options_desc" : "Customize the hud.",
-	"hud_instruct_mask_on" : "",
 	
 	"hud_scale_title" : "Hud Scale",
     "hud_scale_desc" : "Change the hud size.",
