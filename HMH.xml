@@ -30,6 +30,7 @@
                 <post :hook_id="hudmanager"          :script_path="Waypoints.lua"/>
 				<post :hook_id="statisticsmanager"   :script_path="KillCounter.lua"/>
 				<post :hook_id="menumanagerdialogs"  :script_path="MenuTweak.lua"/>
+				<post :hook_id="missionassetsmanager"  :script_path="MenuTweak.lua"/>
 				<post :hook_id="systemmenumanager"   :script_path="InputDialog.lua"/>
 				<post :hook_id="preplanningmanager"  :script_path="PrePlanManager.lua"/>
 				<post :hook_id="multiprofilemanager" :script_path="ProfileMenu.lua"/>

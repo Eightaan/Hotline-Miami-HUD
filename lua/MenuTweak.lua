@@ -168,16 +168,6 @@ elseif string.lower(RequiredScript) == "lib/managers/menu/renderers/menunodeskil
 	end)
 
 elseif string.lower(RequiredScript) == "lib/managers/menumanagerdialogs" then	
-	if HMH:GetOption("no_confirm") then
-		local function expect_yes(self, params) params.yes_func() end
-		MenuManager.show_confirm_buy_premium_contract = expect_yes
-		MenuManager.show_confirm_blackmarket_buy_mask_slot = expect_yes
-		MenuManager.show_confirm_blackmarket_buy_weapon_slot = expect_yes
-		MenuManager.show_confirm_mission_asset_buy = expect_yes
-		MenuManager.show_confirm_pay_casino_fee = expect_yes
-		MenuManager.show_confirm_mission_asset_buy_all = expect_yes
-	end
-
 	local show_person_joining_original = MenuManager.show_person_joining
 	function MenuManager:show_person_joining( id, nick, ... )
 		local peer = managers.network:session():peer(id)
@@ -186,6 +176,20 @@ elseif string.lower(RequiredScript) == "lib/managers/menumanagerdialogs" then
 			nick = "(" .. level_string .. ") " .. nick
 		end
 		return show_person_joining_original(self, id, nick, ...)
+	end
+
+elseif string.lower(RequiredScript) == "lib/managers/missionassetsmanager" then	
+	if HMH:GetOption("no_confirm") then
+		local function expect_yes(self, params) params.yes_func() end
+		MenuManager.show_confirm_mission_asset_buy_all = expect_yes
+		MenuManager.show_confirm_buy_premium_contract = expect_yes
+		MenuManager.show_confirm_blackmarket_buy_mask_slot = expect_yes
+		MenuManager.show_confirm_blackmarket_buy_weapon_slot = expect_yes
+		MenuManager.show_confirm_mission_asset_buy = expect_yes
+		MenuManager.show_confirm_pay_casino_fee = expect_yes
+		MenuManager.show_confirm_mission_asset_buy_all = expect_yes
+		MenuManager.show_confirm_blackmarket_sell = expect_yes
+		MenuManager.show_confirm_blackmarket_mod = expect_yes
 	end
 
 elseif string.lower(RequiredScript) == "lib/managers/menu/menuscenemanager" then
