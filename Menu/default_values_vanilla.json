@@ -420,11 +420,11 @@
 		"g" : 255,
 		"b" : 255
 	},
-	"armorer_cooldown_timer_color" :
+	"armorer_cooldown_timer_color2" :
 	{
-		"r" : 255,
-		"g" : 102,
-		"b" : 102
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
 	},
 	"armorer_duration_timer_color" :
 	{

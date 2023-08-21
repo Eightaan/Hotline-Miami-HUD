@@ -431,7 +431,8 @@
 	"HotlineMiamiHudTotalAmmoTitleID" : "Total Ammo",
 	"HotlineMiamiHudClipAmmoTitleID" : "Current Ammo",
 	"HotlineMiamiHudAbilityIconTitleID" : "Ability Icon",
-	"HotlineMiamiHudArmorerTimerTitleID" : "Invulnerability Cooldown Timer",
+	"HotlineMiamiHudArmorerTimerTitleID" : "Armorer/Anarchist Cooldown Timer",
+	"HotlineMiamiHudCopycatTimerTitleID" : "Copycat Grace Period Cooldown Timer",
 	
 	"HotlineMiamiHudPlayer1TitleID" : "Player 1",
 	"HotlineMiamiHudPlayer2TitleID" : "Player 2",

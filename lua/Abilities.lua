@@ -126,7 +126,7 @@ elseif RequiredScript == "lib/managers/playermanager" then
 			if upgrade_value == 0 then return end
 			local teammate_panel = managers.hud:get_teammate_panel_by_peer()
 			if teammate_panel then
-			    if HMH:GetOption("armorer_cooldown_timer") and teammate_panel.update_cooldown_timer then
+			    if HMH:GetOption("armorer_cooldown_radial") and HMH:GetOption("armorer_cooldown_timer") and teammate_panel.update_cooldown_timer then
 				    teammate_panel:update_cooldown_timer(upgrade_value[2])
 				end
 				if HMH:GetOption("armorer_cooldown_radial") and teammate_panel.animate_invulnerability then
@@ -139,7 +139,7 @@ elseif RequiredScript == "lib/managers/playermanager" then
 			if upgrade_value == 0 then return end
 			local teammate_panel = managers.hud:get_teammate_panel_by_peer()
 			if teammate_panel then
-			    if HMH:GetOption("armorer_cooldown_timer") and teammate_panel.health_cooldown_timer then
+			    if HMH:GetOption("armorer_cooldown_radial") and HMH:GetOption("armorer_cooldown_timer") and teammate_panel.health_cooldown_timer then
 				    teammate_panel:health_cooldown_timer(2)
 				end
 				if HMH:GetOption("armorer_cooldown_radial") and teammate_panel.animate_health_invulnerability then
@@ -188,19 +188,21 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 	        end
 		end
 		
-		if self._main_player and HMH:GetOption("armorer_cooldown_timer") and self._cooldown_timer then
+		if self._main_player and self._cooldown_timer then
 		    if duration > 0 then
-				self._cooldown_timer:set_alpha(0)
-				self._cooldown_icon:set_alpha(0)
-				self._health_cooldown_icon:set_alpha(0)
+				self._cooldown_timer:set_visible(false)
+				self._cooldown_health_timer:set_visible(false)
+				self._cooldown_icon:set_visible(false)
+				self._health_cooldown_icon:set_visible(false)
 				if self._radial_health_panel:child("radial_armor") then
 					self._radial_health_panel:child("radial_armor"):set_alpha(0)
 					self._radial_health_panel:child("animate_health_circle"):set_alpha(0)
 				end
 			else
-				self._cooldown_timer:set_alpha(1)
-				self._cooldown_icon:set_alpha(0.4)
-				self._health_cooldown_icon:set_alpha(0.4)
+				self._cooldown_timer:set_visible(self._armor_invulnerability_timer)
+				self._cooldown_health_timer:set_visible(self._health_timer)
+				self._cooldown_icon:set_visible(self._armor_invulnerability_timer and not self._health_timer)
+				self._health_cooldown_icon:set_visible(self._health_timer)
 				if self._radial_health_panel:child("radial_armor") then
 					self._radial_health_panel:child("radial_armor"):set_alpha(1)
 					self._radial_health_panel:child("animate_health_circle"):set_alpha(1)
@@ -219,9 +221,23 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 				visible = false,
 				align = "center",
 				vertical = "center",
-				y = HMH:GetOption("ability_icon") and 10 or 0,
+				y = 10,
 				font = tweak_data.hud.medium_font_noshadow,
 				font_size = 16,
+				alpha = 1,
+				layer = 4
+			})
+			self._cooldown_health_timer = self._health_panel:text({
+				name = "cooldown_health_timer",
+				text = "",
+				color = Color.white,
+				visible = false,
+				align = "center",
+				vertical = "center",
+				y = -7,
+				font = tweak_data.hud.medium_font_noshadow,
+				font_size = 16,
+				alpha = 1,
 				layer = 4
 			})
 			self._cooldown_icon = self._health_panel:bitmap({
@@ -303,12 +319,9 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
     end)
 
 	function HUDTeammate:update_cooldown_timer(t)
-		local icon = self._cooldown_icon 
 		local timer = self._cooldown_timer
     	if t and t > 1 and timer then
         	timer:stop()
-			icon:set_visible(HMH:GetOption("ability_icon"))
-			icon:set_alpha(0.4)
 			if self._stamina_circle then
 				self._stamina_circle:set_alpha(0)
 			end
@@ -316,18 +329,19 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
             	o:set_visible(true)
             	local t_left = t
 				local health_icon = self._health_cooldown_icon 
+				local armor_icon = self._cooldown_icon 
             	while t_left >= 0.1 do
-					health_icon:set_alpha(0)
-					self._armor_invulnerability_timer = true  
+					self._armor_invulnerability_timer = true
                 	t_left = t_left - coroutine.yield()
 					t_format = t_left < 10 and "%.1f" or "%.f"
                 	o:set_text(string.format(t_format, t_left))
-					o:set_color(HMH:GetColor("armorer_cooldown_timer_color") or Color.red)
+					o:set_color(HMH:GetColor("armorer_cooldown_timer_color2") or Color.red)
             	end
 				self._armor_invulnerability_timer = false
             	o:set_visible(false)
-				icon:set_visible(false)
-				self._stamina_circle:set_alpha(1)
+				armor_icon:set_visible(false)
+				health_icon:set_visible(self._health_timer)
+				self._stamina_circle:set_alpha(not self._health_timer and 1 or 0)
         	end)
     	end
 	end
@@ -335,55 +349,49 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 	function HUDTeammate:animate_invulnerability(duration)
 	    if not self._radial_health_panel:child("radial_armor") then return end
   		self._radial_health_panel:child("radial_armor"):animate(function (o)
-		    local icon = self._cooldown_icon 
-			local timer = self._cooldown_timer
-			local health_icon = self._health_cooldown_icon 
+		    local armor_icon = self._cooldown_icon 
     		o:set_color(Color(1, 1, 1, 1))
-			health_icon:set_alpha(0)
-			timer:set_alpha(0) 
 			self._stamina_circle:set_alpha(0)
-			self._armor_invulnerability_timer = true  
-			icon:set_visible(HMH:GetOption("ability_icon"))
-			icon:set_alpha(1)
+			self._armor_invulnerability_timer = true
+			armor_icon:set_visible(self._armor_invulnerability_timer and not self._health_timer)
+			armor_icon:set_alpha(not HMH:GetOption("armorer_cooldown_timer") and 1 or 0.4)
     		o:set_visible(true)
     		over(duration, function (p)
       			o:set_color(Color(1, 1 - p, 1, 1))
     		end)
-    		o:set_visible(false)
-		    timer:set_alpha(1)
 			if not HMH:GetOption("armorer_cooldown_timer") then 
 			    self._stamina_circle:set_alpha(1) 
-				icon:set_visible(false)
 				self._armor_invulnerability_timer = false
+				armor_icon:set_visible(self._armor_invulnerability_timer)
 			end
-			icon:set_alpha(0.4)
+    		o:set_visible(false)
   		end)
 	end
 	
 	function HUDTeammate:health_cooldown_timer(t)
-		local icon = self._health_cooldown_icon 
-		local timer = self._cooldown_timer
-    	if t and t > 1 and timer and not self._armor_invulnerability_timer then
+		local timer = self._cooldown_health_timer
+    	if t and t > 1 and timer then
 			timer:stop()
-			icon:set_visible(HMH:GetOption("ability_icon"))
-			icon:set_alpha(0.4)
 			if self._stamina_circle then
 				self._stamina_circle:set_alpha(0)
 			end
         	timer:animate(function(o)
             	o:set_visible(true)
             	local t_left = t + 13
+				local health_icon = self._health_cooldown_icon
+				local armor_icon = self._cooldown_icon				
             	while t_left >= 0.1 do
-					self._health_timer = true  
+					self._health_timer = true
                 	t_left = t_left - coroutine.yield()
 					t_format = t_left < 10 and "%.1f" or "%.f"
                 	o:set_text(string.format(t_format, t_left))
-					o:set_color(HMH:GetColor("armorer_cooldown_timer_color") or Color.red)
+					o:set_color(HMH:GetColor("armorer_duration_timer_color") or Color.green)
             	end
 				self._health_timer = false
+				armor_icon:set_visible(self._armor_invulnerability_timer)
             	o:set_visible(false)
-				icon:set_visible(false)
-				self._stamina_circle:set_alpha(1)
+				health_icon:set_visible(self._health_timer)
+				self._stamina_circle:set_alpha(not self._armor_invulnerability_timer and 1 or 0)
         	end)
     	end
 	end
@@ -391,32 +399,29 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 	function HUDTeammate:animate_health_invulnerability(duration)
 	    if not self._radial_health_panel:child("animate_health_circle") then return end
   		self._radial_health_panel:child("animate_health_circle"):animate(function (o)
-		    local icon = self._health_cooldown_icon 
-			local timer = self._cooldown_timer
+		    local health_icon = self._health_cooldown_icon
 			local armor_icon = self._cooldown_icon
-			armor_icon:set_alpha(HMH:GetOption("armorer_cooldown_timer") and 0.4 or 1)
     		o:set_color(Color(1, 1, 1, 1))
 			self._radial_health_panel:child("animate_health_circle"):set_alpha(1)
 			self._stamina_circle:set_alpha(0)
-			timer:set_alpha(self._armor_invulnerability_timer and 1 or 0)
 	  	    self._health_timer = true
-			icon:set_visible(HMH:GetOption("ability_icon") and not self._armor_invulnerability_timer)
-			icon:set_alpha(1)
+			armor_icon:set_visible(not self._health_timer)
+			health_icon:set_visible(self._health_timer)
+			health_icon:set_alpha(not HMH:GetOption("armorer_cooldown_timer") and 1 or 0.4)
     		o:set_visible(true)
     		over(duration, function (p)
       			o:set_color(Color(1, 1 - p, 1, 1))
     		end)
     		o:set_visible(false)
-			armor_icon:set_alpha(HMH:GetOption("armorer_cooldown_timer") and 0.4 or 1)
-		    timer:set_alpha(1)
 			if not HMH:GetOption("armorer_cooldown_timer") then
-				if not self._armor_invulnerability_timer then
+				if not (self._armor_invulnerability_timer or self._injector_active or self._active_ability) then
 					self._stamina_circle:set_alpha(1)
 				end
 			    self._health_timer = false
-				icon:set_visible(false)
+				health_icon:set_visible(self._health_timer)
+				armor_icon:set_visible(self._armor_invulnerability_timer)
 			end
-			icon:set_alpha(0.4)
+			o:set_visible(false)
   		end)
 	end
 
@@ -443,12 +448,14 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 	    local custody = icon_data ~= "mugshot_normal"
     	self:set_stamina_visibility(not custody and HMH:GetOption("stamina"))
 		local timer = self._cooldown_timer
+		local health_timer = self._cooldown_health_timer
 		local icon = self._cooldown_icon
 		local health_icon = self._health_cooldown_icon
 		if self._main_player and timer then
 			timer:set_alpha(custody and 0 or 1)
-			icon:set_alpha(custody and 0 or 0.4)
-			health_icon:set_alpha(custody and 0 or 0.4)
+			health_timer:set_alpha(custody and 0 or 1)
+			icon:set_visible(not custody and self._armor_invulnerability_timer and not self._health_timer)
+			health_icon:set_visible(not custody and self._health_timer)
 		end
     end)
 	
@@ -462,9 +469,14 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 			if self._radial_health_panel:child("animate_health_circle") then
 				self._radial_health_panel:child("animate_health_circle"):set_alpha(progress > 0 and 0 or 1)
 			end
-			self._health_cooldown_icon:set_alpha(progress > 0 and 0 or 0.4)
-			if HMH:GetOption("ability_icon") then
-				self._cooldown_timer:set_alpha(progress > 0 and 0 or 1)
+			if progress > 0 then
+				self._injector_active = true
+				self._health_cooldown_icon:set_visible(false)
+				self._cooldown_health_timer:set_visible(false)
+			else
+				self._injector_active = false
+				self._cooldown_health_timer:set_visible(HMH:GetOption("armorer_cooldown_timer") and self._health_timer)
+				self._health_cooldown_icon:set_visible(self._health_timer)
 			end
     	end
     end)
@@ -477,18 +489,18 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 						self._stamina_circle:set_alpha(0)
 					end
 					self._radial_health_panel:child("animate_health_circle"):set_alpha(0)
-					self._health_cooldown_icon:set_alpha(0)
-					if HMH:GetOption("ability_icon") then
-						self._cooldown_timer:set_alpha(0)
-					end
+					self._health_cooldown_icon:set_visible(false)
+					self._cooldown_health_timer:set_visible(false)
+					self._active_ability = true
 	    		end
         	end)
 			if not self._health_timer then
 				self._stamina_circle:set_alpha(1) 
 			end
 			self._radial_health_panel:child("animate_health_circle"):set_alpha(1)
-			self._cooldown_timer:set_alpha(1)
-			self._health_cooldown_icon:set_alpha(0.4)
+			self._cooldown_health_timer:set_visible(HMH:GetOption("armorer_cooldown_timer") and self._health_timer)
+			self._health_cooldown_icon:set_visible(self._health_timer)
+			self._active_ability = false
      	end)
     end)
 end

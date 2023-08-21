@@ -1,10 +1,11 @@
 if not _G.IS_VR and HMH:GetOption("hud_scale") ~= 1 then
     Hooks:PreHook(HUDManager, "_setup_player_info_hud_pd2", "HMH_Scale_setup_player_info_hud_pd2", function(self, ...)
-        managers.gui_data:layout_scaled_fullscreen_workspace(managers.hud._saferect, HMH:GetOption("hud_scale"))
+        managers.gui_data:layout_scaled_fullscreen_workspace(managers.hud._saferect)
     end)
 
     core:module("CoreGuiDataManager")
-	Hooks:OverrideFunction(GuiDataManager, "layout_scaled_fullscreen_workspace", function(self, ws, scale)
+	Hooks:OverrideFunction(GuiDataManager, "layout_scaled_fullscreen_workspace", function(self, ws)
+		local scale = _G.HMH:GetOption("hud_scale")
         local base_res = {x = 1280, y = 720}
         local res = RenderSettings.resolution
         local sc = (2 - scale)
