@@ -283,6 +283,7 @@
 	"default_interact" : "Default Circle",
 	"50bl_interact" : "50 Blessings",
 	"pink_interact" : "Pink Circle",
+	"hidden_interact" : "Hidden",
 	"hm2_interact" : "Wrong Number",
 	"heart_interact" : "Pixel Heart",
 	"faded_interact" : "Faded",
