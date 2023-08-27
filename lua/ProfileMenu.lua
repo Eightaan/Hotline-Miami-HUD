@@ -1,6 +1,6 @@
 local PROFILE_MENU_ID = "mod_profile_switch_node_menu"
 
-if RequiredScript == "lib/managers/menumanager" then	
+if RequiredScript == "lib/managers/menumanager" then
 	local function create_profile_menu_node(nodes, menu_id)
 		local arugements = {
 			gui_class = "MenuNodeProfileSwitchGui",
@@ -108,7 +108,7 @@ elseif RequiredScript == "lib/managers/menu/renderers/menunodeskillswitchgui" th
 		MenuNodeProfileSwitchGui.super._setup_item_panel(self, ...)
 
 		if alive(self.title_text) then
-			self.title_text:set_text("Switch Profiles")
+			self.title_text:set_text(managers.localization:to_upper_text("hmh_switch_profile"))
 		end
 
 		local ws_panel = self.item_panel:parent()
@@ -227,8 +227,8 @@ elseif RequiredScript == "lib/managers/menu/renderers/menunodeskillswitchgui" th
 
 	function MenuNodeProfileSwitchGui:change_outfit_preview(profile_id)
 		local mpm = managers.multi_profile
-		if self.profile_preview and mpm and mpm:is_valid_id(profile_id) and (self._previewing_outfit or 0) ~= profile_id then
-			local outfit = mpm:get_profile_outfit(profile_id)
+		if self.profile_preview and mpm:is_valid_id(profile_id) and (self._previewing_outfit or 0) ~= profile_id then
+			local outfit = mpm and mpm:get_profile_outfit(profile_id)
 			self.profile_preview:set_outfit(outfit)
 			self._previewing_outfit = profile_id
 		end

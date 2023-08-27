@@ -70,6 +70,7 @@
 	"inventory_amount_desc" : "Displays the amount of deployables/grenades in the inventory.",
 	"profile_menu_title" : "Improved Profile Menu",
 	"profile_menu_desc" : "Replaces the default Profile-Selector.",
+	"hmh_switch_profile" : "Switch Profiles",
 	"custom_menu_background_title" : "Menu Background",
 	"custom_menu_background_desc" : "Choose what background to use.\nWhen changed, a texture refresh is required to take effect.",
 	"default_background" : "Default",
