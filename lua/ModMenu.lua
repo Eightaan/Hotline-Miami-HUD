@@ -16,7 +16,7 @@ local function CreateDirectory(path)
     end
 end
 
-Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInit_HMH", function( loc )
+Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInit_HMH", function(loc)
 	local localization = HMH._path .. "loc/"
 	local GetFiles = _G.file.GetFiles
 	local Idstring = _G.Idstring

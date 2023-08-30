@@ -444,6 +444,7 @@
 	"circle_icon" : "Red Circle",
 	"50blessings" : "50 Blessings",
 	"faded_interact" : "Faded",
-	"hidden_interact" : "Hidden"
-	"triangle_interact" : "Neon Triangle"
+	"hidden_interact" : "Hidden",
+	"triangle_interact" : "Neon Triangle",
+	"hmh_switch_profile" : "Switch Profiles"
 }
