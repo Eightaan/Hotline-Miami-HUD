@@ -228,6 +228,8 @@
     "sub_text_title" : "Subtitles Transparency",
 	"sub_text_desc" : "Choose a value for how translucent the subtitles text will be.",
 	"hmh_hud_stats_enemies_dominated" : "ENEMIES CUFFED",
+	"hud_stats_bags_unsecured" : "UNSECURED LOOT",
+	"hud_stats_unopened_crates" : "UNOPENED CRATES",
 
 	"hmh_waypoints_and_detection_title" : "Waypoints And Detection",
 	"hmh_waypoints_and_detection_desc" : "Options related to waypoints and the stealth detection panel.",

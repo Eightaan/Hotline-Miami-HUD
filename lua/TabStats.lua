@@ -6,6 +6,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 	local medium_font = tweak_data.menu.pd2_medium_font
 	local tiny_font = tweak_data.menu.pd2_tiny_font
 	local medium_font_size = tweak_data.menu.pd2_medium_font_size
+	local small_font_size = tweak_data.menu.pd2_small_font_size
 	local tiny_font_size = tweak_data.menu.pd2_tiny_font_size
 	
 	function HUDStatsScreen:_trade_delay_time(time)
@@ -130,22 +131,15 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 
 				if mission then
 					local level_str = managers.localization:to_upper_text(tweak_data.levels[mission.level.level_id].name_id) or ""
+					local spree_space = string.rep(" ", 2)
 
 					placer:add_bottom(self._left:fine_text({
 						font = tweak_data.hud_stats.objectives_font,
 						font_size = tweak_data.hud_stats.objectives_title_size,
 						color = HMH:GetOption("custom_tab_color") and Color("66ff99") or Color.white,
-						text = level_str
+						text = level_str..spree_space
 					}))
 				end
-    	        placer:new_row(8)
-
-				placer:add_bottom(self._left:fine_text({
-					font = medium_font,
-					font_size = tweak_data.hud_stats.loot_size,
-					text = managers.localization:to_upper_text("menu_lobby_difficulty_title"),
-					color = HMH:GetOption("custom_tab_color") and Color("66ffff") or Color.white,
-				}), 16)
 
 				local str = managers.localization:text("menu_cs_level", {
 					level = managers.experience:cash_string(managers.crime_spree:server_spree_level(), "")
@@ -157,81 +151,6 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 					text = str,
 					color = HMH:GetOption("custom_tab_color") and Color("ffcc66") or Color(255, 255, 255, 0) / 255
 				}))
-
-				placer:new_row(8, 0)
-
-				local civ_kills = managers.statistics:session_total_civilian_kills() ~= 0 and managers.localization:to_upper_text("victory_civilians_killed_penalty") .. " " .. managers.statistics:session_total_civilian_kills() .. managers.localization:get_default_macro("BTN_SKULL") or ""
-				placer:add_bottom(self._left:fine_text({
-					keep_w = true,
-					font = tweak_data.hud_stats.objectives_font,
-					font_size = tweak_data.hud_stats.loot_size,
-					color = HMH:GetOption("custom_tab_color") and Color("ff6666") or Color.white,
-					text = civ_kills
-				}), 6)
-
-		    	local trade_delay = (5 + (HMH.CivKill * 30))
-                local total_time = trade_delay and trade_delay > 30					
-				local delay = total_time and managers.localization:to_upper_text("hud_trade_delay", {TIME = tostring(self:_trade_delay_time(trade_delay))}) or ""
-				placer:add_bottom(self._left:fine_text({
-					keep_w = true,
-					font = tweak_data.hud_stats.objectives_font,
-					font_size = tweak_data.hud_stats.loot_size,
-					color = HMH:GetOption("custom_tab_color") and Color("ff6666") or Color.white,
-					text = is_whisper_mode and "" or delay
-				}), 0)
-
-				local total_kills = HMH.TotalKills
-				local kill_count = total_kills and managers.localization:to_upper_text("menu_aru_job_3_obj") ..": ".. total_kills .. managers.localization:get_default_macro("BTN_SKULL") or ""
-				placer:add_bottom(self._left:fine_text({
-					keep_w = true,
-					font = tweak_data.hud_stats.objectives_font,
-					font_size = tweak_data.hud_stats.loot_size,
-					color = HMH:GetOption("custom_tab_color") and Color("ffcc66") or Color.white,
-					text = kill_count
-				}), 16)
-
-				local total_accuracy = managers.statistics:session_hit_accuracy()
-				local accuracy = total_accuracy and managers.localization:to_upper_text("menu_stats_hit_accuracy") .." ".. total_accuracy.."%" or ""
-				placer:add_bottom(self._left:fine_text({
-					keep_w = true,
-					font = tweak_data.hud_stats.objectives_font,
-					font_size = tweak_data.hud_stats.loot_size,
-					color = HMH:GetOption("custom_tab_color") and Color("ffcc66") or Color.white,
-					text = accuracy 
-				}), 0)
-
-				local max_units = managers.gage_assignment:count_all_units()
-                local remaining = managers.gage_assignment:count_active_units()
-				local package_text = managers.job:current_level_id() ~= "chill_combat" and managers.job:current_level_id() ~= "chill" and managers.job:current_level_id() ~= "haunted" and managers.job:current_level_id() ~= "hvh" and managers.localization:to_upper_text("menu_asset_gage_assignment") .. ":" .. " " .. tostring(max_units - remaining) .."/".. tostring(max_units) or ""
-				if remaining < max_units then
-				    placer:add_bottom(self._left:fine_text({
-				     	keep_w = true,
-				    	font = tweak_data.hud_stats.objectives_font,
-				    	font_size = tweak_data.hud_stats.loot_size,
-				    	color = HMH:GetOption("custom_tab_color") and Color("66ff99") or Color.white,
-				    	text = package_text
-				    }), 16)
-				end
-
-		        local dominated = 0
-				local enemy_count = 0
-		        for _, unit in pairs(managers.enemy:all_enemies()) do
-				    enemy_count = enemy_count + 1
-			        if (unit and unit.unit and alive(unit.unit)) and (unit.unit:anim_data() and unit.unit:anim_data().hands_up or unit.unit:anim_data() and unit.unit:anim_data().surrender or unit.unit:base() and unit.unit:base().mic_is_being_moved)then
-				        dominated = dominated + 1
-			        end
-		        end
-
-				local enemies = enemy_count - dominated
-				if HMH:GetOption("enemy_count") and enemies > 0 then
-				    placer:add_bottom(self._left:fine_text({
-					    keep_w = true,
-					    font = tweak_data.hud_stats.objectives_font,
-					    font_size = tweak_data.hud_stats.loot_size,
-					    color = HMH:GetOption("custom_tab_color") and Color("ff6666") or Color(255, 255, 51, 51) / 255,
-					    text = managers.localization:to_upper_text("menu_mutators_category_enemies") .. ": " .. enemies
-				    }), 16)
-                end
 			else
 				local job_chain = managers.job:current_job_chain_data()
 				local day = managers.job:current_stage()
@@ -239,48 +158,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 				local level_data = managers.job:current_level_data()
 				local space
 				local heist_title
-	            if level_data then
-	                heist_title = managers.localization:to_upper_text(level_data.name_id) .. ":"
-					space = string.rep(" ", 2)
-	            else
- 	               heist_title = ""
- 	               space = ""
- 	           end				
-
-				local day_title = placer:add_bottom(self._left:fine_text({
-					font = tweak_data.hud_stats.objectives_font,
-					font_size = 30,
-					color = HMH:GetOption("custom_tab_color") and Color("66ff99") or Color.white,
-					text = heist_title .. space .. managers.localization:to_upper_text("hud_days_title", {
-						DAY = day,
-						DAYS = days
-					})
-				}))
-
-				if managers.job:is_level_ghostable(managers.job:current_level_id()) then
-				    local ghost_color = HMH:GetOption("custom_tab_color") and Color("66ffff") or Color(255, 59, 174, 254) / 255
-					local loud_color = HMH:GetOption("custom_tab_color") and Color("ff6666") or Color(255, 255, 51, 51) / 255
-					local ghost_color = is_whisper_mode and ghost_color or loud_color
-					local ghost = placer:add_right(self._left:bitmap({
-						texture = "guis/textures/pd2/cn_minighost",
-						name = "ghost_icon",
-						h = 16,
-						blend_mode = "add",
-						w = 16,
-						color = ghost_color
-					}))
-					ghost:set_center_y(day_title:center_y())
-				end
-
-				placer:new_row(8)
-
-				placer:add_bottom(self._left:fine_text({
-					font = medium_font,
-					font_size = tweak_data.hud_stats.loot_size,
-					text = managers.localization:to_upper_text("menu_lobby_difficulty_title"),
-					color = HMH:GetOption("custom_tab_color") and Color("66ffff") or Color.white
-				}), 16)
-
+				
 				if job_data then
 					local job_stars = managers.job:current_job_stars()
 					local difficulty_stars = managers.job:current_difficulty_stars()
@@ -307,98 +185,153 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 					difficulty_text:set_size(tw, th)
 					placer:add_right(difficulty_text)
 				end
+				
+	            if level_data then
+	                heist_title = managers.localization:to_upper_text(level_data.name_id) .. ":"
+					space = string.rep(" ", 2)
+	            else
+ 	               heist_title = ""
+ 	               space = ""
+ 	           end				
 
-				placer:new_row(8, 0)
-
-				local payout = managers.localization:text("hud_day_payout", {
-					MONEY = managers.experience:cash_string(managers.money:get_potential_payout_from_current_stage())
-				})
-
-				placer:add_bottom(self._left:fine_text({
-					keep_w = true,
+				local day_title = placer:add_bottom(self._left:fine_text({
 					font = tweak_data.hud_stats.objectives_font,
+					font_size = medium_font_size,
 					color = HMH:GetOption("custom_tab_color") and Color("66ff99") or Color.white,
-					font_size = tweak_data.hud_stats.loot_size,
-					text = payout
-				}), 0)
+					text = heist_title .. space .. managers.localization:to_upper_text("hud_days_title", {
+						DAY = day,
+						DAYS = days
+					})
+				}))
 
-				local civ_kills = managers.statistics:session_total_civilian_kills() ~= 0 and managers.localization:to_upper_text("victory_civilians_killed_penalty") .. " " .. managers.statistics:session_total_civilian_kills() .. managers.localization:get_default_macro("BTN_SKULL") or ""
-				placer:add_bottom(self._left:fine_text({
-					keep_w = true,
-					font = tweak_data.hud_stats.objectives_font,
-					font_size = tweak_data.hud_stats.loot_size,
-					color = HMH:GetOption("custom_tab_color") and Color("ff6666") or Color.white,
-					text = civ_kills
-				}), 6)
-
-		    	local trade_delay = (5 + (HMH.CivKill * 30))
-                local total_time = trade_delay and trade_delay > 30			
-				local delay = total_time and managers.localization:to_upper_text("hud_trade_delay", {TIME = tostring(self:_trade_delay_time(trade_delay))}) or ""
-				placer:add_bottom(self._left:fine_text({
-					keep_w = true,
-					font = tweak_data.hud_stats.objectives_font,
-					font_size = tweak_data.hud_stats.loot_size,
-					color = HMH:GetOption("custom_tab_color") and Color("ff6666") or Color.white,
-					text = is_whisper_mode and "" or delay
-				}), 0)
-
-				local total_kills = HMH.TotalKills
-				local kill_count = total_kills and managers.localization:to_upper_text("menu_aru_job_3_obj") ..": ".. total_kills .. managers.localization:get_default_macro("BTN_SKULL") or ""
-				placer:add_bottom(self._left:fine_text({
-					keep_w = true,
-					font = tweak_data.hud_stats.objectives_font,
-					font_size = tweak_data.hud_stats.loot_size,
-					color = HMH:GetOption("custom_tab_color") and Color("ffcc66") or Color.white,
-					text = kill_count
-				}), 16)
-
-				local total_accuracy = managers.statistics:session_hit_accuracy()
-				local accuracy = total_accuracy and managers.localization:to_upper_text("menu_stats_hit_accuracy") .." ".. total_accuracy.."%" or ""
-				placer:add_bottom(self._left:fine_text({
-					keep_w = true,
-					font = tweak_data.hud_stats.objectives_font,
-					font_size = tweak_data.hud_stats.loot_size,
-					color = HMH:GetOption("custom_tab_color") and Color("ffcc66") or Color.white,
-					text = accuracy 
-				}), 0)
-
-				local max_units = managers.gage_assignment:count_all_units()
-                local remaining = managers.gage_assignment:count_active_units()
-				local package_text = managers.job:current_level_id() ~= "chill_combat" and managers.job:current_level_id() ~= "chill" and managers.job:current_level_id() ~= "haunted" and managers.job:current_level_id() ~= "hvh" and managers.localization:to_upper_text("menu_asset_gage_assignment") .. ":" .. " " .. tostring(max_units - remaining) .."/".. tostring(max_units) or ""
-				if remaining < max_units then
-				    placer:add_bottom(self._left:fine_text({
-				     	keep_w = true,
-				    	font = tweak_data.hud_stats.objectives_font,
-				    	font_size = tweak_data.hud_stats.loot_size,
-				    	color = HMH:GetOption("custom_tab_color") and Color("66ff99") or Color.white,
-				    	text = package_text
-				    }), 16)
+				if managers.job:is_level_ghostable(managers.job:current_level_id()) then
+				    local ghost_color = HMH:GetOption("custom_tab_color") and Color("66ffff") or Color(255, 59, 174, 254) / 255
+					local loud_color = HMH:GetOption("custom_tab_color") and Color("ff6666") or Color(255, 255, 51, 51) / 255
+					local ghost_color = is_whisper_mode and ghost_color or loud_color
+					local ghost = placer:add_right(self._left:bitmap({
+						texture = "guis/textures/pd2/cn_minighost",
+						name = "ghost_icon",
+						h = 16,
+						blend_mode = "add",
+						w = 16,
+						color = ghost_color
+					}))
+					ghost:set_center_y(day_title:center_y())
 				end
-
-		        local dominated = 0
-				local enemy_count = 0
-		        for _, unit in pairs(managers.enemy:all_enemies()) do
-				    enemy_count = enemy_count + 1
-			        if (unit and unit.unit and alive(unit.unit)) and (unit.unit:anim_data() and unit.unit:anim_data().hands_up or unit.unit:anim_data() and unit.unit:anim_data().surrender or unit.unit:base() and unit.unit:base().mic_is_being_moved)then
-				        dominated = dominated + 1
-			        end
-		        end
-
-				local enemies = enemy_count - dominated
-				if HMH:GetOption("enemy_count") and enemies > 0 then
-				    placer:add_bottom(self._left:fine_text({
-					    keep_w = true,
-					    font = tweak_data.hud_stats.objectives_font,
-					    font_size = tweak_data.hud_stats.loot_size,
-					    color = HMH:GetOption("custom_tab_color") and Color("ff6666") or Color(255, 255, 51, 51) / 255,
-					    text = managers.localization:to_upper_text("menu_mutators_category_enemies") .. ": " .. enemies
-				    }), 16)
-                end
 			end
-
 			placer:new_row()
 		end
+		
+		placer:add_bottom(self._left:fine_text({
+			vertical = "top",
+			align = "left",
+			font_size = medium_font_size,
+			font = tweak_data.hud_stats.objectives_font,
+			color = Color("66ff99"),
+			text = managers.localization:to_upper_text("hud_objective")
+		}), 16)
+		placer:new_row(8)
 
+		local row_w = self._left:w() - placer:current_left() * 2
+
+		for i, data in pairs(managers.objectives:get_active_objectives()) do
+			placer:add_bottom(self._left:fine_text({
+				word_wrap = true,
+				wrap = true,
+				align = "left",
+				text = utf8.to_upper(data.text),
+				font = tweak_data.hud.medium_font,
+				font_size = small_font_size,
+				color = Color("66ff99"),
+				w = row_w
+			}))
+			placer:add_bottom(self._left:fine_text({
+				word_wrap = true,
+				wrap = true,
+				font_size = 24,
+				align = "left",
+				text = data.description,
+				font = tweak_data.hud_stats.objective_desc_font,
+				font_size = tiny_font_size,
+				color = Color("66ffff"),
+				w = row_w
+			}), 0)
+		end
+		placer:new_row(8)
+		
+		local civ_kills = managers.statistics:session_total_civilian_kills() ~= 0 and managers.localization:to_upper_text("victory_civilians_killed_penalty") .. " " .. managers.statistics:session_total_civilian_kills() .. managers.localization:get_default_macro("BTN_SKULL") or ""
+		placer:add_bottom(self._left:fine_text({
+			keep_w = true,
+			font = tweak_data.hud_stats.objectives_font,
+			font_size = small_font_size,
+			color = HMH:GetOption("custom_tab_color") and Color("ff6666") or Color.white,
+			text = civ_kills
+		}), 30)
+
+		local trade_delay = (5 + (HMH.CivKill * 30))
+        local total_time = trade_delay and trade_delay > 30					
+		local delay = total_time and managers.localization:to_upper_text("hud_trade_delay", {TIME = tostring(self:_trade_delay_time(trade_delay))}) or ""
+		placer:add_bottom(self._left:fine_text({
+			keep_w = true,
+			font = tweak_data.hud_stats.objectives_font,
+			font_size = small_font_size,
+			color = HMH:GetOption("custom_tab_color") and Color("ff6666") or Color.white,
+			text = is_whisper_mode and "" or delay
+		}), 0)
+
+		local total_kills = HMH.TotalKills
+		local kill_count = total_kills and managers.localization:to_upper_text("menu_aru_job_3_obj") ..": ".. total_kills .. managers.localization:get_default_macro("BTN_SKULL") or ""
+		placer:add_bottom(self._left:fine_text({
+			keep_w = true,
+			font = tweak_data.hud_stats.objectives_font,
+			font_size = small_font_size,
+			color = HMH:GetOption("custom_tab_color") and Color("ffcc66") or Color.white,
+			text = kill_count	
+		}), 16)
+
+		local total_accuracy = managers.statistics:session_hit_accuracy()
+		local accuracy = total_accuracy and managers.localization:to_upper_text("menu_stats_hit_accuracy") .." ".. total_accuracy.."%" or ""
+		placer:add_bottom(self._left:fine_text({
+			keep_w = true,
+			font = tweak_data.hud_stats.objectives_font,
+			font_size = small_font_size,
+			color = HMH:GetOption("custom_tab_color") and Color("66ffff") or Color.white,
+			text = accuracy 
+		}), 0)
+
+		local max_units = managers.gage_assignment:count_all_units()
+        local remaining = managers.gage_assignment:count_active_units()
+		local package_text = managers.job:current_level_id() ~= "chill_combat" and managers.job:current_level_id() ~= "chill" and managers.job:current_level_id() ~= "haunted" and managers.job:current_level_id() ~= "hvh" and managers.localization:to_upper_text("menu_asset_gage_assignment") .. ":" .. " " .. tostring(max_units - remaining) .."/".. tostring(max_units) or ""
+		if remaining < max_units then
+			placer:add_bottom(self._left:fine_text({
+				keep_w = true,
+				font = tweak_data.hud_stats.objectives_font,
+				font_size = small_font_size,
+				color = HMH:GetOption("custom_tab_color") and Color("66ff99") or Color.white,
+				text = package_text
+			}), 16)
+		end
+
+		local dominated = 0
+		local enemy_count = 0
+		for _, unit in pairs(managers.enemy:all_enemies()) do
+			enemy_count = enemy_count + 1
+			if (unit and unit.unit and alive(unit.unit)) and (unit.unit:anim_data() and unit.unit:anim_data().hands_up or unit.unit:anim_data() and unit.unit:anim_data().surrender or unit.unit:base() and unit.unit:base().mic_is_being_moved)then
+		        dominated = dominated + 1
+	        end
+        end
+
+		local enemies = enemy_count - dominated
+		if HMH:GetOption("enemy_count") and enemies > 0 then
+			placer:add_bottom(self._left:fine_text({
+				keep_w = true,
+			    font = tweak_data.hud_stats.objectives_font,
+			    font_size = small_font_size,
+			    color = HMH:GetOption("custom_tab_color") and Color("ff6666") or Color(255, 255, 51, 51) / 255,
+			    text = managers.localization:to_upper_text("menu_mutators_category_enemies") .. ": " .. enemies
+		    }), 16)
+        end
+		
 		local loot_panel = ExtendedPanel:new(self._left, {
 			w = self._left:w() - 16 - 8
 		})
@@ -465,10 +398,6 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 				font = medium_font,
 				font_size = medium_font_size
 			}), 7)
-			if managers.crime_spree:is_active() then
-			    loot_panel:set_size(placer:most_rightbottom())
-			    loot_panel:set_leftbottom(0, self._left:h() - 16)
-			end
 			placer:new_row()
 		end
 
@@ -538,59 +467,111 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 				color = HMH:GetOption("custom_tab_color") and Color("66ffff") or Color.white,
 				font_size = medium_font_size
 			}), 7)
-			if managers.crime_spree:is_active() then
-			    loot_panel:set_size(placer:most_rightbottom())
-			    loot_panel:set_leftbottom(0, self._left:h() - 16)
-			end
 			placer:new_row()
 		end
 
-		if not managers.crime_spree:is_active() then
-			local mandatory_bags_data = managers.loot:get_mandatory_bags_data()
-			local mandatory_amount = mandatory_bags_data and mandatory_bags_data.amount
-			local secured_amount = managers.loot:get_secured_mandatory_bags_amount()
-			local bonus_amount = managers.loot:get_secured_bonus_bags_amount()
-			local bag_text = placer:add_bottom(loot_panel:fine_text({
-				keep_w = true,
-				text = managers.localization:text("hud_stats_bags_secured"),
+
+		local mandatory_bags_data = managers.loot:get_mandatory_bags_data()
+		local mandatory_amount = mandatory_bags_data and mandatory_bags_data.amount
+		local secured_amount = managers.loot:get_secured_mandatory_bags_amount()
+		local bonus_amount = managers.loot:get_secured_bonus_bags_amount()
+		local bag_text = placer:add_bottom(loot_panel:fine_text({
+			keep_w = true,
+			text = managers.localization:text("hud_stats_bags_secured"),
+			font = medium_font,
+			color = HMH:GetOption("custom_tab_color") and Color("66ff99") or Color.white,
+			font_size = medium_font_size
+		}))
+
+		placer:add_right(nil, 0)
+
+		local bag_texture, bag_rect = tweak_data.hud_icons:get_icon_data("bag_icon")
+		local bag_icon = placer:add_left(loot_panel:fit_bitmap({
+			w = 16,
+			h = 16,
+			color = HMH:GetOption("custom_tab_color") and Color("66ff99") or Color.white,
+			texture = bag_texture,
+			texture_rect = bag_rect
+		}))
+		bag_icon:set_center_y(bag_text:center_y())
+
+		if mandatory_amount and mandatory_amount > 0 then
+			local str = bonus_amount > 0 and string.format("%d/%d+%d", secured_amount, mandatory_amount, bonus_amount) or string.format("%d/%d", secured_amount, mandatory_amount)
+
+			placer:add_left(loot_panel:fine_text({
+				text = str,
 				font = medium_font,
 				color = HMH:GetOption("custom_tab_color") and Color("66ff99") or Color.white,
 				font_size = medium_font_size
 			}))
-
-			placer:add_right(nil, 0)
-
-			local bag_texture, bag_rect = tweak_data.hud_icons:get_icon_data("bag_icon")
-			local bag_icon = placer:add_left(loot_panel:fit_bitmap({
-				w = 16,
-				h = 16,
+		else
+			placer:add_left(loot_panel:fine_text({
+				text = tostring(bonus_amount),
+				font = medium_font,
 				color = HMH:GetOption("custom_tab_color") and Color("66ff99") or Color.white,
-				texture = bag_texture,
-				texture_rect = bag_rect
+				font_size = medium_font_size
 			}))
-			bag_icon:set_center_y(bag_text:center_y())
-
-			if mandatory_amount and mandatory_amount > 0 then
-				local str = bonus_amount > 0 and string.format("%d/%d+%d", secured_amount, mandatory_amount, bonus_amount) or string.format("%d/%d", secured_amount, mandatory_amount)
-
-				placer:add_left(loot_panel:fine_text({
-					text = str,
-					font = medium_font,
-					color = HMH:GetOption("custom_tab_color") and Color("66ff99") or Color.white,
-					font_size = medium_font_size
-				}))
-			else
-				placer:add_left(loot_panel:fine_text({
-					text = tostring(bonus_amount),
-					font = medium_font,
-					color = HMH:GetOption("custom_tab_color") and Color("66ff99") or Color.white,
-					font_size = medium_font_size
-				}))
-			end
-			placer:new_row()
 		end
-       
-	    if managers.money and managers.statistics and managers.experience and not managers.crime_spree:is_active() then 
+		placer:new_row()
+		
+		local loot_text = placer:add_bottom(loot_panel:fine_text({
+			keep_w = true,
+			text = managers.localization:text("hud_stats_bags_unsecured"),
+			font = medium_font,
+			color = HMH:GetOption("custom_tab_color") and Color("ffcc66") or Color.white,
+			font_size = medium_font_size
+		}), 20)
+
+		placer:add_right(nil, 0)
+
+		local bag_texture, bag_rect = tweak_data.hud_icons:get_icon_data("bag_icon")
+		local loot_icon = placer:add_left(loot_panel:fit_bitmap({
+			w = 16,
+			h = 16,
+			color = HMH:GetOption("custom_tab_color") and Color("ffcc66") or Color.white,
+			texture = bag_texture,
+			texture_rect = bag_rect
+		}))
+		loot_icon:set_center_y(loot_text:center_y())
+
+		placer:add_left(loot_panel:fine_text({
+			text = tostring(managers.interaction:get_current_total_loot_count()),
+			font = medium_font,
+			color = HMH:GetOption("custom_tab_color") and Color("ffcc66") or Color.white,
+			font_size = medium_font_size
+		}))
+		
+		placer:new_row()
+		
+			local crate_text = placer:add_bottom(loot_panel:fine_text({
+			keep_w = true,
+			text = managers.localization:text("hud_stats_unopened_crates"),
+			font = medium_font,
+			color = HMH:GetOption("custom_tab_color") and Color("ffcc66") or Color.white,
+			font_size = medium_font_size
+		}))
+
+		placer:add_right(nil, 0)
+
+		local bag_texture, bag_rect = tweak_data.hud_icons:get_icon_data("bag_icon")
+		local crate_icon = placer:add_left(loot_panel:fit_bitmap({
+			w = 16,
+			h = 16,
+			color = HMH:GetOption("custom_tab_color") and Color("ffcc66") or Color.white,
+			texture = bag_texture,
+			texture_rect = bag_rect
+		}))
+		crate_icon:set_center_y(crate_text:center_y())
+
+		placer:add_left(loot_panel:fine_text({
+			text = tostring(managers.interaction:get_current_crate_count()),
+			font = medium_font,
+			color = HMH:GetOption("custom_tab_color") and Color("ffcc66") or Color.white,
+			font_size = medium_font_size
+		}))
+		placer:new_row()
+
+	    if managers.money and managers.statistics and managers.experience then 
        	    local money_current_stage = managers.money:get_potential_payout_from_current_stage() or 0
 			local offshore_rate = managers.money:get_tweak_value("money_manager", "offshore_rate") or 0
 			local offshore_total = money_current_stage - math.round(money_current_stage * offshore_rate)
@@ -794,7 +775,7 @@ elseif RequiredScript == "lib/managers/hud/hudstatsscreenskirmish" then
 			font_size = tweak_data.hud_stats.loot_size,
 			color = HMH:GetOption("custom_tab_color") and Color("ffcc66") or Color.white,
 			text = kill_count
-		}), 16)
+		}), 0)
 
 		local total_accuracy = managers.statistics:session_hit_accuracy()
 		local accuracy = total_accuracy and managers.localization:to_upper_text("menu_stats_hit_accuracy") .." ".. total_accuracy.."%" or ""
@@ -804,7 +785,7 @@ elseif RequiredScript == "lib/managers/hud/hudstatsscreenskirmish" then
 			font_size = tweak_data.hud_stats.loot_size,
 			color = HMH:GetOption("custom_tab_color") and Color("ffcc66") or Color.white,
 			text = accuracy 
-		}), 0)
+		}), 16)
 
 		local dominated = 0
 		local enemy_count = 0
@@ -823,10 +804,9 @@ elseif RequiredScript == "lib/managers/hud/hudstatsscreenskirmish" then
 				font_size = tweak_data.hud_stats.loot_size,
 			    color = HMH:GetOption("custom_tab_color") and Color("ff6666") or Color(255, 255, 51, 51) / 255,
 				text = managers.localization:to_upper_text("menu_mutators_category_enemies") .. ": " .. enemies
-	        }), 16)
+	        }), 0)
         end
 
-		placer:new_row(8, 0)
 
 		local loot_panel = ExtendedPanel:new(self._left, {
 			w = self._left:w() - 16 - 8
