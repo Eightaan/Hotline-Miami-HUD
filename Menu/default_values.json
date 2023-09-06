@@ -294,7 +294,7 @@
 	},
 	"bulletstorm" : true,
 	"health_texture" : 2,
-	"interact_texture" : 3,
+	"interact_texture" : 2,
 	"custom_subs" : true,
 	"Sub" :
 	{

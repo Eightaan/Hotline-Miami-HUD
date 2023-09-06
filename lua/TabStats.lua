@@ -168,7 +168,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 					local normal_color = HMH:GetOption("custom_tab_color") and Color("66ff99") or Color.white
 					local difficulty_text = self._left:fine_text({
 						font = medium_font,
-						font_size = tweak_data.hud_stats.loot_size,
+						font_size = medium_font_size,
 						text = difficulty_string,
 						color = difficulty_stars > 0 and risk_color or normal_color
 					})
@@ -470,9 +470,6 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 			placer:new_row()
 		end
 
-
-		local mandatory_bags_data = managers.loot:get_mandatory_bags_data()
-		local mandatory_amount = mandatory_bags_data and mandatory_bags_data.amount
 		local secured_amount = managers.loot:get_secured_mandatory_bags_amount()
 		local bonus_amount = managers.loot:get_secured_bonus_bags_amount()
 		local bag_text = placer:add_bottom(loot_panel:fine_text({
@@ -494,24 +491,13 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 			texture_rect = bag_rect
 		}))
 		bag_icon:set_center_y(bag_text:center_y())
-
-		if mandatory_amount and mandatory_amount > 0 then
-			local str = bonus_amount > 0 and string.format("%d/%d+%d", secured_amount, mandatory_amount, bonus_amount) or string.format("%d/%d", secured_amount, mandatory_amount)
-
-			placer:add_left(loot_panel:fine_text({
-				text = str,
-				font = medium_font,
-				color = HMH:GetOption("custom_tab_color") and Color("66ff99") or Color.white,
-				font_size = medium_font_size
-			}))
-		else
-			placer:add_left(loot_panel:fine_text({
-				text = tostring(bonus_amount),
-				font = medium_font,
-				color = HMH:GetOption("custom_tab_color") and Color("66ff99") or Color.white,
-				font_size = medium_font_size
-			}))
-		end
+		
+		placer:add_left(loot_panel:fine_text({
+			text = tostring(secured_amount + bonus_amount),
+			font = medium_font,
+			color = HMH:GetOption("custom_tab_color") and Color("66ff99") or Color.white,
+			font_size = medium_font_size
+		}))
 		placer:new_row()
 		
 		local loot_text = placer:add_bottom(loot_panel:fine_text({
@@ -524,6 +510,8 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 
 		placer:add_right(nil, 0)
 
+		local border_crossing_fix = Global.game_settings.level_id == "mex" and managers.interaction:get_current_total_loot_count() > 38 and 4
+		local loot_amount = crossing_border_loot_fix or managers.interaction:get_current_total_loot_count()
 		local bag_texture, bag_rect = tweak_data.hud_icons:get_icon_data("bag_icon")
 		local loot_icon = placer:add_left(loot_panel:fit_bitmap({
 			w = 16,
@@ -535,7 +523,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 		loot_icon:set_center_y(loot_text:center_y())
 
 		placer:add_left(loot_panel:fine_text({
-			text = tostring(managers.interaction:get_current_total_loot_count()),
+			text = tostring(loot_amount),
 			font = medium_font,
 			color = HMH:GetOption("custom_tab_color") and Color("ffcc66") or Color.white,
 			font_size = medium_font_size
@@ -553,6 +541,9 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 
 		placer:add_right(nil, 0)
 
+		local firestarter_fix = Global.game_settings.level_id == "firestarter_1" and managers.interaction:get_current_crate_count() > 50 and 0
+		local rats_fix = Global.game_settings.level_id == "alex_3" and managers.interaction:get_current_crate_count() > 14 and managers.interaction:get_current_crate_count() - 16
+		local crate_info = firestarter_fix or rats_fix or managers.interaction:get_current_crate_count()
 		local bag_texture, bag_rect = tweak_data.hud_icons:get_icon_data("bag_icon")
 		local crate_icon = placer:add_left(loot_panel:fit_bitmap({
 			w = 16,
@@ -564,7 +555,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 		crate_icon:set_center_y(crate_text:center_y())
 
 		placer:add_left(loot_panel:fine_text({
-			text = tostring(managers.interaction:get_current_crate_count()),
+			text = tostring(crate_info),
 			font = medium_font,
 			color = HMH:GetOption("custom_tab_color") and Color("ffcc66") or Color.white,
 			font_size = medium_font_size
@@ -618,16 +609,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 		end
 	end)
 
-    --local HUDStatsScreen_recreate_right = HUDStatsScreen.recreate_right
 	Hooks:OverrideFunction(HUDStatsScreen, "recreate_right", function(self)
-	--	if _G.LobbyPlayerInfo and LobbyPlayerInfo.settings.show_skills_in_stats_screen then
-    --        return HUDStatsScreen_recreate_right(self, ...) -- LobbyPlayerInfo compatability
-	--	end
-	
-	--	if self._destroy_player_info then -- Enhanced Crew Loadout compatability
-	--		self:_destroy_player_info()
-	--	end
-
 	    self._right:clear()
 	    self._right:bitmap({
 		    texture = "guis/textures/test_blur_df",
@@ -660,10 +642,6 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 	    })
 
 	    track_text:set_leftbottom(10, self._right:h() - 10)
-
-	--   if self._create_player_info then -- Enhanced Crew Loadout compatability
-	--	    self:_create_player_info()
-	--   end
     end)
 
 	Hooks:OverrideFunction(HUDStatsScreen, "_create_tracked_list", function(self, panel)

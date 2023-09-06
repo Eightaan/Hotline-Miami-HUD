@@ -11,27 +11,41 @@ if HMH:GetOption("tab") then
 			family = 						{ money = 1, },
 			watchdogs_2 = 					{ coke = 10, },
 			watchdogs_2_day =				{ coke = 10, },
-			framing_frame_3 = 				{ gold = 16, },
+			framing_frame_3 = 				{ gold = 16, coke = 8 },
 			mia_1 = 						{ money = 1, },
 			welcome_to_the_jungle_1 =		{ money = 1, gold = 1 },
 			welcome_to_the_jungle_1_night =	{ money = 1, gold = 1 },
-			mus = 							{ painting = 2 },
+			mus = 							{ painting = 2, mus_artifact = 1 },
 			arm_und = 						{ money = 8, },
 			ukrainian_job = 				{ money = 3, },
 			jewelry_store = 				{ money = 2, },
 			chill = 						{ painting = 1, },
 			chill_combat = 					{ painting = 1, },
-			fish = 							{ mus_artifact = 1 },
-			--dah = 							{ money = 8 },
-			rvd2 = 							{ money = 1 },
-			des = 							{ mus_artifact = 2, painting = 2 }
+			fish = 							{ mus_artifact = 1, },
+			rvd2 = 							{ money = 1, },
+			arena = 						{ vehicle_falcogini = 1, },
+			shoutout_raid =					{ vehicle_falcogini = 9, },
+			friend = 						{ painting = 8, },
+			pbr2 =							{ money = 8, vehicle_falcogini = 1 },
+			mex_cooking = 					{ roman_armor = 4, },
+			sah =							{ mus_artifact = 2, },
+			corp =							{ painting = 5, },
+			ranc =							{ turret_part = 2, vehicle_falcogini = 2  },
+			trai =							{ turret_part = 2, },
+		--	pex =							{ hydraulic_opener = 1, },
+			pent =							{ mus_artifact = 2, },
+			des = 							{ mus_artifact = 4, painting = 2 }
 		}
 	end)
 		
 	local function _get_unit_type(unit)
 		local interact_type = unit:interaction().tweak_data
-		if interact_type == "weapon_case" or interact_type == "crate_loot" or interact_type == "crate_loot_crowbar" then
-			return "loot_crates"
+		local counted_possible_by_int = {"money_briefcase", "gen_pku_warhead_box", "weapon_case", "weapon_case_axis_z", "crate_loot", "crate_loot_crowbar"}
+		local counted_by_int = {"hold_take_helmet", "take_weapons_axis_z"}
+		if interact_type then
+			if table.contains(counted_possible_by_int, interact_type) then
+				return "loot_crates"
+			end
 		end
 	end
 		
