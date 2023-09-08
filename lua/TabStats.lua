@@ -511,7 +511,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 		placer:add_right(nil, 0)
 
 		local border_crossing_fix = Global.game_settings.level_id == "mex" and managers.interaction:get_current_total_loot_count() > 38 and 4
-		local loot_amount = crossing_border_loot_fix or managers.interaction:get_current_total_loot_count()
+		local loot_amount = border_crossing_fix or managers.interaction:get_current_total_loot_count()
 		local bag_texture, bag_rect = tweak_data.hud_icons:get_icon_data("bag_icon")
 		local loot_icon = placer:add_left(loot_panel:fit_bitmap({
 			w = 16,
