@@ -63,7 +63,7 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 					if carry_id and level_id and self._loot_fixes[level_id] and self._loot_fixes[level_id][carry_id] and self._loot_fixes[level_id][carry_id] > 0 then
 						self._loot_fixes[level_id][carry_id] = self._loot_fixes[level_id][carry_id] - 1
 					else
-						self:update_loot_count(1)
+						self:update_loot(1)
 					end
 				end
 			end
@@ -85,7 +85,7 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 	Hooks:PostHook(ObjectInteractionManager, "remove_unit", "HMH_ObjectInteractionManager_remove_unit", function(self, unit)
 		if self._total_loot[unit:id()] then
 			self._total_loot[unit:id()] = nil
-			self:update_loot_count(-1)
+			self:update_loot(-1)
 		end
 
 		if table.contains(self.loot_crates, unit:id()) then
@@ -99,7 +99,7 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 		self.loot_count.crate_amount = count or 0
 	end
 
-	function ObjectInteractionManager:update_loot_count(update)
+	function ObjectInteractionManager:update_loot(update)
 		self.loot_count.loot_amount = (self.loot_count.loot_amount or 0) + update
 	end
 		
