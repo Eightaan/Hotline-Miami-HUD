@@ -500,67 +500,69 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 		}))
 		placer:new_row()
 		
-		local loot_text = placer:add_bottom(loot_panel:fine_text({
-			keep_w = true,
-			text = managers.localization:text("hud_stats_bags_unsecured"),
-			font = medium_font,
-			color = HMH:GetOption("custom_tab_color") and Color("ffcc66") or Color.white,
-			font_size = medium_font_size
-		}), 20)
+		if HMH:GetOption("loot_count") then
+			local loot_text = placer:add_bottom(loot_panel:fine_text({
+				keep_w = true,
+				text = managers.localization:text("hud_stats_bags_unsecured"),
+				font = medium_font,
+				color = HMH:GetOption("custom_tab_color") and Color("ffcc66") or Color.white,
+				font_size = medium_font_size
+			}), 20)
 
-		placer:add_right(nil, 0)
+			placer:add_right(nil, 0)
 
-		local border_crossing_fix = Global.game_settings.level_id == "mex" and managers.interaction:get_current_total_loot_count() > 38 and 4
-		local loot_amount = border_crossing_fix or managers.interaction:get_current_total_loot_count()
-		local bag_texture, bag_rect = tweak_data.hud_icons:get_icon_data("bag_icon")
-		local loot_icon = placer:add_left(loot_panel:fit_bitmap({
-			w = 16,
-			h = 16,
-			color = HMH:GetOption("custom_tab_color") and Color("ffcc66") or Color.white,
-			texture = bag_texture,
-			texture_rect = bag_rect
-		}))
-		loot_icon:set_center_y(loot_text:center_y())
+			local border_crossing_fix = Global.game_settings.level_id == "mex" and managers.interaction:get_current_total_loot_count() > 38 and 4
+			local loot_amount = border_crossing_fix or managers.interaction:get_current_total_loot_count()
+			local bag_texture, bag_rect = tweak_data.hud_icons:get_icon_data("bag_icon")
+			local loot_icon = placer:add_left(loot_panel:fit_bitmap({
+				w = 16,
+				h = 16,
+				color = HMH:GetOption("custom_tab_color") and Color("ffcc66") or Color.white,
+				texture = bag_texture,
+				texture_rect = bag_rect
+			}))
+			loot_icon:set_center_y(loot_text:center_y())
 
-		placer:add_left(loot_panel:fine_text({
-			text = tostring(loot_amount),
-			font = medium_font,
-			color = HMH:GetOption("custom_tab_color") and Color("ffcc66") or Color.white,
-			font_size = medium_font_size
-		}))
-		
-		placer:new_row()
-		
-			local crate_text = placer:add_bottom(loot_panel:fine_text({
-			keep_w = true,
-			text = managers.localization:text("hud_stats_unopened_crates"),
-			font = medium_font,
-			color = HMH:GetOption("custom_tab_color") and Color("ffcc66") or Color.white,
-			font_size = medium_font_size
-		}))
+			placer:add_left(loot_panel:fine_text({
+				text = tostring(loot_amount),
+				font = medium_font,
+				color = HMH:GetOption("custom_tab_color") and Color("ffcc66") or Color.white,
+				font_size = medium_font_size
+			}))
+			
+			placer:new_row()
+			
+				local crate_text = placer:add_bottom(loot_panel:fine_text({
+				keep_w = true,
+				text = managers.localization:text("hud_stats_unopened_crates"),
+				font = medium_font,
+				color = HMH:GetOption("custom_tab_color") and Color("ffcc66") or Color.white,
+				font_size = medium_font_size
+			}))
 
-		placer:add_right(nil, 0)
+			placer:add_right(nil, 0)
 
-		local firestarter_fix = Global.game_settings.level_id == "firestarter_1" and managers.interaction:get_current_crate_count() > 50 and 0
-		local rats_fix = Global.game_settings.level_id == "alex_3" and managers.interaction:get_current_crate_count() > 14 and managers.interaction:get_current_crate_count() - 16
-		local crate_info = firestarter_fix or rats_fix or managers.interaction:get_current_crate_count()
-		local bag_texture, bag_rect = tweak_data.hud_icons:get_icon_data("bag_icon")
-		local crate_icon = placer:add_left(loot_panel:fit_bitmap({
-			w = 16,
-			h = 16,
-			color = HMH:GetOption("custom_tab_color") and Color("ffcc66") or Color.white,
-			texture = bag_texture,
-			texture_rect = bag_rect
-		}))
-		crate_icon:set_center_y(crate_text:center_y())
+			local firestarter_fix = Global.game_settings.level_id == "firestarter_1" and managers.interaction:get_current_crate_count() > 50 and 0
+			local rats_fix = Global.game_settings.level_id == "alex_3" and managers.interaction:get_current_crate_count() > 14 and managers.interaction:get_current_crate_count() - 16
+			local crate_info = firestarter_fix or rats_fix or managers.interaction:get_current_crate_count()
+			local bag_texture, bag_rect = tweak_data.hud_icons:get_icon_data("bag_icon")
+			local crate_icon = placer:add_left(loot_panel:fit_bitmap({
+				w = 16,
+				h = 16,
+				color = HMH:GetOption("custom_tab_color") and Color("ffcc66") or Color.white,
+				texture = bag_texture,
+				texture_rect = bag_rect
+			}))
+			crate_icon:set_center_y(crate_text:center_y())
 
-		placer:add_left(loot_panel:fine_text({
-			text = tostring(crate_info),
-			font = medium_font,
-			color = HMH:GetOption("custom_tab_color") and Color("ffcc66") or Color.white,
-			font_size = medium_font_size
-		}))
-		placer:new_row()
+			placer:add_left(loot_panel:fine_text({
+				text = tostring(crate_info),
+				font = medium_font,
+				color = HMH:GetOption("custom_tab_color") and Color("ffcc66") or Color.white,
+				font_size = medium_font_size
+			}))		
+			placer:new_row()
+		end
 
 	    if managers.money and managers.statistics and managers.experience then 
        	    local money_current_stage = managers.money:get_potential_payout_from_current_stage() or 0

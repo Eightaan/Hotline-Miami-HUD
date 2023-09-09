@@ -381,6 +381,7 @@
 	"stealth_c4" : true,
 	"tab" : true,
 	"enemy_count" : false,
+	"loot_count" : true,
 	"custom_filter" : false,
 	"voice" : true,
 	"ping" : false,

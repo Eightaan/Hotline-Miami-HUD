@@ -1,4 +1,4 @@
-if HMH:GetOption("tab") then
+if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 	Hooks:PostHook(ObjectInteractionManager, "init", "HMH_ObjectInteractionManager_init", function(self)
 		self.loot_count = {}
 		self.loot_count.loot_amount = 0
@@ -32,7 +32,6 @@ if HMH:GetOption("tab") then
 			corp =							{ painting = 5, },
 			ranc =							{ turret_part = 2, vehicle_falcogini = 2  },
 			trai =							{ turret_part = 2, },
-		--	pex =							{ hydraulic_opener = 1, },
 			pent =							{ mus_artifact = 2, },
 			des = 							{ mus_artifact = 4, painting = 2 }
 		}

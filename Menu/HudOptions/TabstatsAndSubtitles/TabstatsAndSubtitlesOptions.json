@@ -40,6 +40,17 @@
 		},
 		{
 			"type": "toggle",
+			"id": "loot_count_toggle",
+			"title": "loot_count_title",
+			"description": "loot_count_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "loot_count",
+			"value": "loot_count",
+			"default_value": true,
+			"parent" : "tab_toggle"
+		},
+		{
+			"type": "toggle",
 			"id": "enemy_count_toggle",
 			"title": "enemy_count_title",
 			"description": "enemy_count_desc",

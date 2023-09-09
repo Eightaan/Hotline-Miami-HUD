@@ -448,5 +448,7 @@
 	"triangle_interact" : "Neon Triangle",
 	"hud_stats_bags_unsecured" : "UNSECURED LOOT",
 	"hud_stats_unopened_crates" : "UNOPENED CRATES",
+	"loot_count_title" : "Loot Counter",
+	"loot_count_desc" : "Shows the amount of loot on the map.",
 	"hmh_switch_profile" : "Switch Profiles"
 }

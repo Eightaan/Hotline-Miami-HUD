@@ -221,6 +221,8 @@
 	"custom_tab_color_desc" : "Colorize the tabstats menu.",
 	"enemy_count_title" : "Enemy Counter",
 	"enemy_count_desc" : "Shows the amount of enemies on the map.",
+	"loot_count_title" : "Loot Counter",
+	"loot_count_desc" : "Shows the amount of loot on the map.",
 	"crew_loadout_tab_title" : "Crew Loadout on Tabscreen",
 	"crew_loadout_tab_desc" : "Displays the Skills, Perk and current Ping of players in your lobby.",
 	"subs_title" : "Colored Subtitle Text",
