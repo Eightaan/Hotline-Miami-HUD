@@ -1,4 +1,4 @@
-if not HMH:GetOption("custom_chat") then 
+--[[if not HMH:GetOption("custom_chat") then 
     return
 end
 

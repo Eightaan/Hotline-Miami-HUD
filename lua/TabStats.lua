@@ -248,7 +248,6 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 			placer:add_bottom(self._left:fine_text({
 				word_wrap = true,
 				wrap = true,
-				font_size = 24,
 				align = "left",
 				text = data.description,
 				font = tweak_data.hud_stats.objective_desc_font,
