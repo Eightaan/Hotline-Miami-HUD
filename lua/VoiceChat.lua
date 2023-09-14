@@ -1,4 +1,4 @@
-if not HMH:GetOption("voice") then
+--[[if not HMH:GetOption("voice") then
    return
 end
 
@@ -117,4 +117,4 @@ elseif RequiredScript == "lib/network/matchmaking/networkvoicechatsteam" then
 			managers.hud:set_voice({peer_id = managers.network:session():local_peer():id()}, enabled)
 		end
 	end)
-end
+end]]

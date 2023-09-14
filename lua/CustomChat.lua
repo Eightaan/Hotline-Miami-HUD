@@ -618,4 +618,4 @@ if RequiredScript == "lib/managers/hud/hudchat" then
 		local new_line_offset = math.round((1 - ((y - scroll_bar_up:h() - 2) / positon_height_area)) * self._total_message_lines)
 		self:_change_line_offset(new_line_offset - self._current_line_offset)
 	end
-end
+end]]

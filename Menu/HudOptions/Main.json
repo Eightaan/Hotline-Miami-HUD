@@ -121,13 +121,6 @@
 			"description": "hmh_tab_and_subs_desc",
 			"next_menu": "hmh_tab_and_subs"
 		},
-		{
-			"type": "button",
-			"id": "hmh_custom_chat",
-			"title": "hmh_custom_chat_title",
-			"description": "hmh_custom_chat_desc",
-			"next_menu": "hmh_menu_custom_chat"
-		},
         {
 			"type": "button",
 			"id": "hmh_joining_player_options",

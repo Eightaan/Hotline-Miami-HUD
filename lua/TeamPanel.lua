@@ -510,14 +510,14 @@ end
 
 Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammate_set_ammo_amount_by_type", function(self, type, max_clip, current_clip, current_left, max, weapon_panel)
     local weapon_panel = self._player_panel:child("weapons_panel"):child(type .. "_weapon_panel")
+    
+	local ammo_clip = weapon_panel:child("ammo_clip")
 
-	if self._main_player and HMH:GetOption("trueammo") then
-		if current_left - current_clip >= 0 then
-			current_left = current_left - current_clip
-		end
+	if self._alt_ammo and ammo_clip:visible() then
+		current_left = math.max(0, current_left - max_clip - (current_clip - max_clip))
 	end
-
-    local low_ammo_color = ammo and HMH:GetColor("LowAmmo") or Color(1, 0.9, 0.9, 0.3)
+	
+	local low_ammo_color = ammo and HMH:GetColor("LowAmmo") or Color(1, 0.9, 0.9, 0.3)
 	local total_ammo_color = ammo and HMH:GetColor("TotalAmmo") or Color.white
 	local clip_ammo_color = ammo and HMH:GetColor("ClipAmmo") or Color.white
     local low_ammo = current_left <= math.round(max_clip / 2)
@@ -537,7 +537,6 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammate_set_ammo
     ammo_total:set_color(color_total)
     ammo_total:set_range_color(0, string.len(zero), color_total:with_alpha(0.5))
 
-    local ammo_clip = weapon_panel:child("ammo_clip")
     local zero_clip = current_clip < 10 and "00" or current_clip < 100 and "0" or ""
 
     ammo_clip:set_color(color_clip)

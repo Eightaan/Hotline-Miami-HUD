@@ -6,16 +6,6 @@
 	"items": [
         {
 			"type": "toggle",
-			"id": "trueammo_toggle",
-			"title": "trueammo_title",
-			"description": "trueammo_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "trueammo",
-			"value": "trueammo",
-			"default_value": false
-		},
-        {
-			"type": "toggle",
 			"id": "bulletstorm_toggle",
 			"title": "bulletstorm_title",
 			"description": "bulletstorm_desc",
