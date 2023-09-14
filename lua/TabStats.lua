@@ -126,7 +126,6 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 
 		if stage_data then
 			if managers.crime_spree:is_active() then
-				local level_data = managers.job:current_level_data()
 				local mission = managers.crime_spree:get_mission(managers.crime_spree:current_played_mission())
 
 				if mission then
