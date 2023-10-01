@@ -188,18 +188,6 @@
 	"promt_title" : "Colored Promt Panel",
 	"promt_desc" : "",
 
-	"hmh_custom_chat_title" : "Player Chat",
-	"hmh_custom_chat_desc" : "Options related to the player chat.",
-	"hmh_voice_panel_text" : "Voice Chat",
-	"hmh_chat_panel_text" : "Text Chat",
-	"custom_chat_title" : "Improved Chat",
-	"custom_chat_desc" : "Enable the improved chat.",
-	"chat_font_title" : "Chat Size",
-	"chat_font_desc" : "Change the chat size.",
-	"voice_title" : "Enable Voice Chat Panel",
-	"voice_desc" : "Display when a player is talking in-game.",
-	"hmh_chat_clipboard" : "Message copied to clipboard",
-
 	"hmh_tab_and_subs_title" : "Tabstats And Subtitles",
 	"hmh_tab_and_subs_desc" : "Options related to the tabstats panel and subtitle text.",
 	"hmh_tab_panel_text" : "Tabstats Panel",
