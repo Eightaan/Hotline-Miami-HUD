@@ -67,13 +67,6 @@
 		},
 		{
 			"type": "button",
-			"id": "hmh_toggle_interaction",
-			"title": "hmh_toggle_interaction_title",
-			"description": "hmh_toggle_interaction_desc",
-			"next_menu": "hmh_toggle_interaction_options"
-		},
-		{
-			"type": "button",
 			"id": "hmh_skip_menus",
 			"title": "hmh_skip_menu_options_title",
 			"description": "hmh_skip_menu_options_desc",
