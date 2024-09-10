@@ -234,7 +234,162 @@ if requiredScript == "lib/managers/menumanager" then
 			end
 		end
 	end
+	function MenuManager:show_confirm_preplanning_load(params)
+		local dialog_data = {
+			title = managers.localization:text("menu_item_preplanning_rebuy"),
+			text = "",
+			text_formating_color_table = {},
+			use_text_formating = true,
+			w = 600
+		}
+		local red = tweak_data.screen_colors.important_1
+		local grey = tweak_data.screen_color_grey
+		local total_money_cost = 0
+		local total_favor_cost = 0
 
+		for _, plan in pairs(params.votes) do
+			local category_text = utf8.to_upper(managers.preplanning:get_category_name_by_type(plan.type))
+			local location_text = managers.preplanning:get_element_name_by_type_index(plan.type, plan.index)
+			local name_text = managers.preplanning:get_type_name(plan.type)
+			local cost_text = managers.preplanning:get_type_cost_text(plan.type)
+			dialog_data.text = dialog_data.text .. category_text .. "\n"
+			dialog_data.text = dialog_data.text .. "  -" .. name_text
+
+			if not string.match(location_text, "ERROR") then
+				dialog_data.text = dialog_data.text .. " - " .. location_text
+			end
+
+			dialog_data.text = dialog_data.text .. " (" .. cost_text .. ") \n \n"
+			total_money_cost = total_money_cost + managers.preplanning:get_type_cost(plan.type)
+			total_favor_cost = total_favor_cost + managers.preplanning:get_type_budget_cost(plan.type)
+		end
+
+		local category_list = {}
+
+		for _, asset in ipairs(params.rebuy_assets) do
+			local cat_name = utf8.to_upper(managers.preplanning:get_category_name_by_type(asset.type))
+			local create_new_category = true
+
+			for _, category in ipairs(category_list) do
+				if cat_name == category.category then
+					table.insert(category.assets, {
+						type = asset.type,
+						id = asset.id,
+						index = asset.index
+					})
+
+					create_new_category = false
+				end
+			end
+
+			if create_new_category then
+				table.insert(category_list, {
+					category = cat_name,
+					assets = {
+						{
+							type = asset.type,
+							id = asset.id,
+							index = asset.index
+						}
+					}
+				})
+			end
+		end
+
+		for _, category in ipairs(category_list) do
+			dialog_data.text = dialog_data.text .. category.category .. " \n"
+
+			for _, asset in ipairs(category.assets) do
+				local money_cost = managers.preplanning:get_type_cost(asset.type)
+				local favor_cost = managers.preplanning:get_type_budget_cost(asset.type)
+				local td = managers.preplanning:get_tweak_data_by_type(asset.type)
+				local name_text = managers.preplanning:get_type_name(asset.type)
+				local cost_text = managers.preplanning:get_type_cost_text(asset.type)
+				local location_text = managers.preplanning:get_element_name_by_type_index(asset.type, asset.index)
+				local can_unlock = true
+
+				if td.dlc_lock then
+					can_unlock = can_unlock and managers.dlc:is_dlc_unlocked(td.dlc_lock)
+				end
+
+				if td.upgrade_lock then
+					can_unlock = can_unlock and managers.player:has_category_upgrade(td.upgrade_lock.category, td.upgrade_lock.upgrade)
+				end
+
+				if not can_unlock then
+					table.insert(dialog_data.text_formating_color_table, grey)
+
+					dialog_data.text = dialog_data.text .. "##"
+				else
+					total_money_cost = total_money_cost + money_cost
+					total_favor_cost = total_favor_cost + favor_cost
+				end
+
+				dialog_data.text = dialog_data.text .. "   -" .. name_text
+
+				if not string.match("ERROR", location_text) then
+					dialog_data.text = dialog_data.text .. " - " .. location_text
+				end
+
+				dialog_data.text = dialog_data.text .. " (" .. cost_text .. ")"
+
+				if td.upgrade_lock and not can_unlock then
+					dialog_data.text = dialog_data.text .. "##"
+
+					table.insert(dialog_data.text_formating_color_table, red)
+
+					dialog_data.text = dialog_data.text .. " " .. managers.localization:text("menu_asset_buy_all_req_skill")
+				elseif td.dlc_lock and not can_unlock then
+					dialog_data.text = dialog_data.text .. "##"
+
+					table.insert(dialog_data.text_formating_color_table, red)
+
+					dialog_data.text = dialog_data.text .. " " .. managers.localization:text("menu_asset_buy_all_req_dlc", {
+						dlc = managers.localization:text(self:get_dlc_by_id(td.dlc_lock).name_id)
+					})
+				end
+
+				dialog_data.text = dialog_data.text .. "\n"
+			end
+		end
+
+		dialog_data.text = dialog_data.text .. "\n"
+
+		if total_money_cost < managers.money:total() then
+			dialog_data.text = dialog_data.text .. managers.localization:text("dialog_preplanning_rebuy_assets", {
+				price = managers.experience:cash_string(total_money_cost),
+				favor = total_favor_cost
+			})
+			local yes_button = {
+				text = managers.localization:text("dialog_yes"),
+				callback_func = params.yes_func
+			}
+			local no_button = {
+				cancel_button = true,
+				text = managers.localization:text("dialog_no")
+			}
+			dialog_data.focus_button = 2
+			dialog_data.button_list = {
+				yes_button,
+				no_button
+			}
+		else
+			dialog_data.text = dialog_data.text .. "##" .. managers.localization:text("bm_menu_not_enough_cash") .. "##"
+
+			table.insert(dialog_data.text_formating_color_table, red)
+
+			local ok_button = {
+				text = managers.localization:text("dialog_ok"),
+				cancel_button = true
+			}
+			dialog_data.focus_button = 1
+			dialog_data.button_list = {
+				ok_button
+			}
+		end
+
+		managers.system_menu:show(dialog_data)
+	end
 elseif requiredScript == "lib/managers/preplanningmanager" then
 
 	if not PrePlanningManager._PREPLANNING_SETUP then
@@ -397,8 +552,8 @@ elseif requiredScript == "lib/managers/preplanningmanager" then
 			local peer_id = managers.network and managers.network:session():local_peer():id()
 
 			local bought_assets = self._reserved_mission_elements
-			local votes = self:get_player_votes(peer_id) or {}
-			local default_votes = self:get_default_votes() or {}
+			--local votes = self:get_player_votes(peer_id) or {}
+			--local default_votes = self:get_default_votes() or {}
 			local saved_assets, saved_votes = {}, {}
 
 			for element_id, mission_element in pairs(bought_assets) do
@@ -408,10 +563,12 @@ elseif requiredScript == "lib/managers/preplanningmanager" then
 				end
 			end
 
-			for plan, data in pairs(default_votes) do
-				local type, index = votes[plan] and unpack(votes[plan] or {})
-				local default_type, default_index = unpack(data)
-				table.insert(saved_votes, { id = self:get_mission_element_id(element_type, element_index), type = type or default_type, index = index or default_index })
+			local winners = self:get_current_majority_votes()
+			if winners then
+				for plan, data in pairs(winners) do
+					local type, index = unpack(data)
+					table.insert(saved_votes, { id = self:get_mission_element_id(type, index), type = type, index = index })
+				end
 			end
 
 			local preplanning_data = {
@@ -433,53 +590,183 @@ elseif requiredScript == "lib/managers/preplanningmanager" then
 			local saved_assets = PrePlanningManager._SAVED_PLANS[name].assets or {}
 			local saved_votes = PrePlanningManager._SAVED_PLANS[name].votes or {}
 
-			local missing_skill, missing_favours, missing_money, something_loaded = false, false, false, false
-			local peer_id = managers.network:session():local_peer():id()
-			for i, data in ipairs(saved_assets) do
-				local id = data.id or self:get_mission_element_id(data.type, data.index)
-				if not self:get_reserved_mission_element(id) then
-					local lockData = tweak_data:get_raw_value("preplanning", "types", data.type, "upgrade_lock") or false
-					if not lockData or managers.player:has_category_upgrade(lockData.category, lockData.upgrade) then
-						local available, err_code = self:can_reserve_mission_element(data.type, peer_id)
-						if available then
-							self:reserve_mission_element(data.type, id)
-                            something_loaded = true
-						elseif err_code == 1 then
-							missing_money = true
-						elseif err_code == 2 then
-							missing_favours = true
-						end
-					else
-						missing_skill = true
+			local dialog_data = {
+				title = managers.localization:text("menu_item_preplanning_rebuy"),
+				text = "",
+				text_formating_color_table = {},
+				use_text_formating = true,
+				w = 600
+			}
+			local red = tweak_data.screen_colors.important_1
+			local grey = tweak_data.screen_color_grey
+			local total_money_cost = 0
+			local total_favor_cost = 0
+
+			for _, plan in pairs(saved_votes) do
+				local category_text = utf8.to_upper(managers.preplanning:get_category_name_by_type(plan.type))
+				local location_text = managers.preplanning:get_element_name_by_type_index(plan.type, plan.index)
+				local name_text = managers.preplanning:get_type_name(plan.type)
+				local cost_text = managers.preplanning:get_type_cost_text(plan.type)
+				dialog_data.text = dialog_data.text .. category_text .. "\n"
+				dialog_data.text = dialog_data.text .. "  -" .. name_text
+
+				if not string.match(location_text, "ERROR") then
+					dialog_data.text = dialog_data.text .. " - " .. location_text
+				end
+
+				dialog_data.text = dialog_data.text .. " (" .. cost_text .. ") \n \n"
+				total_money_cost = total_money_cost + managers.preplanning:get_type_cost(plan.type)
+				total_favor_cost = total_favor_cost + managers.preplanning:get_type_budget_cost(plan.type)
+			end
+
+			local category_list = {}
+
+			for _, asset in ipairs(saved_assets) do
+				local cat_name = utf8.to_upper(managers.preplanning:get_category_name_by_type(asset.type))
+				local create_new_category = true
+
+				for _, category in ipairs(category_list) do
+					if cat_name == category.category then
+						table.insert(category.assets, {
+							type = asset.type,
+							id = asset.id,
+							index = asset.index
+						})
+
+						create_new_category = false
 					end
-				else
-					-- Asset already unlocked
-                    something_loaded = true
+				end
+
+				if create_new_category then
+					table.insert(category_list, {
+						category = cat_name,
+						assets = {
+							{
+								type = asset.type,
+								id = asset.id,
+								index = asset.index
+							}
+						}
+					})
 				end
 			end
 
-			for i, data in ipairs(saved_votes) do
-				local id = data.id or self:get_mission_element_id(data.type, data.index)
-				self:vote_on_plan(data.type, id)
+			for _, category in ipairs(category_list) do
+				dialog_data.text = dialog_data.text .. category.category .. " \n"
+
+				for _, asset in ipairs(category.assets) do
+					local money_cost = managers.preplanning:get_type_cost(asset.type)
+					local favor_cost = managers.preplanning:get_type_budget_cost(asset.type)
+					local td = managers.preplanning:get_tweak_data_by_type(asset.type)
+					local name_text = managers.preplanning:get_type_name(asset.type)
+					local cost_text = managers.preplanning:get_type_cost_text(asset.type)
+					local location_text = managers.preplanning:get_element_name_by_type_index(asset.type, asset.index)
+					local can_unlock = true
+
+					if td.dlc_lock then
+						can_unlock = can_unlock and managers.dlc:is_dlc_unlocked(td.dlc_lock)
+					end
+
+					if td.upgrade_lock then
+						can_unlock = can_unlock and managers.player:has_category_upgrade(td.upgrade_lock.category, td.upgrade_lock.upgrade)
+					end
+
+					if not can_unlock then
+						table.insert(dialog_data.text_formating_color_table, grey)
+
+						dialog_data.text = dialog_data.text .. "##"
+					else
+						total_money_cost = total_money_cost + money_cost
+						total_favor_cost = total_favor_cost + favor_cost
+					end
+
+					dialog_data.text = dialog_data.text .. "   -" .. name_text
+
+					if not string.match("ERROR", location_text) then
+						dialog_data.text = dialog_data.text .. " - " .. location_text
+					end
+
+					dialog_data.text = dialog_data.text .. " (" .. cost_text .. ")"
+
+					if td.upgrade_lock and not can_unlock then
+						dialog_data.text = dialog_data.text .. "##"
+
+						table.insert(dialog_data.text_formating_color_table, red)
+
+						dialog_data.text = dialog_data.text .. " " .. managers.localization:text("menu_asset_buy_all_req_skill")
+					elseif td.dlc_lock and not can_unlock then
+						dialog_data.text = dialog_data.text .. "##"
+
+						table.insert(dialog_data.text_formating_color_table, red)
+
+						dialog_data.text = dialog_data.text .. " " .. managers.localization:text("menu_asset_buy_all_req_dlc", {
+							dlc = managers.localization:text(managers.menu:get_dlc_by_id(td.dlc_lock).name_id)
+						})
+					end
+
+					dialog_data.text = dialog_data.text .. "\n"
+				end
 			end
 
-			if something_loaded and not (missing_skill or missing_favours or missing_money) then
-				managers.preplanning:notify_user("extracted_preplanning_msg_loaded_success", {}, false)
-			elseif something_loaded then
-				local error_msg = ""
-				if missing_skill then
-					error_msg = managers.localization:text("extracted_preplanning_msg_loaded_missing_skill")
-				end
-				if missing_favours then
-					error_msg = string.format("%s%s %s", error_msg, (missing_skill and ";" or ""), managers.localization:text("extracted_preplanning_msg_loaded_missing_favours"))
-				end
-				if missing_money then
-					error_msg = string.format("%s%s %s", error_msg, ((missing_skill or missing_favours) and ";" or ""), managers.localization:text("extracted_preplanning_msg_loaded_missing_money"))
-				end
-				managers.preplanning:notify_user("extracted_preplanning_msg_loaded_partitially", {ERRORMSG = error_msg}, true)
-            else
-				managers.preplanning:notify_user("extracted_preplanning_msg_loaded_failed", {}, true)
+			dialog_data.text = dialog_data.text .. "\n"
+
+			if total_money_cost < managers.money:total() then
+				dialog_data.text = dialog_data.text .. managers.localization:text("dialog_preplanning_rebuy_assets", {
+					price = managers.experience:cash_string(total_money_cost),
+					favor = total_favor_cost
+				})
+				local yes_button = {
+					text = managers.localization:text("dialog_yes"),
+					callback_func = function(self)
+						for i, data in ipairs(saved_assets) do
+							local td = managers.preplanning:get_tweak_data_by_type(data.type)
+							local can_unlock = managers.preplanning:can_reserve_mission_element(data.type)
+
+							if td.dlc_lock then
+								can_unlock = can_unlock and managers.dlc:is_dlc_unlocked(td.dlc_lock)
+							end
+
+							if td.upgrade_lock then
+								can_unlock = can_unlock and managers.player:has_category_upgrade(td.upgrade_lock.category, td.upgrade_lock.upgrade)
+							end
+
+							if can_unlock then
+								managers.preplanning:reserve_mission_element(data.type, data.id)
+							end
+						end
+
+						for i, data in ipairs(saved_votes) do
+							if managers.preplanning:can_vote_on_plan(data.type, managers.network:session():local_peer():id()) then
+								managers.preplanning:mass_vote_on_plan(data.type, data.id)
+							end
+						end
+					end
+				}
+				local no_button = {
+					cancel_button = true,
+					text = managers.localization:text("dialog_no")
+				}
+				dialog_data.focus_button = 2
+				dialog_data.button_list = {
+					yes_button,
+					no_button
+				}
+			else
+				dialog_data.text = dialog_data.text .. "##" .. managers.localization:text("bm_menu_not_enough_cash") .. "##"
+
+				table.insert(dialog_data.text_formating_color_table, red)
+
+				local ok_button = {
+					text = managers.localization:text("dialog_ok"),
+					cancel_button = true
+				}
+				dialog_data.focus_button = 1
+				dialog_data.button_list = {
+					ok_button
+				}
 			end
+
+			managers.system_menu:show(dialog_data)
 		end
 	end
 
@@ -616,12 +903,12 @@ elseif requiredScript == "lib/managers/preplanningmanager" then
 			local saved_assets, saved_votes = PrePlanningManager._SAVED_PLANS[plan_name].assets or {}, PrePlanningManager._SAVED_PLANS[plan_name].votes or {}
 
 			if table.size(saved_votes) > 0 then
-				text = string.format("%s%s\n", text, managers.localization:text("extracted_preplanning_votes_title"))
+				text = string.format("%s%s\n", text, managers.localization:text("wolfhud_preplanning_votes_title"))
 				for i, data in pairs(saved_votes) do
 					local plan_data = tweak_data and tweak_data.preplanning.types[data.type]
 					local plan_name = plan_data and plan_data.name_id and managers.localization:text(plan_data.name_id) or ""
 					text = string.format("%s - %s", text, plan_name)
-					local element = self._mission_elements_by_type[element_type] and self._mission_elements_by_type[data.type][data.index]
+					local element = self._mission_elements_by_type[data.type] and self._mission_elements_by_type[data.type][data.index]
 					local element_name = element and self:get_element_name(element)
 					if element_name and not element_name:lower():find("error") and not plan_data.pos_not_important then
 						text = string.format("%s (%s)\n", text, element_name)
@@ -633,7 +920,7 @@ elseif requiredScript == "lib/managers/preplanningmanager" then
 			end
 
 			if table.size(saved_assets) > 0 then
-				text = string.format("%s%s\n", text, managers.localization:text("extracted_preplanning_assets_title"))
+				text = string.format("%s%s\n", text, managers.localization:text("wolfhud_preplanning_assets_title"))
 				for id, mission_element in pairs(saved_assets) do
 					local type_name = self:get_type_name(mission_element.type)
 					text = string.format("%s - %s", text, type_name)
@@ -654,7 +941,6 @@ elseif requiredScript == "lib/managers/preplanningmanager" then
 
 		return text
 	end
-
 	function PrePlanningManager:get_saved_costs(name)
 		local money_costs, favours = 0, 0
 
