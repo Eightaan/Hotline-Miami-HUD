@@ -226,7 +226,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 			align = "left",
 			font_size = medium_font_size,
 			font = tweak_data.hud_stats.objectives_font,
-			color = Color("66ff99"),
+			color = HMH:GetOption("custom_tab_color") and Color("66ff99") or Color.white,
 			text = managers.localization:to_upper_text("hud_objective")
 		}), 16)
 		placer:new_row(8)
@@ -241,7 +241,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 				text = utf8.to_upper(data.text),
 				font = tweak_data.hud.medium_font,
 				font_size = small_font_size,
-				color = Color("66ff99"),
+				color = HMH:GetOption("custom_tab_color") and Color("66ff99") or Color.white,
 				w = row_w
 			}))
 			placer:add_bottom(self._left:fine_text({
@@ -251,7 +251,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 				text = data.description,
 				font = tweak_data.hud_stats.objective_desc_font,
 				font_size = tiny_font_size,
-				color = Color("66ffff"),
+				color = HMH:GetOption("custom_tab_color") and Color("66ffff") or Color.white,
 				w = row_w
 			}), 0)
 		end
