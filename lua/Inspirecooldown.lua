@@ -1,4 +1,4 @@
-local mvec3_dist_sq = mvector3.distance_sq
+--[[local mvec3_dist_sq = mvector3.distance_sq
 local ignored_states = { arrested = 1, bleed_out = 1, fatal = 1, incapacitated = 1 }
 
 local PS_get_intimidation_action_orig = PlayerStandard._get_intimidation_action
@@ -41,4 +41,4 @@ function PlayerStandard:_get_intimidation_action(prime_target, primary_only, det
 		end
 	end
 	return voice_type, plural, prime_target
-end
+end]]

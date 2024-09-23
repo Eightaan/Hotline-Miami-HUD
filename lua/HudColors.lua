@@ -25,7 +25,7 @@ function TweakData:HMM()
     end
 	
 	self.contour.interactable.standard_color = HMH:GetColor("interactcolor") --Vector3(1, 0.5, 0), 255,127,0
-
+	--e2087c
     if HMH:GetOption("custom_menu_color") then
         self.screen_colors.resource = Color("66ffff")
         self.screen_colors.button_stage_2 = Color("66ffff")
