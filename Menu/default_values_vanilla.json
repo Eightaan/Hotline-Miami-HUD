@@ -1,5 +1,7 @@
 {
     "hud_scale" : 1,
+	"timer_x" : 123,
+	"timer_y" : 43,
 	"no_menu_textures" : false,
     "mod_overrides" : true, 
     "infoboxes" : true,
@@ -370,6 +372,18 @@
 		"b" : 102
 	},
 	"ECMIcon" : 
+	{
+		"r" : 255,
+		"g" : 255,
+		"b" : 255
+	},
+	"InspireIcon" : 
+	{
+		"r" : 255,
+		"g" : 255,
+		"b" : 255
+	},
+	"InspireTimer" : 
 	{
 		"r" : 255,
 		"g" : 255,

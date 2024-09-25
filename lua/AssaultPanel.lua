@@ -115,7 +115,7 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_HUDAssaultCorner_init", function(s
 
     -- VIP ICON
 	local width = 200
-    local icon_offset = 140 + (10 * managers.job:current_difficulty_stars())
+    local icon_offset = 90 + (10 * managers.job:current_difficulty_stars())
 	local vip_icon = self._vip_bg_box:child("vip_icon")
 	local vip_icon_new = self._vip_bg_box:child("vip_icon_new")
 	local buffs_panel = self._hud_panel:child("buffs_panel")

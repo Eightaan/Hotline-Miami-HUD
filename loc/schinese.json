@@ -1,7 +1,6 @@
 {
 	"hmh_damage_resistance" : "$NUM",
 	"hmh_hud_assault_assault" : "突击进行中",
-	"hmh_inspire_cooldown_text" : "激励启发冷却剩余时间:",
 	"hmh_hud_stats_enemies_dominated" : "拷上手铐的敌人",
 
 	"hmh_title" : "迈阿密热线Hud",
@@ -81,8 +80,6 @@
 	"hmh_hint_desc" : "自定义提示文本",
 	"hint_title" : "自定义提示文本",
 	"hint_desc" : "启用自定义彩色提示文本",
-	"inspire_title" : "启用冷却提示",
-	"inspire_desc" : "显示一条带有剩余冷却时间的提示消息。",
 	
 	"hmh_suspicion_title" : "怀疑度",
 	"hmh_suspicion_desc" : "自定义可疑度表",
@@ -427,5 +424,15 @@
 	"hud_stats_unopened_crates" : "UNOPENED CRATES",
 	"loot_count_title" : "Loot Counter",
 	"loot_count_desc" : "Shows the amount of loot on the map.",
-	"hmh_switch_profile" : "Switch Profiles"
+	"hmh_switch_profile" : "Switch Profiles",
+	"hmh_inspire_timer_title" : "Inspire Cooldown Timer",
+	"hmh_inspire_timer_desc" : "Inspire Cooldown Timer Options.",
+	"HotlineMiamiHudInspireIconTitleID" : "Icon",
+	"HotlineMiamiHudInspireTimerTitleID" : "Timer",
+	"inspire_timer_x_title" : "Horisontal Position",
+	"inspire_timer_x_desc" : "Change the horisontal position of the timer. \n The change will be visible next time the timer shows up on the screen.",
+	"inspire_timer_y_title" : "Vertical Position",
+	"inspire_timer_y_desc" : "Change the vertical position of the timer. \n The change will be visible next time the timer shows up on the screen.",
+	"inspire_title" : "Inspire Cooldown Timer",
+	"inspire_desc" : "Displays a timer for the inspire cooldown."
 }

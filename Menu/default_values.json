@@ -1,5 +1,7 @@
 {
     "hud_scale" : 1,
+	"timer_x" : 123,
+	"timer_y" : 43,
 	"no_menu_textures" : true,
     "mod_overrides" : true,
     "infoboxes" : true,
@@ -374,6 +376,18 @@
 		"r" : 255,
 		"g" : 128,
 		"b" : 223
+	},
+	"InspireIcon" :
+	{
+		"r" : 255,
+		"g" : 128,
+		"b" : 223
+	},
+	"InspireTimer" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
 	},
 	"interact_icons" : true,
 	"stealth_c4" : true,

@@ -83,20 +83,6 @@
 		},
 		{
 			"type": "toggle",
-			"id": "inspire_toggle",
-			"title": "inspire_title",
-			"description": "inspire_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "inspire",
-			"value": "inspire",
-			"default_value": true
-		},
-		{
-			"type" : "divider",
-			"size" : 12
-		},
-		{
-			"type": "toggle",
 			"id": "hint_toggle",
 			"title": "hint_title",
 			"description": "hint_desc",

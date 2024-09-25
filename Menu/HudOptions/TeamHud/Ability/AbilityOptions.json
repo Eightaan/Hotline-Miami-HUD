@@ -29,20 +29,6 @@
             "type" : "divider",
             "size" : 8
 		},
-		{
-			"type": "toggle",
-			"id": "screen_effect_toggle",
-			"title": "screen_effect_title",
-			"description": "screen_effect_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "screen_effect",
-			"value": "screen_effect",
-			"default_value": false
-		},
-        {
-            "type" : "divider",
-            "size" : 8
-		},
         {
 			"type": "toggle",
 			"id": "armorer_radial_toggle",

@@ -34,6 +34,23 @@
 			"description": "hmh_ecm_timer_desc",
 			"next_menu": "hmh_ecm_timer_menu"
 		},
+        {
+			"type": "button",
+			"id": "hmh_inspire_timer_menu",
+			"title": "hmh_inspire_timer_title",
+			"description": "hmh_inspire_timer_desc",
+			"next_menu": "hmh_inspire_timer_menu"
+		},
+		{
+			"type": "toggle",
+			"id": "screen_effect_toggle",
+			"title": "screen_effect_title",
+			"description": "screen_effect_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "screen_effect",
+			"value": "screen_effect",
+			"default_value": false
+		},
 		{
 			"type": "divider",
 			"size": 8
