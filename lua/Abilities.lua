@@ -72,6 +72,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
                 	o:set_text(string.format(t_format, t_left))
 					o:set_color(HMH:GetColor("InspireTimer") or Color.white)
 					icon:set_color(HMH:GetColor("InspireIcon") or Color.white)
+					timer_bg:set_color(HMH:GetColor("InspireTimer") or Color("66ffff"))
             	end
 				icon:set_visible(false)
 				timer_bg:set_visible(false)

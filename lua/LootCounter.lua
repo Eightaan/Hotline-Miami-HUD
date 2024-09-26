@@ -33,7 +33,7 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 			ranc =							{ turret_part = 2, vehicle_falcogini = 2  },
 			trai =							{ turret_part = 2, },
 			pent =							{ mus_artifact = 2, },
-			deep =							{ vehicle_falcogini = 1, },
+		--	deep =							{ vehicle_falcogini = 1, },
 			des = 							{ mus_artifact = 4, painting = 2 }
 		}
 	end)
