@@ -321,7 +321,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 				visible = false,
 				align = "center",
 				vertical = "center",
-				y = -7,
+				y = -4,
 				font = tweak_data.hud.medium_font_noshadow,
 				font_size = 16,
 				alpha = 1,

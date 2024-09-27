@@ -11,7 +11,7 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 			family = 						{ money = 1, },
 			watchdogs_2 = 					{ coke = 10, },
 			watchdogs_2_day =				{ coke = 10, },
-			framing_frame_3 = 				{ gold = 16, coke = 8 },
+			framing_frame_3 = 				{ gold = 16, },
 			mia_1 = 						{ money = 1, },
 			welcome_to_the_jungle_1 =		{ money = 1, gold = 1 },
 			welcome_to_the_jungle_1_night =	{ money = 1, gold = 1 },
@@ -25,7 +25,6 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 			rvd2 = 							{ money = 1, },
 			arena = 						{ vehicle_falcogini = 1, },
 			shoutout_raid =					{ vehicle_falcogini = 9, },
-			friend = 						{ painting = 8, },
 			pbr2 =							{ money = 8, vehicle_falcogini = 1 },
 			mex_cooking = 					{ roman_armor = 4, },
 			sah =							{ mus_artifact = 2, },
@@ -33,15 +32,14 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 			ranc =							{ turret_part = 2, vehicle_falcogini = 2  },
 			trai =							{ turret_part = 2, },
 			pent =							{ mus_artifact = 2, },
-		--	deep =							{ vehicle_falcogini = 1, },
 			des = 							{ mus_artifact = 4, painting = 2 }
 		}
 	end)
 		
 	local function _get_unit_type(unit)
 		local interact_type = unit:interaction().tweak_data
-		local alaskan_deal_fix = Global.game_settings.level_id == "wwh" and "grenade_briefcase" or ""
-		local counted_possible_by_int = {alaskan_deal_fix, "money_briefcase", "gen_pku_warhead_box", "weapon_case", "weapon_case_axis_z", "crate_loot", "crate_loot_crowbar"}
+		local election_day_2_fix = Global.game_settings.level_id == "election_day_2" and "" or "money_briefcase"
+		local counted_possible_by_int = {election_day_2_fix, "gen_pku_warhead_box", "weapon_case", "weapon_case_axis_z", "crate_loot", "crate_loot_crowbar"}
 		local counted_by_int = {"hold_take_helmet", "take_weapons_axis_z"}
 		if interact_type then
 			if table.contains(counted_possible_by_int, interact_type) then
