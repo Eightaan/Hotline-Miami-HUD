@@ -60,24 +60,6 @@
 			"callback_arguments": "font",
 			"value": "font",
 			"default_value": false
-	    },
-        {
-			"type": "divider",
-			"size": 8
-		},
-		{
-			"type": "button",
-			"id": "hmh_skip_menus",
-			"title": "hmh_skip_menu_options_title",
-			"description": "hmh_skip_menu_options_desc",
-			"next_menu": "hmh_skip_menus_options"
-		},
-		{
-			"type": "button",
-			"id": "hmh_enhanced_loadout",
-			"title": "hmh_enhanced_loadout_options_title",
-			"description": "hmh_enhanced_loadout_options_desc",
-			"next_menu": "hmh_enhanced_loadout_options"
 		},
         {
 			"type": "divider",
