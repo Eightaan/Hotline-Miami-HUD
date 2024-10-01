@@ -2,6 +2,7 @@
 	"hmh_damage_resistance" : "$NUM",
 	"hmh_hud_assault_assault" : "突击进行中",
 	"hmh_hud_stats_enemies_dominated" : "拷上手铐的敌人",
+	"HMH_bloodthirst_multiplier" : "$NUM",
 
 	"hmh_title" : "迈阿密热线Hud",
 	"hmh_desc" : "迈阿密热线Hud选项",
@@ -425,8 +426,8 @@
 	"loot_count_title" : "Loot Counter",
 	"loot_count_desc" : "Shows the amount of loot on the map.",
 	"hmh_switch_profile" : "Switch Profiles",
-	"hmh_inspire_timer_title" : "Inspire Cooldown Timer",
-	"hmh_inspire_timer_desc" : "Inspire Cooldown Timer Options.",
+	"hmh_buff_list_title" : "Inspire Cooldown Timer",
+	"hmh_buff_list_desc" : "Inspire Cooldown Timer Options.",
 	"HotlineMiamiHudInspireIconTitleID" : "Icon",
 	"HotlineMiamiHudInspireTimerTitleID" : "Timer",
 	"inspire_timer_x_title" : "Horisontal Position",
@@ -434,5 +435,13 @@
 	"inspire_timer_y_title" : "Vertical Position",
 	"inspire_timer_y_desc" : "Change the vertical position of the timer. \n The change will be visible next time the timer shows up on the screen.",
 	"inspire_title" : "Inspire Cooldown Timer",
-	"inspire_desc" : "Displays a timer for the inspire cooldown."
+	"inspire_desc" : "Displays a timer for the inspire cooldown.",
+	"bloodthirst_title" : "Bloodthirst",
+	"bloodthirst_desc" : "Displays the melee damage multiplier for bloodthirst.",
+	"bloodthirst_min_kills_title" : "Multiplier Limit",
+	"bloodthirst_min_kills_desc" : "Change how high the multiplier needs to be before it's shown on the hud.",
+	"bloodthirst_x_title" : "Horisontal Position",
+	"bloodthirst_x_desc" : "Change the horisontal position of the timer. \n The change will be visible next time the timer shows up on the screen.",
+	"bloodthirst_y_title" : "Vertical Position",
+	"bloodthirst_y_desc" : "Change the vertical position of the timer. \n The change will be visible next time the timer shows up on the screen."
 }

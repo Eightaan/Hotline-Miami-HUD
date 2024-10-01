@@ -1,36 +1,49 @@
 if _G.IS_VR then 
     return
 end
+local Color = Color
+local math_lerp = math.lerp
+
 if RequiredScript == "lib/managers/hudmanagerpd2" then
 	-- Inspire Cooldown
-	Hooks:PostHook(HUDManager, "_player_hud_layout", "hmh_inspire_cooldown_timer", function(self)
-		HMH:init()
-	end)
 
-	function HMH:init()
+	Hooks:PostHook(HUDManager, "_setup_player_info_hud_pd2", "hmh_bufflist_setup_player_info_hud_pd2", function(self, ...)
+		self._hud_buff_list = HUDBuffList:new(managers.hud:script(PlayerBase.PLAYER_INFO_HUD_PD2))
+	end)
+	
+	function HUDManager:Set_bloodthirst(buff)
+       self._hud_buff_list:Set_bloodthirst(buff)
+    end
+
+	function HUDManager:update_inspire_timer(buff)
+       self._hud_buff_list:update_inspire_timer(buff)
+    end
+	
+	HUDBuffList = HUDBuffList or class()
+	function HUDBuffList:init()
 		if managers.hud ~= nil then 
 			self.hud = managers.hud:script(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2)
-			self._cooldown_panel = self.hud.panel:panel({
-            name = "cooldown_panel",
-            x = 0,
-            y = 0
-        })
+				self._cooldown_panel = self.hud.panel:panel({
+				name = "cooldown_panel",
+				x = 0,
+				y = 0
+			})
 			self.cooldown_text = self._cooldown_panel:text({
 				layer = 2,
 				visible = false,
 				text = "0.0",
 				font = tweak_data.hud.medium_font_noshadow,
-				font_size = 20,
-				x = 14,
-				y = 30,
+				font_size = 16,
+				x = 13,
+				y = 25,
 				color = Color.white
 			})
 			self._inspire_cooldown_icon = self._cooldown_panel:bitmap({
 				name = "inspire_cooldown_icon",
 				texture = "guis/textures/pd2/skilltree_2/icons_atlas_2",
 				texture_rect = { 4* 80, 9 * 80, 80, 80 },
-				w = 38,
-				h = 38,
+				w = 28,
+				h = 28,
 				x = 0,
 				y = 0,
 				color = Color.white,
@@ -40,10 +53,49 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 			self._inspire_cooldown_timer_bg = self._cooldown_panel:bitmap({
 				name = "inspire_cooldown_timer_bg",
 				texture = "guis/textures/pd2/crimenet_marker_glow",
-				w = 42,
-				h = 42,
+				w = 36,
+				h = 36,
 				x = 0,
-				y = 20,
+				y = 15,
+				color = Color("66ffff"),
+				alpha = 0.5,
+				visible = false,
+				layer = 0
+			})
+			self._bloodthirst_panel = self.hud.panel:panel({
+				name = "bloodthirst_panel",
+				x = 0,
+				y = 0
+			})
+			self.bloodthirst_text = self._bloodthirst_panel:text({
+				layer = 2,
+				visible = false,
+				text = "0.0",
+				font = tweak_data.hud.medium_font_noshadow,
+				font_size = 16,
+				x = 12,
+				y = 25,
+				color = Color.white
+			})
+			self._bloodthirst_icon = self._bloodthirst_panel:bitmap({
+				name = "bloodthirst_icon",
+				texture = "guis/textures/pd2/skilltree_2/icons_atlas_2",
+				texture_rect = { 11* 80, 6 * 80, 80, 80 },
+				w = 28,
+				h = 28,
+				x = 0,
+				y = 0,
+				color = Color.white,
+				visible = false,
+				layer = 1
+			})
+			self._bloodthirst_bg = self._bloodthirst_panel:bitmap({
+				name = "bloodthirst_bg",
+				texture = "guis/textures/pd2/crimenet_marker_glow",
+				w = 36,
+				h = 36,
+				x = 0,
+				y = 15,
 				color = Color("66ffff"),
 				alpha = 0.5,
 				visible = false,
@@ -52,7 +104,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		end
 	end
 
-	function HMH:update_inspire_timer(t)
+	function HUDBuffList:update_inspire_timer(t)
 		local timer = self.cooldown_text
 		local panel = self._cooldown_panel
 		local timer_bg = self._inspire_cooldown_timer_bg
@@ -79,6 +131,34 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
             	o:set_text(false)
         	end)
     	end
+	end
+
+	function HUDBuffList:Set_bloodthirst(buff)
+		local panel = self._bloodthirst_panel
+		local bloodthirst_text = self.bloodthirst_text
+		local bloodthirst_icon = self._bloodthirst_icon
+		local bloodthirst_timer_bg = self._bloodthirst_bg
+		if buff >= HMH:GetOption("BloodthirstMinKills") then
+			bloodthirst_text:set_visible(true)
+			bloodthirst_icon:set_visible(true)
+			bloodthirst_timer_bg:set_color(HMH:GetColor("BloodthirstText") or Color("66ffff"))
+			bloodthirst_text:set_color(HMH:GetColor("BloodthirstText") or Color.white)
+			bloodthirst_icon:set_color(HMH:GetColor("BloodthirstIcon") or Color.white)
+			bloodthirst_timer_bg:set_visible(true)
+			panel:set_x(10 * HMH:GetOption("BloodthirstX"))
+			panel:set_y(10 * HMH:GetOption("BloodthirstY"))
+			bloodthirst_text:set_text(managers.localization:to_upper_text("HMH_bloodthirst_multiplier", { NUM = buff }).."x")
+			bloodthirst_text:animate(function(o)
+				over(1 , function(p)
+					local n = 1 - math.sin((p / 2 ) * 180)
+					bloodthirst_text:set_font_size(math_lerp(16, 16 * 1.16 , n))
+				end)
+			end)
+		else
+			bloodthirst_text:set_visible(false)
+			bloodthirst_icon:set_visible(false)
+			bloodthirst_timer_bg:set_visible(false)
+		end
 	end
 	
 	-- Stamina Circle
@@ -253,7 +333,14 @@ elseif RequiredScript == "lib/managers/playermanager" then
 		local upgrade_value = self:upgrade_value(category, upgrade)
 		if upgrade_value == 0 then return end
 		if HMH:GetOption("inspire") then
-			HMH:update_inspire_timer(upgrade_value[2])
+			managers.hud:update_inspire_timer(upgrade_value[2])
+		end
+	end)
+	
+	Hooks:PostHook(PlayerManager, 'set_melee_dmg_multiplier', "HMH_update_Bloodthirst", function(self, value)
+		if not self:has_category_upgrade("player", "melee_damage_stacking") then return end
+		if self._melee_dmg_mul ~= 1 and HMH:GetOption("Bloodthirst") then
+			managers.hud:Set_bloodthirst(self._melee_dmg_mul)
 		end
 	end)
 

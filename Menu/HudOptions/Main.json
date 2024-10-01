@@ -36,10 +36,10 @@
 		},
         {
 			"type": "button",
-			"id": "hmh_inspire_timer_menu",
-			"title": "hmh_inspire_timer_title",
-			"description": "hmh_inspire_timer_desc",
-			"next_menu": "hmh_inspire_timer_menu"
+			"id": "hmh_buff_list_menu",
+			"title": "hmh_buff_list_title",
+			"description": "hmh_buff_list_desc",
+			"next_menu": "hmh_buff_list_menu"
 		},
 		{
 			"type": "toggle",

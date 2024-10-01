@@ -7,6 +7,10 @@
     "infoboxes" : true,
 	"mouse_pointer" : 2,
     "inspire": true,
+	"Bloodthirst": true,
+	"BloodthirstMinKills" : 6,
+	"BloodthirstX" : 123,
+	"BloodthirstY" : 38,	
     "greenciv": true,
 	"assault_text" : 1,
 	"info_box_alpha" : 1,
@@ -384,6 +388,18 @@
 		"b" : 223
 	},
 	"InspireTimer" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
+	},
+	"BloodthirstIcon" :
+	{
+		"r" : 255,
+		"g" : 128,
+		"b" : 223
+	},
+	"BloodthirstText" :
 	{
 		"r" : 102,
 		"g" : 255,
