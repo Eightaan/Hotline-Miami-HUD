@@ -52,6 +52,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 			self._inspire_cooldown_timer_bg = self._cooldown_panel:bitmap({
 				name = "inspire_cooldown_timer_bg",
 				texture = "guis/textures/pd2/crimenet_marker_glow",
+				texture_rect = { 1, 1, 62, 62 }, 
 				w = 36,
 				h = 36,
 				x = 0,
@@ -91,8 +92,9 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 			self._bloodthirst_bg = self._bloodthirst_panel:bitmap({
 				name = "bloodthirst_bg",
 				texture = "guis/textures/pd2/crimenet_marker_glow",
-				w = 36,
-				h = 36,
+				texture_rect = { 1, 1, 62, 62 }, 
+				w = 37,
+				h = 37,
 				x = 0,
 				y = 15,
 				color = Color("66ffff"),
