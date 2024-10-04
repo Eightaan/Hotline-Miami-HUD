@@ -101,7 +101,7 @@ elseif string.lower(RequiredScript) == "lib/managers/menu/skilltreeguinew" then
 
 elseif string.lower(RequiredScript) == "lib/states/ingamewaitingforplayers" then
     Hooks:PostHook(IngameWaitingForPlayersState, "update", "HMH_IngameWaitingForPlayersState_update", function(self, ...)
-        if self._skip_prompt_shown and HMH:GetOption("skip_blackscreen") then
+        if self._skip_promt_shown and HMH:GetOption("skip_blackscreen") then
             self:_skip()
         end
     end)
