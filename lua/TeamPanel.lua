@@ -632,42 +632,32 @@ end)
 
 if HMH:GetOption("colored_downs") then 
     Hooks:PostHook(HUDTeammate, "set_revives_amount", "HMH_HUDTeammate_set_revives_amount", function(self, revive_amount, ...)
-	    if revive_amount then
-		    local teammate_panel = self._panel:child("player")
-		    local revive_panel = teammate_panel:child("revive_panel")
-		    local revive_amount_text = revive_panel:child("revive_amount")
-		    local revive_arrow = revive_panel:child("revive_arrow")
-		    local revive_bg = revive_panel:child("revive_bg")
-            local team_color
+        if revive_amount then
+            local teammate_panel = self._panel:child("player")
+            local revive_panel = teammate_panel:child("revive_panel")
+            local revive_amount_text = revive_panel:child("revive_amount")
+            local revive_arrow = revive_panel:child("revive_arrow")
+            local revive_bg = revive_panel:child("revive_bg")
+            local team_color = self._peer_id and tweak_data.chat_colors[self._peer_id] or
+                               (not self._ai and tweak_data.chat_colors[managers.network:session():local_peer():id()]) or Color.white
 
-        	if self._peer_id then
-                team_color = tweak_data.chat_colors[self._peer_id]
-            elseif not self._ai then
-                team_color = tweak_data.chat_colors[managers.network:session():local_peer():id()]
-            end
-
-    		if revive_amount_text then
-	    		revive_amount_text:set_text(tostring(math.max(revive_amount - 1, 0)) .. "x")
-	    		revive_amount_text:set_color(team_color or Color.white)
-		        revive_amount_text:animate(function(o)
-				    over(1 , function(p)
-                        local n = 1 - math.sin((p / 2 ) * 180)
-                        revive_amount_text:set_font_size(math_lerp(16, 16 * 1.16, n))
+            if revive_amount_text then
+                revive_amount_text:set_text(tostring(math.max(revive_amount - 1, 0)) .. "x")
+                revive_amount_text:set_color(team_color)
+                revive_amount_text:animate(function(o)
+                    over(1, function(p)
+                        revive_amount_text:set_font_size(math_lerp(16, 16 * 1.16, 1 - math.sin((p / 2) * 180)))
                     end)
                 end)
-    		end
-		
-    		if revive_arrow then
-    		    revive_arrow:set_color(team_color or Color.white)
-    		end
+            end
 
-    		if revive_bg then
-    			revive_bg:set_alpha(0)
-    		end
-    	end
-		self._panel:child("player"):child("revive_panel"):set_visible(true)
-	    self._panel:child("callsign_bg"):set_visible(false)
-		self._panel:child("callsign"):set_visible(false)
+            if revive_arrow then revive_arrow:set_color(team_color) end
+            if revive_bg then revive_bg:set_alpha(0) end
+        end
+
+        self._panel:child("player"):child("revive_panel"):set_visible(true)
+        self._panel:child("callsign_bg"):set_visible(false)
+        self._panel:child("callsign"):set_visible(false)
     end)
 end
 

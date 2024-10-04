@@ -508,7 +508,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
             	while t_left >= 0.1 do
 					self._armor_invulnerability_timer = true
                 	t_left = t_left - coroutine.yield()
-					t_format = t_left < 10 and "%.1f" or "%.f"
+					t_format = t_left < 9.9 and "%.1f" or "%.f"
                 	o:set_text(string.format(t_format, t_left))
 					o:set_color(HMH:GetColor("armorer_cooldown_timer_color2") or Color.red)
             	end
@@ -558,7 +558,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
             	while t_left >= 0.1 do
 					self._health_timer = true
                 	t_left = t_left - coroutine.yield()
-					t_format = t_left < 10 and "%.1f" or "%.f"
+					t_format = t_left < 9.9 and "%.1f" or "%.f"
                 	o:set_text(string.format(t_format, t_left))
 					o:set_color(HMH:GetColor("armorer_duration_timer_color") or Color.green)
             	end

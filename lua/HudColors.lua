@@ -1,27 +1,16 @@
 function TweakData:HMM()
     if HMH:GetOption("custom_color") then
-        local player1 = HMH:GetColor("Player1")
-        local player2 = HMH:GetColor("Player2")
-        local player3 = HMH:GetColor("Player3")
-        local player4 = HMH:GetColor("Player4")
-        local ai = HMH:GetColor("PlayerAi")
-        self.chat_colors[1] = player1
-        self.chat_colors[2] = player2
-        self.chat_colors[3] = player3
-        self.chat_colors[4] = player4
-        self.chat_colors[5] = ai
-        self.system_chat_color = HMH:GetColor("System")
-
-	    self.peer_vector_colors[1] = Vector3(player1:unpack())
-        self.peer_vector_colors[2] = Vector3(player2:unpack())
-        self.peer_vector_colors[3] = Vector3(player3:unpack())
-        self.peer_vector_colors[4] = Vector3(player4:unpack())
-        self.peer_vector_colors[5] = Vector3(ai:unpack())
-
-        self.preplanning_peer_colors[1] = player1 -- Host
-        self.preplanning_peer_colors[2] = player2 -- Peer 2
-        self.preplanning_peer_colors[3] = player3 -- Peer 3
-        self.preplanning_peer_colors[4] = player4 -- Peer 4
+        for i = 1, 5 do
+            local color = HMH:GetColor("Player" .. (i <= 4 and i or "Ai"))
+            if color then
+                self.chat_colors[i] = color
+                self.peer_vector_colors[i] = Vector3(color:unpack())
+                if i <= 4 then
+                    self.preplanning_peer_colors[i] = color
+                end
+            end
+        end
+        self.system_chat_color = HMH:GetColor("System") or Color(1, 1, 1) -- Default to white if nil
     end
 	
 	self.contour.interactable.standard_color = HMH:GetColor("interactcolor") --Vector3(1, 0.5, 0), 255,127,0
