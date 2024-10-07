@@ -208,7 +208,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		bloodthirst_icon:set_alpha(1)
 		bloodthirst_timer_bg:set_alpha(0.5)
 		
-		if buff >= HMH:GetOption("BloodthirstMinKills") then
+		if buff >= HMH:GetOption("BloodthirstMinKills") and HMH:GetOption("Bloodthirst") then
 			bloodthirst_text:set_visible(true)
 			bloodthirst_icon:set_visible(true)
 			bloodthirst_timer_bg:set_visible(true)
@@ -405,7 +405,7 @@ elseif RequiredScript == "lib/managers/playermanager" then
 	
 	Hooks:PostHook(PlayerManager, 'set_melee_dmg_multiplier', "HMH_update_Bloodthirst", function(self, ...)
 		if not self:has_category_upgrade("player", "melee_damage_stacking") then return end
-		if self._melee_dmg_mul ~= 1 and HMH:GetOption("Bloodthirst") then
+		if self._melee_dmg_mul ~= 1 then
 			managers.hud:Set_bloodthirst(self._melee_dmg_mul)
 		end
 	end)
