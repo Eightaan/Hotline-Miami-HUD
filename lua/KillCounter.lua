@@ -12,12 +12,12 @@ Hooks:PostHook( StatisticsManager, "killed", "HMH_StatisticsManager_killed", fun
 	local bullets = data.variant == "bullet"
 	local melee = data.variant == "melee" or data.weapon_id and tweak_data.blackmarket.melee_weapons[data.weapon_id]
 	local booms = data.variant == "explosion"
-	local other = not bullets and not melee and not booms
-    if bullets or melee or booms or other then
+	local other = not (bullets or melee or booms)
+	local is_valid_kill = bullets or melee or booms or other
+	if is_valid_kill then
         HMH.TotalKills = HMH.TotalKills + 1
+		if melee then
+			managers.hud:Set_bloodthirst(0)
+		end
     end
-	if melee then
-		local buff = 0
-		managers.hud:Set_bloodthirst(buff)
-	end
 end)
