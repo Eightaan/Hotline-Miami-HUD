@@ -6,6 +6,8 @@ local HMH = HMH
 local math_sin = math.sin
 local math_lerp = math.lerp
 local set_alpha = set_alpha
+local assaut_alpha = HMH:GetOption("assault_text")
+local info_box_alpha = HMH:GetOption("info_box_alpha")
 
 -- Function to set visibility of background boxes
 local function set_visibility(bg_box, is_visible)
@@ -60,8 +62,8 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_HUDAssaultCorner_init", function(s
     set_visibility(self._hostages_bg_box, false)  -- Show hostages box if panel is visible
 
     hostage_text:set_color(HMH:GetColor("HostagesText"))
-    hostage_text:set_alpha(HMH:GetOption("info_box_alpha"))
-    hostages_icon:set_alpha(HMH:GetOption("info_box_alpha"))
+    hostage_text:set_alpha(info_box_alpha)
+    hostages_icon:set_alpha(info_box_alpha)
     hostages_icon:set_color(HMH:GetColor("HostagesIcon"))
 
     -- ASSAULT
@@ -77,7 +79,7 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_HUDAssaultCorner_init", function(s
     assault_panel:text({
         name = "text",
         color = self._assault_color,
-        alpha = HMH:GetOption("assault_text"),
+        alpha = assaut_alpha,
         font_size = tweak_data.hud_corner.noreturn_size,
         font = tweak_data.hud_corner.assault_font
     })
@@ -92,7 +94,7 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_HUDAssaultCorner_init", function(s
     set_visibility(self._casing_bg_box, false)  -- Show casing box
 
     icon_casingbox:set_color(HMH:GetColor("CasingIcon"))
-    icon_casingbox:set_alpha(HMH:GetOption("assault_text"))
+    icon_casingbox:set_alpha(assaut_alpha)
     icon_casingbox:set_blend_mode("normal")
 
     casing_panel:show()
@@ -100,7 +102,7 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_HUDAssaultCorner_init", function(s
     casing_panel:text({
         name = "text",
         color = HMH:GetColor("CasingText"),
-        alpha = HMH:GetOption("assault_text"),
+        alpha = assaut_alpha,
         font_size = tweak_data.hud_corner.noreturn_size,
         font = tweak_data.hud_corner.assault_font
     })
@@ -120,11 +122,11 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_HUDAssaultCorner_init", function(s
     point_of_no_return_panel:set_alpha(0)
 
     icon_noreturnbox:set_color(HMH:GetColor("NoReturnIcon"))
-    icon_noreturnbox:set_alpha(HMH:GetOption("assault_text"))
+    icon_noreturnbox:set_alpha(assaut_alpha)
     point_of_no_return_text:set_color(HMH:GetColor("NoReturnText"))
-    point_of_no_return_text:set_alpha(HMH:GetOption("assault_text"))
-    point_of_no_return_timer:set_color(HMH:GetColor("NoReturnTimer"))
-    point_of_no_return_timer:set_alpha(HMH:GetOption("assault_text"))
+    point_of_no_return_text:set_alpha(assaut_alpha)
+    point_of_no_return_timer:set_color(HMH:GetColor("NoReturnTimer")) --juyuytyu
+    point_of_no_return_timer:set_alpha(assaut_alpha)
     point_of_no_return_timer:set_y(0)
 
     point_of_no_return_text:set_blend_mode("normal")
@@ -136,7 +138,8 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_HUDAssaultCorner_init", function(s
 
     -- VIP ICON
     local width = 200
-    local icon_offset = 90 + (10 * managers.job:current_difficulty_stars())
+	local scale = HMH:GetOption("hud_scale")
+    local icon_offset = (140 * scale) + (10 * managers.job:current_difficulty_stars()) + (20 / scale / scale)
     local vip_icon = self._vip_bg_box:child("vip_icon")
     local buffs_panel = self._hud_panel:child("buffs_panel")
 
@@ -147,7 +150,7 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_HUDAssaultCorner_init", function(s
 
     vip_icon:set_color(HMH:GetColor("CaptainBuffIcon"))
     vip_icon:set_blend_mode("normal")
-    vip_icon:set_alpha(HMH:GetOption("assault_text"))
+    vip_icon:set_alpha(assaut_alpha)
     vip_icon:set_center(self._vip_bg_box:w() / 2, self._vip_bg_box:h() / 2 - 5)
 
     local vip_text = self._vip_bg_box:text({
@@ -162,7 +165,7 @@ Hooks:PostHook(HUDAssaultCorner, "init", "HMH_HUDAssaultCorner_init", function(s
         vertical = "center",
         y = -13,
         x = -16,
-        alpha = HMH:GetOption("assault_text") or 1,
+        alpha = assaut_alpha or 1,
         color = HMH:GetColor("captain_buff_color") or Color("66ffff"),
         font = tweak_data.hud_corner.assault_font,
         font_size = tweak_data.hud_corner.numhostages_size * 0.6
@@ -200,9 +203,9 @@ Hooks:PostHook(HUDAssaultCorner, "setup_wave_display", "HMH_HUDAssaultCorner_set
         set_visibility(self._wave_bg_box, false)  -- Show wave box
 
         waves_icon:set_color(HMH:GetColor("WavesIcon"))
-        waves_icon:set_alpha(HMH:GetOption("info_box_alpha"))
+        waves_icon:set_alpha(info_box_alpha)
         num_waves:set_color(HMH:GetColor("WavesText"))
-        num_waves:set_alpha(HMH:GetOption("info_box_alpha"))
+        num_waves:set_alpha(info_box_alpha)
     end
 end)
 
@@ -218,7 +221,7 @@ Hooks:OverrideFunction(HUDAssaultCorner, "_start_assault", function(self, text_l
 	end
 
 	icon_assaultbox:set_color(self._assault_color)
-	icon_assaultbox:set_alpha(HMH:GetOption("assault_text"))
+	icon_assaultbox:set_alpha(assaut_alpha)
 	self._assault = true
 	self:hide_casing()
 
@@ -298,9 +301,9 @@ Hooks:OverrideFunction(HUDAssaultCorner, "sync_set_assault_mode", function(self,
 	local color = mode == "phalanx" and self._vip_assault_color or self._assault_color
 	icon_assaultbox:set_image(image)
 	icon_assaultbox:set_color(color)
-	icon_assaultbox:set_alpha(HMH:GetOption("assault_text"))
+	icon_assaultbox:set_alpha(assaut_alpha)
 	text:set_color(color)
-	text:set_alpha(HMH:GetOption("assault_text"))
+	text:set_alpha(assaut_alpha)
 end)
 
 Hooks:OverrideFunction(HUDAssaultCorner, "_get_assault_strings", function(self)

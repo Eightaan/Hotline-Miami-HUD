@@ -10,7 +10,7 @@ Hooks:PostHook(HUDWaitingLegend, "update_buttons", "HMH_HUDWaitingLegend_update_
 end)
 
 Hooks:PostHook(HUDWaitingLegend, "show_on", "HMH_HUDWaitingLegend_show_on", function(self, teammate_hud, peer)
-    if HMH:GetOption("prompt") then
+    if HMH:GetOption("promt") then
 	    local color_id = peer:id()
 	    local color = tweak_data.chat_colors[color_id] or tweak_data.chat_colors[#tweak_data.chat_colors]
 	    if self._btn_text then

@@ -1,8 +1,6 @@
 if string.lower(RequiredScript) == "lib/managers/menumanager" then
     -- Hide DLC ad in the main menu
-    Hooks:OverrideFunction(MenuCallbackHandler, "get_latest_dlc_locked", function(self)
-        return false
-    end)
+    Hooks:OverrideFunction(MenuCallbackHandler, "get_latest_dlc_locked", function(self) return false end)
 
     -- Offline chat toggle
     Hooks:OverrideFunction(MenuManager, "toggle_chatinput", function(self)
