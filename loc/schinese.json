@@ -431,9 +431,9 @@
 	"HotlineMiamiHudInspireIconTitleID" : "Icon",
 	"HotlineMiamiHudInspireTimerTitleID" : "Timer",
 	"inspire_timer_x_title" : "Horisontal Position",
-	"inspire_timer_x_desc" : "Change the horisontal position of the timer. \n The change will be visible next time the timer shows up on the screen.",
+	"inspire_timer_x_desc" : "Change the horisontal position of the timer.",
 	"inspire_timer_y_title" : "Vertical Position",
-	"inspire_timer_y_desc" : "Change the vertical position of the timer. \n The change will be visible next time the timer shows up on the screen.",
+	"inspire_timer_y_desc" : "Change the vertical position of the timer.",
 	"inspire_title" : "Inspire Cooldown Timer",
 	"inspire_desc" : "Displays a timer for the inspire cooldown.",
 	"bloodthirst_title" : "Bloodthirst",
@@ -441,7 +441,7 @@
 	"bloodthirst_min_kills_title" : "Multiplier Limit",
 	"bloodthirst_min_kills_desc" : "Change how high the multiplier needs to be before it's shown on the hud.",
 	"bloodthirst_x_title" : "Horisontal Position",
-	"bloodthirst_x_desc" : "Change the horisontal position of the timer. \n The change will be visible next time the timer shows up on the screen.",
+	"bloodthirst_x_desc" : "Change the horisontal position of the timer.",
 	"bloodthirst_y_title" : "Vertical Position",
-	"bloodthirst_y_desc" : "Change the vertical position of the timer. \n The change will be visible next time the timer shows up on the screen."
+	"bloodthirst_y_desc" : "Change the vertical position of the timer."
 }
