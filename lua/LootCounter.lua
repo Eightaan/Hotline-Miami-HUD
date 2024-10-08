@@ -30,7 +30,7 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
         }
         self.ignore_ids = {
             [300457] = true,
-            [300458] = true,
+            [300458] = true
         }
     end)
 
