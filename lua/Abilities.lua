@@ -232,6 +232,8 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 	Hooks:PostHook(HUDManager, "set_stamina_value", "HMH_HUDManager_set_stamina_value", function (self, value, ...)
 	    if HMH:GetOption("stamina") and self._teammate_panels[self.PLAYER_PANEL].set_stamina_current then --VHUDPlus Compatibility
 		    self._teammate_panels[self.PLAYER_PANEL]:set_stamina_current(value)
+		else
+			self._teammate_panels[self.PLAYER_PANEL]:set_stamina_visibility(false)
 		end
 	end)
 
@@ -520,10 +522,10 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 			render_template = "VertexColorTexturedRadial",
 			w = radial_health_panel:w() * 0.7,
 			h = radial_health_panel:h() * 0.7,
+			visible = true,
 			layer = 3,
 		})
 		self._stamina_circle:set_center(radial_health_panel:child("radial_health"):center())
-		self._stamina_circle:set_visible(HMH:GetOption("stamina"))
  
         -- Hides the stamina display used by VHUDPlus
 		if self._stamina_bar and self._stamina_line then
