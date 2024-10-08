@@ -185,6 +185,8 @@
 	"stealth_c4_title" : "Shaped Charge Suppression",
 	"stealth_c4_desc" : "When checked, you need to doubletap to deploy shaped charges in stealth. \nOnly to prevent accidents.",
 	
+	"team_bg_title" : "Hide Panel Background",
+	"team_bg_desc" : "Hides the background on the team panels.",
 	"ping_title" : "Show Player Ping",
 	"ping_desc" : "Displays the players ping by their name panels.",
 	"stamina_title" : "Stamina Circle",

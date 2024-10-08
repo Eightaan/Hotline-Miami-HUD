@@ -3,6 +3,7 @@
 	"timer_x" : 123,
 	"timer_y" : 43,
 	"no_menu_textures" : false,
+	"team_bg" : true,
     "mod_overrides" : true, 
     "infoboxes" : true,
 	"mouse_pointer" : 1,

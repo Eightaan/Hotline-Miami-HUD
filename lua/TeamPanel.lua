@@ -46,6 +46,15 @@ Hooks:PostHook(HUDTeammate, "init", "HMH_HUDTeammate_init", function(self, ...)
     if HMH:GetOption("ping") then
 	    self:_create_ping_info()
 	end
+	
+	if HMH:GetOption("team_bg") then
+		self._panel:child("name_bg"):set_visible(false)
+		self._cable_ties_panel:child("bg"):set_visible(false)
+		self._deployable_equipment_panel:child("bg"):set_visible(false)
+		self._grenades_panel:child("bg"):set_visible(false)
+		self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("bg"):set_visible(false)
+		self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):child("bg"):set_visible(false)
+	end
 end)
 
 function HUDTeammate:infinite_ammo_glow()
@@ -638,8 +647,7 @@ if HMH:GetOption("colored_downs") then
             local revive_amount_text = revive_panel:child("revive_amount")
             local revive_arrow = revive_panel:child("revive_arrow")
             local revive_bg = revive_panel:child("revive_bg")
-            local team_color = self._peer_id and tweak_data.chat_colors[self._peer_id] or
-                               (not self._ai and tweak_data.chat_colors[managers.network:session():local_peer():id()]) or Color.white
+            local team_color = self._peer_id and tweak_data.chat_colors[self._peer_id] or (not self._ai and tweak_data.chat_colors[managers.network:session():local_peer():id()]) or Color.white
 
             if revive_amount_text then
                 revive_amount_text:set_text(tostring(math.max(revive_amount - 1, 0)) .. "x")

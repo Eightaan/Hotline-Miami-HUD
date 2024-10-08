@@ -59,6 +59,16 @@
 		},
 		{
 			"type": "toggle",
+			"id": "team_bg_toggle",
+			"title": "team_bg_title",
+			"description": "team_bg_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "team_bg",
+			"value": "team_bg",
+			"default_value": true
+		},
+		{
+			"type": "toggle",
 			"id": "ping_toggle",
 			"title": "ping_title",
 			"description": "ping_desc",

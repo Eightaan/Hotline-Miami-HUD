@@ -443,5 +443,7 @@
 	"bloodthirst_x_title" : "Horisontal Position",
 	"bloodthirst_x_desc" : "Change the horisontal position of the timer.",
 	"bloodthirst_y_title" : "Vertical Position",
-	"bloodthirst_y_desc" : "Change the vertical position of the timer."
+	"bloodthirst_y_desc" : "Change the vertical position of the timer.",
+	"team_bg_title" : "Hide Panel Background",
+	"team_bg_desc" : "Hides the background on the team panels."
 }
