@@ -15,11 +15,9 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 
 	    local ecm_box = HUDBGBox_create(self._ecm_panel, { w = 38, h = 38, },  {})
 		if HMH:GetOption("assault") or HMH:GetOption("hide_hudbox") then
-		   ecm_box:child("bg"):hide()
-		   ecm_box:child("left_top"):hide()
-		   ecm_box:child("left_bottom"):hide()
-		   ecm_box:child("right_top"):hide()
-		   ecm_box:child("right_bottom"):hide()
+			for _, child in ipairs({"bg", "left_top", "left_bottom", "right_top", "right_bottom"}) do
+				ecm_box:child(child):hide()
+			end
 	    end
 
 	    self._text = ecm_box:text({

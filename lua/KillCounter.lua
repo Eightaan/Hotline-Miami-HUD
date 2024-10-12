@@ -16,7 +16,7 @@ Hooks:PostHook( StatisticsManager, "killed", "HMH_StatisticsManager_killed", fun
 	local is_valid_kill = bullets or melee or booms or other
 	if is_valid_kill then
         HMH.TotalKills = HMH.TotalKills + 1
-		if melee then
+		if melee and HMH:GetOption("Bloodthirst") then
 			managers.hud:Set_bloodthirst(0)
 		end
     end
