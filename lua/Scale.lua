@@ -4,40 +4,9 @@ if not _G.IS_VR and Scale_option ~= 1 then
 	Hooks:PreHook(HUDManager, "_setup_player_info_hud_pd2", "HMH_Scale_setup_player_info_hud_pd2", function(self)
 		managers.gui_data:layout_scaled_fullscreen_workspace(self._saferect, Scale_option)
 	end)
-	
-	function HUDManager:recreate_player_info_hud_pd2()
-		if not self:alive(PlayerBase.PLAYER_INFO_HUD_PD2) then return end
-		local hud = managers.hud:script(PlayerBase.PLAYER_INFO_HUD_PD2)
-		local full_hud = managers.hud:script(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2)
-
-		self:_create_present_panel(hud)
-		self:_create_interaction(hud)
-		self:_create_progress_timer(hud)
-		self:_create_hint(hud)
-		self:_create_heist_timer(hud)
-		self:_create_temp_hud(hud)
-		self:_create_suspicion(hud)
-		self:_create_hit_confirm(hud)
-		self:_create_hit_direction(hud)
-		self:_create_downed_hud()
-		self:_create_custody_hud()
-		self:_create_hud_chat() --
-		self._hud_assault_corner = HUDAssaultCorner:new(hud, full_hud, tweak_data.levels[Global.game_settings.level_id].hud or {})
-		self:_create_waiting_legend(hud)
-		local mask = self:script(Idstring("guis/mask_off_hud"))
-		if mask then
-			local mask_on_text = mask.mask_on_text
-			if alive(mask_on_text) then
-				mask_on_text:set_world_center_x(hud.panel:world_center_x())
-			end
-		end
-	end
 
 	Hooks:PostHook(HUDManager, "resolution_changed", "HMH_ResolutionChanged", function(self)
-		if managers.hud and managers.hud.recreate_player_info_hud_pd2 then
-			managers.gui_data:layout_scaled_fullscreen_workspace(self._saferect, Scale_option)
-			managers.hud:recreate_player_info_hud_pd2()
-		end
+		managers.gui_data:layout_scaled_fullscreen_workspace(self._saferect, Scale_option)
 	end)
 
 	core:module("CoreGuiDataManager")
