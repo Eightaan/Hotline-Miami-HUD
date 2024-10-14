@@ -1,4 +1,4 @@
-Hooks:PostHook( HUDPlayerCustody , "init", "HMH_HUDPlayerCustody_init", function(self, ...)
+Hooks:PostHook(HUDPlayerCustody , "init", "HMH_HUDPlayerCustody_init", function(self, ...)
     if not HMH:GetOption("custody") then
 		return
 	end
@@ -17,10 +17,10 @@ Hooks:PostHook( HUDPlayerCustody , "init", "HMH_HUDPlayerCustody_init", function
 	trade_delay:set_color(HMH:GetColor("Trade"))
 end)
 
-Hooks:PostHook( HUDPlayerCustody , "set_negotiating_visible", "HMH_HUDPlayerCustody_set_negotiating_visible", function(self, ...)
+Hooks:PostHook(HUDPlayerCustody , "set_negotiating_visible", "HMH_HUDPlayerCustody_set_negotiating_visible", function(self, ...)
 	self._hud.trade_text2:set_visible(false)
 end)
 
-Hooks:PostHook( HUDPlayerCustody , "set_can_be_trade_visible", "HMH_HUDPlayerCustody_set_can_be_trade_visible", function(self, ...)
+Hooks:PostHook(HUDPlayerCustody , "set_can_be_trade_visible", "HMH_HUDPlayerCustody_set_can_be_trade_visible", function(self, ...)
 	self._hud.trade_text1:set_visible(false)
 end)

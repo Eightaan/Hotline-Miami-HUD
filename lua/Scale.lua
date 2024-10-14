@@ -1,6 +1,8 @@
-if not _G.IS_VR and HMH:GetOption("hud_scale") ~= 1 then
+local Scale_option = HMH:GetOption("hud_scale") or 1
+
+if not _G.IS_VR and Scale_option ~= 1 then
 	Hooks:PreHook(HUDManager, "_setup_player_info_hud_pd2", "HMH_Scale_setup_player_info_hud_pd2", function(self)
-		managers.gui_data:layout_scaled_fullscreen_workspace(self._saferect, HMH:GetOption("hud_scale"))
+		managers.gui_data:layout_scaled_fullscreen_workspace(self._saferect, Scale_option)
 	end)
 	
 	function HUDManager:recreate_player_info_hud_pd2()
@@ -33,7 +35,7 @@ if not _G.IS_VR and HMH:GetOption("hud_scale") ~= 1 then
 
 	Hooks:PostHook(HUDManager, "resolution_changed", "HMH_ResolutionChanged", function(self)
 		if managers.hud and managers.hud.recreate_player_info_hud_pd2 then
-			managers.gui_data:layout_scaled_fullscreen_workspace(managers.hud._saferect, HMH:GetOption("hud_scale"))
+			managers.gui_data:layout_scaled_fullscreen_workspace(self._saferect, Scale_option)
 			managers.hud:recreate_player_info_hud_pd2()
 		end
 	end)
