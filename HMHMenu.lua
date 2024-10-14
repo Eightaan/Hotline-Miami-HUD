@@ -28,14 +28,24 @@ local function do_animation(TOTAL_T, clbk)
 end
 
 HMHMenu = HMHMenu or class()
+HMHMenu.AspectRatio =
+{
+    _16_10 = 1,
+    _4_3 = 2,
+    Other = 3
+}
 function HMHMenu:init()
-   local aspect_ratio = RenderSettings.resolution.x / RenderSettings.resolution.y
-    if aspect_ratio == 1.6 then -- 16:10
+    local aspect_ratio = RenderSettings.resolution.x / RenderSettings.resolution.y
+    local _1_33 = 4 / 3
+    local AspectRatioEnum
+    if aspect_ratio == 1.6 or aspect_ratio == _1_33 then -- 16:10 or 4:3
+        AspectRatioEnum = aspect_ratio == 1.6 and self.AspectRatio._16_10 or self.AspectRatio._4_3
         self._ws = managers.gui_data:create_fullscreen_16_9_workspace()
         self._convert_mouse_pos = function(menu, x, y)
             return managers.mouse_pointer:convert_fullscreen_16_9_mouse_pos(x, y)
         end
     else
+        AspectRatioEnum = self.AspectRatio.Other
         self._ws = managers.gui_data:create_fullscreen_workspace()
         self._convert_mouse_pos = function(menu, x, y)
             return x, y
