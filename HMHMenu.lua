@@ -2154,8 +2154,5 @@ function HMHMenu:SetColorOption(color, option)
 end
 
 function HMHMenu:RefreshTextures()
-	local viewport = managers.viewport
-	if not (Utils:IsInHeist() and HMH:GetOption("hud_scale") ~= 1) then
-		managers.viewport._render_settings_change_map = {resolution = RenderSettings.resolution}
-	end
+	managers.viewport._render_settings_change_map = {resolution = RenderSettings.resolution}
 end
