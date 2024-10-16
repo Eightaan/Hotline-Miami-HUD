@@ -13,6 +13,7 @@ if not _G.IS_VR and Scale_option ~= 1 then
 	function GuiDataManager:layout_scaled_fullscreen_workspace(ws, scale)
         local base_res = {x = 1280, y = 720}
         local res = RenderSettings.resolution
+		local scale = scale or 1
         local sc = (2 - scale)
         local aspect_width = base_res.x / self:_aspect_ratio()
         local h = math.round(sc * math.max(base_res.y, aspect_width))

@@ -232,7 +232,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 	Hooks:PostHook(HUDManager, "set_stamina_value", "HMH_HUDManager_set_stamina_value", function (self, value, ...)
 	    if HMH:GetOption("stamina") and self._teammate_panels[self.PLAYER_PANEL].set_stamina_current then --VHUDPlus Compatibility
 		    self._teammate_panels[self.PLAYER_PANEL]:set_stamina_current(value)
-		else
+		elseif self._teammate_panels[self.PLAYER_PANEL].set_stamina_visibility then --VHUDPlus Compatibility
 			self._teammate_panels[self.PLAYER_PANEL]:set_stamina_visibility(false)
 		end
 	end)
@@ -526,12 +526,6 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 			layer = 3,
 		})
 		self._stamina_circle:set_center(radial_health_panel:child("radial_health"):center())
- 
-        -- Hides the stamina display used by VHUDPlus
-		if self._stamina_bar and self._stamina_line then
-		    self._stamina_bar:set_alpha(0)
-			self._stamina_line:set_alpha(0)
-		end
 	end
 
 	Hooks:PreHook(HUDTeammate, "_create_radial_health", "HMH_Ability_create_radial_health", function (self, radial_health_panel)
@@ -671,6 +665,11 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
     	if not self._max_stamina or self._max_stamina ~= value then
 	  	   	self._max_stamina = value
     	end
+		-- Hides the stamina display used by VHUDPlus
+		if self._stamina_bar and self._stamina_line then
+		    self._stamina_bar:set_alpha(0)
+			self._stamina_line:set_alpha(0)
+		end
    	end
 
     function HUDTeammate:set_stamina_current(value)
