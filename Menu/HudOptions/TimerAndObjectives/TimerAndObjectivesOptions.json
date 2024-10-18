@@ -25,7 +25,7 @@
 			"size" : 8
 		},
 		{
-		    "type": "slider",
+			"type": "slider",
 			"id": "objective_text_slider",
 			"title": "objective_text_title",
 			"description": "objective_text_desc",
@@ -34,9 +34,9 @@
 			"parent" : "objective_toggle",
 			"value": "objective_text",
 			"max": 1,
-            "min": 0,
-            "step": 1,
-            "default_value": 1
+			"min": 0,
+			"step": 1,
+			"default_value": 1
 		},
 		{
 			"type": "color_select",
@@ -97,7 +97,7 @@
 			"size" : 8
 		},
 		{
-		    "type": "slider",
+			"type": "slider",
 			"id": "timer_text_slider",
 			"title": "timer_text_title",
 			"description": "timer_text_desc",
@@ -106,9 +106,9 @@
 			"parent" : "timer_toggle",
 			"value": "TimerAlpha",
 			"max": 1,
-            "min": 0,
-            "step": 1,
-            "default_value": 1
+			"min": 0,
+			"step": 1,
+			"default_value": 1
 		},
 		{
 			"type": "color_select",

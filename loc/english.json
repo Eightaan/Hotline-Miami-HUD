@@ -12,8 +12,8 @@
 	"no_menu_textures_title" : "Enable Menu Textures",
 	"no_menu_textures_desc" : "This will delete the menu textures from the mod_overrides.\nWhen changed, a texture refresh is required for the changes to take effect.",
 	
-    "mod_overrides_title" : "Enable Menu Textures Updates",
-    "mod_overrides_desc" : "This will disable the update notificaton for the Menu Textures.\nWhen changed, a game restart is required for the changes to take effect.",
+	"mod_overrides_title" : "Enable Menu Textures Updates",
+	"mod_overrides_desc" : "This will disable the update notificaton for the Menu Textures.\nWhen changed, a game restart is required for the changes to take effect.",
 	
 	"mod_font_title" : "Custom Text Font",
 	"mod_font_desc" : "Enables the custom pixel font.\nWhen changed, a texture refresh is required for the changes to take effect.",
@@ -22,7 +22,7 @@
 	"preset_desc" : "Choose a hud preset.",
 	"preset_warning" : "CHANGING PRESETS WILL RESET ALL SETTINGS!",
 	"restart_preset_title" : "RESTART IS REQUIRED FOR THE PRESET TO CHANGE",
-    "preset_multi_title" : "Hud Presets",
+	"preset_multi_title" : "Hud Presets",
 	"preset_multi_desc" : "Choose a hud preset.",
 	"custom_preset" : "Custom",
 	"hotline_vibe" : "Hotline Miami",
@@ -81,7 +81,7 @@
 	"hmh_hud_options_desc" : "Customize the hud.",
 	
 	"hud_scale_title" : "Hud Scale",
-    "hud_scale_desc" : "Change the hud size.\nWhen changed, a heist restart is required.",
+	"hud_scale_desc" : "Change the hud size.\nWhen changed, a heist restart is required.",
 	
 	"hmh_combo_options_title" : "Combo Counter",
 	"hmh_combo_options_desc" : "Combo counter options.",
@@ -224,7 +224,7 @@
 	"crew_loadout_tab_desc" : "Displays the Skills, Perk and current Ping of players in your lobby.",
 	"subs_title" : "Colored Subtitle Text",
 	"subs_desc" : "Enable the custom colored subtitles.",
-    "sub_text_title" : "Subtitles Transparency",
+	"sub_text_title" : "Subtitles Transparency",
 	"sub_text_desc" : "Choose a value for how translucent the subtitles text will be.",
 	"hmh_hud_stats_enemies_dominated" : "ENEMIES CUFFED",
 	"hud_stats_bags_unsecured" : "UNSECURED LOOT",
@@ -371,7 +371,7 @@
 
 	"HotlineMiamiHudColorOption" : "Change the color of this HUD element to your own liking.",
 
-    "HotlineMiamiHudTimerTitleID" : "Heist timer",
+	"HotlineMiamiHudTimerTitleID" : "Heist timer",
 	
 	"HotlineMiamiHudInteractionTitleID" : "Interaction text",
 	"HotlineMiamiHudInteractionOutlineTitleID" : "Interactable Outlines",

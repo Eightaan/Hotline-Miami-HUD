@@ -15,7 +15,7 @@
 			"is_parent" : true
 		},
 		{
-		    "type": "slider",
+			"type": "slider",
 			"id": "panel_position_slider",
 			"title": "panel_position_title",
 			"description": "panel_position_desc",
@@ -23,9 +23,9 @@
 			"callback_arguments" : "panel_position",
 			"value": "panel_position",
 			"max": 500,
-            "min": 0,
-            "step": 0,
-            "default_value": 40
+			"min": 0,
+			"step": 0,
+			"default_value": 40
 		},
 		{
 			"type": "divider",

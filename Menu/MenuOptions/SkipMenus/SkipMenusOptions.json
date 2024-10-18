@@ -14,7 +14,7 @@
 			"default_value": false
 		},
 		{
-		    "type": "slider",
+			"type": "slider",
 			"id": "skip_xp_slider",
 			"title": "skip_xp_title",
 			"description": "skip_xp_desc",
@@ -22,9 +22,9 @@
 			"callback_arguments" : "skip_xp",
 			"value": "skip_xp",
 			"max": 25,
-            "min": 0,
-            "step": 1,
-            "default_value": 0
+			"min": 0,
+			"step": 1,
+			"default_value": 0
 		},
 		{
 			"type": "divider",
@@ -41,7 +41,7 @@
 			"default_value": false
 		},
 		{
-		    "type": "slider",
+			"type": "slider",
 			"id": "skip_card_slider",
 			"title": "skip_card_title",
 			"description": "skip_card_desc",
@@ -49,9 +49,9 @@
 			"callback_arguments" : "skip_card",
 			"value": "skip_card",
 			"max": 25,
-            "min": 0,
-            "step": 1,
-            "default_value": 0
+			"min": 0,
+			"step": 1,
+			"default_value": 0
 		}
 	]
 }

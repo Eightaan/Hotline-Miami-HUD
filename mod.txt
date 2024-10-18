@@ -2,19 +2,19 @@
 	"name" : "Hotline Miami Hud",
 	"description" : "",
 	"author" : "\nEightan and Dom\n Special thanks to:\nUndeadsewer, Stren, Hoppip, Luffy, Kamikaze94, Test1, Batman, Crazyalexandro, Iron Predator, Croc, toastBurner, =T$E=Vasquez, banker, Jalswim, Simon, A1denPlay, CVIII, Frosthaven and Seven",
-	"version" : "5.9.7",
+	"version" : "5.9.8",
 	"blt_version" : 2,
 	"supermod_definition" : "HMH.xml",
 	"image" : "icon.png",
 	"color" : "0 0.6 0.286",
 	"contact": "\n https://steamcommunity.com/id/Eightan/",
 	"updates" : [
-        {
-            "identifier" : "hotline_miami_hud_updates",
-            "host": {
-                "meta": "https://raw.githubusercontent.com/Eightaan/mod_updates/master/HotlineMiamiHud/meta_info.json"
-            }
-        },
+		{
+			"identifier" : "hotline_miami_hud_updates",
+			"host": {
+				"meta": "https://raw.githubusercontent.com/Eightaan/mod_updates/master/HotlineMiamiHud/meta_info.json"
+			}
+		},
 		{
 			"identifier" : "hotline_miami_assets_updates",
 			"host" : {
@@ -24,5 +24,5 @@
 			"install_folder" : "Hotline Miami Menu",
 			"display_name" : "Hotline Miami Menu Mod Overrides"
 		}
-    ]
+	]
 }

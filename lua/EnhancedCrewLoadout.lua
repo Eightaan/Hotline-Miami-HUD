@@ -15,7 +15,7 @@ if string.lower(RequiredScript) == "lib/managers/menu/contractboxgui" then
 
 		local peer_label = self._peers[peer_id]
 		local x, y = peer_label:center_x(), peer_label:top()
-        local voice_icon, voice_texture_rect = tweak_data.hud_icons:get_icon_data('wp_talk')
+		local voice_icon, voice_texture_rect = tweak_data.hud_icons:get_icon_data('wp_talk')
 		local talking
 		
 		if type(managers.network.voice_chat._users_talking) == 'table' then
@@ -23,19 +23,19 @@ if string.lower(RequiredScript) == "lib/managers/menu/contractboxgui" then
 		end
 	
 		self._peers_talking = self._peers_talking or {}
-	    self._peers_talking[peer_id] = self._peers_talking[peer_id] or self._panel:bitmap({
-		    texture = voice_icon,
-		    layer = 0,
-	        texture_rect = voice_texture_rect,
-		    w = voice_texture_rect[3],
-		    h = voice_texture_rect[4],
-		    color = color,
-		    blend_mode = 'add',
-		    alpha = 1
-	    })
-	    self._peers_talking[peer_id]:set_center_x(x)
-	    self._peers_talking[peer_id]:set_bottom(y)
-	    self._peers_talking[peer_id]:set_visible(talking)		
+		self._peers_talking[peer_id] = self._peers_talking[peer_id] or self._panel:bitmap({
+			texture = voice_icon,
+			layer = 0,
+			texture_rect = voice_texture_rect,
+			w = voice_texture_rect[3],
+			h = voice_texture_rect[4],
+			color = color,
+			blend_mode = 'add',
+			alpha = 1
+		})
+		self._peers_talking[peer_id]:set_center_x(x)
+		self._peers_talking[peer_id]:set_bottom(y)
+		self._peers_talking[peer_id]:set_visible(talking)		
 	end
 
 	ContractBoxGui._LOADOUT_W = 750
@@ -388,11 +388,11 @@ elseif string.lower(RequiredScript) == "lib/managers/menu/crimespreedetailsmenuc
 	function CrimeSpreeDetailsMenuComponent:update(t, dt, ...)
 		update_original(self, t, dt, ...)
 		if HMH:GetOption("crew_loadout") then
-		    for _, data in ipairs(self._tabs) do
-			    if data.tab._index == CrimeSpreeDetailsMenuComponent._LOADOUT_INDEX then
-				    data.page:update(t, dt)
-			    end
-		    end
+			for _, data in ipairs(self._tabs) do
+				if data.tab._index == CrimeSpreeDetailsMenuComponent._LOADOUT_INDEX then
+					data.page:update(t, dt)
+				end
+			end
 		end
 	end
 
@@ -695,8 +695,8 @@ elseif string.lower(RequiredScript) == "lib/managers/hud/newhudstatsscreen" then
 					self._peer_loadout[peer_id] = LoadoutPanel:new(parent_panel, self, peer_id, parent_panel:w(), parent_panel:h() * 0.17, {
 						component_layout =
 						{
-						    { "name", "ping" },
-						    { "skills", "perk" },
+							{ "name", "ping" },
+							{ "skills", "perk" },
 						},
 						name = 		{ font_size = tweak_data.menu.pd2_medium_font_size * 0.90, height = tweak_data.menu.pd2_medium_font_size * 0.95, align = "left",  margin = 0, use_peer_color = true },
 						level = 	{ font_size = tweak_data.menu.pd2_medium_font_size * 0.90, height = tweak_data.menu.pd2_medium_font_size * 0.95, align = "left",  margin = 0, use_peer_color = true },

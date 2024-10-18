@@ -8,10 +8,10 @@
 	"hmh_desc" : "迈阿密热线Hud选项",
 
 	"hud_scale_title" : "Hud比例",
-    "hud_scale_desc" : "更改Hud尺寸",
+	"hud_scale_desc" : "更改Hud尺寸",
    
-    "mod_overrides_title" : "启用Mod覆盖更新",
-    "mod_overrides_desc" : "可将菜单更改为迈阿密热线的自定义纹理和字体\n你需要重启游戏来使更改生效",
+	"mod_overrides_title" : "启用Mod覆盖更新",
+	"mod_overrides_desc" : "可将菜单更改为迈阿密热线的自定义纹理和字体\n你需要重启游戏来使更改生效",
 	"mod_font_title" : "自定义文本字体",
 	"mod_font_desc" : "启用自定义像素字体（可能会导致乱码，慎选）\n你需要重启游戏来使更改生效",
 
@@ -33,7 +33,7 @@
 	"trueammo_desc" : "显示你的剩余弹药，不包括当前武器中的弹药。",
 	"ping_title" : "显示玩家ping值",
 	"ping_desc" : "在玩家姓名版上显示ping值",
-    "bulletstorm_title" : "子弹风暴提示",
+	"bulletstorm_title" : "子弹风暴提示",
 	"bulletstorm_desc" : "",
 	"screen_effect_title" : "技能屏幕效果",
 	"screen_effect_desc" : "当天鹅绝唱或主脑注射器生效时，使屏幕闪烁。",	
@@ -205,8 +205,8 @@
 	"custom_tab_color_desc" : "为统计菜单着色",
 	"stop_ai_title" : "ai停止图标",
 	"stop_ai_desc" : "使用自定义的ai停止图标",
-    "casing_title" : "面具提示文本",
-    "casing_desc" : "启用面具提示文本",
+	"casing_title" : "面具提示文本",
+	"casing_desc" : "启用面具提示文本",
 	
 	"HotlineMiamiHudOptionsButtonTitleID" : "Hotline Miami Hud 颜色选项",
 	"HotlineMiamiHudColorOption" : "根据自己的喜好更改 HUD 各个元素的颜色",
@@ -217,7 +217,7 @@
 	"HotlineMiamiHudWaypointTitleID" : "导航点",
 	"HotlineMiamiHudTeamTitleID" : "团队面板",
 
-    "HotlineMiamiHudTimerTitleID" : "计时器",
+	"HotlineMiamiHudTimerTitleID" : "计时器",
 	"HotlineMiamiHudInteractionTitleID" : "互动文本",
 	"HotlineMiamiHudHintTitleID" : "提示文本",
 	"HotlineMiamiHudSubTitleID" : "字幕文本",
@@ -314,7 +314,7 @@
 	"preset_desc" : "Choose a hud preset.",
 	"preset_warning" : "CHANGING PRESETS WILL RESET ALL SETTINGS!",
 	"restart_preset_title" : "RESTART ID REQUIRED FOR THE PRESET TO CHANGE",
-    "preset_multi_title" : "Hud Presets",
+	"preset_multi_title" : "Hud Presets",
 	"preset_multi_desc" : "Choose a hud preset.",
 	"custom_preset" : "Custom",
 	"hotline_vibe" : "Hotline Miami",

@@ -1,65 +1,65 @@
 if RequiredScript == "lib/managers/hudmanagerpd2" then
 	HUDECMCounter = HUDECMCounter or class()
-    function HUDECMCounter:init(hud)
+	function HUDECMCounter:init(hud)
 		self._ecm_timer = 0
-	    self._hud_panel = hud.panel
-	    self._ecm_panel = self._hud_panel:panel({
-		    name = "ecm_counter_panel",
+		self._hud_panel = hud.panel
+		self._ecm_panel = self._hud_panel:panel({
+			name = "ecm_counter_panel",
 			alpha = 1,
-		    visible = false,
-		    w = 200,
-		    h = 200
-	    })
-	    self._ecm_panel:set_top(50)
-        self._ecm_panel:set_right(self._hud_panel:w() + 11)
+			visible = false,
+			w = 200,
+			h = 200
+		})
+		self._ecm_panel:set_top(50)
+		self._ecm_panel:set_right(self._hud_panel:w() + 11)
 
-	    local ecm_box = HUDBGBox_create(self._ecm_panel, { w = 38, h = 38, },  {})
+		local ecm_box = HUDBGBox_create(self._ecm_panel, { w = 38, h = 38, },  {})
 		if HMH:GetOption("assault") or HMH:GetOption("hide_hudbox") then
 			for _, child in ipairs({"bg", "left_top", "left_bottom", "right_top", "right_bottom"}) do
 				ecm_box:child(child):hide()
 			end
-	    end
+		end
 
-	    self._text = ecm_box:text({
-		    name = "text",
-		    text = "0",
-		    valign = "center",
-		    align = "center",
-		    vertical = "center",
-		    w = ecm_box:w(),
-		    h = ecm_box:h(),
-		    layer = 1,
-		    color = HMH:GetColor("ECMText"),
-		    font = tweak_data.hud_corner.assault_font,
-		    font_size = tweak_data.hud_corner.numhostages_size * 0.9
-	    })
+		self._text = ecm_box:text({
+			name = "text",
+			text = "0",
+			valign = "center",
+			align = "center",
+			vertical = "center",
+			w = ecm_box:w(),
+			h = ecm_box:h(),
+			layer = 1,
+			color = HMH:GetColor("ECMText"),
+			font = tweak_data.hud_corner.assault_font,
+			font_size = tweak_data.hud_corner.numhostages_size * 0.9
+		})
 
-	    local ecm_icon = self._ecm_panel:bitmap({
-		    name = "ecm_icon",
-		    texture = "guis/textures/pd2/skilltree/icons_atlas",
-		    texture_rect = { 1 * 64, 4 * 64, 64, 64 },
-		    valign = "top",
+		local ecm_icon = self._ecm_panel:bitmap({
+			name = "ecm_icon",
+			texture = "guis/textures/pd2/skilltree/icons_atlas",
+			texture_rect = { 1 * 64, 4 * 64, 64, 64 },
+			valign = "top",
 			color = HMH:GetColor("ECMIcon"),
-		    layer = 1,
-		    w = ecm_box:w(),
-		    h = ecm_box:h()	
-	    })
-	    ecm_icon:set_right(ecm_box:parent():w())
-	    ecm_icon:set_center_y(ecm_box:h() / 2)
+			layer = 1,
+			w = ecm_box:w(),
+			h = ecm_box:h()	
+		})
+		ecm_icon:set_right(ecm_box:parent():w())
+		ecm_icon:set_center_y(ecm_box:h() / 2)
 		ecm_box:set_right(ecm_icon:left())
-    end
+	end
 	
-    function HUDECMCounter:update()
+	function HUDECMCounter:update()
 		local current_time = TimerManager:game():time()
 		local t = self._ecm_timer - current_time
 		if managers.groupai and managers.groupai:state():whisper_mode() then
 			self._ecm_panel:set_visible(t > 0)
 			if t > 0.1 then
-			    local t_format = t < 10 and "%.1fs" or "%.fs"
+				local t_format = t < 10 and "%.1fs" or "%.fs"
 				self._text:set_text(string.format(t_format, t))
-			    if t < 3 then
-				    self._text:set_color(HMH:GetColor("ecm_low"))
-				    self._text:animate(function(o)
+				if t < 3 then
+					self._text:set_color(HMH:GetColor("ecm_low"))
+					self._text:animate(function(o)
 						over(1 , function(p)
 							t = t + coroutine.yield()
 							local font = tweak_data.hud_corner.numhostages_size * 0.9
@@ -70,15 +70,15 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 				elseif t < 9.9 then
 					self._text:stop()
 					self._text:set_color(HMH:GetColor("ecm_mid"))
-			    else
-				    self._text:stop()
-				    self._text:set_color(HMH:GetColor("ECMText"))
-			    end
+				else
+					self._text:stop()
+					self._text:set_color(HMH:GetColor("ECMText"))
+				end
 			end
 		else
 			self._ecm_panel:set_visible(false)
 		end
-    end
+	end
 
 	--Init
 	Hooks:PostHook(HUDManager, "_setup_player_info_hud_pd2", "HMH_ECM_setup_player_info_hud_pd2", function(self, ...)
@@ -116,10 +116,10 @@ elseif RequiredScript == "lib/units/equipment/ecm_jammer/ecmjammerbase" then
 	--ECM Timer Host and Client
 	Hooks:PostHook(ECMJammerBase, "set_active", "HMH_ECMJammerBase_set_active", function(self, active, ...)
 		if active and HMH:GetOption("infoboxes") then
-		    local battery_life = self:battery_life()
-            if battery_life == 0 then
-                return
-            end
+			local battery_life = self:battery_life()
+			if battery_life == 0 then
+				return
+			end
 			local ecm_timer = TimerManager:game():time() + battery_life
 			local jam_pagers = false
 			if self._hmh_local_peer then

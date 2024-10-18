@@ -1,5 +1,5 @@
 if not HMH:GetOption("objective") then
-    return
+	return
 end
 
 Hooks:PostHook(HUDObjectives, "init", "HMH_HUDObjectives_init", function(self, hud, ...)
@@ -47,20 +47,20 @@ Hooks:PostHook(HUDObjectives, "init", "HMH_HUDObjectives_init", function(self, h
 		color = Color.white,
 		font_size = tweak_data.hud.active_objective_title_font_size,
 		font = tweak_data.hud.medium_font_noshadow
-    })
+	})
 	local amount_text = objectives_panel:text({
-	    y = 0,
-    	name = "amount_text",
-	    vertical = "top",
+		y = 0,
+		name = "amount_text",
+		vertical = "top",
 		align = "left",
 		text = "1/4",
 		visible = true,
-        x = 6,
-    	layer = 2,
+		x = 6,
+		layer = 2,
 		color = Color.white,
 		font_size = tweak_data.hud.active_objective_title_font_size,
-    	font = tweak_data.hud.medium_font_noshadow
-    })
+		font = tweak_data.hud.medium_font_noshadow
+	})
 	icon_objectivebox:set_color(HMH:GetColor("ObjectiveIcon"))
 	icon_objectivebox:set_alpha(HMH:GetOption("objective_text"))
 	objective_text:set_x(34)
@@ -74,33 +74,33 @@ Hooks:PostHook(HUDObjectives, "init", "HMH_HUDObjectives_init", function(self, h
 end)
 
 Hooks:OverrideFunction(HUDObjectives, "activate_objective", function(self, data)
-    self._active_objective_id = data.id
-    local objectives_panel = self._hud_panel:child("objectives_panel")
-    local objective_text = objectives_panel:child("objective_text")
-    local amount_text = objectives_panel:child("amount_text")
-    local icon_objectivebox = objectives_panel:child("icon_objectivebox")
-    
-    if self._bg_box then
-        for _, child in ipairs({"bg", "left_top", "left_bottom", "right_top", "right_bottom"}) do
-            self._bg_box:child(child):hide()
-        end
-    end
+	self._active_objective_id = data.id
+	local objectives_panel = self._hud_panel:child("objectives_panel")
+	local objective_text = objectives_panel:child("objective_text")
+	local amount_text = objectives_panel:child("amount_text")
+	local icon_objectivebox = objectives_panel:child("icon_objectivebox")
+	
+	if self._bg_box then
+		for _, child in ipairs({"bg", "left_top", "left_bottom", "right_top", "right_bottom"}) do
+			self._bg_box:child(child):hide()
+		end
+	end
 
-    objective_text:set_text(utf8.to_upper(data.text))
+	objective_text:set_text(utf8.to_upper(data.text))
 
-    local _, _, w, _ = objective_text:text_rect()
+	local _, _, w, _ = objective_text:text_rect()
 
-    if data.amount then
-        self:update_amount_objective(data)
-    end
+	if data.amount then
+		self:update_amount_objective(data)
+	end
 
-    objectives_panel:stop()
-    objectives_panel:set_alpha(0)
-    objectives_panel:set_visible(true)
-    objectives_panel:animate(callback(nil, _G, "set_alpha"), 1)
+	objectives_panel:stop()
+	objectives_panel:set_alpha(0)
+	objectives_panel:set_visible(true)
+	objectives_panel:animate(callback(nil, _G, "set_alpha"), 1)
 
-    amount_text:set_visible(data.amount)
-    amount_text:set_x(objective_text:x() + 5 + w)
+	amount_text:set_visible(data.amount)
+	amount_text:set_x(objective_text:x() + 5 + w)
 end)
 
 

@@ -42,9 +42,9 @@
 			"callback_arguments" : "waypoint_alpha",
 			"value": "waypoint_alpha",
 			"max": 1,
-            "min": 0,
-            "step": 1,
-            "default_value": 1,
+			"min": 0,
+			"step": 1,
+			"default_value": 1,
 			"parent" : "waypoints_toggle"
 		},
 		{

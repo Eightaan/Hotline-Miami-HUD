@@ -1,7 +1,7 @@
 if RequiredScript == "core/lib/managers/subtitle/coresubtitlepresenter" then
 	core:module("CoreSubtitlePresenter")
 	Hooks:OverrideFunction(OverlayPresenter, "show_text", function(self, text, duration)
-        local text_shadow = _G.HMH:GetOption("custom_subs")
+		local text_shadow = _G.HMH:GetOption("custom_subs")
 		self._text_scale = _G.HMH:GetOption("hud_scale")
 		self.__font_name = "fonts/font_medium_mf"
 		local sub_color = _G.HMH:GetOption("custom_subs") and _G.HMH:GetColor("Sub") or Color.white

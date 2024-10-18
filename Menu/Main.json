@@ -1,7 +1,7 @@
 {
 	"menu_id": "hmh_menu",
 	"title": "hmh_title",
-    "description": "hmh_desc",
+	"description": "hmh_desc",
 	"items": [
 		{
 			"type": "button",
@@ -35,8 +35,8 @@
 			"value": "no_menu_textures",
 			"default_value": false,
 			"is_parent" : true
-        },
-        {
+		},
+		{
 			"type": "toggle",
 			"id": "mod_overrides_toggle",
 			"title": "mod_overrides_title",
@@ -50,8 +50,8 @@
 		{
 			"type": "divider",
 			"size": 8
-        },
-        {
+		},
+		{
 			"type": "toggle",
 			"id": "mod_font_toggle",
 			"title": "mod_font_title",
@@ -61,10 +61,10 @@
 			"value": "font",
 			"default_value": false
 		},
-        {
+		{
 			"type": "divider",
 			"size": 12
-        },
+		},
 		{
 			"type": "button",
 			"id": "hmh_menu_options",

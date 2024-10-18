@@ -100,7 +100,7 @@
 			"size" : 8
 		},
 		{
-		    "type": "slider",
+			"type": "slider",
 			"id": "sub_text_slider",
 			"title": "sub_text_title",
 			"description": "sub_text_desc",
@@ -109,9 +109,9 @@
 			"parent" : "subs_toggle",
 			"value": "SubAlpha",
 			"max": 1,
-            "min": 0,
-            "step": 1,
-            "default_value": 1
+			"min": 0,
+			"step": 1,
+			"default_value": 1
 		},
 		{
 			"type": "color_select",

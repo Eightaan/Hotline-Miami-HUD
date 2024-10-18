@@ -21,7 +21,7 @@
 			"is_parent" : true
 		},
 		{
-		    "type": "slider",
+			"type": "slider",
 			"id": "downed_text_slider",
 			"title": "downed_text_title",
 			"description": "downed_text_desc",
@@ -30,36 +30,36 @@
 			"parent" : "downed_toggle",
 			"value": "DownedAlpha",
 			"max": 1,
-            "min": 0,
-            "step": 1,
-            "default_value": 1
+			"min": 0,
+			"step": 1,
+			"default_value": 1
 		},
-        {
+		{
 			"type" : "divider",
 			"size" : 8
 		},
 		{
-            "type": "color_select",
-            "id": "downed_text_color_select",
-            "title": "HotlineMiamiHudDownedTextTitleID",
-            "description": "HotlineMiamiHudColorOption",
-            "value": "DownedText",
-            "default_value": [255, 128, 223],
-            "callback": "SetColorOption",
-            "callback_arguments": "DownedText",
-            "parent" : "downed_toggle"
-        },
-        {
-            "type": "color_select",
-            "id": "downed_timer_color_select",
-            "title": "HotlineMiamiHudDownedTimerTitleID",
-            "description": "HotlineMiamiHudColorOption",
-            "value": "DownedTimer",
-            "default_value": [102, 255, 255],
-            "callback": "SetColorOption",
-            "callback_arguments": "DownedTimer",
-            "parent" : "downed_toggle"
-        },
+			"type": "color_select",
+			"id": "downed_text_color_select",
+			"title": "HotlineMiamiHudDownedTextTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "DownedText",
+			"default_value": [255, 128, 223],
+			"callback": "SetColorOption",
+			"callback_arguments": "DownedText",
+			"parent" : "downed_toggle"
+		},
+		{
+			"type": "color_select",
+			"id": "downed_timer_color_select",
+			"title": "HotlineMiamiHudDownedTimerTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "DownedTimer",
+			"default_value": [102, 255, 255],
+			"callback": "SetColorOption",
+			"callback_arguments": "DownedTimer",
+			"parent" : "downed_toggle"
+		},
 		{
 			"type" : "divider",
 			"size" : 45
@@ -81,7 +81,7 @@
 			"is_parent" : true
 		},
 		{
-		    "type": "slider",
+			"type": "slider",
 			"id": "custody_text_slider",
 			"title": "custody_text_title",
 			"description": "custody_text_desc",
@@ -90,57 +90,57 @@
 			"parent" : "custody_toggle",
 			"value": "CustodyAlpha",
 			"max": 1,
-            "min": 0,
-            "step": 1,
-            "default_value": 1
+			"min": 0,
+			"step": 1,
+			"default_value": 1
 		},
-        {
+		{
 			"type" : "divider",
 			"size" : 8
 		},
 		{
-            "type": "color_select",
-            "id": "custody_released_color_select",
-            "title": "HotlineMiamiHudCustodyReleasedTitleID",
-            "description": "HotlineMiamiHudColorOption",
-            "value": "CustodyReleased",
-            "default_value": [102, 255, 153],
-            "callback": "SetColorOption",
-            "callback_arguments": "CustodyReleased",
-            "parent" : "custody_toggle"
-        },
-        {
-            "type": "color_select",
-            "id": "custody_timer_color_select",
-            "title": "HotlineMiamiHudCustodyTimerTitleID",
-            "description": "HotlineMiamiHudColorOption",
-            "value": "CustodyTimer",
-            "default_value": [102, 255, 255],
-            "callback": "SetColorOption",
-            "callback_arguments": "CustodyTimer",
-            "parent" : "custody_toggle"
-        },
-        {
-            "type": "color_select",
-            "id": "civilians_color_select",
-            "title": "HotlineMiamiHudCivillansTitleID",
-            "description": "HotlineMiamiHudColorOption",
-            "value": "Civilans_color",
-            "default_value": [255, 102, 102],
-            "callback": "SetColorOption",
-            "callback_arguments": "Civilans_color",
-            "parent" : "custody_toggle"
-        },
-        {
-            "type": "color_select",
-            "id": "trade_color_select",
-            "title": "HotlineMiamiHudTradeTitleID",
-            "description": "HotlineMiamiHudColorOption",
-            "value": "Trade",
-            "default_value": [255, 204, 102],
-            "callback": "SetColorOption",
-            "callback_arguments": "Trade",
-            "parent" : "custody_toggle"
+			"type": "color_select",
+			"id": "custody_released_color_select",
+			"title": "HotlineMiamiHudCustodyReleasedTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "CustodyReleased",
+			"default_value": [102, 255, 153],
+			"callback": "SetColorOption",
+			"callback_arguments": "CustodyReleased",
+			"parent" : "custody_toggle"
+		},
+		{
+			"type": "color_select",
+			"id": "custody_timer_color_select",
+			"title": "HotlineMiamiHudCustodyTimerTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "CustodyTimer",
+			"default_value": [102, 255, 255],
+			"callback": "SetColorOption",
+			"callback_arguments": "CustodyTimer",
+			"parent" : "custody_toggle"
+		},
+		{
+			"type": "color_select",
+			"id": "civilians_color_select",
+			"title": "HotlineMiamiHudCivillansTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "Civilans_color",
+			"default_value": [255, 102, 102],
+			"callback": "SetColorOption",
+			"callback_arguments": "Civilans_color",
+			"parent" : "custody_toggle"
+		},
+		{
+			"type": "color_select",
+			"id": "trade_color_select",
+			"title": "HotlineMiamiHudTradeTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "Trade",
+			"default_value": [255, 204, 102],
+			"callback": "SetColorOption",
+			"callback_arguments": "Trade",
+			"parent" : "custody_toggle"
 		}
 	]
 }

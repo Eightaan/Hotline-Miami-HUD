@@ -11,7 +11,7 @@
 			"type" : "label",
 			"title" : "restart_preset_title"
 		},
-        {
+		{
 			"type" : "multiple_choice",
 			"id" : "preset_multiple_choice",
 			"title" : "preset_multi_title",
@@ -25,6 +25,6 @@
 			],
 			"value" : "preset",
 			"default_value" : 1
-	    }
+		}
 	]
 }

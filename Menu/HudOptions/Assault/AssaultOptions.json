@@ -19,7 +19,7 @@
 			"size" : 8
 		},
 		{
-		    "type": "slider",
+			"type": "slider",
 			"id": "assault_text_slider",
 			"title": "assault_text_title",
 			"description": "assault_text_desc",
@@ -27,13 +27,13 @@
 			"callback_arguments" : "assault_text",
 			"value": "assault_text",
 			"max": 1,
-            "min": 0,
-            "step": 1,
-            "default_value": 1,
+			"min": 0,
+			"step": 1,
+			"default_value": 1,
 			"parent" : "assault_toggle"
 		},
 		{
-		    "type": "slider",
+			"type": "slider",
 			"id": "info_box_slider",
 			"title": "info_box_title",
 			"description": "info_box_desc",
@@ -41,9 +41,9 @@
 			"callback_arguments" : "info_box_alpha",
 			"value": "info_box_alpha",
 			"max": 1,
-            "min": 0,
-            "step": 1,
-            "default_value": 1,
+			"min": 0,
+			"step": 1,
+			"default_value": 1,
 			"parent" : "assault_toggle"
 		},
 		{

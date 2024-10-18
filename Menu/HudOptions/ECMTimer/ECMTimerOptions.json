@@ -3,7 +3,7 @@
 	"parent_menu": "hmh_hud_options",
 	"title": "hmh_ecm_timer_title",
 	"items": [
-        {
+		{
 			"type": "toggle",
 			"id": "infoboxes_toggle",
 			"title": "hmh_ecm_timer_title",
@@ -57,24 +57,24 @@
 					},
 		{
 			"type": "color_select",
-            "id": "ecm_low_color_select",
-            "title": "HotlineMiamiHudEcmLowTitleID",
-            "description": "HotlineMiamiHudColorOption",
-            "value": "ecm_low",
-            "default_value": [255, 102, 102],
-            "callback": "SetColorOption",
-            "callback_arguments": "ecm_low",
+			"id": "ecm_low_color_select",
+			"title": "HotlineMiamiHudEcmLowTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "ecm_low",
+			"default_value": [255, 102, 102],
+			"callback": "SetColorOption",
+			"callback_arguments": "ecm_low",
 			"parent" : "infoboxes_toggle"
 		},
 		{
 			"type": "color_select",
-            "id": "ecm_mid_color_select",
-            "title": "HotlineMiamiHudEcmMidTitleID",
-            "description": "HotlineMiamiHudColorOption",
-            "value": "ecm_mid",
-            "default_value": [255, 204, 102],
-            "callback": "SetColorOption",
-            "callback_arguments": "ecm_mid",
+			"id": "ecm_mid_color_select",
+			"title": "HotlineMiamiHudEcmMidTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "ecm_mid",
+			"default_value": [255, 204, 102],
+			"callback": "SetColorOption",
+			"callback_arguments": "ecm_mid",
 			"parent" : "infoboxes_toggle"
 		},
 		{

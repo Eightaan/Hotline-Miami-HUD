@@ -1,8 +1,3 @@
--- TODO:
--- 	Maybe colorization for save, on which assets would get added/removed or stay. (seems to be not possible...?)
--- 	Include Hint for taging plans as stealth/loud to input dialog
--- Remove Save_ID from saved_plans node display.
-
 local requiredScript = string.lower(RequiredScript)
 if requiredScript == "lib/managers/menumanager" then
 	local modifiy_node_preplanning_original = MenuPrePlanningInitiator.modifiy_node_preplanning

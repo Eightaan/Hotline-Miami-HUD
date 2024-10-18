@@ -1,5 +1,5 @@
 if not HMH:GetOption("assault") then
-    return
+	return
 end
 
 local HMH = HMH
@@ -11,212 +11,212 @@ local info_box_alpha = HMH:GetOption("info_box_alpha")
 
 -- Function to set visibility of background boxes
 local function set_visibility(bg_box, is_visible)
-    if alive(bg_box) then
-        bg_box:child("bg"):set_visible(is_visible)
-        bg_box:child("left_top"):set_visible(is_visible)
-        bg_box:child("left_bottom"):set_visible(is_visible)
-        bg_box:child("right_top"):set_visible(is_visible)
-        bg_box:child("right_bottom"):set_visible(is_visible)
-    end
+	if alive(bg_box) then
+		bg_box:child("bg"):set_visible(is_visible)
+		bg_box:child("left_top"):set_visible(is_visible)
+		bg_box:child("left_bottom"):set_visible(is_visible)
+		bg_box:child("right_top"):set_visible(is_visible)
+		bg_box:child("right_bottom"):set_visible(is_visible)
+	end
 end
 
 -- List of all background boxes
 local bg_boxes = {
-    "hostages_bg_box",
-    "bg_box",
-    "casing_bg_box",
-    "noreturn_bg_box",
-    "vip_bg_box",
-    "wave_bg_box"
+	"hostages_bg_box",
+	"bg_box",
+	"casing_bg_box",
+	"noreturn_bg_box",
+	"vip_bg_box",
+	"wave_bg_box"
 }
 
 Hooks:PostHook(HUDAssaultCorner, "init", "HMH_HUDAssaultCorner_init", function(self, hud, ...)
-    -- Hide all background boxes initially
-    for _, box_name in ipairs(bg_boxes) do
-        set_visibility(self[box_name], false)
-    end
+	-- Hide all background boxes initially
+	for _, box_name in ipairs(bg_boxes) do
+		set_visibility(self[box_name], false)
+	end
 
-    self._assault_color = HMH:GetColor("AssaultText")
-    self._vip_assault_color = HMH:GetColor("CaptainText")
+	self._assault_color = HMH:GetColor("AssaultText")
+	self._vip_assault_color = HMH:GetColor("CaptainText")
 
-    -- Mutators and Skirmish
-    if managers.mutators:are_mutators_active() then
-        local mutator_color = managers.mutators:get_category_color(managers.mutators:get_enabled_active_mutator_category())
-        self._assault_color = mutator_color
-        self._vip_assault_color = Color(mutator_color.a, mutator_color.b, mutator_color.g, mutator_color.r)
-    end
+	-- Mutators and Skirmish
+	if managers.mutators:are_mutators_active() then
+		local mutator_color = managers.mutators:get_category_color(managers.mutators:get_enabled_active_mutator_category())
+		self._assault_color = mutator_color
+		self._vip_assault_color = Color(mutator_color.a, mutator_color.b, mutator_color.g, mutator_color.r)
+	end
 
-    if managers.skirmish:is_skirmish() then
-        self._is_skirmish = true
-        self._assault_color = HMH:GetColor("HoldoutText")
-    end
+	if managers.skirmish:is_skirmish() then
+		self._is_skirmish = true
+		self._assault_color = HMH:GetColor("HoldoutText")
+	end
 
-    self._is_crimespree = managers.crime_spree:is_active()
+	self._is_crimespree = managers.crime_spree:is_active()
 
-    -- HOSTAGES
-    local hostages_panel = self._hud_panel:child("hostages_panel")
-    local hostage_text = self._hostages_bg_box:child("num_hostages")
-    local hostages_icon = hostages_panel:child("hostages_icon")
+	-- HOSTAGES
+	local hostages_panel = self._hud_panel:child("hostages_panel")
+	local hostage_text = self._hostages_bg_box:child("num_hostages")
+	local hostages_icon = hostages_panel:child("hostages_icon")
 
-    hostages_panel:set_visible(HMH:GetOption("hostage_panel"))
-    set_visibility(self._hostages_bg_box, false)  -- Show hostages box if panel is visible
+	hostages_panel:set_visible(HMH:GetOption("hostage_panel"))
+	set_visibility(self._hostages_bg_box, false)  -- Show hostages box if panel is visible
 
-    hostage_text:set_color(HMH:GetColor("HostagesText"))
-    hostage_text:set_alpha(info_box_alpha)
-    hostages_icon:set_alpha(info_box_alpha)
-    hostages_icon:set_color(HMH:GetColor("HostagesIcon"))
+	hostage_text:set_color(HMH:GetColor("HostagesText"))
+	hostage_text:set_alpha(info_box_alpha)
+	hostages_icon:set_alpha(info_box_alpha)
+	hostages_icon:set_color(HMH:GetColor("HostagesIcon"))
 
-    -- ASSAULT
-    local assault_panel = self._hud_panel:child("assault_panel")
-    local icon_assaultbox = assault_panel:child("icon_assaultbox")
+	-- ASSAULT
+	local assault_panel = self._hud_panel:child("assault_panel")
+	local icon_assaultbox = assault_panel:child("icon_assaultbox")
 
-    set_visibility(self._bg_box, false)  -- Show assault box
+	set_visibility(self._bg_box, false)  -- Show assault box
 
-    icon_assaultbox:set_blend_mode("normal")
+	icon_assaultbox:set_blend_mode("normal")
 
-    assault_panel:show()
-    assault_panel:set_alpha(0)
-    assault_panel:text({
-        name = "text",
-        color = self._assault_color,
-        alpha = assaut_alpha,
-        font_size = tweak_data.hud_corner.noreturn_size,
-        font = tweak_data.hud_corner.assault_font
-    })
+	assault_panel:show()
+	assault_panel:set_alpha(0)
+	assault_panel:text({
+		name = "text",
+		color = self._assault_color,
+		alpha = assaut_alpha,
+		font_size = tweak_data.hud_corner.noreturn_size,
+		font = tweak_data.hud_corner.assault_font
+	})
 
-    assault_panel:set_size(500, 40)
-    assault_panel:set_righttop(self._hud_panel:w(), 0)
+	assault_panel:set_size(500, 40)
+	assault_panel:set_righttop(self._hud_panel:w(), 0)
 
-    -- CASING
-    local casing_panel = self._hud_panel:child("casing_panel")
-    local icon_casingbox = casing_panel:child("icon_casingbox")
+	-- CASING
+	local casing_panel = self._hud_panel:child("casing_panel")
+	local icon_casingbox = casing_panel:child("icon_casingbox")
 
-    set_visibility(self._casing_bg_box, false)  -- Show casing box
+	set_visibility(self._casing_bg_box, false)  -- Show casing box
 
-    icon_casingbox:set_color(HMH:GetColor("CasingIcon"))
-    icon_casingbox:set_alpha(assaut_alpha)
-    icon_casingbox:set_blend_mode("normal")
+	icon_casingbox:set_color(HMH:GetColor("CasingIcon"))
+	icon_casingbox:set_alpha(assaut_alpha)
+	icon_casingbox:set_blend_mode("normal")
 
-    casing_panel:show()
-    casing_panel:set_alpha(0)
-    casing_panel:text({
-        name = "text",
-        color = HMH:GetColor("CasingText"),
-        alpha = assaut_alpha,
-        font_size = tweak_data.hud_corner.noreturn_size,
-        font = tweak_data.hud_corner.assault_font
-    })
+	casing_panel:show()
+	casing_panel:set_alpha(0)
+	casing_panel:text({
+		name = "text",
+		color = HMH:GetColor("CasingText"),
+		alpha = assaut_alpha,
+		font_size = tweak_data.hud_corner.noreturn_size,
+		font = tweak_data.hud_corner.assault_font
+	})
 
-    casing_panel:set_size(500, 40)
-    casing_panel:set_righttop(self._hud_panel:w(), 0)
+	casing_panel:set_size(500, 40)
+	casing_panel:set_righttop(self._hud_panel:w(), 0)
 
-    -- POINT OF NO RETURN
-    local point_of_no_return_panel = self._hud_panel:child("point_of_no_return_panel")
-    local point_of_no_return_text = self._noreturn_bg_box:child("point_of_no_return_text")
-    local icon_noreturnbox = point_of_no_return_panel:child("icon_noreturnbox")
-    local point_of_no_return_timer = self._noreturn_bg_box:child("point_of_no_return_timer")
+	-- POINT OF NO RETURN
+	local point_of_no_return_panel = self._hud_panel:child("point_of_no_return_panel")
+	local point_of_no_return_text = self._noreturn_bg_box:child("point_of_no_return_text")
+	local icon_noreturnbox = point_of_no_return_panel:child("icon_noreturnbox")
+	local point_of_no_return_timer = self._noreturn_bg_box:child("point_of_no_return_timer")
 
-    set_visibility(self._noreturn_bg_box, false)  -- Show no return box
+	set_visibility(self._noreturn_bg_box, false)  -- Show no return box
 
-    point_of_no_return_panel:show()
-    point_of_no_return_panel:set_alpha(0)
+	point_of_no_return_panel:show()
+	point_of_no_return_panel:set_alpha(0)
 
-    icon_noreturnbox:set_color(HMH:GetColor("NoReturnIcon"))
-    icon_noreturnbox:set_alpha(assaut_alpha)
-    point_of_no_return_text:set_color(HMH:GetColor("NoReturnText"))
-    point_of_no_return_text:set_alpha(assaut_alpha)
-    point_of_no_return_timer:set_color(HMH:GetColor("NoReturnTimer")) --juyuytyu
-    point_of_no_return_timer:set_alpha(assaut_alpha)
-    point_of_no_return_timer:set_y(0)
+	icon_noreturnbox:set_color(HMH:GetColor("NoReturnIcon"))
+	icon_noreturnbox:set_alpha(assaut_alpha)
+	point_of_no_return_text:set_color(HMH:GetColor("NoReturnText"))
+	point_of_no_return_text:set_alpha(assaut_alpha)
+	point_of_no_return_timer:set_color(HMH:GetColor("NoReturnTimer")) --juyuytyu
+	point_of_no_return_timer:set_alpha(assaut_alpha)
+	point_of_no_return_timer:set_y(0)
 
-    point_of_no_return_text:set_blend_mode("normal")
-    point_of_no_return_timer:set_blend_mode("normal")
-    icon_noreturnbox:set_blend_mode("normal")
+	point_of_no_return_text:set_blend_mode("normal")
+	point_of_no_return_timer:set_blend_mode("normal")
+	icon_noreturnbox:set_blend_mode("normal")
 
-    self._noreturn_bg_box:set_right(icon_noreturnbox:left() - 3)
-    self._noreturn_bg_box:set_center_y(icon_noreturnbox:center_y())
+	self._noreturn_bg_box:set_right(icon_noreturnbox:left() - 3)
+	self._noreturn_bg_box:set_center_y(icon_noreturnbox:center_y())
 
-    -- VIP ICON
-    local width = 200
+	-- VIP ICON
+	local width = 200
 	local scale = HMH:GetOption("hud_scale")
-    local icon_offset = (140 * scale) + (10 * managers.job:current_difficulty_stars()) + (20 / scale / scale)
-    local vip_icon = self._vip_bg_box:child("vip_icon")
-    local buffs_panel = self._hud_panel:child("buffs_panel")
+	local icon_offset = (140 * scale) + (10 * managers.job:current_difficulty_stars()) + (20 / scale / scale)
+	local vip_icon = self._vip_bg_box:child("vip_icon")
+	local buffs_panel = self._hud_panel:child("buffs_panel")
 
-    set_visibility(self._vip_bg_box, false)  -- Show VIP box
+	set_visibility(self._vip_bg_box, false)  -- Show VIP box
 
-    buffs_panel:set_x(assault_panel:left() + self._bg_box:left() - icon_offset)
-    self._vip_bg_box:set_x(width - 38)
+	buffs_panel:set_x(assault_panel:left() + self._bg_box:left() - icon_offset)
+	self._vip_bg_box:set_x(width - 38)
 
-    vip_icon:set_color(HMH:GetColor("CaptainBuffIcon"))
-    vip_icon:set_blend_mode("normal")
-    vip_icon:set_alpha(assaut_alpha)
-    vip_icon:set_center(self._vip_bg_box:w() / 2, self._vip_bg_box:h() / 2 - 5)
+	vip_icon:set_color(HMH:GetColor("CaptainBuffIcon"))
+	vip_icon:set_blend_mode("normal")
+	vip_icon:set_alpha(assaut_alpha)
+	vip_icon:set_center(self._vip_bg_box:w() / 2, self._vip_bg_box:h() / 2 - 5)
 
-    local vip_text = self._vip_bg_box:text({
-        name = "vip_text",
-        text = "",
-        h = 38,
-        layer = 10,
-        w = 38,
-        visible = HMH:GetOption("captain_buff"),
-        valign = "center",
-        align = "center",
-        vertical = "center",
-        y = -13,
-        x = -16,
-        alpha = assaut_alpha or 1,
-        color = HMH:GetColor("captain_buff_color") or Color("66ffff"),
-        font = tweak_data.hud_corner.assault_font,
-        font_size = tweak_data.hud_corner.numhostages_size * 0.6
-    })
+	local vip_text = self._vip_bg_box:text({
+		name = "vip_text",
+		text = "",
+		h = 38,
+		layer = 10,
+		w = 38,
+		visible = HMH:GetOption("captain_buff"),
+		valign = "center",
+		align = "center",
+		vertical = "center",
+		y = -13,
+		x = -16,
+		alpha = assaut_alpha or 1,
+		color = HMH:GetColor("captain_buff_color") or Color("66ffff"),
+		font = tweak_data.hud_corner.assault_font,
+		font_size = tweak_data.hud_corner.numhostages_size * 0.6
+	})
 
-    -- VHUDPlus Compatibility
-    if self._assault_timer or self._casing_timer then 
-        self._casing_timer._timer_text:set_visible(false)
-        self._assault_timer._timer_text:set_visible(false)
-    end
+	-- VHUDPlus Compatibility
+	if self._assault_timer or self._casing_timer then 
+		self._casing_timer._timer_text:set_visible(false)
+		self._assault_timer._timer_text:set_visible(false)
+	end
 
-    if alive(self._hud_panel:child("casing_panel")) or alive(self._hud_panel:child("point_of_no_return_panel")) then
-        self._hud_panel:child("casing_panel"):child("icon_casingbox"):set_visible(true)
-        self._hud_panel:child("point_of_no_return_panel"):set_right(self._hud_panel:w())
-    end
+	if alive(self._hud_panel:child("casing_panel")) or alive(self._hud_panel:child("point_of_no_return_panel")) then
+		self._hud_panel:child("casing_panel"):child("icon_casingbox"):set_visible(true)
+		self._hud_panel:child("point_of_no_return_panel"):set_right(self._hud_panel:w())
+	end
 
-    if self:should_display_waves() and alive(assault_panel) then
-        local wave_panel = self._hud_panel:child("wave_panel")
-        if self._wave_text then
-            self._wave_text:set_visible(false)
-            if alive(wave_panel) then
-                wave_panel:set_alpha(1)
-            end
-        end
-    end
+	if self:should_display_waves() and alive(assault_panel) then
+		local wave_panel = self._hud_panel:child("wave_panel")
+		if self._wave_text then
+			self._wave_text:set_visible(false)
+			if alive(wave_panel) then
+				wave_panel:set_alpha(1)
+			end
+		end
+	end
 end)
 
 Hooks:PostHook(HUDAssaultCorner, "setup_wave_display", "HMH_HUDAssaultCorner_setup_wave_display", function(self, top, ...)
-    if self:should_display_waves() then
-        local wave_panel = self._hud_panel:child("wave_panel")
-        local waves_icon = wave_panel:child("waves_icon")
-        local num_waves = self._wave_bg_box:child("num_waves")
+	if self:should_display_waves() then
+		local wave_panel = self._hud_panel:child("wave_panel")
+		local waves_icon = wave_panel:child("waves_icon")
+		local num_waves = self._wave_bg_box:child("num_waves")
 
-        wave_panel:set_visible(HMH:GetOption("wave_panel"))
-        set_visibility(self._wave_bg_box, false)  -- Show wave box
+		wave_panel:set_visible(HMH:GetOption("wave_panel"))
+		set_visibility(self._wave_bg_box, false)  -- Show wave box
 
-        waves_icon:set_color(HMH:GetColor("WavesIcon"))
-        waves_icon:set_alpha(info_box_alpha)
-        num_waves:set_color(HMH:GetColor("WavesText"))
-        num_waves:set_alpha(info_box_alpha)
-    end
+		waves_icon:set_color(HMH:GetColor("WavesIcon"))
+		waves_icon:set_alpha(info_box_alpha)
+		num_waves:set_color(HMH:GetColor("WavesText"))
+		num_waves:set_alpha(info_box_alpha)
+	end
 end)
 
 Hooks:OverrideFunction(HUDAssaultCorner, "_start_assault", function(self, text_list)
 	local assault_panel = self._hud_panel:child("assault_panel")
 	local icon_assaultbox = self._hud_panel:child("assault_panel"):child("icon_assaultbox")
 	if alive(self._wave_bg_box) then
-        local panel = self._hud_panel:child("wave_panel")
-	    local wave_text = panel:child("num_waves")
+		local panel = self._hud_panel:child("wave_panel")
+		local wave_text = panel:child("num_waves")
 		local num_waves = self._wave_bg_box:child("num_waves")
-	    num_waves:set_text(self:get_completed_waves_string())
+		num_waves:set_text(self:get_completed_waves_string())
 		self._hud_panel:child("wave_panel"):set_visible(HMH:GetOption("wave_panel"))
 	end
 
@@ -247,7 +247,7 @@ function HUDAssaultCorner:animate_assault_in_progress(o)
 end
 
 function HUDAssaultCorner:set_vip_text(buff)
-    if buff and self._vip_bg_box then
+	if buff and self._vip_bg_box then
 		self._vip_bg_box:child("vip_text"):set_text(managers.localization:to_upper_text("hmh_damage_resistance", { NUM = buff }))
 	end
 end
@@ -310,37 +310,37 @@ Hooks:OverrideFunction(HUDAssaultCorner, "_get_assault_strings", function(self)
 	local crime_spree_rank
 	if self._is_crimespree and self._assault_mode == "normal" then
 		local space = string.rep(" ", 2)
-	    crime_spree_rank = ":" .. space ..  managers.localization:to_upper_text("menu_cs_level", {level = managers.experience:cash_string(managers.crime_spree:server_spree_level(), "")})
+		crime_spree_rank = ":" .. space ..  managers.localization:to_upper_text("menu_cs_level", {level = managers.experience:cash_string(managers.crime_spree:server_spree_level(), "")})
 	else
-	    crime_spree_rank = ""
+		crime_spree_rank = ""
 	end
 
 	local assault_text = ""
 	if self._is_crimespree then
-	    assault_text = managers.localization:to_upper_text(self._assault_mode == "normal" and "cn_crime_spree" or "hud_assault_vip") .. crime_spree_rank
+		assault_text = managers.localization:to_upper_text(self._assault_mode == "normal" and "cn_crime_spree" or "hud_assault_vip") .. crime_spree_rank
 	elseif self._is_skirmish then
-	    assault_text = managers.localization:to_upper_text("hmh_hud_assault_assault")
+		assault_text = managers.localization:to_upper_text("hmh_hud_assault_assault")
 	else
 		local difficulty = ""
 		for i = 1, managers.job:current_difficulty_stars() do
 			difficulty = difficulty .. managers.localization:get_default_macro("BTN_SKULL")
 		end
-	    assault_text = managers.localization:to_upper_text(self._assault_mode == "normal" and "hmh_hud_assault_assault" or "hud_assault_vip") .. " " .. difficulty
+		assault_text = managers.localization:to_upper_text(self._assault_mode == "normal" and "hmh_hud_assault_assault" or "hud_assault_vip") .. " " .. difficulty
 	end
 
 	return assault_text
 end)
 
 Hooks:OverrideFunction(HUDAssaultCorner, "show_casing", function(self, mode)
-    if HMH:GetOption("casing") then
- 	    local delay_time = self._assault and 1.2 or 0
-	    self:_end_assault()
-	    local casing_panel = self._hud_panel:child("casing_panel")
-	    self:_hide_hostages()
-	    casing_panel:animate(callback(self, self, "_animate_show_casing"), delay_time)
-	    self._casing = true
-	    local msg = mode == "civilian" and "hud_casing_mode_ticker_clean" or "hud_casing_mode_ticker"
-	    self:set_text("casing", managers.localization:to_upper_text(msg))
+	if HMH:GetOption("casing") then
+		local delay_time = self._assault and 1.2 or 0
+		self:_end_assault()
+		local casing_panel = self._hud_panel:child("casing_panel")
+		self:_hide_hostages()
+		casing_panel:animate(callback(self, self, "_animate_show_casing"), delay_time)
+		self._casing = true
+		local msg = mode == "civilian" and "hud_casing_mode_ticker_clean" or "hud_casing_mode_ticker"
+		self:set_text("casing", managers.localization:to_upper_text(msg))
 	end
 end)
 
@@ -383,10 +383,10 @@ Hooks:OverrideFunction(HUDAssaultCorner, "flash_point_of_no_return_timer", funct
 			local g = math.lerp(color.g, flash_color.g, n)
 			local b = math.lerp(color.b, flash_color.b, n)
 			o:set_color(Color(r, g, b))
-            o:set_font_size(math_lerp(24 , (24) * 1.25, n))
+			o:set_font_size(math_lerp(24 , (24) * 1.25, n))
 		end
-  	end
-  	local point_of_no_return_timer = self._noreturn_bg_box:child("point_of_no_return_timer")
+	end
+	local point_of_no_return_timer = self._noreturn_bg_box:child("point_of_no_return_timer")
 	self:hide_casing()
 	point_of_no_return_timer:animate(flash_timer)
 end)

@@ -71,7 +71,7 @@
 			"size" : 8
 		},
 		{
-		    "type": "slider",
+			"type": "slider",
 			"id": "interact_text_slider",
 			"title": "interact_text_title",
 			"description": "interact_text_desc",
@@ -80,9 +80,9 @@
 			"parent" : "interact_toggle",
 			"value": "InteractAlpha",
 			"max": 1,
-            "min": 0,
-            "step": 1,
-            "default_value": 1
+			"min": 0,
+			"step": 1,
+			"default_value": 1
 		},
 		{
 			"type": "color_select",
@@ -95,7 +95,7 @@
 			"callback_arguments": "Interaction",
 			"parent" : "interact_toggle"
 		},
-        {
+		{
 			"type": "divider",
 			"size": 12
 		},
@@ -109,7 +109,7 @@
 			"value": "stealth_c4",
 			"default_value": false
 		},
-        {
+		{
 			"type" : "divider",
 			"size" : 45
 		},
@@ -130,7 +130,7 @@
 			"is_parent" : true
 		},
 		{
-		    "type": "slider",
+			"type": "slider",
 			"id": "carry_text_slider",
 			"title": "carry_text_title",
 			"description": "carry_text_desc",
@@ -139,9 +139,9 @@
 			"parent" : "carry_toggle",
 			"value": "CarryAlpha",
 			"max": 1,
-            "min": 0,
-            "step": 1,
-            "default_value": 1
+			"min": 0,
+			"step": 1,
+			"default_value": 1
 		},
 		{
 			"type": "divider",

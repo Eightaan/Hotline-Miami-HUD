@@ -1,5 +1,3 @@
---Dialog working fine, GUI not present...?
-
 local requiresScript = RequiredScript:lower()
 if requiresScript == "lib/managers/systemmenumanager" then
 

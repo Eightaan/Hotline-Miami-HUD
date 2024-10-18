@@ -166,12 +166,12 @@ elseif RequiredScript == "lib/managers/menu/renderers/menunodeskillswitchgui" th
 
 			if alive(row_item.skill_points_gui) then
 				row_item.skill_points_gui:set_text(utf8.to_upper(skill_name))
-                row_item.skill_points_gui:set_alpha(1)
+				row_item.skill_points_gui:set_alpha(1)
 			end
 			if alive(row_item.status_gui) then
 				row_item.status_gui:set_text(perk_name)
 			end
-            row_item.distribution_after_text = false
+			row_item.distribution_after_text = false
 		elseif row_item.type == "divider" and row_item.name == "divider_title" then
 
 			if alive(row_item.skill_points_gui) then
@@ -234,14 +234,14 @@ elseif RequiredScript == "lib/managers/menu/renderers/menunodeskillswitchgui" th
 		end
 	end
 elseif RequiredScript == "lib/managers/multiprofilemanager" then
-    local open_quick_select_original = MultiProfileManager.open_quick_select
-    function MultiProfileManager:open_quick_select(...)
-        if HMH:GetOption("profile_menu") then
-            managers.menu:open_node(PROFILE_MENU_ID, {})
-        else
-            open_quick_select_original(self, ...)
-        end
-    end
+	local open_quick_select_original = MultiProfileManager.open_quick_select
+	function MultiProfileManager:open_quick_select(...)
+		if HMH:GetOption("profile_menu") then
+			managers.menu:open_node(PROFILE_MENU_ID, {})
+		else
+			open_quick_select_original(self, ...)
+		end
+	end
 
 
 	function MultiProfileManager:current_profile_id()
@@ -332,7 +332,7 @@ elseif RequiredScript == "lib/managers/multiprofilemanager" then
 		return amount
 	end
 elseif RequiredScript == "lib/managers/menu/multiprofileitemgui" then
-    local init_orig = MultiProfileItemGui.init
+	local init_orig = MultiProfileItemGui.init
 
 	function MultiProfileItemGui:init(...)
 		init_orig(self, ...)
