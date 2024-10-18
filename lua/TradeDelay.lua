@@ -9,7 +9,7 @@ if RequiredScript == "lib/managers/moneymanager" then
 	
 	function MoneyManager:update_civ_kills()
 		self._total_civ_kills = (self._total_civ_kills or 0) + 1
-		 self:update_trade_delay()
+		self:update_trade_delay()
 	end
 	
 	function MoneyManager:update_trade_delay()
