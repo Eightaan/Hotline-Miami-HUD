@@ -1,6 +1,10 @@
+if not HMH:GetOption("tab") then
+	return
+end
+
 local civies ={civilian = true, civilian_female = true, civilian_mariachi = true}
 
-Hooks:PostHook( StatisticsManager, "killed", "HMH_StatisticsManager_killed", function(self, data, ...)
+Hooks:PostHook(StatisticsManager, "killed", "HMH_StatisticsManager_killed", function(self, data, ...)
 	if civies[data.name] then
 		return
 	end
@@ -10,9 +14,14 @@ Hooks:PostHook( StatisticsManager, "killed", "HMH_StatisticsManager_killed", fun
 	local other = not (bullets or melee or booms)
 	local is_valid_kill = bullets or melee or booms or other
 	if is_valid_kill then
-		HMH.TotalKills = HMH.TotalKills + 1
-		if melee and HMH:GetOption("Bloodthirst") then
-			managers.hud:Set_bloodthirst(0)
-		end
+		self:update_kills()
 	end
 end)
+
+function StatisticsManager:update_kills()
+	self._total_kills = (self._total_kills or 0) + 1
+end
+
+function StatisticsManager:TotalKills()
+	return self._total_kills or 0
+end

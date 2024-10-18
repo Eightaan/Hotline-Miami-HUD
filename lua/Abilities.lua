@@ -406,10 +406,21 @@ elseif RequiredScript == "lib/managers/playermanager" then
 	end)
 	
 	Hooks:PostHook(PlayerManager, 'set_melee_dmg_multiplier', "HMH_update_Bloodthirst", function(self, ...)
-		if not self:has_category_upgrade("player", "melee_damage_stacking") then return end
+		if not self:has_category_upgrade("player", "melee_damage_stacking") then 
+			return 
+		end
+
 		if self._melee_dmg_mul ~= 1 then
 			managers.hud:Set_bloodthirst(self._melee_dmg_mul)
 		end
+	end)
+	
+	Hooks:PostHook(PlayerManager, 'reset_melee_dmg_multiplier', "HMH_reset_Bloodthirst", function(self)
+		if not self:has_category_upgrade("player", "melee_damage_stacking") then 
+			return 
+		end
+
+		managers.hud:Set_bloodthirst(0)
 	end)
 
 elseif RequiredScript == "lib/managers/hud/hudteammate" then	

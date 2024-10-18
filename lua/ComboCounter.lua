@@ -73,8 +73,6 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		})
 		Combo_bg:set_left(self._full_hud_panel:left())
 		Combo_bg:set_top(40 + 5)
-		
-		HMH._in_heist = true
 	end
 	
 	local should_be_open = false
@@ -82,7 +80,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		local Combo_text = self._combo_panel:child("Combo_text")
 		local Combo_text_bg = self._combo_panel:child("Combo_text_bg")
 		local Combo_bg = self._combo_panel:child("Combo_bg")
-		if combo > 1 and HMH._in_heist then
+		if Utils:IsInHeist() and combo > 1  then
 			should_be_open = true
 			self._combo_panel:set_visible(true)  
 		else
@@ -198,10 +196,5 @@ elseif RequiredScript == "lib/managers/playermanager" then
 		if not CopDamage.is_civilian(killed_unit:base()._tweak_table) then
 			managers.hud:HMHCC_OnKillshot()
 		end
-	end)
-
-elseif RequiredScript == "lib/utils/accelbyte/telemetry" then
-	Hooks:PostHook(Telemetry, "on_end_heist", "HMH_Telemetry_on_end_heist", function(self)
-		HMH._in_heist = false
 	end)
 end

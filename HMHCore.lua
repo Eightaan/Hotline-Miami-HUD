@@ -6,9 +6,6 @@ if not HMH then
 		_data_path = SavePath .. "HMH.json",
 		SaveDataVer = 2,
 		ModVersion = ModInstance and ModInstance:GetVersion() or "N/A",
-		TotalKills = 0,
-		CivKill = 0,
-		_in_heist = false,
 		_data = {}
 	}
 

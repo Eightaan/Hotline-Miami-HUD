@@ -9,15 +9,16 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 	local small_font_size = tweak_data.menu.pd2_small_font_size
 	local tiny_font_size = tweak_data.menu.pd2_tiny_font_size
 	
-	function HUDStatsScreen:_trade_delay_time(time)
-		time = math.max(math.floor(time), 0)
-		local minutes = math.floor(time / 60)
-		time = time - minutes * 60
-		local seconds = math.round(time)
+	function HUDStatsScreen:_trade_delay_time()
+		local trade_delay = managers.money:get_trade_delay()
+		trade_delay = math.max(math.floor(trade_delay), 0)
+		local minutes = math.floor(trade_delay / 60)
+		trade_delay = trade_delay - minutes * 60
+		local seconds = math.round(trade_delay)
 		local text = ""
 
 		return text .. (minutes < 10 and "0" .. minutes or minutes) .. ":" .. (seconds < 10 and "0" .. seconds or seconds)
-	end	
+	end
 
 	Hooks:OverrideFunction(HudTrackedAchievement, "init", function(self, parent, id, black_bg)
 		HudTrackedAchievement.super.init(self, parent, {
@@ -95,6 +96,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 	end)
 	
 	Hooks:OverrideFunction(HUDStatsScreen, "recreate_left", function(self)
+		self._total_killed_in_session = 0
 		self._left:clear()
 		self._left:bitmap({
 			texture = "guis/textures/test_blur_df",
@@ -257,7 +259,8 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 		end
 		placer:new_row(8)
 		
-		local civ_kills = managers.statistics:session_total_civilian_kills() ~= 0 and managers.localization:to_upper_text("victory_civilians_killed_penalty") .. " " .. managers.statistics:session_total_civilian_kills() .. managers.localization:get_default_macro("BTN_SKULL") or ""
+		local total_civ_kills = managers.money:TotalCivKills() or 0
+		local civ_kills = total_civ_kills ~= 0 and managers.localization:to_upper_text("victory_civilians_killed_penalty") .. " " .. total_civ_kills .. managers.localization:get_default_macro("BTN_SKULL") or ""
 		placer:add_bottom(self._left:fine_text({
 			keep_w = true,
 			font = tweak_data.hud_stats.objectives_font,
@@ -266,9 +269,8 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 			text = civ_kills
 		}), 30)
 
-		local trade_delay = (5 + (HMH.CivKill * 30))
-		local total_time = trade_delay and trade_delay > 30					
-		local delay = total_time and managers.localization:to_upper_text("hud_trade_delay", {TIME = tostring(self:_trade_delay_time(trade_delay))}) or ""
+		local total_time = managers.money:get_trade_delay() > 30
+		local delay = total_time and managers.localization:to_upper_text("hud_trade_delay", {TIME = self:_trade_delay_time()}) or ""
 		placer:add_bottom(self._left:fine_text({
 			keep_w = true,
 			font = tweak_data.hud_stats.objectives_font,
@@ -277,7 +279,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 			text = is_whisper_mode and "" or delay
 		}), 0)
 
-		local total_kills = HMH.TotalKills
+		local total_kills = managers.statistics:TotalKills() or 0
 		local kill_count = total_kills and managers.localization:to_upper_text("menu_aru_job_3_obj") ..": ".. total_kills .. managers.localization:get_default_macro("BTN_SKULL") or ""
 		placer:add_bottom(self._left:fine_text({
 			keep_w = true,
@@ -745,7 +747,7 @@ elseif RequiredScript == "lib/managers/hud/hudstatsscreenskirmish" then
 
 		placer:new_row(8)
 
-		local total_kills = HMH.TotalKills
+		local total_kills = managers.statistics:TotalKills() or 0
 		local kill_count = total_kills and managers.localization:to_upper_text("menu_aru_job_3_obj") ..": ".. total_kills ..managers.localization:get_default_macro("BTN_SKULL") or ""
 		placer:add_bottom(self._left:fine_text({
 			keep_w = true,

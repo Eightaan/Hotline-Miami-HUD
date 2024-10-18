@@ -21,10 +21,6 @@
 				<post :script_path="QuickInputMenu.lua"/>
 				<post :script_path="LoadoutPanel.lua"/>
 			</group>
-			
-			<group :hook_id="utils/accelbyte/telemetry">
-				<post :script_path="ComboCounter.lua"/>
-			</group>
 
 			<group :hook_id="managers/">
 				<post :hook_id="hudmanager"          		:script_path="Waypoints.lua"/>
