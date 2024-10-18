@@ -96,7 +96,6 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 	end)
 	
 	Hooks:OverrideFunction(HUDStatsScreen, "recreate_left", function(self)
-		self._total_killed_in_session = 0
 		self._left:clear()
 		self._left:bitmap({
 			texture = "guis/textures/test_blur_df",
