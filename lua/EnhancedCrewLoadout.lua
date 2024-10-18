@@ -628,9 +628,7 @@ elseif string.lower(RequiredScript) == "lib/managers/hud/newhudstatsscreen" then
 	HUDStatsScreen._LOADOUT_H = 215
 	function HUDStatsScreen:recreate_right(...)
 		self:_destroy_player_info()
-		
 		recreate_right_original(self, ...)
-		
 		self:_create_player_info()
 	end
 
@@ -702,8 +700,8 @@ elseif string.lower(RequiredScript) == "lib/managers/hud/newhudstatsscreen" then
 						level = 	{ font_size = tweak_data.menu.pd2_medium_font_size * 0.90, height = tweak_data.menu.pd2_medium_font_size * 0.95, align = "left",  margin = 0, use_peer_color = true },
 						skills = 	{ font_size = tweak_data.menu.pd2_small_font_size  * 1.10, height = tweak_data.menu.pd2_small_font_size  * 1.15, align = "left",  margin = 3 },
 						perk = 		{ font_size = tweak_data.menu.pd2_medium_font_size * 0.95, height = tweak_data.menu.pd2_medium_font_size * 1.00, align = "left",  margin = 3, use_peer_color = true },
-						ping = 		{ font_size = tweak_data.menu.pd2_small_font_size  * 0.75, height = tweak_data.menu.pd2_small_font_size  * 0.80, align = "right" 			 },
-						playtime = 	{ font_size = tweak_data.menu.pd2_small_font_size  * 0.75, height = tweak_data.menu.pd2_small_font_size  * 0.80, align = "right"             },
+						ping = 		{ font_size = tweak_data.menu.pd2_small_font_size  * 0.75, height = tweak_data.menu.pd2_small_font_size  * 0.80, align = "right" },
+						playtime = 	{ font_size = tweak_data.menu.pd2_small_font_size  * 0.75, height = tweak_data.menu.pd2_small_font_size  * 0.80, align = "right" },
 						default = 	{ hide_name = true },
 						margin = 5,
 						borders = { 0, 0, 0, 2 }
