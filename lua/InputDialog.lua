@@ -1,4 +1,7 @@
 local requiresScript = RequiredScript:lower()
+local math_sin = math.sin
+local math_max = math.max
+
 if requiresScript == "lib/managers/systemmenumanager" then
 
 	core:module("SystemMenuManager")
@@ -148,7 +151,7 @@ elseif requiresScript == "lib/managers/dialogs/specializationdialog" then
 		local n = utf8.len(text)
 		if key == Idstring("backspace") then
 			if self._data.text_input_focus then
-				text = utf8.sub(text, 0, math.max(n - 1, 0))
+				text = utf8.sub(text, 0, math_max(n - 1, 0))
 				self._panel_script:update_user_text(text)
 				self._last_key_pressed = key
 				self._next_key_send_t = Application:time() + TextInputDialog.KEY_INIT_DELAY
@@ -189,7 +192,7 @@ elseif requiresScript == "lib/managers/dialogs/specializationdialog" then
 				local n = utf8.len(text)
 
 				if self._last_key_pressed == Idstring("backspace") then
-					text = utf8.sub(text, 0, math.max(n - 1, 0))
+					text = utf8.sub(text, 0, math_max(n - 1, 0))
 				else
 					text = string.format("%s%s", text, self._last_key_pressed)
 				end
@@ -404,7 +407,7 @@ elseif requiresScript == "lib/managers/menu/specializationboxgui" then
 		o:set_visible(true)
 		while self._cursor_animation do
 			t = t + coroutine.yield()
-			o:set_alpha(math.sin(t * 540) * 0.5 + 0.5)
+			o:set_alpha(math_sin(t * 540) * 0.5 + 0.5)
 		end
 		o:set_visible(false)
 	end

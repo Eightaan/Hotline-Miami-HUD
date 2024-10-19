@@ -1,7 +1,11 @@
 if _G.IS_VR then 
 	return
 end
+
+local HMH = HMH
 local Color = Color
+local math_max = math.max
+local math_sin = math.sin
 local math_lerp = math.lerp
 
 if RequiredScript == "lib/managers/hudmanagerpd2" then
@@ -173,7 +177,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		if text and bg and icon then
 			text:animate(function()
 				while true do
-					local alpha = math.max(1 - (os.clock() - start_time) / duration, 0)
+					local alpha = math_max(1 - (os.clock() - start_time) / duration, 0)
 					text:set_alpha(alpha)
 					bg:set_alpha(0.5 * alpha)
 					icon:set_alpha(alpha)
@@ -219,7 +223,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 			bloodthirst_text:set_text(managers.localization:to_upper_text("HMH_bloodthirst_multiplier", { NUM = buff }).."x")
 			bloodthirst_text:animate(function(o)
 				over(1 , function(p)
-					local n = 1 - math.sin((p / 2 ) * 180)
+					local n = 1 - math_sin((p / 2 ) * 180)
 					o:set_font_size(math_lerp(16, 16 * 1.16 , n))
 				end)
 			end)

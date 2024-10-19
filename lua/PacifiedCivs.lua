@@ -2,6 +2,7 @@ if not HMH:GetOption("greenciv") then
 	return
 end
 
+local Color = Color
 Hooks:PostHook(GroupAIStateBase, "_upd_criminal_suspicion_progress", "HMH_GroupAIStateBase_upd_criminal_suspicion_progress", function (self, ...)
 	if self._ai_enabled then
 		for obs_key, obs_susp_data in pairs(self._suspicion_hud_data or {}) do

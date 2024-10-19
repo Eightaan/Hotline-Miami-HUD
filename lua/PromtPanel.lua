@@ -1,3 +1,5 @@
+local HMH = HMH
+
 Hooks:PostHook(HUDWaitingLegend, "update_buttons", "HMH_HUDWaitingLegend_update_buttons", function(self)
 	if HMH:GetOption("promt") and self._box then
 		local children = {"bg", "left_top", "left_bottom", "right_top", "right_bottom"}

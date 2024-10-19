@@ -2,13 +2,17 @@ if _G.IS_VR then
 	return
 end
 
-local Color = Color
-local math_lerp = math.lerp
-
 local HMH = HMH
-local ammo = HMH:GetOption("ammo")
+local Color = Color
 local interact_info_text = HMH:GetOption("interact_info") and not VoidUI
 local special_equipment = HMH:GetOption("pickups")
+local ammo = HMH:GetOption("ammo")
+local set_alpha = set_alpha
+local math_round = math.round
+local math_lerp = math.lerp
+local math_sin = math.sin
+local math_max = math.max
+
 Hooks:PostHook(HUDTeammate, "init", "HMH_HUDTeammate_init", function(self, ...)
 	if interact_info_text then
 		local radial_health_panel = self._player_panel:child("radial_health_panel")
@@ -296,7 +300,7 @@ if HMH:GetOption("equipment") then
 		if data.amount > 0 then
 			equipment:animate(function(o)
 				over(1, function(p)
-					local n = 1 - math.sin((p / 2) * 180)
+					local n = 1 - math_sin((p / 2) * 180)
 					equipment:set_alpha(math_lerp(1, 0.2, n))
 				end)
 			end)
@@ -334,7 +338,7 @@ if HMH:GetOption("equipment") then
 		if self._grenade_amount ~= data.amount and data.amount > 0 then
 			grenades:animate( function(o)
 				over(1, function(p)
-					local n = 1 - math.sin((p / 2 ) * 180)
+					local n = 1 - math_sin((p / 2 ) * 180)
 					grenades:set_alpha(math_lerp(1, 0.2, n))
 				end)
 			end)
@@ -370,7 +374,7 @@ if HMH:GetOption("equipment") then
 		if self._cable_amount ~= amount and amount > 0 then
 			cable_ties:animate(function(o)
 				over(1, function(p)
-					local n = 1 - math.sin((p / 2 ) * 180)
+					local n = 1 - math_sin((p / 2 ) * 180)
 					cable_ties:set_alpha(math_lerp(1, 0.2, n))
 				end)
 			end)
@@ -523,14 +527,14 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammate_set_ammo
 	local ammo_clip = weapon_panel:child("ammo_clip")
 
 	if self._alt_ammo and ammo_clip:visible() then
-		current_left = math.max(0, current_left - max_clip - (current_clip - max_clip))
+		current_left = math_max(0, current_left - max_clip - (current_clip - max_clip))
 	end
 	
 	local low_ammo_color = ammo and HMH:GetColor("LowAmmo") or Color(1, 0.9, 0.9, 0.3)
 	local total_ammo_color = ammo and HMH:GetColor("TotalAmmo") or Color.white
 	local clip_ammo_color = ammo and HMH:GetColor("ClipAmmo") or Color.white
-	local low_ammo = current_left <= math.round(max_clip / 2)
-	local low_clip = current_clip <= math.round(max_clip / 4)
+	local low_ammo = current_left <= math_round(max_clip / 2)
+	local low_clip = current_clip <= math_round(max_clip / 4)
 	local out_of_clip = current_clip <= 0
 	local out_of_ammo = current_left <= 0
 	local color_total = out_of_ammo and Color(1 , 0.9 , 0.3 , 0.3)
@@ -579,8 +583,8 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammate_set_ammo
 				over(0.5, function(p)
 					local value = math_lerp(s, e, p)
 					local text = string.format("%.0f", value)
-					local zero = math.round(value) < 10 and "00" or math.round(value) < 100 and "0" or ""
-					local low_ammo = value <= math.round(max_clip / 2)
+					local zero = math_round(value) < 10 and "00" or math_round(value) < 100 and "0" or ""
+					local low_ammo = value <= math_round(max_clip / 2)
 					local out_of_ammo = value <= 0
 					local color_total = out_of_ammo and Color(1, 0.9, 0.3, 0.3)
 					color_total = color_total or low_ammo and low_ammo_color
@@ -591,7 +595,7 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammate_set_ammo
 					ammo_total:set_range_color(0, string.len(zero), color_total:with_alpha(0.5))
 				end)
 				over(1 , function(p)
-					local n = 1 - math.sin((p / 2 ) * 180)
+					local n = 1 - math_sin((p / 2 ) * 180)
 
 					ammo_total:set_font_size(math_lerp(ammo_font, ammo_font + 4, n))
 				end)
@@ -605,8 +609,8 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammate_set_ammo
 				over(0.25, function(p)
 					local value = math_lerp(s, e, p)
 					local text = string.format( "%.0f", value)
-					local zero = math.round(value) < 10 and "00" or math.round(value) < 100 and "0" or ""
-					local low_clip = value <= math.round(max_clip / 4)
+					local zero = math_round(value) < 10 and "00" or math_round(value) < 100 and "0" or ""
+					local low_clip = value <= math_round(max_clip / 4)
 					local out_of_clip = value <= 0
 					local color_clip = out_of_clip and Color(1, 0.9, 0.3, 0.3)
 
@@ -618,7 +622,7 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammate_set_ammo
 					ammo_clip:set_range_color(0, string.len(zero), color_clip:with_alpha(0.5))
 				end)
 				over(1 , function(p)
-					local n = 1 - math.sin((p / 2 ) * 180)
+					local n = 1 - math_sin((p / 2 ) * 180)
 					ammo_clip:set_font_size(math_lerp(24, 24 + 4, n))
 				end)
 			end)
@@ -651,12 +655,12 @@ if HMH:GetOption("colored_downs") then
 			local bg_alpha = HMH:GetOption("team_bg") and 0 or 0.6
 
 			if revive_amount_text then
-				revive_amount_text:set_text(tostring(math.max(revive_amount - 1, 0)))
+				revive_amount_text:set_text(tostring(math_max(revive_amount - 1, 0)))
 				revive_amount_text:set_color(revive_amount > 1 and team_color or Color.red)
 				revive_amount_text:set_font_size(17)
 				revive_amount_text:animate(function(o)
 					over(1, function(p)
-						local n = 1 - math.sin((p / 2 ) * 180)
+						local n = 1 - math_sin((p / 2 ) * 180)
 						revive_amount_text:set_font_size(math_lerp(17, 17 * 0.85, n))
 					end)
 				end)

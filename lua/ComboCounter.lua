@@ -1,6 +1,14 @@
+local HMH = HMH
+
 if not HMH:GetOption("combo") then
 	return
 end
+
+local Color = Color
+local math_sin = math.sin
+local math_max = math.max
+local math_abs = math.abs
+local math_lerp = math.lerp
 
 if RequiredScript == "lib/managers/hudmanagerpd2" then
 	Hooks:PostHook(HUDManager, "_setup_player_info_hud_pd2", "HMH_Combo_setup_player_info_hud_pd2", function(self, ...)
@@ -129,7 +137,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 			if should_be_open then break end
 			local delta = coroutine.yield()
 			elapsed = elapsed + delta
-			panel:set_x( math.max( ( distance * ( 1 - ( elapsed / timespan ) ) ) - 150 , -150 ) )
+			panel:set_x( math_max( ( distance * ( 1 - ( elapsed / timespan ) ) ) - 150 , -150 ) )
 		end
 		local Combo_text = self._combo_panel:child("Combo_text")
 		local Combo_text_bg = self._combo_panel:child("Combo_text_bg")
@@ -147,7 +155,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		while t > 0 do
 			local dt = coroutine.yield()
 			t = t - dt
-			local cv = math.abs((math.sin(t * 180 * 16)))
+			local cv = math_abs((math_sin(t * 180 * 16)))
 			text:set_color(Color("e2087c") * cv + Color("e2087c") * cv)
 		end
 		text:set_color(Color("e2087c"))
@@ -157,9 +165,9 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		local Combo_text = self._combo_panel:child("Combo_text")
 		local Combo_text_bg = self._combo_panel:child("Combo_text_bg")
 		over(0.4 , function(p)
-			local n = 1 - math.sin((p / 2 ) * 180)
-			Combo_text:set_font_size(math.lerp(96, 96 + 125, n))
-			Combo_text_bg:set_font_size(math.lerp(96, 96 + 125, n))
+			local n = 1 - math_sin((p / 2 ) * 180)
+			Combo_text:set_font_size(math_lerp(96, 96 + 125, n))
+			Combo_text_bg:set_font_size(math_lerp(96, 96 + 125, n))
 		end)
 	end
 

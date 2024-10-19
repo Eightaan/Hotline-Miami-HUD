@@ -1,9 +1,12 @@
+local HMH = HMH
+local interact_alpha = HMH:GetOption("InteractAlpha")
+
 if RequiredScript == "lib/managers/hud/hudinteraction" then
 	Hooks:PostHook(HUDInteraction, "show_interact", "HMH_HUDInteraction_show_interact", function(self, ...)
 		if HMH:GetOption("interact") then
 			self._hud_panel:child(self._child_name_text):set_color(HMH:GetColor("Interaction"))
-			self._hud_panel:child(self._child_name_text):set_alpha(HMH:GetOption("InteractAlpha"))
-			self._hud_panel:child(self._child_ivalid_name_text):set_alpha(HMH:GetOption("InteractAlpha"))
+			self._hud_panel:child(self._child_name_text):set_alpha(interact_alpha)
+			self._hud_panel:child(self._child_ivalid_name_text):set_alpha(interact_alpha)
 		end
 	end)
 	

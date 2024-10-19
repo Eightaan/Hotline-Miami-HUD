@@ -1,3 +1,9 @@
+local HMH = HMH
+local math_floor = math.floor
+local math_ceil = math.ceil
+local math_max = math.max
+local math_abs = math.abs
+
 if string.lower(RequiredScript) == "lib/managers/menu/contractboxgui" then
 	local init_original = ContractBoxGui.init
 	local update_original = ContractBoxGui.update
@@ -8,35 +14,35 @@ if string.lower(RequiredScript) == "lib/managers/menu/contractboxgui" then
 	local mouse_pressed_original = ContractBoxGui.mouse_pressed
 	local mouse_moved_original = ContractBoxGui.mouse_moved
 	local set_enabled_original = ContractBoxGui.set_enabled
-	local create_character_text_original = ContractBoxGui.create_character_text
+	-- local create_character_text_original = ContractBoxGui.create_character_text
 
-	function ContractBoxGui:create_character_text(peer_id, ...)
-		create_character_text_original(self, peer_id, ...)
+	-- function ContractBoxGui:create_character_text(peer_id, ...)
+		-- create_character_text_original(self, peer_id, ...)
 
-		local peer_label = self._peers[peer_id]
-		local x, y = peer_label:center_x(), peer_label:top()
-		local voice_icon, voice_texture_rect = tweak_data.hud_icons:get_icon_data('wp_talk')
-		local talking
+		-- local peer_label = self._peers[peer_id]
+		-- local x, y = peer_label:center_x(), peer_label:top()
+		-- local voice_icon, voice_texture_rect = tweak_data.hud_icons:get_icon_data('wp_talk')
+		-- local talking
 		
-		if type(managers.network.voice_chat._users_talking) == 'table' then
-			talking = managers.network.voice_chat._users_talking[peer_id] and managers.network.voice_chat._users_talking[peer_id].active
-		end
+		-- if type(managers.network.voice_chat._users_talking) == 'table' then
+			-- talking = managers.network.voice_chat._users_talking[peer_id] and managers.network.voice_chat._users_talking[peer_id].active
+		-- end
 	
-		self._peers_talking = self._peers_talking or {}
-		self._peers_talking[peer_id] = self._peers_talking[peer_id] or self._panel:bitmap({
-			texture = voice_icon,
-			layer = 0,
-			texture_rect = voice_texture_rect,
-			w = voice_texture_rect[3],
-			h = voice_texture_rect[4],
-			color = color,
-			blend_mode = 'add',
-			alpha = 1
-		})
-		self._peers_talking[peer_id]:set_center_x(x)
-		self._peers_talking[peer_id]:set_bottom(y)
-		self._peers_talking[peer_id]:set_visible(talking)		
-	end
+		-- self._peers_talking = self._peers_talking or {}
+		-- self._peers_talking[peer_id] = self._peers_talking[peer_id] or self._panel:bitmap({
+			-- texture = voice_icon,
+			-- layer = 0,
+			-- texture_rect = voice_texture_rect,
+			-- w = voice_texture_rect[3],
+			-- h = voice_texture_rect[4],
+			-- color = color,
+			-- blend_mode = 'add',
+			-- alpha = 1
+		-- })
+		-- self._peers_talking[peer_id]:set_center_x(x)
+		-- self._peers_talking[peer_id]:set_bottom(y)
+		-- self._peers_talking[peer_id]:set_visible(talking)		
+	-- end
 
 	ContractBoxGui._LOADOUT_W = 750
 	ContractBoxGui._LOADOUT_H = 590
@@ -227,7 +233,7 @@ if string.lower(RequiredScript) == "lib/managers/menu/contractboxgui" then
 			end
 		end
 
-		local width = math.floor(ContractBoxGui._LOADOUT_W / 4)
+		local width = math_floor(ContractBoxGui._LOADOUT_W / 4)
 		for i, peer_id in ipairs({3, 2, 1, 4}) do
 			if not self._peer_loadout[peer_id] then
 				self._peer_loadout[peer_id] = LoadoutPanel:new(self._loadout_data, self, peer_id, width, ContractBoxGui._LOADOUT_H + 8, {
@@ -271,12 +277,12 @@ if string.lower(RequiredScript) == "lib/managers/menu/contractboxgui" then
 	function ContractBoxGui:arrange_loadout_panels()
 		local x = 0
 		local max_h = 0
-		local width = math.floor(ContractBoxGui._LOADOUT_W / 4)
+		local width = math_floor(ContractBoxGui._LOADOUT_W / 4)
 		for i, peer_id in ipairs({3, 2, 1, 4}) do
 			local panel = self._peer_loadout[peer_id]
 			if panel and panel:enabled() then
 				panel:set_x(x)
-				max_h = math.max(max_h, math.ceil(panel:h()))
+				max_h = math_max(max_h, math_ceil(panel:h()))
 			end
 			x = x + width
 		end
@@ -329,7 +335,7 @@ if string.lower(RequiredScript) == "lib/managers/menu/contractboxgui" then
 			local init_y = panel:y()
 			local x_change = x > init_x and 1 or x < init_x and -1
 			local y_change = y > init_y and 1 or y < init_y and -1
-			local T = math.max(math.abs(x - init_x) / move_speed, math.abs(y - init_y) / move_speed)
+			local T = math_max(math_abs(x - init_x) / move_speed, math_abs(y - init_y) / move_speed)
 			local t = 0
 
 			while alive(panel) and t < T do
@@ -460,10 +466,10 @@ elseif string.lower(RequiredScript) == "lib/managers/menu/crimespreedetailsmenuc
 			end
 		end
 
-		local width = math.floor(self._loadout_data:w() / 4)
+		local width = math_floor(self._loadout_data:w() / 4)
 		for i, peer_id in ipairs({3, 2, 1, 4}) do
 			if not self._peer_loadout[peer_id] then
-				self._peer_loadout[peer_id] = LoadoutPanel:new(self._loadout_data, self, peer_id, width, math.floor(self._loadout_data:h() + 9), {
+				self._peer_loadout[peer_id] = LoadoutPanel:new(self._loadout_data, self, peer_id, width, math_floor(self._loadout_data:h() + 9), {
 					component_layout =
 						{
 							{ "ping" },
@@ -505,7 +511,7 @@ elseif string.lower(RequiredScript) == "lib/managers/menu/crimespreedetailsmenuc
 
 	function CrimeSpreeCrewLoadoutPage:arrange_loadout_panels()
 		local x = 0
-		local width = math.floor(self._loadout_data:w() / 4)
+		local width = math_floor(self._loadout_data:w() / 4)
 		for i, peer_id in ipairs({3, 2, 1, 4}) do
 			local panel = self._peer_loadout[peer_id]
 			if panel and panel:enabled() then
@@ -522,7 +528,7 @@ elseif string.lower(RequiredScript) == "lib/managers/menu/missionbriefinggui" th
 		TeamLoadoutCustom.super.init(self, panel, text, i)
 
 		self._player_slots = {}
-		local quarter_width = math.floor(self._panel:w() / 4)
+		local quarter_width = math_floor(self._panel:w() / 4)
 		for peer_id = 1, 4 do
 			self._player_slots[peer_id] = LoadoutPanel:new(self._panel, self, peer_id, quarter_width, self._panel:h() + 7, {
 				component_layout =
@@ -582,7 +588,7 @@ elseif string.lower(RequiredScript) == "lib/managers/menu/missionbriefinggui" th
 
 	function TeamLoadoutCustom:arrange_loadout_panels()
 		local x = 0
-		local width = math.floor(self._panel:w() / 4)
+		local width = math_floor(self._panel:w() / 4)
 		for peer_id = 1, 4 do
 			local panel = self._player_slots[peer_id]
 			if panel and panel:enabled() then
@@ -687,7 +693,7 @@ elseif string.lower(RequiredScript) == "lib/managers/hud/newhudstatsscreen" then
 		end
 
 		if parent_panel then
-			local width = math.floor(self._loadout_data:w() / 2)
+			local width = math_floor(self._loadout_data:w() / 2)
 			for peer_id = 1, 4  do
 				if not self._peer_loadout[peer_id] then
 					self._peer_loadout[peer_id] = LoadoutPanel:new(parent_panel, self, peer_id, parent_panel:w(), parent_panel:h() * 0.17, {
@@ -728,7 +734,7 @@ elseif string.lower(RequiredScript) == "lib/managers/hud/newhudstatsscreen" then
 	function HUDStatsScreen:arrange_loadout_panels(parent_panel)
 		if parent_panel then
 			local y = parent_panel:h()
-			local height = math.floor(parent_panel:h() * 0.17)
+			local height = math_floor(parent_panel:h() * 0.17)
 			for peer_id = 4, 1, -1 do
 				local panel = self._peer_loadout[peer_id]
 				if panel and panel:enabled() and not panel:destroyed() then

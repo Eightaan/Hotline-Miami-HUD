@@ -10,9 +10,9 @@ Hooks:PostHook(HUDManager, "add_waypoint", "HMH_HUDManager_add_waypoint", functi
 
 	if waypoints_available then
 		local wp = self._hud.waypoints[id]
-		local scale = HMH:GetOption("waypoint_alpha")
+		local scale = alpha
 		if wp and wp.bitmap and wp.distance and wp.arrow and data.distance then
-			if HMH:GetOption("waypoints") then
+			if alpha then
 				wp.bitmap:set_color(bitmap)
 				wp.distance:set_color(distance)
 				wp.arrow:set_color(arrow)

@@ -1,3 +1,7 @@
+local HMH = HMH
+local math_sin = math.sin
+local math_lerp = math.lerp
+
 if RequiredScript == "lib/managers/hudmanagerpd2" then
 	HUDECMCounter = HUDECMCounter or class()
 	function HUDECMCounter:init(hud)
@@ -63,8 +67,8 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 						over(1 , function(p)
 							t = t + coroutine.yield()
 							local font = tweak_data.hud_corner.numhostages_size * 0.9
-							local n = 1 - math.sin(t * 700)
-							self._text:set_font_size( math.lerp(font , (font) * 1.05, n))
+							local n = 1 - math_sin(t * 700)
+							self._text:set_font_size( math_lerp(font , (font) * 1.05, n))
 						end)
 					end)
 				elseif t < 9.9 then

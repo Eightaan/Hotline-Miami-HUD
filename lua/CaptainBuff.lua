@@ -1,3 +1,5 @@
+local HMH = HMH
+
 if not HMH:GetOption("assault") and HMH:GetOption("captain_buff") then
 	return
 end

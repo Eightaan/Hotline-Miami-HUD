@@ -1,4 +1,7 @@
+local HMH = HMH
 local Menu_File = file
+local math_lerp = math.lerp
+local math_sin = math.sin
 
 local function CreateDirectory(path)
 	local current = ""
@@ -106,8 +109,8 @@ function set_alpha(o, a, ct)
 	local ca = o:alpha()
 	while t < target do
 		t = t + coroutine.yield()
-		local n = math.sin(t * 200)
-		o:set_alpha(math.lerp(ca, a, n))
+		local n = math_sin(t * 200)
+		o:set_alpha(math_lerp(ca, a, n))
 	end
 	o:set_alpha(a)
 end

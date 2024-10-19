@@ -1,11 +1,12 @@
+local HMH = HMH
+
 if not HMH:GetOption("assault") then
 	return
 end
 
-local HMH = HMH
+local Color = Color
 local math_sin = math.sin
 local math_lerp = math.lerp
-local set_alpha = set_alpha
 local assaut_alpha = HMH:GetOption("assault_text")
 local info_box_alpha = HMH:GetOption("info_box_alpha")
 
@@ -378,10 +379,10 @@ Hooks:OverrideFunction(HUDAssaultCorner, "flash_point_of_no_return_timer", funct
 			t = t + coroutine.yield()
 			local color = HMH:GetColor("NoReturnTimer") or Color(1, 1, 0, 0)
 			local flash_color = self._noreturn_data.flash_color or Color(1, 1, 0.8, 0.2)
-			local n = 1 - math.sin(t * 180)
-			local r = math.lerp(color.r, flash_color.r, n)
-			local g = math.lerp(color.g, flash_color.g, n)
-			local b = math.lerp(color.b, flash_color.b, n)
+			local n = 1 - math_sin(t * 180)
+			local r = math_lerp(color.r, flash_color.r, n)
+			local g = math_lerp(color.g, flash_color.g, n)
+			local b = math_lerp(color.b, flash_color.b, n)
 			o:set_color(Color(r, g, b))
 			o:set_font_size(math_lerp(24 , (24) * 1.25, n))
 		end

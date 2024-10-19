@@ -1,4 +1,7 @@
 local PROFILE_MENU_ID = "mod_profile_switch_node_menu"
+local HMH = HMH
+local math_floor = math.floor
+local math_min = math.min
 
 if RequiredScript == "lib/managers/menumanager" then
 	local function create_profile_menu_node(nodes, menu_id)
@@ -127,7 +130,7 @@ elseif RequiredScript == "lib/managers/menu/renderers/menunodeskillswitchgui" th
 
 		if alive(self.item_panel) and LoadoutPanel then
 			local offset_h = managers.menu:is_pc_controller() and 25 or 0
-			local height = math.min(math.floor(self.item_panel:h()), ws_panel:height())
+			local height = math_min(math_floor(self.item_panel:h()), ws_panel:height())
 			self.profile_preview = LoadoutPanel:new(self.item_panel:parent(), self, 0, self.PROFILE_PREVIEW_W, height - offset_h, {
 				component_layout = {
 					{ "skills" },
@@ -325,7 +328,7 @@ elseif RequiredScript == "lib/managers/multiprofilemanager" then
 					end
 				end
 				if value_index > 0 then
-					amount = amount + (upgrade_values[deployable]["quantity"][math.floor(value_index)] or 0)
+					amount = amount + (upgrade_values[deployable]["quantity"][math_floor(value_index)] or 0)
 				end
 			end
 		end

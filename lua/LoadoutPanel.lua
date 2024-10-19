@@ -1,4 +1,13 @@
 LoadoutBaseItem = LoadoutBaseItem or class()
+
+local Color = Color
+local math_round = math.round
+local math_random = math.random
+local math_floor = math.floor
+local math_ceil = math.ceil
+local math_max = math.max
+local math_min = math.min
+
 function LoadoutBaseItem:init(base_panel, owner, name, width, height, params)
 	self._name = name
 	self._owner_panel = base_panel
@@ -192,7 +201,7 @@ function LoadoutPanel:init(base_panel, owner, peer_id, width, height, params)
 				end
 			end
 			if config and config.height then
-				max_h = math.max(max_h, (config.height or 0))
+				max_h = math_max(max_h, (config.height or 0))
 			end
 		end
 
@@ -203,7 +212,7 @@ function LoadoutPanel:init(base_panel, owner, peer_id, width, height, params)
 	end
 
 	local comp_w = (self._panel:w() - 2 * self._margin)
-	local comp_h = (self._panel:h() - 2 * self._margin - math.ceil(fixed_comp_h)) / (table.size(self._component_layout) - fixed_comp_amnt)
+	local comp_h = (self._panel:h() - 2 * self._margin - math_ceil(fixed_comp_h)) / (table.size(self._component_layout) - fixed_comp_amnt)
 
 	for i, data in ipairs(self._component_layout) do
 		for i, name in ipairs(data) do
@@ -220,7 +229,7 @@ function LoadoutPanel:init(base_panel, owner, peer_id, width, height, params)
 				if component_params.use_peer_color then
 					component_params.color = self._peer_color
 				end
-				self._components[name] = _G[class]:new(self._panel, self, name, sub_comp_w, component_params and component_params.height or math.ceil(comp_h), component_params or {})
+				self._components[name] = _G[class]:new(self._panel, self, name, sub_comp_w, component_params and component_params.height or math_ceil(comp_h), component_params or {})
 			end
 		end
 	end
@@ -286,7 +295,7 @@ function LoadoutPanel:arrange()
 			local component = self._components[name]
 			if component:enabled() then
 				component:set_y(total_y)
-				max_h = math.max(max_h, component:h())
+				max_h = math_max(max_h, component:h())
 				table.insert(active_comps[i], component)
 			end
 		end
@@ -294,7 +303,7 @@ function LoadoutPanel:arrange()
 	end
 
 	for i, components in ipairs(active_comps) do
-		local new_w = math.floor((self._panel:w() - (2 * self._margin)) / table.size(components))
+		local new_w = math_floor((self._panel:w() - (2 * self._margin)) / table.size(components))
 		local x = self._margin or 0
 		for i, component in ipairs(components) do
 			if component:enabled() then
@@ -367,7 +376,7 @@ function LoadoutTextItem:init(base_panel, owner, name, width, height, params)
 
 	LoadoutTextItem.super.init(self, base_panel, owner, name, width, height, params)
 
-	self._font_size = math.min(params.font_size or tweak_data.menu.pd2_medium_font_size, self._panel:h() - 2 * self._margin)
+	self._font_size = math_min(params.font_size or tweak_data.menu.pd2_medium_font_size, self._panel:h() - 2 * self._margin)
 	self._default_color = params.color or Color.white
 	self._loadout = ""
 
@@ -393,7 +402,7 @@ function LoadoutTextItem:arrange()
 	if self:enabled() and alive(self._text) then
 		self._text:set_font_size(self._font_size * 0.95)
 		local _, _, w, h = self._text:text_rect()
-		while w > math.max(self._panel:w() - 2 * self._margin, 1) do
+		while w > math_max(self._panel:w() - 2 * self._margin, 1) do
 			if self._text:font_size() > 11 then
 				self._text:set_font_size(self._text:font_size() - 0.1)
 			else
@@ -495,7 +504,7 @@ function LoadoutImageItem:arrange()
 	if self:enabled() then
 		self._text:set_font_size(self._font_size * 0.95)
 		local _, _, w, h = self._text:text_rect()
-		while w > math.max(self._panel:w() - 2 * self._margin, 1) do
+		while w > math_max(self._panel:w() - 2 * self._margin, 1) do
 			if self._text:font_size() > 11 then
 				self._text:set_font_size(self._text:font_size() - 0.1)
 			else
@@ -747,7 +756,7 @@ function LoadoutDetectionItem:set_outfit(outfit)
 	local peer = self._owner:get_peer()
 	if peer then
 		self:set_enabled("peer", true)
-		local detection = math.round(managers.blackmarket:get_suspicion_offset_of_peer(peer, tweak_data.player.SUSPICION_OFFSET_LERP or 0.75) * 100)
+		local detection = math_round(managers.blackmarket:get_suspicion_offset_of_peer(peer, tweak_data.player.SUSPICION_OFFSET_LERP or 0.75) * 100)
 		if tostring(detection) ~= self._loadout then
 			self:set_text(utf8.char(57363) .. detection, detection < 50 and Color(1, 0, 0.8, 1) or Color(1, 1, 0.2, 0))
 
@@ -890,7 +899,7 @@ function LoadoutSkillsItem:set_outfit(outfit)
 		local skill_str = skill_data and table.concat(skill_data, "_")
 		if skill_data and skill_str ~= self._loadout then
 			self._loadout = skill_str
-			local subtree_amt = math.floor(#skill_data / #self._tree_names)
+			local subtree_amt = math_floor(#skill_data / #self._tree_names)
 			local text = ""
 			local color_range = {}
 			local points_total = 0
@@ -952,7 +961,7 @@ function LoadoutSkillsItem:get_max_skillpoints()
 	if level then
 		local max_points = 0
 		for _, data in ipairs(self.POINTS_MAP) do
-			max_points = max_points + math.floor(level / data[1]) * data[2]
+			max_points = max_points + math_floor(level / data[1]) * data[2]
 		end
 		return max_points
 	end
@@ -1029,10 +1038,10 @@ function LoadoutWeaponItem:arrange()
 
 		for i, perk in ipairs(self._perks or {}) do
 		if alive(perk) and perk:visible() then
-			local size = math.min(self._panel:h() / 4, self._panel:w() / #self._perks, 16)
+			local size = math_min(self._panel:h() / 4, self._panel:w() / #self._perks, 16)
 			perk:set_w(size)
 			perk:set_h(size)
-			perk:set_rightbottom(math.round(self._panel:w() - self._margin - ((i-1) * (perk:w() + 1))), math.round(self._panel:h() - self._margin))
+			perk:set_rightbottom(math_round(self._panel:w() - self._margin - ((i-1) * (perk:w() + 1))), math_round(self._panel:h() - self._margin))
 		end
 	end
 end
@@ -1129,7 +1138,7 @@ function LoadoutWeaponItem:update_perks(outfit)
 			end
 		end
 		self._perks = {}
-		local perk_size = math.min(self._panel:h() / 4, self._panel:w() / #self._perks, 16)
+		local perk_size = math_min(self._panel:h() / 4, self._panel:w() / #self._perks, 16)
 
 		for perk in pairs(perks or {}) do
 			if perk ~= "bonus" then
@@ -1171,7 +1180,7 @@ function LoadoutMeleeItem:init(base_panel, owner, name, width, height, params)
 		vertical = "center",
 		w = self._panel:w(),
 		h = stock_img_height,
-		rotation = 15 + math.random(5),
+		rotation = 15 + math_random(5),
 		visible = false,
 		layer = 1,
 	})
@@ -1183,7 +1192,7 @@ function LoadoutMeleeItem:init(base_panel, owner, name, width, height, params)
 		vertical = "center",
 		w = self._panel:w(),
 		h = stock_img_height,
-		rotation = 15 + math.random(5),
+		rotation = 15 + math_random(5),
 		visible = false,
 		layer = 1,
 	})
@@ -1304,7 +1313,7 @@ function LoadoutDeployableItem:set_outfit(outfit)
 	local amount = outfit[string.format("%s_amount", self._name)]
 	if amount and (not self._loadout_amount or self._loadout_amount ~= amount) then
 		if self._name == "secondary_deployable" then
-			amount = math.ceil(amount / 2)
+			amount = math_ceil(amount / 2)
 		end
 
 		self:set_amount(amount)

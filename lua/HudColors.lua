@@ -1,12 +1,15 @@
+local HMH = HMH
+local Color = Color
+
 function TweakData:HMM()
 	if HMH:GetOption("custom_color") then
 		for i = 1, 5 do
-			local color = HMH:GetColor("Player" .. (i <= 4 and i or "Ai"))
-			if color then
-				self.chat_colors[i] = color
-				self.peer_vector_colors[i] = Vector3(color:unpack())
+			local player_color = HMH:GetColor("Player" .. (i <= 4 and i or "Ai"))
+			if player_color then
+				self.chat_colors[i] = player_color
+				self.peer_vector_colors[i] = Vector3(player_color:unpack())
 				if i <= 4 then
-					self.preplanning_peer_colors[i] = color
+					self.preplanning_peer_colors[i] = player_color
 				end
 			end
 		end

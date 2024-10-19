@@ -10,11 +10,19 @@
 	Input
 ]]
 
+local math_clamp = math.clamp
+local math_round = math.round
+local math_lerp = math.lerp
+
+local math_random = math.random
+local math_floor = math.floor
+local math_max = math.max
+
 local function make_fine_text(text_obj)
 	local x, y, w, h = text_obj:text_rect()
 
 	text_obj:set_size(w, h)
-	text_obj:set_position(math.round(text_obj:x()), math.round(text_obj:y()))
+	text_obj:set_position(math_round(text_obj:x()), math_round(text_obj:y()))
 end
 
 local function do_animation(TOTAL_T, clbk)
@@ -252,8 +260,8 @@ function HMHMenu:update(t, dt)
 		end
 	end
 
-	self._axis_timer.y = math.max(self._axis_timer.y - dt, 0)
-	self._axis_timer.x = math.max(self._axis_timer.x - dt, 0)
+	self._axis_timer.y = math_max(self._axis_timer.y - dt, 0)
+	self._axis_timer.x = math_max(self._axis_timer.x - dt, 0)
 end
 
 function HMHMenu:SetAxisTimer(axis, delay, input_delay, input)
@@ -290,7 +298,7 @@ function HMHMenu:Open()
 		local a = self._panel:alpha()
 
 		do_animation(0.2, function (p)
-			self._panel:set_alpha(math.lerp(a, 1, p))
+			self._panel:set_alpha(math_lerp(a, 1, p))
 		end)
 		self._controller:enable()
 	end)
@@ -309,7 +317,7 @@ function HMHMenu:Close()
 		local a = self._panel:alpha()
 
 		do_animation(0.2, function (p)
-			self._panel:set_alpha(math.lerp(a, 0, p))
+			self._panel:set_alpha(math_lerp(a, 0, p))
 		end)
 
 		self._panel:set_alpha(0)
@@ -634,7 +642,7 @@ function HMHMenu:AnimateItemEnabled(item, enabled)
 		item.panel:animate(function(o)
 			local alpha = o:alpha()
 			do_animation(0.2, function (p)
-				o:set_alpha(math.lerp(alpha, enabled and 1 or 0.5, p))
+				o:set_alpha(math_lerp(alpha, enabled and 1 or 0.5, p))
 			end)
 			o:set_alpha(enabled and 1 or 0.5)
 		end)
@@ -652,7 +660,7 @@ function HMHMenu:HighlightItem(item)
 	item.panel:child("bg"):animate(function(o)
 		local alpha = o:alpha()
 		do_animation(0.2, function (p)
-			o:set_alpha(math.lerp(alpha, 0.3, p))
+			o:set_alpha(math_lerp(alpha, 0.3, p))
 		end)
 		o:set_alpha(0.3)
 	end)
@@ -672,7 +680,7 @@ function HMHMenu:UnhighlightItem(item)
 	item.panel:child("bg"):animate(function(o)
 		local alpha = o:alpha()
 		do_animation(0.20, function (p)
-			o:set_alpha(math.lerp(alpha, 0, p))
+			o:set_alpha(math_lerp(alpha, 0, p))
 		end)
 		o:set_alpha(0)
 	end)
@@ -720,8 +728,8 @@ function HMHMenu:SetItem(item, value, menu)
 				local w, h = o:size()
 				local check = item.panel:child("check_bg")
 				do_animation(0.1, function (p)
-					o:set_alpha(math.lerp(alpha, value and 1 or 0, p))
-					o:set_size(math.lerp(w, value and check:w() or check:w() * 2, p), math.lerp(h, value and check:h() or check:h() * 2, p))
+					o:set_alpha(math_lerp(alpha, value and 1 or 0, p))
+					o:set_size(math_lerp(w, value and check:w() or check:w() * 2, p), math_lerp(h, value and check:h() or check:h() * 2, p))
 					o:set_center(check:center())
 				end)
 				o:set_alpha(value and 1 or 0)
@@ -729,8 +737,8 @@ function HMHMenu:SetItem(item, value, menu)
 		elseif item.type == "slider" then
 			value = string.format("%." .. (item.step or 0) .. "f", value)
 			local percentage = (value - item.min) / (item.max - item.min)
-			item.panel:child("value_bar"):set_w(math.max(1,item.panel:w() * percentage))
-			item.panel:child("value_text"):set_text(item.percentage and math.floor(value * 100).."%" or value ..(item.suffix and item.suffix or ""))
+			item.panel:child("value_bar"):set_w(math_max(1,item.panel:w() * percentage))
+			item.panel:child("value_text"):set_text(item.percentage and math_floor(value * 100).."%" or value ..(item.suffix and item.suffix or ""))
 			value = tonumber(value)
 			item.value = value
 		elseif item.type == "multiple_choice" then
@@ -1025,9 +1033,9 @@ function HMHMenu:OpenMenu(menu, close)
 		next_menu.panel:set_visible(true)
 
 		do_animation(0.1, function (p)
-			next_menu.panel:set_x(math.lerp(x, 0, p))
+			next_menu.panel:set_x(math_lerp(x, 0, p))
 			if prev_menu then
-				prev_menu.panel:set_x(math.lerp(prev_x, close and prev_menu.panel:w() or -prev_menu.panel:w(), p))
+				prev_menu.panel:set_x(math_lerp(prev_x, close and prev_menu.panel:w() or -prev_menu.panel:w(), p))
 			end
 		end)
 
@@ -1269,7 +1277,7 @@ function HMHMenu:CreateSlider(params)
 	local value_bar = slider_panel:bitmap({
 		name = "value_bar",
 		alpha = 0.2,
-		w = math.max(1, slider_panel:w() * percentage)
+		w = math_max(1, slider_panel:w() * percentage)
 	})
 	local t
 	if params.value then
@@ -1335,13 +1343,13 @@ end
 
 function HMHMenu:SetSlider(item, x, add)
 	local panel_min, panel_max = item.panel:world_x(), item.panel:world_x() + item.panel:w()
-	x = math.clamp(x, panel_min, panel_max)
+	x = math_clamp(x, panel_min, panel_max)
 	local value_bar = item.panel:child("value_bar")
 	local value_text = item.panel:child("value_text")
 	local percentage
 	if add then
 		local step = 1 / (10^item.step)
-		local new_value = math.clamp(item.value + (add * step), item.min, item.max)
+		local new_value = math_clamp(item.value + (add * step), item.min, item.max)
 		percentage = (new_value - item.min) / (item.max - item.min)
 	else
 		percentage = (x - panel_min) / (panel_max - panel_min)
@@ -1349,8 +1357,8 @@ function HMHMenu:SetSlider(item, x, add)
 
 	if percentage then
 		local value = string.format("%." .. (item.step or 0) .. "f", item.min + (item.max - item.min) * percentage)
-		value_bar:set_w(math.max(1,item.panel:w() * percentage))
-		value_text:set_text(item.percentage and math.floor(value * 100).."%" or value ..(item.suffix and item.suffix or ""))
+		value_bar:set_w(math_max(1,item.panel:w() * percentage))
+		value_text:set_text(item.percentage and math_floor(value * 100).."%" or value ..(item.suffix and item.suffix or ""))
 		item.value = value
 	end
 end
@@ -1589,8 +1597,8 @@ function HMHMenu:OpenMultipleChoicePanel(item)
 	choice_dialog:animate(function(o)
 		local h = o:h()
 		do_animation(0.1, function (p)
-			o:set_alpha(math.lerp(0, 1, p))
-			border:set_h(math.lerp(0, h, p))
+			o:set_alpha(math_lerp(0, 1, p))
+			border:set_h(math_lerp(0, h, p))
 			bg:set_h(border:h() - 4)
 		end)
 		o:set_alpha(1)
@@ -1609,8 +1617,8 @@ function HMHMenu:CloseMultipleChoicePanel()
 		local border = o:child("border")
 		local bg = o:child("bg")
 		do_animation(0.1, function (p)
-			o:set_alpha(math.lerp(alpha, 0, p))
-			border:set_h(math.lerp(h, 0, p))
+			o:set_alpha(math_lerp(alpha, 0, p))
+			border:set_h(math_lerp(h, 0, p))
 			bg:set_h(border:h() - 4)
 		end)
 		o:set_alpha(0)
@@ -1774,7 +1782,7 @@ function HMHMenu:CreateColorSelect(params)
 	local texture = params.texture or nil
 	local texture_extension = "_hmh"
 	if texture and type(texture) == "table" then
-		texture = texture[math.random(#texture)] -- Randomize texture
+		texture = texture[math_random(#texture)] -- Randomize texture
 	end
 	if texture and texture == "padlock" then
 		texture_extension = ""
@@ -1894,7 +1902,7 @@ function HMHMenu:OpenColorMenu(item)
 		name = "slider",
 		alpha = 0.3,
 		layer = 2,
-		w = math.max(1, red_panel:w() * (color.red / 1)),
+		w = math_max(1, red_panel:w() * (color.red / 1)),
 		color = Color(color.red,0,0)
 	})
 	red_panel:bitmap({
@@ -1936,7 +1944,7 @@ function HMHMenu:OpenColorMenu(item)
 		name = "slider",
 		alpha = 0.3,
 		layer = 2,
-		w =  math.max(1, green_panel:w() * (color.green / 1)),
+		w =  math_max(1, green_panel:w() * (color.green / 1)),
 		color = Color(0,color.green,0)
 	})
 	green_panel:bitmap({
@@ -1978,7 +1986,7 @@ function HMHMenu:OpenColorMenu(item)
 		name = "slider",
 		alpha = 0.3,
 		layer = 2,
-		w = math.max(1, blue_panel:w() * (color.blue / 1)),
+		w = math_max(1, blue_panel:w() * (color.blue / 1)),
 		color = Color(0,0,color.blue)
 	})
 	blue_panel:bitmap({
@@ -2074,8 +2082,8 @@ function HMHMenu:OpenColorMenu(item)
 	dialog:animate(function(o)
 		local h = o:h()
 		do_animation(0.1, function (p)
-			o:set_alpha(math.lerp(0, 1, p))
-			border:set_h(math.lerp(0, h, p))
+			o:set_alpha(math_lerp(0, 1, p))
+			border:set_h(math_lerp(0, h, p))
 			bg:set_h(border:h() - 4)
 		end)
 		o:set_alpha(1)
@@ -2086,15 +2094,15 @@ end
 
 function HMHMenu:SetColorSlider(item, x, type, add)
 	local panel_min, panel_max = item:world_x(), item:world_x() + item:w()
-	x = math.clamp(x, panel_min, panel_max)
+	x = math_clamp(x, panel_min, panel_max)
 	local value_bar = item:child("slider")
 	local value_text = item:child("value")
-	local percentage = (math.clamp(value_text:text() + (add or 0), 0, 255) - 0) / 255
+	local percentage = (math_clamp(value_text:text() + (add or 0), 0, 255) - 0) / 255
 	if not add then
 		percentage = (x - panel_min) / (panel_max - panel_min)
 	end
 	local value = string.format("%.0f", 0 + (255 - 0) * percentage)
-	value_bar:set_w(math.max(1, item:w() * percentage))
+	value_bar:set_w(math_max(1, item:w() * percentage))
 	value_bar:set_color(Color(255, type == 1 and value or 0, type == 2 and value or 0, type == 3 and value or 0) / 255)
 	value_text:set_text(value)
 	local color = self._open_color_dialog.color
@@ -2110,8 +2118,8 @@ function HMHMenu:CloseColorMenu()
 		local border = o:child("border")
 		local bg = o:child("bg")
 		do_animation(0.1, function(p)
-			o:set_alpha(math.lerp(alpha, 0, p))
-			border:set_h(math.lerp(h, 0, p))
+			o:set_alpha(math_lerp(alpha, 0, p))
+			border:set_h(math_lerp(h, 0, p))
 			bg:set_h(border:h() - 4)
 		end)
 		o:set_alpha(0)
@@ -2137,7 +2145,7 @@ function HMHMenu:ResetColorMenu()
 		local number = colors_to_table[color_panel]
 		if number then
 			local world_x = v:world_x()
-			self:SetColorSlider(v, math.lerp(world_x, world_x + v:w(), c[number] / 255), number)
+			self:SetColorSlider(v, math_lerp(world_x, world_x + v:w(), c[number] / 255), number)
 		end
 	end
 end

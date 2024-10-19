@@ -1,3 +1,5 @@
+local HMH = HMH
+
 function HMH:LoadTextureEntry(key, path)
 	DB:create_entry(Idstring("texture"), Idstring(key), path)
 end

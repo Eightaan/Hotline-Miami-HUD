@@ -1,3 +1,5 @@
+local HMH = HMH
+
 if not HMH:GetOption("hint") then
 	return
 end

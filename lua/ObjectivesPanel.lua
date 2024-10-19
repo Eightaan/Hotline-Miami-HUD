@@ -1,6 +1,10 @@
+local HMH = HMH
+
 if not HMH:GetOption("objective") then
 	return
 end
+
+local objective_alpha = HMH:GetOption("objective_text")
 
 Hooks:PostHook(HUDObjectives, "init", "HMH_HUDObjectives_init", function(self, hud, ...)
 	self._hud_panel = hud.panel
@@ -62,15 +66,15 @@ Hooks:PostHook(HUDObjectives, "init", "HMH_HUDObjectives_init", function(self, h
 		font = tweak_data.hud.medium_font_noshadow
 	})
 	icon_objectivebox:set_color(HMH:GetColor("ObjectiveIcon"))
-	icon_objectivebox:set_alpha(HMH:GetOption("objective_text"))
+	icon_objectivebox:set_alpha(objective_alpha)
 	objective_text:set_x(34)
-	objective_text:set_alpha(HMH:GetOption("objective_text"))
+	objective_text:set_alpha(objective_alpha)
 	objective_text:set_y(0)
 	objective_text:set_font_size(24)
 	objective_text:set_color(HMH:GetColor("ObjectiveText"))
 	objective_text:set_visible(true)
 	amount_text:set_color(HMH:GetColor("ObjectiveAmount"))
-	amount_text:set_alpha(HMH:GetOption("objective_text"))
+	amount_text:set_alpha(objective_alpha)
 end)
 
 Hooks:OverrideFunction(HUDObjectives, "activate_objective", function(self, data)

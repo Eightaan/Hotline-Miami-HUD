@@ -1,3 +1,5 @@
+local HMH = HMH
+
 Hooks:PostHook(HUDPlayerCustody , "init", "HMH_HUDPlayerCustody_init", function(self, ...)
 	if not HMH:GetOption("custody") then
 		return

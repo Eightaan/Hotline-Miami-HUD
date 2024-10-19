@@ -1,3 +1,6 @@
+local HMH = HMH
+local math_random = math.random
+
 if string.lower(RequiredScript) == "lib/managers/menumanager" then
 	Hooks:OverrideFunction(MenuCallbackHandler, "get_latest_dlc_locked", function(self) return false end)
 
@@ -126,7 +129,7 @@ elseif string.lower(RequiredScript) == "lib/managers/menu/stageendscreengui" the
 elseif string.lower(RequiredScript) == "lib/managers/menu/lootdropscreengui" then    
 	Hooks:PostHook(LootDropScreenGui, "update", "HMH_LootDropScreenGui_update", function(self, t, ...)
 		if not self._card_chosen and HMH:GetOption("pick_card") then
-			self:_set_selected_and_sync(math.random(3))
+			self:_set_selected_and_sync(math_random(3))
 			self:confirm_pressed()
 		end
 

@@ -1,3 +1,6 @@
+local HMH = HMH
+local math_max = math.max
+
 if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 	Hooks:PostHook(ObjectInteractionManager, "init", "HMH_ObjectInteractionManager_init", function(self)
 		self._total_loot = {}
@@ -134,10 +137,10 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 	end
 
 	function ObjectInteractionManager:get_current_crate_count()
-		return math.max(self.loot_count.crate_amount or 0, 0)
+		return math_max(self.loot_count.crate_amount or 0, 0)
 	end
 
 	function ObjectInteractionManager:get_current_total_loot_count()
-		return math.max(self.loot_count.loot_amount or 0, 0)
+		return math_max(self.loot_count.loot_amount or 0, 0)
 	end
 end

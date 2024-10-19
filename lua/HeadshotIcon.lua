@@ -1,3 +1,5 @@
+local HMH = HMH
+
 if RequiredScript == "lib/managers/hud/hudhitconfirm" then
 	Hooks:PostHook(HUDHitConfirm, "init", "HMH_HUDHitConfirm_init", function(self, ...)
 		if self._hud_panel:child("headshot_confirm") then

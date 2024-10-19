@@ -1,3 +1,5 @@
+local HMH = HMH
+
 Hooks:PostHook(HUDHeistTimer, "init", "HMH_HUDHeistTimer_init", function(self, hud, tweak_hud)
 	if HMH:GetOption("objective") and not self._heist_timer_panel:child("bags_panel") then -- VoidUI Compatibility
 		self._hud_panel = hud.panel
