@@ -56,6 +56,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 		if self._main_player then
 			self:_create_circle_stamina()
 		end
+		self._invulnerability = false
 	end)
 	
 	Hooks:PostHook(HUDTeammate, "set_custom_radial", "HMH_HUDTeammate_set_custom_radial", function (self, data, ...)
@@ -69,7 +70,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 			end
 		end
 		
-		if self._main_player and self._cooldown_timer then
+		if self._main_player and self._cooldown_timer and self._invulnerability then
 			if duration > 0 then
 				self._cooldown_timer:set_visible(false)
 				self._cooldown_health_timer:set_visible(false)
@@ -168,34 +169,35 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 	end
 
 	Hooks:PreHook(HUDTeammate, "_create_radial_health", "HMH_create_radial_health", function (self, radial_health_panel)
-		self._radial_health_panel = radial_health_panel
-		local radial_armor = radial_health_panel:bitmap({
-			texture = "guis/textures/pd2/hud_swansong",
-			name = "radial_armor",
-			blend_mode = "add",
-			visible = false,
-			render_template = "VertexColorTexturedRadial",
-			layer = 5,
-			color = Color(1, 0, 0, 0),
-			w = radial_health_panel:w(),
-			h = radial_health_panel:h()
-		})
-		local animate_health_circle = radial_health_panel:bitmap({
-			texture = "guis/textures/pd2_mod_hmh/animate_health_circle",
-			name = "animate_health_circle",
-			blend_mode = "add",
-			visible = false,
-			render_template = "VertexColorTexturedRadial",
-			layer = 5,
-			color = Color(1, 0, 0, 0),
-			w = radial_health_panel:w(),
-			h = radial_health_panel:h()
-		})
+			self._radial_health_panel = radial_health_panel
+			local radial_armor = radial_health_panel:bitmap({
+				texture = "guis/textures/pd2/hud_swansong",
+				name = "radial_armor",
+				blend_mode = "add",
+				visible = false,
+				render_template = "VertexColorTexturedRadial",
+				layer = 5,
+				color = Color(1, 0, 0, 0),
+				w = radial_health_panel:w(),
+				h = radial_health_panel:h()
+			})
+			local animate_health_circle = radial_health_panel:bitmap({
+				texture = "guis/textures/pd2_mod_hmh/animate_health_circle",
+				name = "animate_health_circle",
+				blend_mode = "add",
+				visible = false,
+				render_template = "VertexColorTexturedRadial",
+				layer = 5,
+				color = Color(1, 0, 0, 0),
+				w = radial_health_panel:w(),
+				h = radial_health_panel:h()
+			})
 	end)
 
 	function HUDTeammate:update_cooldown_timer(t)
 		local timer = self._cooldown_timer
 		if t and t > 1 and timer then
+			self._invulnerability = true
 			timer:stop()
 			if self._stamina_circle then
 				self._stamina_circle:set_alpha(0)
@@ -223,6 +225,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 
 	function HUDTeammate:animate_invulnerability(duration)
 		if not self._radial_health_panel:child("radial_armor") then return end
+		self._invulnerability = true
 		self._radial_health_panel:child("radial_armor"):animate(function (o)
 			local armor_icon = self._cooldown_icon 
 			o:set_color(Color(1, 1, 1, 1))
@@ -246,6 +249,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 	function HUDTeammate:health_cooldown_timer(t)
 		local timer = self._cooldown_health_timer
 		if t and t > 1 and timer then
+			self._invulnerability = true
 			timer:stop()
 			if self._stamina_circle then
 				self._stamina_circle:set_alpha(0)
@@ -273,6 +277,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 	
 	function HUDTeammate:animate_health_invulnerability(duration)
 		if not self._radial_health_panel:child("animate_health_circle") then return end
+		self._invulnerability = true
 		self._radial_health_panel:child("animate_health_circle"):animate(function (o)
 			local health_icon = self._health_cooldown_icon
 			local armor_icon = self._cooldown_icon
@@ -331,7 +336,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 		local health_timer = self._cooldown_health_timer
 		local icon = self._cooldown_icon
 		local health_icon = self._health_cooldown_icon
-		if self._main_player and timer then
+		if self._main_player and timer and self._invulnerability then
 			timer:set_alpha(custody and 0 or 1)
 			health_timer:set_alpha(custody and 0 or 1)
 			icon:set_visible(not custody and self._armor_invulnerability_timer and not self._health_timer)
@@ -346,17 +351,19 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 			if self._stamina_circle and HMH:GetOption("ability_icon") then
 				self._stamina_circle:set_alpha(progress > 0 and 0 or stamina_alpha) 
 			end
-			if self._radial_health_panel:child("animate_health_circle") then
+			if self._radial_health_panel:child("animate_health_circle") and self._invulnerability then
 				self._radial_health_panel:child("animate_health_circle"):set_alpha(progress > 0 and 0 or 1)
 			end
-			if progress > 0 then
-				self._injector_active = true
-				self._health_cooldown_icon:set_visible(false)
-				self._cooldown_health_timer:set_visible(false)
-			else
-				self._injector_active = false
-				self._cooldown_health_timer:set_visible(HMH:GetOption("armorer_cooldown_timer") and self._health_timer)
-				self._health_cooldown_icon:set_visible(self._health_timer)
+			if self._invulnerability then
+				if progress > 0 then
+					self._injector_active = true
+					self._health_cooldown_icon:set_visible(false)
+					self._cooldown_health_timer:set_visible(false)
+				else
+					self._injector_active = false
+					self._cooldown_health_timer:set_visible(HMH:GetOption("armorer_cooldown_timer") and self._health_timer)
+					self._health_cooldown_icon:set_visible(self._health_timer)
+				end
 			end
 		end
 	end)
@@ -368,19 +375,23 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 					if HMH:GetOption("ability_icon") then
 						self._stamina_circle:set_alpha(0)
 					end
-					self._radial_health_panel:child("animate_health_circle"):set_alpha(0)
-					self._health_cooldown_icon:set_visible(false)
-					self._cooldown_health_timer:set_visible(false)
-					self._active_ability = true
+					if self._invulnerability then
+						self._radial_health_panel:child("animate_health_circle"):set_alpha(0)
+						self._health_cooldown_icon:set_visible(false)
+						self._cooldown_health_timer:set_visible(false)
+						self._active_ability = true
+					end
 				end
 			end)
 			if not self._health_timer then
 				self._stamina_circle:set_alpha(1) 
 			end
-			self._radial_health_panel:child("animate_health_circle"):set_alpha(1)
-			self._cooldown_health_timer:set_visible(HMH:GetOption("armorer_cooldown_timer") and self._health_timer)
-			self._health_cooldown_icon:set_visible(self._health_timer)
-			self._active_ability = false
+			if self._invulnerability then
+				self._radial_health_panel:child("animate_health_circle"):set_alpha(1)
+				self._cooldown_health_timer:set_visible(HMH:GetOption("armorer_cooldown_timer") and self._health_timer)
+				self._health_cooldown_icon:set_visible(self._health_timer)
+				self._active_ability = false
+			end
 		end)
 	end)
 end

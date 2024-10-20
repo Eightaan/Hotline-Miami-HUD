@@ -54,10 +54,10 @@
 					<post :script_path="ECMTimer.lua"/>
 					<post :script_path="ComboCounter.lua"/>
 					<post :script_path="HealthCircle.lua"/>
+					<post :script_path="AssaultPanel.lua"/>
 					<post :script_path="CaptainBuff.lua"/>
 					<post :script_path="HudManager.lua"/>
 					<post :script_path="Buffs.lua"/>
-					<post :script_path="Fixes.lua"/>
 					<post :script_path="Scale.lua"/>
 				</group>
 
@@ -131,8 +131,8 @@
 					</group>
 
 					<group :hook_id="beings/player/">
+						<post :hook_id="playerdamage"    :script_path="TeamPanel.lua"/>
 						<post :hook_id="playerinventory" :script_path="ECMTimer.lua"/>
-						<post :hook_id="playerdamage"    :script_path="Fixes.lua"/>
 					</group>
 			</group>
 
