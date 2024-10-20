@@ -1,14 +1,12 @@
 local HMH = HMH
 local Color = Color
 
---Ping Display
 Hooks:PostHook(HUDManager, "update", "HMH_HUDManager_update", function (self, ...)
 	for i, panel in ipairs(self._teammate_panels) do
 		panel:update(...)
 	end
 end)
 
-	--Swansong and Kingpin Screen Effects
 Hooks:PostHook(HUDManager, "set_teammate_custom_radial", "HMH_HUDManager_set_teammate_custom_radial", function (self, i, data, ...)
 	local hud = managers.hud:script( PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2)
 	if not hud.panel:child("swan_song_left") then
