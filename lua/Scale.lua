@@ -1,10 +1,10 @@
 local Scale_option = HMH:GetOption("hud_scale") or 1
 
-local math_round = math.round
-local math_max = math.max
-local math_min = math.min
-
 if not _G.IS_VR and Scale_option ~= 1 then
+	local math_round = math.round
+	local math_max = math.max
+	local math_min = math.min
+	
 	Hooks:PreHook(HUDManager, "_setup_player_info_hud_pd2", "HMH_Scale_setup_player_info_hud_pd2", function(self)
 		managers.gui_data:layout_scaled_fullscreen_workspace(self._saferect, Scale_option)
 	end)

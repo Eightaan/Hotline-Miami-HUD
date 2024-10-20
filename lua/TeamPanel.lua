@@ -4,17 +4,20 @@ end
 
 local HMH = HMH
 local Color = Color
-local interact_info_text = HMH:GetOption("interact_info") and not VoidUI
-local special_equipment = HMH:GetOption("pickups")
-local ammo = HMH:GetOption("ammo")
-local set_alpha = set_alpha
+
 local math_round = math.round
 local math_lerp = math.lerp
 local math_sin = math.sin
 local math_max = math.max
 
+local hud_interact_info_text = HMH:GetOption("interact_info") and not VoidUI
+local hud_special_equipment = HMH:GetOption("pickups")
+local hud_equipment = HMH:GetOption("equipment")
+local hud_downs = HMH:GetOption("colored_downs")
+local hud_ammo = HMH:GetOption("ammo")
+
 Hooks:PostHook(HUDTeammate, "init", "HMH_HUDTeammate_init", function(self, ...)
-	if interact_info_text then
+	if hud_interact_info_text then
 		local radial_health_panel = self._player_panel:child("radial_health_panel")
 		local name_panel = self._panel:panel({
 			name = "name_panel",
@@ -65,10 +68,11 @@ function HUDTeammate:infinite_ammo_glow()
 	self._prim_ammo = self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):bitmap({
 		align = "center",
 		w = 50,
-		h = 45,
+		h = 40,
 		name = "primary_ammo",
 		visible = false,
 		texture = "guis/textures/pd2/crimenet_marker_glow",
+		texture_rect = { 1, 1, 62, 62 }, 
 		color = Color("00AAFF"),
 		layer = 2,
 		blend_mode = "add"
@@ -76,10 +80,11 @@ function HUDTeammate:infinite_ammo_glow()
 	self._sec_ammo = self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):bitmap({
 		align = "center",
 		w = 50,
-		h = 45,
+		h = 40,
 		name = "secondary_ammo",
 		visible = false,
 		texture = "guis/textures/pd2/crimenet_marker_glow",
+		texture_rect = { 1, 1, 62, 62 }, 
 		color = Color("00AAFF"),
 		layer = 2,
 		blend_mode = "add"
@@ -108,7 +113,7 @@ function HUDTeammate:_set_infinite_ammo(state)
 			pammo_clip:set_color(Color.white)
 			pammo_clip:set_text("8")
 			pammo_clip:set_rotation(90)
-			if ammo then
+			if hud_ammo then
 				pammo_clip:set_font_size(30)
 				sammo_clip:set_font_size(30)
 			end
@@ -123,7 +128,7 @@ function HUDTeammate:_set_infinite_ammo(state)
 	end
 end
 
-if interact_info_text then
+if hud_interact_info_text then
 	Hooks:PostHook(HUDTeammate, "set_name", "HMH_HUDTeammate_set_name", function(self, ...)
 		local teammate_panel = self._panel
 		local name = teammate_panel:child("name")
@@ -191,27 +196,42 @@ if interact_info_text then
 	end)
 end
 
-Hooks:PostHook(HUDTeammate, "_create_radial_health", "HMH_HUDTeammate_create_radial_health", function(self, radial_health_panel, ...)
-	local radial_ability_panel = radial_health_panel:child("radial_ability")
-	local ability_icon = radial_ability_panel:child("ability_icon")
-	ability_icon:set_color(HMH:GetColor("Ability_icon_color") or Color.white)
-	ability_icon:set_visible(HMH:GetOption("ability_icon"))
-end)
+if hud_downs then 
+	Hooks:PostHook(HUDTeammate, "set_revives_amount", "HMH_HUDTeammate_set_revives_amount", function(self, revive_amount, ...)
+		if revive_amount then
+			local teammate_panel = self._panel:child("player")
+			local revive_panel = teammate_panel:child("revive_panel")
+			local revive_amount_text = revive_panel:child("revive_amount")
+			local revive_arrow = revive_panel:child("revive_arrow")
+			local revive_bg = revive_panel:child("revive_bg")
+			local team_color = self._peer_id and tweak_data.chat_colors[self._peer_id] or (not self._ai and tweak_data.chat_colors[managers.network:session():local_peer():id()]) or Color.white
+			local bg_alpha = HMH:GetOption("team_bg") and 0 or 0.6
 
-Hooks:PostHook(HUDTeammate, "set_callsign", "HMH_HUDTeammate_set_callsign", function(self, id, ...)
-	if HMH:GetOption("color_condition") then
-		self._condition_icon = self._panel:child("condition_icon")
-		self._condition_icon:set_color(tweak_data.chat_colors[id])
-	end
-end)
+			if revive_amount_text then
+				revive_amount_text:set_text(tostring(math_max(revive_amount - 1, 0)))
+				revive_amount_text:set_color(revive_amount > 1 and team_color or Color.red)
+				revive_amount_text:set_font_size(17)
+				revive_amount_text:animate(function(o)
+					over(1, function(p)
+						local n = 1 - math_sin((p / 2 ) * 180)
+						revive_amount_text:set_font_size(math_lerp(17, 17 * 0.85, n))
+					end)
+				end)
+			end
 
-Hooks:PreHook(HUDTeammate, "set_carry_info", "HMH_HUDTeammate_set_carry_info", function(self, ...)
-	if self._peer_id then
-		self._player_panel:child("carry_panel"):child("bag"):set_color(HMH:GetOption("color_bag") and tweak_data.chat_colors[self._peer_id] or Color.white)
-	end
-end)
+			if revive_arrow then 
+				revive_arrow:set_color(revive_amount > 1 and team_color or Color.red) 
+			end
 
-if special_equipment then
+			if revive_bg then
+				revive_bg:set_color(Color.black / 3)
+				revive_bg:set_alpha(bg_alpha)
+			end
+		end
+	end)
+end
+
+if hud_special_equipment then
 	Hooks:OverrideFunction(HUDTeammate, "add_special_equipment", function(self, data)
 		local team_color
 		if self._peer_id then
@@ -282,7 +302,7 @@ if special_equipment then
 	end)
 end
 
-if HMH:GetOption("equipment") then
+if hud_equipment then
 	Hooks:PostHook(HUDTeammate, "set_deployable_equipment_amount", "HMH_HUDTeammate_set_deployable_equipment_amount", function(self, index, data, ...)
 		local deployable_equipment_panel = self._player_panel:child("deployable_equipment_panel")
 		local equipment = deployable_equipment_panel:child("equipment")
@@ -481,7 +501,7 @@ if HMH:GetOption("equipment") then
 	end)
 end
 
-if ammo then
+if hud_ammo then
 	local function selected(o)
 		over(0.5, function(p)
 			o:set_alpha(math_lerp(0.5, 1, p))
@@ -530,9 +550,9 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammate_set_ammo
 		current_left = math_max(0, current_left - max_clip - (current_clip - max_clip))
 	end
 	
-	local low_ammo_color = ammo and HMH:GetColor("LowAmmo") or Color(1, 0.9, 0.9, 0.3)
-	local total_ammo_color = ammo and HMH:GetColor("TotalAmmo") or Color.white
-	local clip_ammo_color = ammo and HMH:GetColor("ClipAmmo") or Color.white
+	local low_ammo_color = hud_ammo and HMH:GetColor("LowAmmo") or Color(1, 0.9, 0.9, 0.3)
+	local total_ammo_color = hud_ammo and HMH:GetColor("TotalAmmo") or Color.white
+	local clip_ammo_color = hud_ammo and HMH:GetColor("ClipAmmo") or Color.white
 	local low_ammo = current_left <= math_round(max_clip / 2)
 	local low_clip = current_clip <= math_round(max_clip / 4)
 	local out_of_clip = current_clip <= 0
@@ -555,7 +575,7 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammate_set_ammo
 	ammo_clip:set_color(color_clip)
 	ammo_clip:set_range_color(0, string.len(zero_clip), color_clip:with_alpha(0.5))
 
-	if ammo then
+	if hud_ammo then
 		local ammo_font = string.len(current_left) < 4 and 21 or 18
 
 		ammo_total:stop()
@@ -635,7 +655,7 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammate_set_ammo
 		ammo_clip:set_color(Color.white)
 		ammo_clip:set_text( "8" )
 		ammo_clip:set_rotation(90)
-		if ammo then
+		if hud_ammo then
 			ammo_clip:set_font_size(30)
 		end
 	else
@@ -643,40 +663,25 @@ Hooks:PostHook(HUDTeammate, "set_ammo_amount_by_type", "HMH_HUDTeammate_set_ammo
 	end
 end)
 
-if HMH:GetOption("colored_downs") then 
-	Hooks:PostHook(HUDTeammate, "set_revives_amount", "HMH_HUDTeammate_set_revives_amount", function(self, revive_amount, ...)
-		if revive_amount then
-			local teammate_panel = self._panel:child("player")
-			local revive_panel = teammate_panel:child("revive_panel")
-			local revive_amount_text = revive_panel:child("revive_amount")
-			local revive_arrow = revive_panel:child("revive_arrow")
-			local revive_bg = revive_panel:child("revive_bg")
-			local team_color = self._peer_id and tweak_data.chat_colors[self._peer_id] or (not self._ai and tweak_data.chat_colors[managers.network:session():local_peer():id()]) or Color.white
-			local bg_alpha = HMH:GetOption("team_bg") and 0 or 0.6
+Hooks:PostHook(HUDTeammate, "_create_radial_health", "HMH_HUDTeammate_create_radial_health", function(self, radial_health_panel, ...)
+	local radial_ability_panel = radial_health_panel:child("radial_ability")
+	local ability_icon = radial_ability_panel:child("ability_icon")
+	ability_icon:set_color(HMH:GetColor("Ability_icon_color") or Color.white)
+	ability_icon:set_visible(HMH:GetOption("ability_icon"))
+end)
 
-			if revive_amount_text then
-				revive_amount_text:set_text(tostring(math_max(revive_amount - 1, 0)))
-				revive_amount_text:set_color(revive_amount > 1 and team_color or Color.red)
-				revive_amount_text:set_font_size(17)
-				revive_amount_text:animate(function(o)
-					over(1, function(p)
-						local n = 1 - math_sin((p / 2 ) * 180)
-						revive_amount_text:set_font_size(math_lerp(17, 17 * 0.85, n))
-					end)
-				end)
-			end
+Hooks:PostHook(HUDTeammate, "set_callsign", "HMH_HUDTeammate_set_callsign", function(self, id, ...)
+	if HMH:GetOption("color_condition") then
+		self._condition_icon = self._panel:child("condition_icon")
+		self._condition_icon:set_color(tweak_data.chat_colors[id])
+	end
+end)
 
-			if revive_arrow then 
-				revive_arrow:set_color(revive_amount > 1 and team_color or Color.red) 
-			end
-
-			if revive_bg then
-				revive_bg:set_color(Color.black / 3)
-				revive_bg:set_alpha(bg_alpha)
-			end
-		end
-	end)
-end
+Hooks:PreHook(HUDTeammate, "set_carry_info", "HMH_HUDTeammate_set_carry_info", function(self, ...)
+	if self._peer_id then
+		self._player_panel:child("carry_panel"):child("bag"):set_color(HMH:GetOption("color_bag") and tweak_data.chat_colors[self._peer_id] or Color.white)
+	end
+end)
 
 function HUDTeammate:update(t, dt, ...)
 	self:update_latency(t, dt)
