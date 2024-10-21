@@ -471,15 +471,15 @@ elseif string.lower(RequiredScript) == "lib/managers/menu/crimespreedetailsmenuc
 			if not self._peer_loadout[peer_id] then
 				self._peer_loadout[peer_id] = LoadoutPanel:new(self._loadout_data, self, peer_id, width, math_floor(self._loadout_data:h() + 9), {
 					component_layout =
-						{
-							{ "ping" },
-							{ "name" },
-							{ "perk" },
-							{ "skills" },
-							{ "primary", "secondary" },
-							{ "grenade", "armor" },
-							{ "deployable", "secondary_deployable" }
-						},
+					{
+						{ "ping" },
+						{ "name" },
+						{ "perk" },
+						{ "skills" },
+						{ "primary", "secondary" },
+						{ "grenade", "armor" },
+						{ "deployable", "secondary_deployable" }
+					},
 					name = 		{ font_size = tweak_data.menu.pd2_medium_font_size * 0.95, height = tweak_data.menu.pd2_medium_font_size * 1.00, align = "center", margin = 3, use_peer_color = true, alpha = 1 },
 					level = 	{ font_size = tweak_data.menu.pd2_medium_font_size * 0.9,  height = tweak_data.menu.pd2_medium_font_size * 0.95, align = "right",  margin = 3, use_peer_color = true, alpha = 1 },
 					skills = 	{ font_size = tweak_data.menu.pd2_small_font_size  * 0.7,  height = tweak_data.menu.pd2_small_font_size  * 0.75, align = "center", alpha = 0.95 },

@@ -16,7 +16,7 @@
 			<group :hook_id="setups/setup">
 				<post :script_path="LoadTextures.lua"/>
 			</group>
-
+			
 			<group :hook_id="entry">
 				<post :script_path="QuickInputMenu.lua"/>
 				<post :script_path="LoadoutPanel.lua"/>
@@ -33,19 +33,22 @@
 				<post :hook_id="hudmanager"          		:script_path="Waypoints.lua"/>
 				<post :hook_id="menumanagerdialogs"  		:script_path="MenuTweak.lua"/>
 				<post :hook_id="missionassetsmanager"  		:script_path="MenuTweak.lua"/>
+			
 				<group :hook_id="menumanager">
 					<post :script_path="PrePlanManager.lua"/>
 					<post :script_path="ProfileMenu.lua"/>
 					<post :script_path="MenuTweak.lua"/>
 					<post :script_path="ModMenu.lua" />
 					<post script_path="HMHMenu.lua" />
-				</group>	
+				</group>
+			
 				<group :hook_id="playermanager">
 					<post :script_path="ComboCounter.lua"/>
-					<post :script_path="HeadshotIcon.lua"/>
 					<post :script_path="HealthCircle.lua"/>
+					<post :script_path="HudManager.lua"/>
 					<post :script_path="Buffs.lua"/>
 				</group>
+
 				<group :hook_id="dialogs/specializationdialog">
 					<post :script_path="InputDialog.lua"/>
 				</group>
@@ -55,7 +58,6 @@
 					<post :script_path="ComboCounter.lua"/>
 					<post :script_path="HealthCircle.lua"/>
 					<post :script_path="AssaultPanel.lua"/>
-					<post :script_path="CaptainBuff.lua"/>
 					<post :script_path="HudManager.lua"/>
 					<post :script_path="Buffs.lua"/>
 					<post :script_path="Scale.lua"/>
@@ -65,9 +67,8 @@
 					<group :hook_id="groupaistatebase">
 						<post :script_path="PacifiedCivs.lua"/>
 					</group>
-				
 					<group :hook_id="groupaistatebesiege">
-						<post :script_path="CaptainBuff.lua"/>
+						<post :script_path="AssaultPanel.lua"/>
 					</group>
 				</group>
 
@@ -96,23 +97,23 @@
 					<post :hook_id="hudpresenter"           :script_path="PresenterPanel.lua"/>
 					<post :hook_id="hudassaultcorner"       :script_path="AssaultPanel.lua"/>
 					<post :hook_id="hudplayercustody"       :script_path="CustodyPanel.lua"/>
-					<post :hook_id="hudhitconfirm"          :script_path="HeadshotIcon.lua"/>
 					<post :hook_id="hudplayerdowned"        :script_path="DownedPanel.lua"/>
+					<post :hook_id="hudhitconfirm"          :script_path="HudManager.lua"/>
 					<post :hook_id="hudheisttimer"          :script_path="TimerPanel.lua"/>
 					<post :hook_id="hudtemp"                :script_path="CarryPanel.lua"/>
 					<post :hook_id="hudwaitinglegend"       :script_path="PromtPanel.lua"/>
 					<post :hook_id="hudhint"                :script_path="HintPanel.lua"/>
 					<post :hook_id="hudstatsscreenskirmish" :script_path="TabStats.lua"/>
 					<group :hook_id="hudteammate">
-						<post :script_path="TeamPanel.lua"/>
 						<post :script_path="HealthCircle.lua"/>
+						<post :script_path="TeamPanel.lua"/>
 					</group>
 					<group :hook_id="hudinteraction">
 						<post :script_path="InteractionPanel.lua"/>
 					</group>
 					<group :hook_id="newhudstatsscreen">
-						<post :script_path="EnhancedCrewLoadout.lua"/>
 						<post :script_path="TabStats.lua"/>
+						<post :script_path="EnhancedCrewLoadout.lua"/>
 					</group>
 				</group>
 			</group>
