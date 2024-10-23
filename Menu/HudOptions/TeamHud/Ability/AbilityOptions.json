@@ -2,6 +2,7 @@
 	"menu_id": "hmh_hud_ability_menu",
 	"parent_menu": "hmh_hud_menu",
 	"title": "hmh_hud_ability_title",
+	"h" : 500,
 	"items": [
 		{
 			"type": "toggle",
