@@ -38,4 +38,6 @@ Hooks:PostHook(HUDHeistTimer, "init", "HMH_HUDHeistTimer_init", function(self, h
 		self._timer_text:set_color(HMH:GetColor("TimerColor"))
 		self._timer_text:set_alpha(HMH:GetOption("TimerAlpha"))
 	end
+
+	self._realtime_text = self._heist_timer_panel:text() --Hophud crash fix
 end)
