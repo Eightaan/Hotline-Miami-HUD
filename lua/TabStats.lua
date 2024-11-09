@@ -310,14 +310,26 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 
 		local max_units = managers.gage_assignment:count_all_units()
 		local remaining = managers.gage_assignment:count_active_units()
-		local package_text = managers.job:current_level_id() ~= "chill_combat" and managers.job:current_level_id() ~= "chill" and managers.job:current_level_id() ~= "haunted" and managers.job:current_level_id() ~= "hvh" and managers.localization:to_upper_text("menu_asset_gage_assignment") .. ":" .. " " .. tostring(max_units - remaining) .."/".. tostring(max_units) or ""
-		if remaining < max_units then
+
+		local current_level_id = managers.job:current_level_id()
+		local excluded_levels = { "chill_combat", "chill", "haunted", "hvh" }
+
+		local function is_excluded_level(level_id, excluded)
+			for _, excluded_level in ipairs(excluded) do
+				if level_id == excluded_level then
+					return true
+				end
+			end
+			return false
+		end
+
+		if remaining < max_units and not is_excluded_level(current_level_id, excluded_levels) then
 			placer:add_bottom(self._left:fine_text({
 				keep_w = true,
 				font = tweak_data.hud_stats.objectives_font,
 				font_size = small_font_size,
-				color = custom_tab_color and Color("66ff99") or Color.white,
-				text = package_text
+				color = color_white,
+				text = managers.localization:to_upper_text("menu_asset_gage_assignment") .. ": " .. tostring(max_units - remaining) .. "/" .. tostring(max_units)
 			}), 16)
 		end
 
