@@ -328,7 +328,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 				keep_w = true,
 				font = tweak_data.hud_stats.objectives_font,
 				font_size = small_font_size,
-				color = color = custom_tab_color and Color("66ff99") or Color.white,
+				color = custom_tab_color and Color("66ff99") or Color.white,
 				text = managers.localization:to_upper_text("menu_asset_gage_assignment") .. ": " .. tostring(max_units - remaining) .. "/" .. tostring(max_units)
 			}), 16)
 		end

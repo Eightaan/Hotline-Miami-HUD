@@ -70,6 +70,7 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 			manager._loot_fixes[level_id][carry_id] = current_amount - 1
 		else
 			manager:update_loot(1)
+			managers.hud:loot_value_updated()
 		end
 	end
 
@@ -110,6 +111,7 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 				if self._total_loot[unit_id] then
 					self._total_loot[unit_id] = nil
 					self:update_loot(-1)
+					managers.hud:loot_value_updated()
 				end
 			end
 			

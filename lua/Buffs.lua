@@ -284,7 +284,6 @@ elseif RequiredScript == "lib/managers/playermanager" then
 		if not self:has_category_upgrade("player", "melee_damage_stacking") then 
 			return 
 		end
-
 		managers.hud:Set_bloodthirst(0)
 	end)
 end
