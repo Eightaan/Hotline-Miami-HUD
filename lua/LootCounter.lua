@@ -8,32 +8,50 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 		self.loot_crates = {}
 		self.loot_count = { loot_amount = 0, crate_amount = 0 }
 		self._loot_fixes = {
-			family 							= { money = 1 },
-			watchdogs_2						= { coke = 10 },
-			watchdogs_2_day					= { coke = 10 },
-			framing_frame_3 				= { gold = 16 },
-			mia_1 							= { money = 1 },
-			welcome_to_the_jungle_1 		= { money = 1, gold = 1 },
-			welcome_to_the_jungle_1_night	= { money = 1, gold = 1 },
-			mus 							= { painting = 2, mus_artifact = 1 },
-			arm_und 						= { money = 8 },
-			ukrainian_job 					= { money = 3 },
-			jewelry_store 					= { money = 2 },
-			chill 							= { painting = 1 },
-			chill_combat 					= { painting = 1 },
-			fish 							= { mus_artifact = 1 },
-			rvd2 							= { money = 1 },
-			pbr2 							= { money = 8 },
-			mex_cooking 					= { roman_armor = 4 },
-			sah 							= { mus_artifact = 2 },
-			ranc 							= { turret_part = 2 },
-			trai 							= { turret_part = 2 },
-			pent 							= { mus_artifact = 2 },
-			des 							= { mus_artifact = 4, painting = 2 }
+			framing_frame_3 = { gold = 16 },
+			pbr2 			= { money = 8 },
+			mex_cooking		= { roman_armor = 4 },
+			ranc			= { turret_part = 2 },
+			trai			= { turret_part = 2 }
 		}
 		self.ignore_ids = {
-			[300457] = true,
-			[300458] = true
+			-- Hotline Miami Day 1 (1x Money)
+			[104526] = true,
+			--Big Oil day 1 (1x money)
+			[100886] = true,
+			--Big Oil day 1 (1x gold)
+			[100872] = true,
+			--The Diamond (RNG)
+			[300047] = true, [300686] = true, [300457] = true, 
+			[300458] = true, [301343] = true, [301346] = true,
+			--Transport: Underpass (8x money)
+			[101237] = true, [101238] = true, [101239] = true, [103835] = true, 
+			[103836] = true, [103837] = true, [103838] = true, [101240] = true,
+			--Ukrainian Job (3x money)
+			[101514] = true, [102052] = true, [102402] = true,
+			--Jewelry Store (2x money)
+			[102052] = true, [102402] = true,
+			-- Custom Safehouse (1x Painting)
+			[150416] = true,
+			-- Safehouse Raid (1x Painting)
+			[150416] = true,
+			--Yacht (1x artifact painting)
+			[500533] = true,
+			--Watchdogs day 2 (10x coke)
+			[100054] = true, [100058] = true, [100426] = true, [100427] = true, [100428] = true, 
+			[100429] = true, [100491] = true, [100492] = true, [100494] = true, [100495] = true,
+			--Diamond store (1x money)
+			[100899] = true,
+			-- Resevoir Dogs (1x money)
+			[100296] = true,
+			-- Henry's Rock (2x artifact, 2x painting)
+			[101757] = true, [400513] = true,
+			[400515] = true, [400617] = true,
+			-- Shacklethorne Auction (2x artifact)
+			[400791] = true, [400792] = true,
+			-- Mountain Master (2x artifact)
+			[500849] = true,
+			[500608] = true
 		}
 	end)
 
