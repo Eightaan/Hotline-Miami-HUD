@@ -40,30 +40,18 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 			
 			self.hud = managers.hud:script(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2)
 
-			self._cooldown_panel = self.hud.panel:panel({
-				name = "cooldown_panel",
-				x = 0,
-				y = 0
-			})
+			--Inspire Cooldown
+			self._cooldown_panel = self.hud.panel:panel()
+
 			self.cooldown_text = self._cooldown_panel:text({
 				layer = 2,
 				visible = false,
-				text = "",
-				font = tweak_data.hud.medium_font_noshadow,
-				font_size = 16,
-				x = 13,
-				y = 25,
-				color = Color.white
+				font = tweak_data.hud.medium_font_noshadow
 			})
 			self._inspire_cooldown_icon = self._cooldown_panel:bitmap({
 				name = "inspire_cooldown_icon",
 				texture = Skilltree2,
 				texture_rect = { 4* 80, 9 * 80, 80, 80 },
-				w = 28,
-				h = 28,
-				x = 0,
-				y = 0,
-				color = Color.white,
 				visible = false,
 				layer = 1
 			})
@@ -71,39 +59,22 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 				name = "inspire_cooldown_timer_bg",
 				texture = TimeBackground,
 				texture_rect = { 1, 1, 62, 62 }, 
-				w = 40,
-				h = 40,
-				x = 0,
-				y = 13,
 				color = Color("66ffff"),
-				alpha = 0.5,
-				visible = false,
-				layer = 0
+				visible = false
 			})
-			self._bloodthirst_panel = self.hud.panel:panel({
-				name = "bloodthirst_panel",
-				x = 0,
-				y = 0
-			})
+
+			--Bloodthirst
+			self._bloodthirst_panel = self.hud.panel:panel()
+			
 			self.bloodthirst_text = self._bloodthirst_panel:text({
 				layer = 2,
 				visible = false,
-				text = "",
-				font = tweak_data.hud.medium_font_noshadow,
-				font_size = 16,
-				x = 12,
-				y = 25,
-				color = Color.white
+				font = tweak_data.hud.medium_font_noshadow
 			})
 			self._bloodthirst_icon = self._bloodthirst_panel:bitmap({
 				name = "bloodthirst_icon",
 				texture = Skilltree2,
 				texture_rect = { 11* 80, 6 * 80, 80, 80 },
-				w = 28,
-				h = 28,
-				x = 0,
-				y = 0,
-				color = Color.white,
 				visible = false,
 				layer = 1
 			})
@@ -111,28 +82,37 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 				name = "bloodthirst_bg",
 				texture = TimeBackground,
 				texture_rect = { 1, 1, 62, 62 }, 
-				w = 37,
-				h = 37,
-				x = 0,
-				y = 15,
 				color = Color("66ffff"),
-				alpha = 0.5,
-				visible = false,
-				layer = 0
+				visible = false
 			})
 		end
 	end
 
 	function HUDBuffList:update_timer_visibility_and_position()
 		local inspire_visible = HMH:GetOption("inspire")
-		self.cooldown_text:set_visible(inspire_visible)
-		self._inspire_cooldown_timer_bg:set_visible(inspire_visible)
-		self._inspire_cooldown_icon:set_visible(inspire_visible)
-
+		local panel = self._cooldown_panel
+		local timer = self.cooldown_text
+		local inspire_timer_scale = HMH:GetOption("timer_scale")
 		local pos_x = 10 * (HMH:GetOption("timer_x") or 0)
 		local pos_y = 10 * (HMH:GetOption("timer_y") or 0)
-		self._cooldown_panel:set_x(pos_x)
-		self._cooldown_panel:set_y(pos_y)
+		
+		timer:set_visible(inspire_visible)
+		panel:child("inspire_cooldown_icon"):set_visible(inspire_visible)
+		panel:child("inspire_cooldown_timer_bg"):set_visible(inspire_visible)
+		
+		panel:set_x(pos_x)
+		panel:set_y(pos_y)
+		
+		timer:set_x(13 * inspire_timer_scale)
+		timer:set_y(25 * inspire_timer_scale)
+		timer:set_font_size(16 * inspire_timer_scale)
+		
+		panel:child("inspire_cooldown_timer_bg"):set_w(40 * inspire_timer_scale)
+		panel:child("inspire_cooldown_timer_bg"):set_h(40 * inspire_timer_scale)
+		panel:child("inspire_cooldown_timer_bg"):set_y(13 * inspire_timer_scale)
+		
+		panel:child("inspire_cooldown_icon"):set_w(28 * inspire_timer_scale)
+		panel:child("inspire_cooldown_icon"):set_h(28 * inspire_timer_scale)
 	end
 
 	function HUDBuffList:update_inspire_timer(duration)
@@ -206,10 +186,20 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 
 	function HUDBuffList:update_bloodthirst_position()
 		local panel = self._bloodthirst_panel
+		local text = self.bloodthirst_text
+
 		local x_position = 10 * (HMH:GetOption("BloodthirstX") or 0)
 		local y_position = 10 * (HMH:GetOption("BloodthirstY") or 0)
+		local bloodthirst_scale = HMH:GetOption("BloodthirstScale")
 		panel:set_x(x_position)
 		panel:set_y(y_position)
+		text:set_x(12 * bloodthirst_scale)
+		text:set_y(25 * bloodthirst_scale)
+		panel:child("bloodthirst_bg"):set_w(37 * bloodthirst_scale)
+		panel:child("bloodthirst_bg"):set_h(37 * bloodthirst_scale)
+		panel:child("bloodthirst_bg"):set_y(15 * bloodthirst_scale)
+		panel:child("bloodthirst_icon"):set_w(28 * bloodthirst_scale)
+		panel:child("bloodthirst_icon"):set_h(28 * bloodthirst_scale)
 	end
 
 	function HUDBuffList:Set_bloodthirst(buff)
@@ -230,10 +220,11 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 			bloodthirst_text:set_color(HMH:GetColor("BloodthirstText") or Color.white)
 			bloodthirst_icon:set_color(HMH:GetColor("BloodthirstIcon") or Color.white)
 			bloodthirst_text:set_text(managers.localization:to_upper_text("HMH_bloodthirst_multiplier", { NUM = buff }).."x")
+			local font_size = 16 * HMH:GetOption("BloodthirstScale")
 			bloodthirst_text:animate(function(o)
 				over(1 , function(p)
 					local n = 1 - math_sin((p / 2 ) * 180)
-					o:set_font_size(math_lerp(16, 16 * 1.16 , n))
+					o:set_font_size(math_lerp(font_size, font_size * 1.16 , n))
 				end)
 			end)
 		else

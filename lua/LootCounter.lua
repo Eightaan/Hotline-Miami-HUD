@@ -70,6 +70,8 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 			"gen_pku_warhead_box",
 			"weapon_case",
 			"weapon_case_axis_z",
+			"hold_open_xmas_present",
+			"hold_open_case",
 			"crate_loot",
 			"crate_loot_crowbar"
 		}, interact_type)) and "loot_crates" or nil

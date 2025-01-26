@@ -20,32 +20,51 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		end
 	end)
 
+	function HUDManager:animate_invulnerability(duration)
+		if self._teammate_panels[self.PLAYER_PANEL]._animate_invulnerability then
+			self._teammate_panels[self.PLAYER_PANEL]:_animate_invulnerability(duration)		
+		end
+	end
+
+	function HUDManager:update_cooldown_timer(duration)
+		if self._teammate_panels[self.PLAYER_PANEL]._update_cooldown_timer then
+			self._teammate_panels[self.PLAYER_PANEL]:_update_cooldown_timer(duration)		
+		end
+	end
+
+	function HUDManager:health_cooldown_timer(duration)
+		if self._teammate_panels[self.PLAYER_PANEL]._health_cooldown_timer then
+			self._teammate_panels[self.PLAYER_PANEL]:_health_cooldown_timer(duration)		
+		end
+	end
+
+	function HUDManager:animate_health_invulnerability(duration)
+		if self._teammate_panels[self.PLAYER_PANEL]._animate_health_invulnerability then
+			self._teammate_panels[self.PLAYER_PANEL]:_animate_health_invulnerability(duration)		
+		end
+	end	
+
 elseif RequiredScript == "lib/managers/playermanager" then
 	Hooks:PreHook(PlayerManager, "activate_temporary_upgrade", "HMH_PlayerManager_activate_temporary_upgrade_armor_timer", function (self, category, upgrade)
 		if upgrade == "armor_break_invulnerable" then
 			local upgrade_value = self:upgrade_value(category, upgrade)
 			if upgrade_value == 0 then return end
 			local teammate_panel = managers.hud:get_teammate_panel_by_peer()
-			if teammate_panel then
-				if HMH:GetOption("armorer_cooldown_radial") and HMH:GetOption("armorer_cooldown_timer") and teammate_panel.update_cooldown_timer then
-					teammate_panel:update_cooldown_timer(upgrade_value[2])
-				end
-				if HMH:GetOption("armorer_cooldown_radial") and teammate_panel.animate_invulnerability then
-					teammate_panel:animate_invulnerability(upgrade_value[1])
-				end
+			if HMH:GetOption("armorer_cooldown_radial") and HMH:GetOption("armorer_cooldown_timer") then
+				managers.hud:update_cooldown_timer(upgrade_value[2])
+			end
+			if HMH:GetOption("armorer_cooldown_radial") then
+				managers.hud:animate_invulnerability(upgrade_value[1])
 			end
 		end
 		if upgrade == "mrwi_health_invulnerable" then
 			local upgrade_value = self:upgrade_value(category, upgrade)
-			if upgrade_value == 0 then return end
-			local teammate_panel = managers.hud:get_teammate_panel_by_peer()
-			if teammate_panel then
-				if HMH:GetOption("armorer_cooldown_radial") and HMH:GetOption("armorer_cooldown_timer") and teammate_panel.health_cooldown_timer then
-					teammate_panel:health_cooldown_timer(2)
-				end
-				if HMH:GetOption("armorer_cooldown_radial") and teammate_panel.animate_health_invulnerability then
-					teammate_panel:animate_health_invulnerability(2)
-				end
+			if upgrade_value == 0 then return end		
+			if HMH:GetOption("armorer_cooldown_radial") and HMH:GetOption("armorer_cooldown_timer") then
+				managers.hud:health_cooldown_timer(2)
+			end
+			if HMH:GetOption("armorer_cooldown_radial") then
+				managers.hud:animate_health_invulnerability(2)
 			end
 		end
 	end)
@@ -194,7 +213,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 			})
 	end)
 
-	function HUDTeammate:update_cooldown_timer(t)
+	function HUDTeammate:_update_cooldown_timer(t)
 		local timer = self._cooldown_timer
 		if t and t > 1 and timer then
 			self._invulnerability = true
@@ -223,7 +242,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 		end
 	end
 
-	function HUDTeammate:animate_invulnerability(duration)
+	function HUDTeammate:_animate_invulnerability(duration)
 		if not self._radial_health_panel:child("radial_armor") then return end
 		self._invulnerability = true
 		self._radial_health_panel:child("radial_armor"):animate(function (o)
@@ -246,7 +265,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 		end)
 	end
 	
-	function HUDTeammate:health_cooldown_timer(t)
+	function HUDTeammate:_health_cooldown_timer(t)
 		local timer = self._cooldown_health_timer
 		if t and t > 1 and timer then
 			self._invulnerability = true
@@ -275,7 +294,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 		end
 	end
 	
-	function HUDTeammate:animate_health_invulnerability(duration)
+	function HUDTeammate:_animate_health_invulnerability(duration)
 		if not self._radial_health_panel:child("animate_health_circle") then return end
 		self._invulnerability = true
 		self._radial_health_panel:child("animate_health_circle"):animate(function (o)

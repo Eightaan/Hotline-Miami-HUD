@@ -37,11 +37,29 @@
 			"callback": "SetOption",
 			"callback_arguments" : "timer_y",
 			"value": "timer_y",
-			"max": 67,
+			"max": 100,
 			"min": 0,
 			"step": 1,
 			"default_value": 43,
 			"parent" : "inspire_toggle"
+		},
+		{
+			"type": "slider",
+			"id": "inspire_timer_scale_slider",
+			"title": "inspire_timer_scale_title",
+			"description": "inspire_timer_scale_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "timer_scale",
+			"value": "timer_scale",
+			"max": 5,
+			"min": 0.5,
+			"step": 1,
+			"default_value": 1,
+			"parent" : "inspire_toggle"
+		},
+		{
+			"type": "divider",
+			"size": 8
 		},
 		{
 			"type": "color_select",
@@ -120,11 +138,29 @@
 			"callback": "SetOption",
 			"callback_arguments" : "BloodthirstY",
 			"value": "BloodthirstY",
-			"max": 67,
+			"max": 100,
 			"min": 0,
 			"step": 1,
 			"default_value": 38,
 			"parent" : "bloodthirst_toggle"
+		},
+		{
+			"type": "slider",
+			"id": "bloodthirst_scale_slider",
+			"title": "bloodthirst_scale_title",
+			"description": "bloodthirst_scale_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "BloodthirstScale",
+			"value": "BloodthirstScale",
+			"max": 5,
+			"min": 0.5,
+			"step": 1,
+			"default_value": 1,
+			"parent" : "bloodthirst_toggle"
+		},
+		{
+			"type": "divider",
+			"size": 8
 		},
 		{
 			"type": "color_select",

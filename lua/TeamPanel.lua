@@ -90,7 +90,7 @@ if RequiredScript == "lib/managers/hud/hudteammate" then
 			color = Color("00AAFF"),
 			layer = 2,
 			blend_mode = "add"
-		 })
+		})
 		self._prim_ammo:set_center_y(self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("ammo_clip"):y() + self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("ammo_clip"):h() / 2 - 2)
 		self._sec_ammo:set_center_y(self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):child("ammo_clip"):y() + self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):child("ammo_clip"):h() / 2 - 2)
 		self._prim_ammo:set_center_x(self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("ammo_clip"):x() + self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("ammo_clip"):w() / 2)
@@ -102,10 +102,8 @@ if RequiredScript == "lib/managers/hud/hudteammate" then
 		if self._prim_ammo then
 			if self._infinite_ammo then
 				local hudinfo = managers.hud:script(PlayerBase.PLAYER_INFO_HUD_PD2)
-				local pweapon_panel = self._player_panel:child("weapons_panel"):child("primary_weapon_panel")
-				local pammo_clip = pweapon_panel:child("ammo_clip")
-				local sweapon_panel = self._player_panel:child("weapons_panel"):child("secondary_weapon_panel")
-				local sammo_clip = sweapon_panel:child("ammo_clip")
+				local pammo_clip = 	self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("ammo_clip")
+				local sammo_clip = self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):child("ammo_clip")
 
 				self._prim_ammo:set_visible(true)
 				self._sec_ammo:set_visible(true)

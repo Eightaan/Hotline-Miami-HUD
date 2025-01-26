@@ -2,6 +2,7 @@
 	"hud_scale" : 1,
 	"timer_x" : 123,
 	"timer_y" : 43,
+	"timer_scale" : 1,
 	"no_menu_textures" : true,
 	"team_bg" : true
 	"mod_overrides" : true,
@@ -11,7 +12,8 @@
 	"Bloodthirst": true,
 	"BloodthirstMinKills" : 6,
 	"BloodthirstX" : 123,
-	"BloodthirstY" : 38,	
+	"BloodthirstY" : 38,
+	"BloodthirstScale" : 1,
 	"greenciv": true,
 	"assault_text" : 1,
 	"info_box_alpha" : 1,
