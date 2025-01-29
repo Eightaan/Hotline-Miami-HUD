@@ -1,5 +1,4 @@
 local HMH = HMH
-local math_max = math.max
 
 if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 	Hooks:PostHook(ObjectInteractionManager, "init", "HMH_ObjectInteractionManager_init", function(self)
@@ -8,55 +7,57 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 		self.loot_crates = {}
 		self.loot_count = { loot_amount = 0, crate_amount = 0 }
 		self._loot_fixes = {
-			framing_frame_3 = { gold = 16 },
-			pbr2 			= { money = 8 },
-			mex_cooking		= { roman_armor = 4 },
-			ranc			= { turret_part = 2 },
-			trai			= { turret_part = 2 }
+			--Framing Frame
+			framing_frame_3 = {gold = 16},
+			--Border Crystals
+			mex_cooking	= {roman_armor = 4},
+			--Birth of Sky
+			pbr2 = {money = 8}
 		}
 		self.ignore_ids = {
-			-- Hotline Miami Day 1 (1x Money)
-			[104526] = true,
-			--Big Oil day 1 (1x money)
-			[100886] = true,
-			--Big Oil day 1 (1x gold)
-			[100872] = true,
+			--Watchdogs (10x Coke)
+			[100054] = true, [100058] = true, [100426] = true, [100427] = true, [100428] = true, 
+			[100429] = true, [100491] = true, [100492] = true, [100494] = true, [100495] = true,
+			--Transport: Underpass (8x Money)
+			[101237] = true, [101238] = true, [101239] = true, [103835] = true, 
+			[103836] = true, [103837] = true, [103838] = true, [101240] = true,
 			--The Diamond (RNG)
 			[300047] = true, [300686] = true, [300457] = true, 
 			[300458] = true, [301343] = true, [301346] = true,
-			--Transport: Underpass (8x money)
-			[101237] = true, [101238] = true, [101239] = true, [103835] = true, 
-			[103836] = true, [103837] = true, [103838] = true, [101240] = true,
-			--Ukrainian Job (3x money)
+			--Ukrainian Job (3x Money)
 			[101514] = true, [102052] = true, [102402] = true,
-			--Jewelry Store (2x money)
-			[102052] = true, [102402] = true,
-			-- Custom Safehouse (1x Painting)
-			[150416] = true,
-			-- Safehouse Raid (1x Painting)
-			[150416] = true,
-			--Yacht (1x artifact painting)
-			[500533] = true,
-			--Watchdogs day 2 (10x coke)
-			[100054] = true, [100058] = true, [100426] = true, [100427] = true, [100428] = true, 
-			[100429] = true, [100491] = true, [100492] = true, [100494] = true, [100495] = true,
-			--Diamond store (1x money)
-			[100899] = true,
-			-- Resevoir Dogs (1x money)
-			[100296] = true,
-			-- Henry's Rock (2x artifact, 2x painting)
+			-- Henry's Rock (2x Artifact, 2x Painting)
 			[101757] = true, [400513] = true,
 			[400515] = true, [400617] = true,
-			-- Shacklethorne Auction (2x artifact)
-			[400791] = true, [400792] = true,
-			-- Mountain Master (2x artifact)
+			-- Shacklethorne Auction (2x Artifact)
+			[400791] = true, 
+			[400792] = true,
+			--Jewelry Store (2x Money)
+			[102052] = true,
+			[102402] = true,
+			-- Mountain Master (2x Artifact)
 			[500849] = true,
-			[500608] = true
+			[500608] = true,
+			--Big Oil (1x Money 1x Gold)
+			[100886] = true,
+			[100872] = true,
+			-- Hotline Miami (1x Money)
+			[104526] = true,
+			-- Custom Safehouse (1x Painting)
+			[150416] = true,
+			--Yacht (1x artifact Painting)
+			[500533] = true,
+			--Diamond Store (1x Money)
+			[100899] = true,
+			-- Resevoir Dogs (1x Money)
+			[100296] = true
 		}
 	end)
 
 	local function is_valid_unit(unit)
-		return unit and alive(unit) and unit:interaction() and unit:interaction():active() and (not unit:carry_data() or unit:carry_data():carry_id() ~= "vehicle_falcogini")
+		return unit and alive(unit) and unit:interaction() and unit:interaction():active() 
+		and (not unit:carry_data() or unit:carry_data():carry_id() ~= "vehicle_falcogini" 
+		and unit:carry_data():carry_id() ~= "turret_part")
 	end
 
 	local function is_ignored_id(unit_id)
@@ -83,7 +84,6 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 
 	local function process_loot_count(manager, carry_id)
 		local level_id = managers.job:current_level_id()
-		if is_ignored_id(carry_id) or is_equipment_bag(carry_id) then return end
 
 		local current_amount = manager._loot_fixes[level_id] and manager._loot_fixes[level_id][carry_id]
 		if current_amount and current_amount > 0 then
@@ -125,7 +125,6 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 	Hooks:PostHook(ObjectInteractionManager, "remove_unit", "HMH_ObjectInteractionManager_remove_unit", function(self, unit)
 		if alive(unit) then
 			local unit_id = unit:id()
-			local unit_editor_id = unit:editor_id()
 			if not is_ignored_id(unit_id) then
 				local carry_id = unit:carry_data() and unit:carry_data():carry_id()
 				if self._total_loot[unit_id] then
@@ -159,10 +158,10 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 	end
 
 	function ObjectInteractionManager:get_current_crate_count()
-		return math_max(self.loot_count.crate_amount or 0, 0)
+		return self.loot_count.crate_amount or 0
 	end
 
 	function ObjectInteractionManager:get_current_total_loot_count()
-		return math_max(self.loot_count.loot_amount or 0, 0)
+		return self.loot_count.loot_amount or 0
 	end
 end
