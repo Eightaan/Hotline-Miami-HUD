@@ -139,7 +139,7 @@
 	"hmh_hud_title" : "Player And Teammate Panels",
 	"hmh_hud_desc" : "Options related to you and your teammates' hud panels.",
 	"health_texture_title" : "Health Texture",
-	"health_texture_desc" : "Enable a custom health texture (The pixel heart may cause issues with some perkdecks).\nWhen changed, a texture refresh is required for the changes to take effect.",
+	"health_texture_desc" : "Enable a custom health texture (The pixel heart may cause issues with some perkdecks).\nWhen changed, a texture refresh is required for the changes to take effect.\nWhen changed to default a game restart is required.",
 	"default_health" : "Default",
 	"faded_health" : "Faded",
 	"pixel_health" : "Pixel Heart",
