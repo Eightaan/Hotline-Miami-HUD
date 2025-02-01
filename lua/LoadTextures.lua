@@ -5,17 +5,86 @@ function HMH:LoadTextureEntry(key, path)
 end
 
 function HMH:LoadTextures()
-	local font_medium_path = HMH:GetOption("font") and HMH._path .. "assets/guis/textures/pd2_mod_hmh/font_medium.texture" or HMH._path .. "fonts/font_medium.texture"
-	self:LoadTextureEntry("fonts/font_medium", font_medium_path)
+	--Load Custom Font
+	local custom_font = HMH:GetOption("font")
+	local orig_font_path = HMH._path .. "fonts/font_medium.texture"
+	local font_medium_path = custom_font and HMH._path .. "assets/guis/textures/pd2_mod_hmh/font_medium.texture"
 
-	local detection_meter_path = HMH:GetOption("suspicion") and HMH._path .. "assets/guis/textures/pd2_mod_hmh/inv_detection_meter.texture" or HMH._path .. "guis/textures/pd2/inv_detection_meter.texture"
+	self:LoadTextureEntry(
+		"fonts/font_medium", 
+		font_medium_path or orig_font_path
+	)
+
+	--Load Fireselector
+	local fireselector = HMH:GetOption("ammo")
+	local orig_fireselector_path = HMH._path .. "guis/textures/pd2/hud_fireselector.texture"
+	local fireselector_path = fireselector and HMH._path .. "assets/guis/textures/pd2_mod_hmh/hud_fireselector.texture"
+
+	self:LoadTextureEntry(
+		"guis/textures/pd2/hud_fireselector", 
+		fireselector_path or orig_fireselector_path
+	)
+
+	--Load Custom Menu Background
+	local custom_bg	= HMH:GetOption("custom_menu_background") == 2
+	local orig_bg_path = HMH._path .. "units/menu/menu_scene/menu_background_pattern.texture"
+	local custom_bg_path = custom_bg and HMH._path .. "assets/guis/textures/pd2_mod_hmh/classic_purple_bg.texture"
+
+	self:LoadTextureEntry(
+		"units/menu/menu_scene/menu_background_pattern", 
+		custom_bg_path or orig_bg_path
+    )
+
+	--Load Pink Hud Corners
+	local pink_corner = HMH:GetOption("pink_corner")
+	local orig_corner_path = HMH._path .. "guis/textures/pd2/hud_corner.texture"
+	local pink_corner_path = pink_corner and HMH._path .. "assets/guis/textures/pd2_mod_hmh/hud_corner.texture"
+
+	self:LoadTextureEntry(
+		"guis/textures/pd2/hud_corner", 
+		pink_corner_path or orig_corner_path
+    )
+
+	--Load Pink Stop AI
+	local stop_ai = HMH:GetOption("stop_ai")
+	local orig_stop_ai_path = HMH._path .. "guis/textures/pd2/stophand_symbol.texture"
+	local stop_ai_path = stop_ai and HMH._path .. "assets/guis/textures/pd2_mod_hmh/stophand_symbol.texture"
+
+	self:LoadTextureEntry(
+		"guis/textures/pd2/stophand_symbol", 
+		stop_ai_path or orig_stop_ai_path
+	)
+
+	--Load Detection Meter
+	local detection_meter = HMH:GetOption("suspicion")
+	local orig_detection_meter_path = HMH._path .. "guis/textures/pd2/inv_detection_meter.texture"
+	local detection_meter_path = detection_meter and HMH._path .. "assets/guis/textures/pd2_mod_hmh/inv_detection_meter.texture"
+	local suspicion_meter_path = detection_meter and HMH._path .. "assets/guis/textures/pd2_mod_hmh/" or HMH._path .. "guis/textures/pd2/"
+
 	for _, key in ipairs({"blackmarket/inv_detection_meter", "mission_briefing/inv_detection_meter"}) do
-		self:LoadTextureEntry("guis/textures/pd2/" .. key, detection_meter_path)
+		self:LoadTextureEntry(
+			"guis/textures/pd2/" .. key, 
+			detection_meter_path or orig_detection_meter_path
+		)
 	end
 
-	local fireselector_path = HMH:GetOption("ammo") and HMH._path .. "assets/guis/textures/pd2_mod_hmh/hud_fireselector.texture" or HMH._path .. "guis/textures/pd2/hud_fireselector.texture"
-	self:LoadTextureEntry("guis/textures/pd2/hud_fireselector", fireselector_path)
+	local suspicion_eye = {
+		"hud_stealthmeter", 
+		"hud_stealthmeter_bg", 
+		"hud_stealth_exclam",
+		"hud_stealth_eye",
+	}
 
+	for _, texture in ipairs(suspicion_eye) do
+		self:LoadTextureEntry(
+			"guis/textures/pd2/" .. texture, 
+			suspicion_meter_path .. texture .. ".texture"
+		)
+	end
+
+	-- Load Interaction Icons
+	local interact_icons = HMH:GetOption("interact_icons")
+	local interact_icons_path = interact_icons and HMH._path .. "assets/guis/textures/pd2_mod_hmh/" or HMH._path .. "units/gui/"
 	local interact_textures = {
 		"c4_indicator_df", "camera_indicator_df", "crowbar_indicator_df",
 		"cutter_indicator_df", "drill_indicator_df", "ecm_indicator_df",
@@ -27,22 +96,17 @@ function HMH:LoadTextures()
 		"thermite_indicator_df", "scissors_indicator_df", "turret_indicator_df",
 	}
 
-	local interact_base_path = HMH:GetOption("interact_icons") and HMH._path .. "assets/guis/textures/pd2_mod_hmh/" or HMH._path .. "units/gui/"
 	for _, texture in ipairs(interact_textures) do
-		self:LoadTextureEntry("units/gui/" .. texture, interact_base_path .. texture .. ".texture")
+		self:LoadTextureEntry(
+			"units/gui/" .. texture, 
+			interact_icons_path .. texture .. ".texture"
+		)
 	end
 
-	local suspicion_eye = {
-		"hud_stealthmeter", "hud_stealthmeter_bg", "hud_stealth_exclam",
-		"hud_stealth_eye",
-	}
-
-	local suspicion_base_path = HMH:GetOption("suspicion") and HMH._path .. "assets/guis/textures/pd2_mod_hmh/" or HMH._path .. "guis/textures/pd2/"
-	for _, texture in ipairs(suspicion_eye) do
-		self:LoadTextureEntry("guis/textures/pd2/" .. texture, suspicion_base_path .. texture .. ".texture")
-	end
-
-	if HMH:GetOption("health_texture") > 1 then
+	--Load Custom Health Circle
+	local health_circle	= HMH:GetOption("health_texture")
+	local health_circle_path = HMH._path .. "assets/guis/textures/pd2_mod_hmh/"
+	if health_circle > 1 then
 		local health_textures = {
 			{"hud_health", "hud_health"},
 			{"hud_fearless", "hud_fearless"},
@@ -56,12 +120,18 @@ function HMH:LoadTextures()
 
 		for _, texture in ipairs(health_textures) do
 			local texture_name = texture[1]
-			local final_texture_name = (HMH:GetOption("health_texture") == 3) and texture_name:gsub("hud_", "heart_") or texture_name
-			self:LoadTextureEntry("guis/textures/pd2/" .. texture_name, HMH._path .. "assets/guis/textures/pd2_mod_hmh/" .. final_texture_name .. ".texture")
+			local final_texture_name = health_circle == 3 and texture_name:gsub("hud_", "heart_") or texture_name
+			self:LoadTextureEntry(
+				"guis/textures/pd2/" .. texture_name, 
+				health_circle_path .. final_texture_name .. ".texture"
+			)
 		end
 	end
 
-	local mouse_pointer_option = HMH:GetOption("mouse_pointer")
+	--Load Mouse Pointer
+	local mouse_pointer	= HMH:GetOption("mouse_pointer")
+	local orig_mouse_pointer_path = HMH._path .. "guis/textures/mouse_pointer.texture"
+	local mouse_pointer_path = HMH._path .. "assets/guis/textures/pd2_mod_hmh/"
 	local mouse_pointer_paths = {
 		[2] = "fingerless_gloves.texture",
 		[3] = "jacket_pointer.texture",
@@ -69,31 +139,30 @@ function HMH:LoadTextures()
 	}
 
 	local mouse_pointer_name = mouse_pointer_paths[mouse_pointer_option] or "mouse_pointer.texture"
-	self:LoadTextureEntry("guis/textures/mouse_pointer", HMH._path .. "assets/guis/textures/pd2_mod_hmh/" .. mouse_pointer_name or HMH._path .. "guis/textures/mouse_pointer.texture")
+	self:LoadTextureEntry(
+		"guis/textures/mouse_pointer", 
+		mouse_pointer_path .. mouse_pointer_name or orig_mouse_pointer_path
+	)
 
-	local custom_bg_path = HMH:GetOption("custom_menu_background") == 2 and HMH._path .. "assets/guis/textures/pd2_mod_hmh/classic_purple_bg.texture" or HMH._path .. "units/menu/menu_scene/menu_background_pattern.texture"
-	self:LoadTextureEntry("units/menu/menu_scene/menu_background_pattern", custom_bg_path)
-
-	local pink_corner_path = HMH:GetOption("pink_corner") and HMH._path .. "assets/guis/textures/pd2_mod_hmh/hud_corner.texture" or HMH._path .. "guis/textures/pd2/hud_corner.texture"
-	self:LoadTextureEntry("guis/textures/pd2/hud_corner", pink_corner_path)
-
-	local stop_ai_path = HMH:GetOption("stop_ai") and HMH._path .. "assets/guis/textures/pd2_mod_hmh/stophand_symbol.texture" or HMH._path .. "guis/textures/pd2/stophand_symbol.texture"
-	self:LoadTextureEntry("guis/textures/pd2/stophand_symbol", stop_ai_path)
-
-	local silent_obj_path = HMH:GetOption("silent_obj") and HMH._path .. "assets/guis/textures/pd2_mod_hmh/objective.stream" or HMH._path .. "soundbanks/streamed/hud/670238416.stream"
-	DB:create_entry(Idstring("stream"), Idstring("soundbanks/streamed/hud/670238416"), silent_obj_path)
-
+	--Load Menu Smoke
+	local no_smoke = HMH:GetOption("no_smoke")
+	local no_smoke_path	= no_smoke and HMH._path .. "assets/guis/textures/pd2_mod_hmh/" or HMH._path .. "units/menu/menu_scene/"
 	local smoke_textures = {
 		"menu_cylinder_smoke",
 		"menu_cylinder_smoke_tile"
 	}
-	local base_path = HMH:GetOption("no_smoke") and HMH._path .. "assets/guis/textures/pd2_mod_hmh/" or HMH._path .. "units/menu/menu_scene/"
-	
+
 	for _, texture in ipairs(smoke_textures) do
-		self:LoadTextureEntry("units/menu/menu_scene/" .. texture, base_path .. texture .. ".texture")
+		self:LoadTextureEntry(
+			"units/menu/menu_scene/" .. texture, 
+			no_smoke_path .. texture .. ".texture"
+		)
 	end
 
+	--Load Interaction Circle
 	local interact_texture_option = HMH:GetOption("interact_texture")
+	local interact_texture_path = HMH._path .. "assets/guis/textures/pd2_mod_hmh/"
+	local orig_interact_texture_path = HMH._path .. "guis/textures/pd2/hud_progress_"
 	local progress_texture_paths = {
 		[2] = {
 			active = "pink_progress_active.texture",
@@ -136,12 +205,30 @@ function HMH:LoadTextures()
 		local selected_textures = progress_texture_paths[interact_texture_option]
 
 		for key, texture in pairs(selected_textures) do
-			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_" .. key), HMH._path .. "assets/guis/textures/pd2_mod_hmh/" .. texture)
+			DB:create_entry(
+				Idstring("texture"), 
+				Idstring("guis/textures/pd2/hud_progress_" .. key), 
+				interact_texture_path .. texture
+			)
 		end
 	else
 		for _, key in pairs({"active", "invalid", "bg"}) do
-			DB:create_entry(Idstring("texture"), Idstring("guis/textures/pd2/hud_progress_" .. key), HMH._path .. "guis/textures/pd2/hud_progress_" .. key .. ".texture")
+			DB:create_entry(
+				Idstring("texture"), 
+				Idstring("guis/textures/pd2/hud_progress_" .. key), 
+				orig_interact_texture_path .. key .. ".texture"
+			)
 		end
 	end
+
+	--Load Objective Sound
+	local silent_obj = HMH:GetOption("silent_obj")
+	local orig_silent_obj_path = HMH._path .. "soundbanks/streamed/hud/670238416.stream"
+	local silent_obj_path = silent_obj and HMH._path .. "assets/guis/textures/pd2_mod_hmh/objective.stream"
+	DB:create_entry(
+		Idstring("stream"), 
+		Idstring("soundbanks/streamed/hud/670238416"), 
+		silent_obj_path or orig_silent_obj_path
+	)
 end
 HMH:LoadTextures()
