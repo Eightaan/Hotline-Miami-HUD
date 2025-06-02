@@ -2,7 +2,7 @@
 	"name" : "Hotline Miami Hud",
 	"description" : "",
 	"author" : "\nEightan and Dom\n Special thanks to:\nUndeadsewer, Stren, Hoppip, Luffy, Kamikaze94, Test1, Batman, Crazyalexandro, Iron Predator, Croc, toastBurner, =T$E=Vasquez, banker, Jalswim, Simon, A1denPlay, CVIII, Frosthaven and Seven",
-	"version" : "6.0.7",
+	"version" : "6.0.8",
 	"blt_version" : 2,
 	"supermod_definition" : "HMH.xml",
 	"image" : "icon.png",

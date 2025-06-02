@@ -55,14 +55,25 @@ if RequiredScript == "lib/managers/hud/hudteammate" then
 		if hud_ping then
 			self:_create_ping_info()
 		end
-		
+
 		if HMH:GetOption("team_bg") then
-			self._panel:child("name_bg"):set_visible(false)
-			self._cable_ties_panel:child("bg"):set_visible(false)
-			self._deployable_equipment_panel:child("bg"):set_visible(false)
-			self._grenades_panel:child("bg"):set_visible(false)
-			self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("bg"):set_visible(false)
-			self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):child("bg"):set_visible(false)
+			local function hide_bg(panel, ...)
+				for _, name in ipairs({...}) do
+					local child = panel and panel:child(name)
+					if child then child:set_visible(false) end
+				end
+			end
+
+			hide_bg(self._panel, "name_bg")
+			hide_bg(self._cable_ties_panel, "bg")
+			hide_bg(self._deployable_equipment_panel, "bg")
+			hide_bg(self._grenades_panel, "bg")
+
+			if self._player_panel then
+				local weapons_panel = self._player_panel:child("weapons_panel")
+				hide_bg(weapons_panel and weapons_panel:child("primary_weapon_panel"), "bg")
+				hide_bg(weapons_panel and weapons_panel:child("secondary_weapon_panel"), "bg")
+			end
 		end
 	end)
 
