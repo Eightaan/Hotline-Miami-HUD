@@ -388,7 +388,7 @@ if requiredScript == "lib/managers/menumanager" then
 elseif requiredScript == "lib/managers/preplanningmanager" then
 
 	if not PrePlanningManager._PREPLANNING_SETUP then
-		PrePlanningManager._SAVE_FOLDER = Application:nice_path(SavePath .. "Preplanned/", true):gsub("\\", "/")
+		PrePlanningManager._SAVE_FOLDER = Application:nice_path(SavePath .. "PreplannedV2/", true):gsub("\\", "/")
 		PrePlanningManager._SAVE_FILE = PrePlanningManager._SAVE_FOLDER .. "/Unknown.json"
 		PrePlanningManager._SAVED_PLANS = nil
 		PrePlanningManager.saved_plans_node = "preplanning_saved_plans"
@@ -898,7 +898,7 @@ elseif requiredScript == "lib/managers/preplanningmanager" then
 			local saved_assets, saved_votes = PrePlanningManager._SAVED_PLANS[plan_name].assets or {}, PrePlanningManager._SAVED_PLANS[plan_name].votes or {}
 
 			if table.size(saved_votes) > 0 then
-				text = string.format("%s%s\n", text, managers.localization:text("wolfhud_preplanning_votes_title"))
+				text = string.format("%s%s\n", text, managers.localization:text("extracted_preplanning_votes_title"))
 				for i, data in pairs(saved_votes) do
 					local plan_data = tweak_data and tweak_data.preplanning.types[data.type]
 					local plan_name = plan_data and plan_data.name_id and managers.localization:text(plan_data.name_id) or ""
@@ -915,7 +915,7 @@ elseif requiredScript == "lib/managers/preplanningmanager" then
 			end
 
 			if table.size(saved_assets) > 0 then
-				text = string.format("%s%s\n", text, managers.localization:text("wolfhud_preplanning_assets_title"))
+				text = string.format("%s%s\n", text, managers.localization:text("extracted_preplanning_assets_title"))
 				for id, mission_element in pairs(saved_assets) do
 					local type_name = self:get_type_name(mission_element.type)
 					text = string.format("%s - %s", text, type_name)
