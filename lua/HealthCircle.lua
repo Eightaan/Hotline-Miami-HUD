@@ -158,7 +158,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 			})
 			self._health_cooldown_icon = self._health_panel:bitmap({
 				name = "health_cooldown_icon",
-				texture = "guis/textures/pd2_mod_hmh/health_cooldown_icon",
+				texture = "pd2_mod_hmh/health_cooldown_icon",
 				valign = "center",
 				x = 9.5,
 				y = 19,
@@ -201,7 +201,7 @@ elseif RequiredScript == "lib/managers/hud/hudteammate" then
 				h = radial_health_panel:h()
 			})
 			local animate_health_circle = radial_health_panel:bitmap({
-				texture = "guis/textures/pd2_mod_hmh/animate_health_circle",
+				texture = "pd2_mod_hmh/animate_health_circle",
 				name = "animate_health_circle",
 				blend_mode = "add",
 				visible = false,

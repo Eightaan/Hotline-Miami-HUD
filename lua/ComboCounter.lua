@@ -26,7 +26,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		self._kill_time = 0
 		self._last_kill_time = 0
 		self._kills = 0
-		local font = "guis/textures/pd2_mod_hmh/hmcc_font"
+		local font = "pd2_mod_hmh/hmcc_font"
 		if not managers.dyn_resource:has_resource(Idstring("font"), Idstring(font), managers.dyn_resource.DYN_RESOURCES_PACKAGE) then
 			managers.dyn_resource:load(Idstring("font"), Idstring(font), managers.dyn_resource.DYN_RESOURCES_PACKAGE, nil)
 		end
@@ -73,7 +73,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 			name = "Combo_bg",
 			visible = true,
 			layer = 0,
-			texture = "guis/textures/pd2_mod_hmh/hmcc_bg",
+			texture = "pd2_mod_hmh/hmcc_bg",
 			x = 8,
 			w = 200,
 			h = 64,
