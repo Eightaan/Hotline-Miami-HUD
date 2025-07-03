@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <assets base_path="assets/" load="startup">
-	<group name="guis/textures/pd2_mod_hmh/" path="assets/guis/textures/pd2_mod_hmh/">
+	<group name="pd2_mod_hmh/" path="assets/pd2_mod_hmh/">
 		<file :name="screeneffect.texture"               :path="screeneffect.texture"/>
 		<file :name="hmcc_font.font"                     :path="hmcc_font.font"/>
 		<file :name="hmcc_font.texture"                  :path="hmcc_font.texture"/>
