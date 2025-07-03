@@ -1,0 +1,184 @@
+{
+	"menu_id": "hmh_menu_interact_and_carry",
+	"parent_menu": "hmh_hud_options",
+	"title": "hmh_interact_and_carry_title",
+	"items": [
+		{
+			"type" : "label",
+			"title" : "hmh_interact_panel_text"
+		},
+		{
+			"type": "multiple_choice",
+			"id": "interact_texture_multiple_choice",
+			"title": "interact_texture_title",
+			"description": "interact_texture_desc",
+			"callback": "SetOption",
+			"callback_arguments": "interact_texture",
+			"value": "interact_texture",
+			"items" : [
+				"default_interact",
+				"pink_interact",
+				"hidden_interact",
+				"faded_interact",
+				"triangle_interact",
+				"hm2_interact",
+				"heart_interact",
+				"50bl_interact"
+			],
+			"default_value": 2
+		},
+		{
+			"type": "toggle",
+			"id": "interact_icons_toggle",
+			"title": "interact_icons_title",
+			"description": "interact_icons_desc",
+			"callback": "SetOption",
+			"callback_arguments": "interact_icons",
+			"value": "interact_icons",
+			"default_value": true
+		},
+		{
+			"type" : "divider",
+			"size" : 8
+		},
+		{
+			"type": "color_select",
+			"id": "interaction_outline_color_select",
+			"title": "HotlineMiamiHudInteractionOutlineTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "interactcolor",
+			"default_value": [255, 127, 0],
+			"callback": "SetColorOption",
+			"callback_arguments": "interactcolor"
+		},
+		{
+			"type" : "divider",
+			"size" : 8
+		},
+		{
+			"type": "toggle",
+			"id": "interact_toggle",
+			"title": "interact_title",
+			"description": "interact_desc",
+			"callback": "SetOption",
+			"callback_arguments": "interact",
+			"value": "interact",
+			"default_value": true,
+			"is_parent" : true
+		},
+		{
+			"type" : "divider",
+			"size" : 8
+		},
+		{
+			"type": "slider",
+			"id": "interact_text_slider",
+			"title": "interact_text_title",
+			"description": "interact_text_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "InteractAlpha",
+			"parent" : "interact_toggle",
+			"value": "InteractAlpha",
+			"max": 1,
+			"min": 0,
+			"step": 1,
+			"default_value": 1
+		},
+		{
+			"type": "color_select",
+			"id": "interaction_color_select",
+			"title": "HotlineMiamiHudInteractionTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "Interaction",
+			"default_value": [255, 204, 102],
+			"callback": "SetColorOption",
+			"callback_arguments": "Interaction",
+			"parent" : "interact_toggle"
+		},
+		{
+			"type": "divider",
+			"size": 12
+		},
+		{
+			"type": "toggle",
+			"id": "stealth_c4_toggle",
+			"title": "stealth_c4_title",
+			"description": "stealth_c4_desc",
+			"callback": "SetOption",
+			"callback_arguments": "stealth_c4",
+			"value": "stealth_c4",
+			"default_value": false
+		},
+		{
+			"type" : "divider",
+			"size" : 45
+		},
+		{
+			"type" : "label",
+			"parent" : "carry_toggle",
+			"title" : "hmh_carry_panel_text"
+		},
+		{
+			"type": "toggle",
+			"id": "carry_toggle",
+			"title": "carry_title",
+			"description": "carry_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "carry",
+			"value": "carry",
+			"default_value": true,
+			"is_parent" : true
+		},
+		{
+			"type": "slider",
+			"id": "carry_text_slider",
+			"title": "carry_text_title",
+			"description": "carry_text_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "CarryAlpha",
+			"parent" : "carry_toggle",
+			"value": "CarryAlpha",
+			"max": 1,
+			"min": 0,
+			"step": 1,
+			"default_value": 1
+		},
+		{
+			"type": "divider",
+			"size": 8
+		},
+		{
+			"type": "toggle",
+			"id": "colored_carry_text_toggle",
+			"title": "colored_carry_text_title",
+			"description": "colored_carry_text_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "colored_carry_text",
+			"value": "colored_carry_text",
+			"default_value": true,
+			"parent" : "carry_toggle"
+		},
+		{
+			"type": "toggle",
+			"id": "animate_text_toggle",
+			"title": "animate_text_title",
+			"description": "animate_text_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "animate_text",
+			"value": "animate_text",
+			"default_value": true,
+			"parent" : "carry_toggle"
+		},
+		{
+			"type": "toggle",
+			"id": "carry_value_toggle",
+			"title": "carry_value_title",
+			"description": "carry_value_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "carry_value",
+			"value": "carry_value",
+			"default_value": true,
+			"parent" : "carry_toggle"
+		}
+	]
+}

@@ -1,0 +1,83 @@
+{
+	"menu_id": "hmh_menu",
+	"title": "hmh_title",
+	"description": "hmh_desc",
+	"items": [
+		{
+			"type": "button",
+			"id": "preset_id",
+			"title": "preset_title",
+			"description": "preset_desc",
+			"next_menu": "hmh_menu_preset"
+		},
+		{
+			"type": "divider",
+			"size": 8
+		},
+		{
+			"type": "button",
+			"id": "refresh_id",
+			"title": "refresh_title",
+			"description": "refresh_desc",
+			"callback" : "RefreshTextures"
+		},
+		{
+			"type": "divider",
+			"size": 8
+		},
+		{
+			"type": "toggle",
+			"id": "no_menu_textures_toggle",
+			"title": "no_menu_textures_title",
+			"description": "no_menu_textures_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "no_menu_textures",
+			"value": "no_menu_textures",
+			"default_value": false,
+			"is_parent" : true
+		},
+		{
+			"type": "toggle",
+			"id": "mod_overrides_toggle",
+			"title": "mod_overrides_title",
+			"description": "mod_overrides_desc",
+			"callback": "SetOption",
+			"callback_arguments": "mod_overrides",
+			"value": "mod_overrides",
+			"default_value": true,
+			"parent" : "no_menu_textures_toggle"
+		},
+		{
+			"type": "divider",
+			"size": 8
+		},
+		{
+			"type": "toggle",
+			"id": "mod_font_toggle",
+			"title": "mod_font_title",
+			"description": "mod_font_desc",
+			"callback": "SetOption",
+			"callback_arguments": "font",
+			"value": "font",
+			"default_value": false
+		},
+		{
+			"type": "divider",
+			"size": 12
+		},
+		{
+			"type": "button",
+			"id": "hmh_menu_options",
+			"title": "hmh_menu_options_title",
+			"description": "hmh_menu_options_desc",
+			"next_menu": "hmh_menu_options"
+		},
+		{
+			"type": "button",
+			"id": "hmh_hud_options",
+			"title": "hmh_hud_options_title",
+			"description": "hmh_hud_options_desc",
+			"next_menu": "hmh_hud_options"
+		}
+	]
+}

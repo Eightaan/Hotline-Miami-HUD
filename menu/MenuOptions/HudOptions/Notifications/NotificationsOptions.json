@@ -1,0 +1,125 @@
+{
+	"menu_id": "hmh_menu_notifications",
+	"parent_menu": "hmh_hud_options",
+	"h" : 500,
+	"title": "hmh_notifications_title",
+	"items": [
+		{
+			"type" : "label",
+			"title" : "hmh_presenter_panel_text"
+		},
+		{
+			"type": "toggle",
+			"id": "silent_obj_toggle",
+			"title": "silent_obj_title",
+			"description": "silent_obj_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "silent_obj",
+			"value": "silent_obj",
+			"default_value": false
+		},
+		{
+			"type": "divider",
+			"size": 12
+		},
+		{
+			"type": "toggle",
+			"id": "presenter_toggle",
+			"title": "presenter_title",
+			"description": "presenter_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "presenter",
+			"value": "presenter",
+			"default_value": true,
+			"is_parent" : true
+		},
+		{
+			"type": "divider",
+			"size": 8
+		},
+		{
+			"type": "slider",
+			"id": "present_text_slider",
+			"title": "present_text_title",
+			"description": "present_text_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "presentAlpha",
+			"parent" : "presenter_toggle",
+			"value": "presentAlpha",
+			"max": 1,
+			"min": 0,
+			"step": 1,
+			"default_value": 1
+		},
+		{
+			"type": "color_select",
+			"id": "presenter_title_color_select",
+			"title": "HotlineMiamiHudPresenterTitleTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "PresenterTitle",
+			"default_value": [102, 255, 153],
+			"callback": "SetColorOption",
+			"callback_arguments": "PresenterTitle",
+			"parent" : "presenter_toggle"
+		},
+		{
+			"type": "color_select",
+			"id": "presenter_text_color_select",
+			"title": "HotlineMiamiHudPresenterTextTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "PresenterText",
+			"default_value": [102, 255, 255],
+			"callback": "SetColorOption",
+			"callback_arguments": "PresenterText",
+			"parent" : "presenter_toggle"
+		},
+		{
+			"type" : "divider",
+			"size" : 45
+		},
+		{
+			"type" : "label",
+			"title" : "hmh_hints_panel_text"
+		},
+		{
+			"type": "toggle",
+			"id": "hint_toggle",
+			"title": "hint_title",
+			"description": "hint_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "hint",
+			"value": "hint",
+			"default_value": true,
+			"is_parent" : true
+		},
+		{
+			"type" : "divider",
+			"size" : 8
+		},
+		{
+			"type": "slider",
+			"id": "hint_text_slider",
+			"title": "hint_text_title",
+			"description": "hint_text_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "HintAlpha",
+			"parent" : "hint_toggle",
+			"value": "HintAlpha",
+			"max": 1,
+			"min": 0,
+			"step": 1,
+			"default_value": 1
+		},
+		{
+			"type": "color_select",
+			"id": "hint_color_select",
+			"title": "HotlineMiamiHudHintTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "HintColor",
+			"default_value": [255, 204, 102],
+			"callback": "SetColorOption",
+			"callback_arguments": "HintColor",
+			"parent" : "hint_toggle"
+		}
+	]
+}

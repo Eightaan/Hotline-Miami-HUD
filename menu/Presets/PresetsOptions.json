@@ -1,0 +1,30 @@
+{
+	"menu_id": "hmh_menu_preset",
+	"parent_menu": "hmh_menu",
+	"title": "preset_title",
+	"items": [
+		{
+			"type" : "label",
+			"title" : "preset_warning"
+		},
+		{
+			"type" : "label",
+			"title" : "restart_preset_title"
+		},
+		{
+			"type" : "multiple_choice",
+			"id" : "preset_multiple_choice",
+			"title" : "preset_multi_title",
+			"description" : "preset_multi_desc",
+			"callback" : "SetOption",
+			"callback_arguments" : "preset",
+			"items" : [
+				"custom_preset",
+				"hotline_vibe",
+				"vanilla_classic"
+			],
+			"value" : "preset",
+			"default_value" : 1
+		}
+	]
+}

@@ -1,0 +1,89 @@
+{
+	"menu_id": "hmh_hud_player_color_menu",
+	"parent_menu": "hmh_hud_menu",
+	"title": "hmh_hud_player_color_title",
+	"h" : 500,
+	"items": [
+		{
+			"type": "toggle",
+			"id": "color_toggle",
+			"title": "color_title",
+			"description": "color_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "custom_color",
+			"value": "custom_color",
+			"default_value": true,
+			"is_parent" : true
+		},
+		{
+			"type": "color_select",
+			"id": "player_1_color_select",
+			"title": "HotlineMiamiHudPlayer1TitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "Player1",
+			"default_value": [102, 255, 153],
+			"callback": "SetColorOption",
+			"callback_arguments": "Player1",
+			"parent" : "color_toggle"
+		},
+		{
+			"type": "color_select",
+			"id": "player_2_color_select",
+			"title": "HotlineMiamiHudPlayer2TitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "Player2",
+			"default_value": [102, 255, 255],
+			"callback": "SetColorOption",
+			"callback_arguments": "Player2",
+			"parent" : "color_toggle"
+		},
+		{
+			"type": "color_select",
+			"id": "player_3_color_select",
+			"title": "HotlineMiamiHudPlayer3TitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "Player3",
+			"default_value": [255, 102, 102],
+			"callback": "SetColorOption",
+			"callback_arguments": "Player3",
+			"parent" : "color_toggle"
+		},
+		{
+			"type": "color_select",
+			"id": "player_4_color_select",
+			"title": "HotlineMiamiHudPlayer4TitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "Player4",
+			"default_value": [255, 204, 102],
+			"callback": "SetColorOption",
+			"callback_arguments": "Player4",
+			"parent" : "color_toggle"
+		},
+		{
+			"type": "color_select",
+			"id": "player_ai_color_select",
+			"title": "HotlineMiamiHudPlayerAiTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "PlayerAi",
+			"default_value": [51, 204, 255],
+			"callback": "SetColorOption",
+			"callback_arguments": "PlayerAi",
+			"parent" : "color_toggle"
+		},
+		{
+			"type": "divider",
+			"size": 8
+		},
+		{
+			"type": "color_select",
+			"id": "system_color_select",
+			"title": "HotlineMiamiHudSystemTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "System",
+			"default_value": [255, 128, 223],
+			"callback": "SetColorOption",
+			"callback_arguments": "System",
+			"parent" : "color_toggle"
+		}
+	]
+}

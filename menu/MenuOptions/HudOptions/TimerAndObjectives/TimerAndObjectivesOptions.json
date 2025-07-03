@@ -1,0 +1,125 @@
+{
+	"menu_id": "hmh_menu_objective_and_timer",
+	"parent_menu": "hmh_hud_options",
+	"h" : 500,
+	"title": "hmh_objective_and_timer_title",
+	"items": [
+		{
+			"type" : "label",
+			"parent" : "objective_toggle",
+			"title" : "hmh_objectives_panel_text"
+		},
+		{
+			"type": "toggle",
+			"id": "objective_toggle",
+			"title": "objective_title",
+			"description": "objective_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "objective",
+			"value": "objective",
+			"default_value": true,
+			"is_parent" : true
+		},
+		{
+			"type" : "divider",
+			"size" : 8
+		},
+		{
+			"type": "slider",
+			"id": "objective_text_slider",
+			"title": "objective_text_title",
+			"description": "objective_text_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "objective_text",
+			"parent" : "objective_toggle",
+			"value": "objective_text",
+			"max": 1,
+			"min": 0,
+			"step": 1,
+			"default_value": 1
+		},
+		{
+			"type": "color_select",
+			"id": "objective_text_color_select",
+			"title": "HotlineMiamiHudObjectiveTextTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "ObjectiveText",
+			"default_value": [102, 255, 255],
+			"callback": "SetColorOption",
+			"callback_arguments": "ObjectiveText",
+			"parent" : "objective_toggle"
+		},
+		{
+			"type": "color_select",
+			"id": "objective_icon_color_select",
+			"title": "HotlineMiamiHudObjectiveIconTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "ObjectiveIcon",
+			"default_value": [255, 128, 223],
+			"callback": "SetColorOption",
+			"callback_arguments": "ObjectiveIcon",
+			"parent" : "objective_toggle"
+		},
+		{
+			"type": "color_select",
+			"id": "objective_amount_color_select",
+			"title": "HotlineMiamiHudObjectiveAmountTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "ObjectiveAmount",
+			"default_value": [255, 204, 102],
+			"callback": "SetColorOption",
+			"callback_arguments": "ObjectiveAmount",
+			"parent" : "objective_toggle"
+		},
+		{
+			"type" : "divider",
+			"size" : 45
+			
+		},
+		{
+			"type" : "label",
+			"parent" : "timer_toggle",
+			"title" : "hmh_timer_panel_text"
+		},
+		{
+			"type": "toggle",
+			"id": "timer_toggle",
+			"title": "timer_title",
+			"description": "timer_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "timer",
+			"value": "timer",
+			"default_value": true,
+			"is_parent" : true
+		},
+		{
+			"type" : "divider",
+			"size" : 8
+		},
+		{
+			"type": "slider",
+			"id": "timer_text_slider",
+			"title": "timer_text_title",
+			"description": "timer_text_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "TimerAlpha",
+			"parent" : "timer_toggle",
+			"value": "TimerAlpha",
+			"max": 1,
+			"min": 0,
+			"step": 1,
+			"default_value": 1
+		},
+		{
+			"type": "color_select",
+			"id": "timer_color_select",
+			"title": "HotlineMiamiHudTimerTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "TimerColor",
+			"default_value": [102, 255, 255],
+			"callback": "SetColorOption",
+			"callback_arguments": "TimerColor",
+			"parent" : "timer_toggle"
+		}
+	]
+}

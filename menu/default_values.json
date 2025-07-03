@@ -1,0 +1,471 @@
+{
+	"hud_scale" : 1,
+	"timer_x" : 123,
+	"timer_y" : 43,
+	"timer_scale" : 1,
+	"no_menu_textures" : true,
+	"team_bg" : true
+	"mod_overrides" : true,
+	"infoboxes" : true,
+	"mouse_pointer" : 2,
+	"inspire": true,
+	"Bloodthirst": true,
+	"BloodthirstMinKills" : 6,
+	"BloodthirstX" : 123,
+	"BloodthirstY" : 38,
+	"BloodthirstScale" : 1,
+	"greenciv": true,
+	"assault_text" : 1,
+	"info_box_alpha" : 1,
+	"objective_text" : 1,
+	"TimerAlpha" : 1,
+	"HintAlpha" : 1,
+	"InteractAlpha" : 1,
+	"interactcolor" :
+	{
+		"r" : 255,
+		"g" : 127,
+		"b" : 0
+	},
+	"presentAlpha" : 1,
+	"CarryAlpha" : 1,
+	"SubAlpha" : 1,
+	"inventory_amount" : true,
+	"hostage_panel" : true,
+	"wave_panel" : true,
+	"show_rank" : true,
+	"DownedAlpha" : 1,
+	"panel_position" : 40,
+	"combo_kill_anim" : true,
+	"combo_kill_flash" : false,
+	"CustodyAlpha" : 1,
+	"waypoints" : true,
+	"no_smoke" : false,
+	"preset" : 1,
+	"hide_hudbox" : false,
+	"captain_buff" : true,
+	"captain_buff_color" :
+	{
+		"r" : 255,
+		"g" : 204,
+		"b" : 102
+	},
+	"pink_corner" : true,
+	"WaypointIcon" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 153
+	},
+	"WaypointDistance" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
+	},
+	"WaypointArrow" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
+	},
+	"timer" : true,
+	"TimerColor" : 
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
+	},
+	"presenter" : true,
+	"PresenterTitle" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 153
+	},
+	"PresenterText" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
+	},
+	"interact" : true,
+	"Interaction" :
+	{
+		"r" : 255,
+		"g" : 204,
+		"b" : 102
+	},
+	"hint" : true,
+	"HintColor" :
+	{
+		"r" : 255,
+		"g" : 204,
+		"b" : 102
+	},
+	"downed" : true,
+	"DownedText" :
+	{
+		"r" : 255,
+		"g" : 128,
+		"b" : 223
+	},
+	"DownedTimer" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
+	},
+	"custody" : true,
+	"CustodyReleased" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 153
+	},
+	"CustodyTimer" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
+	},
+	"Civilans_color" :
+	{
+		"r" : 255,
+		"g" : 102,
+		"b" : 102
+	},
+	"Trade" :
+	{
+		"r" : 255,
+		"g" : 204,
+		"b" : 102
+	},
+	"carry" : true,
+	"ammo" : true,
+	"PrimFiremode" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 153
+	},
+	"SecFiremode" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
+	},
+	"LowAmmo" :
+	{
+		"r" : 255,
+		"g" : 204,
+		"b" : 102
+	},
+	"TotalAmmo" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 153
+	},
+	"ClipAmmo" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
+	},
+	"color_condition" : true,
+	"interact_info" : true,
+	"color_bag" : true,
+	"pickups" : true,
+	"equipment" : true,
+	"EquipmentIcon" :
+	{
+		"r" : 255,
+		"g" : 128,
+		"b" : 223
+	},
+	"EquipmentText" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
+	},
+	"GrenadeIcon" :
+	{
+		"r" : 255,
+		"g" : 128,
+		"b" : 223
+	},
+	"GrenadeText" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
+	},
+	"CabletiesIcon" :
+	{
+		"r" : 255,
+		"g" : 128,
+		"b" : 223
+	},
+	"CabletiesText" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
+	},
+	"trueammo" : false,
+	"assault" : true,
+	"AssaultText" :
+	{
+		"r" : 255,
+		"g" : 204,
+		"b" : 102
+	},
+	"NoReturnText" :
+	{
+		"r" : 255,
+		"g" : 102,
+		"b" : 102
+	},
+	"NoReturnIcon" :
+	{
+		"r" : 255,
+		"g" : 102,
+		"b" : 102
+	},
+	"NoReturnTimer" :
+	{
+		"r" : 255,
+		"g" : 102,
+		"b" : 102
+	},
+	"HoldoutText" :
+	{
+		"r" : 255,
+		"g" : 102,
+		"b" : 102
+	},
+	"CaptainText" :
+	{
+		"r" : 255,
+		"g" : 102,
+		"b" : 102
+	},
+	"CaptainBuffIcon" :
+	{
+		"r" : 255,
+		"g" : 204,
+		"b" : 102
+	},
+	"HostagesText" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
+	},
+	"HostagesIcon" :
+	{
+		"r" : 255,
+		"g" : 128,
+		"b" : 223
+	},
+	"WavesText" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
+	},
+	"WavesIcon" :
+	{
+		"r" : 255,
+		"g" : 128,
+		"b" : 223
+	},
+	"objective" : true,
+	"ObjectiveText" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
+	},
+	"ObjectiveIcon" :
+	{
+		"r" : 255,
+		"g" : 128,
+		"b" : 223
+	},
+	"ObjectiveAmount" :
+	{
+		"r" : 255,
+		"g" : 204,
+		"b" : 102
+	},
+	"bulletstorm" : true,
+	"health_texture" : 2,
+	"interact_texture" : 2,
+	"custom_subs" : true,
+	"Sub" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 153
+	},
+	"custom_color" : true,
+	"Player1" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 153
+	},
+	"Player2" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
+	},
+	"Player3" :
+	{
+		"r" : 255,
+		"g" : 102,
+		"b" : 102
+	},
+	"Player4" :
+	{
+		"r" : 255,
+		"g" : 204,
+		"b" : 102
+	},
+	"PlayerAi" :
+	{
+		"r" : 51,
+		"g" : 204,
+		"b" : 255
+	},
+	"System" :
+	{
+		"r" : 255,
+		"g" : 128,
+		"b" : 223
+	},
+	"custom_menu_color" : true,
+	"custom_chat" : true,
+	"screen_effect" : true,
+	"skip_blackscreen" : true,
+	"skip_xp" : 5,
+	"skip_card" : 3,
+	"pick_card" : true,
+	"suspicion" : true,
+	"combo" : true,
+	"font" : false,
+	"pager_jam" : true,
+	"pocket_ecm" : true,
+	"ECMText" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
+	},
+	"ecm_low" :
+	{
+		"r" : 255,
+		"g" : 102,
+		"b" : 102
+	},
+	"ecm_mid" :
+	{
+		"r" : 255,
+		"g" : 204,
+		"b" : 102
+	},
+	"ECMIcon" :
+	{
+		"r" : 255,
+		"g" : 128,
+		"b" : 223
+	},
+	"InspireIcon" :
+	{
+		"r" : 255,
+		"g" : 128,
+		"b" : 223
+	},
+	"InspireTimer" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
+	},
+	"BloodthirstIcon" :
+	{
+		"r" : 255,
+		"g" : 128,
+		"b" : 223
+	},
+	"BloodthirstText" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
+	},
+	"interact_icons" : true,
+	"stealth_c4" : true,
+	"tab" : true,
+	"enemy_count" : false,
+	"loot_count" : true,
+	"custom_filter" : false,
+	"voice" : true,
+	"ping" : false,
+	"custom_menu_background" : 1,
+	"stamina" : false,
+	"colored_downs" : true,
+	"no_confirm" : false,
+	"crew_loadout" : true,
+	"crew_loadout_briefing" : true,
+	"crew_loadout_tab" : true,
+	"profile_menu" : true,
+	"carry_value" : false,
+	"headshot_texture" : 2,
+	"waypoint_alpha" : 1,
+	"custom_tab_color" : true,
+	"stop_ai" : true,
+	"casing" : true,
+	"CasingText" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 153
+	},
+	"CasingIcon" :
+	{
+		"r" : 255,
+		"g" : 128,
+		"b" : 223
+	},
+	"chat_font" : 20,
+	"animate_text" : true,
+	"colored_carry_text" : true,
+	"Ability_icon_color" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
+	},
+	"armorer_cooldown_timer_color2" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 255
+	},
+	"armorer_duration_timer_color" :
+	{
+		"r" : 102,
+		"g" : 255,
+		"b" : 153
+	},
+	"armorer_cooldown_timer" : true,
+	"armorer_cooldown_radial" : true,
+	"ability_icon" : true,
+	"promt" : true,
+	"silent_obj" : false
+}

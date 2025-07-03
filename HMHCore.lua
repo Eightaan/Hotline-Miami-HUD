@@ -2,7 +2,7 @@ if not HMH then
 	_G.HMH =
 	{
 		_path = ModPath,
-		_menu_path = ModPath .. "Menu/",
+		_menu_path = ModPath .. "menu/",
 		_data_path = SavePath .. "HMH.json",
 		SaveDataVer = 2,
 		ModVersion = ModInstance and ModInstance:GetVersion() or "N/A",
