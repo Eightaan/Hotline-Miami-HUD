@@ -1,0 +1,149 @@
+{
+	"menu_id": "hmh_hud_options",
+	"parent_menu": "hmh_menu",
+	"title": "hmh_hud_options_title",
+	"items": [
+		{
+			"type": "slider",
+			"id": "hud_scale_slider",
+			"title": "hud_scale_title",
+			"description": "hud_scale_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "hud_scale",
+			"value": "hud_scale",
+			"max": 1,
+			"min": 0.5,
+			"step": 2,
+			"default_value": 1
+		},
+		{
+			"type": "divider",
+			"size": 8
+		},
+		{
+			"type": "button",
+			"id": "hmh_combo_options",
+			"title": "hmh_combo_options_title",
+			"description": "hmh_combo_options_desc",
+			"next_menu": "hmh_combo_options"
+		},
+		{
+			"type": "button",
+			"id": "hmh_ecm_timer",
+			"title": "hmh_ecm_timer_title",
+			"description": "hmh_ecm_timer_desc",
+			"next_menu": "hmh_ecm_timer_menu"
+		},
+		{
+			"type": "button",
+			"id": "hmh_buff_list_menu",
+			"title": "hmh_buff_list_title",
+			"description": "hmh_buff_list_desc",
+			"next_menu": "hmh_buff_list_menu"
+		},
+		{
+			"type": "toggle",
+			"id": "screen_effect_toggle",
+			"title": "screen_effect_title",
+			"description": "screen_effect_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "screen_effect",
+			"value": "screen_effect",
+			"default_value": false
+		},
+		{
+			"type": "divider",
+			"size": 8
+		},
+		{
+			"type" : "multiple_choice",
+			"id" : "headshot_mark_multiple_choice",
+			"title" : "headshot_mark_title",
+			"description" : "headshot_mark_desc",
+			"callback" : "SetOption",
+			"callback_arguments" : "headshot_texture",
+			"items" : [
+				"disabled_icon",
+				"circle_icon",
+				"50blessings",
+				"interaction"
+			],
+			"value" : "headshot_texture",
+			"default_value" : 2
+		},
+		{
+			"type": "divider",
+			"size": 4
+		},
+		{
+			"type": "toggle",
+			"id": "pink_corner_toggle",
+			"title": "pink_corner_title",
+			"description": "pink_corner_desc",
+			"callback": "SetOption",
+			"callback_arguments": "pink_corner",
+			"value": "pink_corner",
+			"default_value": true
+		},
+		{
+			"type": "divider",
+			"size": 16
+		},
+		{
+			"type": "button",
+			"id": "hmh_hud",
+			"title": "hmh_hud_title",
+			"description": "hmh_hud_desc",
+			"next_menu": "hmh_hud_menu"
+		},
+		{
+			"type": "button",
+			"id": "hmh_assault",
+			"title": "hmh_assault_title",
+			"description": "hmh_assault_desc",
+			"next_menu": "hmh_menu_assault"
+		},
+		{
+			"type": "button",
+			"id": "hmh_objective_and_timer_title",
+			"title": "hmh_objective_and_timer_title",
+			"description": "hmh_objective_and_timer_desc",
+			"next_menu": "hmh_menu_objective_and_timer"
+		},
+		{
+			"type": "button",
+			"id": "hmh_notifications",
+			"title": "hmh_notifications_title",
+			"description": "hmh_notifications_desc",
+			"next_menu": "hmh_menu_notifications"
+		},
+		{
+			"type": "button",
+			"id": "hmh_interact_and_carry",
+			"title": "hmh_interact_and_carry_title",
+			"description": "hmh_interact_and_carry_desc",
+			"next_menu": "hmh_menu_interact_and_carry"
+		},
+		{
+			"type": "button",
+			"id": "hmh_waypoints_and_detection",
+			"title": "hmh_waypoints_and_detection_title",
+			"description": "hmh_waypoints_and_detection_desc",
+			"next_menu": "hmh_menu_waypoints_and_detection"
+		},
+		{
+			"type": "button",
+			"id": "hmh_tab_and_subs",
+			"title": "hmh_tab_and_subs_title",
+			"description": "hmh_tab_and_subs_desc",
+			"next_menu": "hmh_tab_and_subs"
+		},
+		{
+			"type": "button",
+			"id": "hmh_joining_player_options",
+			"title": "hmh_joining_player_options_title",
+			"description": "hmh_joining_player_options_desc",
+			"next_menu": "hmh_joining_player_options"
+		}
+	]
+}

@@ -1,0 +1,165 @@
+{
+	"menu_id": "hmh_hud_menu",
+	"parent_menu": "hmh_hud_options",
+	"title": "hmh_hud_title",
+	"items": [
+		{
+			"type": "multiple_choice",
+			"id": "health_texture_multiple_choice",
+			"title": "health_texture_title",
+			"description": "health_texture_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "health_texture",
+			"value": "health_texture",
+			"items" : [
+				"default_health",
+				"faded_health",
+				"pixel_health"
+			],
+			"default_value": 2
+		},
+		{
+			"type": "button",
+			"id": "hmh_hud_ability_menu",
+			"title": "hmh_hud_ability_title",
+			"description": "hmh_hud_ability_desc",
+			"next_menu": "hmh_hud_ability_menu"
+		},
+		{
+			"type": "button",
+			"id": "hmh_hud_player_color_menu",
+			"title": "hmh_hud_player_color_title",
+			"description": "hmh_hud_player_color_desc",
+			"next_menu": "hmh_hud_player_color_menu"
+		},
+		{
+			"type": "button",
+			"id": "hmh_hud_custody_downed_menu",
+			"title": "hmh_hud_custody_downed_title",
+			"description": "hmh_hud_custody_downed_desc",
+			"next_menu": "hmh_hud_custody_downed_menu"
+		},
+		{
+			"type": "button",
+			"id": "hmh_hud_ammo_menu",
+			"title": "hmh_hud_ammo_title",
+			"description": "hmh_hud_ammo_desc",
+			"next_menu": "hmh_hud_ammo_menu"
+		},
+		{
+			"type": "button",
+			"id": "hmh_hud_equipment_menu",
+			"title": "hmh_hud_equipment_title",
+			"description": "hmh_hud_equipment_desc",
+			"next_menu": "hmh_hud_equipment_menu"
+		},
+		{
+			"type": "divider",
+			"size": 8
+		},
+		{
+			"type": "toggle",
+			"id": "team_bg_toggle",
+			"title": "team_bg_title",
+			"description": "team_bg_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "team_bg",
+			"value": "team_bg",
+			"default_value": true
+		},
+		{
+			"type": "toggle",
+			"id": "ping_toggle",
+			"title": "ping_title",
+			"description": "ping_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "ping",
+			"value": "ping",
+			"default_value": false
+		},
+		{
+			"type": "toggle",
+			"id": "stamina_toggle",
+			"title": "stamina_title",
+			"description": "stamina_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "stamina",
+			"value": "stamina",
+			"default_value": false
+		},
+		{
+			"type": "toggle",
+			"id": "interact_info_toggle",
+			"title": "interact_info_title",
+			"description": "interact_info_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "interact_info",
+			"value": "interact_info",
+			"default_value": true
+		},
+		{
+			"type": "toggle",
+			"id": "stop_ai_toggle",
+			"title": "stop_ai_title",
+			"description": "stop_ai_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "stop_ai",
+			"value": "stop_ai",
+			"default_value": true
+		},
+		{
+			"type": "divider",
+			"size": 8
+		},
+		{
+			"type": "toggle",
+			"id": "colored_downs_toggle",
+			"title": "colored_downs_title",
+			"description": "colored_downs_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "colored_downs",
+			"value": "colored_downs",
+			"default_value": true
+		},
+		{
+			"type": "toggle",
+			"id": "color_condition_toggle",
+			"title": "color_condition_title",
+			"description": "color_condition_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "color_condition",
+			"value": "color_condition",
+			"default_value": true
+		},
+		{
+			"type": "toggle",
+			"id": "color_bag_toggle",
+			"title": "color_bag_title",
+			"description": "color_bag_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "color_bag",
+			"value": "color_bag",
+			"default_value": true
+		},
+		{
+			"type": "toggle",
+			"id": "pickups_toggle",
+			"title": "pickups_title",
+			"description": "pickups_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "pickups",
+			"value": "pickups",
+			"default_value": true
+		},
+		{
+			"type": "toggle",
+			"id": "promt_toggle",
+			"title": "promt_title",
+			"description": "promt_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "promt",
+			"value": "promt",
+			"default_value": true
+		}
+	]
+}

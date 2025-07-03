@@ -44,7 +44,7 @@ if not HMH then
 	end
 
 	function HMH:LoadDefaults()
-		local values = self:GetOption("preset") == 3 and "Menu/default_values_vanilla.json" or "Menu/default_values.json"
+		local values = self:GetOption("preset") == 3 and "menu/default_values_vanilla.json" or "menu/default_values.json"
 		local default_file = io.open(self._path ..values)
 		self._data = json.decode(default_file:read("*all"))
 		default_file:close()

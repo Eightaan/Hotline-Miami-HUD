@@ -1,0 +1,92 @@
+{
+	"menu_id": "hmh_hud_ammo_menu",
+	"parent_menu": "hmh_hud_menu",
+	"h" : 500,
+	"title": "hmh_hud_ammo_title",
+	"items": [
+		{
+			"type": "toggle",
+			"id": "bulletstorm_toggle",
+			"title": "bulletstorm_title",
+			"description": "bulletstorm_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "bulletstorm",
+			"value": "bulletstorm",
+			"default_value": true
+		},
+		{
+			"type" : "divider",
+			"size" : 8
+		},
+		{
+			"type": "toggle",
+			"id": "ammo_toggle",
+			"title": "ammo_title",
+			"description": "ammo_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "ammo",
+			"value": "ammo",
+			"default_value": true,
+			"is_parent" : true
+		},
+		{
+			"type": "color_select",
+			"id": "low_ammo_color_select",
+			"title": "HotlineMiamiHudLowAmmoTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "LowAmmo",
+			"default_value": [255, 204, 102],
+			"callback": "SetColorOption",
+			"callback_arguments": "LowAmmo",
+			"parent" : "ammo_toggle"
+		},
+		{
+			"type": "color_select",
+			"id": "total_ammo_color_select",
+			"title": "HotlineMiamiHudTotalAmmoTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "TotalAmmo",
+			"default_value": [102, 255, 153],
+			"callback": "SetColorOption",
+			"callback_arguments": "TotalAmmo",
+			"parent" : "ammo_toggle"
+		},
+		{
+			"type": "color_select",
+			"id": "clip_ammo_color_select",
+			"title": "HotlineMiamiHudClipAmmoTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "ClipAmmo",
+			"default_value": [102, 255, 255],
+			"callback": "SetColorOption",
+			"callback_arguments": "ClipAmmo",
+			"parent" : "ammo_toggle"
+		},
+		{
+			"type": "divider",
+			"size": 8
+		},
+		{
+			"type": "color_select",
+			"id": "primary_fire_color_select",
+			"title": "HotlineMiamiHudPrimFiremodeTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "PrimFiremode",
+			"default_value": [102, 255, 153],
+			"callback": "SetColorOption",
+			"callback_arguments": "PrimFiremode",
+			"parent" : "ammo_toggle"
+		},
+		{
+			"type": "color_select",
+			"id": "secondary_fire_color_select",
+			"title": "HotlineMiamiHudSecFiremodeTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "SecFiremode",
+			"default_value": [102, 255, 255],
+			"callback": "SetColorOption",
+			"callback_arguments": "SecFiremode",
+			"parent" : "ammo_toggle"
+		}
+	]
+}

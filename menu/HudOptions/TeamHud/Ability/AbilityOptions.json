@@ -1,0 +1,79 @@
+{
+	"menu_id": "hmh_hud_ability_menu",
+	"parent_menu": "hmh_hud_menu",
+	"title": "hmh_hud_ability_title",
+	"h" : 500,
+	"items": [
+		{
+			"type": "toggle",
+			"id": "ability_icon_toggle",
+			"title": "ability_icon_title",
+			"description": "ability_icon_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "ability_icon",
+			"value": "ability_icon",
+			"default_value": true,
+			"is_parent" : true
+		},
+		{
+			"type": "color_select",
+			"id": "Ability_icon_color_select",
+			"title": "HotlineMiamiHudAbilityIconTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "Ability_icon_color",
+			"default_value": [102, 255, 255],
+			"callback": "SetColorOption",
+			"callback_arguments": "Ability_icon_color",
+			"parent" : "ability_icon_toggle"
+		},
+		{
+			"type" : "divider",
+			"size" : 8
+		},
+		{
+			"type": "toggle",
+			"id": "armorer_radial_toggle",
+			"title": "armorer_radial_title",
+			"description": "armorer_radial_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "armorer_cooldown_radial",
+			"value": "armorer_cooldown_radial",
+			"default_value": false,
+			"is_parent" : true
+		},
+		{
+			"type": "toggle",
+			"id": "armorer_timer_toggle",
+			"title": "armorer_timer_title",
+			"description": "armorer_timer_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "armorer_cooldown_timer",
+			"value": "armorer_cooldown_timer",
+			"default_value": false,
+			"is_parent" : true,
+			"parent" : "armorer_radial_toggle"
+		},
+		{
+			"type": "color_select",
+			"id": "armorer_timer_color_select",
+			"title": "HotlineMiamiHudArmorerTimerTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "armorer_cooldown_timer_color2",
+			"default_value": [102, 255, 255],
+			"callback": "SetColorOption",
+			"callback_arguments": "armorer_cooldown_timer_color2",
+			"parent" : ["armorer_radial_toggle", "armorer_timer_toggle"]
+		},
+		{
+			"type": "color_select",
+			"id": "armorer_duration_timer_color_select",
+			"title": "HotlineMiamiHudCopycatTimerTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "armorer_duration_timer_color",
+			"default_value": [102, 255, 153],
+			"callback": "SetColorOption",
+			"callback_arguments": "armorer_duration_timer_color",
+			"parent" : ["armorer_radial_toggle", "armorer_timer_toggle"]
+		}
+	]
+}

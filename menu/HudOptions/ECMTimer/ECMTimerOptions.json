@@ -1,0 +1,104 @@
+{
+	"menu_id": "hmh_ecm_timer_menu",
+	"parent_menu": "hmh_hud_options",
+	"title": "hmh_ecm_timer_title",
+	"h" : 500,
+	"items": [
+		{
+			"type": "toggle",
+			"id": "infoboxes_toggle",
+			"title": "hmh_ecm_timer_title",
+			"description": "infoboxes_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "infoboxes",
+			"value": "infoboxes",
+			"default_value": true,
+			"is_parent" : true
+		},
+		{
+			"type": "toggle",
+			"id": "pager_jam_toggle",
+			"title": "pager_jam_title",
+			"description": "pager_jam_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "pager_jam",
+			"value": "pager_jam",
+			"default_value": true,
+			"parent" : "infoboxes_toggle"	
+		},
+		{
+			"type": "divider",
+			"size": 8
+		},
+		{
+			"type": "toggle",
+			"id": "pocket_ecm_toggle",
+			"title": "pocket_ecm_title",
+			"description": "pocket_ecm_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "pocket_ecm",
+			"value": "pocket_ecm",
+			"default_value": true,
+			"parent" : "infoboxes_toggle"	
+		},
+		{
+			"type": "divider",
+			"size": 8
+		},
+		{
+			"type": "color_select",
+			"id": "ecm_text_color_select",
+			"title": "HotlineMiamiHudECMTextTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "ECMText",
+			"default_value": [102, 255, 255],
+			"callback": "SetColorOption",
+			"callback_arguments": "ECMText",
+			"parent" : "infoboxes_toggle"
+					},
+		{
+			"type": "color_select",
+			"id": "ecm_low_color_select",
+			"title": "HotlineMiamiHudEcmLowTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "ecm_low",
+			"default_value": [255, 102, 102],
+			"callback": "SetColorOption",
+			"callback_arguments": "ecm_low",
+			"parent" : "infoboxes_toggle"
+		},
+		{
+			"type": "color_select",
+			"id": "ecm_mid_color_select",
+			"title": "HotlineMiamiHudEcmMidTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "ecm_mid",
+			"default_value": [255, 204, 102],
+			"callback": "SetColorOption",
+			"callback_arguments": "ecm_mid",
+			"parent" : "infoboxes_toggle"
+		},
+		{
+			"type": "color_select",
+			"id": "ecm_icon_color_select",
+			"title": "HotlineMiamiHudECMIconTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "ECMIcon",
+			"default_value": [255, 128, 223],
+			"callback": "SetColorOption",
+			"callback_arguments": "ECMIcon",
+			"parent" : "infoboxes_toggle"
+		},
+		{
+			"type": "toggle",
+			"id": "hide_hudbox_toggle",
+			"title": "hide_hudbox_title",
+			"description": "hide_hudbox_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "hide_hudbox",
+			"value": "hide_hudbox",
+			"default_value": false,
+			"parent" : "infoboxes_toggle"
+		}
+	]
+}

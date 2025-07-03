@@ -1,0 +1,93 @@
+{
+	"menu_id": "hmh_hud_equipment_menu",
+	"parent_menu": "hmh_hud_menu",
+	"title": "hmh_hud_equipment_title",
+	"h" : 500,
+	"items": [
+		{
+			"type": "toggle",
+			"id": "equipment_toggle",
+			"title": "equipment_title",
+			"description": "equipment_desc",
+			"callback": "SetOption",
+			"callback_arguments" : "equipment",
+			"value": "equipment",
+			"default_value": true,
+			"is_parent" : true
+		},
+		{
+			"type": "color_select",
+			"id": "equipment_icon_color_select",
+			"title": "HotlineMiamiHudEquipmentIconTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "EquipmentIcon",
+			"default_value": [255, 128, 223],
+			"callback": "SetColorOption",
+			"callback_arguments": "EquipmentIcon",
+			"parent" : "equipment_toggle"
+		},
+		{
+			"type": "color_select",
+			"id": "equipment_text_color_select",
+			"title": "HotlineMiamiHudEquipmentTextTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "EquipmentText",
+			"default_value": [102, 255, 255],
+			"callback": "SetColorOption",
+			"callback_arguments": "EquipmentText",
+			"parent" : "equipment_toggle"
+		},
+		{
+			"type": "divider",
+			"size": 8
+		},
+		{
+			"type": "color_select",
+			"id": "grenade_icon_color_select",
+			"title": "HotlineMiamiHudGrenadeIconTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "GrenadeIcon",
+			"default_value": [255, 128, 223],
+			"callback": "SetColorOption",
+			"callback_arguments": "GrenadeIcon",
+			"parent" : "equipment_toggle"
+		},
+		{
+			"type": "color_select",
+			"id": "grenade_text_color_select",
+			"title": "HotlineMiamiHudGrenadeTextTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "GrenadeText",
+			"default_value": [102, 255, 255],
+			"callback": "SetColorOption",
+			"callback_arguments": "GrenadeText",
+			"parent" : "equipment_toggle"
+		},
+		{
+			"type": "divider",
+			"size": 8
+		},
+		{
+			"type": "color_select",
+			"id": "cableties_icon_color_select",
+			"title": "HotlineMiamiHudCabletiesIconTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "CabletiesIcon",
+			"default_value": [255, 128, 223],
+			"callback": "SetColorOption",
+			"callback_arguments": "CabletiesIcon",
+			"parent" : "equipment_toggle"
+		},
+		{
+			"type": "color_select",
+			"id": "cableties_icon_color_select",
+			"title": "HotlineMiamiHudCabletiesTextTitleID",
+			"description": "HotlineMiamiHudColorOption",
+			"value": "CabletiesText",
+			"default_value": [102, 255, 255],
+			"callback": "SetColorOption",
+			"callback_arguments": "CabletiesText",
+			"parent" : "equipment_toggle"
+		}
+	]
+}

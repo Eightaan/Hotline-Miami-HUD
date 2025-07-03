@@ -1219,7 +1219,7 @@ function HMHMenu:CreateToggle(params)
 	end
 	local check_bg = toggle_panel:bitmap({
 		name = "check_bg",
-		texture = "guis/textures/pd2_mod_hmh/check_bg",
+		texture = "pd2_mod_hmh/check_bg",
 		x = 2,
 		y = 2,
 		w = 22,
@@ -1228,7 +1228,7 @@ function HMHMenu:CreateToggle(params)
 	})
 	local check = toggle_panel:bitmap({
 		name = "check",
-		texture = "guis/textures/pd2_mod_hmh/check",
+		texture = "pd2_mod_hmh/check",
 		x = 2,
 		y = 2,
 		w = params.value and 22 or 44,
@@ -1679,7 +1679,7 @@ function HMHMenu:CreateInput(params)
 	end
 
 	input_panel:bitmap({
-		texture = "guis/textures/pd2_mod_hmh/hud_corner",
+		texture = "pd2_mod_hmh/hud_corner",
 		name = "left_top",
 		visible = true,
 		layer = 0,
@@ -1692,7 +1692,7 @@ function HMHMenu:CreateInput(params)
 	})
 
 	local left_bottom = input_panel:bitmap({
-		texture = "guis/textures/pd2_mod_hmh/hud_corner",
+		texture = "pd2_mod_hmh/hud_corner",
 		name = "left_bottom",
 		visible = true,
 		layer = 0,
@@ -1708,7 +1708,7 @@ function HMHMenu:CreateInput(params)
 	left_bottom:set_bottom(input_panel:h())
 
 	local right_top = input_panel:bitmap({
-		texture = "guis/textures/pd2_mod_hmh/hud_corner",
+		texture = "pd2_mod_hmh/hud_corner",
 		name = "right_top",
 		visible = true,
 		layer = 0,
@@ -1724,7 +1724,7 @@ function HMHMenu:CreateInput(params)
 	right_top:set_right(input_panel:w())
 
 	local right_bottom = input_panel:bitmap({
-		texture = "guis/textures/pd2_mod_hmh/hud_corner",
+		texture = "pd2_mod_hmh/hud_corner",
 		name = "right_bottom",
 		visible = true,
 		layer = 0,
