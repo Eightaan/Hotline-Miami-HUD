@@ -20,7 +20,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 	end
 
 	Hooks:PostHook(HUDManager, "_setup_player_info_hud_pd2", "hmh_bufflist_setup_player_info_hud_pd2", function(self, ...)
-		self._hud_buff_list = HUDBuffList:new(managers.hud:script(PlayerBase.PLAYER_INFO_HUD_PD2))
+		self._hud_buff_list = HMHBuffList:new(managers.hud:script(PlayerBase.PLAYER_INFO_HUD_PD2))
 	end)
 
 	function HUDManager:update_inspire_timer(buff)
@@ -31,8 +31,8 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 	   self._hud_buff_list:Set_bloodthirst(buff)
 	end
 
-	HUDBuffList = HUDBuffList or class()
-	function HUDBuffList:init()
+	HMHBuffList = HMHBuffList or class()
+	function HMHBuffList:init()
 		if managers.hud ~= nil then
 
 			local Skilltree2 = "guis/textures/pd2/skilltree_2/icons_atlas_2"
@@ -88,7 +88,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		end
 	end
 
-	function HUDBuffList:update_timer_visibility_and_position()
+	function HMHBuffList:update_timer_visibility_and_position()
 		local inspire_visible = HMH:GetOption("inspire")
 		local panel = self._cooldown_panel
 		local timer = self.cooldown_text
@@ -115,7 +115,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		panel:child("inspire_cooldown_icon"):set_h(28 * inspire_timer_scale)
 	end
 
-	function HUDBuffList:update_inspire_timer(duration)
+	function HMHBuffList:update_inspire_timer(duration)
 		local timer = self.cooldown_text
 		local timer_bg = self._inspire_cooldown_timer_bg
 		local icon = self._inspire_cooldown_icon
@@ -146,7 +146,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		end
 	end
 
-	function HUDBuffList:fade_out(buff_type)
+	function HMHBuffList:fade_out(buff_type)
 		local start_time = os.clock()
 		local text, bg, icon
 		local duration
@@ -184,7 +184,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		end
 	end
 
-	function HUDBuffList:update_bloodthirst_position()
+	function HMHBuffList:update_bloodthirst_position()
 		local panel = self._bloodthirst_panel
 		local text = self.bloodthirst_text
 
@@ -202,7 +202,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		panel:child("bloodthirst_icon"):set_h(28 * bloodthirst_scale)
 	end
 
-	function HUDBuffList:Set_bloodthirst(buff)
+	function HMHBuffList:Set_bloodthirst(buff)
 		local bloodthirst_text = self.bloodthirst_text
 		local bloodthirst_icon = self._bloodthirst_icon
 		local bloodthirst_timer_bg = self._bloodthirst_bg

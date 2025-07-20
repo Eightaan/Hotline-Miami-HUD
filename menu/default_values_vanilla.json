@@ -392,15 +392,15 @@
 	},
 	"InspireTimer" : 
 	{
-		"r" : 255,
+		"r" : 102,
 		"g" : 255,
 		"b" : 255
 	},
 	"BloodthirstIcon" :
 	{
 		"r" : 255,
-		"g" : 128,
-		"b" : 223
+		"g" : 255,
+		"b" : 255
 	},
 	"BloodthirstText" :
 	{
