@@ -128,7 +128,7 @@ function HMH:LoadTextures()
 		end
 	end
 
-	-- Load Mouse Pointer
+	--Load Mouse Pointer
 	local mouse_pointer = HMH:GetOption("mouse_pointer")
 	local orig_mouse_pointer_path = HMH._path .. "guis/textures/mouse_pointer.texture"
 	local mouse_pointer_path = HMH._path .. "assets/pd2_mod_hmh/"
