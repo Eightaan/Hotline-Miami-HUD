@@ -4,7 +4,7 @@
 	"timer_y" : 43,
 	"timer_scale" : 1,
 	"no_menu_textures" : true,
-	"team_bg" : true
+	"team_bg" : true,
 	"mod_overrides" : true,
 	"infoboxes" : true,
 	"mouse_pointer" : 2,

@@ -128,20 +128,22 @@ function HMH:LoadTextures()
 		end
 	end
 
-	--Load Mouse Pointer
-	local mouse_pointer	= HMH:GetOption("mouse_pointer")
+	-- Load Mouse Pointer
+	local mouse_pointer = HMH:GetOption("mouse_pointer")
 	local orig_mouse_pointer_path = HMH._path .. "guis/textures/mouse_pointer.texture"
 	local mouse_pointer_path = HMH._path .. "assets/pd2_mod_hmh/"
+
 	local mouse_pointer_paths = {
 		[2] = "fingerless_gloves.texture",
 		[3] = "jacket_pointer.texture",
 		[4] = "pink_pointer.texture",
 	}
+	local mouse_pointer_name = mouse_pointer_paths[mouse_pointer] or "mouse_pointer.texture"
+	local pointer_texture_path = mouse_pointer_path .. mouse_pointer_name
 
-	local mouse_pointer_name = mouse_pointer_paths[mouse_pointer_option] or "mouse_pointer.texture"
 	self:LoadTextureEntry(
-		"guis/textures/mouse_pointer", 
-		mouse_pointer_path .. mouse_pointer_name or orig_mouse_pointer_path
+		"guis/textures/mouse_pointer",
+		pointer_texture_path
 	)
 
 	--Load Menu Smoke
