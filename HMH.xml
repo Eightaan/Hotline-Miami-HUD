@@ -131,9 +131,8 @@
 						<post :script_path="InteractionPanel.lua"/>
 					</group>
 
-					<group :hook_id="beings/player/">
-						<post :hook_id="playerdamage"    :script_path="TeamPanel.lua"/>
-						<post :hook_id="playerinventory" :script_path="ECMTimer.lua"/>
+					<group :hook_id="beings/player/playerinventory">
+						<post :script_path="ECMTimer.lua"/>
 					</group>
 			</group>
 
