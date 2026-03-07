@@ -64,10 +64,6 @@
   "inventory_amount_title": "Exibir Quantidade de Equipamentos",
   "inventory_amount_desc": "Exibe a quantidade de deployables/granadas no inventário.",
 
-  "profile_menu_title": "Menu de Perfil Aprimorado",
-  "profile_menu_desc": "Substitui o seletor de perfil padrão.",
-  "hmh_switch_profile": "Trocar Perfil",
-
   "custom_menu_background_title": "Fundo do Menu",
   "custom_menu_background_desc": "Escolha qual fundo usar.\nApós alterar, é necessário atualizar as texturas para que as mudanças tenham efeito.",
   "default_background": "Padrão",

@@ -26,7 +26,6 @@
 				<post :hook_id="preplanningmanager"  		:script_path="PrePlanManager.lua"/>
 				<post :hook_id="statisticsmanager"   		:script_path="KillCounter.lua"/>
 				<post :hook_id="systemmenumanager"   		:script_path="InputDialog.lua"/>
-				<post :hook_id="multiprofilemanager" 		:script_path="ProfileMenu.lua"/>
 				<post :hook_id="objectinteractionmanager"	:script_path="LootCounter.lua"/>
 				<post :hook_id="trademanager"      			:script_path="TradeDelay.lua"/>
 				<post :hook_id="moneymanager"        		:script_path="TradeDelay.lua"/>
@@ -36,7 +35,6 @@
 			
 				<group :hook_id="menumanager">
 					<post :script_path="PrePlanManager.lua"/>
-					<post :script_path="ProfileMenu.lua"/>
 					<post :script_path="MenuTweak.lua"/>
 					<post :script_path="ModMenu.lua" />
 					<post script_path="HMHMenu.lua" />
@@ -76,7 +74,6 @@
 					<post :hook_id="contractboxgui"                 :script_path="EnhancedCrewLoadout.lua"/>
 					<post :hook_id="crimespreedetailsmenucomponent" :script_path="EnhancedCrewLoadout.lua"/>
 					<post :hook_id="specializationboxgui"           :script_path="InputDialog.lua"/>
-					<post :hook_id="multiprofileitemgui"            :script_path="ProfileMenu.lua"/>
 					<post :hook_id="stageendscreengui"              :script_path="MenuTweak.lua"/>
 					<post :hook_id="lootdropscreengui"              :script_path="MenuTweak.lua"/>
 					<post :hook_id="blackmarketgui"                 :script_path="MenuTweak.lua"/>
@@ -84,10 +81,8 @@
 					<post :hook_id="menuscenemanager"               :script_path="MenuTweak.lua"/>
 					<group :hook_id="missionbriefinggui">
 						<post :script_path="EnhancedCrewLoadout.lua"/>
-						<post :script_path="ProfileMenu.lua"/>
 					</group>
 					<group :hook_id="renderers/menunodeskillswitchgui">
-						<post :script_path="ProfileMenu.lua"/>
 						<post :script_path="MenuTweak.lua"/>
 					</group>
 				</group>

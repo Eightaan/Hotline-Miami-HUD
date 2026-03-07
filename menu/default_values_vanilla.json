@@ -423,7 +423,6 @@
 	"crew_loadout" : true, 
 	"crew_loadout_briefing" : true, 
 	"crew_loadout_tab" : true, 
-	"profile_menu" : true, 
 	"carry_value" : false, 
 	"headshot_texture" : 2, 
 	"waypoint_alpha" : 1, 
