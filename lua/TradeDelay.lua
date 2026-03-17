@@ -28,7 +28,9 @@ if RequiredScript == "lib/managers/moneymanager" then
 		self._trade_delay = 5
 	end
 elseif RequiredScript == "lib/managers/trademanager" then
-	Hooks:PostHook(TradeManager, 'on_player_criminal_death', "HMH_TradeManager_on_player_criminal_death", function(...)
-		managers.money:ResetCivilianKills()
+	Hooks:PostHook(TradeManager, 'on_player_criminal_death', "EIVHUD_on_player_criminal_death", function(self, criminal_name, ...)
+		if criminal_name == managers.criminals:local_character_name() then
+			managers.money:ResetCivilianKills()
+		end
 	end)
 end
