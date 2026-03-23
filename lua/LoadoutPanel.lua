@@ -1165,7 +1165,7 @@ function LoadoutWeaponItem:update_perks(outfit)
 
 		for perk in pairs(perks or {}) do
 			if perk ~= "bonus" then
-				local texture = "guis/textures/pd2/blackmarket/inv_mod_" .. perk
+				local texture = "guis/textures/pd2/blackmarket/inv_mod_" .. tostring(perk)
 				if DB:has(Idstring("texture"), texture) then
 					local perk_object = self._panel:bitmap({
 						name = "perk_" .. tostring(perk),
