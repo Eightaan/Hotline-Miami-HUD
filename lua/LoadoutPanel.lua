@@ -1106,7 +1106,7 @@ function LoadoutWeaponItem:update_weapon(outfit)
 			self:set_image(texture)
 			self:set_rarity(rarity)
 
-				return true
+			return true
 		end
 	else
 		self:set_enabled("outfit", false)
@@ -1163,12 +1163,12 @@ function LoadoutWeaponItem:update_perks(outfit)
 		self._perks = {}
 		local perk_size = math_min(self._panel:h() / 4, self._panel:w() / #self._perks, 16)
 
-		for perk in pairs(perks or {}) do
-			if perk ~= "bonus" then
-				local texture = "guis/textures/pd2/blackmarket/inv_mod_" .. tostring(perk)
+		for perk_ext in pairs(perks or {}) do
+			if type(perk_ext) == "string" and perk_ext ~= "bonus" then
+				local texture = "guis/textures/pd2/blackmarket/inv_mod_" .. perk_ext
 				if DB:has(Idstring("texture"), texture) then
 					local perk_object = self._panel:bitmap({
-						name = "perk_" .. tostring(perk),
+						name = "perk_" .. perk_ext,
 						texture = texture,
 						align = "center",
 						valign = "scale",

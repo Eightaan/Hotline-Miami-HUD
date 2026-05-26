@@ -3,19 +3,23 @@ local math_sin = math.sin
 local math_lerp = math.lerp
 
 if RequiredScript == "lib/managers/hudmanagerpd2" then
-	HUDECMCounter = HUDECMCounter or class()
-	function HUDECMCounter:init(hud)
+	EcmTimer = EcmTimer or class()
+	function EcmTimer:init(hud)
 		self._ecm_timer = 0
 		self._hud_panel = hud.panel
 		self._ecm_panel = self._hud_panel:panel({
 			name = "ecm_counter_panel",
 			alpha = 1,
 			visible = false,
+			y = 50,
 			w = 200,
 			h = 200
 		})
-		self._ecm_panel:set_top(50)
-		self._ecm_panel:set_right(self._hud_panel:w() + 11)
+		self._hostages_panel = self._hud_panel:child("hostages_panel")
+		if self._hostages_panel and alive(self._hostages_panel) then
+			self._ecm_panel:set_top(self._hostages_panel:bottom() + 5)
+		end
+        self._ecm_panel:set_right(self._hud_panel:w() + 11)
 
 		local ecm_box = HUDBGBox_create(self._ecm_panel, { w = 38, h = 38, },  {})
 		if HMH:GetOption("assault") or HMH:GetOption("hide_hudbox") then
@@ -41,7 +45,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		local ecm_icon = self._ecm_panel:bitmap({
 			name = "ecm_icon",
 			texture = "guis/textures/pd2/skilltree/icons_atlas",
-			texture_rect = { 1 * 64, 4 * 64, 64, 64 },
+			texture_rect = { 64, 4 * 64, 64, 64 },
 			valign = "top",
 			color = HMH:GetColor("ECMIcon"),
 			layer = 1,
@@ -53,41 +57,39 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		ecm_box:set_right(ecm_icon:left())
 	end
 	
-	function HUDECMCounter:update()
-		local current_time = TimerManager:game():time()
-		local t = self._ecm_timer - current_time
-		if managers.groupai and managers.groupai:state():whisper_mode() then
-			self._ecm_panel:set_visible(t > 0)
-			if t > 0.1 then
-				local t_format = t < 10 and "%.1fs" or "%.fs"
-				self._text:set_text(string.format(t_format, t))
-				if t < 3 then
-					self._text:set_color(HMH:GetColor("ecm_low"))
-					self._text:animate(function(o)
-						over(1 , function(p)
-							t = t + coroutine.yield()
-							local font = tweak_data.hud_corner.numhostages_size * 0.9
-							local n = 1 - math_sin(t * 700)
-							self._text:set_font_size( math_lerp(font , (font) * 1.05, n))
-						end)
-					end)
-				elseif t < 9.9 then
-					self._text:stop()
-					self._text:set_color(HMH:GetColor("ecm_mid"))
-				else
-					self._text:stop()
-					self._text:set_color(HMH:GetColor("ECMText"))
-				end
-			end
-		else
-			self._ecm_panel:set_visible(false)
+	function EcmTimer:start_ecm_timer(end_time)
+		if not (managers.groupai and managers.groupai:state():whisper_mode()) then
+			return
 		end
+
+		self._ecm_timer = end_time
+		self._text:stop()
+		self._text:animate(function(o)
+			while alive(o) do
+				local t = self._ecm_timer - TimerManager:game():time()
+				local is_stealth = managers.groupai and managers.groupai:state():whisper_mode()
+
+				if t <= 0 then break end
+				self._ecm_panel:set_visible(t > 0.1 and is_stealth)
+				o:set_color(HMH:GetColor("ECMText"))
+				o:set_text(string.format(t < 10 and "%.1fs" or "%.0fs", t))
+
+				if t < 3 then
+					o:set_color(HMH:GetColor("ecm_low"))
+					local pulse = 1 - math.sin(t * 700)
+					local font = tweak_data.hud_corner.numhostages_size * 0.9
+					o:set_font_size(math.lerp(font, font * 1.05, pulse))
+				elseif t < 9.9 then
+					o:set_color(HMH:GetColor("ecm_mid"))
+				end
+				coroutine.yield()
+			end
+		end)
 	end
 
 	--Init
 	Hooks:PostHook(HUDManager, "_setup_player_info_hud_pd2", "HMH_ECM_setup_player_info_hud_pd2", function(self, ...)
-		self._hud_ecm_counter = HUDECMCounter:new(managers.hud:script(PlayerBase.PLAYER_INFO_HUD_PD2))
-		self:add_updator("HMH_ECM_UPDATOR", callback(self._hud_ecm_counter, self._hud_ecm_counter, "update"))
+		self._hud_ecm_counter = EcmTimer:new(managers.hud:script(PlayerBase.PLAYER_INFO_HUD_PD2))
 	end)
 
 elseif RequiredScript == "lib/units/equipment/ecm_jammer/ecmjammerbase" then
@@ -135,7 +137,8 @@ elseif RequiredScript == "lib/units/equipment/ecm_jammer/ecmjammerbase" then
 				end
 			end
 			if jam_pagers or not HMH:GetOption("pager_jam") then
-				managers.hud._hud_ecm_counter._ecm_timer = ecm_timer
+				local end_time = TimerManager:game():time() + battery_life
+				managers.hud._hud_ecm_counter:start_ecm_timer(end_time)
 			else
 				return
 			end
@@ -145,9 +148,11 @@ elseif RequiredScript == "lib/units/equipment/ecm_jammer/ecmjammerbase" then
 elseif RequiredScript == "lib/units/beings/player/playerinventory" then
 	-- Pocket ECM
 	Hooks:PostHook(PlayerInventory, "_start_jammer_effect", "HMH_PlayerInventory_start_jammer_effect", function(self, end_time, ...)
-		local ecm_timer = end_time or TimerManager:game():time() + self:get_jammer_time()
-		if HMH:GetOption("infoboxes") and HMH:GetOption("pocket_ecm") and ecm_timer > managers.hud._hud_ecm_counter._ecm_timer then
-			managers.hud._hud_ecm_counter._ecm_timer = ecm_timer
+		if HMH:GetOption("infoboxes") and HMH:GetOption("pocket_ecm") then
+			local ecm_end_time = end_time or TimerManager:game():time() + self:get_jammer_time()
+			if managers.hud and managers.hud._hud_ecm_counter and ecm_end_time > managers.hud._hud_ecm_counter._ecm_timer then
+				managers.hud._hud_ecm_counter:start_ecm_timer(ecm_end_time)
+			end
 		end
 	end)
 end

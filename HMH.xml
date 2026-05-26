@@ -73,6 +73,7 @@
 				<group :hook_id="menu/">
 					<post :hook_id="contractboxgui"                 :script_path="EnhancedCrewLoadout.lua"/>
 					<post :hook_id="crimespreedetailsmenucomponent" :script_path="EnhancedCrewLoadout.lua"/>
+					<post :hook_id="preplanningmapgui"  			:script_path="PrePlanManager.lua"/>
 					<post :hook_id="specializationboxgui"           :script_path="InputDialog.lua"/>
 					<post :hook_id="stageendscreengui"              :script_path="MenuTweak.lua"/>
 					<post :hook_id="lootdropscreengui"              :script_path="MenuTweak.lua"/>
