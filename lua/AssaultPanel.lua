@@ -344,7 +344,6 @@ if RequiredScript == "lib/managers/hud/hudassaultcorner" then
 	end)
 
 	Hooks:OverrideFunction(HUDAssaultCorner, "hide_casing", function(self)
-		DelayedCalls:Add("EIVHUD_CasingDelay", 10, function()
 		local icon_casingbox = self._hud_panel:child("casing_panel"):child("icon_casingbox")
 		icon_casingbox:stop()
 		local function close_done()
@@ -354,7 +353,6 @@ if RequiredScript == "lib/managers/hud/hudassaultcorner" then
 		self._casing_bg_box:stop()
 		self._casing_bg_box:animate(callback(nil, _G, "HUDBGBox_animate_close_left"), close_done)
 		self._casing = false
-		end)
 	end)
 
 	Hooks:OverrideFunction(HUDAssaultCorner, "_animate_show_casing", function(self, casing_panel, delay_time) set_alpha(casing_panel, 1) end)
