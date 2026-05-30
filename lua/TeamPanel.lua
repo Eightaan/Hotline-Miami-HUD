@@ -659,10 +659,6 @@ if RequiredScript == "lib/managers/hud/hudteammate" then
 						ammo_clip:set_color(color_clip)
 						ammo_clip:set_range_color(0, string.len(zero), color_clip:with_alpha(0.5))
 					end)
-					over(1 , function(p)
-						local n = 1 - math_sin((p / 2 ) * 180)
-						ammo_clip:set_font_size(math_lerp(24, 24 + 4, n))
-					end)
 				end)
 			end
 			self._last_ammo[type] = current_left
