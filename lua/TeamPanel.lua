@@ -613,7 +613,7 @@ if RequiredScript == "lib/managers/hud/hudteammate" then
 			end
 
 			local ammo_gain = current_left - (self._last_ammo[type] or current_left)
-			if ammo_gain >= 2 then
+			if ammo_gain >= 2 and self._main_player then
 				ammo_total:animate(function(o)
 					local s = self._last_ammo[type]
 					local e = current_left
@@ -640,7 +640,7 @@ if RequiredScript == "lib/managers/hud/hudteammate" then
 			end
 
 			local clip_gain = current_clip - (self._last_clip[type] or current_clip)
-			if clip_gain >= 2 and not self._infinite_ammo then
+			if clip_gain >= 2 and self._main_player and not self._infinite_ammo then
 				ammo_clip:animate(function(o)
 					local s = self._last_clip[type]
 					local e = current_clip
