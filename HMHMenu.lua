@@ -2161,6 +2161,6 @@ function HMHMenu:SetColorOption(color, option)
 	c.b = color.blue
 end
 
-function HMHMenu:RefreshTextures()
-	managers.viewport._render_settings_change_map = {resolution = RenderSettings.resolution}
-end
+-- function HMHMenu:RefreshTextures()
+	-- managers.viewport._render_settings_change_map = {resolution = RenderSettings.resolution}
+-- end

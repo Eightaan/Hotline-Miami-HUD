@@ -5,7 +5,7 @@ if string.lower(RequiredScript) == "lib/managers/menumanager" then
 	Hooks:OverrideFunction(MenuCallbackHandler, "get_latest_dlc_locked", function(self) return false end)
 
 	Hooks:OverrideFunction(MenuManager, "toggle_chatinput", function(self)
-		if Application:editor() or SystemInfo:platform() ~= Idstring("WIN32") or self:active_menu() or not managers.network:session() then
+		if Application:editor() or IS_CONSOLE or self:active_menu() or not managers.network:session() then
 			return
 		end
 		if managers.hud then

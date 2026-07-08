@@ -15,17 +15,6 @@
 			"size": 8
 		},
 		{
-			"type": "button",
-			"id": "refresh_id",
-			"title": "refresh_title",
-			"description": "refresh_desc",
-			"callback" : "RefreshTextures"
-		},
-		{
-			"type": "divider",
-			"size": 8
-		},
-		{
 			"type": "toggle",
 			"id": "no_menu_textures_toggle",
 			"title": "no_menu_textures_title",

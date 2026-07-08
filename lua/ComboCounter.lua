@@ -9,6 +9,7 @@ local math_sin = math.sin
 local math_max = math.max
 local math_abs = math.abs
 local math_lerp = math.lerp
+local size_font = 130
 
 if RequiredScript == "lib/managers/hudmanagerpd2" then
 	Hooks:PostHook(HUDManager, "_setup_player_info_hud_pd2", "HMH_Combo_setup_player_info_hud_pd2", function(self, ...)
@@ -49,10 +50,10 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 			layer = 2,
 			color = Color("e2087c"),
 			text = "0",
-			font_size = 96,
+			font_size = size_font,
 			font = font,
 			x = 6,
-			y = 0,
+			y = 9,
 			align = "left",
 			vertical = "top"
 		})
@@ -62,10 +63,10 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 			layer = 1,
 			color = Color.black,
 			text="0",
-			font_size = 96,
+			font_size = size_font,
 			font = font,
 			x = 8,
-			y = 1,
+			y = 10,
 			align = "left",
 			vertical = "top"
 		})
@@ -96,9 +97,9 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 			Combo_text:animate(callback(self, self, "close_anim"))
 			Combo_text_bg:animate(callback(self, self, "close_anim"))
 		end
-		if combo .. "x" ~= Combo_text:text() and combo ~= 0 then
-			Combo_text:set_text(combo.."x")
-			Combo_text_bg:set_text(combo.."x")
+		if combo .. "X" ~= Combo_text:text() and combo ~= 0 then
+			Combo_text:set_text(combo.."X")
+			Combo_text_bg:set_text(combo.."X")
 			if combo == 2 then
 				Combo_text:animate(callback(self, self, "open_anim"))
 				Combo_text_bg:animate(callback(self, self, "open_anim"))
@@ -166,8 +167,8 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		local Combo_text_bg = self._combo_panel:child("Combo_text_bg")
 		over(0.4 , function(p)
 			local n = 1 - math_sin((p / 2 ) * 180)
-			Combo_text:set_font_size(math_lerp(96, 96 + 125, n))
-			Combo_text_bg:set_font_size(math_lerp(96, 96 + 125, n))
+			Combo_text:set_font_size(math_lerp(size_font, size_font + 125, n))
+			Combo_text_bg:set_font_size(math_lerp(size_font, size_font + 125, n))
 		end)
 	end
 
