@@ -76,7 +76,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 			layer = 0,
 			texture = "pd2_mod_hmh/hmcc_bg",
 			x = 8,
-			w = 200,
+			w = 150,
 			h = 64,
 			vertical = "top"
 		})
@@ -89,6 +89,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		local Combo_text = self._combo_panel:child("Combo_text")
 		local Combo_text_bg = self._combo_panel:child("Combo_text_bg")
 		local Combo_bg = self._combo_panel:child("Combo_bg")
+		local combo_x = combo > 9 and "X" or "x"
 		if Utils:IsInHeist() and combo > 1  then
 			should_be_open = true
 			self._combo_panel:set_visible(true)  
@@ -97,18 +98,18 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 			Combo_text:animate(callback(self, self, "close_anim"))
 			Combo_text_bg:animate(callback(self, self, "close_anim"))
 		end
-		if combo .. "X" ~= Combo_text:text() and combo ~= 0 then
-			Combo_text:set_text(combo.."X")
-			Combo_text_bg:set_text(combo.."X")
+		if combo .. combo_x ~= Combo_text:text() and combo ~= 0 then
+			Combo_text:set_text(combo..combo_x)
+			Combo_text_bg:set_text(combo..combo_x)
 			if combo == 2 then
 				Combo_text:animate(callback(self, self, "open_anim"))
 				Combo_text_bg:animate(callback(self, self, "open_anim"))
 			end
 			if combo > 9 then
-				Combo_bg:set_w(240)
+				Combo_bg:set_w(180)
 			end
 			if combo > 99 then
-				Combo_bg:set_w(310)
+				Combo_bg:set_w(200)
 			end
 		end
 	end
@@ -188,7 +189,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		end
 	end
 
-	local time_buffer = 3
+	local time_buffer = 300
 	function HUDComboCounter:update(t, dt)
 		self._t = t
 		if (self._kill_time - self._last_kill_time) > time_buffer then
