@@ -189,7 +189,7 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		end
 	end
 
-	local time_buffer = 300
+	local time_buffer = 3
 	function HUDComboCounter:update(t, dt)
 		self._t = t
 		if (self._kill_time - self._last_kill_time) > time_buffer then
