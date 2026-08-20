@@ -565,14 +565,22 @@ function LoadoutImageItem:set_color(color)
 end
 
 function LoadoutImageItem:set_image(texture, text_rect)
+	if alive(self._icon) then
+		self._panel:remove(self._icon)
+		self._icon = nil
+	end
 	if texture then
+		local fix = {
+			name = self._name .. "_icon",
+			visible = true
+		}
 		if text_rect then
-			self._icon:set_image(texture, unpack(text_rect))
+			fix.texture_rect = text_rect
 		else
-			self._icon:set_image(texture)
+			fix.texture = texture
 		end
 
-		self._icon:set_visible(true)
+		self._icon = self._panel:bitmap(fix)
 	else
 		self._icon:set_visible(false)
 	end
