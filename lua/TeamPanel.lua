@@ -109,33 +109,48 @@ if RequiredScript == "lib/managers/hud/hudteammate" then
 	end
 
 	function HUDTeammate:_set_infinite_ammo(state)
+		if self._infinite_ammo == state then
+			return
+		end
+
 		self._infinite_ammo = state
-		if self._prim_ammo then
-			if self._infinite_ammo then
-				local hudinfo = managers.hud:script(PlayerBase.PLAYER_INFO_HUD_PD2)
-				local pammo_clip = 	self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("ammo_clip")
-				local sammo_clip = self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):child("ammo_clip")
 
-				self._prim_ammo:set_visible(true)
-				self._sec_ammo:set_visible(true)
-				self._prim_ammo:animate(hudinfo.flash_icon, 4000000000)
-				self._sec_ammo:animate(hudinfo.flash_icon, 4000000000)
+		if not self._prim_ammo then
+			return
+		end
 
-				pammo_clip:set_color(Color.white)
-				pammo_clip:set_text("8")
-				pammo_clip:set_rotation(90)
-				if hud_ammo then
-					pammo_clip:set_font_size(30)
-					sammo_clip:set_font_size(30)
-				end
+		local pammo_clip = 	self._player_panel:child("weapons_panel"):child("primary_weapon_panel"):child("ammo_clip")
+		local sammo_clip = self._player_panel:child("weapons_panel"):child("secondary_weapon_panel"):child("ammo_clip")
+		if state then
+			local hudinfo = managers.hud:script(PlayerBase.PLAYER_INFO_HUD_PD2)
 
-				sammo_clip:set_color(Color.white)
-				sammo_clip:set_text("8")
-				sammo_clip:set_rotation(90)
-			else
-				self._prim_ammo:set_visible(false)
-				self._sec_ammo:set_visible(false)
+			self._prim_ammo:stop()
+			self._sec_ammo:stop()
+
+			self._prim_ammo:set_visible(true)
+			self._sec_ammo:set_visible(true)
+			
+			self._prim_ammo:animate(hudinfo.flash_icon, 4000000000)
+			self._sec_ammo:animate(hudinfo.flash_icon, 4000000000)
+
+			pammo_clip:set_color(Color.white)
+			pammo_clip:set_text("8")
+			pammo_clip:set_rotation(90)
+
+			sammo_clip:set_color(Color.white)
+			sammo_clip:set_text("8")
+			sammo_clip:set_rotation(90)
+
+			if hud_ammo then
+				pammo_clip:set_font_size(30)
+				sammo_clip:set_font_size(30)
 			end
+		else
+			self._prim_ammo:stop()
+			self._sec_ammo:stop()
+
+			self._prim_ammo:set_visible(false)
+			self._sec_ammo:set_visible(false)
 		end
 	end
 
