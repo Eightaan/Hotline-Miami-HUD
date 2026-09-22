@@ -8,19 +8,21 @@
 			"id": "combo_toggle",
 			"title": "combo_title",
 			"description": "combo_desc",
-			"callback": "SetOption",
-			"callback_arguments": "combo",
+			"callback": "hmh_set_item_value",
 			"value": "combo",
-			"default_value": true,
-			"is_parent" : true
+			"children": [
+                "panel_position_slider",
+                "combo_kill_anim_toggle"
+				"combo_kill_flash_toggle",
+            ],
+			"default_value": true
 		},
 		{
 			"type": "slider",
 			"id": "panel_position_slider",
 			"title": "panel_position_title",
 			"description": "panel_position_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "panel_position",
+			"callback": "hmh_set_item_value",
 			"value": "panel_position",
 			"max": 500,
 			"min": 0,
@@ -36,8 +38,7 @@
 			"id": "combo_kill_anim_toggle",
 			"title": "combo_kill_anim_title",
 			"description": "combo_kill_anim_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "combo_kill_anim",
+			"callback": "hmh_set_item_value",
 			"value": "combo_kill_anim",
 			"default_value": true,
 			"parent" : "combo_toggle"
@@ -47,8 +48,7 @@
 			"id": "combo_kill_flash_toggle",
 			"title": "combo_kill_flash_title",
 			"description": "combo_kill_flash_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "combo_kill_flash",
+			"callback": "hmh_set_item_value",
 			"value": "combo_kill_flash",
 			"default_value": false,
 			"parent" : "combo_toggle"

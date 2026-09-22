@@ -8,8 +8,7 @@
 			"id": "health_texture_multiple_choice",
 			"title": "health_texture_title",
 			"description": "health_texture_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "health_texture",
+			"callback": "hmh_set_item_value",
 			"value": "health_texture",
 			"items" : [
 				"default_health",
@@ -62,8 +61,7 @@
 			"id": "team_bg_toggle",
 			"title": "team_bg_title",
 			"description": "team_bg_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "team_bg",
+			"callback": "hmh_set_item_value",
 			"value": "team_bg",
 			"default_value": true
 		},
@@ -72,8 +70,7 @@
 			"id": "ping_toggle",
 			"title": "ping_title",
 			"description": "ping_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "ping",
+			"callback": "hmh_set_item_value",
 			"value": "ping",
 			"default_value": false
 		},
@@ -82,8 +79,7 @@
 			"id": "stamina_toggle",
 			"title": "stamina_title",
 			"description": "stamina_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "stamina",
+			"callback": "hmh_set_item_value",
 			"value": "stamina",
 			"default_value": false
 		},
@@ -92,8 +88,7 @@
 			"id": "interact_info_toggle",
 			"title": "interact_info_title",
 			"description": "interact_info_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "interact_info",
+			"callback": "hmh_set_item_value",
 			"value": "interact_info",
 			"default_value": true
 		},
@@ -102,8 +97,7 @@
 			"id": "stop_ai_toggle",
 			"title": "stop_ai_title",
 			"description": "stop_ai_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "stop_ai",
+			"callback": "hmh_set_item_value",
 			"value": "stop_ai",
 			"default_value": true
 		},
@@ -116,8 +110,7 @@
 			"id": "colored_downs_toggle",
 			"title": "colored_downs_title",
 			"description": "colored_downs_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "colored_downs",
+			"callback": "hmh_set_item_value",
 			"value": "colored_downs",
 			"default_value": true
 		},
@@ -126,8 +119,7 @@
 			"id": "color_condition_toggle",
 			"title": "color_condition_title",
 			"description": "color_condition_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "color_condition",
+			"callback": "hmh_set_item_value",
 			"value": "color_condition",
 			"default_value": true
 		},
@@ -136,8 +128,7 @@
 			"id": "color_bag_toggle",
 			"title": "color_bag_title",
 			"description": "color_bag_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "color_bag",
+			"callback": "hmh_set_item_value",
 			"value": "color_bag",
 			"default_value": true
 		},
@@ -146,8 +137,7 @@
 			"id": "pickups_toggle",
 			"title": "pickups_title",
 			"description": "pickups_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "pickups",
+			"callback": "hmh_set_item_value",
 			"value": "pickups",
 			"default_value": true
 		},
@@ -156,8 +146,7 @@
 			"id": "promt_toggle",
 			"title": "promt_title",
 			"description": "promt_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "promt",
+			"callback": "hmh_set_item_value",
 			"value": "promt",
 			"default_value": true
 		}

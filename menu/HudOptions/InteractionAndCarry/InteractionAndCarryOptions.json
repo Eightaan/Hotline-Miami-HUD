@@ -4,16 +4,11 @@
 	"title": "hmh_interact_and_carry_title",
 	"items": [
 		{
-			"type" : "label",
-			"title" : "hmh_interact_panel_text"
-		},
-		{
 			"type": "multiple_choice",
 			"id": "interact_texture_multiple_choice",
 			"title": "interact_texture_title",
 			"description": "interact_texture_desc",
-			"callback": "SetOption",
-			"callback_arguments": "interact_texture",
+			"callback": "hmh_set_item_value",
 			"value": "interact_texture",
 			"items" : [
 				"default_interact",
@@ -32,8 +27,7 @@
 			"id": "interact_icons_toggle",
 			"title": "interact_icons_title",
 			"description": "interact_icons_desc",
-			"callback": "SetOption",
-			"callback_arguments": "interact_icons",
+			"callback": "hmh_set_item_value",
 			"value": "interact_icons",
 			"default_value": true
 		},
@@ -42,14 +36,16 @@
 			"size" : 8
 		},
 		{
-			"type": "color_select",
+			"type": "color",
 			"id": "interaction_outline_color_select",
 			"title": "HotlineMiamiHudInteractionOutlineTitleID",
 			"description": "HotlineMiamiHudColorOption",
 			"value": "interactcolor",
-			"default_value": [255, 127, 0],
-			"callback": "SetColorOption",
-			"callback_arguments": "interactcolor"
+			"default_value": {
+                "r": 255,
+                "g": 127,
+                "b": 0
+            }
 		},
 		{
 			"type" : "divider",
@@ -60,11 +56,13 @@
 			"id": "interact_toggle",
 			"title": "interact_title",
 			"description": "interact_desc",
-			"callback": "SetOption",
-			"callback_arguments": "interact",
+			"callback": "hmh_set_item_value",
 			"value": "interact",
-			"default_value": true,
-			"is_parent" : true
+			"children": [
+                "interact_text_slider",
+                "interaction_color_select"
+            ],
+			"default_value": true
 		},
 		{
 			"type" : "divider",
@@ -75,8 +73,7 @@
 			"id": "interact_text_slider",
 			"title": "interact_text_title",
 			"description": "interact_text_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "InteractAlpha",
+			"callback": "hmh_set_item_value",
 			"parent" : "interact_toggle",
 			"value": "InteractAlpha",
 			"max": 1,
@@ -85,15 +82,17 @@
 			"default_value": 1
 		},
 		{
-			"type": "color_select",
+			"type": "color",
 			"id": "interaction_color_select",
 			"title": "HotlineMiamiHudInteractionTitleID",
 			"description": "HotlineMiamiHudColorOption",
 			"value": "Interaction",
-			"default_value": [255, 204, 102],
-			"callback": "SetColorOption",
-			"callback_arguments": "Interaction",
-			"parent" : "interact_toggle"
+			"default_value": {
+                "r": 255,
+                "g": 204,
+                "b": 102
+            },
+			"parent" : "interact_toggle",
 		},
 		{
 			"type": "divider",
@@ -104,8 +103,7 @@
 			"id": "stealth_c4_toggle",
 			"title": "stealth_c4_title",
 			"description": "stealth_c4_desc",
-			"callback": "SetOption",
-			"callback_arguments": "stealth_c4",
+			"callback": "hmh_set_item_value",
 			"value": "stealth_c4",
 			"default_value": false
 		},
@@ -114,28 +112,26 @@
 			"size" : 45
 		},
 		{
-			"type" : "label",
-			"parent" : "carry_toggle",
-			"title" : "hmh_carry_panel_text"
-		},
-		{
 			"type": "toggle",
 			"id": "carry_toggle",
 			"title": "carry_title",
 			"description": "carry_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "carry",
+			"callback": "hmh_set_item_value",
 			"value": "carry",
-			"default_value": true,
-			"is_parent" : true
+			"children": [
+                "carry_text_slider",
+                "colored_carry_text_toggle",
+				"animate_text_toggle",
+				"carry_value_toggle"
+            ],
+			"default_value": true
 		},
 		{
 			"type": "slider",
 			"id": "carry_text_slider",
 			"title": "carry_text_title",
 			"description": "carry_text_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "CarryAlpha",
+			"callback": "hmh_set_item_value",
 			"parent" : "carry_toggle",
 			"value": "CarryAlpha",
 			"max": 1,
@@ -152,8 +148,7 @@
 			"id": "colored_carry_text_toggle",
 			"title": "colored_carry_text_title",
 			"description": "colored_carry_text_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "colored_carry_text",
+			"callback": "hmh_set_item_value",
 			"value": "colored_carry_text",
 			"default_value": true,
 			"parent" : "carry_toggle"
@@ -163,8 +158,7 @@
 			"id": "animate_text_toggle",
 			"title": "animate_text_title",
 			"description": "animate_text_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "animate_text",
+			"callback": "hmh_set_item_value",
 			"value": "animate_text",
 			"default_value": true,
 			"parent" : "carry_toggle"
@@ -174,8 +168,7 @@
 			"id": "carry_value_toggle",
 			"title": "carry_value_title",
 			"description": "carry_value_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "carry_value",
+			"callback": "hmh_set_item_value",
 			"value": "carry_value",
 			"default_value": true,
 			"parent" : "carry_toggle"

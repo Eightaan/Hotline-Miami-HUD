@@ -22,16 +22,11 @@
 			"size": 8
 		},
 		{
-			"type" : "label",
-			"title" : "hmh_menu_panel_text"
-		},
-		{
 			"type": "toggle",
 			"id": "no_confirm",
 			"title": "no_confirm_title",
 			"description": "no_confirm_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "no_confirm",
+			"callback": "hmh_set_item_value",
 			"value": "no_confirm",
 			"default_value": false
 		},
@@ -44,8 +39,7 @@
 			"id" : "custom_menu_background_multiple_choice",
 			"title" : "custom_menu_background_title",
 			"description" : "custom_menu_background_desc",
-			"callback" : "SetOption",
-			"callback_arguments" : "custom_menu_background",
+			"callback" : "hmh_set_item_value",
 			"items" : [
 				"default_background",
 				"custom_background"
@@ -58,8 +52,7 @@
 			"id" : "mouse_pointer_multiple_choice",
 			"title" : "mouse_pointer_title",
 			"description" : "mouse_pointer_desc",
-			"callback" : "SetOption",
-			"callback_arguments" : "mouse_pointer",
+			"callback" : "hmh_set_item_value",
 			"items" : [
 				"default_mouse_pointer",
 				"fingerless_gloves",
@@ -78,8 +71,7 @@
 			"id": "no_smoke",
 			"title": "no_smoke_title",
 			"description": "no_smoke_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "no_smoke",
+			"callback": "hmh_set_item_value",
 			"value": "no_smoke",
 			"default_value": false
 		},
@@ -88,8 +80,7 @@
 			"id": "custom_filter",
 			"title": "custom_filter_title",
 			"description": "custom_filter_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "custom_filter",
+			"callback": "hmh_set_item_value",
 			"value": "custom_filter",
 			"default_value": false
 		},
@@ -102,8 +93,7 @@
 			"id": "menu_color_toggle",
 			"title": "menu_color_title",
 			"description": "menu_color_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "custom_menu_color",
+			"callback": "hmh_set_item_value",
 			"value": "custom_menu_color",
 			"default_value": true
 		},
@@ -112,16 +102,11 @@
 			"size": 45
 		},
 		{
-			"type" : "label",
-			"title" : "hmh_inventory_panel_text"
-		},
-		{
 			"type": "toggle",
 			"id": "inventory_amount_id",
 			"title": "inventory_amount_title",
 			"description": "inventory_amount_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "inventory_amount",
+			"callback": "hmh_set_item_value",
 			"value": "inventory_amount",
 			"default_value": true
 		}

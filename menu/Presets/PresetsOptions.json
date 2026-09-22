@@ -4,25 +4,16 @@
 	"title": "preset_title",
 	"items": [
 		{
-			"type" : "label",
-			"title" : "preset_warning"
-		},
-		{
-			"type" : "label",
-			"title" : "restart_preset_title"
-		},
-		{
 			"type" : "multiple_choice",
 			"id" : "preset_multiple_choice",
 			"title" : "preset_multi_title",
 			"description" : "preset_multi_desc",
-			"callback" : "SetOption",
-			"callback_arguments" : "preset",
 			"items" : [
 				"custom_preset",
 				"hotline_vibe",
 				"vanilla_classic"
 			],
+			"callback" : "hmh_set_item_value",
 			"value" : "preset",
 			"default_value" : 1
 		}

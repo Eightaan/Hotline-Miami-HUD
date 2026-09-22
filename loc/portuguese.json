@@ -148,7 +148,7 @@
   "hmh_hud_title": "Painéis do Jogador e Equipe",
   "hmh_hud_desc": "Opções relacionadas aos seus painéis HUD e dos seus companheiros.",
   "health_texture_title": "Textura de Vida",
-  "health_texture_desc": "Ativa uma textura de vida personalizada (o Pixel Heart pode causar problemas com algumas perk decks).\nApós alterar, é necessário atualizar as texturas para que as mudanças tenham efeito.\nAo voltar para o padrão, reinicie o jogo.",
+  "health_texture_desc": "Ativa uma textura de vida personalizada (o Pixel Heart pode causar problemas com algumas perk decks).\nApós alterar, é necessário atualizar as texturas para que as mudanças tenham efeito.",
   "default_health": "Padrão",
   "faded_health": "Desbotado",
   "pixel_health": "Pixel Heart",

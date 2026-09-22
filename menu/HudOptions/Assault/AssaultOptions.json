@@ -8,11 +8,31 @@
 			"id": "assault_toggle",
 			"title": "assault_title",
 			"description": "assault_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "assault",
+			"callback": "hmh_set_item_value",
 			"value": "assault",
-			"default_value": true,
-			"is_parent" : true
+			"children": [
+                "assault_text_slider",
+                "info_box_slider",
+				"assault_text_color_select",
+				"no_return_text_color_select",
+				"no_return_icon_color_select",
+				"no_return_timer_color_select",
+                "holdout_text_color_select",
+				"hostage_panel_toggle",
+				"hostages_text_icon_color_select",
+				"hostages_icon_color_select",
+				"wave_panel_toggle",
+                "waves_text_color_select",
+				"waves_icon_color_select",
+				"casing_toggle",
+				"casing_text_color_select",
+				"casing_icon_color_select",
+                "captain_text_color_select",
+				"captain_buff_icon_color_select",
+				"captain_buff_toggle",
+				"captain_buff_color_select"
+            ],
+			"default_value": true
 		},
 		{
 			"type" : "divider",
@@ -23,8 +43,7 @@
 			"id": "assault_text_slider",
 			"title": "assault_text_title",
 			"description": "assault_text_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "assault_text",
+			"callback": "hmh_set_item_value",
 			"value": "assault_text",
 			"max": 1,
 			"min": 0,
@@ -37,8 +56,7 @@
 			"id": "info_box_slider",
 			"title": "info_box_title",
 			"description": "info_box_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "info_box_alpha",
+			"callback": "hmh_set_item_value",
 			"value": "info_box_alpha",
 			"max": 1,
 			"min": 0,
@@ -51,14 +69,16 @@
 			"size" : 8
 		},
 		{
-			"type": "color_select",
+			"type": "color",
 			"id": "assault_text_color_select",
 			"title": "HotlineMiamiHudAssaultTextTitleID",
 			"description": "HotlineMiamiHudColorOption",
 			"value": "AssaultText",
-			"default_value": [255, 204, 102],
-			"callback": "SetColorOption",
-			"callback_arguments": "AssaultText",
+			"default_value": {
+                "r": 255,
+                "g": 204,
+                "b": 102
+            },
 			"parent" : "assault_toggle"
 		},
 		{
@@ -66,36 +86,42 @@
 			"size" : 4
 		},
 		{
-			"type": "color_select",
+			"type": "color",
 			"id": "no_return_text_color_select",
 			"title": "HotlineMiamiHudNoReturnTextTitleID",
 			"description": "HotlineMiamiHudColorOption",
 			"value": "NoReturnText",
-			"default_value": [255, 102, 102],
-			"callback": "SetColorOption",
-			"callback_arguments": "NoReturnText",
+			"default_value": {
+                "r": 255,
+                "g": 102,
+                "b": 102
+            },
 			"parent" : "assault_toggle"
 		},
 		{
-			"type": "color_select",
+			"type": "color",
 			"id": "no_return_icon_color_select",
 			"title": "HotlineMiamiHudNoReturnIconTitleID",
 			"description": "HotlineMiamiHudColorOption",
 			"value": "NoReturnIcon",
-			"default_value": [255, 102, 102],
-			"callback": "SetColorOption",
-			"callback_arguments": "NoReturnIcon",
+			"default_value": {
+                "r": 255,
+                "g": 102,
+                "b": 102
+            },
 			"parent" : "assault_toggle"
 		},
 		{
-			"type": "color_select",
+			"type": "color",
 			"id": "no_return_timer_color_select",
 			"title": "HotlineMiamiHudNoReturnTimerTitleID",
 			"description": "HotlineMiamiHudColorOption",
 			"value": "NoReturnTimer",
-			"default_value": [255, 102, 102],
-			"callback": "SetColorOption",
-			"callback_arguments": "NoReturnTimer",
+			"default_value": {
+                "r": 255,
+                "g": 102,
+                "b": 102
+            },
 			"parent" : "assault_toggle"
 		},
 		{
@@ -103,14 +129,16 @@
 			"size" : 4
 		},
 		{
-			"type": "color_select",
+			"type": "color",
 			"id": "holdout_text_color_select",
 			"title": "HotlineMiamiHudHoldoutTextTitleID",
 			"description": "HotlineMiamiHudColorOption",
 			"value": "HoldoutText",
-			"default_value": [255, 102, 102],
-			"callback": "SetColorOption",
-			"callback_arguments": "HoldoutText",
+			"default_value": {
+                "r": 255,
+                "g": 102,
+                "b": 102
+            },
 			"parent" : "assault_toggle"
 		},
 		{
@@ -122,33 +150,40 @@
 			"id": "hostage_panel_toggle",
 			"title": "hostage_panel_title",
 			"description": "hostage_panel_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "hostage_panel",
+			"callback": "hmh_set_item_value",
 			"value": "hostage_panel",
 			"default_value": true,
+			"children": [
+				"hostages_text_icon_color_select",
+				"hostages_icon_color_select"
+            ],
 			"parent" : "assault_toggle"
 		},
 		{
-			"type": "color_select",
+			"type": "color",
 			"id": "hostages_text_icon_color_select",
 			"title": "HotlineMiamiHudHostagesTextTitleID",
 			"description": "HotlineMiamiHudColorOption",
 			"value": "HostagesText",
-			"default_value": [102, 255, 255],
-			"callback": "SetColorOption",
-			"callback_arguments": "HostagesText",
-			"parent" : "assault_toggle"
+			"default_value": {
+                "r": 102,
+                "g": 255,
+                "b": 255
+            },
+			"parent" : ["assault_toggle", "hostage_panel_toggle"]
 		},
 		{
-			"type": "color_select",
+			"type": "color",
 			"id": "hostages_icon_color_select",
 			"title": "HotlineMiamiHudHostagesIconTitleID",
 			"description": "HotlineMiamiHudColorOption",
 			"value": "HostagesIcon",
-			"default_value": [255, 128, 223],
-			"callback": "SetColorOption",
-			"callback_arguments": "HostagesIcon",
-			"parent" : "assault_toggle"
+			"default_value": {
+                "r": 255,
+                "g": 128,
+                "b": 223
+            },
+			"parent" : ["assault_toggle", "hostage_panel_toggle"]
 		},
 		{
 			"type" : "divider",
@@ -159,33 +194,40 @@
 			"id": "wave_panel_toggle",
 			"title": "wave_panel_title",
 			"description": "wave_panel_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "wave_panel",
+			"callback": "hmh_set_item_value",
 			"value": "wave_panel",
 			"default_value": true,
+			"children": [
+				"waves_text_color_select",
+				"waves_icon_color_select"
+            ],
 			"parent" : "assault_toggle"
 		},
 		{
-			"type": "color_select",
+			"type": "color",
 			"id": "waves_text_color_select",
 			"title": "HotlineMiamiHudWavesTextTitleID",
 			"description": "HotlineMiamiHudColorOption",
 			"value": "WavesText",
-			"default_value": [102, 255, 255],
-			"callback": "SetColorOption",
-			"callback_arguments": "WavesText",
-			"parent" : "assault_toggle"
+			"default_value": {
+                "r": 102,
+                "g": 255,
+                "b": 255
+            },
+			"parent" : ["assault_toggle", "wave_panel_toggle"]
 		},
 		{
-			"type": "color_select",
+			"type": "color",
 			"id": "waves_icon_color_select",
 			"title": "HotlineMiamiHudWavesIconTitleID",
 			"description": "HotlineMiamiHudColorOption",
 			"value": "WavesIcon",
-			"default_value": [255, 128, 223],
-			"callback": "SetColorOption",
-			"callback_arguments": "WavesIcon",
-			"parent" : "assault_toggle"
+			"default_value": {
+                "r": 255,
+                "g": 128,
+                "b": 223
+            },
+			"parent" : ["assault_toggle", "wave_panel_toggle"]
 		},
 		{
 			"type" : "divider",
@@ -196,33 +238,39 @@
 			"id": "casing_toggle",
 			"title": "casing_title",
 			"description": "casing_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "casing",
+			"callback": "hmh_set_item_value",
 			"value": "casing",
 			"default_value": true,
-			"is_parent" : true,
+			"children": [
+				"casing_text_color_select",
+				"casing_icon_color_select"
+            ],
 			"parent" : "assault_toggle"
 		},
 		{
-			"type": "color_select",
+			"type": "color",
 			"id": "casing_text_color_select",
 			"title": "HotlineMiamiHudCasingTextTitleID",
 			"description": "HotlineMiamiHudColorOption",
 			"value": "CasingText",
-			"default_value": [102, 255, 153],
-			"callback": "SetColorOption",
-			"callback_arguments": "CasingText",
+			"default_value": {
+                "r": 102,
+                "g": 255,
+                "b": 153
+            },
 			"parent" : ["assault_toggle", "casing_toggle"]
 		},
 		{
-			"type": "color_select",
+			"type": "color",
 			"id": "casing_icon_color_select",
 			"title": "HotlineMiamiHudCasingIconTitleID",
 			"description": "HotlineMiamiHudColorOption",
 			"value": "CasingIcon",
-			"default_value": [255, 128, 223],
-			"callback": "SetColorOption",
-			"callback_arguments": "CasingIcon",
+			"default_value": {
+                "r": 255,
+                "g": 128,
+                "b": 223
+            },
 			"parent" : ["assault_toggle", "casing_toggle"]
 		},
 		{
@@ -230,25 +278,29 @@
 			"size" : 8
 		},
 		{
-			"type": "color_select",
+			"type": "color",
 			"id": "captain_text_color_select",
 			"title": "HotlineMiamiHudCaptainTextTitleID",
 			"description": "HotlineMiamiHudColorOption",
 			"value": "CaptainText",
-			"default_value": [255, 102, 102],
-			"callback": "SetColorOption",
-			"callback_arguments": "CaptainText",
+			"default_value": {
+                "r": 255,
+                "g": 102,
+                "b": 102
+            },
 			"parent" : "assault_toggle"
 		},
 		{
-			"type": "color_select",
+			"type": "color",
 			"id": "captain_buff_icon_color_select",
 			"title": "HotlineMiamiHudCaptainBuffIconTitleID",
 			"description": "HotlineMiamiHudColorOption",
 			"value": "CaptainBuffIcon",
-			"default_value": [255, 102, 102],
-			"callback": "SetColorOption",
-			"callback_arguments": "CaptainBuffIcon",
+			"default_value": {
+                "r": 255,
+                "g": 102,
+                "b": 102
+            },
 			"parent" : "assault_toggle"
 		},
 		{
@@ -256,22 +308,25 @@
 			"id": "captain_buff_toggle",
 			"title": "captain_buff_title",
 			"description": "captain_buff_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "captain_buff",
+			"callback": "hmh_set_item_value",
 			"value": "captain_buff",
 			"default_value": true,
-			"is_parent" : true,
+			"children": [
+				"captain_buff_color_select"
+            ],
 			"parent" : "assault_toggle"
 		},
 		{
-			"type": "color_select",
+			"type": "color",
 			"id": "captain_buff_color_select",
 			"title": "HotlineMiamiHudcaptainBuffTextTitleID",
 			"description": "HotlineMiamiHudColorOption",
 			"value": "captain_buff_color",
-			"default_value": [255, 204, 102],
-			"callback": "SetColorOption",
-			"callback_arguments": "captain_buff_color",
+			"default_value": {
+                "r": 255,
+                "g": 204,
+                "b": 102
+            },
 			"parent" : ["assault_toggle", "captain_buff_toggle"]
 		}
 	]

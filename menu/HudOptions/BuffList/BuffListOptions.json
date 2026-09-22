@@ -2,26 +2,29 @@
 	"menu_id": "hmh_buff_list_menu",
 	"parent_menu": "hmh_hud_options",
 	"title": "hmh_buff_list_title",
-	"h" : 500,
 	"items": [
 		{
 			"type": "toggle",
 			"id": "inspire_toggle",
 			"title": "inspire_title",
 			"description": "inspire_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "inspire",
+			"callback": "hmh_set_item_value",
 			"value": "inspire",
-			"default_value": true,
-			"is_parent" : true
+			"children": [
+                "inspire_timer_x_slider",
+                "inspire_timer_y_slider",
+				"inspire_timer_scale_slider",
+				"inspire_icon_color_select",
+				"inspire_timer_color_select"
+            ],
+			"default_value": true
 		},
 		{
 			"type": "slider",
 			"id": "inspire_timer_x_slider",
 			"title": "inspire_timer_x_title",
 			"description": "inspire_timer_x_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "timer_x",
+			"callback": "hmh_set_item_value",
 			"value": "timer_x",
 			"max": 123,
 			"min": 0,
@@ -34,8 +37,7 @@
 			"id": "inspire_timer_y_slider",
 			"title": "inspire_timer_y_title",
 			"description": "inspire_timer_y_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "timer_y",
+			"callback": "hmh_set_item_value",
 			"value": "timer_y",
 			"max": 100,
 			"min": 0,
@@ -48,8 +50,7 @@
 			"id": "inspire_timer_scale_slider",
 			"title": "inspire_timer_scale_title",
 			"description": "inspire_timer_scale_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "timer_scale",
+			"callback": "hmh_set_item_value",
 			"value": "timer_scale",
 			"max": 5,
 			"min": 0.5,
@@ -62,25 +63,29 @@
 			"size": 8
 		},
 		{
-			"type": "color_select",
+			"type": "color",
 			"id": "inspire_icon_color_select",
 			"title": "HotlineMiamiHudInspireIconTitleID",
 			"description": "HotlineMiamiHudColorOption",
 			"value": "InspireIcon",
-			"default_value": [255, 128, 223],
-			"callback": "SetColorOption",
-			"callback_arguments": "InspireIcon",
+			"default_value": {
+                "r": 255,
+                "g": 128,
+                "b": 223
+            },
 			"parent" : "inspire_toggle"
 		},
 		{
-			"type": "color_select",
+			"type": "color",
 			"id": "inspire_timer_color_select",
 			"title": "HotlineMiamiHudInspireTimerTitleID",
 			"description": "HotlineMiamiHudColorOption",
 			"value": "InspireTimer",
-			"default_value": [102, 255, 255],
-			"callback": "SetColorOption",
-			"callback_arguments": "InspireTimer",
+			"default_value": {
+                "r": 102,
+                "g": 255,
+                "b": 255
+            },
 			"parent" : "inspire_toggle"
 		},
 		{
@@ -92,19 +97,24 @@
 			"id": "bloodthirst_toggle",
 			"title": "bloodthirst_title",
 			"description": "bloodthirst_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "Bloodthirst",
+			"callback": "hmh_set_item_value",
 			"value": "Bloodthirst",
-			"default_value": true,
-			"is_parent" : true
+			"children": [
+                "bloodthirst_min_kills_slider",
+                "bloodthirst_x_slider",
+				"bloodthirst_y_slider",
+				"bloodthirst_scale_slider",
+				"bloodthirst_icon_color_select",
+				"bloodthirst_text_color_select"
+            ],
+			"default_value": true
 		},
 		{
 			"type": "slider",
 			"id": "bloodthirst_min_kills_slider",
 			"title": "bloodthirst_min_kills_title",
 			"description": "bloodthirst_min_kills_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "BloodthirstMinKills",
+			"callback": "hmh_set_item_value",
 			"value": "BloodthirstMinKills",
 			"max": 16,
 			"min": 2,
@@ -121,8 +131,7 @@
 			"id": "bloodthirst_x_slider",
 			"title": "bloodthirst_x_title",
 			"description": "bloodthirst_x_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "BloodthirstX",
+			"callback": "hmh_set_item_value",
 			"value": "BloodthirstX",
 			"max": 123,
 			"min": 0,
@@ -135,8 +144,7 @@
 			"id": "bloodthirst_y_slider",
 			"title": "bloodthirst_y_title",
 			"description": "bloodthirst_y_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "BloodthirstY",
+			"callback": "hmh_set_item_value",
 			"value": "BloodthirstY",
 			"max": 100,
 			"min": 0,
@@ -149,8 +157,7 @@
 			"id": "bloodthirst_scale_slider",
 			"title": "bloodthirst_scale_title",
 			"description": "bloodthirst_scale_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "BloodthirstScale",
+			"callback": "hmh_set_item_value",
 			"value": "BloodthirstScale",
 			"max": 5,
 			"min": 0.5,
@@ -163,25 +170,29 @@
 			"size": 8
 		},
 		{
-			"type": "color_select",
+			"type": "color",
 			"id": "bloodthirst_icon_color_select",
 			"title": "HotlineMiamiHudInspireIconTitleID",
 			"description": "HotlineMiamiHudColorOption",
 			"value": "BloodthirstIcon",
-			"default_value": [255, 128, 223],
-			"callback": "SetColorOption",
-			"callback_arguments": "BloodthirstIcon",
+			"default_value": {
+                "r": 255,
+                "g": 128,
+                "b": 223
+            },
 			"parent" : "bloodthirst_toggle"
 		},
 		{
-			"type": "color_select",
+			"type": "color",
 			"id": "bloodthirst_text_color_select",
 			"title": "HotlineMiamiHudInspireTimerTitleID",
 			"description": "HotlineMiamiHudColorOption",
 			"value": "BloodthirstText",
-			"default_value": [102, 255, 255],
-			"callback": "SetColorOption",
-			"callback_arguments": "BloodthirstText",
+			"default_value": {
+                "r": 102,
+                "g": 255,
+                "b": 255
+            },
 			"parent" : "bloodthirst_toggle"
 		}
 	]
