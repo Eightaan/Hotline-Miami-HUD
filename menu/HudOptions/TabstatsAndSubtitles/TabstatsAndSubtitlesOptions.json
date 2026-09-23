@@ -4,20 +4,19 @@
 	"title": "hmh_tab_and_subs_title",
 	"items": [
 		{
-			"type" : "label",
-			"parent" : "tab_toggle",
-			"title" : "hmh_tab_panel_text"
-		},
-		{
 			"type": "toggle",
 			"id": "tab_toggle",
 			"title": "tab_title",
 			"description": "tab_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "tab",
+			"callback": "hmh_set_item_value",
 			"value": "tab",
-			"default_value": true,
-			"is_parent" : true
+			"children": [
+                "custom_tab_color_toggle",
+                "loot_count_toggle",
+				"enemy_count_toggle",
+				"crew_loadout_tab_toggle"
+            ],
+			"default_value": true
 		},
 		{
 			"type": "divider",
@@ -28,8 +27,7 @@
 			"id": "custom_tab_color_toggle",
 			"title": "custom_tab_color_title",
 			"description": "custom_tab_color_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "custom_tab_color",
+			"callback": "hmh_set_item_value",
 			"value": "custom_tab_color",
 			"default_value": true,
 			"parent" : "tab_toggle"
@@ -43,8 +41,7 @@
 			"id": "loot_count_toggle",
 			"title": "loot_count_title",
 			"description": "loot_count_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "loot_count",
+			"callback": "hmh_set_item_value",
 			"value": "loot_count",
 			"default_value": true,
 			"parent" : "tab_toggle"
@@ -54,8 +51,7 @@
 			"id": "enemy_count_toggle",
 			"title": "enemy_count_title",
 			"description": "enemy_count_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "enemy_count",
+			"callback": "hmh_set_item_value",
 			"value": "enemy_count",
 			"default_value": true,
 			"parent" : "tab_toggle"
@@ -69,8 +65,7 @@
 			"id": "crew_loadout_tab_toggle",
 			"title": "crew_loadout_tab_title",
 			"description": "crew_loadout_tab_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "crew_loadout_tab",
+			"callback": "hmh_set_item_value",
 			"value": "crew_loadout_tab",
 			"default_value": true,
 			"parent" : "tab_toggle"
@@ -80,20 +75,17 @@
 			"size" : 45
 		},
 		{
-			"type" : "label",
-			"parent" : "subs_toggle",
-			"title" : "hmh_subs_panel_text"
-		},
-		{
 			"type": "toggle",
 			"id": "subs_toggle",
 			"title": "subs_title",
 			"description": "subs_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "custom_subs",
+			"callback": "hmh_set_item_value",
 			"value": "custom_subs",
-			"default_value": true,
-			"is_parent" : true
+			"children": [
+                "sub_text_slider",
+                "subs_color_select"
+            ],
+			"default_value": true
 		},
 		{
 			"type" : "divider",
@@ -104,8 +96,7 @@
 			"id": "sub_text_slider",
 			"title": "sub_text_title",
 			"description": "sub_text_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "SubAlpha",
+			"callback": "hmh_set_item_value",
 			"parent" : "subs_toggle",
 			"value": "SubAlpha",
 			"max": 1,
@@ -114,14 +105,16 @@
 			"default_value": 1
 		},
 		{
-			"type": "color_select",
-			"id": "hint_color_select",
+			"type": "color",
+			"id": "subs_color_select",
 			"title": "HotlineMiamiHudSubTitleID",
 			"description": "HotlineMiamiHudColorOption",
 			"value": "Sub",
-			"default_value": [102, 255, 153],
-			"callback": "SetColorOption",
-			"callback_arguments": "Sub",
+			"default_value": {
+                "r": 102,
+                "g": 255,
+                "b": 153
+            },
 			"parent" : "subs_toggle"
 		}
 	]

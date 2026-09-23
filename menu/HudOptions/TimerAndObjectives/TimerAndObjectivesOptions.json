@@ -1,24 +1,22 @@
 {
 	"menu_id": "hmh_menu_objective_and_timer",
 	"parent_menu": "hmh_hud_options",
-	"h" : 500,
 	"title": "hmh_objective_and_timer_title",
 	"items": [
-		{
-			"type" : "label",
-			"parent" : "objective_toggle",
-			"title" : "hmh_objectives_panel_text"
-		},
 		{
 			"type": "toggle",
 			"id": "objective_toggle",
 			"title": "objective_title",
 			"description": "objective_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "objective",
+			"callback": "hmh_set_item_value",
 			"value": "objective",
-			"default_value": true,
-			"is_parent" : true
+			"children": [
+                "objective_text_slider",
+                "objective_text_color_select",
+				"objective_icon_color_select",
+				"objective_amount_color_select"
+            ],
+			"default_value": true
 		},
 		{
 			"type" : "divider",
@@ -29,8 +27,7 @@
 			"id": "objective_text_slider",
 			"title": "objective_text_title",
 			"description": "objective_text_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "objective_text",
+			"callback": "hmh_set_item_value",
 			"parent" : "objective_toggle",
 			"value": "objective_text",
 			"max": 1,
@@ -39,58 +36,61 @@
 			"default_value": 1
 		},
 		{
-			"type": "color_select",
+			"type": "color",
 			"id": "objective_text_color_select",
 			"title": "HotlineMiamiHudObjectiveTextTitleID",
 			"description": "HotlineMiamiHudColorOption",
 			"value": "ObjectiveText",
-			"default_value": [102, 255, 255],
-			"callback": "SetColorOption",
-			"callback_arguments": "ObjectiveText",
+			"default_value": {
+                "r": 102,
+                "g": 255,
+                "b": 255
+            },
 			"parent" : "objective_toggle"
+			
 		},
 		{
-			"type": "color_select",
+			"type": "color",
 			"id": "objective_icon_color_select",
 			"title": "HotlineMiamiHudObjectiveIconTitleID",
 			"description": "HotlineMiamiHudColorOption",
 			"value": "ObjectiveIcon",
-			"default_value": [255, 128, 223],
-			"callback": "SetColorOption",
-			"callback_arguments": "ObjectiveIcon",
+			"default_value": {
+                "r": 255,
+                "g": 128,
+                "b": 223
+            },
 			"parent" : "objective_toggle"
 		},
 		{
-			"type": "color_select",
+			"type": "color",
 			"id": "objective_amount_color_select",
 			"title": "HotlineMiamiHudObjectiveAmountTitleID",
 			"description": "HotlineMiamiHudColorOption",
 			"value": "ObjectiveAmount",
-			"default_value": [255, 204, 102],
-			"callback": "SetColorOption",
-			"callback_arguments": "ObjectiveAmount",
+			"default_value": {
+                "r": 255,
+                "g": 204,
+                "b": 102
+            },
 			"parent" : "objective_toggle"
 		},
 		{
 			"type" : "divider",
 			"size" : 45
-			
-		},
-		{
-			"type" : "label",
-			"parent" : "timer_toggle",
-			"title" : "hmh_timer_panel_text"
 		},
 		{
 			"type": "toggle",
 			"id": "timer_toggle",
 			"title": "timer_title",
 			"description": "timer_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "timer",
+			"callback": "hmh_set_item_value",
 			"value": "timer",
-			"default_value": true,
-			"is_parent" : true
+			"children": [
+                "timer_text_slider",
+                "timer_color_select"
+            ],
+			"default_value": true
 		},
 		{
 			"type" : "divider",
@@ -101,8 +101,7 @@
 			"id": "timer_text_slider",
 			"title": "timer_text_title",
 			"description": "timer_text_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "TimerAlpha",
+			"callback": "hmh_set_item_value",
 			"parent" : "timer_toggle",
 			"value": "TimerAlpha",
 			"max": 1,
@@ -111,14 +110,16 @@
 			"default_value": 1
 		},
 		{
-			"type": "color_select",
+			"type": "color",
 			"id": "timer_color_select",
 			"title": "HotlineMiamiHudTimerTitleID",
 			"description": "HotlineMiamiHudColorOption",
 			"value": "TimerColor",
-			"default_value": [102, 255, 255],
-			"callback": "SetColorOption",
-			"callback_arguments": "TimerColor",
+			"default_value": {
+                "r": 102,
+                "g": 255,
+                "b": 255
+            },
 			"parent" : "timer_toggle"
 		}
 	]

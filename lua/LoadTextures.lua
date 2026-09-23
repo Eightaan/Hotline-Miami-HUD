@@ -35,6 +35,16 @@ function HMH:LoadTextures()
 		custom_bg_path or orig_bg_path
     )
 
+	--Load Custom Crimenet Map
+	local custom_crimenet_map	= HMH:GetOption("custom_crimenet_map") == 2
+	local orig_crimenet_map_path = HMH._path .. "guis/textures/crimenet_map.texture"
+	local crimenet_map_path = custom_crimenet_map and HMH._path .. "assets/pd2_mod_hmh/crimenet_map.texture"
+
+	self:LoadTextureEntry(
+		"guis/textures/crimenet_map", 
+		crimenet_map_path or orig_crimenet_map_path
+    )
+
 	--Load Pink Hud Corners
 	local pink_corner = HMH:GetOption("pink_corner")
 	local orig_corner_path = HMH._path .. "guis/textures/pd2/hud_corner.texture"

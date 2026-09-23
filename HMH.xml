@@ -38,6 +38,7 @@
 					<post :script_path="MenuTweak.lua"/>
 					<post :script_path="ModMenu.lua" />
 					<post script_path="HMHMenu.lua" />
+					<post script_path="ColorSelector.lua" />
 				</group>
 			
 				<group :hook_id="playermanager">

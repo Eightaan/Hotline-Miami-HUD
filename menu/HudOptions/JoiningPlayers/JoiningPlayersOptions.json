@@ -8,8 +8,7 @@
 			"id": "show_rank_toggle",
 			"title": "show_rank_title",
 			"description": "show_rank_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "show_rank",
+			"callback": "hmh_set_item_value",
 			"value": "show_rank",
 			"default_value": true
 		}

@@ -8,8 +8,7 @@
 			"id": "hud_scale_slider",
 			"title": "hud_scale_title",
 			"description": "hud_scale_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "hud_scale",
+			"callback": "hmh_set_item_value",
 			"value": "hud_scale",
 			"max": 1,
 			"min": 0.5,
@@ -42,12 +41,15 @@
 			"next_menu": "hmh_buff_list_menu"
 		},
 		{
+			"type": "divider",
+			"size": 8
+		},
+		{
 			"type": "toggle",
 			"id": "screen_effect_toggle",
 			"title": "screen_effect_title",
 			"description": "screen_effect_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "screen_effect",
+			"callback": "hmh_set_item_value",
 			"value": "screen_effect",
 			"default_value": false
 		},
@@ -60,8 +62,7 @@
 			"id" : "headshot_mark_multiple_choice",
 			"title" : "headshot_mark_title",
 			"description" : "headshot_mark_desc",
-			"callback" : "SetOption",
-			"callback_arguments" : "headshot_texture",
+			"callback" : "hmh_set_item_value",
 			"items" : [
 				"disabled_icon",
 				"circle_icon",
@@ -80,8 +81,7 @@
 			"id": "pink_corner_toggle",
 			"title": "pink_corner_title",
 			"description": "pink_corner_desc",
-			"callback": "SetOption",
-			"callback_arguments": "pink_corner",
+			"callback": "hmh_set_item_value",
 			"value": "pink_corner",
 			"default_value": true
 		},
@@ -111,6 +111,10 @@
 			"next_menu": "hmh_menu_objective_and_timer"
 		},
 		{
+			"type": "divider",
+			"size": 8
+		},
+		{
 			"type": "button",
 			"id": "hmh_notifications",
 			"title": "hmh_notifications_title",
@@ -130,6 +134,10 @@
 			"title": "hmh_waypoints_and_detection_title",
 			"description": "hmh_waypoints_and_detection_desc",
 			"next_menu": "hmh_menu_waypoints_and_detection"
+		},
+		{
+			"type": "divider",
+			"size": 8
 		},
 		{
 			"type": "button",

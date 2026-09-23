@@ -8,8 +8,7 @@
 			"id": "crew_loadout_toggle",
 			"title": "crew_loadout_title",
 			"description": "crew_loadout_desc",
-			"callback": "SetOption",
-			"callback_arguments": "crew_loadout",
+			"callback": "hmh_set_item_value",
 			"value": "crew_loadout",
 			"default_value": true
 		},
@@ -22,8 +21,7 @@
 			"id": "crew_loadout_briefing_toggle",
 			"title": "crew_loadout_briefing_title",
 			"description": "crew_loadout_briefing_desc",
-			"callback": "SetOption",
-			"callback_arguments": "crew_loadout_briefing",
+			"callback": "hmh_set_item_value",
 			"value": "crew_loadout_briefing",
 			"default_value": true
 		}

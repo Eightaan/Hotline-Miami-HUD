@@ -148,7 +148,7 @@
   "hmh_hud_title": "Painéis do Jogador e Equipe",
   "hmh_hud_desc": "Opções relacionadas aos seus painéis HUD e dos seus companheiros.",
   "health_texture_title": "Textura de Vida",
-  "health_texture_desc": "Ativa uma textura de vida personalizada (o Pixel Heart pode causar problemas com algumas perk decks).\nApós alterar, é necessário atualizar as texturas para que as mudanças tenham efeito.\nAo voltar para o padrão, reinicie o jogo.",
+  "health_texture_desc": "Ativa uma textura de vida personalizada (o Pixel Heart pode causar problemas com algumas perk decks).\nApós alterar, é necessário atualizar as texturas para que as mudanças tenham efeito.",
   "default_health": "Padrão",
   "faded_health": "Desbotado",
   "pixel_health": "Pixel Heart",
@@ -184,7 +184,9 @@
   "hmh_hud_ability_title": "Habilidades do Jogador",
   "hmh_hud_ability_desc": "",
   "ability_icon_title": "Mostrar Ícone de Habilidade",
-  "ability_icon_desc": "",
+  "ability_icon_desc" : "Show icons for kingpin, hacker, etc in the health circle.",
+  "duration_icon_title" : "Invulnerability Duration Icon",
+  "duration_icon_desc" : "Enables the icons for the invulnerability display in the health circle",
   "armorer_timer_title": "Timer de Cooldown da Invulnerabilidade",
   "armorer_timer_desc": "Exibe o cooldown de invulnerabilidade (Anarchist/Armorer/Copycat).",
   "armorer_radial_title": "Duração da Invulnerabilidade",
@@ -445,7 +447,7 @@
   "HotlineMiamiHudTotalAmmoTitleID": "Munição Total",
   "HotlineMiamiHudClipAmmoTitleID": "Munição Atual",
 
-  "HotlineMiamiHudAbilityIconTitleID": "Ícone de Habilidade",
+  "HotlineMiamiHudAbilityIconTitleID" : "Ícone de Habilidade // Invulnerability",
   "HotlineMiamiHudArmorerTimerTitleID": "Timer de Cooldown do Armorer/Anarchist",
   "HotlineMiamiHudCopycatTimerTitleID": "Timer de Cooldown do Período de Habilidade do Copycat",
 
@@ -454,6 +456,10 @@
   "HotlineMiamiHudPlayer3TitleID": "Jogador 3",
   "HotlineMiamiHudPlayer4TitleID": "Jogador 4",
   "HotlineMiamiHudPlayerAiTitleID": "Bot",
-  "HotlineMiamiHudSystemTitleID": "Sistema"
+  "HotlineMiamiHudSystemTitleID": "Sistema",
+  "custom_crimenet_map_title" : "CrimeNet Map",
+  "custom_crimenet_map_desc" : "Choose which crime.net map to use.\nApós alterar, é necessário atualizar as texturas para que as mudanças tenham efeito.",
+  "default_map" : "Padrão",
+  "custom_map" : "Neon Blue"
 
 }

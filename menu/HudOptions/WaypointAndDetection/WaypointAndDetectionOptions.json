@@ -2,7 +2,6 @@
 	"menu_id": "hmh_menu_waypoints_and_detection",
 	"parent_menu": "hmh_hud_options",
 	"title": "hmh_waypoints_and_detection_title",
-	"h" : 500,
 	"items": [
 		{
 			"type" : "label",
@@ -13,8 +12,7 @@
 			"id": "greenciv_toggle",
 			"title": "greenciv_title",
 			"description": "greenciv_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "greenciv",
+			"callback": "hmh_set_item_value",
 			"value": "greenciv",
 			"default_value": true
 		},
@@ -27,19 +25,22 @@
 			"id": "waypoints_toggle",
 			"title": "waypoints_title",
 			"description": "waypoints_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "waypoints",
+			"callback": "hmh_set_item_value",
 			"value": "waypoints",
-			"default_value": true,
-			"is_parent" : true
+			"children": [
+                "waypoint_alpha_slider",
+                "waypoint_icon_color_select",
+				"waypoint_icon_dist_color_select",
+				"waypoint_icon_arrow_color_select"
+            ],
+			"default_value": true
 		},
 		{
 			"type": "slider",
 			"id": "waypoint_alpha_slider",
 			"title": "waypoint_alpha_title",
 			"description": "waypoint_alpha_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "waypoint_alpha",
+			"callback": "hmh_set_item_value",
 			"value": "waypoint_alpha",
 			"max": 1,
 			"min": 0,
@@ -52,53 +53,54 @@
 			"size": 8
 		},
 		{
-			"type": "color_select",
+			"type": "color",
 			"id": "waypoint_icon_color_select",
 			"title": "HotlineMiamiHudWaypointIconTitleID",
 			"description": "HotlineMiamiHudColorOption",
 			"value": "WaypointIcon",
-			"default_value": [102, 255, 153],
-			"callback": "SetColorOption",
-			"callback_arguments": "WaypointIcon",
+			"default_value": {
+                "r": 102,
+                "g": 255,
+                "b": 153
+            },
 			"parent" : "waypoints_toggle"
 		},
 		{
-			"type": "color_select",
-			"id": "waypoint_icon_color_select",
+			"type": "color",
+			"id": "waypoint_icon_dist_color_select",
 			"title": "HotlineMiamiHudWaypointDistTitleID",
 			"description": "HotlineMiamiHudColorOption",
 			"value": "WaypointDistance",
-			"default_value": [102, 255, 255],
-			"callback": "SetColorOption",
-			"callback_arguments": "WaypointDistance",
+			"default_value": {
+                "r": 102,
+                "g": 255,
+                "b": 255
+            },
 			"parent" : "waypoints_toggle"
 		},
 		{
-			"type": "color_select",
-			"id": "waypoint_icon_color_select",
+			"type": "color",
+			"id": "waypoint_icon_arrow_color_select",
 			"title": "HotlineMiamiHudWaypointArrowTitleID",
 			"description": "HotlineMiamiHudColorOption",
 			"value": "WaypointArrow",
-			"default_value": [102, 255, 255],
-			"callback": "SetColorOption",
-			"callback_arguments": "WaypointArrow",
+			"default_value": {
+                "r": 102,
+                "g": 255,
+                "b": 255
+            },
 			"parent" : "waypoints_toggle"
 		},
 		{
 			"type" : "divider",
-			"size" : 45
-		},
-		{
-			"type" : "label",
-			"title" : "hmh_suspicion_panel_text"
+			"size" : 25
 		},
 		{
 			"type": "toggle",
 			"id": "suspicion_toggle",
 			"title": "suspicion_title",
 			"description": "suspicion_desc",
-			"callback": "SetOption",
-			"callback_arguments" : "suspicion",
+			"callback": "hmh_set_item_value",
 			"value": "suspicion",
 			"default_value": true
 		}

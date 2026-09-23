@@ -48,6 +48,18 @@ local function mod_overrides_check(mod)
 	end
 end
 
+Hooks:Add("MenuManagerInitialize", "MenuManagerInitialize_HMH_check_overrides", function(menu_manager)
+	if not Menu_File.DirectoryExists("./assets/mod_overrides/") then
+		CreateDirectory("./assets/mod_overrides/")
+	end
+
+	local id = "Hotline Miami Hud"
+	local mod = BLT and BLT.Mods:GetMod(id)
+	if mod then
+		mod_overrides_check(mod)
+	end
+end)
+
 Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInit_HMH", function(loc)
 	local localization = HMH._path .. "loc/"
 	local activelanguagekey = SystemInfo:language():key()
@@ -64,43 +76,6 @@ Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInit_HMH", func
 	localized_strings["hud_instruct_mask_on"] = ""
 
 	loc:add_localized_strings(localized_strings)
-end)
-
-Hooks:Add("MenuManagerBuildCustomMenus", "MenuManagerBuildCustomMenus_HMH", function(menu_manager, nodes)
-	MenuCallbackHandler.OpenHMHModOptions = function(self, item)
-		HMH.Menu = HMH.Menu or HMHMenu:new()
-		HMH.Menu:Open()
-
-		Hooks:PostHook(MenuManager, "update", "update_menu_HMH", function(self, t, dt)
-			if HMH.Menu and HMH.Menu.update and HMH.Menu._enabled then
-				HMH.Menu:update(t, dt)
-			end
-		end)
-	end
-
-	local node = nodes["blt_options"]
-
-	local item_params = {
-		name = "HMH_OpenMenu",
-		text_id = "hmh_title",
-		help_id = "hmh_desc",
-		callback = "OpenHMHModOptions",
-		localize = true,
-	}
-	local item = node:create_item({type = "CoreMenuItem.Item"}, item_params)
-	node:add_item(item)
-end)
-
-Hooks:Add("MenuManagerInitialize", "MenuManagerInitialize_HMH", function(menu_manager)
-	if not Menu_File.DirectoryExists("./assets/mod_overrides/") then
-		CreateDirectory("./assets/mod_overrides/")
-	end
-
-	local id = "Hotline Miami Hud"
-	local mod = BLT and BLT.Mods:GetMod(id)
-	if mod then
-		mod_overrides_check(mod)
-	end
 end)
 
 function set_alpha(o, a, ct)
