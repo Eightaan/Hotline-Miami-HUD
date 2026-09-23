@@ -448,5 +448,9 @@
 	"bloodthirst_scale_title" : "Scale",
 	"bloodthirst_scale_desc" : "Change the scale of the multiplier display.\n The change will be visible next time the buff text updates up on the screen",
 	"team_bg_title" : "Hide Panel Background",
-	"team_bg_desc" : "Hides the background on the team panels."
+	"team_bg_desc" : "Hides the background on the team panels.",
+	"custom_crimenet_map_title" : "CrimeNet Map",
+	"custom_crimenet_map_desc" : "Choose which crime.net map to use.\nWhen changed, a game restart is required for the changes to take effect.",
+	"default_map" : "Default",
+	"custom_map" : "Neon Blue"
 }

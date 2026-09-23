@@ -36,6 +36,19 @@
 		},
 		{
 			"type" : "multiple_choice",
+			"id" : "custom_crimenet_map_multiple_choice",
+			"title" : "custom_crimenet_map_title",
+			"description" : "custom_crimenet_map_desc",
+			"callback" : "hmh_set_item_value",
+			"items" : [
+				"default_map",
+				"custom_map"
+			],
+			"value" : "custom_crimenet_map",
+			"default_value" : 2
+		},
+		{
+			"type" : "multiple_choice",
 			"id" : "custom_menu_background_multiple_choice",
 			"title" : "custom_menu_background_title",
 			"description" : "custom_menu_background_desc",

@@ -48,6 +48,18 @@ local function mod_overrides_check(mod)
 	end
 end
 
+Hooks:Add("MenuManagerInitialize", "MenuManagerInitialize_HMH_check_overrides", function(menu_manager)
+	if not Menu_File.DirectoryExists("./assets/mod_overrides/") then
+		CreateDirectory("./assets/mod_overrides/")
+	end
+
+	local id = "Hotline Miami Hud"
+	local mod = BLT and BLT.Mods:GetMod(id)
+	if mod then
+		mod_overrides_check(mod)
+	end
+end)
+
 Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInit_HMH", function(loc)
 	local localization = HMH._path .. "loc/"
 	local activelanguagekey = SystemInfo:language():key()
@@ -64,18 +76,6 @@ Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInit_HMH", func
 	localized_strings["hud_instruct_mask_on"] = ""
 
 	loc:add_localized_strings(localized_strings)
-end)
-
-Hooks:Add("MenuManagerInitialize", "MenuManagerInitialize_HMH", function(menu_manager)
-	if not Menu_File.DirectoryExists("./assets/mod_overrides/") then
-		CreateDirectory("./assets/mod_overrides/")
-	end
-
-	local id = "Hotline Miami Hud"
-	local mod = BLT and BLT.Mods:GetMod(id)
-	if mod then
-		mod_overrides_check(mod)
-	end
 end)
 
 function set_alpha(o, a, ct)

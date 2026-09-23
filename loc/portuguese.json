@@ -456,6 +456,10 @@
   "HotlineMiamiHudPlayer3TitleID": "Jogador 3",
   "HotlineMiamiHudPlayer4TitleID": "Jogador 4",
   "HotlineMiamiHudPlayerAiTitleID": "Bot",
-  "HotlineMiamiHudSystemTitleID": "Sistema"
+  "HotlineMiamiHudSystemTitleID": "Sistema",
+  "custom_crimenet_map_title" : "CrimeNet Map",
+  "custom_crimenet_map_desc" : "Choose which crime.net map to use.\nApós alterar, é necessário atualizar as texturas para que as mudanças tenham efeito.",
+  "default_map" : "Padrão",
+  "custom_map" : "Neon Blue"
 
 }
