@@ -46,12 +46,7 @@
                 "g": 255,
                 "b": 255
             },
-            "parent_compare": {
-                "id": "objective_toggle",
-                "comparator": "==",
-                "enabled": true,
-                "value": true
-            }
+			"parent" : "objective_toggle"
 			
 		},
 		{

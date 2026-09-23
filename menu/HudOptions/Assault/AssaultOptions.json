@@ -19,19 +19,21 @@
 				"no_return_timer_color_select",
                 "holdout_text_color_select",
 				"hostage_panel_toggle",
-				"hostages_text_icon_color_select",
-				"hostages_icon_color_select",
 				"wave_panel_toggle",
-                "waves_text_color_select",
-				"waves_icon_color_select",
 				"casing_toggle",
-				"casing_text_color_select",
-				"casing_icon_color_select",
                 "captain_text_color_select",
 				"captain_buff_icon_color_select",
-				"captain_buff_toggle",
-				"captain_buff_color_select"
+				"captain_buff_toggle"
             ],
+			"children_f": {
+				"hostages_text_icon_color_select": "hmh_hostage_panel_enabled",
+				"hostages_icon_color_select": "hmh_hostage_panel_enabled",
+				"waves_text_color_select": "hmh_wave_panel_enabled",
+				"waves_icon_color_select": "hmh_wave_panel_enabled",
+				"casing_text_color_select": "hmh_casing_enabled",
+				"casing_icon_color_select": "hmh_casing_enabled",
+				"captain_buff_color_select": "hmh_captain_buff_enabled"
+			},
 			"default_value": true
 		},
 		{
@@ -153,10 +155,10 @@
 			"callback": "hmh_set_item_value",
 			"value": "hostage_panel",
 			"default_value": true,
-			"children": [
-				"hostages_text_icon_color_select",
-				"hostages_icon_color_select"
-            ],
+			"children_f": {
+				"hostages_text_icon_color_select": "hmh_assault_enabled",
+				"hostages_icon_color_select": "hmh_assault_enabled"
+			},
 			"parent" : "assault_toggle"
 		},
 		{
@@ -169,8 +171,7 @@
                 "r": 102,
                 "g": 255,
                 "b": 255
-            },
-			"parent" : ["assault_toggle", "hostage_panel_toggle"]
+            }
 		},
 		{
 			"type": "color",
@@ -182,8 +183,7 @@
                 "r": 255,
                 "g": 128,
                 "b": 223
-            },
-			"parent" : ["assault_toggle", "hostage_panel_toggle"]
+            }
 		},
 		{
 			"type" : "divider",
@@ -197,10 +197,10 @@
 			"callback": "hmh_set_item_value",
 			"value": "wave_panel",
 			"default_value": true,
-			"children": [
-				"waves_text_color_select",
-				"waves_icon_color_select"
-            ],
+			"children_f": {
+				"waves_text_color_select": "hmh_assault_enabled",
+				"waves_icon_color_select": "hmh_assault_enabled"
+			},
 			"parent" : "assault_toggle"
 		},
 		{
@@ -213,8 +213,7 @@
                 "r": 102,
                 "g": 255,
                 "b": 255
-            },
-			"parent" : ["assault_toggle", "wave_panel_toggle"]
+            }
 		},
 		{
 			"type": "color",
@@ -226,8 +225,7 @@
                 "r": 255,
                 "g": 128,
                 "b": 223
-            },
-			"parent" : ["assault_toggle", "wave_panel_toggle"]
+            }
 		},
 		{
 			"type" : "divider",
@@ -241,10 +239,10 @@
 			"callback": "hmh_set_item_value",
 			"value": "casing",
 			"default_value": true,
-			"children": [
-				"casing_text_color_select",
-				"casing_icon_color_select"
-            ],
+			"children_f": {
+				"casing_text_color_select": "hmh_assault_enabled",
+				"casing_icon_color_select": "hmh_assault_enabled"
+			},
 			"parent" : "assault_toggle"
 		},
 		{
@@ -257,8 +255,7 @@
                 "r": 102,
                 "g": 255,
                 "b": 153
-            },
-			"parent" : ["assault_toggle", "casing_toggle"]
+            }
 		},
 		{
 			"type": "color",
@@ -270,8 +267,7 @@
                 "r": 255,
                 "g": 128,
                 "b": 223
-            },
-			"parent" : ["assault_toggle", "casing_toggle"]
+            }
 		},
 		{
 			"type" : "divider",
@@ -311,9 +307,9 @@
 			"callback": "hmh_set_item_value",
 			"value": "captain_buff",
 			"default_value": true,
-			"children": [
-				"captain_buff_color_select"
-            ],
+			"children_f": {
+				"captain_buff_color_select": "hmh_assault_enabled"
+			},
 			"parent" : "assault_toggle"
 		},
 		{
@@ -327,7 +323,6 @@
                 "g": 204,
                 "b": 102
             },
-			"parent" : ["assault_toggle", "captain_buff_toggle"]
 		}
 	]
 }

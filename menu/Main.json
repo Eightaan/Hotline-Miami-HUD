@@ -23,9 +23,7 @@
 			"description": "no_menu_textures_desc",
 			"callback": "hmh_set_item_value",
 			"value": "no_menu_textures",
-            "children": [
-                "mod_overrides_toggle"
-            ],
+            "child": "mod_overrides_toggle",
 			"default_value": false
 		},
 		{

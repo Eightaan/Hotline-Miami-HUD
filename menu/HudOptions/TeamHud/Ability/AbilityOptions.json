@@ -10,9 +10,7 @@
 			"description": "ability_icon_desc",
 			"callback": "hmh_set_item_value",
 			"value": "ability_icon",
-			"children": [
-                "Ability_icon_color_select"
-            ],
+			"child": "Ability_icon_color_select",
 			"default_value": true
 		},
 		{
@@ -39,11 +37,11 @@
 			"description": "armorer_radial_desc",
 			"callback": "hmh_set_item_value",
 			"value": "armorer_cooldown_radial",
-			"children": [
-                "armorer_timer_toggle",
-				"armorer_timer_color_select",
-				"armorer_duration_timer_color_select"
-            ],
+			"child": "armorer_timer_toggle",
+			"children_f": {
+				"armorer_timer_color_select": "hmh_armorer_timer_enabled",
+				"armorer_duration_timer_color_select": "hmh_armorer_timer_enabled"
+			},
 			"default_value": false
 		},
 		{
@@ -54,10 +52,10 @@
 			"callback": "hmh_set_item_value",
 			"value": "armorer_cooldown_timer",
 			"default_value": false,
-			"children": [
-				"armorer_timer_color_select",
-				"armorer_duration_timer_color_select"
-            ],
+			"children_f": {
+				"armorer_timer_color_select": "hmh_armorer_radial_enabled",
+				"armorer_duration_timer_color_select": "hmh_armorer_radial_enabled"
+			},
 			"parent" : "armorer_radial_toggle"
 		},
 		{
@@ -71,7 +69,6 @@
                 "g": 255,
                 "b": 255
             },
-			"parent": ["armorer_radial_toggle","armorer_timer_toggle"]
 		},
 		{
 			"type": "color",
@@ -84,7 +81,6 @@
                 "g": 255,
                 "b": 153
             },
-			"parent": ["armorer_radial_toggle","armorer_timer_toggle"]
 		}
 	]
 }
