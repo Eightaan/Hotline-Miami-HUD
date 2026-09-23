@@ -3,6 +3,8 @@
 	"timer_x" : 123,
 	"timer_y" : 43,
 	"timer_scale" : 1,
+	"custom_crimenet_map" : 1,
+	"duration_icon" : true,
 	"no_menu_textures" : false,
 	"team_bg" : true,
 	"mod_overrides" : true, 
