@@ -12,8 +12,8 @@
 			"value": "combo",
 			"children": [
                 "panel_position_slider",
-                "combo_kill_anim_toggle"
-				"combo_kill_flash_toggle",
+                "combo_kill_anim_toggle",
+				"combo_kill_flash_toggle"
             ],
 			"default_value": true
 		},

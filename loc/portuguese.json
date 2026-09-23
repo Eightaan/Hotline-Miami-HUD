@@ -1,10 +1,9 @@
 {
-  "hmh_r": "Vermelho",
-  "hmh_g": "Verde",
-  "hmh_b": "Azul",
+  "hmh_color_red": "Vermelho",
+  "hmh_color_green": "Verde",
+  "hmh_color_blue": "Azul",
   "hmh_ok": "Ok",
   "hmh_color_reset": "Redefinir Cor",
-  "HMH_warning_desc": "Algumas das suas alterações podem não ter efeito até reiniciar o assalto!",
 
   "hmh_title": "HUD Hotline Miami",
   "hmh_desc": "Opções do Hotline Miami HUD",

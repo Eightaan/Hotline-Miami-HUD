@@ -92,7 +92,7 @@
                 "g": 204,
                 "b": 102
             },
-			"parent" : "interact_toggle",
+			"parent" : "interact_toggle"
 		},
 		{
 			"type": "divider",
