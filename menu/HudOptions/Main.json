@@ -41,6 +41,10 @@
 			"next_menu": "hmh_buff_list_menu"
 		},
 		{
+			"type": "divider",
+			"size": 8
+		},
+		{
 			"type": "toggle",
 			"id": "screen_effect_toggle",
 			"title": "screen_effect_title",
@@ -107,6 +111,10 @@
 			"next_menu": "hmh_menu_objective_and_timer"
 		},
 		{
+			"type": "divider",
+			"size": 8
+		},
+		{
 			"type": "button",
 			"id": "hmh_notifications",
 			"title": "hmh_notifications_title",
@@ -126,6 +134,10 @@
 			"title": "hmh_waypoints_and_detection_title",
 			"description": "hmh_waypoints_and_detection_desc",
 			"next_menu": "hmh_menu_waypoints_and_detection"
+		},
+		{
+			"type": "divider",
+			"size": 8
 		},
 		{
 			"type": "button",

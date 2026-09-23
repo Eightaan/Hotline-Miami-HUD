@@ -18,6 +18,10 @@
 			"default_value": 2
 		},
 		{
+			"type": "divider",
+			"size": 8
+		},
+		{
 			"type": "button",
 			"id": "hmh_hud_ability_menu",
 			"title": "hmh_hud_ability_title",
@@ -37,6 +41,10 @@
 			"title": "hmh_hud_custody_downed_title",
 			"description": "hmh_hud_custody_downed_desc",
 			"next_menu": "hmh_hud_custody_downed_menu"
+		},
+		{
+			"type": "divider",
+			"size": 8
 		},
 		{
 			"type": "button",

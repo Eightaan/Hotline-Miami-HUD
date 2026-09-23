@@ -388,6 +388,14 @@ function MenuCallbackHandler:hmh_armorer_radial_enabled()
     return HMH:GetOption("armorer_cooldown_radial")
 end
 
+function MenuCallbackHandler:hmh_ability_icon_enabled()
+    return HMH:GetOption("ability_icon")
+end
+
+function MenuCallbackHandler:hmh_duration_icon_enabled()
+    return HMH:GetOption("duration_icon")
+end
+
 Hooks:Add("MenuManagerInitialize", "MenuManagerInitialize_HMH", function(menu_manager, nodes)
     LoadFromJsonFile(HMH._menu_path .. "Main.json", HMH._data)
 	LoadFromJsonFile(HMH._menu_path .. "Presets/PresetsOptions.json", HMH._data)

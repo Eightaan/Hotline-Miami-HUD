@@ -21,6 +21,10 @@
 			"default_value": true
 		},
 		{
+			"type": "divider",
+			"size": 8
+		},
+		{
 			"type": "color",
 			"id": "player_1_color_select",
 			"title": "HotlineMiamiHudPlayer1TitleID",
@@ -32,6 +36,10 @@
                 "b": 153
             },
 			"parent" : "color_toggle"
+		},
+		{
+			"type": "divider",
+			"size": 8
 		},
 		{
 			"type": "color",
@@ -47,6 +55,10 @@
 			"parent" : "color_toggle"
 		},
 		{
+			"type": "divider",
+			"size": 8
+		},
+		{
 			"type": "color",
 			"id": "player_3_color_select",
 			"title": "HotlineMiamiHudPlayer3TitleID",
@@ -60,6 +72,10 @@
 			"parent" : "color_toggle"
 		},
 		{
+			"type": "divider",
+			"size": 8
+		},
+		{
 			"type": "color",
 			"id": "player_4_color_select",
 			"title": "HotlineMiamiHudPlayer4TitleID",
@@ -71,6 +87,10 @@
                 "b": 102
             },
 			"parent" : "color_toggle"
+		},
+		{
+			"type": "divider",
+			"size": 8
 		},
 		{
 			"type": "color",

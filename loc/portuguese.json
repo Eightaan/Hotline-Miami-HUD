@@ -184,7 +184,9 @@
   "hmh_hud_ability_title": "Habilidades do Jogador",
   "hmh_hud_ability_desc": "",
   "ability_icon_title": "Mostrar Ícone de Habilidade",
-  "ability_icon_desc": "",
+  "ability_icon_desc" : "Show icons for kingpin, hacker, etc in the health circle.",
+  "duration_icon_title" : "Invulnerability Duration Icon",
+  "duration_icon_desc" : "Enables the icons for the invulnerability display in the health circle",
   "armorer_timer_title": "Timer de Cooldown da Invulnerabilidade",
   "armorer_timer_desc": "Exibe o cooldown de invulnerabilidade (Anarchist/Armorer/Copycat).",
   "armorer_radial_title": "Duração da Invulnerabilidade",
@@ -445,7 +447,7 @@
   "HotlineMiamiHudTotalAmmoTitleID": "Munição Total",
   "HotlineMiamiHudClipAmmoTitleID": "Munição Atual",
 
-  "HotlineMiamiHudAbilityIconTitleID": "Ícone de Habilidade",
+  "HotlineMiamiHudAbilityIconTitleID" : "Ability/Invulnerability Icon",
   "HotlineMiamiHudArmorerTimerTitleID": "Timer de Cooldown do Armorer/Anarchist",
   "HotlineMiamiHudCopycatTimerTitleID": "Timer de Cooldown do Período de Habilidade do Copycat",
 
