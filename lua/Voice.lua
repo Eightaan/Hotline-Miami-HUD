@@ -1,5 +1,4 @@
 Hooks:PostHook(HUDManager, "set_mugshot_voice", "HMH_MenuManager_set_mugshot_voice", function (self, id, active, ...)
-	if not HMH:GetOption("voice_icon") then return end
 	local peer_id
 	for i, data in pairs(self._hud.mugshots) do
 		if data.id and data.id == id then
@@ -27,7 +26,7 @@ Hooks:PostHook(HUDManager, "set_mugshot_voice", "HMH_MenuManager_set_mugshot_voi
 		name_label.panel:remove(talk_icon)
 	end
 
-	if active then
+	if active and HMH:GetOption("voice_icon") then
 		local icon = "pd2_talk"
 		local color = tweak_data.chat_colors[managers.criminals:character_color_id_by_unit(unit)]
 		local texture, rect = tweak_data.hud_icons:get_icon_data(icon)

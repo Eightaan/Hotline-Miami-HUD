@@ -470,5 +470,5 @@
 	"hmh_ok" : "Ok",
 	"hmh_color_reset" : "Reset Color",
 	"voice_icon_title" : "Voice Chat Icon",
-	"voice_icon_desc" : "Display an icon above the player label when the user is talking in-game."
+	"voice_icon_desc" : "Displays an icon above the player label when the user is talking in-game."
 }

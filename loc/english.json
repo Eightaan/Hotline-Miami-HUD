@@ -184,7 +184,7 @@
 	"screen_effect_title" : "Ability Screen Effects",
 	"screen_effect_desc" : "Will make the screen flash when swan song or the kingpin injector is active.",
 	"voice_icon_title" : "Voice Chat Icon",
-	"voice_icon_desc" : "Display an icon above the player label when the user is talking in-game.",
+	"voice_icon_desc" : "Displays an icon above the player label when the user is talking in-game.",
 	
 	"hmh_hud_equipment_title" : "Equipment",
 	"hmh_hud_equipment_desc" : "",
