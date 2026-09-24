@@ -14,35 +14,42 @@ if string.lower(RequiredScript) == "lib/managers/menu/contractboxgui" then
 	local mouse_pressed_original = ContractBoxGui.mouse_pressed
 	local mouse_moved_original = ContractBoxGui.mouse_moved
 	local set_enabled_original = ContractBoxGui.set_enabled
-	-- local create_character_text_original = ContractBoxGui.create_character_text
+	local create_character_text_original = ContractBoxGui.create_character_text
 
-	-- function ContractBoxGui:create_character_text(peer_id, ...)
-		-- create_character_text_original(self, peer_id, ...)
-
-		-- local peer_label = self._peers[peer_id]
-		-- local x, y = peer_label:center_x(), peer_label:top()
-		-- local voice_icon, voice_texture_rect = tweak_data.hud_icons:get_icon_data('wp_talk')
-		-- local talking
+	function ContractBoxGui:create_character_text(peer_id, ...)
+		create_character_text_original(self, peer_id, ...)
 		
-		-- if type(managers.network.voice_chat._users_talking) == 'table' then
-			-- talking = managers.network.voice_chat._users_talking[peer_id] and managers.network.voice_chat._users_talking[peer_id].active
-		-- end
+		local is_local_peer = peer_id == managers.network:session():local_peer():id()
+		local voice_chat = managers.network.voice_chat
+		local peer_label = self._peers[peer_id]
+		local x, y = peer_label:center_x(), peer_label:top()
+		local voice_icon, voice_texture_rect = tweak_data.hud_icons:get_icon_data('wp_talk')
+		local talking = false
+
+		
+		if voice_chat then
+			if is_local_peer and not managers.network.voice_chat._push_to_talk then
+				talking = voice_chat._enabled
+			elseif type(voice_chat._users_talking) == 'table' then
+				talking = voice_chat._users_talking[peer_id] and voice_chat._users_talking[peer_id].active
+			end
+		end
 	
-		-- self._peers_talking = self._peers_talking or {}
-		-- self._peers_talking[peer_id] = self._peers_talking[peer_id] or self._panel:bitmap({
-			-- texture = voice_icon,
-			-- layer = 0,
-			-- texture_rect = voice_texture_rect,
-			-- w = voice_texture_rect[3],
-			-- h = voice_texture_rect[4],
-			-- color = color,
-			-- blend_mode = 'add',
-			-- alpha = 1
-		-- })
-		-- self._peers_talking[peer_id]:set_center_x(x)
-		-- self._peers_talking[peer_id]:set_bottom(y)
-		-- self._peers_talking[peer_id]:set_visible(talking)		
-	-- end
+		self._peers_talking = self._peers_talking or {}
+		self._peers_talking[peer_id] = self._peers_talking[peer_id] or self._panel:bitmap({
+			texture = voice_icon,
+			layer = 0,
+			texture_rect = voice_texture_rect,
+			w = voice_texture_rect[3],
+			h = voice_texture_rect[4],
+			color = tweak_data.chat_colors[peer_id],
+			blend_mode = 'add',
+			alpha = 1
+		})
+		self._peers_talking[peer_id]:set_center_x(x)
+		self._peers_talking[peer_id]:set_bottom(y)
+		self._peers_talking[peer_id]:set_visible(talking)		
+	end
 
 	ContractBoxGui._LOADOUT_W = 750
 	ContractBoxGui._LOADOUT_H = 590
@@ -745,4 +752,12 @@ elseif string.lower(RequiredScript) == "lib/managers/hud/newhudstatsscreen" then
 			parent_panel:set_leftbottom(10, self._right:h() - 40)
 		end
 	end
+elseif string.lower(RequiredScript) == "lib/managers/menumanager" then
+	Hooks:PostHook(MenuManager, "push_to_talk", "HMH_MenuManager_push_to_talk", function (self, enabled, ...)
+		if managers.network and managers.network.voice_chat and managers.network.voice_chat._enabled and managers.network:session() then
+			if table.size(managers.network:session():peers()) > 0 then
+				managers.network.voice_chat._users_talking[managers.network:session():local_peer():id()] = { active = enabled }
+			end
+		end
+	end)
 end

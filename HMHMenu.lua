@@ -396,8 +396,8 @@ function MenuCallbackHandler:hmh_duration_icon_enabled()
     return HMH:GetOption("duration_icon")
 end
 
-Hooks:Add("MenuManagerInitialize", "MenuManagerInitialize_HMH", function(menu_manager, nodes)
-    LoadFromJsonFile(HMH._menu_path .. "Main.json", HMH._data)
+Hooks:Add("MenuManagerInitialize", "MenuManagerInitialize_HMH", function(menu_manager)
+	LoadFromJsonFile(HMH._menu_path .. "Main.json", HMH._data)
 	LoadFromJsonFile(HMH._menu_path .. "Presets/PresetsOptions.json", HMH._data)
 	LoadFromJsonFile(HMH._menu_path .. "HudOptions/Main.json", HMH._data)
 	LoadFromJsonFile(HMH._menu_path .. "HudOptions/ComboCounter/ComboCounterOptions.json", HMH._data)
@@ -421,14 +421,17 @@ Hooks:Add("MenuManagerInitialize", "MenuManagerInitialize_HMH", function(menu_ma
 	LoadFromJsonFile(HMH._menu_path .. "HudOptions/JoiningPlayers/JoiningPlayersOptions.json", HMH._data)
 	
 	local main_menu = menu_manager:get_menu(menu_manager._is_start_menu and "menu_main" or "menu_pause")
-    if main_menu then
-        local node = CoreMenuNode.MenuNode:new({
-            gui_class = "HMHMenuNodeCustomizeGadgetGui",
-            modifier = "HMHMenuSetColorInitiator",
-            refresh = "HMHMenuSetColorInitiator"
-        })
-
-        node:set_callback_handler(MenuCallbackHandler:new())
-        main_menu.data._nodes.hmh_color_select = node
+	if main_menu then
+		if HMHMenuSetColorInitiator and HMHMenuNodeCustomizeGadgetGui then
+			local node = CoreMenuNode.MenuNode:new({
+				gui_class = "HMHMenuNodeCustomizeGadgetGui",
+				modifier = "HMHMenuSetColorInitiator",
+				refresh = "HMHMenuSetColorInitiator"
+			})
+			node:set_callback_handler(MenuCallbackHandler:new())
+			main_menu.data._nodes.hmh_color_select = node
+		else
+            log("[HMH] HMHMenuSetColorInitiator or HMHMenuNodeCustomizeGadgetGui is Missing!")
+        end
     end
 end)

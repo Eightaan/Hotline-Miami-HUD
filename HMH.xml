@@ -29,16 +29,21 @@
 				<post :hook_id="objectinteractionmanager"	:script_path="LootCounter.lua"/>
 				<post :hook_id="trademanager"      			:script_path="TradeDelay.lua"/>
 				<post :hook_id="moneymanager"        		:script_path="TradeDelay.lua"/>
-				<post :hook_id="hudmanager"          		:script_path="Waypoints.lua"/>
 				<post :hook_id="menumanagerdialogs"  		:script_path="MenuTweak.lua"/>
 				<post :hook_id="missionassetsmanager"  		:script_path="MenuTweak.lua"/>
-			
+
+				<group :hook_id="hudmanager">
+					<post :script_path="Waypoints.lua"/>
+					<post :script_path="Voice.lua"/>
+				</group>
+
 				<group :hook_id="menumanager">
 					<post :script_path="PrePlanManager.lua"/>
 					<post :script_path="MenuTweak.lua"/>
+					<post :script_path="EnhancedCrewLoadout.lua"/>
 					<post :script_path="ModMenu.lua" />
-					<post script_path="HMHMenu.lua" />
 					<post script_path="ColorSelector.lua" />
+					<post script_path="HMHMenu.lua" />
 				</group>
 			
 				<group :hook_id="playermanager">
