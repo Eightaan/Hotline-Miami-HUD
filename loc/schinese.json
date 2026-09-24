@@ -468,5 +468,7 @@
 	"hmh_color_green" : "Green",
 	"hmh_color_blue" : "Blue",
 	"hmh_ok" : "Ok",
-	"hmh_color_reset" : "Reset Color"
+	"hmh_color_reset" : "Reset Color",
+	"voice_icon_title" : "Voice Chat Icon",
+	"voice_icon_desc" : "Display an icon above the player label when the user is talking in-game."
 }

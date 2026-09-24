@@ -46,6 +46,19 @@
 		},
 		{
 			"type": "toggle",
+			"id": "voice_icon_toggle",
+			"title": "voice_icon_title",
+			"description": "voice_icon_desc",
+			"callback": "hmh_set_item_value",
+			"value": "voice_icon",
+			"default_value": true
+		},
+		{
+			"type": "divider",
+			"size": 8
+		},
+		{
+			"type": "toggle",
 			"id": "screen_effect_toggle",
 			"title": "screen_effect_title",
 			"description": "screen_effect_desc",

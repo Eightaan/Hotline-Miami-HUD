@@ -459,6 +459,8 @@
   "custom_crimenet_map_title": "CrimeNet Map",
   "custom_crimenet_map_desc": "Choose which crime.net map to use.\nApós alterar, é necessário atualizar as texturas para que as mudanças tenham efeito.",
   "default_map": "Padrão",
-  "custom_map": "Neon Blue"
+  "custom_map": "Neon Blue",
+  "voice_icon_title": "Voice Chat Icon",
+  "voice_icon_desc": "Display an icon above the player label when the user is talking in-game."
 
 }

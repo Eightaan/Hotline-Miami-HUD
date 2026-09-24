@@ -1,4 +1,5 @@
 Hooks:PostHook(HUDManager, "set_mugshot_voice", "HMH_MenuManager_set_mugshot_voice", function (self, id, active, ...)
+	if not HMH:GetOption("voice_icon") then return end
 	local peer_id
 	for i, data in pairs(self._hud.mugshots) do
 		if data.id and data.id == id then

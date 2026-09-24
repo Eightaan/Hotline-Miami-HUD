@@ -5,6 +5,7 @@
 	"timer_scale" : 1,
 	"custom_crimenet_map" : 1,
 	"duration_icon" : true,
+	"voice_icon" : true,
 	"no_menu_textures" : false,
 	"team_bg" : true,
 	"mod_overrides" : true, 
