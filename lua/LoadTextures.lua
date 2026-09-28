@@ -233,14 +233,14 @@ function HMH:LoadTextures()
 		end
 	end
 
-	--Load Objective Sound
-	local silent_obj = HMH:GetOption("silent_obj")
-	local orig_silent_obj_path = HMH._path .. "soundbanks/streamed/hud/670238416.stream"
-	local silent_obj_path = silent_obj and HMH._path .. "assets/pd2_mod_hmh/objective.stream"
-	DB:create_entry(
-		Idstring("stream"), 
-		Idstring("soundbanks/streamed/hud/670238416"), 
-		silent_obj_path or orig_silent_obj_path
-	)
+	-- --Load Objective Sound
+	-- local silent_obj = HMH:GetOption("silent_obj")
+	-- local orig_silent_obj_path = HMH._path .. "soundbanks/streamed/hud/670238416.stream"
+	-- local silent_obj_path = silent_obj and HMH._path .. "assets/pd2_mod_hmh/objective.stream"
+	-- DB:create_entry(
+		-- Idstring("stream"), 
+		-- Idstring("soundbanks/streamed/hud/670238416"), 
+		-- silent_obj_path or orig_silent_obj_path
+	-- )
 end
 HMH:LoadTextures()

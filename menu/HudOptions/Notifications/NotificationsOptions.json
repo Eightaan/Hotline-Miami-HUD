@@ -5,19 +5,6 @@
 	"items": [
 		{
 			"type": "toggle",
-			"id": "silent_obj_toggle",
-			"title": "silent_obj_title",
-			"description": "silent_obj_desc",
-			"callback": "hmh_set_item_value",
-			"value": "silent_obj",
-			"default_value": false
-		},
-		{
-			"type": "divider",
-			"size": 12
-		},
-		{
-			"type": "toggle",
 			"id": "presenter_toggle",
 			"title": "presenter_title",
 			"description": "presenter_desc",
