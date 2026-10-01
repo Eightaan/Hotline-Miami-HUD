@@ -493,6 +493,14 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 
 		local secured_amount = managers.loot:get_secured_mandatory_bags_amount()
 		local bonus_amount = managers.loot:get_secured_bonus_bags_amount()
+		local secured = secured_amount + bonus_amount
+		local loot_text = secured
+		if HMH:GetOption("loot_count") then
+			local carrying = managers.interaction:get_current_carry_count()
+			local loot_amount = managers.interaction:get_current_total_loot_count()
+			local total = loot_amount + carrying + secured
+			loot_text = total > 0 and secured .. "/" .. total or "0"
+		end
 		local bag_text = placer:add_bottom(loot_panel:fine_text({
 			keep_w = true,
 			text = managers.localization:text("hud_stats_bags_secured"),
@@ -514,7 +522,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 		bag_icon:set_center_y(bag_text:center_y())
 		
 		placer:add_left(loot_panel:fine_text({
-			text = tostring(secured_amount + bonus_amount),
+			text = tostring(loot_text),
 			font = medium_font,
 			color = custom_tab_color and Color("66ff99") or Color.white,
 			font_size = medium_font_size
@@ -522,37 +530,6 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 		placer:new_row()
 		
 		if HMH:GetOption("loot_count") then
-			local loot_text = placer:add_bottom(loot_panel:fine_text({
-				keep_w = true,
-				text = managers.localization:text("hud_stats_bags_unsecured"),
-				font = medium_font,
-				color = custom_tab_color and Color("ffcc66") or Color.white,
-				font_size = medium_font_size
-			}), 20)
-
-			placer:add_right(nil, 0)
-
-			local border_crossing_fix = Global.game_settings.level_id == "mex" and managers.interaction:get_current_total_loot_count() > 41 and 4
-			local loot_amount = border_crossing_fix or managers.interaction:get_current_total_loot_count()
-			local bag_texture, bag_rect = tweak_data.hud_icons:get_icon_data("bag_icon")
-			local loot_icon = placer:add_left(loot_panel:fit_bitmap({
-				w = 16,
-				h = 16,
-				color = custom_tab_color and Color("ffcc66") or Color.white,
-				texture = bag_texture,
-				texture_rect = bag_rect
-			}))
-			loot_icon:set_center_y(loot_text:center_y())
-
-			placer:add_left(loot_panel:fine_text({
-				text = tostring(loot_amount),
-				font = medium_font,
-				color = custom_tab_color and Color("ffcc66") or Color.white,
-				font_size = medium_font_size
-			}))
-			
-			placer:new_row()
-			
 				local crate_text = placer:add_bottom(loot_panel:fine_text({
 				keep_w = true,
 				text = managers.localization:text("hud_stats_unopened_crates"),
@@ -563,13 +540,12 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 
 			placer:add_right(nil, 0)
 
-			local firestarter_fix = Global.game_settings.level_id == "firestarter_1" and managers.interaction:get_current_crate_count() > 50 and 0
-			local rats_fix = Global.game_settings.level_id == "alex_3" and managers.interaction:get_current_crate_count() > 14 and managers.interaction:get_current_crate_count() - 16
-			local crate_info = firestarter_fix or rats_fix or managers.interaction:get_current_crate_count()
-			local bag_texture, bag_rect = tweak_data.hud_icons:get_icon_data("bag_icon")
+			local crate_info = managers.interaction:get_current_crate_count()
+			local bag_texture = tweak_data.preplanning.gui.type_icons_path
+			local bag_rect = tweak_data.preplanning:get_type_texture_rect(tweak_data.preplanning.types.ranc_marked_crate.icon)
 			local crate_icon = placer:add_left(loot_panel:fit_bitmap({
-				w = 16,
-				h = 16,
+				w = 32,
+				h = 32,
 				color = custom_tab_color and Color("ffcc66") or Color.white,
 				texture = bag_texture,
 				texture_rect = bag_rect

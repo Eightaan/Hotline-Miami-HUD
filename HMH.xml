@@ -49,12 +49,17 @@
 				<group :hook_id="playermanager">
 					<post :script_path="ComboCounter.lua"/>
 					<post :script_path="HealthCircle.lua"/>
+					<post :script_path="LootCounter.lua"/>
 					<post :script_path="HudManager.lua"/>
 					<post :script_path="Buffs.lua"/>
 				</group>
 
 				<group :hook_id="dialogs/specializationdialog">
 					<post :script_path="InputDialog.lua"/>
+				</group>
+				
+				<group :hook_id="mission/missionscriptelement">
+					<post :script_path="LootCounter.lua"/>
 				</group>
 
 				<group :hook_id="hudmanagerpd2">
