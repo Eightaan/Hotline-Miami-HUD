@@ -810,20 +810,21 @@ function LoadoutPingItem:init(base_panel, owner, name, width, height, params)
 end
 
 function LoadoutPingItem:update(t, dt)
-	if not self._owner:local_peer() then
-		if (self._next_update_t or 0) <= t then
-			local peer = self._owner:get_peer()
-			if peer then
-				local latency = Network:qos(peer:rpc()).ping or 0
-				self:set_text(string.format("%.0fms", latency), latency < 75 and tweak_data.chat_colors[1] or latency < 150 and tweak_data.chat_colors[4] or tweak_data.chat_colors[3])
-			else
-				self:set_text("---ms", tweak_data.chat_colors[3])
-			end
-			self._next_update_t = (t + 1)
+    if not self._owner:local_peer() then
+        if (self._next_update_t or 0) <= t then
+            local peer = self._owner:get_peer()
+            local rpc = peer and peer:rpc()
+            if rpc then
+                local latency = Network:qos(rpc).ping or 0
+                self:set_text(string.format("%.0fms", latency), latency < 75 and tweak_data.chat_colors[1] or latency < 150 and tweak_data.chat_colors[4] or tweak_data.chat_colors[3])
+            else
+                self:set_text("---ms", tweak_data.chat_colors[3])
+            end
+            self._next_update_t = t + 1
 
-			self:arrange()
-		end
-	end
+            self:arrange()
+        end
+    end
 end
 
 function LoadoutPingItem:set_outfit(outfit)

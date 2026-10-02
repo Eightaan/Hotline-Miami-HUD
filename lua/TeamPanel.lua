@@ -723,7 +723,8 @@ if RequiredScript == "lib/managers/hud/hudteammate" then
 		if ping_panel and self:peer_id() and t > self._next_latency_update_t then
 			local net_session = managers.network:session()
 			local peer = net_session and net_session:peer(self:peer_id())
-			local latency = peer and Network:qos(peer:rpc()).ping or "n/a"
+			local rpc = peer and peer:rpc()
+			local latency = rpc and Network:qos(rpc).ping or ""
 
 			if type(latency) == "number" then
 				ping_panel:set_text(string.format("%.0fms", latency))
