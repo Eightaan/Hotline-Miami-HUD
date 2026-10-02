@@ -14,7 +14,9 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 				-- Rats (16x Money Briefcase)
 				alex_3 = {crates_over = 14, remove_crates = 16},
 				-- Border Crossing
-				mex = {loot_over = 41, loot_amount = 4}
+				mex = {loot_over = 41, loot_amount = 4},
+				-- Alaskan Deal
+				wwh = {loot_case = "grenade_briefcase"}
 			}
 			self.ignore_ids = {
 				--Transport Underpass (8x Money)
@@ -132,6 +134,13 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 
 		local function is_loot_case(unit)
 			local interact_type = unit:interaction() and unit:interaction().tweak_data
+			local level_id = managers.job:current_level_id()
+			local current_amount = managers.interaction._loot_fixes[level_id]
+
+			if current_amount and current_amount.loot_case == interact_type then
+				return unit:editor_id() ~= -1
+			end
+
 			return interact_type and table.contains({
 				"weapon_case",
 				"weapon_case_axis_z",
