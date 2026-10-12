@@ -496,9 +496,8 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 		local secured = secured_amount + bonus_amount
 		local loot_text = secured
 		if HMH:GetOption("loot_count") then
-			local carrying = managers.interaction:get_current_carry_count()
 			local loot_amount = managers.interaction:get_current_total_loot_count()
-			local total = loot_amount + carrying + secured
+			local total = loot_amount + secured
 			loot_text = total > 0 and secured .. "/" .. total or "0"
 		end
 		local bag_text = placer:add_bottom(loot_panel:fine_text({

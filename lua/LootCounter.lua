@@ -156,7 +156,7 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 				current_amount.ignore = current_amount.ignore - 1
 			else
 				manager:update_loot(1)
-				managers.hud:loot_value_updated()
+				manager:update_loot_hud()
 			end
 		end
 
@@ -199,7 +199,7 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 			return true
 		end
 
-		Hooks:PostHook(ObjectInteractionManager, "update", "HMH_ObjectInteractionManager_Update", function(self, ...)
+		Hooks:PostHook(ObjectInteractionManager, "update", "HMH_ObjectInteractionManager_Update", function(self)
 			for i = #self._count_loot_bags, 1, -1 do
 				local data = self._count_loot_bags[i]
 				local unit = data.unit
@@ -210,7 +210,7 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 					if is_loot_case(unit) then
 						self._total_loot[unit:id()] = true
 						self:update_loot(1)
-						managers.hud:loot_value_updated()
+						self:update_loot_hud()
 					elseif is_valid_carry(carry_id) and not is_ignored_id(unit_id) then
 						self._total_loot[unit:id()] = true
 						process_loot_count(self, carry_id)
@@ -239,7 +239,7 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 					if self._total_loot[unit_id] then
 						self._total_loot[unit_id] = nil
 						self:update_loot(-1)
-						managers.hud:loot_value_updated()
+						self:update_loot_hud()
 					end
 				end
 				
@@ -260,13 +260,30 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 				end
 			end
 		end)
-		
+
+		function ObjectInteractionManager:update_loot_hud()
+			if managers.hud then
+				managers.hud:loot_value_updated()
+			end
+		end
+
 		function ObjectInteractionManager:set_player_carry(peer, carry_id)
 			if not peer then
 				return
 			end
 
-			self._player_carry[peer:id()] = is_valid_carry(carry_id) and carry_id or nil
+			local peer_id = peer:id()
+			local player = self._player_carry[peer_id]
+			local carry = is_valid_carry(carry_id) and carry_id or nil
+
+			if not player and carry then
+				self:update_loot(1)
+				self:update_loot_hud()
+			elseif player and not carry then
+				self:update_loot(-1)
+				self:update_loot_hud()
+			end
+			self._player_carry[peer_id] = carry
 		end
 
 		function ObjectInteractionManager:get_current_carry_count()
@@ -337,7 +354,7 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 
 			manager._total_loot[unit_id] = true
 			manager:update_loot(1)
-			managers.hud:loot_value_updated()
+			manager:update_loot_hud()
 		end)
 
 	elseif RequiredScript == "lib/managers/playermanager" then
@@ -347,7 +364,7 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 			end
 		end)
 
-		Hooks:PreHook(PlayerManager, "remove_synced_carry", "HMH_PlayerManager_remove_synced_carry", function(self, peer, ...)
+		Hooks:PostHook(PlayerManager, "remove_synced_carry", "HMH_PlayerManager_remove_synced_carry", function(self, peer, ...)
 			if managers.interaction then
 				managers.interaction:set_player_carry(peer)
 			end

@@ -79,6 +79,16 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		end
 	end)
 
+	local original_loot_value_updated = HUDManager.loot_value_updated
+	function HUDManager:loot_value_updated(...)
+		DelayedCalls:Remove("HMH_LootRefresh")
+		DelayedCalls:Add("HMH_LootRefresh", 0.25, function()
+			if managers.hud then
+				original_loot_value_updated(managers.hud)
+			end
+		end)
+	end
+
 elseif RequiredScript == "lib/managers/hud/hudhitconfirm" then
 	Hooks:PostHook(HUDHitConfirm, "init", "HMH_HUDHitConfirm_init", function(self, ...)
 		if self._hud_panel:child("headshot_confirm") then
