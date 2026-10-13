@@ -80,11 +80,11 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 	end)
 
 	local original_loot_value_updated = HUDManager.loot_value_updated
-	function HUDManager:loot_value_updated(...)
+	function HUDManager:loot_value_updated()
 		DelayedCalls:Remove("HMH_LootRefresh")
 		DelayedCalls:Add("HMH_LootRefresh", 0.25, function()
-			if managers.hud then
-				original_loot_value_updated(managers.hud)
+			if managers.hud == self then
+				original_loot_value_updated(self)
 			end
 		end)
 	end

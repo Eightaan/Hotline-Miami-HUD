@@ -292,6 +292,7 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 
 		function ObjectInteractionManager:update_loot_crates()
 			self.loot_count.crate_amount = #self.loot_crates
+			self:update_loot_hud()
 		end
 
 		function ObjectInteractionManager:update_loot(update)
