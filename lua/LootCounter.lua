@@ -3,176 +3,172 @@ local HMH = HMH
 if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 	if RequiredScript == "lib/managers/objectinteractionmanager" then
 		Hooks:PostHook(ObjectInteractionManager, "init", "HMH_ObjectInteractionManager_init", function(self)
+			self.loot_count = { loot_amount = 0, crate_amount = 0 }
 			self._total_loot = {}
 			self._count_loot_bags = {}
 			self._player_carry = {}
 			self.loot_crates = {}
-			self.loot_count = { loot_amount = 0, crate_amount = 0 }
 			self._loot_fixes = {
-				-- Framing Frame (16x Gold)
-				framing_frame_3 = {carry_id = "gold", ignore = 16},
-				-- Rats (16x Money Briefcase)
-				alex_3 = {crates_over = 14, remove_crates = 16},
-				-- Border Crossing
-				mex = {loot_over = 41, loot_amount = 4},
-				-- Alaskan Deal
-				wwh = {loot_case = "grenade_briefcase"}
+				born = {-- Biker Heist(Mission Parts, Mission Crates)
+					ignore = {bike_part_heavy = true, bike_part_light = true},
+					ignore_crates = true
+				},
+				framing_frame_3 = {-- Framing Frame (16x Gold, Mission Coke, Achievement Wine)
+					gold = 16,
+					ignore = {coke = true, old_wine = true}
+				},
+				pbr2 = {-- Birth of Sky (Mission Money, Mission Crate)
+					ignore = {money = true},
+					ignore_crates = true
+				},
+				mex_cooking = {-- Border Crystals (Roman Armor)
+					ignore = {roman_armor = true}
+				},
+				election_day_2 = {-- Election Day (Mission Crates)
+					ignore_crates = true
+				},
+				friend = {-- Scarface Mansion (Mission Paintings)
+					ignore = {painting = true}
+				},
+				moon = {-- Stealing Xmas (Mission Crates)
+					ignore_crates = true
+				},
+				wwh = {-- Alaskan Deal (4x Money Briefcase)
+					loot_case = "grenade_briefcase"
+				},
+				alex_3 = {-- Rats (16x Money Briefcase)
+					briefcases = 16
+				},
+				mex = {-- Border Crossing
+					loot = 41
+				}
 			}
 			self.ignore_ids = {
-				--Transport Underpass (8x Money)
-				[101237] = true, [101238] = true, 
-				[101239] = true, [103835] = true,
-				[103836] = true, [103837] = true, 
-				[103838] = true, [101240] = true,
-				--The Diamond (RNG)
-				[302577] = true, [302586] = true, 
-				[302597] = true, [302599] = true,
-				[300047] = true, [300686] = true, 
-				[300457] = true, [300458] = true, 
-				[301343] = true, [301346] = true,
-				--Ukrainian Job (3x Money)
-				-- [101514] = true, [102052] = true, [102402] = true,
-				-- Henry's Rock (2x Artifact, 2x Painting)
-				[101757] = true, 
-				[400513] = true,
-				[400515] = true, 
-				[400617] = true,
-				[400511] = true,
-				-- Shacklethorne Auction (2x Artifact)
-				[400791] = true, 
-				[400792] = true,
-				--Jewelry Store (2x Money)
-				-- [102052] = true,
-				-- [102402] = true,
-				-- Mountain Master (2x Artifact)
-				[500849] = true,
-				[500608] = true,
-				--Big Oil (1x Money 1x Gold)
-				[100886] = true,
-				[100872] = true,
-				-- Hotline Miami (1x Money)
-				[104526] = true,
-				-- Custom Safehouse (1x Painting)
-				[150416] = true,
-				--Yacht (1x artifact Painting)
-				[500533] = true,
-				--Diamond Store (1x Money)
-				[100899] = true,
-				-- Resevoir Dogs (1x Money)
-				[100296] = true
+				["arm_und"] = {-- Transport Underpass (8x Money)
+					[101237] = true, [101238] = true,
+					[101239] = true, [103835] = true,
+					[103836] = true, [103837] = true,
+					[103838] = true, [101240] = true
+				},
+				["mus"] = {-- The Diamond (RNG)
+					[302577] = true, [302586] = true,
+					[302597] = true, [302599] = true,
+					[300047] = true, [300686] = true,
+					[300457] = true, [300458] = true,
+					[301343] = true, [301346] = true
+				},
+				["des"] = {-- Henry's Rock (2x Artifact, 2x Painting
+					[101757] = true,
+					[400513] = true, [400515] = true,
+					[400617] = true, [400511] = true
+				},
+				["sah"] = {-- Shacklethorne Auction (2x Artifact)
+					[400791] = true, [400792] = true
+				},
+				["pent"] = {-- Mountain Master (2x Artifact)
+					[500849] = true, [500608] = true
+				},
+				["welcome_to_the_jungle_1"] = {-- Big Oil (1x Money, 1x Gold)
+					[100886] = true, [100872] = true
+				},
+				["mia_1"] = {-- Hotline Miami (1x Money)
+					[104526] = true
+				},
+				["chill"] = {-- Custom Safehouse (1x Painting)
+					[150416] = true
+				},
+				["chill_combat"] = {-- Safehouse Raid (1x Painting)
+					[150416] = true
+				},
+				["fish"] = {-- Yacht (1x Artifact Painting)
+					[500533] = true
+				},
+				["family"] = {-- Diamond Store (1x Money)
+					[100899] = true
+				},
+				["rvd2"] = {-- Reservoir Dogs (1x Money)
+					[100296] = true
+				},
+				---------------------------------------------------------------------------------------------------
+				-- The following are also from VHud Plus like above but they don't seem to be needed anymore?
+				["jewelry_store"] = {--Jewelry Store (2x money)
+					[102052] = true, [102402] = true
+				},
+				["ukrainian_job"] = {--Ukrainian Job (3x money)
+					[101514] = true,
+					[102052] = true,
+					[102402] = true
+				},
+				["watchdogs_2"] = {--Watchdogs day 2 (8x coke)
+					[100054] = true, [100058] = true,
+					[100427] = true, [100428] = true,
+					[100429] = true, [100426] = true, 
+					[100491] = true, [100492] = true, 
+					[100494] = true, [100495] = true
+				},
+				["tag"] = {-- Breakin' Feds (1x evidence)
+					[134563] = true
+				}
+				----------------------------------------------------------------------------------------------------
 			}
-			-- Beneath the Mountain
-			self.pbr_loot_crates = {
-				[156100] = true, 
+			self.pbr_loot_crates = {-- Beneath the Mountain
+				[156100] = true,
 				[156175] = true,
-				[156250] = true, 
+				[156250] = true,
 				[156325] = true,
-				[156400] = true, 
+				[156400] = true,
 				[156475] = true,
-				[156550] = true, 
+				[156550] = true,
 				[156625] = true,
-				[156700] = true, 
+				[156700] = true,
 				[156775] = true,
-				[156850] = true, 
+				[156850] = true,
 				[156925] = true,
-				[157000] = true, 
+				[157000] = true,
 				[157075] = true,
-				[157150] = true, 
+				[157150] = true,
 				[157225] = true,
-				[157300] = true, 
+				[157300] = true,
 				[157375] = true,
-				[157450] = true, 
+				[157450] = true,
 				[157525] = true,
-				[157600] = true, 
+				[157600] = true,
 				[157675] = true,
-				[157750] = true, 
+				[157750] = true,
 				[157825] = true,
 				[157900] = true
 			}
-			self.ignore_crate_levels = {
-				-- Birth of Sky
-				["pbr2"] = true,
-				-- Biker Heist
-				["born"] = true,
-				-- Election Day
-				["election_day_2"] = true,
-				-- Stealing Xmas
-				["moon"] = true
-			}
-			self.ignore_loot = {
-				-- Framing Frame
-				framing_frame_3 = {coke = true, old_wine = true},
-				-- Scarface Mansion
-				friend = {painting = true},
-				-- Birth of Sky
-				pbr2 = {money = true},
-				-- Border Crystals
-				mex_cooking = {roman_armor = true},
-				-- Biker Heist
-				born = {bike_part_heavy = true, bike_part_light = true}
-			}
 		end)
 
-		local function is_valid_unit(unit)
-			return unit and alive(unit) and unit:interaction() and unit:interaction():active()
-		end
-
-		local function is_ignored_id(unit_id)
-			return managers.interaction.ignore_ids and managers.interaction.ignore_ids[unit_id]
-		end
-
-		local function get_unit_type(unit)
+		local function is_valid_unit(self, unit)
+			if not unit or not alive(unit) or not unit:interaction() or not unit:interaction():active() then
+				return "skipped"
+			end
+			
+			local unit_id = unit:editor_id()
+			local level_id = managers.job:current_level_id()
+			if (level_id and self.ignore_ids[level_id] and unit_id) and self.ignore_ids[level_id][unit_id] then
+				return "skipped"
+			end
+			
 			local interact_type = unit:interaction().tweak_data
-			return (interact_type and table.contains({
-				"money_briefcase",
-				"hold_open_xmas_present",
-				"hold_open_case", --BCI Helmet case
-				"crate_loot",
-				"crate_loot_crowbar"
-			}, interact_type)) and "loot_crates" or nil
-		end
-
-		local function is_loot_case(unit)
-			local interact_type = unit:interaction() and unit:interaction().tweak_data
 			local level_id = managers.job:current_level_id()
-			local current_amount = managers.interaction._loot_fixes[level_id]
+			local current_amount = self._loot_fixes[level_id]
+			local loot_crate_types = {"hold_open_xmas_present", "money_briefcase", "hold_open_case", "crate_loot", "crate_loot_crowbar"}
+			local loot_case_types = {"weapon_case", "weapon_case_axis_z", "gen_pku_warhead_box"}
 
-			if current_amount and current_amount.loot_case == interact_type then
-				return unit:editor_id() ~= -1
+			if table.contains(loot_crate_types, interact_type) then
+				if current_amount and current_amount.ignore_crates then
+					return "skipped"
+				elseif (level_id and level_id == "pbr") and not self.pbr_loot_crates[unit_id] then
+					return "skipped"
+				end
+				return "loot_crates"
+			elseif current_amount and current_amount.loot_case == interact_type then
+				return unit_id ~= -1 and "loot" or "skipped"
+			elseif table.contains(loot_case_types, interact_type) then
+				return "loot"
 			end
-
-			return interact_type and table.contains({
-				"weapon_case",
-				"weapon_case_axis_z",
-				"gen_pku_warhead_box"
-			}, interact_type)
-		end
-
-		local function process_loot_count(manager, carry_id)
-			local level_id = managers.job:current_level_id()
-			local current_amount = manager._loot_fixes[level_id]
-
-			if current_amount and current_amount.carry_id == carry_id and current_amount.ignore and current_amount.ignore > 0 then
-				current_amount.ignore = current_amount.ignore - 1
-			else
-				manager:update_loot(1)
-				manager:update_loot_hud()
-			end
-		end
-
-		local function is_loot_crate(unit)
-			local level_id = managers.job:current_level_id()
-			local manager = managers.interaction
-
-			if manager.ignore_crate_levels[level_id] then
-				return false
-			end
-
-			if level_id == "pbr" then
-				return manager.pbr_loot_crates[unit:editor_id()] == true
-			end
-
-			return true
 		end
 
 		local function is_valid_carry(carry_id)
@@ -190,9 +186,9 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 			end
 
 			local level_id = managers.job:current_level_id()
-			local ignore_loot = managers.interaction.ignore_loot
+			local loot_fixes = managers.interaction._loot_fixes[level_id]
 
-			if ignore_loot and ignore_loot[level_id] and ignore_loot[level_id][carry_id] then
+			if loot_fixes and loot_fixes.ignore and loot_fixes.ignore[carry_id] then
 				return false
 			end
 
@@ -201,19 +197,26 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 
 		Hooks:PostHook(ObjectInteractionManager, "update", "HMH_ObjectInteractionManager_Update", function(self)
 			for i = #self._count_loot_bags, 1, -1 do
-				local data = self._count_loot_bags[i]
-				local unit = data.unit
-				if is_valid_unit(unit) then
-					local carry_id = unit:carry_data() and unit:carry_data():carry_id()
-					local unit_id = unit:editor_id()
-
-					if is_loot_case(unit) then
-						self._total_loot[unit:id()] = true
-						self:update_loot(1)
-						self:update_loot_hud()
-					elseif is_valid_carry(carry_id) and not is_ignored_id(unit_id) then
-						self._total_loot[unit:id()] = true
-						process_loot_count(self, carry_id)
+				local unit = self._count_loot_bags[i].unit
+				local loot_type = is_valid_unit(self, unit)
+				if loot_type == "loot_crates" and not table.contains(self.loot_crates, unit:id()) then
+					table.insert(self.loot_crates, unit:id())
+					self:update_loot_crates()
+				end
+				if loot_type ~= "skipped" and not self._total_loot[unit:id()] then -- self._total_loot[unit:id()] ??
+					local carry_data = unit:carry_data()
+					local carry_id = carry_data and carry_data:carry_id()
+					local is_loot = loot_type == "loot" or is_valid_carry(carry_id)
+					if is_loot then
+						local level_id = managers.job:current_level_id()
+						local current_amount = self._loot_fixes[level_id]
+						if loot_type ~= "loot" and current_amount and current_amount[carry_id] and current_amount[carry_id] > 0 then
+							current_amount[carry_id] = current_amount[carry_id] - 1
+						else
+							self._total_loot[unit:id()] = true
+							self:update_loot(1)
+							self:update_loot_hud()
+						end
 					end
 				end
 				table.remove(self._count_loot_bags, i)
@@ -222,7 +225,8 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 
 		Hooks:PostHook(ObjectInteractionManager, "add_unit", "HMH_ObjectInteractionManager_add_unit", function(self, unit)
 			if alive(unit) then
-				if get_unit_type(unit) == "loot_crates" and is_loot_crate(unit) then
+				local loot_type = is_valid_unit(self, unit)
+				if loot_type == "loot_crates" then
 					if not table.contains(self.loot_crates, unit:id()) then
 						table.insert(self.loot_crates, unit:id())
 						self:update_loot_crates()
@@ -233,30 +237,23 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 		end)
 
 		Hooks:PostHook(ObjectInteractionManager, "remove_unit", "HMH_ObjectInteractionManager_remove_unit", function(self, unit)
-			if alive(unit) then
-				local unit_id = unit:id()
-				if not is_ignored_id(unit:editor_id()) then
-					if self._total_loot[unit_id] then
-						self._total_loot[unit_id] = nil
-						self:update_loot(-1)
-						self:update_loot_hud()
-					end
-				end
-				
-				local crate_index = table.index_of(self.loot_crates, unit_id)
-				if crate_index ~= -1 then
-					table.remove(self.loot_crates, crate_index)
-					self:update_loot_crates()
-				end
-				for i = #self._count_loot_bags, 1, -1 do
-					local queued_unit = self._count_loot_bags[i].unit
+			local unit_id = unit:id()
+			if self._total_loot[unit_id] then
+				self._total_loot[unit_id] = nil
+				self:update_loot(-1)
+				self:update_loot_hud()
+			end
+		
+			local crate_index = table.index_of(self.loot_crates, unit_id)
+			if crate_index ~= -1 then
+				table.remove(self.loot_crates, crate_index)
+				self:update_loot_crates()
+			end
+			for i = #self._count_loot_bags, 1, -1 do
+				local queued_unit = self._count_loot_bags[i].unit -- Might fix a crash
 
-					if not alive(queued_unit) then
-						table.remove(self._count_loot_bags, i)
-					elseif queued_unit:id() == unit_id then
-						table.remove(self._count_loot_bags, i)
-						break
-					end
+				if not alive(queued_unit) or queued_unit:id() == unit_id then
+					table.remove(self._count_loot_bags, i)
 				end
 			end
 		end)
@@ -295,32 +292,22 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 			self:update_loot_hud()
 		end
 
-		function ObjectInteractionManager:update_loot(update)
-			self.loot_count.loot_amount = (self.loot_count.loot_amount or 0) + update
+		function ObjectInteractionManager:update_loot(amount)
+			self.loot_count.loot_amount = (self.loot_count.loot_amount or 0) + amount
 		end
-
+		
 		function ObjectInteractionManager:get_current_crate_count()
 			local level_id = managers.job:current_level_id()
 			local amount = self.loot_count.crate_amount or 0
 			local current_amount = self._loot_fixes[level_id]
-
-			if current_amount and current_amount.crates_over and amount > current_amount.crates_over then
-				amount = amount - (current_amount.remove_crates or 0)
-			end
-
-			return amount
+			return (current_amount and current_amount.briefcases and amount - current_amount.briefcases) or amount
 		end
 
 		function ObjectInteractionManager:get_current_total_loot_count()
 			local level_id = managers.job:current_level_id()
 			local amount = self.loot_count.loot_amount or 0
 			local current_amount = self._loot_fixes[level_id]
-
-			if current_amount and current_amount.loot_over and amount > current_amount.loot_over then
-				amount = current_amount.loot_amount
-			end
-
-			return amount
+			return (current_amount and current_amount.loot and amount > current_amount.loot and 4) or amount
 		end
 	elseif RequiredScript == "lib/managers/mission/missionscriptelement" then
 		Hooks:PostHook(MissionScriptElement, "on_executed", "HMH_MissionScriptElement_on_executed", function(self, ...)
@@ -347,7 +334,7 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 
 			local unit_id = unit:id()
 
-			manager.ignore_ids[400511] = nil
+			manager.ignore_ids["des"][400511] = nil
 
 			if manager._total_loot[unit_id] then
 				return
