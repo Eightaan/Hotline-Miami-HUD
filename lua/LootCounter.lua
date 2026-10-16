@@ -295,7 +295,7 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 		function ObjectInteractionManager:update_loot(amount)
 			self.loot_count.loot_amount = (self.loot_count.loot_amount or 0) + amount
 		end
-		
+
 		function ObjectInteractionManager:get_current_crate_count()
 			local level_id = managers.job:current_level_id()
 			local amount = self.loot_count.crate_amount or 0
