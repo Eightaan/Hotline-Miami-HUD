@@ -39,6 +39,21 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 				alex_3 = {-- Rats (16x Money Briefcase)
 					briefcases = 16
 				},
+				chill = {-- Custom Safehouse (1x Painting)
+					ignore = {mus_artifact_paint = true}
+				},
+				chill_combat = {-- Safehouse Raid (Mission Money)
+					ignore = {money = true}
+				},
+				pent = {-- Mountain Master (2x Artifact)
+					ignore = {mus_artifact = true}
+				},
+				fish = {-- Yacht (1x Painting)
+					ignore = {mus_artifact_paint = true}
+				},
+				des = {-- Henry's Rock (2x Painting
+					ignore = {mus_artifact_paint = true}
+				},
 				mex = {-- Border Crossing
 					loot = 41
 				}
@@ -57,16 +72,13 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 					[300457] = true, [300458] = true,
 					[301343] = true, [301346] = true
 				},
-				["des"] = {-- Henry's Rock (2x Artifact, 2x Painting
+				["des"] = {-- Henry's Rock (3x Artifact)
 					[101757] = true,
-					[400513] = true, [400515] = true,
-					[400617] = true, [400511] = true
+					[400515] = true,
+					[400511] = true
 				},
 				["sah"] = {-- Shacklethorne Auction (2x Artifact)
 					[400791] = true, [400792] = true
-				},
-				["pent"] = {-- Mountain Master (2x Artifact)
-					[500849] = true, [500608] = true
 				},
 				["welcome_to_the_jungle_1"] = {-- Big Oil (1x Money, 1x Gold)
 					[100886] = true, [100872] = true
@@ -74,42 +86,12 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 				["mia_1"] = {-- Hotline Miami (1x Money)
 					[104526] = true
 				},
-				["chill"] = {-- Custom Safehouse (1x Painting)
-					[150416] = true
-				},
-				["chill_combat"] = {-- Safehouse Raid (1x Painting)
-					[150416] = true
-				},
-				["fish"] = {-- Yacht (1x Artifact Painting)
-					[500533] = true
-				},
 				["family"] = {-- Diamond Store (1x Money)
 					[100899] = true
 				},
 				["rvd2"] = {-- Reservoir Dogs (1x Money)
 					[100296] = true
-				},
-				---------------------------------------------------------------------------------------------------
-				-- The following are also from VHud Plus like above but they don't seem to be needed anymore?
-				["jewelry_store"] = {--Jewelry Store (2x money)
-					[102052] = true, [102402] = true
-				},
-				["ukrainian_job"] = {--Ukrainian Job (3x money)
-					[101514] = true,
-					[102052] = true,
-					[102402] = true
-				},
-				["watchdogs_2"] = {--Watchdogs day 2 (8x coke)
-					[100054] = true, [100058] = true,
-					[100427] = true, [100428] = true,
-					[100429] = true, [100426] = true, 
-					[100491] = true, [100492] = true, 
-					[100494] = true, [100495] = true
-				},
-				["tag"] = {-- Breakin' Feds (1x evidence)
-					[134563] = true
 				}
-				----------------------------------------------------------------------------------------------------
 			}
 			self.pbr_loot_crates = {-- Beneath the Mountain
 				[156100] = true,
