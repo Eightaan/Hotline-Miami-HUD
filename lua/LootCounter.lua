@@ -36,9 +36,6 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 				wwh = {-- Alaskan Deal (4x Money Briefcase)
 					loot_case = "grenade_briefcase"
 				},
-				alex_3 = {-- Rats (16x Money Briefcase)
-					briefcases = 16
-				},
 				chill = {-- Custom Safehouse (1x Painting)
 					ignore = {mus_artifact_paint = true}
 				},
@@ -51,74 +48,77 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 				fish = {-- Yacht (1x Painting)
 					ignore = {mus_artifact_paint = true}
 				},
-				des = {-- Henry's Rock (2x Painting
-					ignore = {mus_artifact_paint = true}
+				alex_3 = {-- Rats (16x Money Briefcase)
+					briefcases = 16
 				},
 				mex = {-- Border Crossing
 					loot = 41
+				},
+				des = {-- Henry's Rock (2x Painting 3x Artifact)
+					ignore = {mus_artifact_paint = true},
+					ignore_ids = { [101757] = true, [400515] = true, [400511] = true}
+				},
+				rvd2 = {-- Reservoir Dogs (1x Money)
+					ignore_ids = {[100296] = true}
+				},
+				family = {-- Diamond Store (1x Money)
+					ignore_ids = {[100899] = true}
+				},
+				mia_1 = {-- Hotline Miami (1x Money)
+					ignore_ids = {[104526] = true}
+				},
+				welcome_to_the_jungle_1 = {-- Big Oil (1x Money, 1x Gold)
+					ignore_ids = {[100886] = true, [100872] = true}
+				},
+				sah = {-- Shacklethorne Auction (2x Artifact)
+					ignore_ids = {[400791] = true, [400792] = true}
+				},
+				arm_und = {-- Transport Underpass (8x Money)
+					ignore_ids = {
+						[101237] = true, [101238] = true,
+						[101239] = true, [103835] = true,
+						[103836] = true, [103837] = true,
+						[103838] = true, [101240] = true
+					}
+				},
+				mus = {-- The Diamond (RNG)
+					ignore_ids = {
+						[302577] = true, [302586] = true,
+						[302597] = true, [302599] = true,
+						[300047] = true, [300686] = true,
+						[300457] = true, [300458] = true,
+						[301343] = true, [301346] = true
+					}
+				},
+				pbr = {-- Beneath the Mountain (Loot Crates)
+					whitelist_ids = {
+						[156100] = true,
+						[156175] = true,
+						[156250] = true,
+						[156325] = true,
+						[156400] = true,
+						[156475] = true,
+						[156550] = true,
+						[156625] = true,
+						[156700] = true,
+						[156775] = true,
+						[156850] = true,
+						[156925] = true,
+						[157000] = true,
+						[157075] = true,
+						[157150] = true,
+						[157225] = true,
+						[157300] = true,
+						[157375] = true,
+						[157450] = true,
+						[157525] = true,
+						[157600] = true,
+						[157675] = true,
+						[157750] = true,
+						[157825] = true,
+						[157900] = true
+					}
 				}
-			}
-			self.ignore_ids = {
-				["arm_und"] = {-- Transport Underpass (8x Money)
-					[101237] = true, [101238] = true,
-					[101239] = true, [103835] = true,
-					[103836] = true, [103837] = true,
-					[103838] = true, [101240] = true
-				},
-				["mus"] = {-- The Diamond (RNG)
-					[302577] = true, [302586] = true,
-					[302597] = true, [302599] = true,
-					[300047] = true, [300686] = true,
-					[300457] = true, [300458] = true,
-					[301343] = true, [301346] = true
-				},
-				["des"] = {-- Henry's Rock (3x Artifact)
-					[101757] = true,
-					[400515] = true,
-					[400511] = true
-				},
-				["sah"] = {-- Shacklethorne Auction (2x Artifact)
-					[400791] = true, [400792] = true
-				},
-				["welcome_to_the_jungle_1"] = {-- Big Oil (1x Money, 1x Gold)
-					[100886] = true, [100872] = true
-				},
-				["mia_1"] = {-- Hotline Miami (1x Money)
-					[104526] = true
-				},
-				["family"] = {-- Diamond Store (1x Money)
-					[100899] = true
-				},
-				["rvd2"] = {-- Reservoir Dogs (1x Money)
-					[100296] = true
-				}
-			}
-			self.pbr_loot_crates = {-- Beneath the Mountain
-				[156100] = true,
-				[156175] = true,
-				[156250] = true,
-				[156325] = true,
-				[156400] = true,
-				[156475] = true,
-				[156550] = true,
-				[156625] = true,
-				[156700] = true,
-				[156775] = true,
-				[156850] = true,
-				[156925] = true,
-				[157000] = true,
-				[157075] = true,
-				[157150] = true,
-				[157225] = true,
-				[157300] = true,
-				[157375] = true,
-				[157450] = true,
-				[157525] = true,
-				[157600] = true,
-				[157675] = true,
-				[157750] = true,
-				[157825] = true,
-				[157900] = true
 			}
 		end)
 
@@ -129,24 +129,21 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 			
 			local unit_id = unit:editor_id()
 			local level_id = managers.job:current_level_id()
-			if (level_id and self.ignore_ids[level_id] and unit_id) and self.ignore_ids[level_id][unit_id] then
+			local loot_fixes = self._loot_fixes[level_id]
+			local ignore_ids = loot_fixes and loot_fixes.ignore_ids
+			if ignore_ids and ignore_ids[unit_id] then
 				return "skipped"
 			end
 			
 			local interact_type = unit:interaction().tweak_data
-			local level_id = managers.job:current_level_id()
-			local current_amount = self._loot_fixes[level_id]
 			local loot_crate_types = {"hold_open_xmas_present", "money_briefcase", "hold_open_case", "crate_loot", "crate_loot_crowbar"}
 			local loot_case_types = {"weapon_case", "weapon_case_axis_z", "gen_pku_warhead_box"}
-
 			if table.contains(loot_crate_types, interact_type) then
-				if current_amount and current_amount.ignore_crates then
-					return "skipped"
-				elseif (level_id and level_id == "pbr") and not self.pbr_loot_crates[unit_id] then
+				if loot_fixes and (loot_fixes.ignore_crates or loot_fixes.whitelist_ids and not loot_fixes.whitelist_ids[unit_id]) then
 					return "skipped"
 				end
 				return "loot_crates"
-			elseif current_amount and current_amount.loot_case == interact_type then
+			elseif loot_fixes and loot_fixes.loot_case == interact_type then
 				return unit_id ~= -1 and "loot" or "skipped"
 			elseif table.contains(loot_case_types, interact_type) then
 				return "loot"
@@ -316,7 +313,7 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 
 			local unit_id = unit:id()
 
-			manager.ignore_ids["des"][400511] = nil
+			manager._loot_fixes["des"].ignore_ids[400511] = nil
 
 			if manager._total_loot[unit_id] then
 				return
