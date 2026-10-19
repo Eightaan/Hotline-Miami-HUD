@@ -185,7 +185,7 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 					table.insert(self.loot_crates, unit:id())
 					self:update_loot_crates()
 				end
-				if loot_type ~= "skipped" and not self._total_loot[unit:id()] then -- self._total_loot[unit:id()] ??
+				if loot_type ~= "skipped" and not self._total_loot[unit:id()] then
 					local carry_data = unit:carry_data()
 					local carry_id = carry_data and carry_data:carry_id()
 					local is_loot = loot_type == "loot" or is_valid_carry(carry_id)
@@ -232,7 +232,7 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 				self:update_loot_crates()
 			end
 			for i = #self._count_loot_bags, 1, -1 do
-				local queued_unit = self._count_loot_bags[i].unit -- Might fix a crash
+				local queued_unit = self._count_loot_bags[i].unit
 
 				if not alive(queued_unit) or queued_unit:id() == unit_id then
 					table.remove(self._count_loot_bags, i)
