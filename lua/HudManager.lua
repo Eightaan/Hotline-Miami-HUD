@@ -110,14 +110,15 @@ elseif RequiredScript == "lib/managers/hud/hudhitconfirm" then
 	end)
 	
 	Hooks:PostHook(HUDHitConfirm, "on_headshot_confirmed", "HMH_HUDHitConfirm_on_headshot_confirmed", function(self, ...)
-		if HMH:GetOption("headshot_texture") > 1 then
+
 			self._headshot_confirm:stop()
 			self._headshot_confirm:animate(callback(self, self, "_animate_show"), callback(self, self, "show_done"), 0.25, 0.15)
-		end
 	end)
 	
 elseif RequiredScript == "lib/managers/playermanager" then
 	Hooks:PostHook(PlayerManager, "on_headshot_dealt", "HMH_PlayerManager_on_headshot_dealt", function(self, ...)
-		managers.hud:on_headshot_confirmed()
+		if HMH:GetOption("headshot_texture") > 1 then
+			managers.hud:on_headshot_confirmed()
+		end
 	end)
 end
