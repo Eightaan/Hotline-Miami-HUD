@@ -5,7 +5,9 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 
 	Hooks:PostHook(HUDManager, "update", "HMH_HUDManager_update", function (self, ...)
 		for i, panel in ipairs(self._teammate_panels) do
-			panel:update(...)
+			if panel.update then 
+				panel:update(...)
+			end
 		end
 	end)
 
