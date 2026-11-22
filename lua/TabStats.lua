@@ -308,22 +308,26 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 			text = accuracy 
 		}), 0)
 
-		local max_units = managers.gage_assignment:count_all_units()
-		local remaining = managers.gage_assignment:count_active_units()
-
 		local current_level_id = managers.job:current_level_id()
-		local excluded_levels = { "chill_combat", "chill", "haunted", "hvh" }
+		local excluded_levels = {
+			chill_combat = true,
+			chill = true,
+			haunted = true,
+			hvh = true,
+			nmh = true
+		}
 
-		local function is_excluded_level(level_id, excluded)
-			for _, excluded_level in ipairs(excluded) do
-				if level_id == excluded_level then
-					return true
+		if not excluded_levels[current_level_id] then
+			local stars = managers.job:current_difficulty_stars()
+			local gage, max_units, remaining = managers.gage_assignment, math.min((stars + 1) * 2, 10), 0
+			if gage and gage._spawned_units then
+				for _, unit in pairs(gage._spawned_units) do
+					if alive(unit) and unit:base()._picked_up ~= true then
+						remaining = remaining + 1
+					end
 				end
 			end
-			return false
-		end
 
-		if remaining < max_units and not is_excluded_level(current_level_id, excluded_levels) then
 			placer:add_bottom(self._left:fine_text({
 				keep_w = true,
 				font = tweak_data.hud_stats.objectives_font,
