@@ -291,6 +291,7 @@ if HMH:GetOption("tab") and HMH:GetOption("loot_count") then
 			local current_amount = self._loot_fixes[level_id]
 			return (current_amount and current_amount.loot and amount > current_amount.loot and 4) or amount
 		end
+
 	elseif RequiredScript == "lib/managers/mission/missionscriptelement" then
 		Hooks:PostHook(MissionScriptElement, "on_executed", "HMH_MissionScriptElement_on_executed", function(self, ...)
 			if Global.game_settings.level_id ~= "des" or self._id ~= 102491 then
