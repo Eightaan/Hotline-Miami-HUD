@@ -104,7 +104,8 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 			})
 		end
 	end)
-	
+
+	local loot_count = HMH:GetOption("loot_count")
 	Hooks:OverrideFunction(HUDStatsScreen, "recreate_left", function(self)
 		self._left:clear()
 		self._left:bitmap({
@@ -337,23 +338,21 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 			}), 16)
 		end
 
+		local enemy_count = managers.enemy._enemy_data.nr_units or 0
 		local dominated = 0
-		local enemy_count = 0
-		for _, unit in pairs(managers.enemy:all_enemies()) do
-			enemy_count = enemy_count + 1
-			if (unit and unit.unit and alive(unit.unit)) and (unit.unit:anim_data() and unit.unit:anim_data().hands_up or unit.unit:anim_data() and unit.unit:anim_data().surrender or unit.unit:base() and unit.unit:base().mic_is_being_moved)then
+		for _, enemy in pairs(managers.enemy:all_enemies()) do
+			if enemy and alive(enemy.unit) and not enemy.unit:character_damage():dead() and enemy.unit:brain():surrendered() then
 				dominated = dominated + 1
 			end
 		end
 
-		local enemies = enemy_count - dominated
-		if HMH:GetOption("enemy_count") and enemies > 0 then
+		if HMH:GetOption("enemy_count") and enemy_count > 0 and is_whisper_mode then
 			placer:add_bottom(self._left:fine_text({
 				keep_w = true,
 				font = tweak_data.hud_stats.objectives_font,
 				font_size = small_font_size,
 				color = custom_tab_color and Color("ff6666") or Color(255, 255, 51, 51) / 255,
-				text = managers.localization:to_upper_text("menu_mutators_category_enemies") .. ": " .. enemies
+				text = managers.localization:to_upper_text("menu_asset_welcome_to_the_jungle_guards") .. ": " .. enemy_count
 			}), 16)
 		end
 		
@@ -363,12 +362,6 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 		placer = UiPlacer:new(16, 0, 8, 4)
 
 		if not is_whisper_mode and managers.player:has_category_upgrade("player", "convert_enemies") then
-			local dominated = 0
-			for _, unit in pairs(managers.enemy:all_enemies()) do
-				if (unit and unit.unit and alive(unit.unit)) and (unit.unit:anim_data() and unit.unit:anim_data().hands_up or unit.unit:anim_data() and unit.unit:anim_data().surrender or unit.unit:base() and unit.unit:base().mic_is_being_moved)then
-					dominated = dominated + 1
-				end
-			end
 			local dominated_text = placer:add_bottom(loot_panel:fine_text({
 				keep_w = true,
 				text = managers.localization:text("hmh_hud_stats_enemies_dominated"),
@@ -499,7 +492,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 		local bonus_amount = managers.loot:get_secured_bonus_bags_amount()
 		local secured = secured_amount + bonus_amount
 		local loot_text = secured
-		if HMH:GetOption("loot_count") then
+		if loot_count then
 			local loot_amount = managers.interaction:get_current_total_loot_count()
 			local total = loot_amount + secured
 			loot_text = total > 0 and secured .. "/" .. total or "0"
@@ -532,7 +525,7 @@ if RequiredScript == "lib/managers/hud/newhudstatsscreen" then
 		}))
 		placer:new_row()
 		
-		if HMH:GetOption("loot_count") then
+		if loot_count then
 				local crate_text = placer:add_bottom(loot_panel:fine_text({
 				keep_w = true,
 				text = managers.localization:text("hud_stats_unopened_crates"),
@@ -767,27 +760,6 @@ elseif RequiredScript == "lib/managers/hud/hudstatsscreenskirmish" then
 			text = accuracy 
 		}), 16)
 
-		local dominated = 0
-		local enemy_count = 0
-		for _, unit in pairs(managers.enemy:all_enemies()) do
-			enemy_count = enemy_count + 1
-			if (unit and unit.unit and alive(unit.unit)) and (unit.unit:anim_data() and unit.unit:anim_data().hands_up or unit.unit:anim_data() and unit.unit:anim_data().surrender or unit.unit:base() and unit.unit:base().mic_is_being_moved)then
-				dominated = dominated + 1
-			end
-		end
-
-		local enemies = enemy_count - dominated
-		if HMH:GetOption("enemy_count") and enemies > 0 then
-			placer:add_bottom(self._left:fine_text({
-				keep_w = true,
-				font = tweak_data.hud_stats.objectives_font,
-				font_size = tweak_data.hud_stats.loot_size,
-				color = custom_tab_color and Color("ff6666") or Color(255, 255, 51, 51) / 255,
-				text = managers.localization:to_upper_text("menu_mutators_category_enemies") .. ": " .. enemies
-			}), 0)
-		end
-
-
 		local loot_panel = ExtendedPanel:new(self._left, {
 			w = self._left:w() - 16 - 8
 		})
@@ -795,8 +767,8 @@ elseif RequiredScript == "lib/managers/hud/hudstatsscreenskirmish" then
 
 		if managers.player:has_category_upgrade("player", "convert_enemies") then
 			local dominated = 0
-			for _, unit in pairs(managers.enemy:all_enemies()) do
-				if (unit and unit.unit and alive(unit.unit)) and (unit.unit:anim_data() and unit.unit:anim_data().hands_up or unit.unit:anim_data() and unit.unit:anim_data().surrender or unit.unit:base() and unit.unit:base().mic_is_being_moved)then
+			for _, enemy in pairs(managers.enemy:all_enemies()) do
+				if enemy and alive(enemy.unit) and not enemy.unit:character_damage():dead() and enemy.unit:brain():surrendered() then
 					dominated = dominated + 1
 				end
 			end

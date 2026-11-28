@@ -13,8 +13,9 @@
 		</group>
 
 		<group hook_id="lib/">
-			<group :hook_id="setups/setup">
-				<post :script_path="LoadTextures.lua"/>
+			<group :hook_id="setups/">
+				<post :hook_id="GameSetup" :script_path="LootCounter.lua"/>
+				<post :hook_id="setup" :script_path="LoadTextures.lua"/>
 			</group>
 			
 			<group :hook_id="entry">
@@ -26,7 +27,6 @@
 				<post :hook_id="preplanningmanager"  		:script_path="PrePlanManager.lua"/>
 				<post :hook_id="statisticsmanager"   		:script_path="KillCounter.lua"/>
 				<post :hook_id="systemmenumanager"   		:script_path="InputDialog.lua"/>
-				<post :hook_id="objectinteractionmanager"	:script_path="LootCounter.lua"/>
 				<post :hook_id="trademanager"      			:script_path="TradeDelay.lua"/>
 				<post :hook_id="moneymanager"        		:script_path="TradeDelay.lua"/>
 				<post :hook_id="menumanagerdialogs"  		:script_path="MenuTweak.lua"/>
@@ -49,17 +49,12 @@
 				<group :hook_id="playermanager">
 					<post :script_path="ComboCounter.lua"/>
 					<post :script_path="HealthCircle.lua"/>
-					<post :script_path="LootCounter.lua"/>
 					<post :script_path="HudManager.lua"/>
 					<post :script_path="Buffs.lua"/>
 				</group>
 
 				<group :hook_id="dialogs/specializationdialog">
 					<post :script_path="InputDialog.lua"/>
-				</group>
-				
-				<group :hook_id="mission/missionscriptelement">
-					<post :script_path="LootCounter.lua"/>
 				</group>
 
 				<group :hook_id="hudmanagerpd2">

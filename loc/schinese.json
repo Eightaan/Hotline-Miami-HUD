@@ -46,8 +46,8 @@
 	"hmh_tab_desc" : "自定义tab统计面板",
 	"tab_title" : "自定义tab统计",
 	"tab_desc" : "启用tab统计更改。",
-	"enemy_count_title" : "敌人计数",
-	"enemy_count_desc" : "显示地图上敌人的数量",
+	"enemy_count_title" : "守卫数量",
+	"enemy_count_desc" : "在地图上显示守卫数量",
 
 	"hmh_waypoints_title" : "导航点",
 	"hmh_waypoints_desc" : "自定义导航点",

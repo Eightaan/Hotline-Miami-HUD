@@ -81,8 +81,14 @@ if RequiredScript == "lib/managers/hudmanagerpd2" then
 		end
 	end)
 
+	-- Adding a small delay for the loot updator to prevent the loot counter from lagging behind when players move bags in high ping lobbys.
+	-- Host with a very high ping will still cause the loot counter to slightly lag behind but increasing the delay time will make the loot counter sluggish.
 	local original_loot_value_updated = HUDManager.loot_value_updated
 	function HUDManager:loot_value_updated()
+		if not (HMH:GetOption("tab") and HMH:GetOption("loot_count")) then
+			return original_loot_value_updated(self)
+		end
+
 		DelayedCalls:Remove("HMH_LootRefresh")
 		DelayedCalls:Add("HMH_LootRefresh", 0.25, function()
 			if managers.hud == self then
